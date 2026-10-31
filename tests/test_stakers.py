@@ -22,8 +22,10 @@ STATE = {"big.near": 1_000_000, "a.near": 100_000, "b.near": 50_000, "c.near": 5
          "d.near": 20, "e.near": 0, "late.near": None}
 for i in range(10):
     STATE[f"s{i}.near"] = 100 + i
-LOCKS = [{"account_id": "a.near", "status": "Active"},
-         {"account_id": "x.near", "status": "UnlockRequested"}]
+LOCKS = [{"account_id": "a.near", "status": "Active", "amount_near": str(50 * Y),
+          "end_ns": "1"},
+         {"account_id": "x.near", "status": "UnlockRequested", "amount_near": str(50 * Y),
+          "end_ns": str(10 ** 30)}]
 
 
 class FakeStakeDao(FakeChain):
@@ -100,6 +102,10 @@ class StakersTest(unittest.TestCase):
         self.assertEqual(st["outside_top10_median_near"], "100.000")
         self.assertEqual(st["accounts_under_100_near"], 2)
         self.assertEqual(st["agents_locks"], 2)
+        self.assertEqual(st["agents_lock_accounts"], 2)
+        self.assertEqual(st["agents_locks_past_end"], 1)
+        self.assertEqual(st["farm_or_active_lock_accounts"], 15)  # a.near is in both
+        self.assertEqual(st["farm_or_any_lock_accounts"], 16)     # + x.near
         results, problems = stakers.verify_all(data)
         self.assertEqual(problems, [])
         self.assertEqual(results[0]["stakers_active"], 15)

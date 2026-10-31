@@ -295,9 +295,16 @@ def compute(snap_file, data_root):
     for path in sorted((data_root / "raw" / "stakedao" / str(h)).glob("locks_*.json")):
         locks += decode(path.read_bytes())
     lock_status = {}
+    lock_accounts, active_lock_accounts, past_end = set(), set(), 0
     for lk in locks:
         st = str(lk.get("status", "unknown"))
         lock_status[st] = lock_status.get(st, 0) + 1
+        if int(lk.get("amount_near", 0)) > 0:
+            lock_accounts.add(lk["account_id"])
+            if st == "Active":
+                active_lock_accounts.add(lk["account_id"])
+        if int(lk.get("end_ns", 0)) and int(lk["end_ns"]) < blk["timestamp"]:
+            past_end += 1
 
     ranked = sorted(active.values(), reverse=True)
     rest = ranked[10:]
@@ -317,6 +324,11 @@ def compute(snap_file, data_root):
         "accounts_under_100_near": sum(1 for v in ranked if v < 100 * YOCTO),
         "accounts_100k_or_more": sum(1 for v in ranked if v >= 100_000 * YOCTO),
         "agents_locks": len(locks), "agents_locks_by_status": lock_status,
+        "agents_lock_accounts": len(lock_accounts),
+        "agents_locks_past_end": past_end,
+        # Separate line only; prediction 3 counts the farm alone (stakers_active).
+        "farm_or_active_lock_accounts": len(set(active) | active_lock_accounts),
+        "farm_or_any_lock_accounts": len(set(active) | lock_accounts),
         "accounts_without_position_contract_error": len(panics),
         "contract_error_example": next(iter(panics.values()), ""),
     }
