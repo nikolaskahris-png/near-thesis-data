@@ -1,0 +1,4 @@
+# Same line endings on every OS, so sha256 checks match on Windows, Linux and macOS.
+* text=auto eol=lf
+# Raw API responses are stored byte-for-byte.
+data/raw/** -text

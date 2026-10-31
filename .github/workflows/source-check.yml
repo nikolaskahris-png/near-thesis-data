@@ -1,0 +1,38 @@
+# Checks that a GitHub-hosted runner can reach every data source,
+# then commits the result so it stays in the public history.
+name: source-check
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - scripts/check_sources.py
+      - .github/workflows/source-check.yml
+
+permissions:
+  contents: write
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run source check
+        run: python scripts/check_sources.py --out data/source_check.txt
+      - name: Show result on the run page
+        run: |
+          echo '```' >> "$GITHUB_STEP_SUMMARY"
+          cat data/source_check.txt >> "$GITHUB_STEP_SUMMARY"
+          echo '```' >> "$GITHUB_STEP_SUMMARY"
+      - name: Commit result
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/source_check.txt
+          git commit -m "source-check: result from GitHub-hosted runner" || echo "nothing to commit"
+          git push
