@@ -111,5 +111,29 @@ class LockWindowTest(unittest.TestCase):
             self.assertEqual(hdr["height"], expected_boundary(target), off)
 
 
+
+class RateLimitTest(unittest.TestCase):
+    def test_429_slows_down_and_retries(self):
+        import io
+        import urllib.error
+        from unittest import mock
+        answers = [429, 429, 200]
+        waits = []
+
+        def fake_urlopen(req, timeout):
+            code = answers.pop(0)
+            if code != 200:
+                raise urllib.error.HTTPError(req.full_url, code, "Too Many", {}, io.BytesIO())
+            return mock.MagicMock(__enter__=lambda s: io.BytesIO(b'{"ok":1}'),
+                                  __exit__=lambda *a: False)
+
+        chain = lw.Chain(url="https://x", sleep=waits.append)
+        with mock.patch("urllib.request.urlopen", fake_urlopen):
+            self.assertEqual(chain._post({}), b'{"ok":1}')
+        self.assertEqual(chain.calls, 3)
+        self.assertEqual(chain.pause, 2.0)           # 0.5 -> 1.0 -> 2.0
+        self.assertEqual(waits, [0.5, 5, 1.0, 10, 2.0])
+
+
 if __name__ == "__main__":
     unittest.main()

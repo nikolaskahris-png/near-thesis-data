@@ -3,8 +3,13 @@
 For a date D this measures, between the first block at or after 00:00 UTC of
 D-30 and the first block at or after 00:00 UTC of D:
 
-  coverage_buybacks = change in buybacks.multisignature.near / change in total supply
-  coverage_with_fe  = change in (buybacks + fefundsadmin.sputnik-dao.near) / same
+  coverage_buybacks = change in (buybacks.multisignature.near + 1csfundsadmin) / change in supply
+  coverage_with_fe  = the same plus fefundsadmin.sputnik-dao.near
+
+1csfundsadmin is the 1Click fund that collected fees until 23 Apr 2026 and later
+moved ~510K NEAR to the buybacks wallet; summing the two cancels such internal
+transfers without any hand-entered number. Payments out to third parties are
+not added back: this measures NEAR that stayed out of circulation.
 
 Always a 30-day window: total supply only grows at epoch ends (~3.4 per day),
 so a single day reads ~78K or ~105K new NEAR depending on how many epochs it holds.
@@ -36,7 +41,7 @@ import lock_window as lw  # noqa: E402
 WINDOW_DAYS = 30
 BUYBACKS = "buybacks.multisignature.near"
 FEFUNDS = "fefundsadmin.sputnik-dao.near"
-ONECLICK = "1csfundsadmin.sputnik-dao.near"  # sent ~510K NEAR to buybacks in Jul/Sep 2026
+ONECLICK = "1csfundsadmin.sputnik-dao.near"  # 1Click fee fund until 23 Apr 2026
 ACCOUNTS = (BUYBACKS, FEFUNDS, ONECLICK)
 INTENTS = "intents.near"
 WNEAR = "nep141:wrap.near"
@@ -155,7 +160,7 @@ def build_row(day_doc, data_root):
     problems += p1 + p2
     days = (date.fromisoformat(e["date"]) - date.fromisoformat(s["date"])).days
     d_supply = b["total_supply"] - a["total_supply"]
-    d_buy = b[BUYBACKS] - a[BUYBACKS]
+    d_buy = (b[BUYBACKS] + b[ONECLICK]) - (a[BUYBACKS] + a[ONECLICK])
     d_fe = b[FEFUNDS] - a[FEFUNDS]
     flags = []
     if d_buy < 0:
@@ -163,7 +168,7 @@ def build_row(day_doc, data_root):
     if d_fe < 0:
         flags.append("fefunds_balance_fell")
     if b[ONECLICK] != a[ONECLICK]:
-        flags.append("1cs_balance_changed")
+        flags.append("1cs_balance_changed")  # still counted; flag shows an internal move
     for acct in (BUYBACKS, FEFUNDS):
         if a[acct + "@intents"] or b[acct + "@intents"]:
             flags.append(f"{acct.split('.')[0]}_holds_wnear_in_intents")
@@ -172,7 +177,8 @@ def build_row(day_doc, data_root):
         "block_start": a["height"], "block_end": b["height"], "block_end_utc": b["utc"],
         "total_supply_start": near(a["total_supply"]), "total_supply_end": near(b["total_supply"]),
         "new_supply_per_day": near(d_supply // days),
-        "buybacks_start": near(a[BUYBACKS]), "buybacks_end": near(b[BUYBACKS]),
+        "buybacks_start": near(a[BUYBACKS] + a[ONECLICK]),
+        "buybacks_end": near(b[BUYBACKS] + b[ONECLICK]),
         "buybacks_per_day": near(d_buy // days if d_buy >= 0 else -((-d_buy) // days)),
         "fefunds_start": near(a[FEFUNDS]), "fefunds_end": near(b[FEFUNDS]),
         "fefunds_per_day": near(d_fe // days if d_fe >= 0 else -((-d_fe) // days)),

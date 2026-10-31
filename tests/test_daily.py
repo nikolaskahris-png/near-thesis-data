@@ -67,6 +67,8 @@ class DailyTest(unittest.TestCase):
             self.assertEqual(row["coverage_with_fe"], "0.150000")
             self.assertEqual(row["new_supply_per_day"], daily.near(blocks * Y // 30))
             self.assertEqual(row["flags"], "")
+            # 1cs is constant in the fake chain, so it adds to the level but not the change
+            self.assertEqual(row["buybacks_start"], daily.near(balance(daily.BUYBACKS, doc["start"]["height"]) + 5 * Y))
 
             # history.csv is rebuilt identically by --verify
             before = (data / "history.csv").read_text(encoding="utf-8")

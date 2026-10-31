@@ -43,9 +43,12 @@ REPO = Path(__file__).resolve().parent.parent
 class Chain:
     """Archival RPC access. Missing (skipped) heights return None."""
 
-    def __init__(self, url=ARCHIVAL, pause=0.05):
+    def __init__(self, url=ARCHIVAL, pause=0.5, max_pause=3.0, sleep=time.sleep):
+        # FastNEAR archival answers 429 when called faster than ~2 per second.
         self.url = url
         self.pause = pause
+        self.max_pause = max_pause
+        self.sleep = sleep
         self.calls = 0
         self.raw = {}  # height -> raw response bytes
         self.headers = {}  # height -> header, so no block is fetched twice
@@ -55,21 +58,24 @@ class Chain:
         data = json.dumps(body).encode("utf-8")
         headers = {"User-Agent": USER_AGENT, "Content-Type": "application/json",
                    "Accept": "application/json"}
-        for attempt in range(6):
-            time.sleep(self.pause)
+        attempts = 9
+        for attempt in range(attempts):
+            self.sleep(self.pause)
             self.calls += 1
             req = urllib.request.Request(self.url, data=data, headers=headers)
             try:
                 with urllib.request.urlopen(req, timeout=30) as resp:
                     return resp.read()
             except urllib.error.HTTPError as e:
-                if e.code in (429, 500, 502, 503, 504) and attempt < 5:
-                    time.sleep(2 ** attempt)
+                if e.code == 429:  # slow down for the rest of the run, then wait
+                    self.pause = min(max(self.pause, 0.25) * 2, self.max_pause)
+                if e.code in (429, 500, 502, 503, 504) and attempt < attempts - 1:
+                    self.sleep(min(5 * 2 ** attempt, 60))
                     continue
                 raise RuntimeError(f"HTTP {e.code} from {self.url}") from None
             except (urllib.error.URLError, TimeoutError, ConnectionError) as e:
-                if attempt < 5:
-                    time.sleep(2 ** attempt)
+                if attempt < attempts - 1:
+                    self.sleep(min(5 * 2 ** attempt, 60))
                     continue
                 raise RuntimeError(f"cannot reach {self.url}: {e}") from None
         raise RuntimeError("unreachable")
