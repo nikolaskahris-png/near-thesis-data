@@ -84,6 +84,35 @@ class DailyTest(unittest.TestCase):
             _, problems3 = daily.write_history(data)
             self.assertTrue(any("sha256" in p for p in problems3))
 
+    def test_wnear_inside_intents_counts_as_held(self):
+        d = date(2026, 11, 1)
+
+        class WithWnear(FakeChainWithState):
+            def _post(self, body):
+                p = body.get("params", {})
+                if p.get("request_type") == "call_function" and p["block_id"] == self.end_h:
+                    args = json.loads(base64.b64decode(p["args_base64"]))
+                    if args["account_id"] == daily.BUYBACKS:
+                        self.calls += 1
+                        res = {"result": list(b'"3000000000000000000000000"'), "logs": [],
+                               "block_height": p["block_id"]}
+                        return json.dumps({"jsonrpc": "2.0", "id": "daily", "result": res}).encode()
+                return super()._post(body)
+
+        plain = FakeChainWithState(final_height_at(lw.midnight_ns(d) + 3600 * lw.NS))
+        with tempfile.TemporaryDirectory() as tmp:
+            doc, rows, _, _ = daily.run(d, Path(tmp) / "data", plain)
+        chain = WithWnear(final_height_at(lw.midnight_ns(d) + 3600 * lw.NS))
+        chain.end_h = doc["end"]["height"]
+        with tempfile.TemporaryDirectory() as tmp:
+            _, rows2, problems, _ = daily.run(d, Path(tmp) / "data", chain)
+        self.assertEqual(problems, [])
+        blocks = doc["end"]["height"] - doc["start"]["height"]
+        self.assertEqual(rows2[0]["coverage_buybacks"],
+                         daily.ratio(blocks * Y // 10 + 3 * Y, blocks * Y))
+        self.assertIn("buybacks_holds_wnear_in_intents", rows2[0]["flags"])
+        self.assertEqual(rows[0]["coverage_buybacks"], "0.100000")
+
     def test_near_formatting(self):
         self.assertEqual(daily.near(1_234_567_890 * 10 ** 15), "1.235")
         self.assertEqual(daily.near(-5 * 10 ** 23), "-0.500")

@@ -6,6 +6,7 @@ The same measurement as daily.py (number 1), between the first block at or after
   coverage_buybacks = change in (buybacks.multisignature.near + 1csfundsadmin) / change in supply
   coverage_with_fe  = the same plus fefundsadmin.sputnik-dao.near
 
+Balances include wNEAR held inside intents.near (as in daily.py).
 Independent of DefiLlama: only archival balances and block headers. Internal
 moves from 1csfundsadmin to the buybacks wallet cancel out in the sum; payments
 out to third parties are not added back (this measures NEAR that stayed out of

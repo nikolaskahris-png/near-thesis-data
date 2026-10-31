@@ -17,7 +17,7 @@ Y = 10 ** 24
 START, END = date(2026, 10, 2), date(2026, 11, 1)
 SERIES_FROM = date(2026, 2, 23)
 LOW_FEES = date(2026, 10, 22)     # fees 5 on normal volume -> below 20% of median
-LOW_BPS = date(2026, 10, 30)      # normal fees on 5x volume -> below half the median bps
+LOW_BPS = date(2026, 10, 30)      # normal fees on 5x volume -> warning only, still counted
 HIGH_PRICE = date(2026, 10, 10)   # price 4 instead of 2
 
 
@@ -96,20 +96,19 @@ class FeesTest(unittest.TestCase):
     def test_number_2_matches_hand_computation(self):
         out, doc = self.run_once(fake_raws())
         w = doc["result"]["window"]
-        self.assertEqual(w["counted_days"], 28)
-        self.assertEqual(set(w["excluded"]), {LOW_FEES.isoformat(), LOW_BPS.isoformat()})
-        self.assertEqual(w["excluded"][LOW_FEES.isoformat()], "fees_below_20pct_of_median")
-        self.assertEqual(w["excluded"][LOW_BPS.isoformat()], "fees_per_volume_below_half_of_median")
+        self.assertEqual(w["counted_days"], 29)
+        self.assertEqual(w["excluded"], {LOW_FEES.isoformat(): "fees_below_20pct_of_median"})
+        self.assertEqual(w["warnings"], {LOW_BPS.isoformat(): "fees_per_volume_below_half_of_median"})
         self.assertEqual(w["new_near_per_day"], "100.000")
-        # 27 days buy 50 NEAR, one day (price 4) buys 25; supply 100 per day
-        cover = Fraction(27 * 50 + 25, 28) / 100
+        # 28 days buy 50 NEAR, one day (price 4) buys 25; supply 100 per day
+        cover = Fraction(28 * 50 + 25, 29) / 100
         self.assertEqual(w["max_coverage"], fees.fmt(cover, 6))
         self.assertEqual(w["equilibrium_price_usd"], "1.0000")
-        self.assertEqual(w["fees_bps"], "1.00")
+        self.assertEqual(w["fees_bps"], fees.fmt(Fraction(2900, 33_000_000) * 10000, 2))
         self.assertEqual(w["take_rate"], "0.300000")
         self.assertEqual(w["hsp029_scenario_max_coverage"], fees.fmt(cover * 25 / 16, 6))
         self.assertEqual(w["hsp029_scenario_equilibrium_price_usd"], "1.5625")
-        self.assertEqual(w["fees_weighted_price_usd"], fees.fmt(Fraction(2800, 27 * 50 + 25), 4))
+        self.assertEqual(w["fees_weighted_price_usd"], fees.fmt(Fraction(2900, 28 * 50 + 25), 4))
         # monthly table: March .. October, October full
         months = doc["result"]["monthly"]
         self.assertEqual([m["month"] for m in months][0], "2026-03")
@@ -135,6 +134,27 @@ class FeesTest(unittest.TestCase):
         revs = doc["revisions_vs_previous_fetch"]
         self.assertEqual([r["date"] for r in revs], [LOW_BPS.isoformat()])
         self.assertEqual(revs[0]["fees_usd"], ["100.00", "500.00"])
+        self.assertFalse(doc["final"]["ready"])
+
+    def test_final_only_after_48h_and_a_stable_fetch(self):
+        _, d1 = self.run_once(fake_raws(), now=datetime(2026, 11, 2, 9, tzinfo=timezone.utc))
+        self.assertFalse(d1["final"]["ready"])          # no earlier fetch, 33 h
+        _, d2 = self.run_once(fake_raws(), now=datetime(2026, 11, 3, 3, tzinfo=timezone.utc))
+        self.assertFalse(d2["final"]["ready"])          # 51 h, but only 18 h since previous
+        _, d3 = self.run_once(fake_raws(), now=datetime(2026, 11, 4, 3, tzinfo=timezone.utc))
+        self.assertTrue(d3["final"]["ready"])           # 75 h, 24 h since previous, unchanged
+        self.assertEqual(d3["final"]["days_changed_since_previous_fetch"], 0)
+
+    def test_revenue_above_fees_is_a_warning(self):
+        raws = fake_raws()
+        doc = json.loads(raws["revenue"])
+        for pair in doc["totalDataChart"]:
+            if pair[0] == ts(date(2026, 10, 12)):
+                pair[1] = 1000
+        raws["revenue"] = json.dumps(doc).encode()
+        _, d = self.run_once(raws)
+        self.assertEqual(d["result"]["window"]["warnings"]["2026-10-12"], "revenue_above_fees")
+        self.assertEqual(d["result"]["window"]["counted_days"], 29)
 
     def test_price_far_from_noon_is_rejected(self):
         raw = json.dumps({"coins": {fees.PRICE_ID: {"prices": [

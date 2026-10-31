@@ -6,6 +6,10 @@ D-30 and the first block at or after 00:00 UTC of D:
   coverage_buybacks = change in (buybacks.multisignature.near + 1csfundsadmin) / change in supply
   coverage_with_fe  = the same plus fefundsadmin.sputnik-dao.near
 
+Each balance is NEAR on the account (view_account) plus, for buybacks and
+fefundsadmin, wNEAR the account holds inside intents.near (mt_balance_of), so
+NEAR moved into Intents still counts as held. Staked NEAR is not counted (flagged).
+
 1csfundsadmin is the 1Click fund that collected fees until 23 Apr 2026 and later
 moved ~510K NEAR to the buybacks wallet; summing the two cancels such internal
 transfers without any hand-entered number. Payments out to third parties are
@@ -160,8 +164,14 @@ def build_row(day_doc, data_root):
     problems += p1 + p2
     days = (date.fromisoformat(e["date"]) - date.fromisoformat(s["date"])).days
     d_supply = b["total_supply"] - a["total_supply"]
-    d_buy = (b[BUYBACKS] + b[ONECLICK]) - (a[BUYBACKS] + a[ONECLICK])
-    d_fe = b[FEFUNDS] - a[FEFUNDS]
+    def buy(p):  # NEAR on the accounts plus wNEAR they hold inside intents.near
+        return p[BUYBACKS] + p[BUYBACKS + "@intents"] + p[ONECLICK]
+
+    def fe(p):
+        return p[FEFUNDS] + p[FEFUNDS + "@intents"]
+
+    d_buy = buy(b) - buy(a)
+    d_fe = fe(b) - fe(a)
     flags = []
     if d_buy < 0:
         flags.append("buybacks_balance_fell")
@@ -177,10 +187,9 @@ def build_row(day_doc, data_root):
         "block_start": a["height"], "block_end": b["height"], "block_end_utc": b["utc"],
         "total_supply_start": near(a["total_supply"]), "total_supply_end": near(b["total_supply"]),
         "new_supply_per_day": near(d_supply // days),
-        "buybacks_start": near(a[BUYBACKS] + a[ONECLICK]),
-        "buybacks_end": near(b[BUYBACKS] + b[ONECLICK]),
+        "buybacks_start": near(buy(a)), "buybacks_end": near(buy(b)),
         "buybacks_per_day": near(d_buy // days if d_buy >= 0 else -((-d_buy) // days)),
-        "fefunds_start": near(a[FEFUNDS]), "fefunds_end": near(b[FEFUNDS]),
+        "fefunds_start": near(fe(a)), "fefunds_end": near(fe(b)),
         "fefunds_per_day": near(d_fe // days if d_fe >= 0 else -((-d_fe) // days)),
         "coverage_buybacks": ratio(d_buy, d_supply),
         "coverage_with_fe": ratio(d_buy + d_fe, d_supply),

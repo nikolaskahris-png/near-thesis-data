@@ -13,9 +13,13 @@ New supply comes only from the two locked boundary blocks (total_supply), over
 every day of the window.
 
 Incomplete DefiLlama days are not counted in the fee averages (they stay in the
-supply): a day is incomplete if its fees are below 20% of the median day, or its
-fees per dollar of volume are below half of the median day. Both medians are over
-the days of the same window (or month).
+supply): a day is incomplete if its fees are below 20% of the median day of the
+same window (or month). Two more signs are shown as warnings but do not exclude a
+day: fees per dollar of volume below half of the median day (a real day of mostly
+stablecoin swaps, charged ~1 bp, also looks like this) and revenue above fees.
+DefiLlama fills its latest days late and sometimes corrects older ones, so a
+result is final only when fetched at least 48 h after the window end and a fetch
+at least 24 h earlier gives the same fees and prices for every day of the window.
 
 Scenario HSP-029: new supply x 16/25 (maximum inflation 2.5% -> 1.6%; the proposal
 itself scales staking yield the same way, 4.80% -> 3.07%). Labelled "scenario".
@@ -58,7 +62,9 @@ SERIES_URLS = {
 PRICE_URL = "https://coins.llama.fi/chart/{coin}?start={start}&span={span}&period=1d"
 MONTHLY_FROM = date(2026, 3, 1)  # first full month after the fee switch of 23 Feb 2026
 INCOMPLETE_FEES = Fraction(1, 5)
-INCOMPLETE_BPS = Fraction(1, 2)
+LOW_BPS_WARNING = Fraction(1, 2)
+FINAL_AFTER_H = 48
+STABLE_GAP_H = 24
 HSP029_FACTOR = Fraction(16, 25)
 PRICE_TOLERANCE_S = 3 * 3600  # a price must be within 3 h of 12:00 UTC of its day
 DAY = 86400
@@ -71,8 +77,11 @@ RULES = {
     "equilibrium_price": "mean dailyFees per counted day (USD) / new NEAR per day",
     "new_supply": "(total_supply at last boundary - total_supply at first boundary) / window days",
     "price": "coins.llama.fi coingecko:near at 12:00 UTC of each day",
-    "incomplete_day": "fees < 20% of the median day, or fees/volume < 50% of the median day "
-                      "(medians over the same window or month); not counted in fee averages",
+    "incomplete_day": "fees < 20% of the median day of the same window or month; "
+                      "not counted in fee averages",
+    "warnings": "fees/volume < 50% of the median day, or revenue > fees: shown, still counted",
+    "final": "fetched >= 48 h after window end, and a fetch >= 24 h earlier has the same "
+             "fees and prices for every window day",
     "hsp029_scenario": "new supply x 16/25 (maximum inflation 2.5% -> 1.6%), scenario only",
 }
 
@@ -151,27 +160,31 @@ def fmt(x, places):
 # ---------- the measurement ----------
 
 def judge(days, s):
-    """Flags per day; a day with any flag is not counted in fee averages."""
+    """(flags, warnings) per day; a day with any flag is not counted in fee averages."""
     ok = [d for d in days if d in s["fees"] and d in s["volume"]
           and s["fees"][d] > 0 and s["volume"][d] > 0]
     med_fees = statistics.median([s["fees"][d] for d in ok]) if ok else 0
     med_bps = statistics.median([s["fees"][d] / s["volume"][d] for d in ok]) if ok else 0
-    flags = {}
+    flags, warnings = {}, {}
     for d in days:
         f = [f"no_{k}" for k in ("fees", "revenue", "volume", "price") if d not in s[k]]
+        w = []
         if not f:
             if s["volume"][d] <= 0:
                 f.append("no_volume")
             elif s["fees"][d] < INCOMPLETE_FEES * med_fees:
                 f.append("fees_below_20pct_of_median")
-            elif s["fees"][d] / s["volume"][d] < INCOMPLETE_BPS * med_bps:
-                f.append("fees_per_volume_below_half_of_median")
-        flags[d] = f
-    return flags
+            else:
+                if s["fees"][d] / s["volume"][d] < LOW_BPS_WARNING * med_bps:
+                    w.append("fees_per_volume_below_half_of_median")
+                if s["revenue"][d] > s["fees"][d]:
+                    w.append("revenue_above_fees")
+        flags[d], warnings[d] = f, w
+    return flags, warnings
 
 
 def aggregate(days, s):
-    flags = judge(days, s)
+    flags, warnings = judge(days, s)
     counted = [d for d in days if not flags[d]]
     n = len(counted)
     if n == 0:
@@ -185,6 +198,7 @@ def aggregate(days, s):
         "first_day": days[0].isoformat(), "last_day": days[-1].isoformat(),
         "days": len(days), "counted_days": n,
         "excluded": {d.isoformat(): ";".join(flags[d]) for d in days if flags[d]},
+        "warnings": {d.isoformat(): ";".join(warnings[d]) for d in days if warnings[d]},
         "volume_usd_per_day": vol / n,
         "fees_usd_per_day": fees / n,
         "revenue_usd_per_day": rev / n,
@@ -196,7 +210,7 @@ def aggregate(days, s):
         "fees_near_per_day": fees_near / n,
         "revenue_near_per_day": rev_near / n,
     }
-    return agg, flags
+    return agg, (flags, warnings)
 
 
 def months(first, last):
@@ -222,7 +236,7 @@ def compute(window, raws):
     d_supply = int(last["total_supply_yocto"]) - int(first["total_supply_yocto"])
     issuance = Fraction(d_supply, YOCTO * n_days)
 
-    agg, flags = aggregate(days, s)
+    agg, (flags, warnings) = aggregate(days, s)
     scen = issuance * HSP029_FACTOR
     win = dict(agg)
     win.update({
@@ -246,6 +260,7 @@ def compute(window, raws):
         row["fees_bps"] = fmt(s["fees"][d] / s["volume"][d] * 10000, 2) if ok else ""
         row["fees_near"] = fmt(s["fees"][d] / s["price"][d], 1) if ok else ""
         row["flags"] = ";".join(flags[d])
+        row["warnings"] = ";".join(warnings[d])
         day_rows.append(row)
 
     monthly = []
@@ -310,24 +325,35 @@ def run(window_path, data_root, fetch=fetch, check_window=True, now=None):
                            "url": url}
     result = compute(window, raws)
     out = data_root / f"fees_{start}_{end}.json"
-    revisions = []
+    revisions, previous = [], None
     if out.exists():
         prev = json.loads(out.read_text(encoding="utf-8"))
+        previous = prev["fetched_utc"]
         old = {r["date"]: r for r in prev["result"]["days"]}
         for r in result["days"]:
             o = old.get(r["date"])
-            if o and (o["fees_usd"], o["price_usd"]) != (r["fees_usd"], r["price_usd"]):
-                revisions.append({"date": r["date"], "previous_fetch": prev["fetched_utc"],
-                                  "fees_usd": [o["fees_usd"], r["fees_usd"]],
-                                  "price_usd": [o["price_usd"], r["price_usd"]]})
+            if o is None or (o["fees_usd"], o["price_usd"]) != (r["fees_usd"], r["price_usd"]):
+                revisions.append({"date": r["date"], "previous_fetch": previous,
+                                  "fees_usd": [o and o["fees_usd"], r["fees_usd"]],
+                                  "price_usd": [o and o["price_usd"], r["price_usd"]]})
+    hours = (now - datetime(end.year, end.month, end.day, tzinfo=timezone.utc)).total_seconds() / 3600
+    gap = None
+    if previous:
+        gap = (now - datetime.strptime(previous, "%Y-%m-%dT%H:%M:%SZ")
+               .replace(tzinfo=timezone.utc)).total_seconds() / 3600
+    final = {"ready": hours >= FINAL_AFTER_H and gap is not None and gap >= STABLE_GAP_H
+             and not revisions,
+             "hours_after_window_end": round(hours, 1),
+             "previous_fetch": previous,
+             "hours_since_previous_fetch": None if gap is None else round(gap, 1),
+             "days_changed_since_previous_fetch": len(revisions) if previous else None}
     doc = {
         "measure": "number 2: share of new NEAR supply that all NEAR Intents fees could buy",
         "window_file": rel(window_path, data_root.parent),
         "window": {"start": start.isoformat(), "end": end.isoformat(), "days": (end - start).days},
         "rules": RULES,
         "fetched_utc": now.strftime("%Y-%m-%dT%H:%M:%SZ"),
-        "hours_after_window_end": round((now - datetime(end.year, end.month, end.day,
-                                                        tzinfo=timezone.utc)).total_seconds() / 3600, 1),
+        "final": final,
         "raw": raw_files,
         "result": result,
         "revisions_vs_previous_fetch": revisions,
@@ -363,9 +389,11 @@ def verify(path, check_window=True):
 def report(doc):
     w = doc["result"]["window"]
     print(f"Window {w['first_day']} .. {w['last_day']}: {w['counted_days']} of {w['days']} days counted"
-          f"  (fetched {doc['fetched_utc']}, {doc['hours_after_window_end']} h after window end)")
+          f"  (fetched {doc['fetched_utc']}, {doc['final']['hours_after_window_end']} h after window end)")
     for d, why in w["excluded"].items():
         print(f"  excluded {d}: {why}")
+    for d, why in w["warnings"].items():
+        print(f"  warning  {d}: {why} (counted)")
     print(f"  volume/day ${w['volume_usd_per_day']}  fees/day ${w['fees_usd_per_day']}"
           f"  fees {w['fees_bps']} bps  take rate {w['take_rate']}")
     print(f"  new NEAR/day {w['new_near_per_day']}  fees could buy {w['fees_near_per_day']} NEAR/day")
@@ -380,8 +408,15 @@ def report(doc):
         print(f"    {m['month']}  {m['fees_bps']:>6}  {m['take_rate']}  {m['revenue_near_per_day']:>9}"
               f"  {m['counted_days']}/{m['days']}{'' if m['full_month'] else ' (partial)'}")
     for r in doc["revisions_vs_previous_fetch"]:
-        print(f"  REVISED {r['date']}: fees {r['fees_usd'][0]} -> {r['fees_usd'][1]}"
+        print(f"  CHANGED {r['date']}: fees {r['fees_usd'][0]} -> {r['fees_usd'][1]}"
               f", price {r['price_usd'][0]} -> {r['price_usd'][1]}")
+    f = doc["final"]
+    if f["ready"]:
+        print("  FINAL: >= 48 h after window end and unchanged since a fetch >= 24 h earlier")
+    else:
+        print(f"  NOT FINAL YET: needs >= {FINAL_AFTER_H} h after window end (now "
+              f"{f['hours_after_window_end']}) and an unchanged fetch >= {STABLE_GAP_H} h earlier "
+              f"(previous: {f['previous_fetch'] or 'none'}). Run again later.")
 
 
 def main():
