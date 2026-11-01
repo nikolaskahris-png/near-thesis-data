@@ -92,6 +92,7 @@
   ],
   "sources": {
     "data/coverage_monthly.json": "74c24cad7c5a975e989fb70a62b157caef271901f16b9dfe9f708b3e98f8e9e9",
+    "data/farm_rate.json": "d1ad56d759c561d85ed924dc8bb49dbd4887663e04e5435523696dc74650f35a",
     "data/fees_2026-10-02_2026-11-01.json": "5d7abc7ebfe804bc53afb5571240b4eeb809b8bd7d2af0354f63907782ddb598",
     "data/history.csv": "ca21a4a8ab0108fd9cbdf9af65f60bdca38e6b8afd63be873aad8469242221b1",
     "data/stakers/2026-08-01.json": "e1da2618c3332451ce41a34d64af1a23fc6122497c02cb7cc9ce633b0fa016f1",
@@ -1397,6 +1398,145 @@
       "text": "112",
       "source": "data/stakers/2026-11-01.json",
       "unit": "accounts",
+      "block": 222491356
+    },
+    "f6.change1.ratio": {
+      "value": "2.000000",
+      "text": "×2.0",
+      "source": "data/farm_rate.json",
+      "block": 217788180,
+      "tx_hash": "ENjbDSPRNzL3BTtCvWRUNDkM1vQmyrhTpvm18feaFn6S"
+    },
+    "f6.change1.signer_is_catalog_manager": {
+      "value": "True",
+      "text": "yes",
+      "source": "data/farm_rate.json",
+      "block": 217788180,
+      "tx_hash": "ENjbDSPRNzL3BTtCvWRUNDkM1vQmyrhTpvm18feaFn6S"
+    },
+    "f6.change1.signer_is_pool_owner": {
+      "value": "False",
+      "text": "no",
+      "source": "data/farm_rate.json",
+      "block": 217788180,
+      "tx_hash": "ENjbDSPRNzL3BTtCvWRUNDkM1vQmyrhTpvm18feaFn6S"
+    },
+    "f6.change1.units_per_near_year_after": {
+      "value": "0.240000",
+      "text": "0.24",
+      "source": "data/farm_rate.json",
+      "block": 217788180,
+      "tx_hash": "ENjbDSPRNzL3BTtCvWRUNDkM1vQmyrhTpvm18feaFn6S"
+    },
+    "f6.change1.units_per_near_year_before": {
+      "value": "0.120000",
+      "text": "0.12",
+      "source": "data/farm_rate.json",
+      "block": 217788180,
+      "tx_hash": "ENjbDSPRNzL3BTtCvWRUNDkM1vQmyrhTpvm18feaFn6S"
+    },
+    "f6.change1.utc": {
+      "value": "2026-09-29T14:21:09.243413391Z",
+      "text": "2026-09-29 14:21 UTC",
+      "source": "data/farm_rate.json",
+      "block": 217788180,
+      "tx_hash": "ENjbDSPRNzL3BTtCvWRUNDkM1vQmyrhTpvm18feaFn6S"
+    },
+    "f6.edit_price_receipts_all_time": {
+      "value": "1",
+      "text": "1",
+      "source": "data/farm_rate.json",
+      "unit": "receipts"
+    },
+    "f6.farm_units_per_day": {
+      "value": "896.491236",
+      "text": "896",
+      "source": "data/stakers/2026-11-01.json",
+      "unit": "reward units per day",
+      "note": "reward units are not USD: the contract has no USD conversion",
+      "block": 222491356,
+      "as_of": "2026-11-01 00:00 UTC"
+    },
+    "f6.largest_units_per_day": {
+      "value": "657.084189",
+      "text": "657.1",
+      "source": "data/stakers/2026-11-01.json",
+      "unit": "reward units per day",
+      "note": "reward units are not USD: the contract has no USD conversion",
+      "block": 222491356,
+      "as_of": "2026-11-01 00:00 UTC"
+    },
+    "f6.rate_changes": {
+      "value": "1",
+      "text": "1",
+      "source": "data/farm_rate.json",
+      "unit": "changes"
+    },
+    "f6.reward_rate": {
+      "value": "7605141075366948",
+      "text": "7605141075366948",
+      "source": "data/stakers/2026-11-01.json",
+      "unit": "24-decimal units / s / NEAR",
+      "note": "reward units are not USD: the contract has no USD conversion",
+      "block": 222491356,
+      "as_of": "2026-11-01 00:00 UTC"
+    },
+    "f6.units_per_near_year": {
+      "value": "0.240000",
+      "text": "0.24",
+      "source": "data/stakers/2026-11-01.json",
+      "unit": "reward units per staked NEAR per year (365.25 d)",
+      "note": "reward units are not USD: the contract has no USD conversion",
+      "block": 222491356,
+      "as_of": "2026-11-01 00:00 UTC"
+    },
+    "f6.units_per_near_year.2026-08-01": {
+      "value": "0.120000",
+      "text": "0.12",
+      "source": "data/stakers/2026-08-01.json",
+      "unit": "reward units per staked NEAR per year",
+      "block": 209393356
+    },
+    "f6.units_per_near_year.2026-08-15": {
+      "value": "0.120000",
+      "text": "0.12",
+      "source": "data/stakers/2026-08-15.json",
+      "unit": "reward units per staked NEAR per year",
+      "block": 211368454
+    },
+    "f6.units_per_near_year.2026-09-01": {
+      "value": "0.120000",
+      "text": "0.12",
+      "source": "data/stakers/2026-09-01.json",
+      "unit": "reward units per staked NEAR per year",
+      "block": 213761242
+    },
+    "f6.units_per_near_year.2026-09-15": {
+      "value": "0.120000",
+      "text": "0.12",
+      "source": "data/stakers/2026-09-15.json",
+      "unit": "reward units per staked NEAR per year",
+      "block": 215706980
+    },
+    "f6.units_per_near_year.2026-10-01": {
+      "value": "0.240000",
+      "text": "0.24",
+      "source": "data/stakers/2026-10-01.json",
+      "unit": "reward units per staked NEAR per year",
+      "block": 217984974
+    },
+    "f6.units_per_near_year.2026-10-15": {
+      "value": "0.240000",
+      "text": "0.24",
+      "source": "data/stakers/2026-10-15.json",
+      "unit": "reward units per staked NEAR per year",
+      "block": 220001294
+    },
+    "f6.units_per_near_year.2026-11-01": {
+      "value": "0.240000",
+      "text": "0.24",
+      "source": "data/stakers/2026-11-01.json",
+      "unit": "reward units per staked NEAR per year",
       "block": 222491356
     },
     "f7.active_lock_near_vs_farm": {

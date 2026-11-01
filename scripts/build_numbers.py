@@ -216,6 +216,44 @@ def build(data_dir, window_file):
                 ("f7.lock_days_max", "agents_lock_days_max", lambda v: f_num(v, 0), "days")):
             n.add(key, stats[field], fmt(stats[field]), ssrc, unit=unit, **sc)
 
+        # ---- finding 6: farm reward rate at the end block (stakers.py saves get_farm_pool)
+        for key, field, fmt, unit in (
+                ("f6.reward_rate", "farm_reward_rate", str, "24-decimal units / s / NEAR"),
+                ("f6.units_per_near_year", "farm_units_per_near_year",
+                 lambda v: f_num(v, 2), "reward units per staked NEAR per year (365.25 d)"),
+                ("f6.largest_units_per_day", "largest_units_per_day", lambda v: f_num(v, 1),
+                 "reward units per day"),
+                ("f6.farm_units_per_day", "farm_units_per_day", f_int, "reward units per day")):
+            n.add(key, stats[field], fmt(stats[field]), ssrc, unit=unit,
+                  note="reward units are not USD: the contract has no USD conversion", **sc)
+
+    # ---- finding 6: every change of the farm rate (farm_rate.py)
+    fr_path = data_dir / "farm_rate.json"
+    if fr_path.exists():
+        frd = json.loads(fr_path.read_text(encoding="utf-8"))
+        frsrc = n.source(fr_path)
+        n.add("f6.edit_price_receipts_all_time", frd["edit_price_receipts_all_time"],
+              f_int(frd["edit_price_receipts_all_time"]), frsrc, unit="receipts")
+        n.add("f6.rate_changes", frd["rate_changes"], f_int(frd["rate_changes"]), frsrc,
+              unit="changes")
+        for i, c in enumerate(x for x in frd["changes"] if x["rate_changed"]):
+            cc = {"block": c["receipt_block"], "tx_hash": c["tx_hash"]}
+            for key, val, txt in (
+                    ("utc", c["receipt_utc"], c["receipt_utc"][:16].replace("T", " ") + " UTC"),
+                    ("units_per_near_year_before", c["units_per_near_year_before"],
+                     f_num(c["units_per_near_year_before"], 2)),
+                    ("units_per_near_year_after", c["units_per_near_year_after"],
+                     f_num(c["units_per_near_year_after"], 2)),
+                    ("ratio", c["ratio_after_before"], "×" + f_num(c["ratio_after_before"], 1)),
+                    ("signer_is_pool_owner", c["signer_is_pool_owner"],
+                     "yes" if c["signer_is_pool_owner"] else "no"),
+                    ("signer_is_catalog_manager", c["signer_is_catalog_manager"],
+                     "yes" if c["signer_is_catalog_manager"] else "no")):
+                n.add(f"f6.change{i + 1}.{key}", val, txt, frsrc, **cc)
+    else:
+        n.add("f6.rate_changes", None, None, None, status="pending",
+              note="farm_rate.py has not run")
+
     # ---- finding 5: concentration over time (every saved stakers snapshot)
     for path in sorted((data_dir / "stakers").glob("20*.json")):
         st, p = stakers.compute(path, data_dir.resolve())
@@ -228,6 +266,10 @@ def build(data_dir, window_file):
               unit="share of farm", block=st["block"])
         n.add(f"f5.stakers_active.{d}", st["stakers_active"], f_int(st["stakers_active"]), src,
               unit="accounts", block=st["block"])
+        if st.get("farm_units_per_near_year"):
+            n.add(f"f6.units_per_near_year.{d}", st["farm_units_per_near_year"],
+                  f_num(st["farm_units_per_near_year"], 2), src,
+                  unit="reward units per staked NEAR per year", block=st["block"])
 
     # ---- finding 1: monthly coverage by the wallets (coverage.py)
     cov_path = data_dir / "coverage_monthly.json"
@@ -392,6 +434,7 @@ SCRIPT_CHECKS = [
     ("treasury_flows.py", lambda doc: ["--verify"]),
     ("hsp029.py", lambda doc: ["--verify"]),
     ("hsp029_voters.py", lambda doc: ["--verify"]),
+    ("farm_rate.py", lambda doc: ["--verify"]),
 ]
 
 
@@ -408,7 +451,8 @@ def verify(path, run_scripts=True, runner=subprocess.run):
             problems.append(f"source changed since the build: {rel}")
     if run_scripts:
         for script, args in SCRIPT_CHECKS:
-            out_file = {"hsp029.py": "hsp029.json", "hsp029_voters.py": "hsp029_voters.json"}
+            out_file = {"hsp029.py": "hsp029.json", "hsp029_voters.py": "hsp029_voters.json",
+                        "farm_rate.py": "farm_rate.json"}
             if script in out_file and not (root / "data" / out_file[script]).exists():
                 continue
             res = runner([sys.executable, str(root / "scripts" / script)] + args(doc),

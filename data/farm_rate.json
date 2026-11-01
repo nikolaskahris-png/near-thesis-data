@@ -1,0 +1,70 @@
+{
+  "measure": "finding 6: NEAR AI farm reward rate and its changes",
+  "contract": "stake.dao",
+  "farm_price_id": "price_QzmSvxbZqdbV0XbG6VD6KkbB",
+  "validator": "nearai.pool.near",
+  "rules": {
+    "units_per_near_year": "reward_rate x 31,557,600 / 1e24 (24-decimal units per second per staked NEAR)",
+    "rate_before": "get_farm_pool one block before the edit_price receipt",
+    "rate_after": "get_farm_pool 10 blocks after it"
+  },
+  "privacy": "signer and catalog manager accounts stay in data/private/farm/",
+  "raw_files": {
+    "block_217788180.json": {
+      "path": "data/raw/farm/block_217788180.json",
+      "sha256": "af834403be364ccf6f813a3e799d123cb83d040b197809ba2431adcd63baefcb",
+      "private": false
+    },
+    "farm_pool_217788179.json": {
+      "path": "data/raw/farm/farm_pool_217788179.json",
+      "sha256": "6d3366ae2de8e290618dcdd9823819301d6f23cc895c99ad2970c839f32b4c30",
+      "private": false
+    },
+    "farm_pool_217788190.json": {
+      "path": "data/raw/farm/farm_pool_217788190.json",
+      "sha256": "47f717e2811d637221ab0e98a4a57fcedf3afa35765882b3fef923e146c564be",
+      "private": false
+    },
+    "get_owner_id_217788180.json": {
+      "path": "data/raw/farm/get_owner_id_217788180.json",
+      "sha256": "f6c8f06b98eb0c30206b2bafa42a6f9410c64a0096e3adf7141d73ffc8c2a003",
+      "private": false
+    },
+    "get_validator_217788180.json": {
+      "path": "data/private/farm/get_validator_217788180.json",
+      "sha256": "b59718f7f6ca3687f04ccb44654fdf82360e893247bc5d56f68d22771164b07b",
+      "private": true
+    },
+    "nearblocks_edit_price/page_001.json": {
+      "path": "data/private/farm/nearblocks_edit_price/page_001.json",
+      "sha256": "daa0f813f50315f6d94697089ad2d1ab1b157fb90951d8c8c0f0d0f5f0c42b7d",
+      "private": true
+    },
+    "txn/ENjbDSPRNzL3BTtCvWRUNDkM1vQmyrhTpvm18feaFn6S.json": {
+      "path": "data/private/farm/txn/ENjbDSPRNzL3BTtCvWRUNDkM1vQmyrhTpvm18feaFn6S.json",
+      "sha256": "fd964ee943e0682f9fb3f1bd8b96976812d9d5bd851b45ee55bccc33a582876a",
+      "private": true
+    }
+  },
+  "edit_price_receipts_all_time": 1,
+  "farm_price_edits": 1,
+  "rate_changes": 1,
+  "changes": [
+    {
+      "tx_hash": "ENjbDSPRNzL3BTtCvWRUNDkM1vQmyrhTpvm18feaFn6S",
+      "receipt_block": 217788180,
+      "receipt_utc": "2026-09-29T14:21:09.243413391Z",
+      "receipt_succeeded": true,
+      "signer_tag": "sha256:41753548ac5941ff",
+      "signer_is_pool_owner": false,
+      "signer_is_catalog_manager": true,
+      "catalog_managers": 1,
+      "rate_before": "3802570537683474",
+      "rate_after": "7605141075366948",
+      "rate_changed": true,
+      "ratio_after_before": "2.000000",
+      "units_per_near_year_before": "0.120000",
+      "units_per_near_year_after": "0.240000"
+    }
+  ]
+}

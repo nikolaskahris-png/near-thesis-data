@@ -41,6 +41,8 @@ NEARBLOCKS = "https://api.nearblocks.io/v3/accounts/stake.dao/receipts"
 PAGE_WAIT = 12  # seconds between NearBlocks calls without a key
 LOCK_PAGE = 100
 YOCTO = 10 ** 24
+YEAR_S = 31_557_600  # 365.25 days
+DAY_S = 86_400
 REPO = Path(__file__).resolve().parent.parent
 
 
@@ -243,6 +245,11 @@ def near(x, places=3):
     return f"{float(q):.{places}f}"
 
 
+def dec6(fr):
+    scaled = round(Fraction(fr) * 10 ** 6)
+    return f"{scaled // 10 ** 6}.{scaled % 10 ** 6:06d}"
+
+
 def share(part, total):
     return f"{float(Fraction(part, total)):.6f}" if total else ""
 
@@ -348,6 +355,15 @@ def compute(snap_file, data_root):
         # Separate line only; prediction 3 counts the farm alone (stakers_active).
         "farm_or_active_lock_accounts": len(set(active) | active_lock_accounts),
         "farm_or_any_lock_accounts": len(set(active) | lock_accounts),
+        # finding 6: reward units (24 decimals) per second per staked NEAR (stake.dao types.rs)
+        "farm_reward_rate": str(pool.get("reward_rate", "")),
+        "farm_units_per_near_year": dec6(Fraction(int(pool["reward_rate"]) * YEAR_S, YOCTO))
+        if pool.get("reward_rate") else "",
+        "largest_units_per_day": dec6(Fraction(ranked[0] * int(pool["reward_rate"]) * DAY_S,
+                                               YOCTO * YOCTO))
+        if ranked and pool.get("reward_rate") else "",
+        "farm_units_per_day": dec6(Fraction(total * int(pool["reward_rate"]) * DAY_S,
+                                            YOCTO * YOCTO)) if pool.get("reward_rate") else "",
         "accounts_without_position_contract_error": len(panics),
         "contract_error_example": next(iter(panics.values()), ""),
     }

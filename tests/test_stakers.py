@@ -45,7 +45,7 @@ class FakeStakeDao(FakeChain):
         m = p["method_name"]
         if m == "get_farm_pool":
             total = sum(v for v in self.state.values() if v) * Y + self.extra_total
-            res = {"total_farm_shares": str(total)}
+            res = {"total_farm_shares": str(total), "reward_rate": "7605141075366948"}
         elif m == "get_farm_position" and args["account_id"] == "panic.near":
             return json.dumps({"jsonrpc": "2.0", "id": "stakers", "error": {
                 "name": "HANDLER_ERROR", "cause": {"name": "CONTRACT_EXECUTION_ERROR",
@@ -115,6 +115,8 @@ class StakersTest(unittest.TestCase):
         self.assertEqual(st["agents_locks_active_near"], "2050.000")
         self.assertEqual(st["agents_active_lock_near_vs_farm"], f"{2050 / total:.6f}")
         self.assertEqual(st["agents_locks_at_50_near"], 1)
+        self.assertEqual(st["farm_units_per_near_year"], "0.240000")
+        self.assertEqual(st["largest_units_per_day"], "657.084189")  # 1,000,000 NEAR
         self.assertEqual((st["agents_lock_days_min"], st["agents_lock_days_max"]),
                          ("30.00", "31.00"))           # x.near has no start: not counted
         results, problems = stakers.verify_all(data)

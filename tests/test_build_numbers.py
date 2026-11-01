@@ -98,7 +98,9 @@ def fake_stats(path, data_root):
              "agents_locks_active_within_term": 11, "agents_locks_near": "29739.000",
              "agents_locks_active_near": "14904.000",
              "agents_active_lock_near_vs_farm": "0.010924", "agents_locks_at_50_near": 58,
-             "agents_lock_days_min": "30.00", "agents_lock_days_max": "31.00"}, [])
+             "agents_lock_days_min": "30.00", "agents_lock_days_max": "31.00",
+             "farm_reward_rate": "7605141075366948", "farm_units_per_near_year": "0.240000",
+             "largest_units_per_day": "657.084189", "farm_units_per_day": "896.493000"}, [])
 
 
 class FormatTest(unittest.TestCase):
@@ -143,6 +145,21 @@ class BuildTest(unittest.TestCase):
             self.assertEqual(n["f2.change.2026-09_2026-10.mean_price"]["text"], "+50%")
             self.assertEqual(n["f2.change.2026-09_2026-10.revenue_near"]["text"], "-23%")
             self.assertIn("f2.take_rate.2026-10", doc["provisional_or_pending"])
+            # finding 6 at the end block; farm_rate.py not run yet -> pending
+            self.assertEqual(n["f6.units_per_near_year"]["text"], "0.24")
+            self.assertEqual(n["f6.largest_units_per_day"]["text"], "657.1")
+            self.assertEqual(n["f6.rate_changes"]["status"], "pending")
+            write(data / "farm_rate.json", {"edit_price_receipts_all_time": 1, "rate_changes": 1,
+                                            "changes": [{
+                "rate_changed": True, "receipt_block": 217788180, "tx_hash": "ENjb",
+                "receipt_utc": "2026-09-29T14:21:09.243Z", "units_per_near_year_before": "0.120000",
+                "units_per_near_year_after": "0.240000", "ratio_after_before": "2.000000",
+                "signer_is_pool_owner": False, "signer_is_catalog_manager": True}]})
+            n2 = bn.build(data, window)[0]["numbers"]
+            self.assertEqual(n2["f6.change1.ratio"]["text"], "×2.0")
+            self.assertEqual(n2["f6.change1.utc"]["text"], "2026-09-29 14:21 UTC")
+            self.assertEqual(n2["f6.change1.signer_is_pool_owner"]["text"], "no")
+            (data / "farm_rate.json").unlink()
             self.assertFalse(doc["complete"])
             self.assertIn("n2.max_coverage", doc["provisional_or_pending"])
             self.assertIn("history.csv", " ".join(doc["sources"]))
