@@ -26,4 +26,5 @@ jobs:
         run: python scripts/build_numbers.py --verify
       - name: Pre-registration file matches its anchored hash
         run: |
-          echo "PREREG.md sha256: $(sha256sum PREREG.md | cut -d' ' -f1)" >> "$GITHUB_STEP_SUMMARY"
+          set -o pipefail
+          python scripts/check_prereg.py --file | tee -a "$GITHUB_STEP_SUMMARY"
