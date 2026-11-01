@@ -95,8 +95,11 @@ $("send").onclick = async () => {
     $("send").disabled = true; log("Waiting for the wallet…");
     const res = await wallet.signAndSendTransaction({
       receiverId: "social.near",
-      actions: [{ type: "FunctionCall", params: { methodName: "set",
-        args: { data: { [SIGNER]: { thesis: { prereg: { [KEY]: record } } } } }, gas: GAS, deposit: DEPOSIT } }]
+      // wallet-selector 10 takes near-api-js actions (core/src/lib/helpers/transform-action.ts):
+      // args as bytes, gas and deposit as BigInt.
+      actions: [{ functionCall: { methodName: "set",
+        args: new TextEncoder().encode(JSON.stringify({ data: { [SIGNER]: { thesis: { prereg: { [KEY]: record } } } } })),
+        gas: BigInt(GAS), deposit: BigInt(DEPOSIT) } }]
     });
     const hash = res && res.transaction && res.transaction.hash || JSON.stringify(res).slice(0, 200);
     const ok = res && res.status && ("SuccessValue" in res.status);
