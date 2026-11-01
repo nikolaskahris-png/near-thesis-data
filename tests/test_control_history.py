@@ -49,7 +49,10 @@ PROPOSALS = {
                   other(1, {"UpgradeRemote": {"receiver_id": "registrar", "method_name": "upgrade",
                                               "hash": "h"}}, T2026)],
     cm.POOL_OWNER: [other(0, {"Transfer": {"token_id": "", "receiver_id": "payee.near",
-                                           "amount": "1"}}, T2026)],
+                                           "amount": "1"}}, T2026),
+                    fc(1, "pool.poolv1.near", ["unstake", "withdraw_all"], T2026),
+                    fc(2, cm.STAKE_DAO, ["add_validator_catalog_manager"], T2026),
+                    fc(3, "usdc.near", ["ft_transfer"], T2026)],
     cm.CS_DAO: [],
     cm.FE_DAO: [other(0, {"AddMemberToRole": {"member_id": "new.near", "role": "Admin"}}, T2026)],
 }
@@ -108,9 +111,11 @@ class ControlHistoryTest(unittest.TestCase):
         self.assertEqual(a["fee"]["first"], "2025-02-21")
         self.assertEqual(a["code"]["approved_actions"], 3)  # add_release_info, upgrade, UpgradeRemote
         self.assertEqual(a["user_funds"]["by_method"], {"intents.near.ft_force_withdraw": 1})
-        self.assertEqual(a["roles"]["approved_actions"], 3)  # acl_grant_role, ChangePolicy, AddMember
+        self.assertEqual(a["roles"]["approved_actions"], 4)  # + add_validator_catalog_manager
+        self.assertEqual(a["staking"]["approved_actions"], 2)
+        self.assertEqual(a["roles"]["by_method"]["stake.dao.add_validator_catalog_manager"], 1)
         self.assertEqual(a["voting"]["by_method"], {"vote.dao.set_guardians": 1})
-        self.assertEqual(a["transfer"]["approved_actions"], 1)
+        self.assertEqual(a["transfer"]["approved_actions"], 2)  # Transfer + ft_transfer
         self.assertEqual(a["other"]["by_method"], {"(account).do_thing": 1, "Vote": 1})
         self.assertEqual(a["code"]["by_year"], {"2025": 2, "2026": 1})
         i = doc["per_dao"][cm.INTENTS_DAO]

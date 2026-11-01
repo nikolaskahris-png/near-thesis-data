@@ -1,0 +1,3473 @@
+{
+  "measure": "control history: every proposal of the control map's DAOs, by lever",
+  "window_file": "data/window_2026-10-02_2026-11-01.json",
+  "source": {
+    "rpc": "https://archival-rpc.mainnet.fastnear.com"
+  },
+  "privacy": "proposal texts, proposers and votes stay in data/private/control/ (not committed); their requests and sha256 are below",
+  "raw_files": {
+    "history/intents.sputnik-dao.near/get_last_proposal_id": {
+      "path": "data/raw/control/history_intents.sputnik-dao.near_get_last_proposal_id.json",
+      "sha256": "27fa14608ecc6cb3fea62812a218d7e27ddc741d3d8080978d54be7bf3cf1e24",
+      "private": false,
+      "request": {
+        "method": "query",
+        "params": {
+          "request_type": "call_function",
+          "block_id": 222491356,
+          "account_id": "intents.sputnik-dao.near",
+          "method_name": "get_last_proposal_id",
+          "args_base64": "e30="
+        }
+      }
+    },
+    "history/intents.sputnik-dao.near/get_proposals_0": {
+      "path": "data/private/control/history_intents.sputnik-dao.near_get_proposals_0.json",
+      "sha256": "da84003522cdf47ff9447f32b51973ccdc851899e9632f4be29b8fa91a74d33a",
+      "private": true,
+      "request": {
+        "method": "query",
+        "params": {
+          "request_type": "call_function",
+          "block_id": 222491356,
+          "account_id": "intents.sputnik-dao.near",
+          "method_name": "get_proposals",
+          "args_base64": "eyJmcm9tX2luZGV4IjogMCwgImxpbWl0IjogMTAwfQ=="
+        }
+      }
+    },
+    "history/intents.sputnik-dao.near/get_proposals_100": {
+      "path": "data/private/control/history_intents.sputnik-dao.near_get_proposals_100.json",
+      "sha256": "8f5b085cce5bab475f5a33714fb9259c63d39c214c34a419b0011c31032bd213",
+      "private": true,
+      "request": {
+        "method": "query",
+        "params": {
+          "request_type": "call_function",
+          "block_id": 222491356,
+          "account_id": "intents.sputnik-dao.near",
+          "method_name": "get_proposals",
+          "args_base64": "eyJmcm9tX2luZGV4IjogMTAwLCAibGltaXQiOiAxMDB9"
+        }
+      }
+    },
+    "history/1csfundsadmin.sputnik-dao.near/get_last_proposal_id": {
+      "path": "data/raw/control/history_1csfundsadmin.sputnik-dao.near_get_last_proposal_id.json",
+      "sha256": "e1e88b205c223e4d554c22234ea2e0e360be1182cdb55364dfea526f1f4f0ec6",
+      "private": false,
+      "request": {
+        "method": "query",
+        "params": {
+          "request_type": "call_function",
+          "block_id": 222491356,
+          "account_id": "1csfundsadmin.sputnik-dao.near",
+          "method_name": "get_last_proposal_id",
+          "args_base64": "e30="
+        }
+      }
+    },
+    "history/1csfundsadmin.sputnik-dao.near/get_proposals_0": {
+      "path": "data/private/control/history_1csfundsadmin.sputnik-dao.near_get_proposals_0.json",
+      "sha256": "0d5f956f2928d99ee0222a6df6051685150ff858ccd1a1a0d6ec565259ab1cf3",
+      "private": true,
+      "request": {
+        "method": "query",
+        "params": {
+          "request_type": "call_function",
+          "block_id": 222491356,
+          "account_id": "1csfundsadmin.sputnik-dao.near",
+          "method_name": "get_proposals",
+          "args_base64": "eyJmcm9tX2luZGV4IjogMCwgImxpbWl0IjogMTAwfQ=="
+        }
+      }
+    },
+    "history/fefundsadmin.sputnik-dao.near/get_last_proposal_id": {
+      "path": "data/raw/control/history_fefundsadmin.sputnik-dao.near_get_last_proposal_id.json",
+      "sha256": "f0f73cc29156efb13c571ad2073f5d499ab9a9a9dba22d4bf781691520919600",
+      "private": false,
+      "request": {
+        "method": "query",
+        "params": {
+          "request_type": "call_function",
+          "block_id": 222491356,
+          "account_id": "fefundsadmin.sputnik-dao.near",
+          "method_name": "get_last_proposal_id",
+          "args_base64": "e30="
+        }
+      }
+    },
+    "history/fefundsadmin.sputnik-dao.near/get_proposals_0": {
+      "path": "data/private/control/history_fefundsadmin.sputnik-dao.near_get_proposals_0.json",
+      "sha256": "3439b8257de229e35aa4d3d3e1da5fca0d89d3990df07599f2ecbfbf087a70b7",
+      "private": true,
+      "request": {
+        "method": "query",
+        "params": {
+          "request_type": "call_function",
+          "block_id": 222491356,
+          "account_id": "fefundsadmin.sputnik-dao.near",
+          "method_name": "get_proposals",
+          "args_base64": "eyJmcm9tX2luZGV4IjogMCwgImxpbWl0IjogMTAwfQ=="
+        }
+      }
+    },
+    "history/hos-root.sputnik-dao.near/get_last_proposal_id": {
+      "path": "data/raw/control/history_hos-root.sputnik-dao.near_get_last_proposal_id.json",
+      "sha256": "1ca80836c5e2e6480111d67f755126f942cf51439ace1481345ec3ec106262d9",
+      "private": false,
+      "request": {
+        "method": "query",
+        "params": {
+          "request_type": "call_function",
+          "block_id": 222491356,
+          "account_id": "hos-root.sputnik-dao.near",
+          "method_name": "get_last_proposal_id",
+          "args_base64": "e30="
+        }
+      }
+    },
+    "history/hos-root.sputnik-dao.near/get_proposals_0": {
+      "path": "data/private/control/history_hos-root.sputnik-dao.near_get_proposals_0.json",
+      "sha256": "2cee9bbdfab5ccf4716902924f8b6b241463cb8c236955529faa858365825406",
+      "private": true,
+      "request": {
+        "method": "query",
+        "params": {
+          "request_type": "call_function",
+          "block_id": 222491356,
+          "account_id": "hos-root.sputnik-dao.near",
+          "method_name": "get_proposals",
+          "args_base64": "eyJmcm9tX2luZGV4IjogMCwgImxpbWl0IjogMTAwfQ=="
+        }
+      }
+    },
+    "history/jasnah-treasury.sputnik-dao.near/get_last_proposal_id": {
+      "path": "data/raw/control/history_jasnah-treasury.sputnik-dao.near_get_last_proposal_id.json",
+      "sha256": "8a91656c1a9634ce2b46e2a07992da753ac4f56200cb0b1d3dac73097597bee6",
+      "private": false,
+      "request": {
+        "method": "query",
+        "params": {
+          "request_type": "call_function",
+          "block_id": 222491356,
+          "account_id": "jasnah-treasury.sputnik-dao.near",
+          "method_name": "get_last_proposal_id",
+          "args_base64": "e30="
+        }
+      }
+    },
+    "history/jasnah-treasury.sputnik-dao.near/get_proposals_0": {
+      "path": "data/private/control/history_jasnah-treasury.sputnik-dao.near_get_proposals_0.json",
+      "sha256": "5aefcad2738358fcdd2514304562bb466b1b582036d19ef7ed32c9e6cce03c6a",
+      "private": true,
+      "request": {
+        "method": "query",
+        "params": {
+          "request_type": "call_function",
+          "block_id": 222491356,
+          "account_id": "jasnah-treasury.sputnik-dao.near",
+          "method_name": "get_proposals",
+          "args_base64": "eyJmcm9tX2luZGV4IjogMCwgImxpbWl0IjogMTAwfQ=="
+        }
+      }
+    },
+    "history/jasnah-treasury.sputnik-dao.near/get_proposals_100": {
+      "path": "data/private/control/history_jasnah-treasury.sputnik-dao.near_get_proposals_100.json",
+      "sha256": "2e2d4f093eedaa29e5568744c35e70e61c85130a8e8d4f0e2e97bb741b48df24",
+      "private": true,
+      "request": {
+        "method": "query",
+        "params": {
+          "request_type": "call_function",
+          "block_id": 222491356,
+          "account_id": "jasnah-treasury.sputnik-dao.near",
+          "method_name": "get_proposals",
+          "args_base64": "eyJmcm9tX2luZGV4IjogMTAwLCAibGltaXQiOiAxMDB9"
+        }
+      }
+    },
+    "history/jasnah-treasury.sputnik-dao.near/get_proposals_200": {
+      "path": "data/private/control/history_jasnah-treasury.sputnik-dao.near_get_proposals_200.json",
+      "sha256": "674ae448efd86cf5752f86e0335304ed9d466a23f07eb872d61418e976583392",
+      "private": true,
+      "request": {
+        "method": "query",
+        "params": {
+          "request_type": "call_function",
+          "block_id": 222491356,
+          "account_id": "jasnah-treasury.sputnik-dao.near",
+          "method_name": "get_proposals",
+          "args_base64": "eyJmcm9tX2luZGV4IjogMjAwLCAibGltaXQiOiAxMDB9"
+        }
+      }
+    },
+    "history/ctl-intents.near/get_deployment": {
+      "path": "data/raw/control/history_ctl-intents.near_get_deployment.json",
+      "sha256": "234773dda80bb9a2cb3d2ae99e2658436ff0e256efaac678e0b4cfaa0f854d0d",
+      "private": false,
+      "request": {
+        "method": "query",
+        "params": {
+          "request_type": "call_function",
+          "block_id": 222491356,
+          "account_id": "ctl-intents.near",
+          "method_name": "get_deployment",
+          "args_base64": "eyJhY2NvdW50X2lkIjogImludGVudHMubmVhciJ9"
+        }
+      }
+    }
+  },
+  "block": {
+    "height": 222491356,
+    "timestamp_utc": "2026-11-01T00:00:00.175647275Z"
+  },
+  "dates_note": "proposal dates are submission dates (Sputnik does not store approval time); intents.near code changes are execution times from ctl-intents.near",
+  "per_dao": {
+    "intents.sputnik-dao.near": {
+      "proposals": 110,
+      "by_status": {
+        "Approved": 89,
+        "Expired": 1,
+        "Failed": 8,
+        "InProgress": 11,
+        "Rejected": 1
+      },
+      "removed_proposals": 0,
+      "levers": {
+        "fee": {
+          "approved_actions": 6,
+          "first": "2024-11-07",
+          "last": "2025-10-02",
+          "by_year": {
+            "2024": 1,
+            "2025": 5
+          },
+          "by_method": {
+            "intents.near.set_fee": 3,
+            "intents.near.set_fee_collector": 3
+          }
+        },
+        "code": {
+          "approved_actions": 28,
+          "first": "2024-11-22",
+          "last": "2026-10-07",
+          "by_year": {
+            "2024": 4,
+            "2025": 20,
+            "2026": 4
+          },
+          "by_method": {
+            "ctl-intents.near.add_deployment_info": 1,
+            "ctl-intents.near.add_release_info": 18,
+            "ctl-intents.near.unrestricted_upgrade": 1,
+            "ctl-intents.near.up_deploy_code": 2,
+            "ctl-intents.near.up_stage_code": 2,
+            "ctl-intents.near.upgrade": 4
+          }
+        },
+        "roles": {
+          "approved_actions": 34,
+          "first": "2024-11-06",
+          "last": "2026-10-30",
+          "by_year": {
+            "2024": 12,
+            "2025": 9,
+            "2026": 13
+          },
+          "by_method": {
+            "AddMemberToRole": 2,
+            "ChangePolicy": 4,
+            "RemoveMemberFromRole": 3,
+            "ctl-intents.near.acl_grant_role": 3,
+            "ctl-intents.near.acl_revoke_role": 1,
+            "intents.near.acl_grant_role": 12,
+            "intents.near.acl_revoke_super_admin": 1,
+            "omft.near.acl_grant_role": 2,
+            "omft.near.acl_revoke_super_admin": 1,
+            "omft.near.add_full_access_key": 5
+          }
+        },
+        "user_funds": {
+          "approved_actions": 12,
+          "first": "2025-01-14",
+          "last": "2026-06-10",
+          "by_year": {
+            "2025": 5,
+            "2026": 7
+          },
+          "by_method": {
+            "intents.near.force_lock_account": 1,
+            "intents.near.force_unlock_account": 1,
+            "intents.near.ft_force_withdraw": 9,
+            "intents.near.mt_force_transfer": 1
+          }
+        },
+        "pause": {
+          "approved_actions": 7,
+          "first": "2026-01-15",
+          "last": "2026-10-07",
+          "by_year": {
+            "2026": 7
+          },
+          "by_method": {
+            "intents.near.pa_pause_feature": 1,
+            "intents.near.pa_unpause_feature": 6
+          }
+        },
+        "voting": {
+          "approved_actions": 0,
+          "first": null,
+          "last": null,
+          "by_year": {},
+          "by_method": {}
+        },
+        "staking": {
+          "approved_actions": 0,
+          "first": null,
+          "last": null,
+          "by_year": {},
+          "by_method": {}
+        },
+        "transfer": {
+          "approved_actions": 0,
+          "first": null,
+          "last": null,
+          "by_year": {},
+          "by_method": {}
+        },
+        "other": {
+          "approved_actions": 4,
+          "first": "2024-11-07",
+          "last": "2026-09-29",
+          "by_year": {
+            "2024": 1,
+            "2026": 3
+          },
+          "by_method": {
+            "Vote": 1,
+            "outlayer-admin.near.w_execute_extension": 3
+          }
+        }
+      }
+    },
+    "1csfundsadmin.sputnik-dao.near": {
+      "proposals": 11,
+      "by_status": {
+        "Approved": 8,
+        "InProgress": 3
+      },
+      "removed_proposals": 0,
+      "levers": {
+        "fee": {
+          "approved_actions": 0,
+          "first": null,
+          "last": null,
+          "by_year": {},
+          "by_method": {}
+        },
+        "code": {
+          "approved_actions": 0,
+          "first": null,
+          "last": null,
+          "by_year": {},
+          "by_method": {}
+        },
+        "roles": {
+          "approved_actions": 2,
+          "first": "2026-04-22",
+          "last": "2026-07-10",
+          "by_year": {
+            "2026": 2
+          },
+          "by_method": {
+            "ChangePolicy": 2
+          }
+        },
+        "user_funds": {
+          "approved_actions": 0,
+          "first": null,
+          "last": null,
+          "by_year": {},
+          "by_method": {}
+        },
+        "pause": {
+          "approved_actions": 0,
+          "first": null,
+          "last": null,
+          "by_year": {},
+          "by_method": {}
+        },
+        "voting": {
+          "approved_actions": 0,
+          "first": null,
+          "last": null,
+          "by_year": {},
+          "by_method": {}
+        },
+        "staking": {
+          "approved_actions": 0,
+          "first": null,
+          "last": null,
+          "by_year": {},
+          "by_method": {}
+        },
+        "transfer": {
+          "approved_actions": 6,
+          "first": "2026-04-22",
+          "last": "2026-09-09",
+          "by_year": {
+            "2026": 6
+          },
+          "by_method": {
+            "Transfer": 5,
+            "intents.near.mt_transfer": 1
+          }
+        },
+        "other": {
+          "approved_actions": 0,
+          "first": null,
+          "last": null,
+          "by_year": {},
+          "by_method": {}
+        }
+      }
+    },
+    "fefundsadmin.sputnik-dao.near": {
+      "proposals": 17,
+      "by_status": {
+        "Approved": 16,
+        "Failed": 1
+      },
+      "removed_proposals": 0,
+      "levers": {
+        "fee": {
+          "approved_actions": 0,
+          "first": null,
+          "last": null,
+          "by_year": {},
+          "by_method": {}
+        },
+        "code": {
+          "approved_actions": 0,
+          "first": null,
+          "last": null,
+          "by_year": {},
+          "by_method": {}
+        },
+        "roles": {
+          "approved_actions": 1,
+          "first": "2025-11-07",
+          "last": "2025-11-07",
+          "by_year": {
+            "2025": 1
+          },
+          "by_method": {
+            "ChangePolicy": 1
+          }
+        },
+        "user_funds": {
+          "approved_actions": 0,
+          "first": null,
+          "last": null,
+          "by_year": {},
+          "by_method": {}
+        },
+        "pause": {
+          "approved_actions": 0,
+          "first": null,
+          "last": null,
+          "by_year": {},
+          "by_method": {}
+        },
+        "voting": {
+          "approved_actions": 0,
+          "first": null,
+          "last": null,
+          "by_year": {},
+          "by_method": {}
+        },
+        "staking": {
+          "approved_actions": 0,
+          "first": null,
+          "last": null,
+          "by_year": {},
+          "by_method": {}
+        },
+        "transfer": {
+          "approved_actions": 15,
+          "first": "2025-11-07",
+          "last": "2026-03-27",
+          "by_year": {
+            "2025": 5,
+            "2026": 10
+          },
+          "by_method": {
+            "Transfer": 15
+          }
+        },
+        "other": {
+          "approved_actions": 0,
+          "first": null,
+          "last": null,
+          "by_year": {},
+          "by_method": {}
+        }
+      }
+    },
+    "hos-root.sputnik-dao.near": {
+      "proposals": 43,
+      "by_status": {
+        "Approved": 32,
+        "Expired": 1,
+        "InProgress": 10
+      },
+      "removed_proposals": 0,
+      "levers": {
+        "fee": {
+          "approved_actions": 0,
+          "first": null,
+          "last": null,
+          "by_year": {},
+          "by_method": {}
+        },
+        "code": {
+          "approved_actions": 9,
+          "first": "2025-11-08",
+          "last": "2026-10-14",
+          "by_year": {
+            "2025": 2,
+            "2026": 7
+          },
+          "by_method": {
+            "(account).upgrade": 1,
+            "registrar.upgrade": 1,
+            "venear.dao.upgrade": 2,
+            "vote.dao.upgrade": 5
+          }
+        },
+        "roles": {
+          "approved_actions": 15,
+          "first": "2025-08-06",
+          "last": "2026-07-22",
+          "by_year": {
+            "2025": 11,
+            "2026": 4
+          },
+          "by_method": {
+            "ChangePolicy": 14,
+            "RemoveMemberFromRole": 1
+          }
+        },
+        "user_funds": {
+          "approved_actions": 0,
+          "first": null,
+          "last": null,
+          "by_year": {},
+          "by_method": {}
+        },
+        "pause": {
+          "approved_actions": 0,
+          "first": null,
+          "last": null,
+          "by_year": {},
+          "by_method": {}
+        },
+        "voting": {
+          "approved_actions": 5,
+          "first": "2026-02-09",
+          "last": "2026-07-22",
+          "by_year": {
+            "2026": 5
+          },
+          "by_method": {
+            "vote.dao.set_council_ids": 2,
+            "vote.dao.set_guardians": 1,
+            "vote.dao.set_reviewer_ids": 2
+          }
+        },
+        "staking": {
+          "approved_actions": 0,
+          "first": null,
+          "last": null,
+          "by_year": {},
+          "by_method": {}
+        },
+        "transfer": {
+          "approved_actions": 0,
+          "first": null,
+          "last": null,
+          "by_year": {},
+          "by_method": {}
+        },
+        "other": {
+          "approved_actions": 71,
+          "first": "2025-10-10",
+          "last": "2026-10-22",
+          "by_year": {
+            "2025": 2,
+            "2026": 69
+          },
+          "by_method": {
+            "rec.hos.install_policy": 67,
+            "rec.hos.set_watchers": 1,
+            "registrar.approve_batch": 1,
+            "venear.dao.set_lockup_contract": 1,
+            "venear.stagingdao.near.set_lockup_contract": 1
+          }
+        }
+      }
+    },
+    "jasnah-treasury.sputnik-dao.near": {
+      "proposals": 209,
+      "by_status": {
+        "Approved": 191,
+        "Expired": 1,
+        "Failed": 6,
+        "InProgress": 11
+      },
+      "removed_proposals": 0,
+      "levers": {
+        "fee": {
+          "approved_actions": 0,
+          "first": null,
+          "last": null,
+          "by_year": {},
+          "by_method": {}
+        },
+        "code": {
+          "approved_actions": 0,
+          "first": null,
+          "last": null,
+          "by_year": {},
+          "by_method": {}
+        },
+        "roles": {
+          "approved_actions": 6,
+          "first": "2024-09-26",
+          "last": "2026-10-21",
+          "by_year": {
+            "2024": 2,
+            "2026": 4
+          },
+          "by_method": {
+            "(account).add_validator_catalog_manager": 1,
+            "ChangePolicy": 3,
+            "RemoveMemberFromRole": 1,
+            "stake.dao.add_validator_catalog_manager": 1
+          }
+        },
+        "user_funds": {
+          "approved_actions": 0,
+          "first": null,
+          "last": null,
+          "by_year": {},
+          "by_method": {}
+        },
+        "pause": {
+          "approved_actions": 0,
+          "first": null,
+          "last": null,
+          "by_year": {},
+          "by_method": {}
+        },
+        "voting": {
+          "approved_actions": 0,
+          "first": null,
+          "last": null,
+          "by_year": {},
+          "by_method": {}
+        },
+        "staking": {
+          "approved_actions": 57,
+          "first": "2025-07-09",
+          "last": "2026-10-02",
+          "by_year": {
+            "2025": 21,
+            "2026": 36
+          },
+          "by_method": {
+            "(account).deposit_and_stake": 4,
+            "(account).unstake": 28,
+            "(account).withdraw_all": 23,
+            "nearai.pool.near.deposit_and_stake": 2
+          }
+        },
+        "transfer": {
+          "approved_actions": 128,
+          "first": "2024-09-26",
+          "last": "2026-10-28",
+          "by_year": {
+            "2024": 11,
+            "2025": 75,
+            "2026": 42
+          },
+          "by_method": {
+            "(account).ft_transfer": 1,
+            "Transfer": 127
+          }
+        },
+        "other": {
+          "approved_actions": 0,
+          "first": null,
+          "last": null,
+          "by_year": {},
+          "by_method": {}
+        }
+      }
+    }
+  },
+  "all_daos": {
+    "fee": {
+      "approved_actions": 6,
+      "first": "2024-11-07",
+      "last": "2025-10-02",
+      "by_year": {
+        "2024": 1,
+        "2025": 5
+      },
+      "by_method": {
+        "intents.near.set_fee": 3,
+        "intents.near.set_fee_collector": 3
+      }
+    },
+    "code": {
+      "approved_actions": 37,
+      "first": "2024-11-22",
+      "last": "2026-10-14",
+      "by_year": {
+        "2024": 4,
+        "2025": 22,
+        "2026": 11
+      },
+      "by_method": {
+        "(account).upgrade": 1,
+        "ctl-intents.near.add_deployment_info": 1,
+        "ctl-intents.near.add_release_info": 18,
+        "ctl-intents.near.unrestricted_upgrade": 1,
+        "ctl-intents.near.up_deploy_code": 2,
+        "ctl-intents.near.up_stage_code": 2,
+        "ctl-intents.near.upgrade": 4,
+        "registrar.upgrade": 1,
+        "venear.dao.upgrade": 2,
+        "vote.dao.upgrade": 5
+      }
+    },
+    "roles": {
+      "approved_actions": 58,
+      "first": "2024-09-26",
+      "last": "2026-10-30",
+      "by_year": {
+        "2024": 14,
+        "2025": 21,
+        "2026": 23
+      },
+      "by_method": {
+        "(account).add_validator_catalog_manager": 1,
+        "AddMemberToRole": 2,
+        "ChangePolicy": 24,
+        "RemoveMemberFromRole": 5,
+        "ctl-intents.near.acl_grant_role": 3,
+        "ctl-intents.near.acl_revoke_role": 1,
+        "intents.near.acl_grant_role": 12,
+        "intents.near.acl_revoke_super_admin": 1,
+        "omft.near.acl_grant_role": 2,
+        "omft.near.acl_revoke_super_admin": 1,
+        "omft.near.add_full_access_key": 5,
+        "stake.dao.add_validator_catalog_manager": 1
+      }
+    },
+    "user_funds": {
+      "approved_actions": 12,
+      "first": "2025-01-14",
+      "last": "2026-06-10",
+      "by_year": {
+        "2025": 5,
+        "2026": 7
+      },
+      "by_method": {
+        "intents.near.force_lock_account": 1,
+        "intents.near.force_unlock_account": 1,
+        "intents.near.ft_force_withdraw": 9,
+        "intents.near.mt_force_transfer": 1
+      }
+    },
+    "pause": {
+      "approved_actions": 7,
+      "first": "2026-01-15",
+      "last": "2026-10-07",
+      "by_year": {
+        "2026": 7
+      },
+      "by_method": {
+        "intents.near.pa_pause_feature": 1,
+        "intents.near.pa_unpause_feature": 6
+      }
+    },
+    "voting": {
+      "approved_actions": 5,
+      "first": "2026-02-09",
+      "last": "2026-07-22",
+      "by_year": {
+        "2026": 5
+      },
+      "by_method": {
+        "vote.dao.set_council_ids": 2,
+        "vote.dao.set_guardians": 1,
+        "vote.dao.set_reviewer_ids": 2
+      }
+    },
+    "staking": {
+      "approved_actions": 57,
+      "first": "2025-07-09",
+      "last": "2026-10-02",
+      "by_year": {
+        "2025": 21,
+        "2026": 36
+      },
+      "by_method": {
+        "(account).deposit_and_stake": 4,
+        "(account).unstake": 28,
+        "(account).withdraw_all": 23,
+        "nearai.pool.near.deposit_and_stake": 2
+      }
+    },
+    "transfer": {
+      "approved_actions": 149,
+      "first": "2024-09-26",
+      "last": "2026-10-28",
+      "by_year": {
+        "2024": 11,
+        "2025": 80,
+        "2026": 58
+      },
+      "by_method": {
+        "(account).ft_transfer": 1,
+        "Transfer": 147,
+        "intents.near.mt_transfer": 1
+      }
+    },
+    "other": {
+      "approved_actions": 75,
+      "first": "2024-11-07",
+      "last": "2026-10-22",
+      "by_year": {
+        "2024": 1,
+        "2025": 2,
+        "2026": 72
+      },
+      "by_method": {
+        "Vote": 1,
+        "outlayer-admin.near.w_execute_extension": 3,
+        "rec.hos.install_policy": 67,
+        "rec.hos.set_watchers": 1,
+        "registrar.approve_batch": 1,
+        "venear.dao.set_lockup_contract": 1,
+        "venear.stagingdao.near.set_lockup_contract": 1
+      }
+    }
+  },
+  "intents_code_changes": {
+    "count": 20,
+    "downgrades": 1,
+    "changes": [
+      {
+        "utc": "2024-11-06T12:28:27.734667690Z",
+        "version": "0.1.1"
+      },
+      {
+        "utc": "2024-11-22T18:37:25.062125214Z",
+        "version": "0.1.2"
+      },
+      {
+        "utc": "2024-12-10T12:31:20.742370863Z",
+        "version": "0.2.0"
+      },
+      {
+        "utc": "2025-01-22T09:08:20.001348197Z",
+        "version": "0.2.1"
+      },
+      {
+        "utc": "2025-02-03T15:38:21.766507223Z",
+        "version": "0.2.2"
+      },
+      {
+        "utc": "2025-02-18T21:24:40.609137110Z",
+        "version": "0.2.2"
+      },
+      {
+        "utc": "2025-02-18T22:06:33.467730096Z",
+        "version": "0.2.3"
+      },
+      {
+        "utc": "2025-05-26T20:17:24.282344785Z",
+        "version": "0.2.5"
+      },
+      {
+        "utc": "2025-06-09T10:17:13.784481012Z",
+        "version": "0.2.6"
+      },
+      {
+        "utc": "2025-06-09T20:21:57.952982829Z",
+        "version": "0.2.7"
+      },
+      {
+        "utc": "2025-06-10T19:24:56.059523536Z",
+        "version": "0.2.5"
+      },
+      {
+        "utc": "2025-06-10T19:58:52.020689557Z",
+        "version": "0.2.8"
+      },
+      {
+        "utc": "2025-06-25T13:49:31.498697674Z",
+        "version": "0.2.9"
+      },
+      {
+        "utc": "2025-09-11T08:16:20.034045513Z",
+        "version": "0.2.10"
+      },
+      {
+        "utc": "2025-10-29T08:09:23.806651961Z",
+        "version": "0.3.0"
+      },
+      {
+        "utc": "2025-12-03T10:58:03.074098641Z",
+        "version": "0.4.0"
+      },
+      {
+        "utc": "2025-12-03T21:12:48.361722610Z",
+        "version": "0.4.1"
+      },
+      {
+        "utc": "2026-01-15T18:12:00.176125593Z",
+        "version": "0.4.2"
+      },
+      {
+        "utc": "2026-10-02T20:31:42.189626775Z",
+        "version": "0.4.4"
+      },
+      {
+        "utc": "2026-10-07T19:53:17.418572403Z",
+        "version": "0.4.5"
+      }
+    ]
+  },
+  "farm_rate_changes": [
+    {
+      "utc": "2026-09-29T14:21:09.243413391Z",
+      "before": "0.120000",
+      "after": "0.240000"
+    }
+  ],
+  "timeline": [
+    {
+      "dao": "jasnah-treasury.sputnik-dao.near",
+      "id": 2,
+      "kind": "ChangePolicy",
+      "status": "Approved",
+      "submitted": "2024-09-26",
+      "lever": "roles"
+    },
+    {
+      "dao": "jasnah-treasury.sputnik-dao.near",
+      "id": 3,
+      "kind": "RemoveMemberFromRole",
+      "status": "Approved",
+      "submitted": "2024-09-26",
+      "lever": "roles"
+    },
+    {
+      "dao": "intents.sputnik-dao.near",
+      "id": 0,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2024-11-06",
+      "receiver": "ctl-intents.near",
+      "method": "acl_revoke_role",
+      "lever": "roles"
+    },
+    {
+      "dao": "intents.sputnik-dao.near",
+      "id": 1,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2024-11-06",
+      "receiver": "intents.near",
+      "method": "acl_revoke_super_admin",
+      "lever": "roles"
+    },
+    {
+      "dao": "intents.sputnik-dao.near",
+      "id": 2,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2024-11-06",
+      "receiver": "omft.near",
+      "method": "acl_revoke_super_admin",
+      "lever": "roles"
+    },
+    {
+      "dao": "intents.sputnik-dao.near",
+      "id": 3,
+      "kind": "RemoveMemberFromRole",
+      "status": "Approved",
+      "submitted": "2024-11-06",
+      "lever": "roles"
+    },
+    {
+      "dao": "intents.sputnik-dao.near",
+      "id": 4,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2024-11-07",
+      "receiver": "intents.near",
+      "method": "set_fee_collector",
+      "lever": "fee"
+    },
+    {
+      "dao": "intents.sputnik-dao.near",
+      "id": 6,
+      "kind": "ChangePolicy",
+      "status": "Approved",
+      "submitted": "2024-11-07",
+      "lever": "roles"
+    },
+    {
+      "dao": "intents.sputnik-dao.near",
+      "id": 7,
+      "kind": "Vote",
+      "status": "Approved",
+      "submitted": "2024-11-07",
+      "lever": "other"
+    },
+    {
+      "dao": "intents.sputnik-dao.near",
+      "id": 8,
+      "kind": "AddMemberToRole",
+      "status": "Approved",
+      "submitted": "2024-11-12",
+      "lever": "roles"
+    },
+    {
+      "dao": "intents.sputnik-dao.near",
+      "id": 9,
+      "kind": "RemoveMemberFromRole",
+      "status": "Approved",
+      "submitted": "2024-11-12",
+      "lever": "roles"
+    },
+    {
+      "dao": "intents.sputnik-dao.near",
+      "id": 10,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2024-11-22",
+      "receiver": "ctl-intents.near",
+      "method": "add_release_info",
+      "lever": "code"
+    },
+    {
+      "dao": "intents.sputnik-dao.near",
+      "id": 11,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2024-11-22",
+      "receiver": "ctl-intents.near",
+      "method": "upgrade",
+      "lever": "code"
+    },
+    {
+      "dao": "intents.sputnik-dao.near",
+      "id": 12,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2024-12-10",
+      "receiver": "ctl-intents.near",
+      "method": "add_release_info",
+      "lever": "code"
+    },
+    {
+      "dao": "intents.sputnik-dao.near",
+      "id": 13,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2024-12-10",
+      "receiver": "ctl-intents.near",
+      "method": "upgrade",
+      "lever": "code"
+    },
+    {
+      "dao": "intents.sputnik-dao.near",
+      "id": 19,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2024-12-17",
+      "receiver": "intents.near",
+      "method": "acl_grant_role",
+      "lever": "roles"
+    },
+    {
+      "dao": "intents.sputnik-dao.near",
+      "id": 20,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2024-12-18",
+      "receiver": "intents.near",
+      "method": "acl_grant_role",
+      "lever": "roles"
+    },
+    {
+      "dao": "intents.sputnik-dao.near",
+      "id": 21,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2024-12-18",
+      "receiver": "intents.near",
+      "method": "acl_grant_role",
+      "lever": "roles"
+    },
+    {
+      "dao": "intents.sputnik-dao.near",
+      "id": 22,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2024-12-18",
+      "receiver": "intents.near",
+      "method": "acl_grant_role",
+      "lever": "roles"
+    },
+    {
+      "dao": "intents.sputnik-dao.near",
+      "id": 23,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2024-12-18",
+      "receiver": "intents.near",
+      "method": "acl_grant_role",
+      "lever": "roles"
+    },
+    {
+      "dao": "intents.sputnik-dao.near",
+      "id": 24,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2025-01-14",
+      "receiver": "intents.near",
+      "method": "ft_force_withdraw",
+      "lever": "user_funds"
+    },
+    {
+      "dao": "intents.sputnik-dao.near",
+      "id": 25,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2025-01-17",
+      "receiver": "intents.near",
+      "method": "acl_grant_role",
+      "lever": "roles"
+    },
+    {
+      "dao": "intents.sputnik-dao.near",
+      "id": 26,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2025-01-22",
+      "receiver": "ctl-intents.near",
+      "method": "add_release_info",
+      "lever": "code"
+    },
+    {
+      "dao": "intents.sputnik-dao.near",
+      "id": 27,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2025-01-22",
+      "receiver": "ctl-intents.near",
+      "method": "upgrade",
+      "lever": "code"
+    },
+    {
+      "dao": "intents.sputnik-dao.near",
+      "id": 28,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2025-02-03",
+      "receiver": "ctl-intents.near",
+      "method": "add_release_info",
+      "lever": "code"
+    },
+    {
+      "dao": "intents.sputnik-dao.near",
+      "id": 29,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2025-02-03",
+      "receiver": "ctl-intents.near",
+      "method": "upgrade",
+      "lever": "code"
+    },
+    {
+      "dao": "intents.sputnik-dao.near",
+      "id": 31,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2025-02-10",
+      "receiver": "intents.near",
+      "method": "ft_force_withdraw",
+      "lever": "user_funds"
+    },
+    {
+      "dao": "intents.sputnik-dao.near",
+      "id": 34,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2025-02-18",
+      "receiver": "ctl-intents.near",
+      "method": "add_release_info",
+      "lever": "code"
+    },
+    {
+      "dao": "intents.sputnik-dao.near",
+      "id": 35,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2025-02-18",
+      "receiver": "ctl-intents.near",
+      "method": "unrestricted_upgrade",
+      "lever": "code"
+    },
+    {
+      "dao": "intents.sputnik-dao.near",
+      "id": 36,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2025-02-18",
+      "receiver": "ctl-intents.near",
+      "method": "acl_grant_role",
+      "lever": "roles"
+    },
+    {
+      "dao": "intents.sputnik-dao.near",
+      "id": 37,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2025-02-21",
+      "receiver": "intents.near",
+      "method": "set_fee_collector",
+      "lever": "fee"
+    },
+    {
+      "dao": "intents.sputnik-dao.near",
+      "id": 38,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2025-02-21",
+      "receiver": "intents.near",
+      "method": "set_fee",
+      "lever": "fee"
+    },
+    {
+      "dao": "intents.sputnik-dao.near",
+      "id": 39,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2025-02-21",
+      "receiver": "intents.near",
+      "method": "set_fee",
+      "lever": "fee"
+    },
+    {
+      "dao": "intents.sputnik-dao.near",
+      "id": 40,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2025-02-25",
+      "receiver": "intents.near",
+      "method": "ft_force_withdraw",
+      "lever": "user_funds"
+    },
+    {
+      "dao": "intents.sputnik-dao.near",
+      "id": 41,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2025-03-04",
+      "receiver": "ctl-intents.near",
+      "method": "up_stage_code",
+      "lever": "code"
+    },
+    {
+      "dao": "intents.sputnik-dao.near",
+      "id": 42,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2025-03-05",
+      "receiver": "ctl-intents.near",
+      "method": "up_stage_code",
+      "lever": "code"
+    },
+    {
+      "dao": "intents.sputnik-dao.near",
+      "id": 43,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2025-03-05",
+      "receiver": "ctl-intents.near",
+      "method": "up_deploy_code",
+      "lever": "code"
+    },
+    {
+      "dao": "intents.sputnik-dao.near",
+      "id": 44,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2025-03-10",
+      "receiver": "intents.near",
+      "method": "set_fee",
+      "lever": "fee"
+    },
+    {
+      "dao": "intents.sputnik-dao.near",
+      "id": 45,
+      "kind": "ChangePolicy",
+      "status": "Approved",
+      "submitted": "2025-04-11",
+      "lever": "roles"
+    },
+    {
+      "dao": "intents.sputnik-dao.near",
+      "id": 46,
+      "kind": "ChangePolicy",
+      "status": "Approved",
+      "submitted": "2025-04-13",
+      "lever": "roles"
+    },
+    {
+      "dao": "intents.sputnik-dao.near",
+      "id": 47,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2025-04-17",
+      "receiver": "omft.near",
+      "method": "add_full_access_key",
+      "lever": "roles"
+    },
+    {
+      "dao": "intents.sputnik-dao.near",
+      "id": 49,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2025-05-25",
+      "receiver": "ctl-intents.near",
+      "method": "add_release_info",
+      "lever": "code"
+    },
+    {
+      "dao": "intents.sputnik-dao.near",
+      "id": 50,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2025-06-05",
+      "receiver": "ctl-intents.near",
+      "method": "add_release_info",
+      "lever": "code"
+    },
+    {
+      "dao": "intents.sputnik-dao.near",
+      "id": 51,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2025-06-06",
+      "receiver": "ctl-intents.near",
+      "method": "up_deploy_code",
+      "lever": "code"
+    },
+    {
+      "dao": "intents.sputnik-dao.near",
+      "id": 52,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2025-06-09",
+      "receiver": "ctl-intents.near",
+      "method": "acl_grant_role",
+      "lever": "roles"
+    },
+    {
+      "dao": "intents.sputnik-dao.near",
+      "id": 53,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2025-06-09",
+      "receiver": "ctl-intents.near",
+      "method": "add_release_info",
+      "lever": "code"
+    },
+    {
+      "dao": "intents.sputnik-dao.near",
+      "id": 55,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2025-06-10",
+      "receiver": "ctl-intents.near",
+      "method": "add_release_info",
+      "lever": "code"
+    },
+    {
+      "dao": "intents.sputnik-dao.near",
+      "id": 56,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2025-06-10",
+      "receiver": "ctl-intents.near",
+      "method": "acl_grant_role",
+      "lever": "roles"
+    },
+    {
+      "dao": "intents.sputnik-dao.near",
+      "id": 58,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2025-06-19",
+      "receiver": "ctl-intents.near",
+      "method": "add_deployment_info",
+      "lever": "code"
+    },
+    {
+      "dao": "intents.sputnik-dao.near",
+      "id": 59,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2025-06-24",
+      "receiver": "ctl-intents.near",
+      "method": "add_release_info",
+      "lever": "code"
+    },
+    {
+      "dao": "jasnah-treasury.sputnik-dao.near",
+      "id": 60,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2025-07-09",
+      "receiver": "(account)",
+      "method": "deposit_and_stake",
+      "lever": "staking"
+    },
+    {
+      "dao": "jasnah-treasury.sputnik-dao.near",
+      "id": 64,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2025-07-10",
+      "receiver": "(account)",
+      "method": "deposit_and_stake",
+      "lever": "staking"
+    },
+    {
+      "dao": "jasnah-treasury.sputnik-dao.near",
+      "id": 65,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2025-07-10",
+      "receiver": "(account)",
+      "method": "deposit_and_stake",
+      "lever": "staking"
+    },
+    {
+      "dao": "jasnah-treasury.sputnik-dao.near",
+      "id": 66,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2025-07-10",
+      "receiver": "(account)",
+      "method": "deposit_and_stake",
+      "lever": "staking"
+    },
+    {
+      "dao": "intents.sputnik-dao.near",
+      "id": 61,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2025-07-26",
+      "receiver": "ctl-intents.near",
+      "method": "add_release_info",
+      "lever": "code"
+    },
+    {
+      "dao": "jasnah-treasury.sputnik-dao.near",
+      "id": 70,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2025-08-01",
+      "receiver": "(account)",
+      "method": "unstake",
+      "lever": "staking"
+    },
+    {
+      "dao": "hos-root.sputnik-dao.near",
+      "id": 0,
+      "kind": "ChangePolicy",
+      "status": "Approved",
+      "submitted": "2025-08-06",
+      "lever": "roles"
+    },
+    {
+      "dao": "hos-root.sputnik-dao.near",
+      "id": 1,
+      "kind": "ChangePolicy",
+      "status": "Approved",
+      "submitted": "2025-08-16",
+      "lever": "roles"
+    },
+    {
+      "dao": "hos-root.sputnik-dao.near",
+      "id": 2,
+      "kind": "ChangePolicy",
+      "status": "Approved",
+      "submitted": "2025-08-17",
+      "lever": "roles"
+    },
+    {
+      "dao": "jasnah-treasury.sputnik-dao.near",
+      "id": 79,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2025-09-03",
+      "receiver": "(account)",
+      "method": "withdraw_all",
+      "lever": "staking"
+    },
+    {
+      "dao": "jasnah-treasury.sputnik-dao.near",
+      "id": 80,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2025-09-03",
+      "receiver": "(account)",
+      "method": "unstake",
+      "lever": "staking"
+    },
+    {
+      "dao": "jasnah-treasury.sputnik-dao.near",
+      "id": 81,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2025-09-03",
+      "receiver": "(account)",
+      "method": "withdraw_all",
+      "lever": "staking"
+    },
+    {
+      "dao": "jasnah-treasury.sputnik-dao.near",
+      "id": 85,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2025-09-10",
+      "receiver": "(account)",
+      "method": "unstake",
+      "lever": "staking"
+    },
+    {
+      "dao": "jasnah-treasury.sputnik-dao.near",
+      "id": 86,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2025-09-10",
+      "receiver": "(account)",
+      "method": "withdraw_all",
+      "lever": "staking"
+    },
+    {
+      "dao": "jasnah-treasury.sputnik-dao.near",
+      "id": 94,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2025-10-01",
+      "receiver": "(account)",
+      "method": "unstake",
+      "lever": "staking"
+    },
+    {
+      "dao": "jasnah-treasury.sputnik-dao.near",
+      "id": 95,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2025-10-01",
+      "receiver": "(account)",
+      "method": "withdraw_all",
+      "lever": "staking"
+    },
+    {
+      "dao": "intents.sputnik-dao.near",
+      "id": 62,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2025-10-02",
+      "receiver": "intents.near",
+      "method": "set_fee_collector",
+      "lever": "fee"
+    },
+    {
+      "dao": "intents.sputnik-dao.near",
+      "id": 63,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2025-10-02",
+      "receiver": "intents.near",
+      "method": "ft_force_withdraw",
+      "lever": "user_funds"
+    },
+    {
+      "dao": "hos-root.sputnik-dao.near",
+      "id": 3,
+      "kind": "ChangePolicy",
+      "status": "Approved",
+      "submitted": "2025-10-09",
+      "lever": "roles"
+    },
+    {
+      "dao": "hos-root.sputnik-dao.near",
+      "id": 4,
+      "kind": "ChangePolicy",
+      "status": "Approved",
+      "submitted": "2025-10-09",
+      "lever": "roles"
+    },
+    {
+      "dao": "hos-root.sputnik-dao.near",
+      "id": 5,
+      "kind": "ChangePolicy",
+      "status": "Approved",
+      "submitted": "2025-10-09",
+      "lever": "roles"
+    },
+    {
+      "dao": "hos-root.sputnik-dao.near",
+      "id": 6,
+      "kind": "ChangePolicy",
+      "status": "Approved",
+      "submitted": "2025-10-09",
+      "lever": "roles"
+    },
+    {
+      "dao": "hos-root.sputnik-dao.near",
+      "id": 7,
+      "kind": "ChangePolicy",
+      "status": "Approved",
+      "submitted": "2025-10-09",
+      "lever": "roles"
+    },
+    {
+      "dao": "hos-root.sputnik-dao.near",
+      "id": 8,
+      "kind": "ChangePolicy",
+      "status": "Approved",
+      "submitted": "2025-10-09",
+      "lever": "roles"
+    },
+    {
+      "dao": "hos-root.sputnik-dao.near",
+      "id": 9,
+      "kind": "ChangePolicy",
+      "status": "Approved",
+      "submitted": "2025-10-09",
+      "lever": "roles"
+    },
+    {
+      "dao": "hos-root.sputnik-dao.near",
+      "id": 10,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2025-10-10",
+      "receiver": "venear.stagingdao.near",
+      "method": "set_lockup_contract",
+      "lever": "other"
+    },
+    {
+      "dao": "hos-root.sputnik-dao.near",
+      "id": 11,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2025-10-10",
+      "receiver": "venear.dao",
+      "method": "set_lockup_contract",
+      "lever": "other"
+    },
+    {
+      "dao": "jasnah-treasury.sputnik-dao.near",
+      "id": 99,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2025-10-10",
+      "receiver": "(account)",
+      "method": "unstake",
+      "lever": "staking"
+    },
+    {
+      "dao": "jasnah-treasury.sputnik-dao.near",
+      "id": 101,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2025-10-10",
+      "receiver": "(account)",
+      "method": "unstake",
+      "lever": "staking"
+    },
+    {
+      "dao": "jasnah-treasury.sputnik-dao.near",
+      "id": 102,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2025-10-10",
+      "receiver": "(account)",
+      "method": "withdraw_all",
+      "lever": "staking"
+    },
+    {
+      "dao": "intents.sputnik-dao.near",
+      "id": 64,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2025-10-24",
+      "receiver": "ctl-intents.near",
+      "method": "add_release_info",
+      "lever": "code"
+    },
+    {
+      "dao": "hos-root.sputnik-dao.near",
+      "id": 14,
+      "kind": "ChangePolicy",
+      "status": "Approved",
+      "submitted": "2025-11-01",
+      "lever": "roles"
+    },
+    {
+      "dao": "intents.sputnik-dao.near",
+      "id": 65,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2025-11-03",
+      "receiver": "intents.near",
+      "method": "acl_grant_role",
+      "lever": "roles"
+    },
+    {
+      "dao": "jasnah-treasury.sputnik-dao.near",
+      "id": 104,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2025-11-03",
+      "receiver": "(account)",
+      "method": "unstake",
+      "lever": "staking"
+    },
+    {
+      "dao": "jasnah-treasury.sputnik-dao.near",
+      "id": 105,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2025-11-03",
+      "receiver": "(account)",
+      "method": "withdraw_all",
+      "lever": "staking"
+    },
+    {
+      "dao": "fefundsadmin.sputnik-dao.near",
+      "id": 1,
+      "kind": "ChangePolicy",
+      "status": "Approved",
+      "submitted": "2025-11-07",
+      "lever": "roles"
+    },
+    {
+      "dao": "hos-root.sputnik-dao.near",
+      "id": 15,
+      "kind": "UpgradeRemote",
+      "status": "Approved",
+      "submitted": "2025-11-08",
+      "receiver": "(account)",
+      "method": "upgrade",
+      "lever": "code"
+    },
+    {
+      "dao": "intents.sputnik-dao.near",
+      "id": 66,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2025-11-28",
+      "receiver": "ctl-intents.near",
+      "method": "add_release_info",
+      "lever": "code"
+    },
+    {
+      "dao": "jasnah-treasury.sputnik-dao.near",
+      "id": 110,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2025-12-01",
+      "receiver": "(account)",
+      "method": "unstake",
+      "lever": "staking"
+    },
+    {
+      "dao": "jasnah-treasury.sputnik-dao.near",
+      "id": 111,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2025-12-01",
+      "receiver": "(account)",
+      "method": "withdraw_all",
+      "lever": "staking"
+    },
+    {
+      "dao": "intents.sputnik-dao.near",
+      "id": 67,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2025-12-03",
+      "receiver": "ctl-intents.near",
+      "method": "add_release_info",
+      "lever": "code"
+    },
+    {
+      "dao": "intents.sputnik-dao.near",
+      "id": 68,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2025-12-09",
+      "receiver": "intents.near",
+      "method": "force_lock_account",
+      "lever": "user_funds"
+    },
+    {
+      "dao": "jasnah-treasury.sputnik-dao.near",
+      "id": 117,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2025-12-12",
+      "receiver": "(account)",
+      "method": "unstake",
+      "lever": "staking"
+    },
+    {
+      "dao": "jasnah-treasury.sputnik-dao.near",
+      "id": 119,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2025-12-12",
+      "receiver": "(account)",
+      "method": "withdraw_all",
+      "lever": "staking"
+    },
+    {
+      "dao": "hos-root.sputnik-dao.near",
+      "id": 17,
+      "kind": "UpgradeRemote",
+      "status": "Approved",
+      "submitted": "2025-12-15",
+      "receiver": "vote.dao",
+      "method": "upgrade",
+      "lever": "code"
+    },
+    {
+      "dao": "intents.sputnik-dao.near",
+      "id": 69,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2025-12-22",
+      "receiver": "omft.near",
+      "method": "add_full_access_key",
+      "lever": "roles"
+    },
+    {
+      "dao": "jasnah-treasury.sputnik-dao.near",
+      "id": 125,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-01-02",
+      "receiver": "(account)",
+      "method": "unstake",
+      "lever": "staking"
+    },
+    {
+      "dao": "jasnah-treasury.sputnik-dao.near",
+      "id": 126,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-01-02",
+      "receiver": "(account)",
+      "method": "withdraw_all",
+      "lever": "staking"
+    },
+    {
+      "dao": "intents.sputnik-dao.near",
+      "id": 70,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-01-15",
+      "receiver": "ctl-intents.near",
+      "method": "add_release_info",
+      "lever": "code"
+    },
+    {
+      "dao": "intents.sputnik-dao.near",
+      "id": 71,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-01-15",
+      "receiver": "intents.near",
+      "method": "pa_unpause_feature",
+      "lever": "pause"
+    },
+    {
+      "dao": "jasnah-treasury.sputnik-dao.near",
+      "id": 130,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-01-30",
+      "receiver": "(account)",
+      "method": "unstake",
+      "lever": "staking"
+    },
+    {
+      "dao": "jasnah-treasury.sputnik-dao.near",
+      "id": 131,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-01-30",
+      "receiver": "(account)",
+      "method": "withdraw_all",
+      "lever": "staking"
+    },
+    {
+      "dao": "jasnah-treasury.sputnik-dao.near",
+      "id": 132,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-02-02",
+      "receiver": "(account)",
+      "method": "unstake",
+      "lever": "staking"
+    },
+    {
+      "dao": "hos-root.sputnik-dao.near",
+      "id": 18,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-02-09",
+      "receiver": "vote.dao",
+      "method": "set_guardians",
+      "lever": "voting"
+    },
+    {
+      "dao": "hos-root.sputnik-dao.near",
+      "id": 18,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-02-09",
+      "receiver": "vote.dao",
+      "method": "set_reviewer_ids",
+      "lever": "voting"
+    },
+    {
+      "dao": "hos-root.sputnik-dao.near",
+      "id": 19,
+      "kind": "RemoveMemberFromRole",
+      "status": "Approved",
+      "submitted": "2026-02-09",
+      "lever": "roles"
+    },
+    {
+      "dao": "jasnah-treasury.sputnik-dao.near",
+      "id": 136,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-03-04",
+      "receiver": "(account)",
+      "method": "unstake",
+      "lever": "staking"
+    },
+    {
+      "dao": "jasnah-treasury.sputnik-dao.near",
+      "id": 138,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-03-04",
+      "receiver": "(account)",
+      "method": "unstake",
+      "lever": "staking"
+    },
+    {
+      "dao": "jasnah-treasury.sputnik-dao.near",
+      "id": 139,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-03-04",
+      "receiver": "(account)",
+      "method": "withdraw_all",
+      "lever": "staking"
+    },
+    {
+      "dao": "jasnah-treasury.sputnik-dao.near",
+      "id": 142,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-03-24",
+      "receiver": "(account)",
+      "method": "unstake",
+      "lever": "staking"
+    },
+    {
+      "dao": "jasnah-treasury.sputnik-dao.near",
+      "id": 143,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-03-24",
+      "receiver": "(account)",
+      "method": "withdraw_all",
+      "lever": "staking"
+    },
+    {
+      "dao": "jasnah-treasury.sputnik-dao.near",
+      "id": 145,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-03-30",
+      "receiver": "(account)",
+      "method": "unstake",
+      "lever": "staking"
+    },
+    {
+      "dao": "jasnah-treasury.sputnik-dao.near",
+      "id": 146,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-03-30",
+      "receiver": "(account)",
+      "method": "withdraw_all",
+      "lever": "staking"
+    },
+    {
+      "dao": "jasnah-treasury.sputnik-dao.near",
+      "id": 147,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-04-01",
+      "receiver": "(account)",
+      "method": "unstake",
+      "lever": "staking"
+    },
+    {
+      "dao": "jasnah-treasury.sputnik-dao.near",
+      "id": 148,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-04-01",
+      "receiver": "(account)",
+      "method": "unstake",
+      "lever": "staking"
+    },
+    {
+      "dao": "intents.sputnik-dao.near",
+      "id": 73,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-04-16",
+      "receiver": "intents.near",
+      "method": "pa_unpause_feature",
+      "lever": "pause"
+    },
+    {
+      "dao": "intents.sputnik-dao.near",
+      "id": 74,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-04-16",
+      "receiver": "intents.near",
+      "method": "acl_grant_role",
+      "lever": "roles"
+    },
+    {
+      "dao": "1csfundsadmin.sputnik-dao.near",
+      "id": 2,
+      "kind": "ChangePolicy",
+      "status": "Approved",
+      "submitted": "2026-04-22",
+      "lever": "roles"
+    },
+    {
+      "dao": "hos-root.sputnik-dao.near",
+      "id": 20,
+      "kind": "ChangePolicy",
+      "status": "Approved",
+      "submitted": "2026-04-27",
+      "lever": "roles"
+    },
+    {
+      "dao": "hos-root.sputnik-dao.near",
+      "id": 21,
+      "kind": "UpgradeRemote",
+      "status": "Approved",
+      "submitted": "2026-05-04",
+      "receiver": "vote.dao",
+      "method": "upgrade",
+      "lever": "code"
+    },
+    {
+      "dao": "jasnah-treasury.sputnik-dao.near",
+      "id": 150,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-05-04",
+      "receiver": "(account)",
+      "method": "unstake",
+      "lever": "staking"
+    },
+    {
+      "dao": "jasnah-treasury.sputnik-dao.near",
+      "id": 151,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-05-04",
+      "receiver": "(account)",
+      "method": "withdraw_all",
+      "lever": "staking"
+    },
+    {
+      "dao": "hos-root.sputnik-dao.near",
+      "id": 22,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-05-06",
+      "receiver": "vote.dao",
+      "method": "set_reviewer_ids",
+      "lever": "voting"
+    },
+    {
+      "dao": "jasnah-treasury.sputnik-dao.near",
+      "id": 152,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-05-06",
+      "receiver": "(account)",
+      "method": "unstake",
+      "lever": "staking"
+    },
+    {
+      "dao": "jasnah-treasury.sputnik-dao.near",
+      "id": 153,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-05-06",
+      "receiver": "(account)",
+      "method": "withdraw_all",
+      "lever": "staking"
+    },
+    {
+      "dao": "intents.sputnik-dao.near",
+      "id": 77,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-05-07",
+      "receiver": "intents.near",
+      "method": "ft_force_withdraw",
+      "lever": "user_funds"
+    },
+    {
+      "dao": "intents.sputnik-dao.near",
+      "id": 78,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-05-07",
+      "receiver": "intents.near",
+      "method": "ft_force_withdraw",
+      "lever": "user_funds"
+    },
+    {
+      "dao": "jasnah-treasury.sputnik-dao.near",
+      "id": 156,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-05-22",
+      "receiver": "(account)",
+      "method": "unstake",
+      "lever": "staking"
+    },
+    {
+      "dao": "jasnah-treasury.sputnik-dao.near",
+      "id": 157,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-05-22",
+      "receiver": "(account)",
+      "method": "withdraw_all",
+      "lever": "staking"
+    },
+    {
+      "dao": "intents.sputnik-dao.near",
+      "id": 81,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-05-24",
+      "receiver": "intents.near",
+      "method": "ft_force_withdraw",
+      "lever": "user_funds"
+    },
+    {
+      "dao": "intents.sputnik-dao.near",
+      "id": 81,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-05-24",
+      "receiver": "intents.near",
+      "method": "ft_force_withdraw",
+      "lever": "user_funds"
+    },
+    {
+      "dao": "intents.sputnik-dao.near",
+      "id": 82,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-05-30",
+      "receiver": "intents.near",
+      "method": "mt_force_transfer",
+      "lever": "user_funds"
+    },
+    {
+      "dao": "jasnah-treasury.sputnik-dao.near",
+      "id": 161,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-06-02",
+      "receiver": "(account)",
+      "method": "unstake",
+      "lever": "staking"
+    },
+    {
+      "dao": "intents.sputnik-dao.near",
+      "id": 83,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-06-03",
+      "receiver": "intents.near",
+      "method": "force_unlock_account",
+      "lever": "user_funds"
+    },
+    {
+      "dao": "hos-root.sputnik-dao.near",
+      "id": 24,
+      "kind": "UpgradeRemote",
+      "status": "Approved",
+      "submitted": "2026-06-05",
+      "receiver": "vote.dao",
+      "method": "upgrade",
+      "lever": "code"
+    },
+    {
+      "dao": "hos-root.sputnik-dao.near",
+      "id": 25,
+      "kind": "UpgradeRemote",
+      "status": "Approved",
+      "submitted": "2026-06-05",
+      "receiver": "venear.dao",
+      "method": "upgrade",
+      "lever": "code"
+    },
+    {
+      "dao": "intents.sputnik-dao.near",
+      "id": 84,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-06-08",
+      "receiver": "intents.near",
+      "method": "acl_grant_role",
+      "lever": "roles"
+    },
+    {
+      "dao": "jasnah-treasury.sputnik-dao.near",
+      "id": 162,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-06-08",
+      "receiver": "(account)",
+      "method": "withdraw_all",
+      "lever": "staking"
+    },
+    {
+      "dao": "intents.sputnik-dao.near",
+      "id": 86,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-06-10",
+      "receiver": "intents.near",
+      "method": "ft_force_withdraw",
+      "lever": "user_funds"
+    },
+    {
+      "dao": "jasnah-treasury.sputnik-dao.near",
+      "id": 165,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-06-15",
+      "receiver": "(account)",
+      "method": "unstake",
+      "lever": "staking"
+    },
+    {
+      "dao": "jasnah-treasury.sputnik-dao.near",
+      "id": 166,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-06-15",
+      "receiver": "(account)",
+      "method": "withdraw_all",
+      "lever": "staking"
+    },
+    {
+      "dao": "intents.sputnik-dao.near",
+      "id": 87,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-06-23",
+      "receiver": "omft.near",
+      "method": "add_full_access_key",
+      "lever": "roles"
+    },
+    {
+      "dao": "intents.sputnik-dao.near",
+      "id": 88,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-06-23",
+      "receiver": "omft.near",
+      "method": "acl_grant_role",
+      "lever": "roles"
+    },
+    {
+      "dao": "intents.sputnik-dao.near",
+      "id": 89,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-06-23",
+      "receiver": "intents.near",
+      "method": "acl_grant_role",
+      "lever": "roles"
+    },
+    {
+      "dao": "intents.sputnik-dao.near",
+      "id": 90,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-06-26",
+      "receiver": "omft.near",
+      "method": "acl_grant_role",
+      "lever": "roles"
+    },
+    {
+      "dao": "jasnah-treasury.sputnik-dao.near",
+      "id": 169,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-07-01",
+      "receiver": "(account)",
+      "method": "unstake",
+      "lever": "staking"
+    },
+    {
+      "dao": "jasnah-treasury.sputnik-dao.near",
+      "id": 170,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-07-02",
+      "receiver": "nearai.pool.near",
+      "method": "deposit_and_stake",
+      "lever": "staking"
+    },
+    {
+      "dao": "jasnah-treasury.sputnik-dao.near",
+      "id": 171,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-07-03",
+      "receiver": "nearai.pool.near",
+      "method": "deposit_and_stake",
+      "lever": "staking"
+    },
+    {
+      "dao": "jasnah-treasury.sputnik-dao.near",
+      "id": 172,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-07-06",
+      "receiver": "(account)",
+      "method": "withdraw_all",
+      "lever": "staking"
+    },
+    {
+      "dao": "1csfundsadmin.sputnik-dao.near",
+      "id": 3,
+      "kind": "ChangePolicy",
+      "status": "Approved",
+      "submitted": "2026-07-10",
+      "lever": "roles"
+    },
+    {
+      "dao": "hos-root.sputnik-dao.near",
+      "id": 27,
+      "kind": "ChangePolicy",
+      "status": "Approved",
+      "submitted": "2026-07-15",
+      "lever": "roles"
+    },
+    {
+      "dao": "hos-root.sputnik-dao.near",
+      "id": 28,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-07-15",
+      "receiver": "vote.dao",
+      "method": "set_council_ids",
+      "lever": "voting"
+    },
+    {
+      "dao": "hos-root.sputnik-dao.near",
+      "id": 29,
+      "kind": "UpgradeRemote",
+      "status": "Approved",
+      "submitted": "2026-07-16",
+      "receiver": "venear.dao",
+      "method": "upgrade",
+      "lever": "code"
+    },
+    {
+      "dao": "hos-root.sputnik-dao.near",
+      "id": 30,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-07-22",
+      "receiver": "vote.dao",
+      "method": "set_council_ids",
+      "lever": "voting"
+    },
+    {
+      "dao": "hos-root.sputnik-dao.near",
+      "id": 31,
+      "kind": "ChangePolicy",
+      "status": "Approved",
+      "submitted": "2026-07-22",
+      "lever": "roles"
+    },
+    {
+      "dao": "jasnah-treasury.sputnik-dao.near",
+      "id": 175,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-07-29",
+      "receiver": "(account)",
+      "method": "add_validator_catalog_manager",
+      "lever": "roles"
+    },
+    {
+      "dao": "jasnah-treasury.sputnik-dao.near",
+      "id": 176,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-07-29",
+      "receiver": "stake.dao",
+      "method": "add_validator_catalog_manager",
+      "lever": "roles"
+    },
+    {
+      "dao": "jasnah-treasury.sputnik-dao.near",
+      "id": 177,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-07-31",
+      "receiver": "(account)",
+      "method": "unstake",
+      "lever": "staking"
+    },
+    {
+      "dao": "jasnah-treasury.sputnik-dao.near",
+      "id": 178,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-07-31",
+      "receiver": "(account)",
+      "method": "withdraw_all",
+      "lever": "staking"
+    },
+    {
+      "dao": "jasnah-treasury.sputnik-dao.near",
+      "id": 181,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-08-03",
+      "receiver": "(account)",
+      "method": "unstake",
+      "lever": "staking"
+    },
+    {
+      "dao": "jasnah-treasury.sputnik-dao.near",
+      "id": 184,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-08-05",
+      "receiver": "(account)",
+      "method": "withdraw_all",
+      "lever": "staking"
+    },
+    {
+      "dao": "intents.sputnik-dao.near",
+      "id": 91,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-08-12",
+      "receiver": "omft.near",
+      "method": "add_full_access_key",
+      "lever": "roles"
+    },
+    {
+      "dao": "intents.sputnik-dao.near",
+      "id": 93,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-08-30",
+      "receiver": "omft.near",
+      "method": "add_full_access_key",
+      "lever": "roles"
+    },
+    {
+      "dao": "intents.sputnik-dao.near",
+      "id": 94,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-09-01",
+      "receiver": "intents.near",
+      "method": "pa_unpause_feature",
+      "lever": "pause"
+    },
+    {
+      "dao": "jasnah-treasury.sputnik-dao.near",
+      "id": 187,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-09-02",
+      "receiver": "(account)",
+      "method": "unstake",
+      "lever": "staking"
+    },
+    {
+      "dao": "intents.sputnik-dao.near",
+      "id": 95,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-09-03",
+      "receiver": "outlayer-admin.near",
+      "method": "w_execute_extension",
+      "lever": "other"
+    },
+    {
+      "dao": "jasnah-treasury.sputnik-dao.near",
+      "id": 188,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-09-04",
+      "receiver": "(account)",
+      "method": "withdraw_all",
+      "lever": "staking"
+    },
+    {
+      "dao": "intents.sputnik-dao.near",
+      "id": 96,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-09-10",
+      "receiver": "outlayer-admin.near",
+      "method": "w_execute_extension",
+      "lever": "other"
+    },
+    {
+      "dao": "hos-root.sputnik-dao.near",
+      "id": 38,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-09-17",
+      "receiver": "registrar",
+      "method": "approve_batch",
+      "lever": "other"
+    },
+    {
+      "dao": "intents.sputnik-dao.near",
+      "id": 97,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-09-29",
+      "receiver": "outlayer-admin.near",
+      "method": "w_execute_extension",
+      "lever": "other"
+    },
+    {
+      "dao": "hos-root.sputnik-dao.near",
+      "id": 39,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-10-01",
+      "receiver": "registrar",
+      "method": "upgrade",
+      "lever": "code"
+    },
+    {
+      "dao": "intents.sputnik-dao.near",
+      "id": 98,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-10-01",
+      "receiver": "intents.near",
+      "method": "pa_unpause_feature",
+      "lever": "pause"
+    },
+    {
+      "dao": "intents.sputnik-dao.near",
+      "id": 98,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-10-01",
+      "receiver": "intents.near",
+      "method": "pa_pause_feature",
+      "lever": "pause"
+    },
+    {
+      "dao": "intents.sputnik-dao.near",
+      "id": 99,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-10-01",
+      "receiver": "ctl-intents.near",
+      "method": "add_release_info",
+      "lever": "code"
+    },
+    {
+      "dao": "intents.sputnik-dao.near",
+      "id": 100,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-10-01",
+      "receiver": "intents.near",
+      "method": "pa_unpause_feature",
+      "lever": "pause"
+    },
+    {
+      "dao": "intents.sputnik-dao.near",
+      "id": 101,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-10-02",
+      "receiver": "ctl-intents.near",
+      "method": "add_release_info",
+      "lever": "code"
+    },
+    {
+      "dao": "jasnah-treasury.sputnik-dao.near",
+      "id": 197,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-10-02",
+      "receiver": "(account)",
+      "method": "unstake",
+      "lever": "staking"
+    },
+    {
+      "dao": "jasnah-treasury.sputnik-dao.near",
+      "id": 198,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-10-02",
+      "receiver": "(account)",
+      "method": "withdraw_all",
+      "lever": "staking"
+    },
+    {
+      "dao": "intents.sputnik-dao.near",
+      "id": 102,
+      "kind": "ChangePolicy",
+      "status": "Approved",
+      "submitted": "2026-10-07",
+      "lever": "roles"
+    },
+    {
+      "dao": "intents.sputnik-dao.near",
+      "id": 103,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-10-07",
+      "receiver": "ctl-intents.near",
+      "method": "add_release_info",
+      "lever": "code"
+    },
+    {
+      "dao": "intents.sputnik-dao.near",
+      "id": 104,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-10-07",
+      "receiver": "intents.near",
+      "method": "pa_unpause_feature",
+      "lever": "pause"
+    },
+    {
+      "dao": "intents.sputnik-dao.near",
+      "id": 105,
+      "kind": "AddMemberToRole",
+      "status": "Approved",
+      "submitted": "2026-10-12",
+      "lever": "roles"
+    },
+    {
+      "dao": "intents.sputnik-dao.near",
+      "id": 106,
+      "kind": "RemoveMemberFromRole",
+      "status": "Approved",
+      "submitted": "2026-10-12",
+      "lever": "roles"
+    },
+    {
+      "dao": "hos-root.sputnik-dao.near",
+      "id": 40,
+      "kind": "UpgradeRemote",
+      "status": "Approved",
+      "submitted": "2026-10-13",
+      "receiver": "vote.dao",
+      "method": "upgrade",
+      "lever": "code"
+    },
+    {
+      "dao": "hos-root.sputnik-dao.near",
+      "id": 41,
+      "kind": "UpgradeRemote",
+      "status": "Approved",
+      "submitted": "2026-10-14",
+      "receiver": "vote.dao",
+      "method": "upgrade",
+      "lever": "code"
+    },
+    {
+      "dao": "intents.sputnik-dao.near",
+      "id": 107,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-10-16",
+      "receiver": "intents.near",
+      "method": "acl_grant_role",
+      "lever": "roles"
+    },
+    {
+      "dao": "jasnah-treasury.sputnik-dao.near",
+      "id": 202,
+      "kind": "ChangePolicy",
+      "status": "Approved",
+      "submitted": "2026-10-21",
+      "lever": "roles"
+    },
+    {
+      "dao": "jasnah-treasury.sputnik-dao.near",
+      "id": 203,
+      "kind": "ChangePolicy",
+      "status": "Approved",
+      "submitted": "2026-10-21",
+      "lever": "roles"
+    },
+    {
+      "dao": "hos-root.sputnik-dao.near",
+      "id": 42,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-10-22",
+      "receiver": "rec.hos",
+      "method": "set_watchers",
+      "lever": "other"
+    },
+    {
+      "dao": "hos-root.sputnik-dao.near",
+      "id": 42,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-10-22",
+      "receiver": "rec.hos",
+      "method": "install_policy",
+      "lever": "other"
+    },
+    {
+      "dao": "hos-root.sputnik-dao.near",
+      "id": 42,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-10-22",
+      "receiver": "rec.hos",
+      "method": "install_policy",
+      "lever": "other"
+    },
+    {
+      "dao": "hos-root.sputnik-dao.near",
+      "id": 42,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-10-22",
+      "receiver": "rec.hos",
+      "method": "install_policy",
+      "lever": "other"
+    },
+    {
+      "dao": "hos-root.sputnik-dao.near",
+      "id": 42,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-10-22",
+      "receiver": "rec.hos",
+      "method": "install_policy",
+      "lever": "other"
+    },
+    {
+      "dao": "hos-root.sputnik-dao.near",
+      "id": 42,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-10-22",
+      "receiver": "rec.hos",
+      "method": "install_policy",
+      "lever": "other"
+    },
+    {
+      "dao": "hos-root.sputnik-dao.near",
+      "id": 42,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-10-22",
+      "receiver": "rec.hos",
+      "method": "install_policy",
+      "lever": "other"
+    },
+    {
+      "dao": "hos-root.sputnik-dao.near",
+      "id": 42,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-10-22",
+      "receiver": "rec.hos",
+      "method": "install_policy",
+      "lever": "other"
+    },
+    {
+      "dao": "hos-root.sputnik-dao.near",
+      "id": 42,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-10-22",
+      "receiver": "rec.hos",
+      "method": "install_policy",
+      "lever": "other"
+    },
+    {
+      "dao": "hos-root.sputnik-dao.near",
+      "id": 42,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-10-22",
+      "receiver": "rec.hos",
+      "method": "install_policy",
+      "lever": "other"
+    },
+    {
+      "dao": "hos-root.sputnik-dao.near",
+      "id": 42,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-10-22",
+      "receiver": "rec.hos",
+      "method": "install_policy",
+      "lever": "other"
+    },
+    {
+      "dao": "hos-root.sputnik-dao.near",
+      "id": 42,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-10-22",
+      "receiver": "rec.hos",
+      "method": "install_policy",
+      "lever": "other"
+    },
+    {
+      "dao": "hos-root.sputnik-dao.near",
+      "id": 42,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-10-22",
+      "receiver": "rec.hos",
+      "method": "install_policy",
+      "lever": "other"
+    },
+    {
+      "dao": "hos-root.sputnik-dao.near",
+      "id": 42,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-10-22",
+      "receiver": "rec.hos",
+      "method": "install_policy",
+      "lever": "other"
+    },
+    {
+      "dao": "hos-root.sputnik-dao.near",
+      "id": 42,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-10-22",
+      "receiver": "rec.hos",
+      "method": "install_policy",
+      "lever": "other"
+    },
+    {
+      "dao": "hos-root.sputnik-dao.near",
+      "id": 42,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-10-22",
+      "receiver": "rec.hos",
+      "method": "install_policy",
+      "lever": "other"
+    },
+    {
+      "dao": "hos-root.sputnik-dao.near",
+      "id": 42,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-10-22",
+      "receiver": "rec.hos",
+      "method": "install_policy",
+      "lever": "other"
+    },
+    {
+      "dao": "hos-root.sputnik-dao.near",
+      "id": 42,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-10-22",
+      "receiver": "rec.hos",
+      "method": "install_policy",
+      "lever": "other"
+    },
+    {
+      "dao": "hos-root.sputnik-dao.near",
+      "id": 42,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-10-22",
+      "receiver": "rec.hos",
+      "method": "install_policy",
+      "lever": "other"
+    },
+    {
+      "dao": "hos-root.sputnik-dao.near",
+      "id": 42,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-10-22",
+      "receiver": "rec.hos",
+      "method": "install_policy",
+      "lever": "other"
+    },
+    {
+      "dao": "hos-root.sputnik-dao.near",
+      "id": 42,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-10-22",
+      "receiver": "rec.hos",
+      "method": "install_policy",
+      "lever": "other"
+    },
+    {
+      "dao": "hos-root.sputnik-dao.near",
+      "id": 42,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-10-22",
+      "receiver": "rec.hos",
+      "method": "install_policy",
+      "lever": "other"
+    },
+    {
+      "dao": "hos-root.sputnik-dao.near",
+      "id": 42,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-10-22",
+      "receiver": "rec.hos",
+      "method": "install_policy",
+      "lever": "other"
+    },
+    {
+      "dao": "hos-root.sputnik-dao.near",
+      "id": 42,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-10-22",
+      "receiver": "rec.hos",
+      "method": "install_policy",
+      "lever": "other"
+    },
+    {
+      "dao": "hos-root.sputnik-dao.near",
+      "id": 42,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-10-22",
+      "receiver": "rec.hos",
+      "method": "install_policy",
+      "lever": "other"
+    },
+    {
+      "dao": "hos-root.sputnik-dao.near",
+      "id": 42,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-10-22",
+      "receiver": "rec.hos",
+      "method": "install_policy",
+      "lever": "other"
+    },
+    {
+      "dao": "hos-root.sputnik-dao.near",
+      "id": 42,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-10-22",
+      "receiver": "rec.hos",
+      "method": "install_policy",
+      "lever": "other"
+    },
+    {
+      "dao": "hos-root.sputnik-dao.near",
+      "id": 42,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-10-22",
+      "receiver": "rec.hos",
+      "method": "install_policy",
+      "lever": "other"
+    },
+    {
+      "dao": "hos-root.sputnik-dao.near",
+      "id": 42,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-10-22",
+      "receiver": "rec.hos",
+      "method": "install_policy",
+      "lever": "other"
+    },
+    {
+      "dao": "hos-root.sputnik-dao.near",
+      "id": 42,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-10-22",
+      "receiver": "rec.hos",
+      "method": "install_policy",
+      "lever": "other"
+    },
+    {
+      "dao": "hos-root.sputnik-dao.near",
+      "id": 42,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-10-22",
+      "receiver": "rec.hos",
+      "method": "install_policy",
+      "lever": "other"
+    },
+    {
+      "dao": "hos-root.sputnik-dao.near",
+      "id": 42,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-10-22",
+      "receiver": "rec.hos",
+      "method": "install_policy",
+      "lever": "other"
+    },
+    {
+      "dao": "hos-root.sputnik-dao.near",
+      "id": 42,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-10-22",
+      "receiver": "rec.hos",
+      "method": "install_policy",
+      "lever": "other"
+    },
+    {
+      "dao": "hos-root.sputnik-dao.near",
+      "id": 42,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-10-22",
+      "receiver": "rec.hos",
+      "method": "install_policy",
+      "lever": "other"
+    },
+    {
+      "dao": "hos-root.sputnik-dao.near",
+      "id": 42,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-10-22",
+      "receiver": "rec.hos",
+      "method": "install_policy",
+      "lever": "other"
+    },
+    {
+      "dao": "hos-root.sputnik-dao.near",
+      "id": 42,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-10-22",
+      "receiver": "rec.hos",
+      "method": "install_policy",
+      "lever": "other"
+    },
+    {
+      "dao": "hos-root.sputnik-dao.near",
+      "id": 42,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-10-22",
+      "receiver": "rec.hos",
+      "method": "install_policy",
+      "lever": "other"
+    },
+    {
+      "dao": "hos-root.sputnik-dao.near",
+      "id": 42,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-10-22",
+      "receiver": "rec.hos",
+      "method": "install_policy",
+      "lever": "other"
+    },
+    {
+      "dao": "hos-root.sputnik-dao.near",
+      "id": 42,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-10-22",
+      "receiver": "rec.hos",
+      "method": "install_policy",
+      "lever": "other"
+    },
+    {
+      "dao": "hos-root.sputnik-dao.near",
+      "id": 42,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-10-22",
+      "receiver": "rec.hos",
+      "method": "install_policy",
+      "lever": "other"
+    },
+    {
+      "dao": "hos-root.sputnik-dao.near",
+      "id": 42,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-10-22",
+      "receiver": "rec.hos",
+      "method": "install_policy",
+      "lever": "other"
+    },
+    {
+      "dao": "hos-root.sputnik-dao.near",
+      "id": 42,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-10-22",
+      "receiver": "rec.hos",
+      "method": "install_policy",
+      "lever": "other"
+    },
+    {
+      "dao": "hos-root.sputnik-dao.near",
+      "id": 42,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-10-22",
+      "receiver": "rec.hos",
+      "method": "install_policy",
+      "lever": "other"
+    },
+    {
+      "dao": "hos-root.sputnik-dao.near",
+      "id": 42,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-10-22",
+      "receiver": "rec.hos",
+      "method": "install_policy",
+      "lever": "other"
+    },
+    {
+      "dao": "hos-root.sputnik-dao.near",
+      "id": 42,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-10-22",
+      "receiver": "rec.hos",
+      "method": "install_policy",
+      "lever": "other"
+    },
+    {
+      "dao": "hos-root.sputnik-dao.near",
+      "id": 42,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-10-22",
+      "receiver": "rec.hos",
+      "method": "install_policy",
+      "lever": "other"
+    },
+    {
+      "dao": "hos-root.sputnik-dao.near",
+      "id": 42,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-10-22",
+      "receiver": "rec.hos",
+      "method": "install_policy",
+      "lever": "other"
+    },
+    {
+      "dao": "hos-root.sputnik-dao.near",
+      "id": 42,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-10-22",
+      "receiver": "rec.hos",
+      "method": "install_policy",
+      "lever": "other"
+    },
+    {
+      "dao": "hos-root.sputnik-dao.near",
+      "id": 42,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-10-22",
+      "receiver": "rec.hos",
+      "method": "install_policy",
+      "lever": "other"
+    },
+    {
+      "dao": "hos-root.sputnik-dao.near",
+      "id": 42,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-10-22",
+      "receiver": "rec.hos",
+      "method": "install_policy",
+      "lever": "other"
+    },
+    {
+      "dao": "hos-root.sputnik-dao.near",
+      "id": 42,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-10-22",
+      "receiver": "rec.hos",
+      "method": "install_policy",
+      "lever": "other"
+    },
+    {
+      "dao": "hos-root.sputnik-dao.near",
+      "id": 42,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-10-22",
+      "receiver": "rec.hos",
+      "method": "install_policy",
+      "lever": "other"
+    },
+    {
+      "dao": "hos-root.sputnik-dao.near",
+      "id": 42,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-10-22",
+      "receiver": "rec.hos",
+      "method": "install_policy",
+      "lever": "other"
+    },
+    {
+      "dao": "hos-root.sputnik-dao.near",
+      "id": 42,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-10-22",
+      "receiver": "rec.hos",
+      "method": "install_policy",
+      "lever": "other"
+    },
+    {
+      "dao": "hos-root.sputnik-dao.near",
+      "id": 42,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-10-22",
+      "receiver": "rec.hos",
+      "method": "install_policy",
+      "lever": "other"
+    },
+    {
+      "dao": "hos-root.sputnik-dao.near",
+      "id": 42,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-10-22",
+      "receiver": "rec.hos",
+      "method": "install_policy",
+      "lever": "other"
+    },
+    {
+      "dao": "hos-root.sputnik-dao.near",
+      "id": 42,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-10-22",
+      "receiver": "rec.hos",
+      "method": "install_policy",
+      "lever": "other"
+    },
+    {
+      "dao": "hos-root.sputnik-dao.near",
+      "id": 42,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-10-22",
+      "receiver": "rec.hos",
+      "method": "install_policy",
+      "lever": "other"
+    },
+    {
+      "dao": "hos-root.sputnik-dao.near",
+      "id": 42,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-10-22",
+      "receiver": "rec.hos",
+      "method": "install_policy",
+      "lever": "other"
+    },
+    {
+      "dao": "hos-root.sputnik-dao.near",
+      "id": 42,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-10-22",
+      "receiver": "rec.hos",
+      "method": "install_policy",
+      "lever": "other"
+    },
+    {
+      "dao": "hos-root.sputnik-dao.near",
+      "id": 42,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-10-22",
+      "receiver": "rec.hos",
+      "method": "install_policy",
+      "lever": "other"
+    },
+    {
+      "dao": "hos-root.sputnik-dao.near",
+      "id": 42,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-10-22",
+      "receiver": "rec.hos",
+      "method": "install_policy",
+      "lever": "other"
+    },
+    {
+      "dao": "hos-root.sputnik-dao.near",
+      "id": 42,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-10-22",
+      "receiver": "rec.hos",
+      "method": "install_policy",
+      "lever": "other"
+    },
+    {
+      "dao": "hos-root.sputnik-dao.near",
+      "id": 42,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-10-22",
+      "receiver": "rec.hos",
+      "method": "install_policy",
+      "lever": "other"
+    },
+    {
+      "dao": "hos-root.sputnik-dao.near",
+      "id": 42,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-10-22",
+      "receiver": "rec.hos",
+      "method": "install_policy",
+      "lever": "other"
+    },
+    {
+      "dao": "hos-root.sputnik-dao.near",
+      "id": 42,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-10-22",
+      "receiver": "rec.hos",
+      "method": "install_policy",
+      "lever": "other"
+    },
+    {
+      "dao": "hos-root.sputnik-dao.near",
+      "id": 42,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-10-22",
+      "receiver": "rec.hos",
+      "method": "install_policy",
+      "lever": "other"
+    },
+    {
+      "dao": "hos-root.sputnik-dao.near",
+      "id": 42,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-10-22",
+      "receiver": "rec.hos",
+      "method": "install_policy",
+      "lever": "other"
+    },
+    {
+      "dao": "intents.sputnik-dao.near",
+      "id": 108,
+      "kind": "FunctionCall",
+      "status": "Approved",
+      "submitted": "2026-10-30",
+      "receiver": "intents.near",
+      "method": "acl_grant_role",
+      "lever": "roles"
+    }
+  ],
+  "checks": {
+    "public_output_names_allowlisted": true
+  }
+}

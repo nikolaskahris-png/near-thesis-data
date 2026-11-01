@@ -534,6 +534,7 @@ SCRIPT_CHECKS = [
     ("farm_rate.py", lambda doc: ["--verify"]),
     ("check_prereg.py", lambda doc: ["--verify"]),
     ("control_map.py", lambda doc: ["--verify"]),
+    ("control_history.py", lambda doc: ["--verify"]),
 ]
 
 
@@ -553,7 +554,8 @@ def verify(path, run_scripts=True, runner=subprocess.run):
             out_file = {"hsp029.py": "hsp029.json", "hsp029_voters.py": "hsp029_voters.json",
                         "farm_rate.py": "farm_rate.json",
                         "check_prereg.py": "prereg.json",
-                        "control_map.py": "control_map.json"}
+                        "control_map.py": "control_map.json",
+                        "control_history.py": "control_history.json"}
             if script in out_file and not (root / "data" / out_file[script]).exists():
                 continue
             res = runner([sys.executable, str(root / "scripts" / script)] + args(doc),

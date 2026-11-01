@@ -12,7 +12,8 @@ map, read from the DAOs themselves at the locked end block, sorted by lever.
                force_lock_account, force_unlock_account on intents.near
   pause        pa_pause_feature, pa_unpause_feature
   voting       set_* calls on vote.dao (who reviews, councils, guards the vote)
-  transfer     DAO transfers (NEAR or tokens out of the DAO)
+  staking      the DAO's own stake, unstake and withdraw calls to staking pools
+  transfer     DAO transfers: Transfer proposals and ft/mt transfer calls
   other        anything else (counted, named by receiver and method)
 
 Also included: the code changes of intents.near recorded by its controller
@@ -47,7 +48,7 @@ import lock_window as lw  # noqa: E402
 REPO = lw.REPO
 OUT_NAME = "control_history.json"
 PAGE = 100
-LEVERS = ["fee", "code", "roles", "user_funds", "pause", "voting", "transfer", "other"]
+LEVERS = ["fee", "code", "roles", "user_funds", "pause", "voting", "staking", "transfer", "other"]
 # Contracts that may be named as receivers in the public file, besides cm.PUBLIC_ACCOUNTS.
 KNOWN_CONTRACTS = cm.PUBLIC_ACCOUNTS | {"omft.near", "rec.hos", "registrar", "venear.dao",
                                         "venear.stagingdao.near", "outlayer-admin.near"}
@@ -58,10 +59,15 @@ METHODS = {
              "add_deployment_info", "update_deployment_info", "deploy"},
     "roles": {"acl_grant_role", "acl_revoke_role", "acl_add_super_admin", "acl_revoke_super_admin",
               "acl_add_admin", "acl_revoke_admin", "add_full_access_key", "attach_full_access_key",
-              "set_owner", "propose_new_owner"},
+              "set_owner", "propose_new_owner", "add_validator_catalog_manager",
+              "remove_validator_catalog_manager"},
     "user_funds": {"ft_force_withdraw", "mt_force_transfer", "mt_force_withdraw",
                    "nft_force_withdraw", "force_lock_account", "force_unlock_account"},
     "pause": {"pa_pause_feature", "pa_unpause_feature", "pause", "unpause"},
+    "staking": {"deposit_and_stake", "deposit", "stake", "stake_all", "unstake", "unstake_all",
+                "withdraw", "withdraw_all"},
+    "transfer": {"ft_transfer", "ft_transfer_call", "mt_transfer", "mt_transfer_call",
+                 "near_withdraw", "storage_deposit"},
 }
 POLICY_KINDS = {"ChangePolicy", "AddMemberToRole", "RemoveMemberFromRole",
                 "ChangePolicyAddOrUpdateRole", "ChangePolicyRemoveRole",
