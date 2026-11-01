@@ -16,3 +16,7 @@ desktop.ini
 .idea/
 
 # data/raw/ is committed on purpose: verify.py recomputes every number from it offline.
+
+# Raw responses that can contain names of private people (DAO proposal texts,
+# counterparties). Their sha256 and requests are public in data/treasury_flows.json.
+data/private/

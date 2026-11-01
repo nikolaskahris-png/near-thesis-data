@@ -134,6 +134,28 @@ class RateLimitTest(unittest.TestCase):
         self.assertEqual(chain.pause, 2.0)           # 0.5 -> 1.0 -> 2.0
         self.assertEqual(waits, [0.5, 5, 1.0, 10, 2.0])
 
+    def test_json_rpc_error_with_422_status_is_returned(self):
+        import io
+        import urllib.error
+        from unittest import mock
+        body = json.dumps({"jsonrpc": "2.0", "id": "lock", "error": {
+            "name": "HANDLER_ERROR", "cause": {"name": "UNKNOWN_BLOCK", "info": {}}}}).encode()
+
+        def fake_urlopen(req, timeout):
+            raise urllib.error.HTTPError(req.full_url, 422, "Unprocessable", {}, io.BytesIO(body))
+
+        chain = lw.Chain(url="https://x", sleep=lambda s: None)
+        with mock.patch("urllib.request.urlopen", fake_urlopen):
+            self.assertIsNone(chain.block(178_000_000))   # skipped height, not a crash
+            self.assertIn(178_000_000, chain.skipped)
+
+        def not_json(req, timeout):
+            raise urllib.error.HTTPError(req.full_url, 422, "Unprocessable", {},
+                                         io.BytesIO(b"<html>bad</html>"))
+        with mock.patch("urllib.request.urlopen", not_json):
+            with self.assertRaises(RuntimeError):
+                chain.block(178_000_001)
+
     def test_pace_recovers_after_answers_without_429(self):
         import io
         from unittest import mock

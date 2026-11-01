@@ -76,6 +76,19 @@ class Chain:
                 self._recover()
                 return raw
             except urllib.error.HTTPError as e:
+                if e.code in (400, 404, 422):
+                    # Some archival ranges answer a JSON-RPC error (e.g. UNKNOWN_BLOCK
+                    # for a skipped height) with a 4xx status: hand the body to the
+                    # caller, which already handles those errors by name.
+                    body = e.read()
+                    try:
+                        doc = json.loads(body)
+                    except ValueError:
+                        doc = None
+                    if isinstance(doc, dict) and "error" in doc:
+                        self._recover()
+                        return body
+                    raise RuntimeError(f"HTTP {e.code} from {self.url}: {body[:300]!r}") from None
                 if e.code == 429:  # slow down, then wait before retrying
                     self.rate_limited += 1
                     self.ok_streak = 0

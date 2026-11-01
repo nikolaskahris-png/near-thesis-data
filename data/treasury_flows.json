@@ -1,0 +1,2095 @@
+{
+  "measure": "finding 4: NEAR flows of the owner of nearai.pool.near",
+  "accounts": {
+    "owner": "jasnah-treasury.sputnik-dao.near",
+    "payments": "jasnah-payments.near",
+    "pool": "nearai.pool.near"
+  },
+  "rules": {
+    "approved_in_window": "status Approved at the end block, and missing or not Approved at the start block",
+    "since_stake_dao_start": "first block where the stake.dao account exists",
+    "year_2026_start": "first block whose header timestamp is at or after 2026-01-01 00:00:00 UTC",
+    "end": "last boundary of data/window_2026-10-02_2026-11-01.json",
+    "swap": "one transaction in which the payments account's wNEAR inside intents.near goes down and its USDC (native or bridged from Ethereum) or USDT goes up (NearBlocks mt-txns; rows deduplicated by receipt and event index)",
+    "privacy": "proposal texts and counterparties stay in data/private/ (not committed); recipients outside infrastructure appear as sha256 prefixes"
+  },
+  "source": {
+    "rpc": "https://archival-rpc.mainnet.fastnear.com",
+    "nearblocks": "https://api.nearblocks.io/v3/accounts/jasnah-payments.near/mt-txns"
+  },
+  "window_file": "data/window_2026-10-02_2026-11-01.json",
+  "meta": {
+    "end_block": 222491356,
+    "stake_dao_start_block": 208930590,
+    "y2026_start_block": 179199136,
+    "pools": [
+      "near-prime-public.poolv1.near",
+      "nearai.pool.near",
+      "staking4all.poolv1.near"
+    ],
+    "stake_receipt_pages": [
+      "data/raw/nearblocks/stake_receipts_2026-11-01/page_001.json",
+      "data/raw/nearblocks/stake_receipts_2026-11-01/page_002.json",
+      "data/raw/nearblocks/stake_receipts_2026-11-01/page_003.json",
+      "data/raw/nearblocks/stake_receipts_2026-11-01/page_004.json"
+    ]
+  },
+  "raw_files": {
+    "nearblocks/mt_jasnah-payments.near/page_001": {
+      "path": "data/private/treasury/nearblocks_mt_jasnah-payments.near_page_001.json",
+      "sha256": "8edf747e3ab6afe65779505ee5eb8b03763d2bcacea5773407cb42c4a57022bb",
+      "private": true,
+      "kind": "nearblocks",
+      "request": {
+        "url": "https://api.nearblocks.io/v3/accounts/jasnah-payments.near/mt-txns?limit=100"
+      }
+    },
+    "nearblocks/mt_jasnah-payments.near/page_002": {
+      "path": "data/private/treasury/nearblocks_mt_jasnah-payments.near_page_002.json",
+      "sha256": "59602b5043acca873c0ee0be7a8aa0bad5ba25fe60ce9c4a7bc308f59a378861",
+      "private": true,
+      "kind": "nearblocks",
+      "request": {
+        "url": "https://api.nearblocks.io/v3/accounts/jasnah-payments.near/mt-txns?limit=100&next=eyJpbmRleCI6Miwic2hhcmQiOjcsInRpbWVzdGFtcCI6IjE3ODA2NTgwNzEwNzEzNjcxODEifQ%3D%3D"
+      }
+    },
+    "nearblocks/mt_jasnah-payments.near/page_003": {
+      "path": "data/private/treasury/nearblocks_mt_jasnah-payments.near_page_003.json",
+      "sha256": "de0d14e40ced0fe3d9b5486a94b207b83ec7e12e49506e7ff9830e94a4e65d6f",
+      "private": true,
+      "kind": "nearblocks",
+      "request": {
+        "url": "https://api.nearblocks.io/v3/accounts/jasnah-payments.near/mt-txns?limit=100&next=eyJpbmRleCI6MCwic2hhcmQiOjcsInRpbWVzdGFtcCI6IjE3NjQ2MTMzOTgyNzI3NzE4MzYifQ%3D%3D"
+      }
+    },
+    "nearblocks/mt_jasnah-payments.near/page_004": {
+      "path": "data/private/treasury/nearblocks_mt_jasnah-payments.near_page_004.json",
+      "sha256": "5cd4ae83af40be3d9edd58d889b046d3e6110d7d5000d35f0483f35889478421",
+      "private": true,
+      "kind": "nearblocks",
+      "request": {
+        "url": "https://api.nearblocks.io/v3/accounts/jasnah-payments.near/mt-txns?limit=100&next=eyJpbmRleCI6MCwic2hhcmQiOjcsInRpbWVzdGFtcCI6IjE3NTE5NzIyNTkwOTk2MzA0NjkifQ%3D%3D"
+      }
+    },
+    "block/208930590": {
+      "path": "data/raw/treasury/block_208930590.json",
+      "sha256": "f05eb471b3884df9dff279cef748d0713dcd91cb6c1bb8bdbc5ec35726520ce8",
+      "private": false,
+      "kind": "block",
+      "request": {
+        "method": "block",
+        "block_id": 208930590
+      }
+    },
+    "block/179199136": {
+      "path": "data/raw/treasury/block_179199136.json",
+      "sha256": "af0b27dcb84739e00309cd5951b9fc8e6fc3c5444c8a7528ca1e20326a37a442",
+      "private": false,
+      "kind": "block",
+      "request": {
+        "method": "block",
+        "block_id": 179199136
+      }
+    },
+    "block/179199135": {
+      "path": "data/raw/treasury/block_179199135.json",
+      "sha256": "9b30d2a7ef59eba554b0fc632946c070efded86027445c3d0b07be9464504cbe",
+      "private": false,
+      "kind": "block",
+      "request": {
+        "method": "block",
+        "block_id": 179199135
+      }
+    },
+    "block/222491356": {
+      "path": "data/raw/treasury/block_222491356.json",
+      "sha256": "95d8666c0bb7c9f69166698a2d394a7c58f0b8da205e1df4551324a6dd4ed71e",
+      "private": false,
+      "kind": "block",
+      "request": {
+        "method": "block",
+        "block_id": 222491356
+      }
+    },
+    "stake_dao_start/account/treasury": {
+      "path": "data/raw/treasury/stake_dao_start_account_treasury.json",
+      "sha256": "60cbdeecab580d8b22c7cf1826ac253db797a92eca64deaad1cf9fc83c041486",
+      "private": false,
+      "kind": "rpc",
+      "request": {
+        "request_type": "view_account",
+        "block_id": 208930590,
+        "account_id": "jasnah-treasury.sputnik-dao.near"
+      }
+    },
+    "stake_dao_start/account/payments": {
+      "path": "data/raw/treasury/stake_dao_start_account_payments.json",
+      "sha256": "8bcba8b9dd11c68fc872c28a63d3f185a53b6555600364a900eeb25aaac2fc1e",
+      "private": false,
+      "kind": "rpc",
+      "request": {
+        "request_type": "view_account",
+        "block_id": 208930590,
+        "account_id": "jasnah-payments.near"
+      }
+    },
+    "stake_dao_start/staked/near-prime-public.poolv1.near": {
+      "path": "data/raw/treasury/stake_dao_start_staked_near-prime-public.poolv1.near.json",
+      "sha256": "64efc1a76ecaeac3d634c835e95d2c451f2455ec49d506258d7dfe39c8c7b213",
+      "private": false,
+      "kind": "rpc",
+      "request": {
+        "request_type": "call_function",
+        "block_id": 208930590,
+        "account_id": "near-prime-public.poolv1.near",
+        "method_name": "get_account_staked_balance",
+        "args_base64": "eyJhY2NvdW50X2lkIjogImphc25haC10cmVhc3VyeS5zcHV0bmlrLWRhby5uZWFyIn0="
+      }
+    },
+    "stake_dao_start/unstaked/near-prime-public.poolv1.near": {
+      "path": "data/raw/treasury/stake_dao_start_unstaked_near-prime-public.poolv1.near.json",
+      "sha256": "346f998164118022b84027d0f017c173ecdf27888a5ddb3b47cb271beb34a897",
+      "private": false,
+      "kind": "rpc",
+      "request": {
+        "request_type": "call_function",
+        "block_id": 208930590,
+        "account_id": "near-prime-public.poolv1.near",
+        "method_name": "get_account_unstaked_balance",
+        "args_base64": "eyJhY2NvdW50X2lkIjogImphc25haC10cmVhc3VyeS5zcHV0bmlrLWRhby5uZWFyIn0="
+      }
+    },
+    "stake_dao_start/staked/nearai.pool.near": {
+      "path": "data/raw/treasury/stake_dao_start_staked_nearai.pool.near.json",
+      "sha256": "15b8511d1926c3a6df64199fb79a72985134d97ec5613947927f3862a8e544a6",
+      "private": false,
+      "kind": "rpc",
+      "request": {
+        "request_type": "call_function",
+        "block_id": 208930590,
+        "account_id": "nearai.pool.near",
+        "method_name": "get_account_staked_balance",
+        "args_base64": "eyJhY2NvdW50X2lkIjogImphc25haC10cmVhc3VyeS5zcHV0bmlrLWRhby5uZWFyIn0="
+      }
+    },
+    "stake_dao_start/unstaked/nearai.pool.near": {
+      "path": "data/raw/treasury/stake_dao_start_unstaked_nearai.pool.near.json",
+      "sha256": "346f998164118022b84027d0f017c173ecdf27888a5ddb3b47cb271beb34a897",
+      "private": false,
+      "kind": "rpc",
+      "request": {
+        "request_type": "call_function",
+        "block_id": 208930590,
+        "account_id": "nearai.pool.near",
+        "method_name": "get_account_unstaked_balance",
+        "args_base64": "eyJhY2NvdW50X2lkIjogImphc25haC10cmVhc3VyeS5zcHV0bmlrLWRhby5uZWFyIn0="
+      }
+    },
+    "stake_dao_start/staked/staking4all.poolv1.near": {
+      "path": "data/raw/treasury/stake_dao_start_staked_staking4all.poolv1.near.json",
+      "sha256": "54d6e3f94fad9295edccfe2d26d79716138548228964c886620e06b9a947c62e",
+      "private": false,
+      "kind": "rpc",
+      "request": {
+        "request_type": "call_function",
+        "block_id": 208930590,
+        "account_id": "staking4all.poolv1.near",
+        "method_name": "get_account_staked_balance",
+        "args_base64": "eyJhY2NvdW50X2lkIjogImphc25haC10cmVhc3VyeS5zcHV0bmlrLWRhby5uZWFyIn0="
+      }
+    },
+    "stake_dao_start/unstaked/staking4all.poolv1.near": {
+      "path": "data/raw/treasury/stake_dao_start_unstaked_staking4all.poolv1.near.json",
+      "sha256": "2f6aabf57b9398ade9b83c75f0a360cd025dbcdb3a7383f2a5d03d9de8a0e0d2",
+      "private": false,
+      "kind": "rpc",
+      "request": {
+        "request_type": "call_function",
+        "block_id": 208930590,
+        "account_id": "staking4all.poolv1.near",
+        "method_name": "get_account_unstaked_balance",
+        "args_base64": "eyJhY2NvdW50X2lkIjogImphc25haC10cmVhc3VyeS5zcHV0bmlrLWRhby5uZWFyIn0="
+      }
+    },
+    "stake_dao_start/usdc/treasury": {
+      "path": "data/raw/treasury/stake_dao_start_usdc_treasury.json",
+      "sha256": "346f998164118022b84027d0f017c173ecdf27888a5ddb3b47cb271beb34a897",
+      "private": false,
+      "kind": "rpc",
+      "request": {
+        "request_type": "call_function",
+        "block_id": 208930590,
+        "account_id": "17208628f84f5d6ad33f0da3bbbeb27ffcb398eac501a31bd6ad2011e36133a1",
+        "method_name": "ft_balance_of",
+        "args_base64": "eyJhY2NvdW50X2lkIjogImphc25haC10cmVhc3VyeS5zcHV0bmlrLWRhby5uZWFyIn0="
+      }
+    },
+    "stake_dao_start/intents/treasury": {
+      "path": "data/raw/treasury/stake_dao_start_intents_treasury.json",
+      "sha256": "6ca5ca53f1cfa40f83a2bb7a35667cf4abdccd6328e0068620e756fda9900df3",
+      "private": false,
+      "kind": "rpc",
+      "request": {
+        "request_type": "call_function",
+        "block_id": 208930590,
+        "account_id": "intents.near",
+        "method_name": "mt_batch_balance_of",
+        "args_base64": "eyJhY2NvdW50X2lkIjogImphc25haC10cmVhc3VyeS5zcHV0bmlrLWRhby5uZWFyIiwgInRva2VuX2lkcyI6IFsibmVwMTQxOndyYXAubmVhciIsICJuZXAxNDE6MTcyMDg2MjhmODRmNWQ2YWQzM2YwZGEzYmJiZWIyN2ZmY2IzOThlYWM1MDFhMzFiZDZhZDIwMTFlMzYxMzNhMSIsICJuZXAxNDE6ZXRoLTB4YTBiODY5OTFjNjIxOGIzNmMxZDE5ZDRhMmU5ZWIwY2UzNjA2ZWI0OC5vbWZ0Lm5lYXIiLCAibmVwMTQxOnVzZHQudGV0aGVyLXRva2VuLm5lYXIiLCAibmVwMTQxOmV0aC0weGRhYzE3Zjk1OGQyZWU1MjNhMjIwNjIwNjk5NDU5N2MxM2Q4MzFlYzcub21mdC5uZWFyIl19"
+      }
+    },
+    "stake_dao_start/usdc/payments": {
+      "path": "data/raw/treasury/stake_dao_start_usdc_payments.json",
+      "sha256": "509ac5b0e94f2e5f2a8a492d0e41b3209eff2b6e01fa55d2b21437f403bc00a6",
+      "private": false,
+      "kind": "rpc",
+      "request": {
+        "request_type": "call_function",
+        "block_id": 208930590,
+        "account_id": "17208628f84f5d6ad33f0da3bbbeb27ffcb398eac501a31bd6ad2011e36133a1",
+        "method_name": "ft_balance_of",
+        "args_base64": "eyJhY2NvdW50X2lkIjogImphc25haC1wYXltZW50cy5uZWFyIn0="
+      }
+    },
+    "stake_dao_start/intents/payments": {
+      "path": "data/raw/treasury/stake_dao_start_intents_payments.json",
+      "sha256": "ea1ba9e5d1ea9f772d511d7d63681414081e5d860f3869b1de30fc0393ebc1a8",
+      "private": false,
+      "kind": "rpc",
+      "request": {
+        "request_type": "call_function",
+        "block_id": 208930590,
+        "account_id": "intents.near",
+        "method_name": "mt_batch_balance_of",
+        "args_base64": "eyJhY2NvdW50X2lkIjogImphc25haC1wYXltZW50cy5uZWFyIiwgInRva2VuX2lkcyI6IFsibmVwMTQxOndyYXAubmVhciIsICJuZXAxNDE6MTcyMDg2MjhmODRmNWQ2YWQzM2YwZGEzYmJiZWIyN2ZmY2IzOThlYWM1MDFhMzFiZDZhZDIwMTFlMzYxMzNhMSIsICJuZXAxNDE6ZXRoLTB4YTBiODY5OTFjNjIxOGIzNmMxZDE5ZDRhMmU5ZWIwY2UzNjA2ZWI0OC5vbWZ0Lm5lYXIiLCAibmVwMTQxOnVzZHQudGV0aGVyLXRva2VuLm5lYXIiLCAibmVwMTQxOmV0aC0weGRhYzE3Zjk1OGQyZWU1MjNhMjIwNjIwNjk5NDU5N2MxM2Q4MzFlYzcub21mdC5uZWFyIl19"
+      }
+    },
+    "stake_dao_start/proposals/00000": {
+      "path": "data/private/treasury/stake_dao_start_proposals_00000.json",
+      "sha256": "5ad8c1a2bdeca1d018eb363bc06e883fd0ac95c2e79311474c8c6bbc2b997c52",
+      "private": true,
+      "kind": "rpc",
+      "request": {
+        "request_type": "call_function",
+        "block_id": 208930590,
+        "account_id": "jasnah-treasury.sputnik-dao.near",
+        "method_name": "get_proposals",
+        "args_base64": "eyJmcm9tX2luZGV4IjogMCwgImxpbWl0IjogMTAwfQ=="
+      }
+    },
+    "stake_dao_start/proposals/00100": {
+      "path": "data/private/treasury/stake_dao_start_proposals_00100.json",
+      "sha256": "4ee67fe84853f74452a28fe4d03063ba01373903cfc5282e64fc7fc919f07ebb",
+      "private": true,
+      "kind": "rpc",
+      "request": {
+        "request_type": "call_function",
+        "block_id": 208930590,
+        "account_id": "jasnah-treasury.sputnik-dao.near",
+        "method_name": "get_proposals",
+        "args_base64": "eyJmcm9tX2luZGV4IjogMTAwLCAibGltaXQiOiAxMDB9"
+      }
+    },
+    "y2026_start/account/treasury": {
+      "path": "data/raw/treasury/y2026_start_account_treasury.json",
+      "sha256": "28914c00237d2ce0f5416adb460076b413a6da2fec0431a347f0c42c29bdd126",
+      "private": false,
+      "kind": "rpc",
+      "request": {
+        "request_type": "view_account",
+        "block_id": 179199136,
+        "account_id": "jasnah-treasury.sputnik-dao.near"
+      }
+    },
+    "y2026_start/account/payments": {
+      "path": "data/raw/treasury/y2026_start_account_payments.json",
+      "sha256": "58392f2b2f3d5d85d5eed6f6ae6d19042992448a649a8f487cac43003115b2ef",
+      "private": false,
+      "kind": "rpc",
+      "request": {
+        "request_type": "view_account",
+        "block_id": 179199136,
+        "account_id": "jasnah-payments.near"
+      }
+    },
+    "y2026_start/staked/near-prime-public.poolv1.near": {
+      "path": "data/raw/treasury/y2026_start_staked_near-prime-public.poolv1.near.json",
+      "sha256": "9207af5cbce95135561381e47a462766d402c99b99e967ac47b3440dedf6a808",
+      "private": false,
+      "kind": "rpc",
+      "request": {
+        "request_type": "call_function",
+        "block_id": 179199136,
+        "account_id": "near-prime-public.poolv1.near",
+        "method_name": "get_account_staked_balance",
+        "args_base64": "eyJhY2NvdW50X2lkIjogImphc25haC10cmVhc3VyeS5zcHV0bmlrLWRhby5uZWFyIn0="
+      }
+    },
+    "y2026_start/unstaked/near-prime-public.poolv1.near": {
+      "path": "data/raw/treasury/y2026_start_unstaked_near-prime-public.poolv1.near.json",
+      "sha256": "c4e87d7b8fe57fe13aaab605d4d1bb1e128b0b79428506b975237625e4ec21f2",
+      "private": false,
+      "kind": "rpc",
+      "request": {
+        "request_type": "call_function",
+        "block_id": 179199136,
+        "account_id": "near-prime-public.poolv1.near",
+        "method_name": "get_account_unstaked_balance",
+        "args_base64": "eyJhY2NvdW50X2lkIjogImphc25haC10cmVhc3VyeS5zcHV0bmlrLWRhby5uZWFyIn0="
+      }
+    },
+    "y2026_start/staked/nearai.pool.near": {
+      "path": "data/raw/treasury/y2026_start_staked_nearai.pool.near.json",
+      "sha256": "97daf4d4e90b8d396c2b8c530f61f0b5eef339dd8d4d8a9175ed4a4b79a3a4ab",
+      "private": false,
+      "kind": "rpc",
+      "request": {
+        "request_type": "call_function",
+        "block_id": 179199136,
+        "account_id": "nearai.pool.near",
+        "method_name": "get_account_staked_balance",
+        "args_base64": "eyJhY2NvdW50X2lkIjogImphc25haC10cmVhc3VyeS5zcHV0bmlrLWRhby5uZWFyIn0="
+      }
+    },
+    "y2026_start/unstaked/nearai.pool.near": {
+      "path": "data/raw/treasury/y2026_start_unstaked_nearai.pool.near.json",
+      "sha256": "97daf4d4e90b8d396c2b8c530f61f0b5eef339dd8d4d8a9175ed4a4b79a3a4ab",
+      "private": false,
+      "kind": "rpc",
+      "request": {
+        "request_type": "call_function",
+        "block_id": 179199136,
+        "account_id": "nearai.pool.near",
+        "method_name": "get_account_unstaked_balance",
+        "args_base64": "eyJhY2NvdW50X2lkIjogImphc25haC10cmVhc3VyeS5zcHV0bmlrLWRhby5uZWFyIn0="
+      }
+    },
+    "y2026_start/staked/staking4all.poolv1.near": {
+      "path": "data/raw/treasury/y2026_start_staked_staking4all.poolv1.near.json",
+      "sha256": "1220fea0d4836135d6777edb053201bbfe328d928e90ccfdcd7e2376cf4dc0b5",
+      "private": false,
+      "kind": "rpc",
+      "request": {
+        "request_type": "call_function",
+        "block_id": 179199136,
+        "account_id": "staking4all.poolv1.near",
+        "method_name": "get_account_staked_balance",
+        "args_base64": "eyJhY2NvdW50X2lkIjogImphc25haC10cmVhc3VyeS5zcHV0bmlrLWRhby5uZWFyIn0="
+      }
+    },
+    "y2026_start/unstaked/staking4all.poolv1.near": {
+      "path": "data/raw/treasury/y2026_start_unstaked_staking4all.poolv1.near.json",
+      "sha256": "dbb69c165f2e3846073c1a80110eecd6f0f917518bc351f079ad66b348e2d271",
+      "private": false,
+      "kind": "rpc",
+      "request": {
+        "request_type": "call_function",
+        "block_id": 179199136,
+        "account_id": "staking4all.poolv1.near",
+        "method_name": "get_account_unstaked_balance",
+        "args_base64": "eyJhY2NvdW50X2lkIjogImphc25haC10cmVhc3VyeS5zcHV0bmlrLWRhby5uZWFyIn0="
+      }
+    },
+    "y2026_start/usdc/treasury": {
+      "path": "data/raw/treasury/y2026_start_usdc_treasury.json",
+      "sha256": "6ee02f977db1b399a0e321ea4cc54b4d83441c698696aaa20590100fed515254",
+      "private": false,
+      "kind": "rpc",
+      "request": {
+        "request_type": "call_function",
+        "block_id": 179199136,
+        "account_id": "17208628f84f5d6ad33f0da3bbbeb27ffcb398eac501a31bd6ad2011e36133a1",
+        "method_name": "ft_balance_of",
+        "args_base64": "eyJhY2NvdW50X2lkIjogImphc25haC10cmVhc3VyeS5zcHV0bmlrLWRhby5uZWFyIn0="
+      }
+    },
+    "y2026_start/intents/treasury": {
+      "path": "data/raw/treasury/y2026_start_intents_treasury.json",
+      "sha256": "f9f280a2de12092ae896823dd85f4ec2a473b3cf7e9bf60aad23945d20cbfeab",
+      "private": false,
+      "kind": "rpc",
+      "request": {
+        "request_type": "call_function",
+        "block_id": 179199136,
+        "account_id": "intents.near",
+        "method_name": "mt_batch_balance_of",
+        "args_base64": "eyJhY2NvdW50X2lkIjogImphc25haC10cmVhc3VyeS5zcHV0bmlrLWRhby5uZWFyIiwgInRva2VuX2lkcyI6IFsibmVwMTQxOndyYXAubmVhciIsICJuZXAxNDE6MTcyMDg2MjhmODRmNWQ2YWQzM2YwZGEzYmJiZWIyN2ZmY2IzOThlYWM1MDFhMzFiZDZhZDIwMTFlMzYxMzNhMSIsICJuZXAxNDE6ZXRoLTB4YTBiODY5OTFjNjIxOGIzNmMxZDE5ZDRhMmU5ZWIwY2UzNjA2ZWI0OC5vbWZ0Lm5lYXIiLCAibmVwMTQxOnVzZHQudGV0aGVyLXRva2VuLm5lYXIiLCAibmVwMTQxOmV0aC0weGRhYzE3Zjk1OGQyZWU1MjNhMjIwNjIwNjk5NDU5N2MxM2Q4MzFlYzcub21mdC5uZWFyIl19"
+      }
+    },
+    "y2026_start/usdc/payments": {
+      "path": "data/raw/treasury/y2026_start_usdc_payments.json",
+      "sha256": "c4e87d7b8fe57fe13aaab605d4d1bb1e128b0b79428506b975237625e4ec21f2",
+      "private": false,
+      "kind": "rpc",
+      "request": {
+        "request_type": "call_function",
+        "block_id": 179199136,
+        "account_id": "17208628f84f5d6ad33f0da3bbbeb27ffcb398eac501a31bd6ad2011e36133a1",
+        "method_name": "ft_balance_of",
+        "args_base64": "eyJhY2NvdW50X2lkIjogImphc25haC1wYXltZW50cy5uZWFyIn0="
+      }
+    },
+    "y2026_start/intents/payments": {
+      "path": "data/raw/treasury/y2026_start_intents_payments.json",
+      "sha256": "f9f280a2de12092ae896823dd85f4ec2a473b3cf7e9bf60aad23945d20cbfeab",
+      "private": false,
+      "kind": "rpc",
+      "request": {
+        "request_type": "call_function",
+        "block_id": 179199136,
+        "account_id": "intents.near",
+        "method_name": "mt_batch_balance_of",
+        "args_base64": "eyJhY2NvdW50X2lkIjogImphc25haC1wYXltZW50cy5uZWFyIiwgInRva2VuX2lkcyI6IFsibmVwMTQxOndyYXAubmVhciIsICJuZXAxNDE6MTcyMDg2MjhmODRmNWQ2YWQzM2YwZGEzYmJiZWIyN2ZmY2IzOThlYWM1MDFhMzFiZDZhZDIwMTFlMzYxMzNhMSIsICJuZXAxNDE6ZXRoLTB4YTBiODY5OTFjNjIxOGIzNmMxZDE5ZDRhMmU5ZWIwY2UzNjA2ZWI0OC5vbWZ0Lm5lYXIiLCAibmVwMTQxOnVzZHQudGV0aGVyLXRva2VuLm5lYXIiLCAibmVwMTQxOmV0aC0weGRhYzE3Zjk1OGQyZWU1MjNhMjIwNjIwNjk5NDU5N2MxM2Q4MzFlYzcub21mdC5uZWFyIl19"
+      }
+    },
+    "y2026_start/proposals/00000": {
+      "path": "data/private/treasury/y2026_start_proposals_00000.json",
+      "sha256": "d6dfa1c40db1e7d141817489380e1b94f2c813249b13a7e61b21529f784df7f1",
+      "private": true,
+      "kind": "rpc",
+      "request": {
+        "request_type": "call_function",
+        "block_id": 179199136,
+        "account_id": "jasnah-treasury.sputnik-dao.near",
+        "method_name": "get_proposals",
+        "args_base64": "eyJmcm9tX2luZGV4IjogMCwgImxpbWl0IjogMTAwfQ=="
+      }
+    },
+    "y2026_start/proposals/00100": {
+      "path": "data/private/treasury/y2026_start_proposals_00100.json",
+      "sha256": "92336c8dddb4944d1ffb807d9c19725491e4056dba12f51fc48ac5dab8b96bd5",
+      "private": true,
+      "kind": "rpc",
+      "request": {
+        "request_type": "call_function",
+        "block_id": 179199136,
+        "account_id": "jasnah-treasury.sputnik-dao.near",
+        "method_name": "get_proposals",
+        "args_base64": "eyJmcm9tX2luZGV4IjogMTAwLCAibGltaXQiOiAxMDB9"
+      }
+    },
+    "end/account/treasury": {
+      "path": "data/raw/treasury/end_account_treasury.json",
+      "sha256": "fe03fb925312a1ee2562ed621032d8808909d8ab1304f8b33f28e7e214b83d23",
+      "private": false,
+      "kind": "rpc",
+      "request": {
+        "request_type": "view_account",
+        "block_id": 222491356,
+        "account_id": "jasnah-treasury.sputnik-dao.near"
+      }
+    },
+    "end/account/payments": {
+      "path": "data/raw/treasury/end_account_payments.json",
+      "sha256": "4bede5fd8ff86da16aa5e9048373e7a43b5f236f83726037e6305213ab38e2cc",
+      "private": false,
+      "kind": "rpc",
+      "request": {
+        "request_type": "view_account",
+        "block_id": 222491356,
+        "account_id": "jasnah-payments.near"
+      }
+    },
+    "end/staked/near-prime-public.poolv1.near": {
+      "path": "data/raw/treasury/end_staked_near-prime-public.poolv1.near.json",
+      "sha256": "59d1853821bc928878090606059f87a7b7b4c6b60b5710f187c2790d8ad6bbb5",
+      "private": false,
+      "kind": "rpc",
+      "request": {
+        "request_type": "call_function",
+        "block_id": 222491356,
+        "account_id": "near-prime-public.poolv1.near",
+        "method_name": "get_account_staked_balance",
+        "args_base64": "eyJhY2NvdW50X2lkIjogImphc25haC10cmVhc3VyeS5zcHV0bmlrLWRhby5uZWFyIn0="
+      }
+    },
+    "end/unstaked/near-prime-public.poolv1.near": {
+      "path": "data/raw/treasury/end_unstaked_near-prime-public.poolv1.near.json",
+      "sha256": "17e8bbd12e7fa27a9702bcbb0a7f0f98c99d54be999a297c19a04c773782ac2b",
+      "private": false,
+      "kind": "rpc",
+      "request": {
+        "request_type": "call_function",
+        "block_id": 222491356,
+        "account_id": "near-prime-public.poolv1.near",
+        "method_name": "get_account_unstaked_balance",
+        "args_base64": "eyJhY2NvdW50X2lkIjogImphc25haC10cmVhc3VyeS5zcHV0bmlrLWRhby5uZWFyIn0="
+      }
+    },
+    "end/staked/nearai.pool.near": {
+      "path": "data/raw/treasury/end_staked_nearai.pool.near.json",
+      "sha256": "33388efc303cc00089b6f8b71a84755a7ee70a4e42ee39de45d6b45fd7623de8",
+      "private": false,
+      "kind": "rpc",
+      "request": {
+        "request_type": "call_function",
+        "block_id": 222491356,
+        "account_id": "nearai.pool.near",
+        "method_name": "get_account_staked_balance",
+        "args_base64": "eyJhY2NvdW50X2lkIjogImphc25haC10cmVhc3VyeS5zcHV0bmlrLWRhby5uZWFyIn0="
+      }
+    },
+    "end/unstaked/nearai.pool.near": {
+      "path": "data/raw/treasury/end_unstaked_nearai.pool.near.json",
+      "sha256": "17e8bbd12e7fa27a9702bcbb0a7f0f98c99d54be999a297c19a04c773782ac2b",
+      "private": false,
+      "kind": "rpc",
+      "request": {
+        "request_type": "call_function",
+        "block_id": 222491356,
+        "account_id": "nearai.pool.near",
+        "method_name": "get_account_unstaked_balance",
+        "args_base64": "eyJhY2NvdW50X2lkIjogImphc25haC10cmVhc3VyeS5zcHV0bmlrLWRhby5uZWFyIn0="
+      }
+    },
+    "end/staked/staking4all.poolv1.near": {
+      "path": "data/raw/treasury/end_staked_staking4all.poolv1.near.json",
+      "sha256": "028ffd2e7afe4a25bcc5bfd53678959bcac8a36d970f9f3d7e09085f67bfc1dd",
+      "private": false,
+      "kind": "rpc",
+      "request": {
+        "request_type": "call_function",
+        "block_id": 222491356,
+        "account_id": "staking4all.poolv1.near",
+        "method_name": "get_account_staked_balance",
+        "args_base64": "eyJhY2NvdW50X2lkIjogImphc25haC10cmVhc3VyeS5zcHV0bmlrLWRhby5uZWFyIn0="
+      }
+    },
+    "end/unstaked/staking4all.poolv1.near": {
+      "path": "data/raw/treasury/end_unstaked_staking4all.poolv1.near.json",
+      "sha256": "ef90c5c341e6ed20c22d0773a157a50dd9a18c63381de8c08b1569d0d1e34250",
+      "private": false,
+      "kind": "rpc",
+      "request": {
+        "request_type": "call_function",
+        "block_id": 222491356,
+        "account_id": "staking4all.poolv1.near",
+        "method_name": "get_account_unstaked_balance",
+        "args_base64": "eyJhY2NvdW50X2lkIjogImphc25haC10cmVhc3VyeS5zcHV0bmlrLWRhby5uZWFyIn0="
+      }
+    },
+    "end/usdc/treasury": {
+      "path": "data/raw/treasury/end_usdc_treasury.json",
+      "sha256": "9deeb63b07dd0076cc2d62af2f2609a52cf67ad8d24e02736e623e9dbccec0e9",
+      "private": false,
+      "kind": "rpc",
+      "request": {
+        "request_type": "call_function",
+        "block_id": 222491356,
+        "account_id": "17208628f84f5d6ad33f0da3bbbeb27ffcb398eac501a31bd6ad2011e36133a1",
+        "method_name": "ft_balance_of",
+        "args_base64": "eyJhY2NvdW50X2lkIjogImphc25haC10cmVhc3VyeS5zcHV0bmlrLWRhby5uZWFyIn0="
+      }
+    },
+    "end/intents/treasury": {
+      "path": "data/raw/treasury/end_intents_treasury.json",
+      "sha256": "c089a550df13560e61b80024c859dc087a8128c217c5ff9d90237c4f4c778166",
+      "private": false,
+      "kind": "rpc",
+      "request": {
+        "request_type": "call_function",
+        "block_id": 222491356,
+        "account_id": "intents.near",
+        "method_name": "mt_batch_balance_of",
+        "args_base64": "eyJhY2NvdW50X2lkIjogImphc25haC10cmVhc3VyeS5zcHV0bmlrLWRhby5uZWFyIiwgInRva2VuX2lkcyI6IFsibmVwMTQxOndyYXAubmVhciIsICJuZXAxNDE6MTcyMDg2MjhmODRmNWQ2YWQzM2YwZGEzYmJiZWIyN2ZmY2IzOThlYWM1MDFhMzFiZDZhZDIwMTFlMzYxMzNhMSIsICJuZXAxNDE6ZXRoLTB4YTBiODY5OTFjNjIxOGIzNmMxZDE5ZDRhMmU5ZWIwY2UzNjA2ZWI0OC5vbWZ0Lm5lYXIiLCAibmVwMTQxOnVzZHQudGV0aGVyLXRva2VuLm5lYXIiLCAibmVwMTQxOmV0aC0weGRhYzE3Zjk1OGQyZWU1MjNhMjIwNjIwNjk5NDU5N2MxM2Q4MzFlYzcub21mdC5uZWFyIl19"
+      }
+    },
+    "end/usdc/payments": {
+      "path": "data/raw/treasury/end_usdc_payments.json",
+      "sha256": "17e8bbd12e7fa27a9702bcbb0a7f0f98c99d54be999a297c19a04c773782ac2b",
+      "private": false,
+      "kind": "rpc",
+      "request": {
+        "request_type": "call_function",
+        "block_id": 222491356,
+        "account_id": "17208628f84f5d6ad33f0da3bbbeb27ffcb398eac501a31bd6ad2011e36133a1",
+        "method_name": "ft_balance_of",
+        "args_base64": "eyJhY2NvdW50X2lkIjogImphc25haC1wYXltZW50cy5uZWFyIn0="
+      }
+    },
+    "end/intents/payments": {
+      "path": "data/raw/treasury/end_intents_payments.json",
+      "sha256": "813d7a6d656d4e273fb6fc2c6bff31bc706316f55d6afdfa6657b64ca163b9cb",
+      "private": false,
+      "kind": "rpc",
+      "request": {
+        "request_type": "call_function",
+        "block_id": 222491356,
+        "account_id": "intents.near",
+        "method_name": "mt_batch_balance_of",
+        "args_base64": "eyJhY2NvdW50X2lkIjogImphc25haC1wYXltZW50cy5uZWFyIiwgInRva2VuX2lkcyI6IFsibmVwMTQxOndyYXAubmVhciIsICJuZXAxNDE6MTcyMDg2MjhmODRmNWQ2YWQzM2YwZGEzYmJiZWIyN2ZmY2IzOThlYWM1MDFhMzFiZDZhZDIwMTFlMzYxMzNhMSIsICJuZXAxNDE6ZXRoLTB4YTBiODY5OTFjNjIxOGIzNmMxZDE5ZDRhMmU5ZWIwY2UzNjA2ZWI0OC5vbWZ0Lm5lYXIiLCAibmVwMTQxOnVzZHQudGV0aGVyLXRva2VuLm5lYXIiLCAibmVwMTQxOmV0aC0weGRhYzE3Zjk1OGQyZWU1MjNhMjIwNjIwNjk5NDU5N2MxM2Q4MzFlYzcub21mdC5uZWFyIl19"
+      }
+    },
+    "end/proposals/00000": {
+      "path": "data/private/treasury/end_proposals_00000.json",
+      "sha256": "f6693af38706de380ed5aec4c6bdff9c9d4b09c52ac551d9c4871ff3202e712d",
+      "private": true,
+      "kind": "rpc",
+      "request": {
+        "request_type": "call_function",
+        "block_id": 222491356,
+        "account_id": "jasnah-treasury.sputnik-dao.near",
+        "method_name": "get_proposals",
+        "args_base64": "eyJmcm9tX2luZGV4IjogMCwgImxpbWl0IjogMTAwfQ=="
+      }
+    },
+    "end/proposals/00100": {
+      "path": "data/private/treasury/end_proposals_00100.json",
+      "sha256": "1ba2da9954481ca1e8de036e153cfe3659ee8a1349bbe0af75a9dda5ce5678fa",
+      "private": true,
+      "kind": "rpc",
+      "request": {
+        "request_type": "call_function",
+        "block_id": 222491356,
+        "account_id": "jasnah-treasury.sputnik-dao.near",
+        "method_name": "get_proposals",
+        "args_base64": "eyJmcm9tX2luZGV4IjogMTAwLCAibGltaXQiOiAxMDB9"
+      }
+    },
+    "end/proposals/00200": {
+      "path": "data/private/treasury/end_proposals_00200.json",
+      "sha256": "998600cdd034fabc9f326efdf310e728dc8a3e6913eaefa94c3742b4ef7aba5b",
+      "private": true,
+      "kind": "rpc",
+      "request": {
+        "request_type": "call_function",
+        "block_id": 222491356,
+        "account_id": "jasnah-treasury.sputnik-dao.near",
+        "method_name": "get_proposals",
+        "args_base64": "eyJmcm9tX2luZGV4IjogMjAwLCAibGltaXQiOiAxMDB9"
+      }
+    },
+    "end/access_keys": {
+      "path": "data/raw/treasury/end_access_keys.json",
+      "sha256": "fddb23e7467ee2fbbcdf48f5199cad3380b5a04dbc1eda33f43663f853163115",
+      "private": false,
+      "kind": "rpc",
+      "request": {
+        "request_type": "view_access_key_list",
+        "block_id": 222491356,
+        "account_id": "jasnah-treasury.sputnik-dao.near"
+      }
+    }
+  },
+  "windows": {
+    "since_stake_dao": {
+      "start_block": 208930590,
+      "start_utc": "2026-07-28T17:25:39.686984456Z",
+      "end_block": 222491356,
+      "end_utc": "2026-11-01T00:00:00.175647275Z",
+      "approved_proposal_ids": [
+        175,
+        176,
+        177,
+        178,
+        179,
+        180,
+        181,
+        182,
+        183,
+        184,
+        185,
+        186,
+        187,
+        188,
+        189,
+        190,
+        191,
+        192,
+        193,
+        194,
+        195,
+        196,
+        197,
+        198,
+        199,
+        200,
+        201,
+        202,
+        203,
+        204,
+        205,
+        206,
+        207,
+        208
+      ],
+      "owner_flows": {
+        "approved_proposals": 34,
+        "near_transferred_out": "423980.240",
+        "near_to_payments_account": "280337.660",
+        "near_to_others": "143642.580",
+        "near_out_recipients_other": 6,
+        "usdc_transferred_out": "365000.00",
+        "wnear_transferred_out": "0.000",
+        "unstaked": "425334.490",
+        "unstake_all_calls": 0,
+        "staked": "0.000",
+        "withdraw_calls": 4,
+        "deposits_to_non_pools": "0.000",
+        "other_calls": {
+          "named account:add_validator_catalog_manager": 2
+        }
+      },
+      "owner_positions_start": {
+        "owner_liquid": "5920.598",
+        "payments_liquid": "2702.057",
+        "pools": {
+          "near-prime-public.poolv1.near": {
+            "staked": "1320934.916",
+            "unstaked": "0.000"
+          },
+          "nearai.pool.near": {
+            "staked": "10021.643",
+            "unstaked": "0.000"
+          },
+          "staking4all.poolv1.near": {
+            "staked": "106.847",
+            "unstaked": "0.000"
+          }
+        },
+        "owner_in_pools": "1331063.406",
+        "owner_total_near": "1336984.004",
+        "treasury_usdc": "0.00",
+        "treasury_intents_wnear": "0.000",
+        "treasury_intents_usdc": "4605.96",
+        "treasury_intents_usdt": "0.00",
+        "payments_usdc": "3791.07",
+        "payments_intents_wnear": "0.000",
+        "payments_intents_usdc": "0.00",
+        "payments_intents_usdt": "0.00"
+      },
+      "owner_positions_end": {
+        "owner_liquid": "7274.912",
+        "payments_liquid": "1451.465",
+        "pools": {
+          "near-prime-public.poolv1.near": {
+            "staked": "908739.429",
+            "unstaked": "0.000"
+          },
+          "nearai.pool.near": {
+            "staked": "19013.522",
+            "unstaked": "0.000"
+          },
+          "staking4all.poolv1.near": {
+            "staked": "108.224",
+            "unstaked": "0.000"
+          }
+        },
+        "owner_in_pools": "927861.175",
+        "owner_total_near": "935136.087",
+        "treasury_usdc": "109747.15",
+        "treasury_intents_wnear": "0.000",
+        "treasury_intents_usdc": "5173.96",
+        "treasury_intents_usdt": "0.00",
+        "payments_usdc": "0.00",
+        "payments_intents_wnear": "0.000",
+        "payments_intents_usdc": "0.00",
+        "payments_intents_usdt": "0.00"
+      },
+      "owner_total_near_change": "-401847.916",
+      "implied_inflows_near": "22132.324",
+      "payments_swaps_wnear_to_stablecoins": {
+        "count": 7,
+        "near_given": "139545.600",
+        "usdc_received": "296652.40",
+        "usdt_received": "0.00",
+        "usd_received": "296652.40",
+        "mean_price_usd": "2.1258",
+        "last_utc": "2026-09-07T15:16:56.401139455Z"
+      }
+    },
+    "year_2026": {
+      "start_block": 179199136,
+      "start_utc": "2026-01-01T00:00:00.442673525Z",
+      "end_block": 222491356,
+      "end_utc": "2026-11-01T00:00:00.175647275Z",
+      "approved_proposal_ids": [
+        124,
+        125,
+        126,
+        127,
+        129,
+        130,
+        131,
+        132,
+        134,
+        135,
+        136,
+        138,
+        139,
+        140,
+        141,
+        142,
+        143,
+        144,
+        145,
+        146,
+        147,
+        148,
+        149,
+        150,
+        151,
+        152,
+        153,
+        154,
+        155,
+        156,
+        157,
+        158,
+        159,
+        160,
+        161,
+        162,
+        163,
+        164,
+        165,
+        166,
+        167,
+        168,
+        169,
+        170,
+        171,
+        172,
+        173,
+        174,
+        175,
+        176,
+        177,
+        178,
+        179,
+        180,
+        181,
+        182,
+        183,
+        184,
+        185,
+        186,
+        187,
+        188,
+        189,
+        190,
+        191,
+        192,
+        193,
+        194,
+        195,
+        196,
+        197,
+        198,
+        199,
+        200,
+        201,
+        202,
+        203,
+        204,
+        205,
+        206,
+        207,
+        208
+      ],
+      "owner_flows": {
+        "approved_proposals": 82,
+        "near_transferred_out": "923167.020",
+        "near_to_payments_account": "765524.440",
+        "near_to_others": "157642.580",
+        "near_out_recipients_other": 8,
+        "usdc_transferred_out": "552872.40",
+        "wnear_transferred_out": "0.000",
+        "unstaked": "919533.060",
+        "unstake_all_calls": 0,
+        "staked": "10010.000",
+        "withdraw_calls": 15,
+        "deposits_to_non_pools": "0.000",
+        "other_calls": {
+          "token contract:ft_transfer": 1,
+          "named account:add_validator_catalog_manager": 2
+        }
+      },
+      "owner_positions_start": {
+        "owner_liquid": "20418.377",
+        "payments_liquid": "2.675",
+        "pools": {
+          "near-prime-public.poolv1.near": {
+            "staked": "1774855.886",
+            "unstaked": "0.000"
+          },
+          "nearai.pool.near": {
+            "staked": "0.000",
+            "unstaked": "0.000"
+          },
+          "staking4all.poolv1.near": {
+            "staked": "103.909",
+            "unstaked": "0.000"
+          }
+        },
+        "owner_in_pools": "1774959.795",
+        "owner_total_near": "1795378.171",
+        "treasury_usdc": "74706.84",
+        "treasury_intents_wnear": "0.000",
+        "treasury_intents_usdc": "0.00",
+        "treasury_intents_usdt": "0.00",
+        "payments_usdc": "0.00",
+        "payments_intents_wnear": "0.000",
+        "payments_intents_usdc": "0.00",
+        "payments_intents_usdt": "0.00"
+      },
+      "owner_positions_end": {
+        "owner_liquid": "7274.912",
+        "payments_liquid": "1451.465",
+        "pools": {
+          "near-prime-public.poolv1.near": {
+            "staked": "908739.429",
+            "unstaked": "0.000"
+          },
+          "nearai.pool.near": {
+            "staked": "19013.522",
+            "unstaked": "0.000"
+          },
+          "staking4all.poolv1.near": {
+            "staked": "108.224",
+            "unstaked": "0.000"
+          }
+        },
+        "owner_in_pools": "927861.175",
+        "owner_total_near": "935136.087",
+        "treasury_usdc": "109747.15",
+        "treasury_intents_wnear": "0.000",
+        "treasury_intents_usdc": "5173.96",
+        "treasury_intents_usdt": "0.00",
+        "payments_usdc": "0.00",
+        "payments_intents_wnear": "0.000",
+        "payments_intents_usdc": "0.00",
+        "payments_intents_usdt": "0.00"
+      },
+      "owner_total_near_change": "-860242.084",
+      "implied_inflows_near": "62924.936",
+      "payments_swaps_wnear_to_stablecoins": {
+        "count": 14,
+        "near_given": "237732.479",
+        "usdc_received": "481610.58",
+        "usdt_received": "0.00",
+        "usd_received": "481610.58",
+        "mean_price_usd": "2.0259",
+        "last_utc": "2026-09-07T15:16:56.401139455Z"
+      }
+    }
+  },
+  "approved_proposals_2026": [
+    {
+      "id": 124,
+      "submission_time_utc": "2026-01-02T08:38:45.633551961Z",
+      "kind": "Transfer",
+      "token": "USDC",
+      "amount_raw": "74706000000",
+      "recipient": "jasnah-payments.near",
+      "recipient_category": "owner payments account"
+    },
+    {
+      "id": 125,
+      "submission_time_utc": "2026-01-02T13:27:20.866942245Z",
+      "kind": "FunctionCall",
+      "receiver": "near-prime-public.poolv1.near",
+      "receiver_category": "staking pool",
+      "calls": [
+        {
+          "method": "unstake",
+          "deposit_raw": "0",
+          "amount_raw": "7153190000000000000000000000"
+        }
+      ]
+    },
+    {
+      "id": 126,
+      "submission_time_utc": "2026-01-02T13:27:35.837290141Z",
+      "kind": "FunctionCall",
+      "receiver": "near-prime-public.poolv1.near",
+      "receiver_category": "staking pool",
+      "calls": [
+        {
+          "method": "withdraw_all",
+          "deposit_raw": "0"
+        }
+      ]
+    },
+    {
+      "id": 127,
+      "submission_time_utc": "2026-01-05T14:24:07.994627747Z",
+      "kind": "Transfer",
+      "token": "NEAR",
+      "amount_raw": "12500000000000000000000000000",
+      "recipient": "sha256:35d12e8f4ae8b714",
+      "recipient_category": "implicit account"
+    },
+    {
+      "id": 129,
+      "submission_time_utc": "2026-01-09T07:35:40.153843095Z",
+      "kind": "Transfer",
+      "token": "NEAR",
+      "amount_raw": "15000000000000000000000000000",
+      "recipient": "jasnah-payments.near",
+      "recipient_category": "owner payments account"
+    },
+    {
+      "id": 130,
+      "submission_time_utc": "2026-01-30T13:57:05.714107975Z",
+      "kind": "FunctionCall",
+      "receiver": "near-prime-public.poolv1.near",
+      "receiver_category": "staking pool",
+      "calls": [
+        {
+          "method": "unstake",
+          "deposit_raw": "0",
+          "amount_raw": "100000000000000000000000000000"
+        }
+      ]
+    },
+    {
+      "id": 131,
+      "submission_time_utc": "2026-01-30T13:57:17.662954729Z",
+      "kind": "FunctionCall",
+      "receiver": "near-prime-public.poolv1.near",
+      "receiver_category": "staking pool",
+      "calls": [
+        {
+          "method": "withdraw_all",
+          "deposit_raw": "0"
+        }
+      ]
+    },
+    {
+      "id": 132,
+      "submission_time_utc": "2026-02-02T09:20:38.982695416Z",
+      "kind": "FunctionCall",
+      "receiver": "near-prime-public.poolv1.near",
+      "receiver_category": "staking pool",
+      "calls": [
+        {
+          "method": "unstake",
+          "deposit_raw": "0",
+          "amount_raw": "6870560000000000000000000000"
+        }
+      ]
+    },
+    {
+      "id": 134,
+      "submission_time_utc": "2026-02-02T09:30:42.579002300Z",
+      "kind": "Transfer",
+      "token": "NEAR",
+      "amount_raw": "55000000000000000000000000000",
+      "recipient": "jasnah-payments.near",
+      "recipient_category": "owner payments account"
+    },
+    {
+      "id": 135,
+      "submission_time_utc": "2026-02-05T09:00:58.228003619Z",
+      "kind": "Transfer",
+      "token": "NEAR",
+      "amount_raw": "20000000000000000000000000000",
+      "recipient": "jasnah-payments.near",
+      "recipient_category": "owner payments account"
+    },
+    {
+      "id": 136,
+      "submission_time_utc": "2026-03-04T08:23:35.675322799Z",
+      "kind": "FunctionCall",
+      "receiver": "near-prime-public.poolv1.near",
+      "receiver_category": "staking pool",
+      "calls": [
+        {
+          "method": "unstake",
+          "deposit_raw": "0",
+          "amount_raw": "5997280000000000000000000000"
+        }
+      ]
+    },
+    {
+      "id": 138,
+      "submission_time_utc": "2026-03-04T08:28:19.210793362Z",
+      "kind": "FunctionCall",
+      "receiver": "near-prime-public.poolv1.near",
+      "receiver_category": "staking pool",
+      "calls": [
+        {
+          "method": "unstake",
+          "deposit_raw": "0",
+          "amount_raw": "40000000000000000000000000000"
+        }
+      ]
+    },
+    {
+      "id": 139,
+      "submission_time_utc": "2026-03-04T08:28:30.805000261Z",
+      "kind": "FunctionCall",
+      "receiver": "near-prime-public.poolv1.near",
+      "receiver_category": "staking pool",
+      "calls": [
+        {
+          "method": "withdraw_all",
+          "deposit_raw": "0"
+        }
+      ]
+    },
+    {
+      "id": 140,
+      "submission_time_utc": "2026-03-05T08:09:15.275975205Z",
+      "kind": "Transfer",
+      "token": "NEAR",
+      "amount_raw": "6400000000000000000000000000",
+      "recipient": "jasnah-payments.near",
+      "recipient_category": "owner payments account"
+    },
+    {
+      "id": 141,
+      "submission_time_utc": "2026-03-06T12:43:09.378366681Z",
+      "kind": "Transfer",
+      "token": "NEAR",
+      "amount_raw": "72000000000000000000000000000",
+      "recipient": "jasnah-payments.near",
+      "recipient_category": "owner payments account"
+    },
+    {
+      "id": 142,
+      "submission_time_utc": "2026-03-24T10:22:09.723900477Z",
+      "kind": "FunctionCall",
+      "receiver": "near-prime-public.poolv1.near",
+      "receiver_category": "staking pool",
+      "calls": [
+        {
+          "method": "unstake",
+          "deposit_raw": "0",
+          "amount_raw": "120000000000000000000000000000"
+        }
+      ]
+    },
+    {
+      "id": 143,
+      "submission_time_utc": "2026-03-24T10:22:22.067755693Z",
+      "kind": "FunctionCall",
+      "receiver": "near-prime-public.poolv1.near",
+      "receiver_category": "staking pool",
+      "calls": [
+        {
+          "method": "withdraw_all",
+          "deposit_raw": "0"
+        }
+      ]
+    },
+    {
+      "id": 144,
+      "submission_time_utc": "2026-03-27T14:42:59.923481561Z",
+      "kind": "Transfer",
+      "token": "NEAR",
+      "amount_raw": "120000000000000000000000000000",
+      "recipient": "jasnah-payments.near",
+      "recipient_category": "owner payments account"
+    },
+    {
+      "id": 145,
+      "submission_time_utc": "2026-03-30T10:33:31.363720787Z",
+      "kind": "FunctionCall",
+      "receiver": "near-prime-public.poolv1.near",
+      "receiver_category": "staking pool",
+      "calls": [
+        {
+          "method": "unstake",
+          "deposit_raw": "0",
+          "amount_raw": "50000000000000000000000000000"
+        }
+      ]
+    },
+    {
+      "id": 146,
+      "submission_time_utc": "2026-03-30T10:33:41.736147106Z",
+      "kind": "FunctionCall",
+      "receiver": "near-prime-public.poolv1.near",
+      "receiver_category": "staking pool",
+      "calls": [
+        {
+          "method": "withdraw_all",
+          "deposit_raw": "0"
+        }
+      ]
+    },
+    {
+      "id": 147,
+      "submission_time_utc": "2026-04-01T10:06:33.084194065Z",
+      "kind": "FunctionCall",
+      "receiver": "near-prime-public.poolv1.near",
+      "receiver_category": "staking pool",
+      "calls": [
+        {
+          "method": "unstake",
+          "deposit_raw": "0",
+          "amount_raw": "6466950000000000000000000000"
+        }
+      ]
+    },
+    {
+      "id": 148,
+      "submission_time_utc": "2026-04-01T10:07:03.183570456Z",
+      "kind": "FunctionCall",
+      "receiver": "near-prime-public.poolv1.near",
+      "receiver_category": "staking pool",
+      "calls": [
+        {
+          "method": "unstake",
+          "deposit_raw": "0",
+          "amount_raw": "6466950000000000000000000000"
+        }
+      ]
+    },
+    {
+      "id": 149,
+      "submission_time_utc": "2026-04-01T10:10:35.143773740Z",
+      "kind": "Transfer",
+      "token": "NEAR",
+      "amount_raw": "50000000000000000000000000000",
+      "recipient": "jasnah-payments.near",
+      "recipient_category": "owner payments account"
+    },
+    {
+      "id": 150,
+      "submission_time_utc": "2026-05-04T08:38:56.650213980Z",
+      "kind": "FunctionCall",
+      "receiver": "near-prime-public.poolv1.near",
+      "receiver_category": "staking pool",
+      "calls": [
+        {
+          "method": "unstake",
+          "deposit_raw": "0",
+          "amount_raw": "5585960000000000000000000000"
+        }
+      ]
+    },
+    {
+      "id": 151,
+      "submission_time_utc": "2026-05-04T08:39:07.489783731Z",
+      "kind": "FunctionCall",
+      "receiver": "near-prime-public.poolv1.near",
+      "receiver_category": "staking pool",
+      "calls": [
+        {
+          "method": "withdraw_all",
+          "deposit_raw": "0"
+        }
+      ]
+    },
+    {
+      "id": 152,
+      "submission_time_utc": "2026-05-06T09:49:04.537150210Z",
+      "kind": "FunctionCall",
+      "receiver": "near-prime-public.poolv1.near",
+      "receiver_category": "staking pool",
+      "calls": [
+        {
+          "method": "unstake",
+          "deposit_raw": "0",
+          "amount_raw": "45000000000000000000000000000"
+        }
+      ]
+    },
+    {
+      "id": 153,
+      "submission_time_utc": "2026-05-06T09:49:15.814567699Z",
+      "kind": "FunctionCall",
+      "receiver": "near-prime-public.poolv1.near",
+      "receiver_category": "staking pool",
+      "calls": [
+        {
+          "method": "withdraw_all",
+          "deposit_raw": "0"
+        }
+      ]
+    },
+    {
+      "id": 154,
+      "submission_time_utc": "2026-05-06T10:48:43.745594013Z",
+      "kind": "Transfer",
+      "token": "NEAR",
+      "amount_raw": "18550000000000000000000000000",
+      "recipient": "jasnah-payments.near",
+      "recipient_category": "owner payments account"
+    },
+    {
+      "id": 155,
+      "submission_time_utc": "2026-05-11T08:54:30.726890664Z",
+      "kind": "Transfer",
+      "token": "NEAR",
+      "amount_raw": "22000000000000000000000000000",
+      "recipient": "jasnah-payments.near",
+      "recipient_category": "owner payments account"
+    },
+    {
+      "id": 156,
+      "submission_time_utc": "2026-05-22T18:02:07.512620103Z",
+      "kind": "FunctionCall",
+      "receiver": "near-prime-public.poolv1.near",
+      "receiver_category": "staking pool",
+      "calls": [
+        {
+          "method": "unstake",
+          "deposit_raw": "0",
+          "amount_raw": "70000000000000000000000000000"
+        }
+      ]
+    },
+    {
+      "id": 157,
+      "submission_time_utc": "2026-05-22T18:02:21.112242162Z",
+      "kind": "FunctionCall",
+      "receiver": "near-prime-public.poolv1.near",
+      "receiver_category": "staking pool",
+      "calls": [
+        {
+          "method": "withdraw_all",
+          "deposit_raw": "0"
+        }
+      ]
+    },
+    {
+      "id": 158,
+      "submission_time_utc": "2026-05-22T18:04:15.183782922Z",
+      "kind": "Transfer",
+      "token": "NEAR",
+      "amount_raw": "22980000000000000000000000000",
+      "recipient": "jasnah-payments.near",
+      "recipient_category": "owner payments account"
+    },
+    {
+      "id": 159,
+      "submission_time_utc": "2026-05-26T11:14:42.920127173Z",
+      "kind": "FunctionCall",
+      "receiver": "17208628f84f5d6ad33f0da3bbbeb27ffcb398eac501a31bd6ad2011e36133a1",
+      "receiver_category": "token contract",
+      "calls": [
+        {
+          "method": "ft_transfer",
+          "deposit_raw": "1",
+          "amount_raw": "60000000000",
+          "to": "sha256:480a0266e8bdfa8d",
+          "to_category": "implicit account"
+        }
+      ]
+    },
+    {
+      "id": 160,
+      "submission_time_utc": "2026-06-02T16:28:53.257599006Z",
+      "kind": "Transfer",
+      "token": "NEAR",
+      "amount_raw": "10100000000000000000000000000",
+      "recipient": "jasnah-payments.near",
+      "recipient_category": "owner payments account"
+    },
+    {
+      "id": 161,
+      "submission_time_utc": "2026-06-02T16:32:11.064979092Z",
+      "kind": "FunctionCall",
+      "receiver": "near-prime-public.poolv1.near",
+      "receiver_category": "staking pool",
+      "calls": [
+        {
+          "method": "unstake",
+          "deposit_raw": "0",
+          "amount_raw": "5527780000000000000000000000"
+        }
+      ]
+    },
+    {
+      "id": 162,
+      "submission_time_utc": "2026-06-08T08:40:12.347970674Z",
+      "kind": "FunctionCall",
+      "receiver": "near-prime-public.poolv1.near",
+      "receiver_category": "staking pool",
+      "calls": [
+        {
+          "method": "withdraw_all",
+          "deposit_raw": "0"
+        }
+      ]
+    },
+    {
+      "id": 163,
+      "submission_time_utc": "2026-06-08T08:48:49.129192271Z",
+      "kind": "Transfer",
+      "token": "NEAR",
+      "amount_raw": "5527780000000000000000000000",
+      "recipient": "jasnah-payments.near",
+      "recipient_category": "owner payments account"
+    },
+    {
+      "id": 164,
+      "submission_time_utc": "2026-06-15T08:48:44.012288013Z",
+      "kind": "Transfer",
+      "token": "NEAR",
+      "amount_raw": "2500000000000000000000000000",
+      "recipient": "jasnah-payments.near",
+      "recipient_category": "owner payments account"
+    },
+    {
+      "id": 165,
+      "submission_time_utc": "2026-06-15T08:50:20.863589696Z",
+      "kind": "FunctionCall",
+      "receiver": "near-prime-public.poolv1.near",
+      "receiver_category": "staking pool",
+      "calls": [
+        {
+          "method": "unstake",
+          "deposit_raw": "0",
+          "amount_raw": "20000000000000000000000000000"
+        }
+      ]
+    },
+    {
+      "id": 166,
+      "submission_time_utc": "2026-06-15T08:50:33.659903520Z",
+      "kind": "FunctionCall",
+      "receiver": "near-prime-public.poolv1.near",
+      "receiver_category": "staking pool",
+      "calls": [
+        {
+          "method": "withdraw_all",
+          "deposit_raw": "0"
+        }
+      ]
+    },
+    {
+      "id": 167,
+      "submission_time_utc": "2026-06-29T08:03:49.565622940Z",
+      "kind": "Transfer",
+      "token": "USDC",
+      "amount_raw": "53166403931",
+      "recipient": "jasnah-payments.near",
+      "recipient_category": "owner payments account"
+    },
+    {
+      "id": 168,
+      "submission_time_utc": "2026-07-01T15:20:41.975732950Z",
+      "kind": "Transfer",
+      "token": "NEAR",
+      "amount_raw": "60000000000000000000000000000",
+      "recipient": "jasnah-payments.near",
+      "recipient_category": "owner payments account"
+    },
+    {
+      "id": 169,
+      "submission_time_utc": "2026-07-01T15:31:21.726819248Z",
+      "kind": "FunctionCall",
+      "receiver": "near-prime-public.poolv1.near",
+      "receiver_category": "staking pool",
+      "calls": [
+        {
+          "method": "unstake",
+          "deposit_raw": "0",
+          "amount_raw": "5129900000000000000000000000"
+        }
+      ]
+    },
+    {
+      "id": 170,
+      "submission_time_utc": "2026-07-02T09:05:28.378190724Z",
+      "kind": "FunctionCall",
+      "receiver": "nearai.pool.near",
+      "receiver_category": "staking pool",
+      "calls": [
+        {
+          "method": "deposit_and_stake",
+          "deposit_raw": "10000000000000000000000000"
+        }
+      ]
+    },
+    {
+      "id": 171,
+      "submission_time_utc": "2026-07-03T10:05:15.637862525Z",
+      "kind": "FunctionCall",
+      "receiver": "nearai.pool.near",
+      "receiver_category": "staking pool",
+      "calls": [
+        {
+          "method": "deposit_and_stake",
+          "deposit_raw": "10000000000000000000000000000"
+        }
+      ]
+    },
+    {
+      "id": 172,
+      "submission_time_utc": "2026-07-06T14:18:57.254987839Z",
+      "kind": "FunctionCall",
+      "receiver": "near-prime-public.poolv1.near",
+      "receiver_category": "staking pool",
+      "calls": [
+        {
+          "method": "withdraw_all",
+          "deposit_raw": "0"
+        }
+      ]
+    },
+    {
+      "id": 173,
+      "submission_time_utc": "2026-07-07T17:38:46.027794186Z",
+      "kind": "Transfer",
+      "token": "NEAR",
+      "amount_raw": "5129000000000000000000000000",
+      "recipient": "jasnah-payments.near",
+      "recipient_category": "owner payments account"
+    },
+    {
+      "id": 174,
+      "submission_time_utc": "2026-07-28T10:58:35.900319728Z",
+      "kind": "Transfer",
+      "token": "NEAR",
+      "amount_raw": "1500000000000000000000000000",
+      "recipient": "sha256:41753548ac5941ff",
+      "recipient_category": "named account"
+    },
+    {
+      "id": 175,
+      "submission_time_utc": "2026-07-29T17:23:50.657472740Z",
+      "kind": "FunctionCall",
+      "receiver": "sha256:ea0d6d2aaaf8e003",
+      "receiver_category": "named account",
+      "calls": [
+        {
+          "method": "add_validator_catalog_manager",
+          "deposit_raw": "1"
+        }
+      ]
+    },
+    {
+      "id": 176,
+      "submission_time_utc": "2026-07-29T17:31:46.978076089Z",
+      "kind": "FunctionCall",
+      "receiver": "sha256:520a5811be2e150b",
+      "receiver_category": "named account",
+      "calls": [
+        {
+          "method": "add_validator_catalog_manager",
+          "deposit_raw": "1"
+        }
+      ]
+    },
+    {
+      "id": 177,
+      "submission_time_utc": "2026-07-31T09:06:04.506721763Z",
+      "kind": "FunctionCall",
+      "receiver": "near-prime-public.poolv1.near",
+      "receiver_category": "staking pool",
+      "calls": [
+        {
+          "method": "unstake",
+          "deposit_raw": "0",
+          "amount_raw": "100000000000000000000000000000"
+        }
+      ]
+    },
+    {
+      "id": 178,
+      "submission_time_utc": "2026-07-31T09:06:27.242663910Z",
+      "kind": "FunctionCall",
+      "receiver": "near-prime-public.poolv1.near",
+      "receiver_category": "staking pool",
+      "calls": [
+        {
+          "method": "withdraw_all",
+          "deposit_raw": "0"
+        }
+      ]
+    },
+    {
+      "id": 179,
+      "submission_time_utc": "2026-07-31T09:53:39.619454891Z",
+      "kind": "Transfer",
+      "token": "NEAR",
+      "amount_raw": "2877200000000000000000000000",
+      "recipient": "sha256:4bbb282b430e4577",
+      "recipient_category": "implicit account"
+    },
+    {
+      "id": 180,
+      "submission_time_utc": "2026-08-03T08:40:08.705177376Z",
+      "kind": "Transfer",
+      "token": "NEAR",
+      "amount_raw": "41000000000000000000000000000",
+      "recipient": "jasnah-payments.near",
+      "recipient_category": "owner payments account"
+    },
+    {
+      "id": 181,
+      "submission_time_utc": "2026-08-03T10:06:36.832569617Z",
+      "kind": "FunctionCall",
+      "receiver": "near-prime-public.poolv1.near",
+      "receiver_category": "staking pool",
+      "calls": [
+        {
+          "method": "unstake",
+          "deposit_raw": "0",
+          "amount_raw": "5334490000000000000000000000"
+        }
+      ]
+    },
+    {
+      "id": 182,
+      "submission_time_utc": "2026-08-04T12:16:10.600458975Z",
+      "kind": "Transfer",
+      "token": "NEAR",
+      "amount_raw": "5000000000000000000000000000",
+      "recipient": "jasnah-payments.near",
+      "recipient_category": "owner payments account"
+    },
+    {
+      "id": 183,
+      "submission_time_utc": "2026-08-05T08:50:14.885961917Z",
+      "kind": "Transfer",
+      "token": "NEAR",
+      "amount_raw": "25000000000000000000000000000",
+      "recipient": "jasnah-payments.near",
+      "recipient_category": "owner payments account"
+    },
+    {
+      "id": 184,
+      "submission_time_utc": "2026-08-05T08:57:37.021248425Z",
+      "kind": "FunctionCall",
+      "receiver": "near-prime-public.poolv1.near",
+      "receiver_category": "staking pool",
+      "calls": [
+        {
+          "method": "withdraw_all",
+          "deposit_raw": "0"
+        }
+      ]
+    },
+    {
+      "id": 185,
+      "submission_time_utc": "2026-08-10T09:22:58.837921691Z",
+      "kind": "Transfer",
+      "token": "NEAR",
+      "amount_raw": "5334490000000000000000000000",
+      "recipient": "jasnah-payments.near",
+      "recipient_category": "owner payments account"
+    },
+    {
+      "id": 186,
+      "submission_time_utc": "2026-08-24T08:40:25.801365792Z",
+      "kind": "Transfer",
+      "token": "NEAR",
+      "amount_raw": "18709770000000000000000000000",
+      "recipient": "sha256:527ae4fda638b0d4",
+      "recipient_category": "implicit account"
+    },
+    {
+      "id": 187,
+      "submission_time_utc": "2026-09-02T06:05:06.953208861Z",
+      "kind": "FunctionCall",
+      "receiver": "near-prime-public.poolv1.near",
+      "receiver_category": "staking pool",
+      "calls": [
+        {
+          "method": "unstake",
+          "deposit_raw": "0",
+          "amount_raw": "200000000000000000000000000000"
+        }
+      ]
+    },
+    {
+      "id": 188,
+      "submission_time_utc": "2026-09-04T06:24:27.975818558Z",
+      "kind": "FunctionCall",
+      "receiver": "near-prime-public.poolv1.near",
+      "receiver_category": "staking pool",
+      "calls": [
+        {
+          "method": "withdraw_all",
+          "deposit_raw": "0"
+        }
+      ]
+    },
+    {
+      "id": 189,
+      "submission_time_utc": "2026-09-04T14:56:56.596685363Z",
+      "kind": "Transfer",
+      "token": "NEAR",
+      "amount_raw": "17128000000000000000000000000",
+      "recipient": "sha256:41c57890c4d5e317",
+      "recipient_category": "named account"
+    },
+    {
+      "id": 190,
+      "submission_time_utc": "2026-09-04T15:14:34.161789513Z",
+      "kind": "Transfer",
+      "token": "NEAR",
+      "amount_raw": "18709770000000000000000000000",
+      "recipient": "sha256:527ae4fda638b0d4",
+      "recipient_category": "implicit account"
+    },
+    {
+      "id": 191,
+      "submission_time_utc": "2026-09-04T17:23:57.788306387Z",
+      "kind": "Transfer",
+      "token": "NEAR",
+      "amount_raw": "5080000000000000000000000",
+      "recipient": "sha256:466e0174a755ae01",
+      "recipient_category": "named account"
+    },
+    {
+      "id": 192,
+      "submission_time_utc": "2026-09-04T18:27:13.349579917Z",
+      "kind": "Transfer",
+      "token": "NEAR",
+      "amount_raw": "59150000000000000000000000000",
+      "recipient": "sha256:466e0174a755ae01",
+      "recipient_category": "named account"
+    },
+    {
+      "id": 193,
+      "submission_time_utc": "2026-09-07T11:08:51.120191820Z",
+      "kind": "Transfer",
+      "token": "NEAR",
+      "amount_raw": "92000000000000000000000000000",
+      "recipient": "jasnah-payments.near",
+      "recipient_category": "owner payments account"
+    },
+    {
+      "id": 194,
+      "submission_time_utc": "2026-09-22T15:02:37.616681318Z",
+      "kind": "Transfer",
+      "token": "NEAR",
+      "amount_raw": "1460280000000000000000000000",
+      "recipient": "sha256:31b2b035dba9cdf2",
+      "recipient_category": "implicit account"
+    },
+    {
+      "id": 195,
+      "submission_time_utc": "2026-09-23T07:04:32.520881866Z",
+      "kind": "Transfer",
+      "token": "USDC",
+      "amount_raw": "55000000000",
+      "recipient": "jasnah-payments.near",
+      "recipient_category": "owner payments account"
+    },
+    {
+      "id": 196,
+      "submission_time_utc": "2026-09-25T08:32:27.861605737Z",
+      "kind": "Transfer",
+      "token": "NEAR",
+      "amount_raw": "4828330000000000000000000000",
+      "recipient": "sha256:527ae4fda638b0d4",
+      "recipient_category": "implicit account"
+    },
+    {
+      "id": 197,
+      "submission_time_utc": "2026-10-02T08:27:33.195820585Z",
+      "kind": "FunctionCall",
+      "receiver": "near-prime-public.poolv1.near",
+      "receiver_category": "staking pool",
+      "calls": [
+        {
+          "method": "unstake",
+          "deposit_raw": "0",
+          "amount_raw": "120000000000000000000000000000"
+        }
+      ]
+    },
+    {
+      "id": 198,
+      "submission_time_utc": "2026-10-02T08:28:09.118428781Z",
+      "kind": "FunctionCall",
+      "receiver": "near-prime-public.poolv1.near",
+      "receiver_category": "staking pool",
+      "calls": [
+        {
+          "method": "withdraw_all",
+          "deposit_raw": "0"
+        }
+      ]
+    },
+    {
+      "id": 199,
+      "submission_time_utc": "2026-10-05T08:07:50.572441917Z",
+      "kind": "Transfer",
+      "token": "NEAR",
+      "amount_raw": "105000000000000000000000000000",
+      "recipient": "jasnah-payments.near",
+      "recipient_category": "owner payments account"
+    },
+    {
+      "id": 200,
+      "submission_time_utc": "2026-10-15T20:54:54.654142257Z",
+      "kind": "Transfer",
+      "token": "USDC",
+      "amount_raw": "15000000000",
+      "recipient": "jasnah-payments.near",
+      "recipient_category": "owner payments account"
+    },
+    {
+      "id": 201,
+      "submission_time_utc": "2026-10-15T20:56:00.954084220Z",
+      "kind": "Transfer",
+      "token": "NEAR",
+      "amount_raw": "7003170000000000000000000000",
+      "recipient": "jasnah-payments.near",
+      "recipient_category": "owner payments account"
+    },
+    {
+      "id": 202,
+      "submission_time_utc": "2026-10-21T09:13:36.651500862Z",
+      "kind": "ChangePolicy"
+    },
+    {
+      "id": 203,
+      "submission_time_utc": "2026-10-21T14:16:31.138800599Z",
+      "kind": "ChangePolicy"
+    },
+    {
+      "id": 204,
+      "submission_time_utc": "2026-10-21T14:29:02.648549365Z",
+      "kind": "Transfer",
+      "token": "USDC",
+      "amount_raw": "250000000000",
+      "recipient": "jasnah-payments.near",
+      "recipient_category": "owner payments account"
+    },
+    {
+      "id": 205,
+      "submission_time_utc": "2026-10-23T09:24:10.400014390Z",
+      "kind": "Transfer",
+      "token": "NEAR",
+      "amount_raw": "1000000000000000000000000",
+      "recipient": "sha256:50ef1055cf876be4",
+      "recipient_category": "implicit account"
+    },
+    {
+      "id": 206,
+      "submission_time_utc": "2026-10-26T16:31:29.159271682Z",
+      "kind": "Transfer",
+      "token": "NEAR",
+      "amount_raw": "2064150000000000000000000000",
+      "recipient": "sha256:31b2b035dba9cdf2",
+      "recipient_category": "implicit account"
+    },
+    {
+      "id": 207,
+      "submission_time_utc": "2026-10-27T10:31:43.690917888Z",
+      "kind": "Transfer",
+      "token": "NEAR",
+      "amount_raw": "18709000000000000000000000000",
+      "recipient": "sha256:50ef1055cf876be4",
+      "recipient_category": "implicit account"
+    },
+    {
+      "id": 208,
+      "submission_time_utc": "2026-10-28T12:23:25.369602597Z",
+      "kind": "Transfer",
+      "token": "USDC",
+      "amount_raw": "45000000000",
+      "recipient": "jasnah-payments.near",
+      "recipient_category": "owner payments account"
+    }
+  ],
+  "payments_swaps_all": [
+    {
+      "tx": "9LaGPhrK87ZyymUo9UySk1vWr92tZjGNM9LzzVrQKaNq",
+      "height": 143978699,
+      "utc": "2025-04-11T14:54:35.573071119Z",
+      "near_given": "12200.000",
+      "usdc_received": "25064.67",
+      "usdt_received": "0.00"
+    },
+    {
+      "tx": "D1yCeEJE4cuDbGy84gmvDrVQA5CxSwkJ5TNUTUrPrHAS",
+      "height": 146054902,
+      "utc": "2025-05-08T15:17:58.552346995Z",
+      "near_given": "24000.000",
+      "usdc_received": "60840.84",
+      "usdt_received": "0.00"
+    },
+    {
+      "tx": "9iZq5upZMnHH9XHBfHmCfg3TYhVL7omKczjHfxF3ma72",
+      "height": 150941225,
+      "utc": "2025-06-13T14:31:55.340232583Z",
+      "near_given": "11248.000",
+      "usdc_received": "24581.60",
+      "usdt_received": "0.00"
+    },
+    {
+      "tx": "BH2wkU3vgUQAr3GndmaA3UdaPDVPLuueVTZyUkrqiSjz",
+      "height": 154242991,
+      "utc": "2025-07-07T15:20:01.420239608Z",
+      "near_given": "27805.000",
+      "usdc_received": "0.00",
+      "usdt_received": "60009.99"
+    },
+    {
+      "tx": "26gTdssbBEqKYUszMq2DtY2T2yYv4hvfQC2PVWTWjr4m",
+      "height": 154356957,
+      "utc": "2025-07-08T10:57:11.080140104Z",
+      "near_given": "10454.323",
+      "usdc_received": "22518.66",
+      "usdt_received": "0.00"
+    },
+    {
+      "tx": "4xRoM2ozigV6HbNDfz9pqBQyN3GKReqUWUwmqdp8z73L",
+      "height": 157621813,
+      "utc": "2025-07-31T13:42:46.294541210Z",
+      "near_given": "22851.000",
+      "usdc_received": "0.00",
+      "usdt_received": "60002.53"
+    },
+    {
+      "tx": "EzjAFXiN36DFKTnvFAyYKcRpM6PKpzfN5ZtHodE2YHGr",
+      "height": 160346714,
+      "utc": "2025-08-19T19:19:27.166390077Z",
+      "near_given": "8256.000",
+      "usdc_received": "20154.67",
+      "usdt_received": "0.00"
+    },
+    {
+      "tx": "4G3beHDYWnZu2QhE7kQXVCCkUDXZmvVuzqK8PrNyoh87",
+      "height": 161406777,
+      "utc": "2025-08-27T08:27:52.247824679Z",
+      "near_given": "24000.000",
+      "usdc_received": "0.00",
+      "usdt_received": "59993.10"
+    },
+    {
+      "tx": "Eph9dx5aEtKEY68rirWnjoZD8RLNsFTXxtJwyLvqvFPK",
+      "height": 163169262,
+      "utc": "2025-09-08T15:34:43.032176398Z",
+      "near_given": "17850.000",
+      "usdc_received": "45574.03",
+      "usdt_received": "0.00"
+    },
+    {
+      "tx": "a4EGQ1gXbZ2Cp99X8imrsaoeQRBqpd7YkgVSAgz6P26",
+      "height": 164444723,
+      "utc": "2025-09-17T12:45:00.979936132Z",
+      "near_given": "17674.310",
+      "usdc_received": "47271.12",
+      "usdt_received": "0.00"
+    },
+    {
+      "tx": "4sy7ZEcAF8hPTRAHjwaQKrkLWXfK2H2PCnZBHXRufLUs",
+      "height": 197155289,
+      "utc": "2026-05-06T15:03:59.054322095Z",
+      "near_given": "12052.910",
+      "usdc_received": "17658.18",
+      "usdt_received": "0.00"
+    },
+    {
+      "tx": "3fMh4WtnpBcbgjfwYDmboAkGrd78pgQY7uXyY9fgtvvb",
+      "height": 197880801,
+      "utc": "2026-05-11T14:46:00.513732369Z",
+      "near_given": "20826.289",
+      "usdc_received": "31500.00",
+      "usdt_received": "0.00"
+    },
+    {
+      "tx": "4SSeVX8UYdxQZwxukvv3H9XrcdLJusvygQyZvJW2zpDM",
+      "height": 199453739,
+      "utc": "2026-05-22T18:11:19.821907778Z",
+      "near_given": "24620.000",
+      "usdc_received": "53123.05",
+      "usdt_received": "0.00"
+    },
+    {
+      "tx": "HcvMsfMnNoF8ZynY5B8tC6Kjdi3BGiyVLEzVBSKWxgbx",
+      "height": 201412492,
+      "utc": "2026-06-05T11:14:31.071367181Z",
+      "near_given": "30.000",
+      "usdc_received": "60.76",
+      "usdt_received": "0.00"
+    },
+    {
+      "tx": "7iBrz9CHmgQCDeVhqj2XWi3wt1sfaLxRzPwCnGtESSeW",
+      "height": 201839687,
+      "utc": "2026-06-08T12:31:09.113571376Z",
+      "near_given": "5527.780",
+      "usdc_received": "11933.45",
+      "usdt_received": "0.00"
+    },
+    {
+      "tx": "4DwtSnJrtBsr2aHVih58gwQpVYUnyJdtJMZc2hmnNT28",
+      "height": 205943982,
+      "utc": "2026-07-07T12:34:05.437104275Z",
+      "near_given": "30000.000",
+      "usdc_received": "60274.37",
+      "usdt_received": "0.00"
+    },
+    {
+      "tx": "D4XQH7aQn75SZ3oKgBxijf1rDhyaHAmj9RAPFqTazCjx",
+      "height": 207058108,
+      "utc": "2026-07-15T10:22:44.307512043Z",
+      "near_given": "5129.900",
+      "usdc_received": "10408.37",
+      "usdt_received": "0.00"
+    },
+    {
+      "tx": "2hVPgZMzEMEAZt9UbonJ6VyTakEVANffSw23KdYD6tyu",
+      "height": 209734274,
+      "utc": "2026-08-03T10:09:40.759348195Z",
+      "near_given": "40500.000",
+      "usdc_received": "69465.93",
+      "usdt_received": "0.00"
+    },
+    {
+      "tx": "9hxE5dZzThJUBUsJTCfNwdw9gTMAyadkmq36XT5vjZda",
+      "height": 210743286,
+      "utc": "2026-08-10T13:37:36.419825901Z",
+      "near_given": "5334.490",
+      "usdc_received": "8817.14",
+      "usdt_received": "0.00"
+    },
+    {
+      "tx": "6kTXdVZFF1xjckRkBkyc9SZUW2E5widiGT31qKVjLSBX",
+      "height": 211058840,
+      "utc": "2026-08-12T19:40:24.441262673Z",
+      "near_given": "2200.000",
+      "usdc_received": "3584.42",
+      "usdt_received": "0.00"
+    },
+    {
+      "tx": "ALCWrYw4k4hthEm4Sdc33ThXAjX3vQExhKyy63QL9bkX",
+      "height": 214671436,
+      "utc": "2026-09-07T14:02:39.328542022Z",
+      "near_given": "6440.430",
+      "usdc_received": "15306.98",
+      "usdt_received": "0.00"
+    },
+    {
+      "tx": "Fmphh4eo8oHpUDM96FoiMtgnLwQMh2PDh7CkphNt5jq5",
+      "height": 214671883,
+      "utc": "2026-09-07T14:07:25.940490147Z",
+      "near_given": "25000.000",
+      "usdc_received": "58974.55",
+      "usdt_received": "0.00"
+    },
+    {
+      "tx": "5PwYWHH7Rond6h7eCTd4NiuE9TRMAhZhaAx5PVSKoTqD",
+      "height": 214674368,
+      "utc": "2026-09-07T14:33:26.674700018Z",
+      "near_given": "30000.000",
+      "usdc_received": "70391.16",
+      "usdt_received": "0.00"
+    },
+    {
+      "tx": "BD7FeTM1g8bYQBw4UJ4rqB6y9ad53vZSPqHfPDaPadCR",
+      "height": 214678536,
+      "utc": "2026-09-07T15:16:56.401139455Z",
+      "near_given": "30070.680",
+      "usdc_received": "70112.24",
+      "usdt_received": "0.00"
+    }
+  ],
+  "owner_access_keys_at_end": 0,
+  "stake_dao_first_stake_receipt": {
+    "height": 209169270,
+    "utc": "2026-07-30T09:49:40.085309725Z",
+    "succeeded": false
+  },
+  "pools": [
+    "near-prime-public.poolv1.near",
+    "nearai.pool.near",
+    "staking4all.poolv1.near"
+  ],
+  "missing_values": [
+    "y2026_start/staked/nearai.pool.near",
+    "y2026_start/unstaked/nearai.pool.near"
+  ]
+}
