@@ -120,7 +120,7 @@ class CheckPreregTest(unittest.TestCase):
         self.assertIn("tx_args_record_equals_stored", self.failed(doc))
 
     def test_wrong_signer_and_failed_receipt(self):
-        doc, _ = self.save(FakeChain(record(), record(), signer="normalvilla487.near", failure=True))
+        doc, _ = self.save(FakeChain(record(), record(), signer="wrong-signer.test", failure=True))
         self.assertTrue({"tx_signer_is_project_account", "no_receipt_failed"} <= self.failed(doc))
 
     def test_missing_record(self):
