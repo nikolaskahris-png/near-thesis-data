@@ -68,15 +68,22 @@ async function setup() {
 }
 
 async function account() {
-  const accounts = await wallet.getAccounts();
-  return accounts.length ? accounts[0].accountId : null;
+  // Meteor throws "No current account connected" instead of returning an empty list.
+  try {
+    const accounts = await wallet.getAccounts();
+    return accounts && accounts.length ? accounts[0].accountId : null;
+  } catch (e) { return null; }
 }
 
 $("connect").onclick = async () => {
   try {
     if (!wallet) await setup();
     let id = await account();
-    if (!id) { await wallet.signIn({ contractId: "social.near", methodNames: ["set"] }); id = await account(); }
+    if (!id) {
+      log("Waiting for Meteor: choose " + SIGNER + " and approve the connection…");
+      const signed = await wallet.signIn({ contractId: "social.near", methodNames: ["set"] });
+      id = (signed && signed.length && signed[0].accountId) || await account();
+    }
     if (id !== SIGNER) { log(`Connected as ${id}. Only ${SIGNER} may sign this record. Disconnect and use that account.`, "bad"); $("out").disabled = false; return; }
     log(`Connected as ${id}.`, "ok"); $("send").disabled = false; $("out").disabled = false;
   } catch (e) { log("Connect failed: " + (e && e.message || e), "bad"); }
