@@ -23,9 +23,11 @@ STATE = {"big.near": 1_000_000, "a.near": 100_000, "b.near": 50_000, "c.near": 5
 for i in range(10):
     STATE[f"s{i}.near"] = 100 + i
 LOCKS = [{"account_id": "a.near", "status": "Active", "amount_near": str(50 * Y),
-          "end_ns": "1"},
-         {"account_id": "x.near", "status": "UnlockRequested", "amount_near": str(50 * Y),
-          "end_ns": str(10 ** 30)}]
+          "start_ns": str(1), "end_ns": str(1 + 30 * 86400 * 10 ** 9)},
+         {"account_id": "x.near", "status": "UnlockRequested", "amount_near": str(500 * Y),
+          "end_ns": str(10 ** 30)},
+         {"account_id": "y.near", "status": "Active", "amount_near": str(2000 * Y),
+          "start_ns": str(10 ** 30 - 31 * 86400 * 10 ** 9), "end_ns": str(10 ** 30)}]
 
 
 class FakeStakeDao(FakeChain):
@@ -101,11 +103,20 @@ class StakersTest(unittest.TestCase):
         # outside top 10: 101, 100, 50, 20 ... sorted desc: 1M,100K,50K,109..103 | 102,101,100,50,20
         self.assertEqual(st["outside_top10_median_near"], "100.000")
         self.assertEqual(st["accounts_under_100_near"], 2)
-        self.assertEqual(st["agents_locks"], 2)
-        self.assertEqual(st["agents_lock_accounts"], 2)
-        self.assertEqual(st["agents_locks_past_end"], 1)
-        self.assertEqual(st["farm_or_active_lock_accounts"], 15)  # a.near is in both
-        self.assertEqual(st["farm_or_any_lock_accounts"], 16)     # + x.near
+        self.assertEqual(st["agents_locks"], 3)
+        self.assertEqual(st["agents_lock_accounts"], 3)
+        self.assertEqual(st["agents_locks_past_end"], 1)          # a.near ended long ago
+        self.assertEqual(st["farm_or_active_lock_accounts"], 16)  # a.near is in both, + y.near
+        self.assertEqual(st["farm_or_any_lock_accounts"], 17)     # + x.near
+        self.assertEqual(st["agents_locks_active"], 2)
+        self.assertEqual(st["agents_locks_unlock_requested"], 1)
+        self.assertEqual(st["agents_locks_active_within_term"], 1)  # y.near only
+        self.assertEqual(st["agents_locks_near"], "2550.000")
+        self.assertEqual(st["agents_locks_active_near"], "2050.000")
+        self.assertEqual(st["agents_active_lock_near_vs_farm"], f"{2050 / total:.6f}")
+        self.assertEqual(st["agents_locks_at_50_near"], 1)
+        self.assertEqual((st["agents_lock_days_min"], st["agents_lock_days_max"]),
+                         ("30.00", "31.00"))           # x.near has no start: not counted
         results, problems = stakers.verify_all(data)
         self.assertEqual(problems, [])
         self.assertEqual(results[0]["stakers_active"], 15)

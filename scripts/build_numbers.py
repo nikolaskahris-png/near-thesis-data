@@ -135,6 +135,13 @@ def build(data_dir, window_file):
           unit="NEAR/day", note="new NEAR minus NEAR kept by the buybacks wallet; total "
           "supply still grows by n1.new_near_per_day", **common)
 
+    # ---- finding 9: front-end share of what the revenue wallets keep (same window, wallets)
+    kept = dec(row["buybacks_per_day"]) + dec(row["fefunds_per_day"])
+    n.add("f9.front_end_share_of_wallets", dec(row["fefunds_per_day"]) / kept,
+          f_pct(dec(row["fefunds_per_day"]) / kept), hsrc, unit="share",
+          note="fefundsadmin.sputnik-dao.near / (buybacks.multisignature.near + 1csfundsadmin "
+          "+ fefundsadmin), net NEAR kept per day, measured on the wallets", **common)
+
     # ---- number 2: maximum coverage by all fees (fees.py)
     fees_path = data_dir / f"fees_{start_date}_{end_date}.json"
     fees = json.loads(fees_path.read_text(encoding="utf-8"))
@@ -191,6 +198,24 @@ def build(data_dir, window_file):
                 ("n3.farm_or_any_lock_accounts", "farm_or_any_lock_accounts", f_int, "accounts")):
             n.add(key, stats[field], fmt(stats[field]), ssrc, unit=unit, **sc)
 
+        # ---- finding 7: NEAR AI Agents subscriptions (locks), same snapshot
+        for key, field, fmt, unit in (
+                ("f7.locks", "agents_locks", f_int, "locks"),
+                ("f7.lock_accounts", "agents_lock_accounts", f_int, "accounts"),
+                ("f7.locks_active", "agents_locks_active", f_int, "locks"),
+                ("f7.locks_unlock_requested", "agents_locks_unlock_requested", f_int, "locks"),
+                ("f7.locks_active_within_term", "agents_locks_active_within_term", f_int,
+                 "locks"),
+                ("f7.locks_past_end", "agents_locks_past_end", f_int, "locks"),
+                ("f7.locks_near", "agents_locks_near", f_int, "NEAR"),
+                ("f7.locks_active_near", "agents_locks_active_near", f_int, "NEAR"),
+                ("f7.active_lock_near_vs_farm", "agents_active_lock_near_vs_farm", f_pct,
+                 "Active-lock NEAR / farm NEAR"),
+                ("f7.locks_at_50_near", "agents_locks_at_50_near", f_int, "locks"),
+                ("f7.lock_days_min", "agents_lock_days_min", lambda v: f_num(v, 0), "days"),
+                ("f7.lock_days_max", "agents_lock_days_max", lambda v: f_num(v, 0), "days")):
+            n.add(key, stats[field], fmt(stats[field]), ssrc, unit=unit, **sc)
+
     # ---- finding 5: concentration over time (every saved stakers snapshot)
     for path in sorted((data_dir / "stakers").glob("20*.json")):
         st, p = stakers.compute(path, data_dir.resolve())
@@ -216,6 +241,49 @@ def build(data_dir, window_file):
               csrc, **extra)
         n.add(f"f1.coverage_with_front_end.{m}", r["coverage_with_fe"],
               f_pct(r["coverage_with_fe"]), csrc, **extra)
+
+    # ---- finding 2: monthly fees, take rate, price and NEAR bought (fees.py + coverage.py)
+    kept_by_month = {r["month"]: dec(r["buybacks_per_day"]) + dec(r["fefunds_per_day"])
+                     for r in cov["rows"]}
+    fmon = {}
+    for m in fees["result"].get("monthly", []):
+        if not m.get("full_month"):
+            continue
+        k = m["month"]
+        fmon[k] = m
+        mc = {"status": status, "fetched_utc": fees["fetched_utc"],
+              "month": k, "counted_days": m["counted_days"], "days": m["days"],
+              "excluded_days": sorted(m["excluded"])}
+        for key, field, fmt, unit in (
+                ("fees_usd_per_day", "fees_usd_per_day", f_usd, "USD/day"),
+                ("revenue_usd_per_day", "revenue_usd_per_day", f_usd, "USD/day"),
+                ("volume_usd_per_day", "volume_usd_per_day", f_usd, "USD/day"),
+                ("fees_bps", "fees_bps", lambda v: f_num(v, 1), "bps of volume"),
+                ("take_rate", "take_rate", f_pct, "revenue / fees"),
+                ("mean_price_usd", "mean_price_usd", lambda v: f_usd(v, 2), "USD"),
+                ("revenue_near_per_day", "revenue_near_per_day", f_int, "NEAR/day")):
+            n.add(f"f2.{key}.{k}", m[field], fmt(m[field]), fsrc, unit=unit, **mc)
+        if k in kept_by_month and dec(m["revenue_near_per_day"]) > 0:
+            kept_share = kept_by_month[k] / dec(m["revenue_near_per_day"])
+            n.add(f"f2.wallets_kept_near_per_day.{k}", kept_by_month[k],
+                  f_int(kept_by_month[k]), csrc, unit="NEAR/day",
+                  note="buybacks + 1cs + fefundsadmin, net change on the wallets", month=k)
+            n.add(f"f2.wallets_kept_share_of_revenue.{k}", kept_share, f_pct(kept_share, 0),
+                  fsrc, unit="wallets NEAR / DefiLlama revenue NEAR", also=csrc,
+                  note="wallets counted on every day of the month; DefiLlama revenue on "
+                  "its counted days", **mc)
+    months = sorted(fmon)
+    if len(months) >= 2:
+        a, b = months[-2], months[-1]
+        pair = f"{a}_{b}"
+        pc = {"status": status, "fetched_utc": fees["fetched_utc"], "from": a, "to": b}
+        for key, field in (("revenue_usd", "revenue_usd_per_day"),
+                           ("mean_price", "mean_price_usd"),
+                           ("revenue_near", "revenue_near_per_day"),
+                           ("volume_usd", "volume_usd_per_day")):
+            ch = dec(fmon[b][field]) / dec(fmon[a][field]) - 1
+            txt = ("+" if ch > 0 else "") + f_pct(ch, 0)
+            n.add(f"f2.change.{pair}.{key}", ch, txt, fsrc, unit="relative change", **pc)
 
     # ---- finding 4: flows of the owner of nearai.pool.near (treasury_flows.py)
     tf_path = data_dir / "treasury_flows.json"

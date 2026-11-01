@@ -296,15 +296,25 @@ def compute(snap_file, data_root):
         locks += decode(path.read_bytes())
     lock_status = {}
     lock_accounts, active_lock_accounts, past_end = set(), set(), 0
+    lock_near, active_lock_near, active_in_term, at_50 = 0, 0, 0, 0
+    lock_days = []
     for lk in locks:
         st = str(lk.get("status", "unknown"))
+        amt = int(lk.get("amount_near", 0))
         lock_status[st] = lock_status.get(st, 0) + 1
-        if int(lk.get("amount_near", 0)) > 0:
+        lock_near += amt
+        at_50 += amt == 50 * YOCTO
+        ended = bool(int(lk.get("end_ns", 0))) and int(lk["end_ns"]) < blk["timestamp"]
+        if amt > 0:
             lock_accounts.add(lk["account_id"])
             if st == "Active":
                 active_lock_accounts.add(lk["account_id"])
-        if int(lk.get("end_ns", 0)) and int(lk["end_ns"]) < blk["timestamp"]:
-            past_end += 1
+        if st == "Active":
+            active_lock_near += amt
+            active_in_term += not ended
+        past_end += ended
+        if int(lk.get("start_ns", 0)) and int(lk.get("end_ns", 0)):
+            lock_days.append(Fraction(int(lk["end_ns"]) - int(lk["start_ns"]), 86400 * 10 ** 9))
 
     ranked = sorted(active.values(), reverse=True)
     rest = ranked[10:]
@@ -326,6 +336,15 @@ def compute(snap_file, data_root):
         "agents_locks": len(locks), "agents_locks_by_status": lock_status,
         "agents_lock_accounts": len(lock_accounts),
         "agents_locks_past_end": past_end,
+        "agents_locks_active": lock_status.get("Active", 0),
+        "agents_locks_unlock_requested": lock_status.get("UnlockRequested", 0),
+        "agents_locks_active_within_term": active_in_term,
+        "agents_locks_near": near(lock_near),
+        "agents_locks_active_near": near(active_lock_near),
+        "agents_active_lock_near_vs_farm": share(active_lock_near, total),
+        "agents_locks_at_50_near": at_50,
+        "agents_lock_days_min": f"{float(min(lock_days)):.2f}" if lock_days else "",
+        "agents_lock_days_max": f"{float(max(lock_days)):.2f}" if lock_days else "",
         # Separate line only; prediction 3 counts the farm alone (stakers_active).
         "farm_or_active_lock_accounts": len(set(active) | active_lock_accounts),
         "farm_or_any_lock_accounts": len(set(active) | lock_accounts),

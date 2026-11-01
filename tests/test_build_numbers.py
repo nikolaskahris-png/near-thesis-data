@@ -45,10 +45,26 @@ def fake_repo(tmp, fees_end_block=B1, treasury_end=B1, stakers_block=B1):
           "defillama_revenue_coverage": "0.166598"}
     write(data / f"fees_{START}_{END}.json",
           {"window_file": f"data/window_{START}_{END}.json", "fetched_utc": "x",
-           "final": {"ready": False}, "result": {"window": fw}})
+           "final": {"ready": False}, "result": {"window": fw, "monthly": [
+               {"month": "2026-09", "full_month": True, "days": 30, "counted_days": 30,
+                "excluded": {}, "fees_usd_per_day": "244210.00",
+                "revenue_usd_per_day": "61317.10", "volume_usd_per_day": "160103145.90",
+                "fees_bps": "15.25", "take_rate": "0.251101", "mean_price_usd": "3.2774",
+                "revenue_near_per_day": "19129.4"},
+               {"month": "2026-10", "full_month": True, "days": 31, "counted_days": 30,
+                "excluded": {"2026-10-31": "fees_below_20pct_of_median"},
+                "fees_usd_per_day": "198126.00", "revenue_usd_per_day": "71500.53",
+                "volume_usd_per_day": "130406943.67", "fees_bps": "15.19",
+                "take_rate": "0.360878", "mean_price_usd": "4.9049",
+                "revenue_near_per_day": "14700.5"},
+               {"month": "2026-11", "full_month": False}]}})
     write(data / "stakers" / f"{END}.json", {"stub": stakers_block})
     write(data / "coverage_monthly.json", {"rows": [
-        {"month": "2026-10", "block_start": 1, "block_end": B1,
+        {"month": "2026-09", "block_start": 1, "block_end": 2,
+         "buybacks_per_day": "13478.332", "fefunds_per_day": "5327.698",
+         "coverage_buybacks": "0.152552", "coverage_with_fe": "0.212852", "flags": ""},
+        {"month": "2026-10", "block_start": 2, "block_end": B1,
+         "buybacks_per_day": "9588.935", "fefunds_per_day": "4975.049",
          "coverage_buybacks": "0.108852", "coverage_with_fe": "0.165328", "flags": ""}]})
     w = {"start_block": 208930590, "end_block": treasury_end,
          "start_utc": "2026-07-28T17:25:00Z", "end_utc": "2026-11-01T00:00:00Z",
@@ -77,7 +93,12 @@ def fake_stats(path, data_root):
              "outside_top10_accounts": 102, "outside_top10_near": "48610.600",
              "outside_top10_median_near": "60.000", "agents_locks": 86,
              "agents_locks_past_end": 75, "farm_or_active_lock_accounts": 145,
-             "farm_or_any_lock_accounts": 181}, [])
+             "farm_or_any_lock_accounts": 181, "agents_lock_accounts": 83,
+             "agents_locks_active": 43, "agents_locks_unlock_requested": 43,
+             "agents_locks_active_within_term": 11, "agents_locks_near": "29739.000",
+             "agents_locks_active_near": "14904.000",
+             "agents_active_lock_near_vs_farm": "0.010924", "agents_locks_at_50_near": 58,
+             "agents_lock_days_min": "30.00", "agents_lock_days_max": "31.00"}, [])
 
 
 class FormatTest(unittest.TestCase):
@@ -104,6 +125,24 @@ class BuildTest(unittest.TestCase):
             self.assertEqual(n["n3.largest_share"]["text"], "73.3%")
             self.assertEqual(n["f4.since_stake_dao.owner_near_change"]["text"], "-401,848")
             self.assertEqual(n["f8.computed_status"]["status"], "pending")
+            # finding 9: 4,984.673 / (9,569.750 + 4,984.673)
+            self.assertEqual(n["f9.front_end_share_of_wallets"]["text"], "34.2%")
+            # finding 7
+            self.assertEqual(n["f7.locks_active"]["text"], "43")
+            self.assertEqual(n["f7.locks_active_near"]["text"], "14,904")
+            self.assertEqual(n["f7.active_lock_near_vs_farm"]["text"], "1.1%")
+            self.assertEqual(n["f7.lock_days_max"]["text"], "31")
+            # finding 2: monthly table, partial month left out, Sep -> Oct change
+            self.assertEqual(n["f2.take_rate.2026-10"]["text"], "36.1%")
+            self.assertEqual(n["f2.take_rate.2026-10"]["status"], "provisional")
+            self.assertNotIn("f2.take_rate.2026-11", n)
+            self.assertEqual(n["f2.wallets_kept_near_per_day.2026-09"]["text"], "18,806")
+            self.assertEqual(n["f2.wallets_kept_share_of_revenue.2026-09"]["text"], "98%")
+            self.assertEqual(n["f2.wallets_kept_share_of_revenue.2026-10"]["text"], "99%")
+            self.assertEqual(n["f2.change.2026-09_2026-10.revenue_usd"]["text"], "+17%")
+            self.assertEqual(n["f2.change.2026-09_2026-10.mean_price"]["text"], "+50%")
+            self.assertEqual(n["f2.change.2026-09_2026-10.revenue_near"]["text"], "-23%")
+            self.assertIn("f2.take_rate.2026-10", doc["provisional_or_pending"])
             self.assertFalse(doc["complete"])
             self.assertIn("n2.max_coverage", doc["provisional_or_pending"])
             self.assertIn("history.csv", " ".join(doc["sources"]))
