@@ -215,6 +215,62 @@
           "args_base64": "eyJhY2NvdW50X2lkIjogImludGVudHMubmVhciJ9"
         }
       }
+    },
+    "history/keys/buybacks.multisignature.near/page_1": {
+      "path": "data/raw/control/history_keys_buybacks.multisignature.near_page_1.json",
+      "sha256": "7de0dc63b6a83922061737e3194866f30c8bc46264ca076a8b65b1c1b50fa83b",
+      "private": false,
+      "request": {
+        "nearblocks": "https://api.nearblocks.io/v1/account/buybacks.multisignature.near/keys?per_page=100&page=1"
+      }
+    },
+    "history/keys/treasury.near/page_1": {
+      "path": "data/raw/control/history_keys_treasury.near_page_1.json",
+      "sha256": "4cebb4e6fb2399c5f896989dca3d9863f476293801c95f99a36b785d919f983f",
+      "private": false,
+      "request": {
+        "nearblocks": "https://api.nearblocks.io/v1/account/treasury.near/keys?per_page=100&page=1"
+      }
+    },
+    "history/keys/stake.dao/page_1": {
+      "path": "data/raw/control/history_keys_stake.dao_page_1.json",
+      "sha256": "4b13dde6165d9675b2732c9880ee80afaddb812f0c36b77ce0e651e80a62a219",
+      "private": false,
+      "request": {
+        "nearblocks": "https://api.nearblocks.io/v1/account/stake.dao/keys?per_page=100&page=1"
+      }
+    },
+    "history/keys/ctl-intents.near/page_1": {
+      "path": "data/raw/control/history_keys_ctl-intents.near_page_1.json",
+      "sha256": "3447ee2c1eb37f272673a037b57ffde8bd6e86e6b883babaf504dcf53720093d",
+      "private": false,
+      "request": {
+        "nearblocks": "https://api.nearblocks.io/v1/account/ctl-intents.near/keys?per_page=100&page=1"
+      }
+    },
+    "history/keys/intents.near/page_1": {
+      "path": "data/raw/control/history_keys_intents.near_page_1.json",
+      "sha256": "c29fe6926208f06235a595592fcc3c0ad4a694cd813c18a501ca241d02f083bd",
+      "private": false,
+      "request": {
+        "nearblocks": "https://api.nearblocks.io/v1/account/intents.near/keys?per_page=100&page=1"
+      }
+    },
+    "history/keys/nearai.pool.near/page_1": {
+      "path": "data/raw/control/history_keys_nearai.pool.near_page_1.json",
+      "sha256": "9638d11914735d0072002dd4d67c734a94ee7a0cd845e6dcbc984ee7581860a7",
+      "private": false,
+      "request": {
+        "nearblocks": "https://api.nearblocks.io/v1/account/nearai.pool.near/keys?per_page=100&page=1"
+      }
+    },
+    "history/keys/vote.dao/page_1": {
+      "path": "data/raw/control/history_keys_vote.dao_page_1.json",
+      "sha256": "8bd695d4bcfbc5ee1ace188763632aad3a9c5f7b89fd680580cb423b3401c443",
+      "private": false,
+      "request": {
+        "nearblocks": "https://api.nearblocks.io/v1/account/vote.dao/keys?per_page=100&page=1"
+      }
     }
   },
   "block": {
@@ -959,6 +1015,177 @@
       "after": "0.240000"
     }
   ],
+  "key_history": {
+    "buybacks.multisignature.near": {
+      "keys_ever": 4,
+      "full_access_ever": 0,
+      "active_at_end": 4,
+      "added_dates": [
+        [
+          "2026-03-18",
+          4
+        ]
+      ],
+      "removed_dates": [],
+      "last_change": "2026-03-18",
+      "matches_chain_at_end_block": true
+    },
+    "treasury.near": {
+      "keys_ever": 9,
+      "full_access_ever": 1,
+      "active_at_end": 4,
+      "added_dates": [
+        [
+          "1970-01-01",
+          1
+        ],
+        [
+          "2020-10-15",
+          4
+        ],
+        [
+          "2024-01-30",
+          1
+        ],
+        [
+          "2024-01-31",
+          1
+        ],
+        [
+          "2025-04-01",
+          1
+        ],
+        [
+          "2025-09-05",
+          1
+        ]
+      ],
+      "removed_dates": [
+        [
+          "2020-10-16",
+          1
+        ],
+        [
+          "2024-02-02",
+          2
+        ],
+        [
+          "2025-02-12",
+          1
+        ],
+        [
+          "2025-09-05",
+          1
+        ]
+      ],
+      "last_change": "2025-09-05",
+      "matches_chain_at_end_block": true
+    },
+    "stake.dao": {
+      "keys_ever": 2,
+      "full_access_ever": 2,
+      "active_at_end": 2,
+      "added_dates": [
+        [
+          "2026-07-28",
+          1
+        ],
+        [
+          "2026-07-29",
+          1
+        ]
+      ],
+      "removed_dates": [],
+      "last_change": "2026-07-29",
+      "matches_chain_at_end_block": true
+    },
+    "ctl-intents.near": {
+      "keys_ever": 1,
+      "full_access_ever": 1,
+      "active_at_end": 0,
+      "added_dates": [
+        [
+          "2024-11-06",
+          1
+        ]
+      ],
+      "removed_dates": [
+        [
+          "2024-11-06",
+          1
+        ]
+      ],
+      "last_change": "2024-11-06",
+      "matches_chain_at_end_block": true
+    },
+    "intents.near": {
+      "keys_ever": 11,
+      "full_access_ever": 1,
+      "active_at_end": 6,
+      "added_dates": [
+        [
+          "2024-11-01",
+          1
+        ],
+        [
+          "2024-11-05",
+          3
+        ],
+        [
+          "2025-06-20",
+          6
+        ],
+        [
+          "2026-02-20",
+          1
+        ]
+      ],
+      "removed_dates": [
+        [
+          "2024-11-06",
+          1
+        ],
+        [
+          "2025-01-22",
+          3
+        ],
+        [
+          "2025-06-20",
+          1
+        ]
+      ],
+      "last_change": "2026-02-20",
+      "matches_chain_at_end_block": false
+    },
+    "nearai.pool.near": {
+      "keys_ever": 0,
+      "full_access_ever": 0,
+      "active_at_end": 0,
+      "added_dates": [],
+      "removed_dates": [],
+      "last_change": null,
+      "matches_chain_at_end_block": true
+    },
+    "vote.dao": {
+      "keys_ever": 1,
+      "full_access_ever": 1,
+      "active_at_end": 0,
+      "added_dates": [
+        [
+          "2025-10-10",
+          1
+        ]
+      ],
+      "removed_dates": [
+        [
+          "2025-10-13",
+          1
+        ]
+      ],
+      "last_change": "2025-10-13",
+      "matches_chain_at_end_block": true
+    }
+  },
   "timeline": [
     {
       "dao": "jasnah-treasury.sputnik-dao.near",
@@ -3466,6 +3693,9 @@
       "method": "acl_grant_role",
       "lever": "roles"
     }
+  ],
+  "key_history_mismatches": [
+    "intents.near"
   ],
   "checks": {
     "public_output_names_allowlisted": true

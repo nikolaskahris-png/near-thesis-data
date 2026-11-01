@@ -16,6 +16,15 @@ map, read from the DAOs themselves at the locked end block, sorted by lever.
   transfer     DAO transfers: Transfer proposals and ft/mt transfer calls
   other        anything else (counted, named by receiver and method)
 
+Key history (NearBlocks): every access key ever added to or deleted from the map's
+accounts that act through keys (multisigs, stake.dao, the intents contracts, the NEAR AI
+pool, vote.dao), counted up to the end block's time. Check: the keys NearBlocks shows as
+active at that time are compared with the keys the chain returned at the end block
+(control_map.py's view_access_key_list). An account where they differ is listed under
+key_history_mismatches and gets no key numbers: NearBlocks keeps one record per public
+key, so a key deleted and later added again shows as deleted (seen on intents.near).
+NearBlocks is not pinned to a block, so --verify --archival skips these files.
+
 Also included: the code changes of intents.near recorded by its controller
 (ctl-intents.near get_deployment upgrade_times, executed times) and the farm rate
 changes from data/farm_rate.json.
@@ -38,16 +47,22 @@ Usage:
 import argparse
 import json
 import sys
+import time
+import urllib.parse
 from collections import Counter
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import control_map as cm  # noqa: E402
 import lock_window as lw  # noqa: E402
+import stakers  # noqa: E402
 
 REPO = lw.REPO
 OUT_NAME = "control_history.json"
 PAGE = 100
+KEY_ACCOUNTS = [cm.BUYBACKS, cm.TREASURY, cm.STAKE_DAO, cm.CTL, cm.INTENTS, cm.POOL, cm.VOTE]
+NEARBLOCKS_KEYS = "https://api.nearblocks.io/v1/account/{}/keys"
+KEY_PAGE = 100
 LEVERS = ["fee", "code", "roles", "user_funds", "pause", "voting", "staking", "transfer", "other"]
 # Contracts that may be named as receivers in the public file, besides cm.PUBLIC_ACCOUNTS.
 KNOWN_CONTRACTS = cm.PUBLIC_ACCOUNTS | {"omft.near", "rec.hos", "registrar", "venear.dao",
@@ -91,6 +106,63 @@ def collect(chain, store, height):
               True)
     q(f"history/{cm.CTL}/get_deployment",
       cm.request_view(cm.CTL, "get_deployment", {"account_id": cm.INTENTS}, height), False)
+
+
+def collect_keys(store, get=stakers.http_get, wait=stakers.PAGE_WAIT):
+    first = True
+    for a in KEY_ACCOUNTS:
+        page = 1
+        while True:
+            if not first:
+                time.sleep(wait)
+            first = False
+            url = NEARBLOCKS_KEYS.format(a) + "?" + urllib.parse.urlencode(
+                {"per_page": KEY_PAGE, "page": page})
+            raw = get(url)
+            store.put(f"history/keys/{a}/page_{page}", raw, False, {"nearblocks": url})
+            if len(json.loads(raw).get("keys", [])) < KEY_PAGE:
+                break
+            page += 1
+
+
+def key_history(root, files, end_ns):
+    """Key changes per account up to end_ns, and the check against the chain at the end."""
+    out = {}
+    for a in KEY_ACCOUNTS:
+        keys = []
+        for key in sorted(k for k in files if k.startswith(f"history/keys/{a}/page_")):
+            keys += json.loads((root / files[key]["path"]).read_bytes())["keys"]
+        for k in keys:  # keys from genesis have no creation time on NearBlocks
+            if k["created"]["block_timestamp"] is None:
+                k["created"]["block_timestamp"] = 0
+        added = sorted(k["created"]["block_timestamp"] for k in keys
+                       if k["created"]["block_timestamp"] is not None
+                       and int(k["created"]["block_timestamp"]) <= end_ns)
+        removed = sorted(k["deleted"]["block_timestamp"] for k in keys
+                         if k["deleted"]["block_timestamp"] is not None
+                         and int(k["deleted"]["block_timestamp"]) <= end_ns)
+        active = sorted(k["public_key"] for k in keys
+                        if k["created"]["block_timestamp"] is not None
+                        and int(k["created"]["block_timestamp"]) <= end_ns
+                        and (k["deleted"]["block_timestamp"] is None
+                             or int(k["deleted"]["block_timestamp"]) > end_ns))
+        chain_file = root / "data" / "raw" / "control" / f"keys_{a}.json"
+        chain = None
+        if chain_file.exists():
+            chain = sorted(k["public_key"] for k in json.loads(chain_file.read_bytes())["result"]["keys"])
+        day = lambda t: lw.iso(int(t))[:10]
+        out[a] = {
+            "keys_ever": len(added),
+            "full_access_ever": sum(1 for k in keys if k["permission_kind"] == "FULL_ACCESS"
+                                    and k["created"]["block_timestamp"] is not None
+                                    and int(k["created"]["block_timestamp"]) <= end_ns),
+            "active_at_end": len(active),
+            "added_dates": [list(x) for x in sorted(Counter(day(t) for t in added).items())],
+            "removed_dates": [list(x) for x in sorted(Counter(day(t) for t in removed).items())],
+            "last_change": max([day(t) for t in added + removed], default=None),
+            "matches_chain_at_end_block": None if chain is None else chain == active,
+        }
+    return out
 
 
 # ---------------------------------------------------------------- classify
@@ -166,6 +238,8 @@ def build(root, files, window):
 
     last_b = window["boundaries"][-1]
     items, statuses, removed = [], Counter(), {}
+    keys = key_history(root, files, int(last_b["timestamp_ns"])) \
+        if any(k.startswith("history/keys/") for k in files) else None
     for d in cm.DAOS:
         last = cm.decode(raw(f"history/{d}/get_last_proposal_id"))
         seen = []
@@ -202,9 +276,12 @@ def build(root, files, window):
         "intents_code_changes": {"count": len(code_changes), "downgrades": downgrades,
                                  "changes": code_changes},
         "farm_rate_changes": farm,
+        "key_history": keys,
         "timeline": sorted((e for e in items if e["status"] == "Approved" and e["lever"] != "transfer"),
                            key=lambda e: (e["submitted"], e["dao"], e["id"])),
     }
+    out["key_history_mismatches"] = None if keys is None else sorted(
+        a for a, v in keys.items() if v["matches_chain_at_end_block"] is False)
     out["checks"] = {"public_output_names_allowlisted": not leaked(out)}
     return out
 
@@ -216,10 +293,11 @@ def leaked(out):
 
 # ---------------------------------------------------------------- run / verify
 
-def run(chain, data_dir, window_path):
+def run(chain, data_dir, window_path, get=stakers.http_get, wait=stakers.PAGE_WAIT):
     window = json.loads(Path(window_path).read_text(encoding="utf-8"))
     store = cm.Store(data_dir)
     collect(chain, store, window["boundaries"][-1]["height"])
+    collect_keys(store, get, wait)
     doc = {
         "measure": "control history: every proposal of the control map's DAOs, by lever",
         "window_file": Path(window_path).resolve().relative_to(data_dir.parent.resolve()).as_posix(),
@@ -239,7 +317,7 @@ def verify(path, archival=False, chain=None):
     problems, missing = [], 0
     for key, f in doc["raw_files"].items():
         p = root / f["path"]
-        if archival:
+        if archival and "nearblocks" not in f["request"]:
             raw = cm.fetch(chain, f["request"])
             if lw.sha256(raw) != f["sha256"]:
                 problems.append(f"archival answer differs: {key}")
@@ -275,6 +353,9 @@ def show(doc):
         v = a[lv]
         if v["approved_actions"]:
             print(f"  {lv:<11} {v['approved_actions']:>4}  {v['first']} .. {v['last']}  {v['by_year']}")
+    for a, k in (doc.get("key_history") or {}).items():
+        print(f"keys {a}: {k['keys_ever']} ever ({k['full_access_ever']} full), {k['active_at_end']} "
+              f"at end, last change {k['last_change']}, chain match {k['matches_chain_at_end_block']}")
     c = doc["intents_code_changes"]
     print(f"intents.near code changes: {c['count']} ({c['downgrades']} downgrades), last "
           f"{c['changes'][-1]['utc'][:10] if c['changes'] else None}")

@@ -522,6 +522,10 @@ def build(data_dir, window_file):
                  "intents.near": "intents", "nearai.pool.near": "nearai_pool", "vote.dao": "vote_dao"}
         for acc, kh in (chd.get("key_history") or {}).items():
             k = f"h.keys.{short.get(acc, acc)}"
+            if kh["matches_chain_at_end_block"] is not True:
+                n.add(f"{k}.ever", None, None, hsrc3, status="not-measured", **hc3,
+                      reason="NearBlocks key list does not match the chain at the end block")
+                continue
             kc = {**hc3, "note": "access keys from NearBlocks up to the end block's time; active "
                                  "keys checked against the chain at the end block"}
             n.add(f"{k}.ever", kh["keys_ever"], f_int(kh["keys_ever"]), hsrc3, unit="keys", **kc)

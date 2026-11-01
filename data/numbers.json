@@ -91,7 +91,7 @@
     "n2.volume_usd_per_day"
   ],
   "sources": {
-    "data/control_history.json": "c86862334aa57f4d75f9e5ec613a5017f623454d286209b419b423dc839b4268",
+    "data/control_history.json": "3ece6ef29343ff09201a87d732f8b8c5fa31db47971d7f49de29296eef0a7b2c",
     "data/control_map.json": "01946bd20ce7906249906d5f63b116a53990c323f80e3464baa358d6d6455f2b",
     "data/coverage_monthly.json": "74c24cad7c5a975e989fb70a62b157caef271901f16b9dfe9f708b3e98f8e9e9",
     "data/daily/2026-11-01.json": "175ddea59ee744ae15112e72eee4a4023546ac3b80e85f44de604ef8c7fbd8d8",
@@ -2064,6 +2064,218 @@
       "block": 222491356,
       "as_of": "2026-11-01T00:00:00Z",
       "note": "approved actions in the control map's DAOs; dates are submission dates"
+    },
+    "h.keys.buybacks.active_at_end": {
+      "value": "4",
+      "text": "4",
+      "source": "data/control_history.json",
+      "unit": "keys",
+      "block": 222491356,
+      "as_of": "2026-11-01T00:00:00Z",
+      "note": "access keys from NearBlocks up to the end block's time; active keys checked against the chain at the end block"
+    },
+    "h.keys.buybacks.ever": {
+      "value": "4",
+      "text": "4",
+      "source": "data/control_history.json",
+      "unit": "keys",
+      "block": 222491356,
+      "as_of": "2026-11-01T00:00:00Z",
+      "note": "access keys from NearBlocks up to the end block's time; active keys checked against the chain at the end block"
+    },
+    "h.keys.buybacks.full_access_ever": {
+      "value": "0",
+      "text": "0",
+      "source": "data/control_history.json",
+      "unit": "keys",
+      "block": 222491356,
+      "as_of": "2026-11-01T00:00:00Z",
+      "note": "access keys from NearBlocks up to the end block's time; active keys checked against the chain at the end block"
+    },
+    "h.keys.buybacks.last_change": {
+      "value": "2026-03-18",
+      "text": "2026-03-18",
+      "source": "data/control_history.json",
+      "block": 222491356,
+      "as_of": "2026-11-01T00:00:00Z",
+      "note": "access keys from NearBlocks up to the end block's time; active keys checked against the chain at the end block"
+    },
+    "h.keys.ctl_intents.active_at_end": {
+      "value": "0",
+      "text": "0",
+      "source": "data/control_history.json",
+      "unit": "keys",
+      "block": 222491356,
+      "as_of": "2026-11-01T00:00:00Z",
+      "note": "access keys from NearBlocks up to the end block's time; active keys checked against the chain at the end block"
+    },
+    "h.keys.ctl_intents.ever": {
+      "value": "1",
+      "text": "1",
+      "source": "data/control_history.json",
+      "unit": "keys",
+      "block": 222491356,
+      "as_of": "2026-11-01T00:00:00Z",
+      "note": "access keys from NearBlocks up to the end block's time; active keys checked against the chain at the end block"
+    },
+    "h.keys.ctl_intents.full_access_ever": {
+      "value": "1",
+      "text": "1",
+      "source": "data/control_history.json",
+      "unit": "keys",
+      "block": 222491356,
+      "as_of": "2026-11-01T00:00:00Z",
+      "note": "access keys from NearBlocks up to the end block's time; active keys checked against the chain at the end block"
+    },
+    "h.keys.ctl_intents.last_change": {
+      "value": "2024-11-06",
+      "text": "2024-11-06",
+      "source": "data/control_history.json",
+      "block": 222491356,
+      "as_of": "2026-11-01T00:00:00Z",
+      "note": "access keys from NearBlocks up to the end block's time; active keys checked against the chain at the end block"
+    },
+    "h.keys.intents.ever": {
+      "value": null,
+      "text": null,
+      "source": "data/control_history.json",
+      "status": "not-measured",
+      "block": 222491356,
+      "as_of": "2026-11-01T00:00:00Z",
+      "note": "approved actions in the control map's DAOs; dates are submission dates",
+      "reason": "NearBlocks key list does not match the chain at the end block"
+    },
+    "h.keys.nearai_pool.active_at_end": {
+      "value": "0",
+      "text": "0",
+      "source": "data/control_history.json",
+      "unit": "keys",
+      "block": 222491356,
+      "as_of": "2026-11-01T00:00:00Z",
+      "note": "access keys from NearBlocks up to the end block's time; active keys checked against the chain at the end block"
+    },
+    "h.keys.nearai_pool.ever": {
+      "value": "0",
+      "text": "0",
+      "source": "data/control_history.json",
+      "unit": "keys",
+      "block": 222491356,
+      "as_of": "2026-11-01T00:00:00Z",
+      "note": "access keys from NearBlocks up to the end block's time; active keys checked against the chain at the end block"
+    },
+    "h.keys.nearai_pool.full_access_ever": {
+      "value": "0",
+      "text": "0",
+      "source": "data/control_history.json",
+      "unit": "keys",
+      "block": 222491356,
+      "as_of": "2026-11-01T00:00:00Z",
+      "note": "access keys from NearBlocks up to the end block's time; active keys checked against the chain at the end block"
+    },
+    "h.keys.stake_dao.active_at_end": {
+      "value": "2",
+      "text": "2",
+      "source": "data/control_history.json",
+      "unit": "keys",
+      "block": 222491356,
+      "as_of": "2026-11-01T00:00:00Z",
+      "note": "access keys from NearBlocks up to the end block's time; active keys checked against the chain at the end block"
+    },
+    "h.keys.stake_dao.ever": {
+      "value": "2",
+      "text": "2",
+      "source": "data/control_history.json",
+      "unit": "keys",
+      "block": 222491356,
+      "as_of": "2026-11-01T00:00:00Z",
+      "note": "access keys from NearBlocks up to the end block's time; active keys checked against the chain at the end block"
+    },
+    "h.keys.stake_dao.full_access_ever": {
+      "value": "2",
+      "text": "2",
+      "source": "data/control_history.json",
+      "unit": "keys",
+      "block": 222491356,
+      "as_of": "2026-11-01T00:00:00Z",
+      "note": "access keys from NearBlocks up to the end block's time; active keys checked against the chain at the end block"
+    },
+    "h.keys.stake_dao.last_change": {
+      "value": "2026-07-29",
+      "text": "2026-07-29",
+      "source": "data/control_history.json",
+      "block": 222491356,
+      "as_of": "2026-11-01T00:00:00Z",
+      "note": "access keys from NearBlocks up to the end block's time; active keys checked against the chain at the end block"
+    },
+    "h.keys.treasury.active_at_end": {
+      "value": "4",
+      "text": "4",
+      "source": "data/control_history.json",
+      "unit": "keys",
+      "block": 222491356,
+      "as_of": "2026-11-01T00:00:00Z",
+      "note": "access keys from NearBlocks up to the end block's time; active keys checked against the chain at the end block"
+    },
+    "h.keys.treasury.ever": {
+      "value": "9",
+      "text": "9",
+      "source": "data/control_history.json",
+      "unit": "keys",
+      "block": 222491356,
+      "as_of": "2026-11-01T00:00:00Z",
+      "note": "access keys from NearBlocks up to the end block's time; active keys checked against the chain at the end block"
+    },
+    "h.keys.treasury.full_access_ever": {
+      "value": "1",
+      "text": "1",
+      "source": "data/control_history.json",
+      "unit": "keys",
+      "block": 222491356,
+      "as_of": "2026-11-01T00:00:00Z",
+      "note": "access keys from NearBlocks up to the end block's time; active keys checked against the chain at the end block"
+    },
+    "h.keys.treasury.last_change": {
+      "value": "2025-09-05",
+      "text": "2025-09-05",
+      "source": "data/control_history.json",
+      "block": 222491356,
+      "as_of": "2026-11-01T00:00:00Z",
+      "note": "access keys from NearBlocks up to the end block's time; active keys checked against the chain at the end block"
+    },
+    "h.keys.vote_dao.active_at_end": {
+      "value": "0",
+      "text": "0",
+      "source": "data/control_history.json",
+      "unit": "keys",
+      "block": 222491356,
+      "as_of": "2026-11-01T00:00:00Z",
+      "note": "access keys from NearBlocks up to the end block's time; active keys checked against the chain at the end block"
+    },
+    "h.keys.vote_dao.ever": {
+      "value": "1",
+      "text": "1",
+      "source": "data/control_history.json",
+      "unit": "keys",
+      "block": 222491356,
+      "as_of": "2026-11-01T00:00:00Z",
+      "note": "access keys from NearBlocks up to the end block's time; active keys checked against the chain at the end block"
+    },
+    "h.keys.vote_dao.full_access_ever": {
+      "value": "1",
+      "text": "1",
+      "source": "data/control_history.json",
+      "unit": "keys",
+      "block": 222491356,
+      "as_of": "2026-11-01T00:00:00Z",
+      "note": "access keys from NearBlocks up to the end block's time; active keys checked against the chain at the end block"
+    },
+    "h.keys.vote_dao.last_change": {
+      "value": "2025-10-13",
+      "text": "2025-10-13",
+      "source": "data/control_history.json",
+      "block": 222491356,
+      "as_of": "2026-11-01T00:00:00Z",
+      "note": "access keys from NearBlocks up to the end block's time; active keys checked against the chain at the end block"
     },
     "h.mt_force_transfer": {
       "value": "1",

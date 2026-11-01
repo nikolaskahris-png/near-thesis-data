@@ -17,6 +17,24 @@ END = 222491356
 NS = 10 ** 9
 T2025 = 1740096000 * NS  # 2025-02-21
 T2026 = 1791331200 * NS  # 2026-10-07
+T_END = 1793491200 * NS  # 2026-11-01
+
+
+def key(pk, created, deleted=None, full=False):
+    return {"public_key": pk, "permission_kind": "FULL_ACCESS" if full else "FUNCTION_CALL",
+            "created": {"transaction_hash": "t", "block_timestamp": created},
+            "deleted": {"transaction_hash": None, "block_timestamp": deleted}}
+
+
+KEYS = {cm.TREASURY: [key("ed25519:g", None, T2025, full=True),     # genesis key, removed 2025
+                      key("ed25519:a", T2025), key("ed25519:b", T2025, T2026),
+                      key("ed25519:late", T_END + NS)],               # after the end: not counted
+        cm.STAKE_DAO: [key("ed25519:s1", T2026, full=True)]}
+
+
+def fake_get(url):
+    acc = url.split("/account/")[1].split("/")[0]
+    return json.dumps({"keys": KEYS.get(acc, [])}).encode()
 
 
 def fc(pid, receiver, methods, t, status="Approved"):
@@ -93,13 +111,14 @@ class ControlHistoryTest(unittest.TestCase):
         data.mkdir()
         self.window = data / "window_test.json"
         self.window.write_text(json.dumps({"boundaries": [
-            {"height": 1}, {"height": END, "timestamp_utc": "2026-11-01T00:00:00.17Z"}]}))
+            {"height": 1}, {"height": END, "timestamp_utc": "2026-11-01T00:00:00.17Z",
+                            "timestamp_ns": str(T_END)}]}))
 
     def tearDown(self):
         self.tmp.cleanup()
 
     def save(self):
-        doc = ch.run(FakeChain(), self.root / "data", self.window)
+        doc = ch.run(FakeChain(), self.root / "data", self.window, get=fake_get, wait=0)
         out = self.root / "data" / ch.OUT_NAME
         out.write_text(json.dumps(doc), encoding="utf-8")
         return doc, out
@@ -138,9 +157,29 @@ class ControlHistoryTest(unittest.TestCase):
         doc, out = self.save()
         private = [k for k, f in doc["raw_files"].items() if f["private"]]
         self.assertTrue(all("get_proposals" in k for k in private))
+        self.assertFalse(any("history/keys/" in k for k in private))
         for k in private:
             (self.root / doc["raw_files"][k]["path"]).unlink()
         self.assertEqual(ch.verify(out), ([], len(private)))
+
+    def test_key_history(self):
+        doc, out = self.save()
+        t = doc["key_history"][cm.TREASURY]
+        self.assertEqual((t["keys_ever"], t["full_access_ever"], t["active_at_end"]), (3, 1, 1))
+        self.assertEqual(t["removed_dates"], [["2025-02-21", 1], ["2026-10-07", 1]])
+        self.assertEqual(t["last_change"], "2026-10-07")
+        self.assertIsNone(t["matches_chain_at_end_block"])  # no chain answer saved here
+        self.assertEqual(doc["key_history"][cm.BUYBACKS]["keys_ever"], 0)
+        # the chain at the end block has a key NearBlocks does not show -> check fails
+        chain = self.root / "data" / "raw" / "control" / f"keys_{cm.TREASURY}.json"
+        chain.write_text(json.dumps({"result": {"keys": [{"public_key": "ed25519:a"},
+                                                         {"public_key": "ed25519:x"}]}}))
+        doc1 = ch.build(self.root, doc["raw_files"], json.loads(self.window.read_text()))
+        self.assertFalse(doc1["key_history"][cm.TREASURY]["matches_chain_at_end_block"])
+        self.assertEqual(doc1["key_history_mismatches"], [cm.TREASURY])
+        chain.write_text(json.dumps({"result": {"keys": [{"public_key": "ed25519:a"}]}}))
+        doc2 = ch.build(self.root, doc["raw_files"], json.loads(self.window.read_text()))
+        self.assertTrue(doc2["key_history"][cm.TREASURY]["matches_chain_at_end_block"])
 
     def test_tampered(self):
         doc, out = self.save()
