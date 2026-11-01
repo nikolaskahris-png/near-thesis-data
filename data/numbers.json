@@ -91,6 +91,7 @@
     "n2.volume_usd_per_day"
   ],
   "sources": {
+    "data/control_map.json": "01946bd20ce7906249906d5f63b116a53990c323f80e3464baa358d6d6455f2b",
     "data/coverage_monthly.json": "74c24cad7c5a975e989fb70a62b157caef271901f16b9dfe9f708b3e98f8e9e9",
     "data/daily/2026-11-01.json": "175ddea59ee744ae15112e72eee4a4023546ac3b80e85f44de604ef8c7fbd8d8",
     "data/farm_rate.json": "d1ad56d759c561d85ed924dc8bb49dbd4887663e04e5435523696dc74650f35a",
@@ -106,6 +107,285 @@
     "data/window_2026-10-02_2026-11-01.json": "b77a705e870e9df42e3d11ec6f7c7f5266f7ba692600cda716b1874ca40baaf9"
   },
   "numbers": {
+    "c.buybacks_confirmations": {
+      "value": "2 of 4",
+      "text": "2 of 4",
+      "source": "data/control_map.json",
+      "unit": "multisig keys",
+      "block": 222491356,
+      "as_of": "2026-11-01T00:00:00Z"
+    },
+    "c.buybacks_full_access_keys": {
+      "value": "0",
+      "text": "0",
+      "source": "data/control_map.json",
+      "unit": "keys",
+      "block": 222491356,
+      "as_of": "2026-11-01T00:00:00Z"
+    },
+    "c.farm_contract_full_access_keys": {
+      "value": "2",
+      "text": "2",
+      "source": "data/control_map.json",
+      "unit": "keys",
+      "block": 222491356,
+      "as_of": "2026-11-01T00:00:00Z"
+    },
+    "c.farm_contract_guardians": {
+      "value": "5",
+      "text": "5",
+      "source": "data/control_map.json",
+      "unit": "accounts",
+      "block": 222491356,
+      "as_of": "2026-11-01T00:00:00Z"
+    },
+    "c.front_end_rules": {
+      "value": "1 of 5",
+      "text": "1 of 5",
+      "source": "data/control_map.json",
+      "role": "Admin",
+      "block": 222491356,
+      "as_of": "2026-11-01T00:00:00Z"
+    },
+    "c.front_end_transfer": {
+      "value": "2 of 5",
+      "text": "2 of 5",
+      "source": "data/control_map.json",
+      "role": "Approver",
+      "block": 222491356,
+      "as_of": "2026-11-01T00:00:00Z"
+    },
+    "c.hsp_guardians": {
+      "value": "5",
+      "text": "5",
+      "source": "data/control_map.json",
+      "unit": "accounts",
+      "block": 222491356,
+      "as_of": "2026-11-01T00:00:00Z"
+    },
+    "c.hsp_owner_rules": {
+      "value": "3 of 5",
+      "text": "3 of 5",
+      "source": "data/control_map.json",
+      "role": "Admin",
+      "block": 222491356,
+      "as_of": "2026-11-01T00:00:00Z"
+    },
+    "c.hsp_reviewers": {
+      "value": "5",
+      "text": "5",
+      "source": "data/control_map.json",
+      "unit": "accounts",
+      "block": 222491356,
+      "as_of": "2026-11-01T00:00:00Z"
+    },
+    "c.intents_code_add_release": {
+      "value": "3 of 5",
+      "text": "3 of 5",
+      "source": "data/control_map.json",
+      "role": "council",
+      "block": 222491356,
+      "as_of": "2026-11-01T00:00:00Z",
+      "note": "add_release_info on ctl-intents.near needs role DAO"
+    },
+    "c.intents_code_changes": {
+      "value": "20",
+      "text": "20",
+      "source": "data/control_map.json",
+      "unit": "upgrades and downgrades",
+      "block": 222491356,
+      "as_of": "2026-11-01T00:00:00Z"
+    },
+    "c.intents_code_downgrader_accounts": {
+      "value": "2",
+      "text": "2",
+      "source": "data/control_map.json",
+      "unit": "accounts",
+      "block": 222491356,
+      "as_of": "2026-11-01T00:00:00Z"
+    },
+    "c.intents_code_last_change_utc": {
+      "value": "2026-10-07T19:53:17.418572403Z",
+      "text": "2026-10-07",
+      "source": "data/control_map.json",
+      "block": 222491356,
+      "as_of": "2026-11-01T00:00:00Z"
+    },
+    "c.intents_code_updater_accounts": {
+      "value": "1",
+      "text": "1",
+      "source": "data/control_map.json",
+      "unit": "accounts",
+      "block": 222491356,
+      "as_of": "2026-11-01T00:00:00Z"
+    },
+    "c.intents_code_version": {
+      "value": "0.4.5",
+      "text": "0.4.5",
+      "source": "data/control_map.json",
+      "block": 222491356,
+      "as_of": "2026-11-01T00:00:00Z"
+    },
+    "c.intents_fee_change": {
+      "value": "3 of 5",
+      "text": "3 of 5",
+      "source": "data/control_map.json",
+      "role": "council",
+      "block": 222491356,
+      "as_of": "2026-11-01T00:00:00Z",
+      "note": "role DAO on intents.near = intents.sputnik-dao.near, call proposal"
+    },
+    "c.intents_fee_percent": {
+      "value": "0.0001",
+      "text": "0.0001%",
+      "source": "data/control_map.json",
+      "unit": "percent",
+      "block": 222491356,
+      "as_of": "2026-11-01T00:00:00Z"
+    },
+    "c.intents_fee_pips": {
+      "value": "1",
+      "text": "1 pip",
+      "source": "data/control_map.json",
+      "unit": "pips (1,000,000 = 100%)",
+      "block": 222491356,
+      "as_of": "2026-11-01T00:00:00Z"
+    },
+    "c.intents_fees_manager_accounts": {
+      "value": "0",
+      "text": "0",
+      "source": "data/control_map.json",
+      "unit": "accounts",
+      "block": 222491356,
+      "as_of": "2026-11-01T00:00:00Z"
+    },
+    "c.issuance_largest_validator_share": {
+      "value": "0.056168",
+      "text": "5.6%",
+      "source": "data/control_map.json",
+      "unit": "share of stake",
+      "block": 222491356,
+      "as_of": "2026-11-01T00:00:00Z"
+    },
+    "c.issuance_max_inflation_rate": {
+      "value": "1/40",
+      "text": "1/40",
+      "source": "data/control_map.json",
+      "block": 222491356,
+      "as_of": "2026-11-01T00:00:00Z"
+    },
+    "c.issuance_upgrade_stake_threshold": {
+      "value": "4/5",
+      "text": "4/5",
+      "source": "data/control_map.json",
+      "block": 222491356,
+      "as_of": "2026-11-01T00:00:00Z"
+    },
+    "c.issuance_validators": {
+      "value": "381",
+      "text": "381",
+      "source": "data/control_map.json",
+      "unit": "validators",
+      "block": 222491356,
+      "as_of": "2026-11-01T00:00:00Z"
+    },
+    "c.issuance_validators_to_block_upgrade": {
+      "value": "5",
+      "text": "5",
+      "source": "data/control_map.json",
+      "unit": "validators",
+      "block": 222491356,
+      "as_of": "2026-11-01T00:00:00Z"
+    },
+    "c.issuance_validators_to_exceed_one_third": {
+      "value": "9",
+      "text": "9",
+      "source": "data/control_map.json",
+      "unit": "validators",
+      "block": 222491356,
+      "as_of": "2026-11-01T00:00:00Z"
+    },
+    "c.issuance_validators_to_pass_upgrade": {
+      "value": "44",
+      "text": "44",
+      "source": "data/control_map.json",
+      "unit": "validators",
+      "block": 222491356,
+      "as_of": "2026-11-01T00:00:00Z"
+    },
+    "c.issuance_validators_to_reach_two_thirds": {
+      "value": "27",
+      "text": "27",
+      "source": "data/control_map.json",
+      "unit": "validators",
+      "block": 222491356,
+      "as_of": "2026-11-01T00:00:00Z"
+    },
+    "c.nearai_pool_owner_rules": {
+      "value": "2 of 3",
+      "text": "2 of 3",
+      "source": "data/control_map.json",
+      "role": "council",
+      "block": 222491356,
+      "as_of": "2026-11-01T00:00:00Z"
+    },
+    "c.nearai_pool_owner_transfer": {
+      "value": "2 of 3",
+      "text": "2 of 3",
+      "source": "data/control_map.json",
+      "role": "council",
+      "block": 222491356,
+      "as_of": "2026-11-01T00:00:00Z"
+    },
+    "c.nearai_pool_reward_fee": {
+      "value": "100/100",
+      "text": "100%",
+      "source": "data/control_map.json",
+      "unit": "share of rewards kept by the pool owner",
+      "block": 222491356,
+      "as_of": "2026-11-01T00:00:00Z"
+    },
+    "c.treasury_confirmations": {
+      "value": "2 of 4",
+      "text": "2 of 4",
+      "source": "data/control_map.json",
+      "unit": "multisig keys",
+      "block": 222491356,
+      "as_of": "2026-11-01T00:00:00Z"
+    },
+    "c.treasury_near_received": {
+      "value": "268972.864",
+      "text": "268,973",
+      "source": "data/control_map.json",
+      "unit": "NEAR",
+      "window": "2026-10-02 00:00 UTC to 2026-11-01 00:00 UTC",
+      "blocks": "218126921-222491356"
+    },
+    "c.treasury_share_of_new_supply": {
+      "value": "0.101432",
+      "text": "10.1%",
+      "source": "data/control_map.json",
+      "unit": "share",
+      "window": "2026-10-02 00:00 UTC to 2026-11-01 00:00 UTC",
+      "blocks": "218126921-222491356",
+      "note": "treasury.near balance change / total_supply change; RPC protocol_reward_rate reports 0/1 and is not used"
+    },
+    "c.wallet_1cs_rules": {
+      "value": "2 of 4",
+      "text": "2 of 4",
+      "source": "data/control_map.json",
+      "role": "Admin",
+      "block": 222491356,
+      "as_of": "2026-11-01T00:00:00Z"
+    },
+    "c.wallet_1cs_transfer": {
+      "value": "2 of 4",
+      "text": "2 of 4",
+      "source": "data/control_map.json",
+      "role": "Approver",
+      "block": 222491356,
+      "as_of": "2026-11-01T00:00:00Z"
+    },
     "f1.coverage_buybacks.2026-04": {
       "value": "0.053409",
       "text": "5.3%",

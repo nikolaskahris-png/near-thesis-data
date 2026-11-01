@@ -248,5 +248,63 @@ class MarkerTest(unittest.TestCase):
             bn.render_text("<!--n:f8.computed_status-->?<!--/n-->", self.numbers)
 
 
+    def test_control_map(self):
+        kn = lambda k, n, role: {"k": k, "n": n, "role": role}
+        ms = {"confirmations": 2, "member_keys": 4, "full_access_keys": 0}
+        links = {
+            "intents_protocol_fee": {"value": {"fee_pips": 1, "fee_percent": "0.0001"},
+                                     "fees_manager_grantees": {"public": [], "others": 0, "total": 0},
+                                     "via": {"intents.sputnik-dao.near": kn(3, 5, "council")}},
+            "intents_code": {"controller": {"add_release": {"intents.sputnik-dao.near": kn(3, 5, "council")},
+                                            "updater_grantees": {"total": 1},
+                                            "downgrader_grantees": {"total": 2}},
+                             "code_changes": 20, "last_upgrade_utc": "2026-10-07T03:53:17.418572403Z",
+                             "deployed_version": "0.4.5"},
+            "buybacks_wallet": {"multisig": ms},
+            "wallet_1cs": {"dao": kn(2, 4, "Approver"), "rules": kn(2, 4, "Admin")},
+            "wallet_front_end": {"dao": kn(2, 5, "Approver"), "rules": kn(1, 5, "Admin")},
+            "issuance": {"max_inflation_rate": "1/40", "protocol_upgrade_stake_threshold": "4/5",
+                         "validators": 381, "validators_to_reach_threshold": 44,
+                         "validators_to_block_upgrade": 5, "validators_to_reach_two_thirds": 27,
+                         "validators_to_exceed_one_third": 9, "largest_validator_share": "0.056168"},
+            "protocol_treasury": {"share_of_new_supply": "0.101432", "balance_change_near": "268972.864",
+                                  "reported_protocol_reward_rate": "0/1", "multisig": ms},
+            "hsp_voting": {"owner_dao": kn(3, 5, "Admin"), "reviewers": 5, "guardians": 5},
+            "nearai_pool_rewards": {"reward_fee": "100/100", "owner_dao": kn(2, 3, "council"),
+                                    "owner_rules": kn(2, 3, "council")},
+            "farm_contract": {"full_access_keys": 2, "guardians": 5},
+        }
+        with tempfile.TemporaryDirectory() as tmp, \
+                mock.patch.object(bn.stakers, "compute", fake_stats), \
+                mock.patch.object(bn.daily, "build_row", fake_row):
+            data, window = fake_repo(tmp)
+            self.assertEqual(bn.build(data, window)[0]["numbers"]["c.intents_fee_change"]["status"],
+                             "pending")
+            cm = {"block": {"height": B1, "timestamp_utc": "2026-11-01T00:00:00.17Z"},
+                  "window_file": f"data/window_{START}_{END}.json",
+                  "checks": {"a": True}, "links": links}
+            write(data / "control_map.json", cm)
+            doc, problems = bn.build(data, window)
+            self.assertEqual(problems, [])
+            n = doc["numbers"]
+            self.assertEqual(n["c.front_end_rules"]["text"], "1 of 5")
+            self.assertEqual(n["c.front_end_rules"]["role"], "Admin")
+            self.assertEqual(n["c.intents_code_add_release"]["text"], "3 of 5")
+            self.assertEqual(n["c.intents_code_updater_accounts"]["text"], "1")
+            self.assertEqual(n["c.intents_fee_percent"]["text"], "0.0001%")
+            self.assertEqual(n["c.issuance_validators_to_block_upgrade"]["text"], "5")
+            self.assertEqual(n["c.issuance_largest_validator_share"]["text"], "5.6%")
+            self.assertEqual(n["c.treasury_share_of_new_supply"]["text"], "10.1%")
+            self.assertEqual(n["c.treasury_near_received"]["text"], "268,973")
+            self.assertEqual(n["c.nearai_pool_reward_fee"]["text"], "100%")
+            self.assertEqual(n["c.buybacks_confirmations"]["text"], "2 of 4")
+            self.assertIn("data/control_map.json", doc["sources"])
+            cm["block"]["height"] = B1 + 1
+            cm["checks"]["a"] = False
+            write(data / "control_map.json", cm)
+            problems = bn.build(data, window)[1]
+            self.assertTrue(any("control map block" in p for p in problems))
+            self.assertIn("control_map.json: a check failed", problems)
+
 if __name__ == "__main__":
     unittest.main()

@@ -366,6 +366,94 @@ def build(data_dir, window_file):
     fs = tfd["stake_dao_first_stake_receipt"]
     n.add("f4.first_stake_utc", fs["utc"], fs["utc"][:10], tsrc, block=fs["height"])
 
+    # ---- control map: who can change each link, as k of n (control_map.py), end block
+    cm_path = data_dir / "control_map.json"
+    if cm_path.exists():
+        cm = json.loads(cm_path.read_text(encoding="utf-8"))
+        csrc = n.source(cm_path)
+        same("control map block", cm["block"]["height"], last_b["height"])
+        same("control map window file", cm["window_file"], wsrc)
+        if not all(cm["checks"].values()):
+            problems.append("control_map.json: a check failed")
+        L = cm["links"]
+        cc = {"block": cm["block"]["height"], "as_of": cm["block"]["timestamp_utc"][:19] + "Z"}
+
+        def kn(x):
+            return None if x is None else f"{x['k']} of {x['n']}"
+
+        def add_kn(key, x, **extra):
+            n.add(key, kn(x), kn(x), csrc, role=None if x is None else x["role"], **cc, **extra)
+
+        def add_int(key, v, unit):
+            n.add(key, v, f_int(v), csrc, unit=unit, **cc)
+
+        fee, code = L["intents_protocol_fee"], L["intents_code"]
+        ctl = code["controller"]
+        n.add("c.intents_fee_pips", fee["value"]["fee_pips"], f"{fee['value']['fee_pips']} pip",
+              csrc, unit="pips (1,000,000 = 100%)", **cc)
+        n.add("c.intents_fee_percent", fee["value"]["fee_percent"],
+              fee["value"]["fee_percent"] + "%", csrc, unit="percent", **cc)
+        add_kn("c.intents_fee_change", next(iter(fee["via"].values())),
+               note="role DAO on intents.near = intents.sputnik-dao.near, call proposal")
+        add_int("c.intents_fees_manager_accounts", fee["fees_manager_grantees"]["total"], "accounts")
+        add_kn("c.intents_code_add_release", next(iter(ctl["add_release"].values())),
+               note="add_release_info on ctl-intents.near needs role DAO")
+        add_int("c.intents_code_updater_accounts", ctl["updater_grantees"]["total"], "accounts")
+        add_int("c.intents_code_downgrader_accounts", ctl["downgrader_grantees"]["total"],
+                "accounts")
+        add_int("c.intents_code_changes", code["code_changes"], "upgrades and downgrades")
+        n.add("c.intents_code_last_change_utc", code["last_upgrade_utc"],
+              code["last_upgrade_utc"][:10], csrc, **cc)
+        n.add("c.intents_code_version", code["deployed_version"], code["deployed_version"],
+              csrc, **cc)
+        m = L["buybacks_wallet"]["multisig"]
+        n.add("c.buybacks_confirmations", f"{m['confirmations']} of {m['member_keys']}",
+              f"{m['confirmations']} of {m['member_keys']}", csrc, unit="multisig keys", **cc)
+        add_int("c.buybacks_full_access_keys", m["full_access_keys"], "keys")
+        add_kn("c.wallet_1cs_transfer", L["wallet_1cs"]["dao"])
+        add_kn("c.wallet_1cs_rules", L["wallet_1cs"]["rules"])
+        add_kn("c.front_end_transfer", L["wallet_front_end"]["dao"])
+        add_kn("c.front_end_rules", L["wallet_front_end"]["rules"])
+        i = L["issuance"]
+        for key, val in (("max_inflation_rate", i["max_inflation_rate"]),
+                         ("upgrade_stake_threshold", i["protocol_upgrade_stake_threshold"])):
+            n.add(f"c.issuance_{key}", val, val, csrc, **cc)
+        for key, field in (("validators", "validators"),
+                           ("validators_to_pass_upgrade", "validators_to_reach_threshold"),
+                           ("validators_to_block_upgrade", "validators_to_block_upgrade"),
+                           ("validators_to_reach_two_thirds", "validators_to_reach_two_thirds"),
+                           ("validators_to_exceed_one_third", "validators_to_exceed_one_third")):
+            add_int(f"c.issuance_{key}", i[field], "validators")
+        n.add("c.issuance_largest_validator_share", i["largest_validator_share"],
+              f_pct(i["largest_validator_share"]), csrc, unit="share of stake", **cc)
+        t = L["protocol_treasury"]
+        tw = {"window": common["window"], "blocks": common["blocks"]}
+        n.add("c.treasury_share_of_new_supply", t["share_of_new_supply"],
+              f_pct(t["share_of_new_supply"]), csrc, unit="share", **tw,
+              note="treasury.near balance change / total_supply change; RPC protocol_reward_rate "
+                   "reports " + t["reported_protocol_reward_rate"] + " and is not used")
+        n.add("c.treasury_near_received", t["balance_change_near"], f_int(t["balance_change_near"]),
+              csrc, unit="NEAR", **tw)
+        tm = t["multisig"]
+        n.add("c.treasury_confirmations", f"{tm['confirmations']} of {tm['member_keys']}",
+              f"{tm['confirmations']} of {tm['member_keys']}", csrc, unit="multisig keys", **cc)
+        h = L["hsp_voting"]
+        add_kn("c.hsp_owner_rules", h["owner_dao"])
+        add_int("c.hsp_reviewers", h["reviewers"], "accounts")
+        add_int("c.hsp_guardians", h["guardians"], "accounts")
+        pl = L["nearai_pool_rewards"]
+        num, den = (int(x) for x in pl["reward_fee"].split("/"))
+        n.add("c.nearai_pool_reward_fee", pl["reward_fee"], f_pct(dec(num) / dec(den), 0), csrc,
+              unit="share of rewards kept by the pool owner", **cc)
+        add_kn("c.nearai_pool_owner_transfer", pl["owner_dao"])
+        add_kn("c.nearai_pool_owner_rules", pl["owner_rules"])
+        fc = L["farm_contract"]
+        add_int("c.farm_contract_full_access_keys", fc["full_access_keys"], "keys")
+        add_int("c.farm_contract_guardians", fc["guardians"], "accounts")
+    else:
+        n.add("c.intents_fee_change", None, None, None, status="pending",
+              note="control_map.py has not run")
+
     # ---- finding 8: HSP-029 (hsp029.py), once the vote has closed
     hsp_path = data_dir / "hsp029.json"
     if hsp_path.exists():
@@ -445,6 +533,7 @@ SCRIPT_CHECKS = [
     ("hsp029_voters.py", lambda doc: ["--verify"]),
     ("farm_rate.py", lambda doc: ["--verify"]),
     ("check_prereg.py", lambda doc: ["--verify"]),
+    ("control_map.py", lambda doc: ["--verify"]),
 ]
 
 
@@ -463,7 +552,8 @@ def verify(path, run_scripts=True, runner=subprocess.run):
         for script, args in SCRIPT_CHECKS:
             out_file = {"hsp029.py": "hsp029.json", "hsp029_voters.py": "hsp029_voters.json",
                         "farm_rate.py": "farm_rate.json",
-                        "check_prereg.py": "prereg.json"}
+                        "check_prereg.py": "prereg.json",
+                        "control_map.py": "control_map.json"}
             if script in out_file and not (root / "data" / out_file[script]).exists():
                 continue
             res = runner([sys.executable, str(root / "scripts" / script)] + args(doc),
