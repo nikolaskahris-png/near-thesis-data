@@ -134,6 +134,29 @@ class RateLimitTest(unittest.TestCase):
         self.assertEqual(chain.pause, 2.0)           # 0.5 -> 1.0 -> 2.0
         self.assertEqual(waits, [0.5, 5, 1.0, 10, 2.0])
 
+    def test_pace_recovers_after_answers_without_429(self):
+        import io
+        from unittest import mock
+
+        def ok(req, timeout):
+            return mock.MagicMock(__enter__=lambda s: io.BytesIO(b'{"ok":1}'),
+                                  __exit__=lambda *a: False)
+
+        chain = lw.Chain(url="https://x", sleep=lambda s: None, recover_after=20)
+        chain.pause = 3.0  # as after several 429s
+        with mock.patch("urllib.request.urlopen", ok):
+            for _ in range(19):
+                chain._post({})
+            self.assertEqual(chain.pause, 3.0)       # not yet
+            chain._post({})
+            self.assertEqual(chain.pause, 1.5)       # 20 good answers: halve
+            for _ in range(40):
+                chain._post({})
+            self.assertEqual(chain.pause, 0.5)       # back to the start, never below
+            for _ in range(40):
+                chain._post({})
+            self.assertEqual(chain.pause, 0.5)
+
 
 if __name__ == "__main__":
     unittest.main()

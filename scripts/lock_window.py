@@ -43,10 +43,17 @@ REPO = Path(__file__).resolve().parent.parent
 class Chain:
     """Archival RPC access. Missing (skipped) heights return None."""
 
-    def __init__(self, url=ARCHIVAL, pause=0.5, max_pause=3.0, sleep=time.sleep):
+    def __init__(self, url=ARCHIVAL, pause=0.5, max_pause=3.0, sleep=time.sleep,
+                 recover_after=20):
         # FastNEAR archival answers 429 when called faster than ~2 per second.
+        # Each 429 doubles the pause (up to max_pause); after `recover_after`
+        # answers in a row without a 429 it halves again, down to the starting pause.
         self.url = url
         self.pause = pause
+        self.base_pause = pause
+        self.recover_after = recover_after
+        self.ok_streak = 0
+        self.rate_limited = 0  # number of 429 answers in this run
         self.max_pause = max_pause
         self.sleep = sleep
         self.calls = 0
@@ -65,9 +72,13 @@ class Chain:
             req = urllib.request.Request(self.url, data=data, headers=headers)
             try:
                 with urllib.request.urlopen(req, timeout=30) as resp:
-                    return resp.read()
+                    raw = resp.read()
+                self._recover()
+                return raw
             except urllib.error.HTTPError as e:
-                if e.code == 429:  # slow down for the rest of the run, then wait
+                if e.code == 429:  # slow down, then wait before retrying
+                    self.rate_limited += 1
+                    self.ok_streak = 0
                     self.pause = min(max(self.pause, 0.25) * 2, self.max_pause)
                 if e.code in (429, 500, 502, 503, 504) and attempt < attempts - 1:
                     self.sleep(min(5 * 2 ** attempt, 60))
@@ -79,6 +90,13 @@ class Chain:
                     continue
                 raise RuntimeError(f"cannot reach {self.url}: {e}") from None
         raise RuntimeError("unreachable")
+
+    def _recover(self):
+        """After a run of answers without 429, go back toward the starting pace."""
+        self.ok_streak += 1
+        if self.pause > self.base_pause and self.ok_streak >= self.recover_after:
+            self.pause = max(self.base_pause, self.pause / 2)
+            self.ok_streak = 0
 
     def block(self, height):
         """Return the block header dict at this height, or None if the height was skipped."""
