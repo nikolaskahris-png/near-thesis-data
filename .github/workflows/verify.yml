@@ -24,6 +24,8 @@ jobs:
         run: python -m unittest discover -s tests
       - name: Every number rebuilds from the committed raw files
         run: python scripts/build_numbers.py --verify
+      - name: Every number in README.md matches numbers.json
+        run: python scripts/build_numbers.py --check README.md
       - name: Validators' vote samples recompute
         run: python scripts/upgrade_watch.py --verify
       - name: Pre-registration file matches its anchored hash
