@@ -1,7 +1,7 @@
 """Number 3: how widely NEAR AI staking is spread, measured on chain.
 
 1. Account list: every account that ever called `stake` on stake.dao, from the
-   NearBlocks receipts API (pages saved under data/raw/nearblocks/).
+   NearBlocks receipts API (pages saved under data/private/nearblocks/).
 2. For each date, at the first block at or after 00:00 UTC: every account's
    position in the "NEAR AI Cloud Credits" farm (get_farm_position), the farm
    total (get_farm_pool) and the NEAR AI Agents locks (get_locks), all from the
@@ -10,6 +10,12 @@
    otherwise the run fails. Who had entered by a block is decided by the
    position at that block (none = not yet), so the list may safely contain
    accounts that came later.
+
+Privacy: account IDs can name private people. Every response that lists accounts (NearBlocks
+pages, positions, locks) is saved under data/private/ (not committed), in files named by the
+account's sha256 tag. The public snapshot keeps, per account, only its tag, status and amount,
+plus the sha256 of each private file, so --verify recomputes every statistic offline; with the
+private files present it also checks that they give the same public lists.
 
 Read-only. No keys.
 
@@ -48,6 +54,16 @@ REPO = Path(__file__).resolve().parent.parent
 
 def sha256(data):
     return hashlib.sha256(data).hexdigest()
+
+
+def ftag(acct):
+    """File-name tag of an account: first 16 hex of sha256(account ID)."""
+    return sha256(acct.encode())[:16]
+
+
+def tag(acct):
+    """Public tag of an account, as in hsp029_voters.py. Anyone can check a known account."""
+    return "sha256:" + ftag(acct)
 
 
 # ---------------------------------------------------------------- account list
@@ -95,9 +111,9 @@ def next_cursor(doc):
     return (meta or {}).get("next_page") or None
 
 
-def discover(data_root, tag, get=http_get, wait=PAGE_WAIT):
+def discover(data_root, list_tag, get=http_get, wait=PAGE_WAIT):
     """Fetch (or reuse) every page of stake receipts. Returns the account file path."""
-    page_dir = data_root / "raw" / "nearblocks" / f"stake_receipts_{tag}"
+    page_dir = data_root / "private" / "nearblocks" / f"stake_receipts_{list_tag}"
     page_dir.mkdir(parents=True, exist_ok=True)
     cursor, n, pages = None, 1, {}
     while True:
@@ -119,13 +135,19 @@ def discover(data_root, tag, get=http_get, wait=PAGE_WAIT):
         if not cursor or not receipts_in(doc):
             break
         n += 1
-    accounts = accounts_from_pages(data_root, pages)
-    out = data_root / "stakers" / f"accounts_{tag}.json"
-    out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_text(json.dumps({"source": NEARBLOCKS + "?method=stake", "pages": pages,
-                               "accounts": accounts}, indent=2) + "\n",
-                   encoding="utf-8", newline="\n")
+    out = data_root / "stakers" / f"accounts_{list_tag}.json"
+    write_accounts_file(out, data_root, pages)
     return out
+
+
+def write_accounts_file(out, data_root, pages):
+    out.parent.mkdir(parents=True, exist_ok=True)
+    out.write_text(json.dumps({
+        "source": NEARBLOCKS + "?method=stake",
+        "privacy": "pages are private (data/private/); accounts are sha256 tags",
+        "private_pages": pages,
+        "accounts": sorted(tag(a) for a in accounts_from_pages(data_root, pages))},
+        indent=2) + "\n", encoding="utf-8", newline="\n")
 
 
 def accounts_from_pages(data_root, pages):
@@ -171,8 +193,36 @@ def decode(raw):
     return json.loads(bytes(json.loads(raw)["result"]["result"]).decode())
 
 
+def position_entry(t, raw):
+    """Public form of one get_farm_position response: tag, kind, status, amount."""
+    e = {"tag": t, "sha256": sha256(raw)}
+    msg = panic_message(json.loads(raw))
+    if msg is not None:  # contract refused: no position; the sum check confirms it
+        e["kind"] = "contract_error"
+        e["error"] = msg
+        return e
+    pos = decode(raw)
+    if pos is None:
+        e["kind"] = "none"
+        return e
+    e.update(kind="position", status=pos.get("status", "Active"), amount_yocto=str(amount(pos)))
+    return e
+
+
+def lock_entries(raws):
+    """Public form of the get_locks pages: per lock, the account's tag and the fields used."""
+    out = []
+    for raw in raws:
+        for lk in decode(raw):
+            out.append({"tag": tag(lk["account_id"]), "status": str(lk.get("status", "unknown")),
+                        "amount_near": str(lk.get("amount_near", 0)),
+                        "start_ns": str(lk.get("start_ns", 0)), "end_ns": str(lk.get("end_ns", 0))})
+    return out
+
+
 def snapshot(chain, d, accounts_file, data_root):
-    accounts = json.loads(accounts_file.read_text(encoding="utf-8"))["accounts"]
+    pages = json.loads(accounts_file.read_text(encoding="utf-8"))["private_pages"]
+    accounts = accounts_from_pages(data_root, pages)
     target = lw.midnight_ns(d)
     final = chain.final_header()
     if final["timestamp"] < target + lw.SAFETY_SECONDS * lw.NS:
@@ -181,46 +231,82 @@ def snapshot(chain, d, accounts_file, data_root):
     hdr, prev = lw.find_boundary(chain, target, guess)
     assert hdr["timestamp"] >= target > prev["timestamp"] and hdr["prev_hash"] == prev["hash"]
     h = hdr["height"]
-    files = {}
+    files, private = {}, {}
 
-    def save(rel, raw):
-        path = data_root / "raw" / rel
+    def save(rel, raw, area="raw"):
+        path = data_root / area / rel
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_bytes(raw)
-        files[path.relative_to(data_root.parent).as_posix()] = sha256(raw)
+        (files if area == "raw" else private)[path.relative_to(data_root.parent).as_posix()] = \
+            sha256(raw)
 
     def saved(rel):
-        """Reuse a response already saved for this block (an interrupted run)."""
-        path = data_root / "raw" / rel
+        """Reuse a private response already saved for this block (an interrupted run)."""
+        path = data_root / "private" / rel
         if path.exists():
-            files[path.relative_to(data_root.parent).as_posix()] = sha256(path.read_bytes())
+            private[path.relative_to(data_root.parent).as_posix()] = sha256(path.read_bytes())
             return True
         return False
 
     save(f"blocks/block_{h}.json", chain.raw[h])
     save(f"blocks/block_{prev['height']}.json", chain.raw[prev["height"]])
     save(f"stakedao/{h}/farm_pool.json", view(chain, h, "get_farm_pool", {"price_id": FARM_PRICE}))
+    positions = []
     for i, acct in enumerate(accounts, 1):
-        rel = f"stakedao/{h}/position_{acct}.json"
+        rel = f"stakedao/{h}/position_{ftag(acct)}.json"
         if not saved(rel):
             save(rel, view(chain, h, "get_farm_position",
-                           {"account_id": acct, "product_id": FARM_PRODUCT}, allow_panic=True))
+                           {"account_id": acct, "product_id": FARM_PRODUCT}, allow_panic=True),
+                 area="private")
+        e = position_entry(tag(acct), (data_root / "private" / rel).read_bytes())
+        if "error" in e:
+            e["error"] = e["error"].replace(acct, tag(acct))
+        positions.append(e)
         if i % 50 == 0:
             print(f"  {d}: {i}/{len(accounts)} positions", flush=True)
-    start = 0
+    start, lock_raws = 0, []
     while True:
         raw = view(chain, h, "get_locks", {"from_index": start, "limit": LOCK_PAGE})
-        save(f"stakedao/{h}/locks_{start:05d}.json", raw)
+        save(f"stakedao/{h}/locks_{start:05d}.json", raw, area="private")
+        lock_raws.append(raw)
         if len(decode(raw)) < LOCK_PAGE:
             break
         start += LOCK_PAGE
-    doc = {"date": d.isoformat(), "height": h, "previous_height": prev["height"],
-           "accounts_file": accounts_file.relative_to(data_root.parent).as_posix(),
-           "farm_product": FARM_PRODUCT, "farm_price": FARM_PRICE,
-           "raw_files": dict(sorted(files.items()))}
     out = data_root / "stakers" / f"{d.isoformat()}.json"
-    out.write_text(json.dumps(doc, indent=2) + "\n", encoding="utf-8", newline="\n")
+    write_snapshot(out, {"date": d.isoformat(), "height": h, "previous_height": prev["height"],
+                         "accounts_file": accounts_file.relative_to(data_root.parent).as_posix(),
+                         "farm_product": FARM_PRODUCT, "farm_price": FARM_PRICE,
+                         "raw_files": dict(sorted(files.items()))},
+                   private, positions, lock_entries(lock_raws))
     return out
+
+
+def write_snapshot(out, head, private, positions, locks):
+    doc = dict(head)
+    doc["privacy"] = ("positions and locks name accounts: the responses are in data/private/ "
+                      "(not committed); below, each account is its sha256 tag")
+    doc["private_files"] = dict(sorted(private.items()))
+    doc["positions"] = sorted(positions, key=lambda e: e["tag"])
+    doc["locks"] = locks
+    out.write_text(json.dumps(doc, indent=2) + "\n", encoding="utf-8", newline="\n")
+
+
+def private_entries(snap, data_root):
+    """Rebuild the public lists from the private files, if all are present.
+    Returns (positions, locks, number of private files absent)."""
+    base = data_root.parent
+    absent = [rel for rel in snap["private_files"] if not (base / rel).exists()]
+    if absent:
+        return None, None, len(absent)
+    positions, lock_raws = [], []
+    for rel in sorted(snap["private_files"]):
+        name = Path(rel).name
+        raw = (base / rel).read_bytes()
+        if name.startswith("position_"):
+            positions.append(position_entry("sha256:" + name[len("position_"):-len(".json")], raw))
+        elif name.startswith("locks_"):
+            lock_raws.append(raw)
+    return positions, lock_entries(lock_raws), 0
 
 
 # ---------------------------------------------------------------- numbers
@@ -262,8 +348,24 @@ def compute(snap_file, data_root):
     for rel, digest in snap["raw_files"].items():
         if sha256((base / rel).read_bytes()) != digest:
             problems.append(f"{snap['date']}: sha256 differs for {rel}")
+    for rel, digest in snap["private_files"].items():
+        if (base / rel).exists() and sha256((base / rel).read_bytes()) != digest:
+            problems.append(f"{snap['date']}: sha256 differs for {rel}")
     if problems:
         return None, problems
+    priv_pos, priv_locks, absent = private_entries(snap, data_root)
+    if not absent:
+        pub = [{k: v for k, v in e.items() if k != "error"} for e in snap["positions"]]
+        mine = [{k: v for k, v in e.items() if k != "error"} for e in priv_pos]
+        if sorted(mine, key=lambda e: e["tag"]) != pub:
+            problems.append(f"{snap['date']}: public positions differ from the private files")
+        if priv_locks != snap["locks"]:
+            problems.append(f"{snap['date']}: public locks differ from the private files")
+    hashes = {Path(rel).name[len("position_"):-len(".json")]: d
+              for rel, d in snap["private_files"].items() if Path(rel).name.startswith("position_")}
+    for e in snap["positions"]:
+        if hashes.get(e["tag"][len("sha256:"):]) != e["sha256"]:
+            problems.append(f"{snap['date']}: {e['tag']} has no matching private file hash")
     h = snap["height"]
     blk = json.loads((data_root / "raw" / "blocks" / f"block_{h}.json").read_bytes())
     prv = json.loads((data_root / "raw" / "blocks" / f"block_{snap['previous_height']}.json")
@@ -274,23 +376,22 @@ def compute(snap_file, data_root):
         problems.append(f"{snap['date']}: block {h} is not the first block of the day")
 
     accounts = json.loads((base / snap["accounts_file"]).read_text(encoding="utf-8"))["accounts"]
+    if sorted(e["tag"] for e in snap["positions"]) != sorted(accounts):
+        problems.append(f"{snap['date']}: positions do not cover the account list")
     pool = decode((data_root / "raw" / "stakedao" / str(h) / "farm_pool.json").read_bytes())
     total = int(pool["total_farm_shares"])
     active, ever, closed = {}, 0, 0
     panics = {}
-    for acct in accounts:
-        raw = (data_root / "raw" / "stakedao" / str(h) / f"position_{acct}.json").read_bytes()
-        msg = panic_message(json.loads(raw))
-        if msg is not None:  # contract refused: no position; the sum check below confirms it
-            panics[acct] = msg
+    for e in snap["positions"]:
+        if e["kind"] == "contract_error":
+            panics[e["tag"]] = e["error"]
             continue
-        pos = decode(raw)
-        if pos is None:
+        if e["kind"] == "none":
             continue
         ever += 1
-        amt = amount(pos)
-        if pos.get("status", "Active") == "Active" and amt > 0:
-            active[acct] = amt
+        amt = int(e["amount_yocto"])
+        if e["status"] == "Active" and amt > 0:
+            active[e["tag"]] = amt
         else:
             closed += 1
     s = sum(active.values())
@@ -298,9 +399,7 @@ def compute(snap_file, data_root):
         problems.append(f"{snap['date']}: positions add up to {s}, farm total is {total} "
                         f"(difference {total - s}): account list incomplete")
 
-    locks = []
-    for path in sorted((data_root / "raw" / "stakedao" / str(h)).glob("locks_*.json")):
-        locks += decode(path.read_bytes())
+    locks = [dict(lk, account_id=lk["tag"]) for lk in snap["locks"]]
     lock_status = {}
     lock_accounts, active_lock_accounts, past_end = set(), set(), 0
     lock_near, active_lock_near, active_in_term, at_50 = 0, 0, 0, 0
@@ -366,6 +465,7 @@ def compute(snap_file, data_root):
                                             YOCTO * YOCTO)) if pool.get("reward_rate") else "",
         "accounts_without_position_contract_error": len(panics),
         "contract_error_example": next(iter(panics.values()), ""),
+        "private_check": "recomputed" if not absent else f"{absent} private file(s) absent",
     }
     return stats, problems
 
@@ -374,11 +474,13 @@ def verify_all(data_root):
     results, problems = [], []
     for acc in sorted((data_root / "stakers").glob("accounts_*.json")):
         doc = json.loads(acc.read_text(encoding="utf-8"))
-        for rel, digest in doc["pages"].items():
-            if sha256((data_root.parent / rel).read_bytes()) != digest:
-                problems.append(f"{acc.name}: sha256 differs for {rel}")
-        if accounts_from_pages(data_root, doc["pages"]) != doc["accounts"]:
-            problems.append(f"{acc.name}: account list differs from the saved pages")
+        pages = doc["private_pages"]
+        if all((data_root.parent / rel).exists() for rel in pages):
+            for rel, digest in pages.items():
+                if sha256((data_root.parent / rel).read_bytes()) != digest:
+                    problems.append(f"{acc.name}: sha256 differs for {rel}")
+            if sorted(tag(a) for a in accounts_from_pages(data_root, pages)) != doc["accounts"]:
+                problems.append(f"{acc.name}: account list differs from the saved pages")
     for snap in sorted((data_root / "stakers").glob("20*.json")):
         stats, p = compute(snap, data_root)
         problems += p
@@ -395,7 +497,8 @@ def show(stats):
           f"accounts / {stats['outside_top10_near']} NEAR / median "
           f"{stats['outside_top10_median_near']}, locks {stats['agents_locks']} "
           f"{stats['agents_locks_by_status']}, contract errors "
-          f"{stats['accounts_without_position_contract_error']}")
+          f"{stats['accounts_without_position_contract_error']} · private files: "
+          f"{stats['private_check']}")
     if stats["contract_error_example"]:
         print(f"  example contract error: {stats['contract_error_example']}")
 
@@ -418,15 +521,18 @@ def main():
             print("\n".join(problems))
             print(f"FAILED: {len(problems)} problem(s)")
             return 1
-        print(f"OK: {len(results)} snapshot(s) recomputed from raw responses")
+        absent = sum(st["private_check"] != "recomputed" for st in results)
+        print(f"OK: {len(results)} snapshot(s) recomputed from the public lists"
+              + (f"; private files absent for {absent}, so the lists were not re-derived "
+                 "(PARTIAL)" if absent else "; the private files give the same lists"))
         return 0
 
     if not args.dates:
         parser.error("give --dates or --verify")
     dates = sorted(date.fromisoformat(x.strip()) for x in args.dates.split(","))
-    tag = args.accounts_tag or dates[-1].isoformat()
-    print(f"Account list ({tag})", flush=True)
-    accounts_file = discover(data_root, tag)
+    list_tag = args.accounts_tag or dates[-1].isoformat()
+    print(f"Account list ({list_tag})", flush=True)
+    accounts_file = discover(data_root, list_tag)
     n = len(json.loads(accounts_file.read_text(encoding="utf-8"))["accounts"])
     print(f"  {n} accounts ever called stake", flush=True)
     chain = lw.Chain()

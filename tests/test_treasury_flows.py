@@ -230,7 +230,7 @@ def fake_nearblocks(url):
 
 def setup_repo(tmp):
     data = Path(tmp) / "data"
-    pages = data / "raw" / "nearblocks" / "stake_receipts_2026-11-01"
+    pages = data / "private" / "nearblocks" / "stake_receipts_2026-11-01"
     pages.mkdir(parents=True)
     (pages / "page_001.json").write_text(json.dumps({"data": [
         {"predecessor_account_id": "x.near", "outcome": {"status": False},

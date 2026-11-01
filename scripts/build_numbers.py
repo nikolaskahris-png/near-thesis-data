@@ -587,6 +587,34 @@ def build(data_dir, window_file):
         n.add("f8.computed_status", None, None, None, status="pending",
               note="hsp029.py runs after the vote closes (2026-11-02 16:48:08 UTC)")
 
+    # ---- investment view: how far today's figures are from full coverage (derived only)
+    def derive(key, value, of, note):
+        base = n.items[of[0]]
+        extra = {k: base[k] for k in ("window", "blocks", "status") if k in base}
+        if any(n.items[k].get("status") == "provisional" for k in of):
+            extra["status"] = "provisional"
+        n.add(key, value, "×" + f_num(value, 1), base["source"], unit="multiple",
+              derived_from=list(of), note=note, **extra)
+
+    cov_b = dec(n.items["n1.coverage_buybacks"]["value"])
+    cov_fe = dec(n.items["n1.coverage_with_front_end"]["value"])
+    max_cov = dec(n.items["n2.max_coverage"]["value"])
+    hsp_cov = dec(n.items["n2.hsp029_max_coverage"]["value"])
+    derive("iv.wallets_multiple_buybacks", 1 / cov_b, ["n1.coverage_buybacks"],
+           "1 / n1.coverage_buybacks: growth the buybacks wallets' NEAR per day needs for 100% "
+           "coverage at today's issuance")
+    derive("iv.wallets_multiple_with_front_end", 1 / cov_fe, ["n1.coverage_with_front_end"],
+           "1 / n1.coverage_with_front_end")
+    derive("iv.fees_multiple", 1 / max_cov, ["n2.max_coverage"],
+           "1 / n2.max_coverage: growth all fees (in NEAR) need for 100% coverage if NEAR "
+           "kept every fee")
+    derive("iv.hsp029_fees_multiple", 1 / hsp_cov, ["n2.hsp029_max_coverage"],
+           "1 / n2.hsp029_max_coverage")
+    derive("iv.hsp029_wallets_multiple_with_front_end", (1 / cov_fe) * (max_cov / hsp_cov),
+           ["n1.coverage_with_front_end", "n2.max_coverage", "n2.hsp029_max_coverage"],
+           "(1 / n1.coverage_with_front_end) x issuance ratio of the HSP-029 scenario "
+           "(n2.max_coverage / n2.hsp029_max_coverage)")
+
     provisional = sorted(k for k, v in n.items.items() if v.get("status") in ("provisional",
                                                                                   "pending"))
     doc = {

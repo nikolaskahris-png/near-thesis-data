@@ -141,6 +141,12 @@ class BuildTest(unittest.TestCase):
             self.assertEqual(n["f8.computed_status"]["status"], "pending")
             # finding 9: 4,984.673 / (9,569.750 + 4,984.673)
             self.assertEqual(n["f9.front_end_share_of_wallets"]["text"], "34.2%")
+            # investment view: multiples to 100% coverage, derived only
+            self.assertEqual(n["iv.wallets_multiple_buybacks"]["text"], "×9.2")
+            self.assertEqual(n["iv.wallets_multiple_with_front_end"]["text"], "×6.1")
+            self.assertEqual(n["iv.fees_multiple"]["text"], "×2.2")
+            self.assertEqual(n["iv.fees_multiple"]["status"], "provisional")
+            self.assertNotIn("status", n["iv.wallets_multiple_buybacks"])
             # finding 7
             self.assertEqual(n["f7.locks_active"]["text"], "43")
             self.assertEqual(n["f7.locks_active_near"]["text"], "14,904")

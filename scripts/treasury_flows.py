@@ -603,7 +603,7 @@ def run(chain, data_dir, window_file, get=stakers.http_get, wait=stakers.PAGE_WA
     end_h = end_b["height"]
     store = Store(data_dir)
 
-    pages = sorted((data_dir / "raw" / "nearblocks").glob("stake_receipts_*/page_*.json"))
+    pages = sorted((data_dir / "private" / "nearblocks").glob("stake_receipts_*/page_*.json"))
     if not pages:
         raise SystemExit("No stake.dao receipt pages found: run stakers.py first.")
     latest = max(p.parent for p in pages)

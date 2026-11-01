@@ -77,6 +77,9 @@
     "f2.wallets_kept_share_of_revenue.2026-09",
     "f2.wallets_kept_share_of_revenue.2026-10",
     "f8.computed_status",
+    "iv.fees_multiple",
+    "iv.hsp029_fees_multiple",
+    "iv.hsp029_wallets_multiple_with_front_end",
     "n2.defillama_revenue_coverage",
     "n2.equilibrium_price_usd",
     "n2.fees_bps",
@@ -99,14 +102,14 @@
     "data/fees_2026-10-02_2026-11-01.json": "5d7abc7ebfe804bc53afb5571240b4eeb809b8bd7d2af0354f63907782ddb598",
     "data/offchain/nearai_cloud_farm_config.json": "4fab756a3e94d72a2db918e8f3f47526a5da3a2d41990ba2f479406ac22b4214",
     "data/offchain/nearai_cloud_farm_config_20261101T205837Z.json": "95bb1adc1b3eb738cdc19c7622e5a3641edce4ea9653ced4ba6e32439c5f253d",
-    "data/stakers/2026-08-01.json": "e1da2618c3332451ce41a34d64af1a23fc6122497c02cb7cc9ce633b0fa016f1",
-    "data/stakers/2026-08-15.json": "9cc6ee8a3aeba21d2ab9e496c0ffee3f926f1d97d79c06bc1d81af0f60c3a9ef",
-    "data/stakers/2026-09-01.json": "8bc4772523cc10bbfc79c78d055532ff4570c413a5ae4fd5e842f8f4758ac8ab",
-    "data/stakers/2026-09-15.json": "d75f407e4f835f53c9966127864eb050b6b9dc02711290d300141954937c52a4",
-    "data/stakers/2026-10-01.json": "29410f936dcd2c3adef40d75772946e4a8188ca9d6a6db92aeed8e58b3a98299",
-    "data/stakers/2026-10-15.json": "6420dbc4d6eac4d1a573ef1b4a78e6809f9a87da746ec40ae4d0f0f4d44b79ab",
-    "data/stakers/2026-11-01.json": "e7c9ef6e4b5e36fd7a69ad891d52872e68d81c0a66e39c1a77e9761eee0ab45b",
-    "data/treasury_flows.json": "6cee3324482c166dd5ea923f76e8981957addca6cca44e40b8870c0cbf070da1",
+    "data/stakers/2026-08-01.json": "6c0d7643ed4d8e74bd61bb2e7e4de0ef509039d63a63fff8f2a98293357289c9",
+    "data/stakers/2026-08-15.json": "928f7b8ef99aeb9f492731d94a9c84673dff9fcb98197e914b894f3737039ec3",
+    "data/stakers/2026-09-01.json": "1d922db1dc329e170dabb27aab6040a386d802d9cdc30242a364adcdcc2b4605",
+    "data/stakers/2026-09-15.json": "2b7ecbd63cfe433e1cd9f8ea23d2f3d388ca5d13d80b7ab96ae314de4da629b1",
+    "data/stakers/2026-10-01.json": "8c87ef1bfa2b0de6194a52d0203ae190e5305ec3f8a208d32b582182991bba1d",
+    "data/stakers/2026-10-15.json": "57b225440a4882e042b9b84544a93df4a96c9c2c26fe5eddf3682f6be94fd4c9",
+    "data/stakers/2026-11-01.json": "a175a388a9a89dd86b753859bbf0f89a9f6a480256c696fcce3ba1daf9b72369",
+    "data/treasury_flows.json": "b008eaba99e1dfe07b25d0f5db35572ade367ba7f15b08e05ef1048e1261dd19",
     "data/window_2026-10-02_2026-11-01.json": "b77a705e870e9df42e3d11ec6f7c7f5266f7ba692600cda716b1874ca40baaf9"
   },
   "numbers": {
@@ -2505,6 +2508,71 @@
       "block": 222491356,
       "as_of": "2026-11-01T00:00:00Z",
       "note": "approved actions in the control map's DAOs; dates are submission dates"
+    },
+    "iv.fees_multiple": {
+      "value": "2.196416765688455853121218045",
+      "text": "×2.2",
+      "source": "data/fees_2026-10-02_2026-11-01.json",
+      "unit": "multiple",
+      "derived_from": [
+        "n2.max_coverage"
+      ],
+      "note": "1 / n2.max_coverage: growth all fees (in NEAR) need for 100% coverage if NEAR kept every fee",
+      "window": "2026-10-02 00:00 UTC to 2026-11-01 00:00 UTC",
+      "blocks": "218126921-222491356",
+      "status": "provisional"
+    },
+    "iv.hsp029_fees_multiple": {
+      "value": "1.405704630531623434220754667",
+      "text": "×1.4",
+      "source": "data/fees_2026-10-02_2026-11-01.json",
+      "unit": "multiple",
+      "derived_from": [
+        "n2.hsp029_max_coverage"
+      ],
+      "note": "1 / n2.hsp029_max_coverage",
+      "window": "2026-10-02 00:00 UTC to 2026-11-01 00:00 UTC",
+      "blocks": "218126921-222491356",
+      "status": "provisional"
+    },
+    "iv.hsp029_wallets_multiple_with_front_end": {
+      "value": "3.886838441623554509930065529",
+      "text": "×3.9",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "multiple",
+      "derived_from": [
+        "n1.coverage_with_front_end",
+        "n2.max_coverage",
+        "n2.hsp029_max_coverage"
+      ],
+      "note": "(1 / n1.coverage_with_front_end) x issuance ratio of the HSP-029 scenario (n2.max_coverage / n2.hsp029_max_coverage)",
+      "window": "2026-10-02 00:00 UTC to 2026-11-01 00:00 UTC",
+      "blocks": "218126921-222491356",
+      "status": "provisional"
+    },
+    "iv.wallets_multiple_buybacks": {
+      "value": "9.236595390938899921488939177",
+      "text": "×9.2",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "multiple",
+      "derived_from": [
+        "n1.coverage_buybacks"
+      ],
+      "note": "1 / n1.coverage_buybacks: growth the buybacks wallets' NEAR per day needs for 100% coverage at today's issuance",
+      "window": "2026-10-02 00:00 UTC to 2026-11-01 00:00 UTC",
+      "blocks": "218126921-222491356"
+    },
+    "iv.wallets_multiple_with_front_end": {
+      "value": "6.073194135723742545154198399",
+      "text": "×6.1",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "multiple",
+      "derived_from": [
+        "n1.coverage_with_front_end"
+      ],
+      "note": "1 / n1.coverage_with_front_end",
+      "window": "2026-10-02 00:00 UTC to 2026-11-01 00:00 UTC",
+      "blocks": "218126921-222491356"
     },
     "n1.buybacks_near_per_day": {
       "value": "9569.750",

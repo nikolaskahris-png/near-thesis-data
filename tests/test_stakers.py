@@ -96,7 +96,8 @@ class StakersTest(unittest.TestCase):
         self.assertEqual(st["stakers_active"], 15)
         self.assertEqual(st["stakers_ever"], 16)   # late.near never entered
         self.assertEqual(st["stakers_left"], 1)    # e.near
-        self.assertEqual(st["largest_account"], "big.near")
+        self.assertEqual(st["largest_account"], stakers.tag("big.near"))
+        self.assertEqual(st["private_check"], "recomputed")
         total = 1_000_000 + 100_000 + 50_000 + 50 + 20 + sum(100 + i for i in range(10))
         self.assertEqual(st["largest_share"], f"{1_000_000 / total:.6f}")
         self.assertEqual(st["outside_top10_accounts"], 5)
@@ -139,10 +140,41 @@ class StakersTest(unittest.TestCase):
 
     def test_tampered_page_fails_verify(self):
         data, _ = self.run_snapshot(sorted(STATE))
-        page = next((data / "raw" / "nearblocks").rglob("page_001.json"))
+        page = next((data / "private" / "nearblocks").rglob("page_001.json"))
         page.write_bytes(page.read_bytes().replace(b"a.near", b"z.near"))
         _, problems = stakers.verify_all(data)
         self.assertTrue(problems)
+
+    def test_public_files_name_no_account(self):
+        data, snap = self.run_snapshot(sorted(STATE))
+        public = [p for p in data.rglob("*.json") if "private" not in p.parts]
+        for p in public:
+            text = p.read_text(encoding="utf-8")
+            for acct in list(STATE) + ["x.near", "y.near"]:
+                self.assertNotIn(f'"{acct}"', text, f"{acct} in {p.name}")
+        self.assertIn(stakers.tag("big.near"), snap.read_text(encoding="utf-8"))
+
+    def test_without_private_files_same_numbers(self):
+        import shutil
+        data, snap = self.run_snapshot(sorted(STATE))
+        full, _ = stakers.compute(snap, data)
+        shutil.rmtree(data / "private")
+        st, problems = stakers.compute(snap, data)
+        self.assertEqual(problems, [])
+        self.assertTrue(st.pop("private_check").endswith("private file(s) absent"))
+        full.pop("private_check")
+        self.assertEqual(st, full)
+        results, problems = stakers.verify_all(data)
+        self.assertEqual(problems, [])
+
+    def test_edited_public_list_fails(self):
+        data, snap = self.run_snapshot(sorted(STATE))
+        doc = json.loads(snap.read_text(encoding="utf-8"))
+        e = next(e for e in doc["positions"] if e["kind"] == "position")
+        e["amount_yocto"] = str(int(e["amount_yocto"]) + 1)
+        snap.write_text(json.dumps(doc), encoding="utf-8")
+        _, problems = stakers.compute(snap, data)
+        self.assertTrue(any("differ from the private files" in p for p in problems))
 
 
 if __name__ == "__main__":
