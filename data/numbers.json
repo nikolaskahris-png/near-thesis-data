@@ -1,0 +1,786 @@
+{
+  "about": "Every number used in the README and the dashboard. Built by scripts/build_numbers.py from the files listed in 'sources'; check with python scripts/build_numbers.py --verify",
+  "window_file": "data/window_2026-10-02_2026-11-01.json",
+  "window": {
+    "start": "2026-10-02",
+    "end": "2026-11-01",
+    "start_block": 218126921,
+    "end_block": 222491356
+  },
+  "complete": false,
+  "provisional_or_pending": [
+    "f8.computed_status",
+    "n2.defillama_revenue_coverage",
+    "n2.equilibrium_price_usd",
+    "n2.fees_bps",
+    "n2.fees_near_per_day",
+    "n2.fees_usd_per_day",
+    "n2.hsp029_equilibrium_price_usd",
+    "n2.hsp029_max_coverage",
+    "n2.max_coverage",
+    "n2.mean_price_usd",
+    "n2.revenue_usd_per_day",
+    "n2.take_rate",
+    "n2.volume_usd_per_day"
+  ],
+  "sources": {
+    "data/coverage_monthly.json": "74c24cad7c5a975e989fb70a62b157caef271901f16b9dfe9f708b3e98f8e9e9",
+    "data/fees_2026-10-02_2026-11-01.json": "5d7abc7ebfe804bc53afb5571240b4eeb809b8bd7d2af0354f63907782ddb598",
+    "data/history.csv": "ca21a4a8ab0108fd9cbdf9af65f60bdca38e6b8afd63be873aad8469242221b1",
+    "data/stakers/2026-08-01.json": "e1da2618c3332451ce41a34d64af1a23fc6122497c02cb7cc9ce633b0fa016f1",
+    "data/stakers/2026-08-15.json": "9cc6ee8a3aeba21d2ab9e496c0ffee3f926f1d97d79c06bc1d81af0f60c3a9ef",
+    "data/stakers/2026-09-01.json": "8bc4772523cc10bbfc79c78d055532ff4570c413a5ae4fd5e842f8f4758ac8ab",
+    "data/stakers/2026-09-15.json": "d75f407e4f835f53c9966127864eb050b6b9dc02711290d300141954937c52a4",
+    "data/stakers/2026-10-01.json": "29410f936dcd2c3adef40d75772946e4a8188ca9d6a6db92aeed8e58b3a98299",
+    "data/stakers/2026-10-15.json": "6420dbc4d6eac4d1a573ef1b4a78e6809f9a87da746ec40ae4d0f0f4d44b79ab",
+    "data/stakers/2026-11-01.json": "e7c9ef6e4b5e36fd7a69ad891d52872e68d81c0a66e39c1a77e9761eee0ab45b",
+    "data/treasury_flows.json": "6cee3324482c166dd5ea923f76e8981957addca6cca44e40b8870c0cbf070da1",
+    "data/window_2026-10-02_2026-11-01.json": "b77a705e870e9df42e3d11ec6f7c7f5266f7ba692600cda716b1874ca40baaf9"
+  },
+  "numbers": {
+    "f1.coverage_buybacks.2026-04": {
+      "value": "0.053409",
+      "text": "5.3%",
+      "source": "data/coverage_monthly.json",
+      "unit": "share",
+      "blocks": "192013995-196336954",
+      "flags": "1cs_balance_changed"
+    },
+    "f1.coverage_buybacks.2026-05": {
+      "value": "0.083565",
+      "text": "8.4%",
+      "source": "data/coverage_monthly.json",
+      "unit": "share",
+      "blocks": "196336954-200773914",
+      "flags": ""
+    },
+    "f1.coverage_buybacks.2026-06": {
+      "value": "0.085320",
+      "text": "8.5%",
+      "source": "data/coverage_monthly.json",
+      "unit": "share",
+      "blocks": "200773914-205022619",
+      "flags": ""
+    },
+    "f1.coverage_buybacks.2026-07": {
+      "value": "0.062101",
+      "text": "6.2%",
+      "source": "data/coverage_monthly.json",
+      "unit": "share",
+      "blocks": "205022619-209393356",
+      "flags": "1cs_balance_changed"
+    },
+    "f1.coverage_buybacks.2026-08": {
+      "value": "0.101807",
+      "text": "10.2%",
+      "source": "data/coverage_monthly.json",
+      "unit": "share",
+      "blocks": "209393356-213761242",
+      "flags": "1cs_balance_changed"
+    },
+    "f1.coverage_buybacks.2026-09": {
+      "value": "0.152552",
+      "text": "15.3%",
+      "source": "data/coverage_monthly.json",
+      "unit": "share",
+      "blocks": "213761242-217984974",
+      "flags": "1cs_balance_changed"
+    },
+    "f1.coverage_buybacks.2026-10": {
+      "value": "0.108852",
+      "text": "10.9%",
+      "source": "data/coverage_monthly.json",
+      "unit": "share",
+      "blocks": "217984974-222491356",
+      "flags": ""
+    },
+    "f1.coverage_with_front_end.2026-04": {
+      "value": "0.056502",
+      "text": "5.7%",
+      "source": "data/coverage_monthly.json",
+      "unit": "share",
+      "blocks": "192013995-196336954",
+      "flags": "1cs_balance_changed"
+    },
+    "f1.coverage_with_front_end.2026-05": {
+      "value": "0.118721",
+      "text": "11.9%",
+      "source": "data/coverage_monthly.json",
+      "unit": "share",
+      "blocks": "196336954-200773914",
+      "flags": ""
+    },
+    "f1.coverage_with_front_end.2026-06": {
+      "value": "0.111537",
+      "text": "11.2%",
+      "source": "data/coverage_monthly.json",
+      "unit": "share",
+      "blocks": "200773914-205022619",
+      "flags": ""
+    },
+    "f1.coverage_with_front_end.2026-07": {
+      "value": "0.091264",
+      "text": "9.1%",
+      "source": "data/coverage_monthly.json",
+      "unit": "share",
+      "blocks": "205022619-209393356",
+      "flags": "1cs_balance_changed"
+    },
+    "f1.coverage_with_front_end.2026-08": {
+      "value": "0.148391",
+      "text": "14.8%",
+      "source": "data/coverage_monthly.json",
+      "unit": "share",
+      "blocks": "209393356-213761242",
+      "flags": "1cs_balance_changed"
+    },
+    "f1.coverage_with_front_end.2026-09": {
+      "value": "0.212852",
+      "text": "21.3%",
+      "source": "data/coverage_monthly.json",
+      "unit": "share",
+      "blocks": "213761242-217984974",
+      "flags": "1cs_balance_changed"
+    },
+    "f1.coverage_with_front_end.2026-10": {
+      "value": "0.165328",
+      "text": "16.5%",
+      "source": "data/coverage_monthly.json",
+      "unit": "share",
+      "blocks": "217984974-222491356",
+      "flags": ""
+    },
+    "f4.first_stake_utc": {
+      "value": "2026-07-30T09:49:40.085309725Z",
+      "text": "2026-07-30",
+      "source": "data/treasury_flows.json",
+      "block": 209169270
+    },
+    "f4.since_stake_dao.near_sent_out": {
+      "value": "423980.240",
+      "text": "423,980",
+      "source": "data/treasury_flows.json",
+      "unit": "NEAR",
+      "blocks": "208930590-222491356",
+      "window": "2026-07-28T17:25 UTC to 2026-11-01T00:00 UTC"
+    },
+    "f4.since_stake_dao.near_to_payments_account": {
+      "value": "280337.660",
+      "text": "280,338",
+      "source": "data/treasury_flows.json",
+      "unit": "NEAR",
+      "blocks": "208930590-222491356",
+      "window": "2026-07-28T17:25 UTC to 2026-11-01T00:00 UTC"
+    },
+    "f4.since_stake_dao.owner_near_change": {
+      "value": "-401847.916",
+      "text": "-401,848",
+      "source": "data/treasury_flows.json",
+      "unit": "NEAR",
+      "blocks": "208930590-222491356",
+      "window": "2026-07-28T17:25 UTC to 2026-11-01T00:00 UTC"
+    },
+    "f4.since_stake_dao.owner_near_end": {
+      "value": "935136.087",
+      "text": "935,136",
+      "source": "data/treasury_flows.json",
+      "unit": "NEAR",
+      "blocks": "208930590-222491356",
+      "window": "2026-07-28T17:25 UTC to 2026-11-01T00:00 UTC"
+    },
+    "f4.since_stake_dao.owner_near_start": {
+      "value": "1336984.004",
+      "text": "1,336,984",
+      "source": "data/treasury_flows.json",
+      "unit": "NEAR",
+      "blocks": "208930590-222491356",
+      "window": "2026-07-28T17:25 UTC to 2026-11-01T00:00 UTC"
+    },
+    "f4.since_stake_dao.swaps": {
+      "value": "7",
+      "text": "7",
+      "source": "data/treasury_flows.json",
+      "unit": "swaps",
+      "blocks": "208930590-222491356",
+      "window": "2026-07-28T17:25 UTC to 2026-11-01T00:00 UTC"
+    },
+    "f4.since_stake_dao.swaps_mean_price_usd": {
+      "value": "2.1258",
+      "text": "$2.13",
+      "source": "data/treasury_flows.json",
+      "unit": "USD",
+      "blocks": "208930590-222491356",
+      "window": "2026-07-28T17:25 UTC to 2026-11-01T00:00 UTC"
+    },
+    "f4.since_stake_dao.swaps_near_given": {
+      "value": "139545.600",
+      "text": "139,546",
+      "source": "data/treasury_flows.json",
+      "unit": "NEAR",
+      "blocks": "208930590-222491356",
+      "window": "2026-07-28T17:25 UTC to 2026-11-01T00:00 UTC"
+    },
+    "f4.since_stake_dao.swaps_usd_received": {
+      "value": "296652.40",
+      "text": "$296,652",
+      "source": "data/treasury_flows.json",
+      "unit": "USDC+USDT",
+      "blocks": "208930590-222491356",
+      "window": "2026-07-28T17:25 UTC to 2026-11-01T00:00 UTC"
+    },
+    "f4.since_stake_dao.unstaked_near": {
+      "value": "425334.490",
+      "text": "425,334",
+      "source": "data/treasury_flows.json",
+      "unit": "NEAR",
+      "blocks": "208930590-222491356",
+      "window": "2026-07-28T17:25 UTC to 2026-11-01T00:00 UTC"
+    },
+    "f4.since_stake_dao.usdc_sent_out": {
+      "value": "365000.00",
+      "text": "$365,000",
+      "source": "data/treasury_flows.json",
+      "unit": "USDC",
+      "blocks": "208930590-222491356",
+      "window": "2026-07-28T17:25 UTC to 2026-11-01T00:00 UTC"
+    },
+    "f4.stake_dao_start_utc": {
+      "value": "2026-07-28T17:25:39.686984456Z",
+      "text": "2026-07-28",
+      "source": "data/treasury_flows.json",
+      "note": "first block where the stake.dao account exists"
+    },
+    "f4.y2026.near_sent_out": {
+      "value": "923167.020",
+      "text": "923,167",
+      "source": "data/treasury_flows.json",
+      "unit": "NEAR",
+      "blocks": "179199136-222491356",
+      "window": "2026-01-01T00:00 UTC to 2026-11-01T00:00 UTC"
+    },
+    "f4.y2026.near_to_payments_account": {
+      "value": "765524.440",
+      "text": "765,524",
+      "source": "data/treasury_flows.json",
+      "unit": "NEAR",
+      "blocks": "179199136-222491356",
+      "window": "2026-01-01T00:00 UTC to 2026-11-01T00:00 UTC"
+    },
+    "f4.y2026.owner_near_change": {
+      "value": "-860242.084",
+      "text": "-860,242",
+      "source": "data/treasury_flows.json",
+      "unit": "NEAR",
+      "blocks": "179199136-222491356",
+      "window": "2026-01-01T00:00 UTC to 2026-11-01T00:00 UTC"
+    },
+    "f4.y2026.owner_near_end": {
+      "value": "935136.087",
+      "text": "935,136",
+      "source": "data/treasury_flows.json",
+      "unit": "NEAR",
+      "blocks": "179199136-222491356",
+      "window": "2026-01-01T00:00 UTC to 2026-11-01T00:00 UTC"
+    },
+    "f4.y2026.owner_near_start": {
+      "value": "1795378.171",
+      "text": "1,795,378",
+      "source": "data/treasury_flows.json",
+      "unit": "NEAR",
+      "blocks": "179199136-222491356",
+      "window": "2026-01-01T00:00 UTC to 2026-11-01T00:00 UTC"
+    },
+    "f4.y2026.swaps": {
+      "value": "14",
+      "text": "14",
+      "source": "data/treasury_flows.json",
+      "unit": "swaps",
+      "blocks": "179199136-222491356",
+      "window": "2026-01-01T00:00 UTC to 2026-11-01T00:00 UTC"
+    },
+    "f4.y2026.swaps_mean_price_usd": {
+      "value": "2.0259",
+      "text": "$2.03",
+      "source": "data/treasury_flows.json",
+      "unit": "USD",
+      "blocks": "179199136-222491356",
+      "window": "2026-01-01T00:00 UTC to 2026-11-01T00:00 UTC"
+    },
+    "f4.y2026.swaps_near_given": {
+      "value": "237732.479",
+      "text": "237,732",
+      "source": "data/treasury_flows.json",
+      "unit": "NEAR",
+      "blocks": "179199136-222491356",
+      "window": "2026-01-01T00:00 UTC to 2026-11-01T00:00 UTC"
+    },
+    "f4.y2026.swaps_usd_received": {
+      "value": "481610.58",
+      "text": "$481,611",
+      "source": "data/treasury_flows.json",
+      "unit": "USDC+USDT",
+      "blocks": "179199136-222491356",
+      "window": "2026-01-01T00:00 UTC to 2026-11-01T00:00 UTC"
+    },
+    "f4.y2026.unstaked_near": {
+      "value": "919533.060",
+      "text": "919,533",
+      "source": "data/treasury_flows.json",
+      "unit": "NEAR",
+      "blocks": "179199136-222491356",
+      "window": "2026-01-01T00:00 UTC to 2026-11-01T00:00 UTC"
+    },
+    "f4.y2026.usdc_sent_out": {
+      "value": "552872.40",
+      "text": "$552,872",
+      "source": "data/treasury_flows.json",
+      "unit": "USDC",
+      "blocks": "179199136-222491356",
+      "window": "2026-01-01T00:00 UTC to 2026-11-01T00:00 UTC"
+    },
+    "f5.largest_share.2026-08-01": {
+      "value": "0.361682",
+      "text": "36.2%",
+      "source": "data/stakers/2026-08-01.json",
+      "unit": "share of farm",
+      "block": 209393356
+    },
+    "f5.largest_share.2026-08-15": {
+      "value": "0.769166",
+      "text": "76.9%",
+      "source": "data/stakers/2026-08-15.json",
+      "unit": "share of farm",
+      "block": 211368454
+    },
+    "f5.largest_share.2026-09-01": {
+      "value": "0.760889",
+      "text": "76.1%",
+      "source": "data/stakers/2026-09-01.json",
+      "unit": "share of farm",
+      "block": 213761242
+    },
+    "f5.largest_share.2026-09-15": {
+      "value": "0.756640",
+      "text": "75.7%",
+      "source": "data/stakers/2026-09-15.json",
+      "unit": "share of farm",
+      "block": 215706980
+    },
+    "f5.largest_share.2026-10-01": {
+      "value": "0.740715",
+      "text": "74.1%",
+      "source": "data/stakers/2026-10-01.json",
+      "unit": "share of farm",
+      "block": 217984974
+    },
+    "f5.largest_share.2026-10-15": {
+      "value": "0.589189",
+      "text": "58.9%",
+      "source": "data/stakers/2026-10-15.json",
+      "unit": "share of farm",
+      "block": 220001294
+    },
+    "f5.largest_share.2026-11-01": {
+      "value": "0.732951",
+      "text": "73.3%",
+      "source": "data/stakers/2026-11-01.json",
+      "unit": "share of farm",
+      "block": 222491356
+    },
+    "f5.stakers_active.2026-08-01": {
+      "value": "16",
+      "text": "16",
+      "source": "data/stakers/2026-08-01.json",
+      "unit": "accounts",
+      "block": 209393356
+    },
+    "f5.stakers_active.2026-08-15": {
+      "value": "46",
+      "text": "46",
+      "source": "data/stakers/2026-08-15.json",
+      "unit": "accounts",
+      "block": 211368454
+    },
+    "f5.stakers_active.2026-09-01": {
+      "value": "51",
+      "text": "51",
+      "source": "data/stakers/2026-09-01.json",
+      "unit": "accounts",
+      "block": 213761242
+    },
+    "f5.stakers_active.2026-09-15": {
+      "value": "73",
+      "text": "73",
+      "source": "data/stakers/2026-09-15.json",
+      "unit": "accounts",
+      "block": 215706980
+    },
+    "f5.stakers_active.2026-10-01": {
+      "value": "88",
+      "text": "88",
+      "source": "data/stakers/2026-10-01.json",
+      "unit": "accounts",
+      "block": 217984974
+    },
+    "f5.stakers_active.2026-10-15": {
+      "value": "99",
+      "text": "99",
+      "source": "data/stakers/2026-10-15.json",
+      "unit": "accounts",
+      "block": 220001294
+    },
+    "f5.stakers_active.2026-11-01": {
+      "value": "112",
+      "text": "112",
+      "source": "data/stakers/2026-11-01.json",
+      "unit": "accounts",
+      "block": 222491356
+    },
+    "f8.computed_status": {
+      "value": null,
+      "text": null,
+      "source": null,
+      "status": "pending",
+      "note": "hsp029.py runs after the vote closes (2026-11-02 16:48:08 UTC)"
+    },
+    "n1.buybacks_near_per_day": {
+      "value": "9569.750",
+      "text": "9,570",
+      "source": "data/history.csv",
+      "unit": "NEAR/day",
+      "note": "buybacks.multisignature.near + 1csfundsadmin",
+      "window": "2026-10-02 00:00 UTC to 2026-11-01 00:00 UTC",
+      "blocks": "218126921-222491356"
+    },
+    "n1.coverage_buybacks": {
+      "value": "0.108265",
+      "text": "10.8%",
+      "source": "data/history.csv",
+      "unit": "share",
+      "window": "2026-10-02 00:00 UTC to 2026-11-01 00:00 UTC",
+      "blocks": "218126921-222491356"
+    },
+    "n1.coverage_with_front_end": {
+      "value": "0.164658",
+      "text": "16.5%",
+      "source": "data/history.csv",
+      "unit": "share",
+      "window": "2026-10-02 00:00 UTC to 2026-11-01 00:00 UTC",
+      "blocks": "218126921-222491356"
+    },
+    "n1.front_end_near_per_day": {
+      "value": "4984.673",
+      "text": "4,985",
+      "source": "data/history.csv",
+      "unit": "NEAR/day",
+      "note": "fefundsadmin.sputnik-dao.near",
+      "window": "2026-10-02 00:00 UTC to 2026-11-01 00:00 UTC",
+      "blocks": "218126921-222491356"
+    },
+    "n1.new_near_not_absorbed_per_day": {
+      "value": "78822.337",
+      "text": "78,822",
+      "source": "data/history.csv",
+      "unit": "NEAR/day",
+      "note": "new NEAR minus NEAR kept by the buybacks wallet; total supply still grows by n1.new_near_per_day",
+      "window": "2026-10-02 00:00 UTC to 2026-11-01 00:00 UTC",
+      "blocks": "218126921-222491356"
+    },
+    "n1.new_near_per_day": {
+      "value": "88392.087",
+      "text": "88,392",
+      "source": "data/history.csv",
+      "unit": "NEAR/day",
+      "window": "2026-10-02 00:00 UTC to 2026-11-01 00:00 UTC",
+      "blocks": "218126921-222491356"
+    },
+    "n2.defillama_revenue_coverage": {
+      "value": "0.166598",
+      "text": "16.7%",
+      "source": "data/fees_2026-10-02_2026-11-01.json",
+      "unit": "share",
+      "window": "2026-10-02 00:00 UTC to 2026-11-01 00:00 UTC",
+      "blocks": "218126921-222491356",
+      "status": "provisional",
+      "fetched_utc": "2026-11-01T13:02:17Z",
+      "counted_days": 29,
+      "excluded_days": [
+        "2026-10-31"
+      ]
+    },
+    "n2.equilibrium_price_usd": {
+      "value": "2.2382",
+      "text": "$2.24",
+      "source": "data/fees_2026-10-02_2026-11-01.json",
+      "unit": "USD",
+      "window": "2026-10-02 00:00 UTC to 2026-11-01 00:00 UTC",
+      "blocks": "218126921-222491356",
+      "status": "provisional",
+      "fetched_utc": "2026-11-01T13:02:17Z",
+      "counted_days": 29,
+      "excluded_days": [
+        "2026-10-31"
+      ]
+    },
+    "n2.fees_bps": {
+      "value": "15.15",
+      "text": "15.2",
+      "source": "data/fees_2026-10-02_2026-11-01.json",
+      "unit": "bps of volume",
+      "window": "2026-10-02 00:00 UTC to 2026-11-01 00:00 UTC",
+      "blocks": "218126921-222491356",
+      "status": "provisional",
+      "fetched_utc": "2026-11-01T13:02:17Z",
+      "counted_days": 29,
+      "excluded_days": [
+        "2026-10-31"
+      ]
+    },
+    "n2.fees_near_per_day": {
+      "value": "40243.8",
+      "text": "40,244",
+      "source": "data/fees_2026-10-02_2026-11-01.json",
+      "unit": "NEAR/day",
+      "window": "2026-10-02 00:00 UTC to 2026-11-01 00:00 UTC",
+      "blocks": "218126921-222491356",
+      "status": "provisional",
+      "fetched_utc": "2026-11-01T13:02:17Z",
+      "counted_days": 29,
+      "excluded_days": [
+        "2026-10-31"
+      ]
+    },
+    "n2.fees_usd_per_day": {
+      "value": "197837.45",
+      "text": "$197,837",
+      "source": "data/fees_2026-10-02_2026-11-01.json",
+      "unit": "USD/day",
+      "window": "2026-10-02 00:00 UTC to 2026-11-01 00:00 UTC",
+      "blocks": "218126921-222491356",
+      "status": "provisional",
+      "fetched_utc": "2026-11-01T13:02:17Z",
+      "counted_days": 29,
+      "excluded_days": [
+        "2026-10-31"
+      ]
+    },
+    "n2.hsp029_equilibrium_price_usd": {
+      "value": "3.4972",
+      "text": "$3.50",
+      "source": "data/fees_2026-10-02_2026-11-01.json",
+      "unit": "USD",
+      "window": "2026-10-02 00:00 UTC to 2026-11-01 00:00 UTC",
+      "blocks": "218126921-222491356",
+      "status": "provisional",
+      "fetched_utc": "2026-11-01T13:02:17Z",
+      "counted_days": 29,
+      "excluded_days": [
+        "2026-10-31"
+      ]
+    },
+    "n2.hsp029_max_coverage": {
+      "value": "0.711387",
+      "text": "71.1%",
+      "source": "data/fees_2026-10-02_2026-11-01.json",
+      "unit": "share",
+      "window": "2026-10-02 00:00 UTC to 2026-11-01 00:00 UTC",
+      "blocks": "218126921-222491356",
+      "status": "provisional",
+      "fetched_utc": "2026-11-01T13:02:17Z",
+      "counted_days": 29,
+      "excluded_days": [
+        "2026-10-31"
+      ]
+    },
+    "n2.max_coverage": {
+      "value": "0.455287",
+      "text": "45.5%",
+      "source": "data/fees_2026-10-02_2026-11-01.json",
+      "unit": "share",
+      "window": "2026-10-02 00:00 UTC to 2026-11-01 00:00 UTC",
+      "blocks": "218126921-222491356",
+      "status": "provisional",
+      "fetched_utc": "2026-11-01T13:02:17Z",
+      "counted_days": 29,
+      "excluded_days": [
+        "2026-10-31"
+      ]
+    },
+    "n2.mean_price_usd": {
+      "value": "4.8977",
+      "text": "$4.90",
+      "source": "data/fees_2026-10-02_2026-11-01.json",
+      "unit": "USD",
+      "window": "2026-10-02 00:00 UTC to 2026-11-01 00:00 UTC",
+      "blocks": "218126921-222491356",
+      "status": "provisional",
+      "fetched_utc": "2026-11-01T13:02:17Z",
+      "counted_days": 29,
+      "excluded_days": [
+        "2026-10-31"
+      ]
+    },
+    "n2.revenue_usd_per_day": {
+      "value": "71504.41",
+      "text": "$71,504",
+      "source": "data/fees_2026-10-02_2026-11-01.json",
+      "unit": "USD/day",
+      "window": "2026-10-02 00:00 UTC to 2026-11-01 00:00 UTC",
+      "blocks": "218126921-222491356",
+      "status": "provisional",
+      "fetched_utc": "2026-11-01T13:02:17Z",
+      "counted_days": 29,
+      "excluded_days": [
+        "2026-10-31"
+      ]
+    },
+    "n2.take_rate": {
+      "value": "0.361430",
+      "text": "36.1%",
+      "source": "data/fees_2026-10-02_2026-11-01.json",
+      "unit": "revenue / fees",
+      "window": "2026-10-02 00:00 UTC to 2026-11-01 00:00 UTC",
+      "blocks": "218126921-222491356",
+      "status": "provisional",
+      "fetched_utc": "2026-11-01T13:02:17Z",
+      "counted_days": 29,
+      "excluded_days": [
+        "2026-10-31"
+      ]
+    },
+    "n2.volume_usd_per_day": {
+      "value": "130592125.00",
+      "text": "$130,592,125",
+      "source": "data/fees_2026-10-02_2026-11-01.json",
+      "unit": "USD/day",
+      "window": "2026-10-02 00:00 UTC to 2026-11-01 00:00 UTC",
+      "blocks": "218126921-222491356",
+      "status": "provisional",
+      "fetched_utc": "2026-11-01T13:02:17Z",
+      "counted_days": 29,
+      "excluded_days": [
+        "2026-10-31"
+      ]
+    },
+    "n3.agents_locks": {
+      "value": "86",
+      "text": "86",
+      "source": "data/stakers/2026-11-01.json",
+      "unit": "locks",
+      "block": 222491356,
+      "as_of": "2026-11-01 00:00 UTC"
+    },
+    "n3.agents_locks_past_end": {
+      "value": "75",
+      "text": "75",
+      "source": "data/stakers/2026-11-01.json",
+      "unit": "locks",
+      "block": 222491356,
+      "as_of": "2026-11-01 00:00 UTC"
+    },
+    "n3.farm_or_active_lock_accounts": {
+      "value": "145",
+      "text": "145",
+      "source": "data/stakers/2026-11-01.json",
+      "unit": "accounts",
+      "block": 222491356,
+      "as_of": "2026-11-01 00:00 UTC"
+    },
+    "n3.farm_or_any_lock_accounts": {
+      "value": "181",
+      "text": "181",
+      "source": "data/stakers/2026-11-01.json",
+      "unit": "accounts",
+      "block": 222491356,
+      "as_of": "2026-11-01 00:00 UTC"
+    },
+    "n3.farm_total_near": {
+      "value": "1364347.600",
+      "text": "1,364,348",
+      "source": "data/stakers/2026-11-01.json",
+      "unit": "NEAR",
+      "block": 222491356,
+      "as_of": "2026-11-01 00:00 UTC"
+    },
+    "n3.largest_near": {
+      "value": "1000000.000",
+      "text": "1,000,000",
+      "source": "data/stakers/2026-11-01.json",
+      "unit": "NEAR",
+      "block": 222491356,
+      "as_of": "2026-11-01 00:00 UTC"
+    },
+    "n3.largest_share": {
+      "value": "0.732951",
+      "text": "73.3%",
+      "source": "data/stakers/2026-11-01.json",
+      "unit": "share of farm",
+      "block": 222491356,
+      "as_of": "2026-11-01 00:00 UTC"
+    },
+    "n3.left_share_of_ever": {
+      "value": "0.404255",
+      "text": "40.4%",
+      "source": "data/stakers/2026-11-01.json",
+      "unit": "share",
+      "block": 222491356,
+      "as_of": "2026-11-01 00:00 UTC"
+    },
+    "n3.outside_top10_accounts": {
+      "value": "102",
+      "text": "102",
+      "source": "data/stakers/2026-11-01.json",
+      "unit": "accounts",
+      "block": 222491356,
+      "as_of": "2026-11-01 00:00 UTC"
+    },
+    "n3.outside_top10_median_near": {
+      "value": "60.000",
+      "text": "60",
+      "source": "data/stakers/2026-11-01.json",
+      "unit": "NEAR",
+      "block": 222491356,
+      "as_of": "2026-11-01 00:00 UTC"
+    },
+    "n3.outside_top10_near": {
+      "value": "48610.600",
+      "text": "48,611",
+      "source": "data/stakers/2026-11-01.json",
+      "unit": "NEAR",
+      "block": 222491356,
+      "as_of": "2026-11-01 00:00 UTC"
+    },
+    "n3.stakers_active": {
+      "value": "112",
+      "text": "112",
+      "source": "data/stakers/2026-11-01.json",
+      "unit": "accounts",
+      "block": 222491356,
+      "as_of": "2026-11-01 00:00 UTC"
+    },
+    "n3.stakers_ever": {
+      "value": "188",
+      "text": "188",
+      "source": "data/stakers/2026-11-01.json",
+      "unit": "accounts",
+      "block": 222491356,
+      "as_of": "2026-11-01 00:00 UTC"
+    },
+    "n3.stakers_left": {
+      "value": "76",
+      "text": "76",
+      "source": "data/stakers/2026-11-01.json",
+      "unit": "accounts",
+      "block": 222491356,
+      "as_of": "2026-11-01 00:00 UTC"
+    },
+    "n3.top10_share": {
+      "value": "0.964371",
+      "text": "96.4%",
+      "source": "data/stakers/2026-11-01.json",
+      "unit": "share of farm",
+      "block": 222491356,
+      "as_of": "2026-11-01 00:00 UTC"
+    }
+  }
+}
