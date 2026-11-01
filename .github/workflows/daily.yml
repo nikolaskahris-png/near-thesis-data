@@ -46,11 +46,20 @@ jobs:
           echo '```' >> "$GITHUB_STEP_SUMMARY"
           cut -d, -f1,4,8,11,15,16,20 data/history.csv | tail -n 15 >> "$GITHUB_STEP_SUMMARY"
           echo '```' >> "$GITHUB_STEP_SUMMARY"
+      - name: Validators' vote for the next protocol version (HSP-027 = v87)
+        continue-on-error: true
+        run: |
+          python scripts/upgrade_watch.py
+          python scripts/upgrade_watch.py --verify
+          echo '```' >> "$GITHUB_STEP_SUMMARY"
+          cat data/upgrade_watch.csv >> "$GITHUB_STEP_SUMMARY"
+          echo '```' >> "$GITHUB_STEP_SUMMARY"
       - name: Commit result
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add data/daily data/raw data/history.csv
+          git add data/upgrade_watch data/upgrade_watch.csv 2>/dev/null || true
           git commit -m "daily: $(tail -n 1 data/history.csv | cut -d, -f1)" || { echo "nothing to commit"; exit 0; }
           git pull --rebase
           git push
