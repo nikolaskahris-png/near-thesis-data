@@ -655,7 +655,8 @@ def verify(path, run_scripts=True, runner=subprocess.run):
     path = Path(path)
     doc = json.loads(path.read_text(encoding="utf-8"))
     root = path.resolve().parent.parent
-    problems = []
+    problems, public_only = [], []
+    verify.public_only = public_only
     for rel, digest in doc["sources"].items():
         p = root / rel
         if not p.exists():
@@ -677,6 +678,8 @@ def verify(path, run_scripts=True, runner=subprocess.run):
             print(f"  {script:<18} {'OK' if res.returncode == 0 else 'FAILED'}  {line[:110]}")
             if res.returncode != 0:
                 problems.append(f"{script} --verify failed")
+            elif "PUBLIC_FULL" in line:
+                public_only.append(script)
     if not problems:
         again, p = build(root / "data", root / doc["window_file"])
         problems += p
@@ -732,6 +735,11 @@ def main():
         print(f"OK: every script's check passes and numbers.json rebuilds the same "
               f"({len(doc['numbers'])} numbers; provisional or pending: "
               f"{len(doc['provisional_or_pending'])})")
+        po = getattr(verify, "public_only", [])
+        print("VERIFY: PASS (PUBLIC_FULL) - every number recomputed offline from public files "
+              "and redacted copies." + (f" Private originals are not in git for privacy "
+              f"({', '.join(po)}): their SHA-256 are recorded, and --archival re-fetches them."
+                                        if po else " Private originals present and matching."))
         return
     if args.check or args.render:
         numbers = json.loads(out.read_text(encoding="utf-8"))["numbers"]

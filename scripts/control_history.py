@@ -33,9 +33,10 @@ Dates: Sputnik stores only when a proposal was SUBMITTED, not when it passed. Pr
 dates below are submission dates; a proposal passes within the DAO's proposal_period.
 
 Privacy: proposal texts, proposers and voters can name people. Those raw answers go
-to data/private/control/ (not committed); the public file keeps their sha256 and, per
-proposal, only id, kind, status, submission date, receiver (if a contract in
-PUBLIC_ACCOUNTS or a known contract) and method.
+to data/private/control/ (not committed). Each page has a redacted copy in
+data/raw/redacted/control/ (scripts/privacy.py) with, per proposal, only id, kind, status,
+submission time, receiver (a known contract by name, anyone else as a sha256 tag) and
+method names; the history is always computed from it, so --verify recomputes it offline.
 
 Read-only: JSON-RPC "query". No keys, nothing written on chain.
 
@@ -55,6 +56,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import control_map as cm  # noqa: E402
 import lock_window as lw  # noqa: E402
+import privacy  # noqa: E402
 import stakers  # noqa: E402
 
 REPO = lw.REPO
@@ -230,11 +232,36 @@ def summarise(items):
     return out
 
 
+def trim(proposal):
+    """A proposal reduced to what entries() reads; receivers outside KNOWN_CONTRACTS as tags."""
+    k = kind_name(proposal["kind"])
+    out = {"id": proposal["id"], "status": proposal["status"],
+           "submission_time": proposal["submission_time"]}
+    body = proposal["kind"].get(k) if isinstance(proposal["kind"], dict) else None
+    if body is None:
+        out["kind"] = proposal["kind"]
+    elif k == "FunctionCall":
+        out["kind"] = {k: {"receiver_id": privacy.redact(body["receiver_id"], KNOWN_CONTRACTS),
+                           "actions": [{"method_name": a["method_name"]} for a in body["actions"]]}}
+    elif k == "UpgradeRemote":
+        out["kind"] = {k: {"receiver_id": privacy.redact(body["receiver_id"], KNOWN_CONTRACTS),
+                           "method_name": body.get("method_name")}}
+    else:
+        out["kind"] = {k: {}}
+    return out
+
+
+def project(key, raw):
+    if "/get_proposals_" not in key:
+        raise ValueError(f"no redaction rule for {key}")
+    return privacy.dumps({"redacted_value": [trim(p) for p in cm.decode(raw)]})
+
+
 # ---------------------------------------------------------------- build
 
 def build(root, files, window):
     def raw(key):
-        return (root / files[key]["path"]).read_bytes()
+        return privacy.read(root, files[key])
 
     last_b = window["boundaries"][-1]
     items, statuses, removed = [], Counter(), {}
@@ -298,12 +325,14 @@ def run(chain, data_dir, window_path, get=stakers.http_get, wait=stakers.PAGE_WA
     store = cm.Store(data_dir)
     collect(chain, store, window["boundaries"][-1]["height"])
     collect_keys(store, get, wait)
+    privacy.write_redacted(data_dir.parent, store.files, project)
     doc = {
         "measure": "control history: every proposal of the control map's DAOs, by lever",
         "window_file": Path(window_path).resolve().relative_to(data_dir.parent.resolve()).as_posix(),
         "source": {"rpc": chain.url},
         "privacy": "proposal texts, proposers and votes stay in data/private/control/ "
-                   "(not committed); their requests and sha256 are below",
+                   "(not committed); their requests and sha256 are below, with a redacted "
+                   "copy under data/raw/redacted/control/ that the history is computed from",
         "raw_files": store.files,
     }
     doc.update(build(data_dir.parent, store.files, window))
@@ -314,32 +343,29 @@ def verify(path, archival=False, chain=None):
     path = Path(path)
     doc = json.loads(path.read_text(encoding="utf-8"))
     root = path.resolve().parent.parent
-    problems, missing = [], 0
-    for key, f in doc["raw_files"].items():
-        p = root / f["path"]
-        if archival and "nearblocks" not in f["request"]:
+    problems = []
+    if archival:
+        for key, f in doc["raw_files"].items():
+            if "nearblocks" in f["request"]:
+                continue  # an index service: pages change as new rows arrive
+            p = root / f["path"]
             raw = cm.fetch(chain, f["request"])
             if lw.sha256(raw) != f["sha256"]:
                 problems.append(f"archival answer differs: {key}")
             elif not p.exists():
                 p.parent.mkdir(parents=True, exist_ok=True)
                 p.write_bytes(raw)
-        if not p.exists():
-            if f["private"]:
-                missing += 1
-            else:
-                problems.append(f"missing raw file {f['path']}")
-        elif lw.sha256(p.read_bytes()) != f["sha256"]:
-            problems.append(f"sha256 mismatch: {f['path']}")
-    if problems or missing:
-        return problems, missing
+    p2, absent = privacy.check_files(root, doc["raw_files"], project)
+    problems += p2
+    if problems:
+        return problems, absent
     window = json.loads((root / doc["window_file"]).read_text(encoding="utf-8"))
     again = build(root, doc["raw_files"], window)
     for key, value in again.items():
         if doc.get(key) != value:
             problems.append(f"'{key}' does not recompute from the raw files")
     problems += [f"check failed: {k}" for k, ok in again["checks"].items() if not ok]
-    return problems, 0
+    return problems, absent
 
 
 def show(doc):
@@ -375,11 +401,7 @@ def main():
         if problems:
             print("FAILED:\n  " + "\n  ".join(problems))
             sys.exit(1)
-        if missing:
-            print(f"OK for public files; {missing} private raw file(s) absent, so the history is "
-                  f"not recomputed here (run --verify --archival to re-fetch and compare sha256)")
-            return
-        print("OK: raw sha256 match and the control history recomputes exactly")
+        print(privacy.status_line("the control history", missing))
         return
     if not args.window:
         parser.error("--window is required")

@@ -1,0 +1,27 @@
+{
+ "redacted_value": {
+  "default_vote_policy": {
+   "quorum": "0",
+   "threshold": "3",
+   "weight_kind": "RoleWeight"
+  },
+  "roles": [
+   {
+    "kind": {
+     "Group": [
+      "sha256:c508a20d5c940e8b",
+      "sha256:4e6c4f9546ae06b6",
+      "sha256:04a0203b5c6bbd6e",
+      "sha256:16d26232ed82eefd",
+      "sha256:1b960c8e4b6ada2d"
+     ]
+    },
+    "name": "Admin",
+    "permissions": [
+     "*:*"
+    ],
+    "vote_policy": {}
+   }
+  ]
+ }
+}

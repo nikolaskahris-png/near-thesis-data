@@ -122,7 +122,9 @@ python scripts/build_numbers.py --check README.md  # every marked number in this
 python scripts/check_prereg.py --file              # PREREG.md matches the anchored SHA-256 (saved copy)
 ```
 
-The `verify` badge runs these, and the check of `data/upgrade_watch.csv`, on every push. Five live read-only calls are in [Verify live](#verify-live).
+The second command ends with `VERIFY: PASS (PUBLIC_FULL)`: every number recomputed with no network and without
+the private originals ([Method](#method)). The `verify` badge runs these, and the check of
+`data/upgrade_watch.csv`, on every push. Five live read-only calls are in [Verify live](#verify-live).
 
 ## The control map: who can change each link
 
@@ -257,7 +259,10 @@ not visible.
 **7. A method note on DefiLlama's "buybacks".** DefiLlama counts the front-end fund's inflows in its buyback figure.
 In the window, <!--n:f9.front_end_share_of_wallets-->34.2%<!--/n--> of what the three wallets kept went to the
 front-end fund (near-intents.org's fees), not to the buybacks wallet. NEAR's docs publish where these fees go
-([fees](https://docs.near-intents.org/resources/fees)); it is why number 1 is given both ways.
+([fees](https://docs.near-intents.org/resources/fees)); it is why number 1 is given both ways. NEAR's own dashboard
+([revenue.near.org](https://revenue.near.org/), read on 23 October 2026) shows less NEAR in the buybacks wallet
+than `view_account` returns: it books the two transfers from `1csfundsadmin.sputnik-dao.near` to the buybacks
+wallet (July and September 2026) under 1Click. Number 1 adds the two wallets, so that move cancels out.
 
 ## Path to rules
 
@@ -343,9 +348,10 @@ record inside the transaction's own arguments. It also checks the signer and tha
   24 hours earlier gives the same fees and prices (DefiLlama fills recent days late and corrects old ones).
 - **Private raw files.** Answers that list people's accounts (stakers and locks of `stake.dao`, DAO members,
   proposal texts, validators, voters) stay out of the repository; the public files keep their SHA-256 and the
-  exact request. For number 3 the public snapshot also keeps each account's tag, status and amount, so
-  `stakers.py --verify` recomputes every figure offline. The offline checks say which steps they could not
-  recompute without the private files; `--archival` re-fetches them.
+  exact request. Each one has a redacted copy under `data/raw/redacted/` (number 3: the lists inside
+  `data/stakers/`) with only the fields the computation reads and people as tags (`scripts/privacy.py`). Every
+  number is computed from these copies, so the offline check recomputes all of them; with the originals present
+  it also checks that they give the same copies, byte for byte. `--archival` re-fetches the originals.
 - **No names.** In public files an account of a person appears only as a tag: `sha256:` and the first 16 hex
   characters of the SHA-256 of its account ID, so anyone can check a known account by hashing it. One exception:
   `PREREG.md` names the implicit account of the largest farm position, which prediction 1 needs. DAOs, contracts
@@ -417,6 +423,7 @@ python scripts/treasury_flows.py --verify --archival
 |---|---|
 | `data/numbers.json` | every number in this file, with its source file and that file's SHA-256 |
 | `data/raw/` | every public RPC, NearBlocks and DefiLlama response, byte for byte |
+| `data/raw/redacted/` | redacted copies of the responses that name people, which the numbers are computed from |
 | `data/history.csv` | one row a day from the `daily` workflow (00:15 UTC): number 1 over the last 30 days |
 | `data/upgrade_watch.csv` | one row a day: stake signalling the next protocol version |
 | `scripts/` | one script per number or finding; each has `--verify` and a test in `tests/` |

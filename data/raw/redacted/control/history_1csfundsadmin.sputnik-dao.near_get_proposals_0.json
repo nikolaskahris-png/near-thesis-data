@@ -1,0 +1,113 @@
+{
+ "redacted_value": [
+  {
+   "id": 0,
+   "kind": {
+    "Transfer": {}
+   },
+   "status": "Approved",
+   "submission_time": "1776848406450111846"
+  },
+  {
+   "id": 1,
+   "kind": {
+    "Transfer": {}
+   },
+   "status": "Approved",
+   "submission_time": "1776848461491151255"
+  },
+  {
+   "id": 2,
+   "kind": {
+    "ChangePolicy": {}
+   },
+   "status": "Approved",
+   "submission_time": "1776849294353323468"
+  },
+  {
+   "id": 3,
+   "kind": {
+    "ChangePolicy": {}
+   },
+   "status": "Approved",
+   "submission_time": "1783702338790610208"
+  },
+  {
+   "id": 4,
+   "kind": {
+    "Transfer": {}
+   },
+   "status": "Approved",
+   "submission_time": "1783702675199636530"
+  },
+  {
+   "id": 5,
+   "kind": {
+    "Transfer": {}
+   },
+   "status": "Approved",
+   "submission_time": "1787828551464277901"
+  },
+  {
+   "id": 6,
+   "kind": {
+    "Transfer": {}
+   },
+   "status": "InProgress",
+   "submission_time": "1787828618294882125"
+  },
+  {
+   "id": 7,
+   "kind": {
+    "FunctionCall": {
+     "actions": [
+      {
+       "method_name": "mt_transfer"
+      }
+     ],
+     "receiver_id": "intents.near"
+    }
+   },
+   "status": "InProgress",
+   "submission_time": "1787828713604715668"
+  },
+  {
+   "id": 8,
+   "kind": {
+    "FunctionCall": {
+     "actions": [
+      {
+       "method_name": "mt_transfer"
+      }
+     ],
+     "receiver_id": "intents.near"
+    }
+   },
+   "status": "InProgress",
+   "submission_time": "1788949044778770888"
+  },
+  {
+   "id": 9,
+   "kind": {
+    "Transfer": {}
+   },
+   "status": "Approved",
+   "submission_time": "1788949363083684574"
+  },
+  {
+   "id": 10,
+   "kind": {
+    "FunctionCall": {
+     "actions": [
+      {
+       "method_name": "mt_transfer"
+      }
+     ],
+     "receiver_id": "intents.near"
+    }
+   },
+   "status": "Approved",
+   "submission_time": "1788955762109864757"
+  }
+ ]
+}

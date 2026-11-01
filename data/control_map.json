@@ -4,7 +4,7 @@
   "source": {
     "rpc": "https://archival-rpc.mainnet.fastnear.com"
   },
-  "privacy": "answers that list people's accounts stay in data/private/control/ (not committed); their requests and sha256 are below",
+  "privacy": "answers that list people's accounts stay in data/private/control/ (not committed); their requests and sha256 are below, with a redacted copy under data/raw/redacted/control/ that the map is computed from",
   "raw_files": {
     "account/intents.near": {
       "path": "data/raw/control/account_intents.near.json",
@@ -389,6 +389,10 @@
           "method_name": "acl_get_grantees",
           "args_base64": "eyJyb2xlIjogIkRBTyIsICJza2lwIjogMCwgImxpbWl0IjogMTAwfQ=="
         }
+      },
+      "redacted": {
+        "path": "data/raw/redacted/control/intents.near_grantees_DAO.json",
+        "sha256": "6aaee94aed507eefcf00983f578dcd5d0a0d37cbca4c62bfea4432b767aa3995"
       }
     },
     "intents.near/grantees/FeesManager": {
@@ -404,6 +408,10 @@
           "method_name": "acl_get_grantees",
           "args_base64": "eyJyb2xlIjogIkZlZXNNYW5hZ2VyIiwgInNraXAiOiAwLCAibGltaXQiOiAxMDB9"
         }
+      },
+      "redacted": {
+        "path": "data/raw/redacted/control/intents.near_grantees_FeesManager.json",
+        "sha256": "db9021c638a404e552c088829df87600b7355e8b3fa11fa442019d502584d9ba"
       }
     },
     "intents.near/grantees/RelayerKeysManager": {
@@ -419,6 +427,10 @@
           "method_name": "acl_get_grantees",
           "args_base64": "eyJyb2xlIjogIlJlbGF5ZXJLZXlzTWFuYWdlciIsICJza2lwIjogMCwgImxpbWl0IjogMTAwfQ=="
         }
+      },
+      "redacted": {
+        "path": "data/raw/redacted/control/intents.near_grantees_RelayerKeysManager.json",
+        "sha256": "b9a6719bd16617a29079da12b29c207d6b2e1f7e27c447ecd7ccbf85b38d43b1"
       }
     },
     "intents.near/grantees/UnrestrictedWithdrawer": {
@@ -434,6 +446,10 @@
           "method_name": "acl_get_grantees",
           "args_base64": "eyJyb2xlIjogIlVucmVzdHJpY3RlZFdpdGhkcmF3ZXIiLCAic2tpcCI6IDAsICJsaW1pdCI6IDEwMH0="
         }
+      },
+      "redacted": {
+        "path": "data/raw/redacted/control/intents.near_grantees_UnrestrictedWithdrawer.json",
+        "sha256": "db9021c638a404e552c088829df87600b7355e8b3fa11fa442019d502584d9ba"
       }
     },
     "intents.near/grantees/PauseManager": {
@@ -449,6 +465,10 @@
           "method_name": "acl_get_grantees",
           "args_base64": "eyJyb2xlIjogIlBhdXNlTWFuYWdlciIsICJza2lwIjogMCwgImxpbWl0IjogMTAwfQ=="
         }
+      },
+      "redacted": {
+        "path": "data/raw/redacted/control/intents.near_grantees_PauseManager.json",
+        "sha256": "01d3e81ec42a64952ea5adc3171647c98f4a3254f47713a43ab329986b6650e3"
       }
     },
     "intents.near/grantees/Upgrader": {
@@ -464,6 +484,10 @@
           "method_name": "acl_get_grantees",
           "args_base64": "eyJyb2xlIjogIlVwZ3JhZGVyIiwgInNraXAiOiAwLCAibGltaXQiOiAxMDB9"
         }
+      },
+      "redacted": {
+        "path": "data/raw/redacted/control/intents.near_grantees_Upgrader.json",
+        "sha256": "480ebb5490f39227c7940a0a4b33e65ec532df63391d6675bbe67f289d23e69f"
       }
     },
     "intents.near/grantees/UnpauseManager": {
@@ -479,6 +503,10 @@
           "method_name": "acl_get_grantees",
           "args_base64": "eyJyb2xlIjogIlVucGF1c2VNYW5hZ2VyIiwgInNraXAiOiAwLCAibGltaXQiOiAxMDB9"
         }
+      },
+      "redacted": {
+        "path": "data/raw/redacted/control/intents.near_grantees_UnpauseManager.json",
+        "sha256": "db9021c638a404e552c088829df87600b7355e8b3fa11fa442019d502584d9ba"
       }
     },
     "intents.near/grantees/UnrestrictedAccountLocker": {
@@ -494,6 +522,10 @@
           "method_name": "acl_get_grantees",
           "args_base64": "eyJyb2xlIjogIlVucmVzdHJpY3RlZEFjY291bnRMb2NrZXIiLCAic2tpcCI6IDAsICJsaW1pdCI6IDEwMH0="
         }
+      },
+      "redacted": {
+        "path": "data/raw/redacted/control/intents.near_grantees_UnrestrictedAccountLocker.json",
+        "sha256": "7b22d14c036825f9a47ef9a239a958a12759ff51b19c5f0c95eab0648009752e"
       }
     },
     "intents.near/grantees/UnrestrictedAccountUnlocker": {
@@ -509,6 +541,10 @@
           "method_name": "acl_get_grantees",
           "args_base64": "eyJyb2xlIjogIlVucmVzdHJpY3RlZEFjY291bnRVbmxvY2tlciIsICJza2lwIjogMCwgImxpbWl0IjogMTAwfQ=="
         }
+      },
+      "redacted": {
+        "path": "data/raw/redacted/control/intents.near_grantees_UnrestrictedAccountUnlocker.json",
+        "sha256": "db9021c638a404e552c088829df87600b7355e8b3fa11fa442019d502584d9ba"
       }
     },
     "intents.near/grantees/SaltManager": {
@@ -524,6 +560,10 @@
           "method_name": "acl_get_grantees",
           "args_base64": "eyJyb2xlIjogIlNhbHRNYW5hZ2VyIiwgInNraXAiOiAwLCAibGltaXQiOiAxMDB9"
         }
+      },
+      "redacted": {
+        "path": "data/raw/redacted/control/intents.near_grantees_SaltManager.json",
+        "sha256": "db9021c638a404e552c088829df87600b7355e8b3fa11fa442019d502584d9ba"
       }
     },
     "intents.near/grantees/GarbageCollector": {
@@ -539,6 +579,10 @@
           "method_name": "acl_get_grantees",
           "args_base64": "eyJyb2xlIjogIkdhcmJhZ2VDb2xsZWN0b3IiLCAic2tpcCI6IDAsICJsaW1pdCI6IDEwMH0="
         }
+      },
+      "redacted": {
+        "path": "data/raw/redacted/control/intents.near_grantees_GarbageCollector.json",
+        "sha256": "db9021c638a404e552c088829df87600b7355e8b3fa11fa442019d502584d9ba"
       }
     },
     "intents.near/grantees/UnrestrictedAccountManager": {
@@ -554,6 +598,10 @@
           "method_name": "acl_get_grantees",
           "args_base64": "eyJyb2xlIjogIlVucmVzdHJpY3RlZEFjY291bnRNYW5hZ2VyIiwgInNraXAiOiAwLCAibGltaXQiOiAxMDB9"
         }
+      },
+      "redacted": {
+        "path": "data/raw/redacted/control/intents.near_grantees_UnrestrictedAccountManager.json",
+        "sha256": "db9021c638a404e552c088829df87600b7355e8b3fa11fa442019d502584d9ba"
       }
     },
     "ctl-intents.near/contract_source_metadata": {
@@ -614,6 +662,10 @@
           "method_name": "acl_get_grantees",
           "args_base64": "eyJyb2xlIjogIkRBTyIsICJza2lwIjogMCwgImxpbWl0IjogMTAwfQ=="
         }
+      },
+      "redacted": {
+        "path": "data/raw/redacted/control/ctl-intents.near_grantees_DAO.json",
+        "sha256": "6aaee94aed507eefcf00983f578dcd5d0a0d37cbca4c62bfea4432b767aa3995"
       }
     },
     "ctl-intents.near/grantees/Deployer": {
@@ -629,6 +681,10 @@
           "method_name": "acl_get_grantees",
           "args_base64": "eyJyb2xlIjogIkRlcGxveWVyIiwgInNraXAiOiAwLCAibGltaXQiOiAxMDB9"
         }
+      },
+      "redacted": {
+        "path": "data/raw/redacted/control/ctl-intents.near_grantees_Deployer.json",
+        "sha256": "db9021c638a404e552c088829df87600b7355e8b3fa11fa442019d502584d9ba"
       }
     },
     "ctl-intents.near/grantees/Pauser": {
@@ -644,6 +700,10 @@
           "method_name": "acl_get_grantees",
           "args_base64": "eyJyb2xlIjogIlBhdXNlciIsICJza2lwIjogMCwgImxpbWl0IjogMTAwfQ=="
         }
+      },
+      "redacted": {
+        "path": "data/raw/redacted/control/ctl-intents.near_grantees_Pauser.json",
+        "sha256": "db9021c638a404e552c088829df87600b7355e8b3fa11fa442019d502584d9ba"
       }
     },
     "ctl-intents.near/grantees/Releaser": {
@@ -659,6 +719,10 @@
           "method_name": "acl_get_grantees",
           "args_base64": "eyJyb2xlIjogIlJlbGVhc2VyIiwgInNraXAiOiAwLCAibGltaXQiOiAxMDB9"
         }
+      },
+      "redacted": {
+        "path": "data/raw/redacted/control/ctl-intents.near_grantees_Releaser.json",
+        "sha256": "db9021c638a404e552c088829df87600b7355e8b3fa11fa442019d502584d9ba"
       }
     },
     "ctl-intents.near/grantees/Updater": {
@@ -674,6 +738,10 @@
           "method_name": "acl_get_grantees",
           "args_base64": "eyJyb2xlIjogIlVwZGF0ZXIiLCAic2tpcCI6IDAsICJsaW1pdCI6IDEwMH0="
         }
+      },
+      "redacted": {
+        "path": "data/raw/redacted/control/ctl-intents.near_grantees_Updater.json",
+        "sha256": "6851c2395439c06427dcc9523cb76d3fc256ef0a341a03fdc1e0a07e7abc1132"
       }
     },
     "ctl-intents.near/grantees/Unpauser": {
@@ -689,6 +757,10 @@
           "method_name": "acl_get_grantees",
           "args_base64": "eyJyb2xlIjogIlVucGF1c2VyIiwgInNraXAiOiAwLCAibGltaXQiOiAxMDB9"
         }
+      },
+      "redacted": {
+        "path": "data/raw/redacted/control/ctl-intents.near_grantees_Unpauser.json",
+        "sha256": "db9021c638a404e552c088829df87600b7355e8b3fa11fa442019d502584d9ba"
       }
     },
     "ctl-intents.near/grantees/Downgrader": {
@@ -704,6 +776,10 @@
           "method_name": "acl_get_grantees",
           "args_base64": "eyJyb2xlIjogIkRvd25ncmFkZXIiLCAic2tpcCI6IDAsICJsaW1pdCI6IDEwMH0="
         }
+      },
+      "redacted": {
+        "path": "data/raw/redacted/control/ctl-intents.near_grantees_Downgrader.json",
+        "sha256": "539238e3421672345d3c12151569a3015487d59e403fdd0f2760d7881d55370c"
       }
     },
     "intents.near/fee": {
@@ -764,6 +840,10 @@
           "method_name": "get_policy",
           "args_base64": "e30="
         }
+      },
+      "redacted": {
+        "path": "data/raw/redacted/control/intents.sputnik-dao.near_get_policy.json",
+        "sha256": "7bea607448f9a04600446a159aca73964de7dfe14f059e83df0089198d5eda7a"
       }
     },
     "1csfundsadmin.sputnik-dao.near/get_policy": {
@@ -779,6 +859,10 @@
           "method_name": "get_policy",
           "args_base64": "e30="
         }
+      },
+      "redacted": {
+        "path": "data/raw/redacted/control/1csfundsadmin.sputnik-dao.near_get_policy.json",
+        "sha256": "4170c345c39f028787bd46da4f3748bce4adc929e2412988e7dbab3a7811177d"
       }
     },
     "fefundsadmin.sputnik-dao.near/get_policy": {
@@ -794,6 +878,10 @@
           "method_name": "get_policy",
           "args_base64": "e30="
         }
+      },
+      "redacted": {
+        "path": "data/raw/redacted/control/fefundsadmin.sputnik-dao.near_get_policy.json",
+        "sha256": "7771c22b179e418ea8225c37977494d2ed0b8eccf774deb3d7301924357a97af"
       }
     },
     "hos-root.sputnik-dao.near/get_policy": {
@@ -809,6 +897,10 @@
           "method_name": "get_policy",
           "args_base64": "e30="
         }
+      },
+      "redacted": {
+        "path": "data/raw/redacted/control/hos-root.sputnik-dao.near_get_policy.json",
+        "sha256": "8188cbd4d97cd7240f51058208e9b6b18a2eab0bb88d32657193b4d78354f815"
       }
     },
     "jasnah-treasury.sputnik-dao.near/get_policy": {
@@ -824,6 +916,10 @@
           "method_name": "get_policy",
           "args_base64": "e30="
         }
+      },
+      "redacted": {
+        "path": "data/raw/redacted/control/jasnah-treasury.sputnik-dao.near_get_policy.json",
+        "sha256": "eab0d0f5d83d23f747933b4eee1dab5a3a17e1c1f78e839122ace1c71645a943"
       }
     },
     "buybacks.multisignature.near/get_num_confirmations": {
@@ -869,6 +965,10 @@
           "method_name": "get_config",
           "args_base64": "e30="
         }
+      },
+      "redacted": {
+        "path": "data/raw/redacted/control/vote.dao_get_config.json",
+        "sha256": "f8870fea66192166f967f95f9c51a92ce3a47361c9c9590bece066f5e8b9f474"
       }
     },
     "stake.dao/get_config": {
@@ -884,6 +984,10 @@
           "method_name": "get_config",
           "args_base64": "e30="
         }
+      },
+      "redacted": {
+        "path": "data/raw/redacted/control/stake.dao_get_config.json",
+        "sha256": "9c521b04f636db1b928612876393443bfe82d6077004e4b111efe73ec6633a4f"
       }
     },
     "nearai.pool.near/get_reward_fee_fraction": {
@@ -936,6 +1040,10 @@
         "params": {
           "epoch_id": "5eVUDtrHWj7m9wQyXEgZhZxakaV16naDip8cXAb5SQNd"
         }
+      },
+      "redacted": {
+        "path": "data/raw/redacted/control/validators.json",
+        "sha256": "a1b0184b99e6aaf493dc1af8066552ec0e9e2a3c6f76c1a84c6e1c9aa28033c7"
       }
     }
   },

@@ -17,7 +17,9 @@ catalog manager of that validator may call. This script:
 
 Privacy: the signer's account and the catalog manager list go to data/private/farm/;
 the public file keeps a sha256 tag and two booleans (signer is pool owner / catalog
-manager).
+manager). Each private file has a redacted copy under data/raw/redacted/farm/
+(scripts/privacy.py) with accounts as tags; the result is always computed from it, so
+--verify recomputes the signer checks offline too.
 
 Usage:
     python scripts/farm_rate.py            fetch, save, compute
@@ -34,7 +36,9 @@ from fractions import Fraction
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+import control_map as cm  # noqa: E402
 import lock_window as lw  # noqa: E402
+import privacy  # noqa: E402
 import stakers  # noqa: E402
 
 CONTRACT = "stake.dao"
@@ -53,7 +57,7 @@ def sha256(b):
 
 
 def tag(acct):
-    return "sha256:" + sha256(acct.encode())[:16]
+    return privacy.tag(acct)
 
 
 def units_per_near_year(rate):
@@ -142,23 +146,51 @@ def fetch(chain, store, get=stakers.http_get, wait=stakers.PAGE_WAIT):
 # ---------------------------------------------------------------- pure part
 
 def decode(raw):
-    return json.loads(bytes(json.loads(raw)["result"]["result"]).decode())
+    doc = json.loads(raw)
+    if "redacted_value" in doc:
+        return doc["redacted_value"]
+    return json.loads(bytes(doc["result"]["result"]).decode())
+
+
+def redacted_args(text):
+    try:
+        return json.dumps(privacy.redact(json.loads(text or "{}"), cm.PUBLIC_ACCOUNTS),
+                          sort_keys=True)
+    except ValueError:
+        return None
+
+
+def project(key, raw):
+    """Redacted copy of a private file: what build() reads, people as tags."""
+    pub = cm.PUBLIC_ACCOUNTS
+    if key.startswith("get_validator_"):
+        managers = decode(raw).get("catalog_manager_account_ids", [])
+        return privacy.dumps({"redacted_value": {
+            "catalog_manager_account_ids": privacy.redact(managers, pub)}})
+    if key.startswith("nearblocks_edit_price/"):
+        return privacy.dumps({"data": [
+            {"predecessor_account_id": privacy.redact(r["predecessor_account_id"], pub),
+             "block": {"block_height": r["block"]["block_height"]},
+             "transaction_hash": r["transaction_hash"],
+             "outcome": {"status": (r.get("outcome") or {}).get("status")}}
+            for r in stakers.receipts_in(json.loads(raw))]})
+    if key.startswith("txn/"):
+        txn = json.loads(raw)["txns"][0]
+        return privacy.dumps({"txns": [{
+            "signer_account_id": privacy.redact(txn["signer_account_id"], pub),
+            "actions": [{"method": a.get("method"), "args": redacted_args(a.get("args"))}
+                        for a in txn.get("actions", [])]}]})
+    raise ValueError(f"no redaction rule for {key}")
 
 
 def build(root, files):
-    """Everything from the saved files. Returns (doc part, problems)."""
+    """Everything from the public files and redacted copies. Returns (doc part, problems)."""
     def load(key):
-        return (root / files[key]["path"]).read_bytes()
-
-    def have(key):
-        return key in files and (root / files[key]["path"]).exists()
+        return privacy.read(root, files[key])
 
     problems = []
     pages = sorted(k for k in files if k.startswith("nearblocks_edit_price/"))
-    private_present = all(have(k) for k in files if files[k]["private"])
     changes = []
-    if not private_present:
-        return None, problems
     receipts = []
     for k in pages:
         receipts += stakers.receipts_in(json.loads(load(k)))
@@ -203,6 +235,7 @@ def build(root, files):
 def run(chain, root, get=stakers.http_get, wait=stakers.PAGE_WAIT):
     store = Store(root)
     fetch(chain, store, get=get, wait=wait)
+    privacy.write_redacted(root, store.files, project)
     part, problems = build(root, store.files)
     if problems:
         raise SystemExit("Checks failed:\n  " + "\n  ".join(problems))
@@ -224,16 +257,7 @@ def verify(path):
     path = Path(path)
     doc = json.loads(path.read_text(encoding="utf-8"))
     root = path.resolve().parent.parent
-    problems, missing = [], 0
-    for key, f in doc["raw_files"].items():
-        p = root / f["path"]
-        if not p.exists():
-            if f["private"]:
-                missing += 1
-            else:
-                problems.append(f"missing public file {f['path']}")
-        elif sha256(p.read_bytes()) != f["sha256"]:
-            problems.append(f"sha256 mismatch: {f['path']}")
+    problems, missing = privacy.check_files(root, doc["raw_files"], project)
     if problems:
         return problems, missing
     # public part: every rate before/after recomputes from the public farm_pool files
@@ -244,11 +268,10 @@ def verify(path):
             if rate != c[f"rate_{side}"] or dec6(units_per_near_year(rate)) != \
                     c[f"units_per_near_year_{side}"]:
                 problems.append(f"{c['tx_hash']}: rate {side} does not recompute")
-    if not missing:
-        part, p = build(root, doc["raw_files"])
-        problems += p
-        if part is not None and any(doc.get(k) != v for k, v in part.items()):
-            problems.append("result does not recompute from the private files")
+    part, p = build(root, doc["raw_files"])
+    problems += p
+    if any(doc.get(k) != v for k, v in part.items()):
+        problems.append("result does not recompute from the public files and redacted copies")
     return problems, missing
 
 
@@ -262,9 +285,7 @@ def main():
         if problems:
             print("FAILED:\n  " + "\n  ".join(problems))
             sys.exit(1)
-        print("OK: sha256 match and every rate recomputes"
-              + (f"; {missing} private file(s) absent, signer checks not recomputed"
-                 if missing else ""))
+        print(privacy.status_line("every rate and signer check", missing))
         return
     chain = lw.Chain()
     doc = run(chain, lw.REPO)

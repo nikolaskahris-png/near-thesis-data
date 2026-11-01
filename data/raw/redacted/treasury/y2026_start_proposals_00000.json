@@ -1,0 +1,1477 @@
+{
+ "redacted_value": [
+  {
+   "id": 0,
+   "pool_receiver": null,
+   "record": {
+    "id": 0,
+    "kind": "ChangePolicy",
+    "submission_time_utc": "2024-09-19T07:47:17.684983758Z"
+   },
+   "status": "Expired"
+  },
+  {
+   "id": 1,
+   "pool_receiver": null,
+   "record": {
+    "amount_raw": "1000000000000000000000000",
+    "id": 1,
+    "kind": "Transfer",
+    "recipient": "sha256:2fd6ca6a29896067",
+    "recipient_category": "named account",
+    "submission_time_utc": "2024-09-26T16:27:45.188201075Z",
+    "token": "NEAR"
+   },
+   "status": "Approved"
+  },
+  {
+   "id": 2,
+   "pool_receiver": null,
+   "record": {
+    "id": 2,
+    "kind": "ChangePolicy",
+    "submission_time_utc": "2024-09-26T17:29:02.446680964Z"
+   },
+   "status": "Approved"
+  },
+  {
+   "id": 3,
+   "pool_receiver": null,
+   "record": {
+    "id": 3,
+    "kind": "RemoveMemberFromRole",
+    "submission_time_utc": "2024-09-26T17:51:54.210853971Z"
+   },
+   "status": "Approved"
+  },
+  {
+   "id": 4,
+   "pool_receiver": null,
+   "record": {
+    "amount_raw": "1000000000000000000000000",
+    "id": 4,
+    "kind": "Transfer",
+    "recipient": "jasnah-payments.near",
+    "recipient_category": "owner payments account",
+    "submission_time_utc": "2024-09-26T17:59:41.328804147Z",
+    "token": "NEAR"
+   },
+   "status": "Approved"
+  },
+  {
+   "id": 5,
+   "pool_receiver": null,
+   "record": {
+    "id": 5,
+    "kind": "AddMemberToRole",
+    "submission_time_utc": "2024-09-26T18:06:39.161199150Z"
+   },
+   "status": "InProgress"
+  },
+  {
+   "id": 6,
+   "pool_receiver": null,
+   "record": {
+    "amount_raw": "40000000000000000000000000000",
+    "id": 6,
+    "kind": "Transfer",
+    "recipient": "jasnah-payments.near",
+    "recipient_category": "owner payments account",
+    "submission_time_utc": "2024-10-04T17:00:38.501825927Z",
+    "token": "NEAR"
+   },
+   "status": "Approved"
+  },
+  {
+   "id": 7,
+   "pool_receiver": null,
+   "record": {
+    "amount_raw": "40000000000000000000000000000",
+    "id": 7,
+    "kind": "Transfer",
+    "recipient": "jasnah-payments.near",
+    "recipient_category": "owner payments account",
+    "submission_time_utc": "2024-11-05T09:21:08.513154819Z",
+    "token": "NEAR"
+   },
+   "status": "Approved"
+  },
+  {
+   "id": 8,
+   "pool_receiver": null,
+   "record": {
+    "amount_raw": "6660000000000000000000000",
+    "id": 8,
+    "kind": "Transfer",
+    "recipient": "sha256:0bb9efb6123a817b",
+    "recipient_category": "named account",
+    "submission_time_utc": "2024-11-06T10:23:46.711562824Z",
+    "token": "NEAR"
+   },
+   "status": "Approved"
+  },
+  {
+   "id": 9,
+   "pool_receiver": null,
+   "record": {
+    "amount_raw": "10410000000000000000000000000",
+    "id": 9,
+    "kind": "Transfer",
+    "recipient": "sha256:0bb9efb6123a817b",
+    "recipient_category": "named account",
+    "submission_time_utc": "2024-11-07T06:43:33.621215809Z",
+    "token": "NEAR"
+   },
+   "status": "Approved"
+  },
+  {
+   "id": 10,
+   "pool_receiver": null,
+   "record": {
+    "amount_raw": "1000000000000000000000000",
+    "id": 10,
+    "kind": "Transfer",
+    "recipient": "sha256:4b122cc7911f9566",
+    "recipient_category": "named account",
+    "submission_time_utc": "2024-12-01T08:07:10.944060579Z",
+    "token": "NEAR"
+   },
+   "status": "Approved"
+  },
+  {
+   "id": 11,
+   "pool_receiver": null,
+   "record": {
+    "amount_raw": "10415660000000000000000000000",
+    "id": 11,
+    "kind": "Transfer",
+    "recipient": "sha256:4b122cc7911f9566",
+    "recipient_category": "named account",
+    "submission_time_utc": "2024-12-03T16:04:14.595628694Z",
+    "token": "NEAR"
+   },
+   "status": "Approved"
+  },
+  {
+   "id": 12,
+   "pool_receiver": null,
+   "record": {
+    "amount_raw": "40000000000000000000000000000",
+    "id": 12,
+    "kind": "Transfer",
+    "recipient": "jasnah-payments.near",
+    "recipient_category": "owner payments account",
+    "submission_time_utc": "2024-12-05T11:11:31.333617342Z",
+    "token": "NEAR"
+   },
+   "status": "Approved"
+  },
+  {
+   "id": 13,
+   "pool_receiver": null,
+   "record": {
+    "amount_raw": "1000000000000000000000000",
+    "id": 13,
+    "kind": "Transfer",
+    "recipient": "sha256:7fab3a536508d5c7",
+    "recipient_category": "named account",
+    "submission_time_utc": "2024-12-19T08:57:54.145737014Z",
+    "token": "NEAR"
+   },
+   "status": "Approved"
+  },
+  {
+   "id": 14,
+   "pool_receiver": null,
+   "record": {
+    "amount_raw": "10415660000000000000000000000",
+    "id": 14,
+    "kind": "Transfer",
+    "recipient": "sha256:7fab3a536508d5c7",
+    "recipient_category": "named account",
+    "submission_time_utc": "2024-12-20T06:55:51.905018622Z",
+    "token": "NEAR"
+   },
+   "status": "Approved"
+  },
+  {
+   "id": 15,
+   "pool_receiver": null,
+   "record": {
+    "amount_raw": "40000000000000000000000000000",
+    "id": 15,
+    "kind": "Transfer",
+    "recipient": "jasnah-payments.near",
+    "recipient_category": "owner payments account",
+    "submission_time_utc": "2025-01-06T13:09:31.528774604Z",
+    "token": "NEAR"
+   },
+   "status": "Approved"
+  },
+  {
+   "id": 16,
+   "pool_receiver": null,
+   "record": {
+    "amount_raw": "10000000000000000000000000",
+    "id": 16,
+    "kind": "Transfer",
+    "recipient": "sha256:72c447305260e673",
+    "recipient_category": "named account",
+    "submission_time_utc": "2025-01-07T17:43:12.473919405Z",
+    "token": "NEAR"
+   },
+   "status": "Approved"
+  },
+  {
+   "id": 17,
+   "pool_receiver": null,
+   "record": {
+    "amount_raw": "5192000000000000000000000000",
+    "id": 17,
+    "kind": "Transfer",
+    "recipient": "sha256:72c447305260e673",
+    "recipient_category": "named account",
+    "submission_time_utc": "2025-01-08T10:59:20.354869518Z",
+    "token": "NEAR"
+   },
+   "status": "Approved"
+  },
+  {
+   "id": 18,
+   "pool_receiver": null,
+   "record": {
+    "amount_raw": "1000000000000000000000000",
+    "id": 18,
+    "kind": "Transfer",
+    "recipient": "sha256:f330c23a813df513",
+    "recipient_category": "named account",
+    "submission_time_utc": "2025-02-03T17:44:57.496860035Z",
+    "token": "NEAR"
+   },
+   "status": "Approved"
+  },
+  {
+   "id": 19,
+   "pool_receiver": null,
+   "record": {
+    "amount_raw": "4166670000000000000000000000",
+    "id": 19,
+    "kind": "Transfer",
+    "recipient": "sha256:72c447305260e673",
+    "recipient_category": "named account",
+    "submission_time_utc": "2025-02-03T18:49:47.626587114Z",
+    "token": "NEAR"
+   },
+   "status": "Approved"
+  },
+  {
+   "id": 20,
+   "pool_receiver": null,
+   "record": {
+    "amount_raw": "10415660000000000000000000000",
+    "id": 20,
+    "kind": "Transfer",
+    "recipient": "sha256:f330c23a813df513",
+    "recipient_category": "named account",
+    "submission_time_utc": "2025-02-04T19:23:31.346826478Z",
+    "token": "NEAR"
+   },
+   "status": "Approved"
+  },
+  {
+   "id": 21,
+   "pool_receiver": null,
+   "record": {
+    "amount_raw": "11600000000000000000000000000",
+    "id": 21,
+    "kind": "Transfer",
+    "recipient": "jasnah-payments.near",
+    "recipient_category": "owner payments account",
+    "submission_time_utc": "2025-02-05T11:18:08.900672574Z",
+    "token": "NEAR"
+   },
+   "status": "Approved"
+  },
+  {
+   "id": 22,
+   "pool_receiver": null,
+   "record": {
+    "amount_raw": "16000000000000000000000000000",
+    "id": 22,
+    "kind": "Transfer",
+    "recipient": "sha256:f76725312f1eaf96",
+    "recipient_category": "named account",
+    "submission_time_utc": "2025-02-07T11:25:52.706674759Z",
+    "token": "NEAR"
+   },
+   "status": "Approved"
+  },
+  {
+   "id": 23,
+   "pool_receiver": null,
+   "record": {
+    "amount_raw": "10000000000000000000000000",
+    "id": 23,
+    "kind": "Transfer",
+    "recipient": "sha256:8f676019577b6901",
+    "recipient_category": "implicit account",
+    "submission_time_utc": "2025-02-07T11:27:00.605314997Z",
+    "token": "NEAR"
+   },
+   "status": "Approved"
+  },
+  {
+   "id": 24,
+   "pool_receiver": null,
+   "record": {
+    "amount_raw": "1000000000000000000000000",
+    "id": 24,
+    "kind": "Transfer",
+    "recipient": "sha256:98f6f869ceaab032",
+    "recipient_category": "named account",
+    "submission_time_utc": "2025-02-11T12:59:26.445572186Z",
+    "token": "NEAR"
+   },
+   "status": "Approved"
+  },
+  {
+   "id": 25,
+   "pool_receiver": null,
+   "record": {
+    "amount_raw": "1665670000000000000000000000",
+    "id": 25,
+    "kind": "Transfer",
+    "recipient": "sha256:98f6f869ceaab032",
+    "recipient_category": "named account",
+    "submission_time_utc": "2025-02-11T16:24:03.553869883Z",
+    "token": "NEAR"
+   },
+   "status": "Approved"
+  },
+  {
+   "id": 26,
+   "pool_receiver": null,
+   "record": {
+    "amount_raw": "6000000000000000000000000",
+    "id": 26,
+    "kind": "Transfer",
+    "recipient": "sha256:1934610fd88852b4",
+    "recipient_category": "named account",
+    "submission_time_utc": "2025-03-04T07:59:58.787377823Z",
+    "token": "NEAR"
+   },
+   "status": "Approved"
+  },
+  {
+   "id": 27,
+   "pool_receiver": null,
+   "record": {
+    "amount_raw": "10416660000000000000000000000",
+    "id": 27,
+    "kind": "Transfer",
+    "recipient": "sha256:4b122cc7911f9566",
+    "recipient_category": "named account",
+    "submission_time_utc": "2025-03-04T08:11:22.850373638Z",
+    "token": "NEAR"
+   },
+   "status": "Approved"
+  },
+  {
+   "id": 28,
+   "pool_receiver": null,
+   "record": {
+    "amount_raw": "30000000000000000000000000000",
+    "id": 28,
+    "kind": "Transfer",
+    "recipient": "jasnah-payments.near",
+    "recipient_category": "owner payments account",
+    "submission_time_utc": "2025-03-05T11:17:52.287746276Z",
+    "token": "NEAR"
+   },
+   "status": "Approved"
+  },
+  {
+   "id": 29,
+   "pool_receiver": null,
+   "record": {
+    "amount_raw": "1660000000000000000000000000",
+    "id": 29,
+    "kind": "Transfer",
+    "recipient": "sha256:1934610fd88852b4",
+    "recipient_category": "named account",
+    "submission_time_utc": "2025-03-05T11:57:14.836328097Z",
+    "token": "NEAR"
+   },
+   "status": "Approved"
+  },
+  {
+   "id": 30,
+   "pool_receiver": null,
+   "record": {
+    "amount_raw": "20000000000000000000000000000",
+    "id": 30,
+    "kind": "Transfer",
+    "recipient": "sha256:f76725312f1eaf96",
+    "recipient_category": "named account",
+    "submission_time_utc": "2025-03-05T14:48:02.460430203Z",
+    "token": "NEAR"
+   },
+   "status": "Approved"
+  },
+  {
+   "id": 31,
+   "pool_receiver": null,
+   "record": {
+    "amount_raw": "6250000000000000000000000000",
+    "id": 31,
+    "kind": "Transfer",
+    "recipient": "sha256:72c447305260e673",
+    "recipient_category": "named account",
+    "submission_time_utc": "2025-03-11T07:33:51.470669110Z",
+    "token": "NEAR"
+   },
+   "status": "Approved"
+  },
+  {
+   "id": 32,
+   "pool_receiver": null,
+   "record": {
+    "amount_raw": "10416660000000000000000000000",
+    "id": 32,
+    "kind": "Transfer",
+    "recipient": "sha256:4b122cc7911f9566",
+    "recipient_category": "named account",
+    "submission_time_utc": "2025-04-01T18:10:14.807201239Z",
+    "token": "NEAR"
+   },
+   "status": "Approved"
+  },
+  {
+   "id": 33,
+   "pool_receiver": null,
+   "record": {
+    "amount_raw": "1666000000000000000000000000",
+    "id": 33,
+    "kind": "Transfer",
+    "recipient": "sha256:1934610fd88852b4",
+    "recipient_category": "named account",
+    "submission_time_utc": "2025-04-01T18:24:25.264533100Z",
+    "token": "NEAR"
+   },
+   "status": "Approved"
+  },
+  {
+   "id": 34,
+   "pool_receiver": null,
+   "record": {
+    "amount_raw": "1045000000000000000000000000",
+    "id": 34,
+    "kind": "Transfer",
+    "recipient": "sha256:98f6f869ceaab032",
+    "recipient_category": "named account",
+    "submission_time_utc": "2025-04-01T20:25:00.502648959Z",
+    "token": "NEAR"
+   },
+   "status": "Approved"
+  },
+  {
+   "id": 35,
+   "pool_receiver": null,
+   "record": {
+    "amount_raw": "25000000000000000000000000000",
+    "id": 35,
+    "kind": "Transfer",
+    "recipient": "jasnah-payments.near",
+    "recipient_category": "owner payments account",
+    "submission_time_utc": "2025-04-07T09:05:08.434857426Z",
+    "token": "NEAR"
+   },
+   "status": "Approved"
+  },
+  {
+   "id": 36,
+   "pool_receiver": null,
+   "record": {
+    "amount_raw": "7500000000000000000000000000",
+    "id": 36,
+    "kind": "Transfer",
+    "recipient": "sha256:72c447305260e673",
+    "recipient_category": "named account",
+    "submission_time_utc": "2025-04-11T13:21:49.189856694Z",
+    "token": "NEAR"
+   },
+   "status": "Approved"
+  },
+  {
+   "id": 37,
+   "pool_receiver": null,
+   "record": {
+    "amount_raw": "13000000000000000000000000000",
+    "id": 37,
+    "kind": "Transfer",
+    "recipient": "jasnah-payments.near",
+    "recipient_category": "owner payments account",
+    "submission_time_utc": "2025-04-11T13:57:04.276500332Z",
+    "token": "NEAR"
+   },
+   "status": "Approved"
+  },
+  {
+   "id": 38,
+   "pool_receiver": null,
+   "record": {
+    "amount_raw": "22350000000000000000000000000",
+    "id": 38,
+    "kind": "Transfer",
+    "recipient": "jasnah-payments.near",
+    "recipient_category": "owner payments account",
+    "submission_time_utc": "2025-05-05T07:55:34.792442920Z",
+    "token": "NEAR"
+   },
+   "status": "Approved"
+  },
+  {
+   "id": 39,
+   "pool_receiver": null,
+   "record": {
+    "amount_raw": "1666000000000000000000000000",
+    "id": 39,
+    "kind": "Transfer",
+    "recipient": "sha256:1934610fd88852b4",
+    "recipient_category": "named account",
+    "submission_time_utc": "2025-05-06T13:03:47.744104563Z",
+    "token": "NEAR"
+   },
+   "status": "Approved"
+  },
+  {
+   "id": 40,
+   "pool_receiver": null,
+   "record": {
+    "amount_raw": "6666670000000000000000000000",
+    "id": 40,
+    "kind": "Transfer",
+    "recipient": "sha256:72c447305260e673",
+    "recipient_category": "named account",
+    "submission_time_utc": "2025-05-06T13:44:11.268881253Z",
+    "token": "NEAR"
+   },
+   "status": "Approved"
+  },
+  {
+   "id": 41,
+   "pool_receiver": null,
+   "record": {
+    "amount_raw": "6660000000000000000000000",
+    "id": 41,
+    "kind": "Transfer",
+    "recipient": "sha256:14080054a5cade5c",
+    "recipient_category": "named account",
+    "submission_time_utc": "2025-05-08T13:47:36.140964043Z",
+    "token": "NEAR"
+   },
+   "status": "Approved"
+  },
+  {
+   "id": 42,
+   "pool_receiver": null,
+   "record": {
+    "amount_raw": "24500000000000000000000000000",
+    "id": 42,
+    "kind": "Transfer",
+    "recipient": "sha256:f76725312f1eaf96",
+    "recipient_category": "named account",
+    "submission_time_utc": "2025-05-08T14:52:01.670669340Z",
+    "token": "NEAR"
+   },
+   "status": "InProgress"
+  },
+  {
+   "id": 43,
+   "pool_receiver": null,
+   "record": {
+    "amount_raw": "24500000000000000000000000000",
+    "id": 43,
+    "kind": "Transfer",
+    "recipient": "jasnah-payments.near",
+    "recipient_category": "owner payments account",
+    "submission_time_utc": "2025-05-08T15:04:07.985812368Z",
+    "token": "NEAR"
+   },
+   "status": "Approved"
+  },
+  {
+   "id": 44,
+   "pool_receiver": null,
+   "record": {
+    "amount_raw": "10410000000000000000000000000",
+    "id": 44,
+    "kind": "Transfer",
+    "recipient": "sha256:14080054a5cade5c",
+    "recipient_category": "named account",
+    "submission_time_utc": "2025-05-09T15:17:46.404823610Z",
+    "token": "NEAR"
+   },
+   "status": "Approved"
+  },
+  {
+   "id": 45,
+   "pool_receiver": null,
+   "record": {
+    "amount_raw": "1400000000000000000000000000",
+    "id": 45,
+    "kind": "Transfer",
+    "recipient": "sha256:98f6f869ceaab032",
+    "recipient_category": "named account",
+    "submission_time_utc": "2025-05-20T13:46:16.458821518Z",
+    "token": "NEAR"
+   },
+   "status": "Approved"
+  },
+  {
+   "id": 46,
+   "pool_receiver": null,
+   "record": {
+    "amount_raw": "6660000000000000000000000",
+    "id": 46,
+    "kind": "Transfer",
+    "recipient": "sha256:71093d3973700cf3",
+    "recipient_category": "named account",
+    "submission_time_utc": "2025-06-03T09:46:49.132003179Z",
+    "token": "NEAR"
+   },
+   "status": "Approved"
+  },
+  {
+   "id": 47,
+   "pool_receiver": null,
+   "record": {
+    "amount_raw": "10410000000000000000000000000",
+    "id": 47,
+    "kind": "Transfer",
+    "recipient": "sha256:71093d3973700cf3",
+    "recipient_category": "named account",
+    "submission_time_utc": "2025-06-03T09:48:07.663168868Z",
+    "token": "NEAR"
+   },
+   "status": "Approved"
+  },
+  {
+   "id": 48,
+   "pool_receiver": null,
+   "record": {
+    "amount_raw": "22000000000000000000000000000",
+    "id": 48,
+    "kind": "Transfer",
+    "recipient": "jasnah-payments.near",
+    "recipient_category": "owner payments account",
+    "submission_time_utc": "2025-06-05T07:57:20.990388125Z",
+    "token": "NEAR"
+   },
+   "status": "Approved"
+  },
+  {
+   "id": 49,
+   "pool_receiver": null,
+   "record": {
+    "amount_raw": "11150000000000000000000000000",
+    "id": 49,
+    "kind": "Transfer",
+    "recipient": "jasnah-payments.near",
+    "recipient_category": "owner payments account",
+    "submission_time_utc": "2025-06-13T14:04:22.197473241Z",
+    "token": "NEAR"
+   },
+   "status": "Approved"
+  },
+  {
+   "id": 50,
+   "pool_receiver": null,
+   "record": {
+    "amount_raw": "7015000000000000000000000000",
+    "id": 50,
+    "kind": "Transfer",
+    "recipient": "sha256:72c447305260e673",
+    "recipient_category": "named account",
+    "submission_time_utc": "2025-06-19T12:58:51.888066508Z",
+    "token": "NEAR"
+   },
+   "status": "Approved"
+  },
+  {
+   "id": 51,
+   "pool_receiver": null,
+   "record": {
+    "amount_raw": "22000000000000000000000000000",
+    "id": 51,
+    "kind": "Transfer",
+    "recipient": "jasnah-payments.near",
+    "recipient_category": "owner payments account",
+    "submission_time_utc": "2025-07-07T08:30:22.542724868Z",
+    "token": "NEAR"
+   },
+   "status": "Approved"
+  },
+  {
+   "id": 52,
+   "pool_receiver": null,
+   "record": {
+    "amount_raw": "20000000000000000000000000000",
+    "id": 52,
+    "kind": "Transfer",
+    "recipient": "jasnah-payments.near",
+    "recipient_category": "owner payments account",
+    "submission_time_utc": "2025-07-07T09:11:11.466667155Z",
+    "token": "NEAR"
+   },
+   "status": "InProgress"
+  },
+  {
+   "id": 53,
+   "pool_receiver": null,
+   "record": {
+    "amount_raw": "30000000000000000000000000000",
+    "id": 53,
+    "kind": "Transfer",
+    "recipient": "jasnah-payments.near",
+    "recipient_category": "owner payments account",
+    "submission_time_utc": "2025-07-07T13:50:23.554553013Z",
+    "token": "NEAR"
+   },
+   "status": "Approved"
+  },
+  {
+   "id": 54,
+   "pool_receiver": null,
+   "record": {
+    "amount_raw": "6976740000000000000000000000",
+    "id": 54,
+    "kind": "Transfer",
+    "recipient": "sha256:72c447305260e673",
+    "recipient_category": "named account",
+    "submission_time_utc": "2025-07-07T15:13:41.280317724Z",
+    "token": "NEAR"
+   },
+   "status": "Approved"
+  },
+  {
+   "id": 55,
+   "pool_receiver": null,
+   "record": {
+    "amount_raw": "4883000000000000000000000000",
+    "id": 55,
+    "kind": "Transfer",
+    "recipient": "jasnah-payments.near",
+    "recipient_category": "owner payments account",
+    "submission_time_utc": "2025-07-07T15:29:57.751099494Z",
+    "token": "NEAR"
+   },
+   "status": "Approved"
+  },
+  {
+   "id": 56,
+   "pool_receiver": null,
+   "record": {
+    "amount_raw": "10416660000000000000000000000",
+    "id": 56,
+    "kind": "Transfer",
+    "recipient": "sha256:71093d3973700cf3",
+    "recipient_category": "named account",
+    "submission_time_utc": "2025-07-08T09:40:07.768505595Z",
+    "token": "NEAR"
+   },
+   "status": "Approved"
+  },
+  {
+   "id": 57,
+   "pool_receiver": null,
+   "record": {
+    "amount_raw": "8170000000000000000000000000",
+    "id": 57,
+    "kind": "Transfer",
+    "recipient": "jasnah-payments.near",
+    "recipient_category": "owner payments account",
+    "submission_time_utc": "2025-07-08T10:08:44.317076998Z",
+    "token": "NEAR"
+   },
+   "status": "Approved"
+  },
+  {
+   "id": 58,
+   "pool_receiver": "staking4all.poolv1.near",
+   "record": {
+    "calls": [
+     {
+      "deposit_raw": "0",
+      "method": "stake"
+     }
+    ],
+    "id": 58,
+    "kind": "FunctionCall",
+    "receiver": "staking4all.poolv1.near",
+    "receiver_category": "staking pool",
+    "submission_time_utc": "2025-07-09T15:53:59.475717646Z"
+   },
+   "status": "Failed"
+  },
+  {
+   "id": 59,
+   "pool_receiver": "staking4all.poolv1.near",
+   "record": {
+    "calls": [
+     {
+      "deposit_raw": "100000000000000000000000",
+      "method": "stake"
+     }
+    ],
+    "id": 59,
+    "kind": "FunctionCall",
+    "receiver": "staking4all.poolv1.near",
+    "receiver_category": "staking pool",
+    "submission_time_utc": "2025-07-09T16:30:17.723654223Z"
+   },
+   "status": "InProgress"
+  },
+  {
+   "id": 60,
+   "pool_receiver": "staking4all.poolv1.near",
+   "record": {
+    "calls": [
+     {
+      "deposit_raw": "100000000000000000000000000",
+      "method": "deposit_and_stake"
+     }
+    ],
+    "id": 60,
+    "kind": "FunctionCall",
+    "receiver": "staking4all.poolv1.near",
+    "receiver_category": "staking pool",
+    "submission_time_utc": "2025-07-09T16:31:17.541722190Z"
+   },
+   "status": "Approved"
+  },
+  {
+   "id": 61,
+   "pool_receiver": "near-prime-public.poolv1.near",
+   "record": {
+    "calls": [
+     {
+      "amount_raw": "11000000000000000000000000000",
+      "deposit_raw": "0",
+      "method": "stake"
+     }
+    ],
+    "id": 61,
+    "kind": "FunctionCall",
+    "receiver": "near-prime-public.poolv1.near",
+    "receiver_category": "staking pool",
+    "submission_time_utc": "2025-07-10T15:30:35.720541624Z"
+   },
+   "status": "Failed"
+  },
+  {
+   "id": 62,
+   "pool_receiver": "near-prime-public.poolv1.near",
+   "record": {
+    "calls": [
+     {
+      "amount_raw": "31000000000000000000000000000",
+      "deposit_raw": "0",
+      "method": "stake"
+     }
+    ],
+    "id": 62,
+    "kind": "FunctionCall",
+    "receiver": "near-prime-public.poolv1.near",
+    "receiver_category": "staking pool",
+    "submission_time_utc": "2025-07-10T17:20:07.591656229Z"
+   },
+   "status": "Failed"
+  },
+  {
+   "id": 63,
+   "pool_receiver": "near-prime-public.poolv1.near",
+   "record": {
+    "calls": [
+     {
+      "amount_raw": "31000000000000000000000000000",
+      "deposit_raw": "100000000000000000000000",
+      "method": "stake"
+     }
+    ],
+    "id": 63,
+    "kind": "FunctionCall",
+    "receiver": "near-prime-public.poolv1.near",
+    "receiver_category": "staking pool",
+    "submission_time_utc": "2025-07-10T18:13:37.236273814Z"
+   },
+   "status": "Failed"
+  },
+  {
+   "id": 64,
+   "pool_receiver": "near-prime-public.poolv1.near",
+   "record": {
+    "calls": [
+     {
+      "amount_raw": "31000000000000000000000000000",
+      "deposit_raw": "100000000000000000000000",
+      "method": "deposit_and_stake"
+     }
+    ],
+    "id": 64,
+    "kind": "FunctionCall",
+    "receiver": "near-prime-public.poolv1.near",
+    "receiver_category": "staking pool",
+    "submission_time_utc": "2025-07-10T18:30:34.303456863Z"
+   },
+   "status": "Approved"
+  },
+  {
+   "id": 65,
+   "pool_receiver": "near-prime-public.poolv1.near",
+   "record": {
+    "calls": [
+     {
+      "deposit_raw": "11000000000000000000000000000",
+      "method": "deposit_and_stake"
+     }
+    ],
+    "id": 65,
+    "kind": "FunctionCall",
+    "receiver": "near-prime-public.poolv1.near",
+    "receiver_category": "staking pool",
+    "submission_time_utc": "2025-07-10T19:00:28.502625504Z"
+   },
+   "status": "Approved"
+  },
+  {
+   "id": 66,
+   "pool_receiver": "near-prime-public.poolv1.near",
+   "record": {
+    "calls": [
+     {
+      "deposit_raw": "2100000000000000000000000000000",
+      "method": "deposit_and_stake"
+     }
+    ],
+    "id": 66,
+    "kind": "FunctionCall",
+    "receiver": "near-prime-public.poolv1.near",
+    "receiver_category": "staking pool",
+    "submission_time_utc": "2025-07-10T20:54:56.009684936Z"
+   },
+   "status": "Approved"
+  },
+  {
+   "id": 67,
+   "pool_receiver": null,
+   "record": {
+    "calls": [
+     {
+      "deposit_raw": "0",
+      "method": "vote"
+     }
+    ],
+    "id": 67,
+    "kind": "FunctionCall",
+    "receiver": "sha256:23a55814826cd808",
+    "receiver_category": "named account",
+    "submission_time_utc": "2025-07-11T16:15:33.340287312Z"
+   },
+   "status": "Failed"
+  },
+  {
+   "id": 68,
+   "pool_receiver": null,
+   "record": {
+    "amount_raw": "25000000000000000000000000000",
+    "id": 68,
+    "kind": "Transfer",
+    "recipient": "jasnah-payments.near",
+    "recipient_category": "owner payments account",
+    "submission_time_utc": "2025-07-31T11:32:48.528700801Z",
+    "token": "NEAR"
+   },
+   "status": "Approved"
+  },
+  {
+   "id": 69,
+   "pool_receiver": null,
+   "record": {
+    "amount_raw": "10416660000000000000000000000",
+    "id": 69,
+    "kind": "Transfer",
+    "recipient": "sha256:71093d3973700cf3",
+    "recipient_category": "named account",
+    "submission_time_utc": "2025-07-31T12:46:17.048085921Z",
+    "token": "NEAR"
+   },
+   "status": "Approved"
+  },
+  {
+   "id": 70,
+   "pool_receiver": "near-prime-public.poolv1.near",
+   "record": {
+    "calls": [
+     {
+      "amount_raw": "10840590000000000000000000000",
+      "deposit_raw": "0",
+      "method": "unstake"
+     }
+    ],
+    "id": 70,
+    "kind": "FunctionCall",
+    "receiver": "near-prime-public.poolv1.near",
+    "receiver_category": "staking pool",
+    "submission_time_utc": "2025-08-01T10:28:12.823040269Z"
+   },
+   "status": "Approved"
+  },
+  {
+   "id": 71,
+   "pool_receiver": "near-prime-public.poolv1.near",
+   "record": {
+    "calls": [
+     {
+      "deposit_raw": "0",
+      "method": "withdraw_all"
+     }
+    ],
+    "id": 71,
+    "kind": "FunctionCall",
+    "receiver": "near-prime-public.poolv1.near",
+    "receiver_category": "staking pool",
+    "submission_time_utc": "2025-08-01T10:28:44.761064874Z"
+   },
+   "status": "InProgress"
+  },
+  {
+   "id": 72,
+   "pool_receiver": null,
+   "record": {
+    "amount_raw": "5000000000000000000000000",
+    "id": 72,
+    "kind": "Transfer",
+    "recipient": "sha256:8f676019577b6901",
+    "recipient_category": "implicit account",
+    "submission_time_utc": "2025-08-01T11:02:36.969336775Z",
+    "token": "NEAR"
+   },
+   "status": "Approved"
+  },
+  {
+   "id": 73,
+   "pool_receiver": null,
+   "record": {
+    "amount_raw": "6120000000000000000000000000",
+    "id": 73,
+    "kind": "Transfer",
+    "recipient": "sha256:72c447305260e673",
+    "recipient_category": "named account",
+    "submission_time_utc": "2025-08-05T06:54:31.910908277Z",
+    "token": "NEAR"
+   },
+   "status": "Approved"
+  },
+  {
+   "id": 74,
+   "pool_receiver": null,
+   "record": {
+    "amount_raw": "30000000000000000000000000000",
+    "id": 74,
+    "kind": "Transfer",
+    "recipient": "jasnah-payments.near",
+    "recipient_category": "owner payments account",
+    "submission_time_utc": "2025-08-05T08:51:35.088656505Z",
+    "token": "NEAR"
+   },
+   "status": "Approved"
+  },
+  {
+   "id": 75,
+   "pool_receiver": null,
+   "record": {
+    "amount_raw": "8500000000000000000000000000",
+    "id": 75,
+    "kind": "Transfer",
+    "recipient": "jasnah-payments.near",
+    "recipient_category": "owner payments account",
+    "submission_time_utc": "2025-08-19T14:57:54.440667149Z",
+    "token": "NEAR"
+   },
+   "status": "Approved"
+  },
+  {
+   "id": 76,
+   "pool_receiver": null,
+   "record": {
+    "amount_raw": "26000000000000000000000000000",
+    "id": 76,
+    "kind": "Transfer",
+    "recipient": "jasnah-payments.near",
+    "recipient_category": "owner payments account",
+    "submission_time_utc": "2025-08-27T08:04:59.781057725Z",
+    "token": "NEAR"
+   },
+   "status": "Approved"
+  },
+  {
+   "id": 77,
+   "pool_receiver": null,
+   "record": {
+    "amount_raw": "10416000000000000000000000000",
+    "id": 77,
+    "kind": "Transfer",
+    "recipient": "sha256:4fb7ed73c4a2a4ac",
+    "recipient_category": "named account",
+    "submission_time_utc": "2025-09-01T18:58:09.852862952Z",
+    "token": "NEAR"
+   },
+   "status": "InProgress"
+  },
+  {
+   "id": 78,
+   "pool_receiver": null,
+   "record": {
+    "amount_raw": "10416660000000000000000000000",
+    "id": 78,
+    "kind": "Transfer",
+    "recipient": "sha256:4fb7ed73c4a2a4ac",
+    "recipient_category": "named account",
+    "submission_time_utc": "2025-09-01T19:10:37.355149178Z",
+    "token": "NEAR"
+   },
+   "status": "Approved"
+  },
+  {
+   "id": 79,
+   "pool_receiver": "near-prime-public.poolv1.near",
+   "record": {
+    "calls": [
+     {
+      "deposit_raw": "0",
+      "method": "withdraw_all"
+     }
+    ],
+    "id": 79,
+    "kind": "FunctionCall",
+    "receiver": "near-prime-public.poolv1.near",
+    "receiver_category": "staking pool",
+    "submission_time_utc": "2025-09-03T07:09:00.641617333Z"
+   },
+   "status": "Approved"
+  },
+  {
+   "id": 80,
+   "pool_receiver": "near-prime-public.poolv1.near",
+   "record": {
+    "calls": [
+     {
+      "amount_raw": "16467560000000000000000000000",
+      "deposit_raw": "0",
+      "method": "unstake"
+     }
+    ],
+    "id": 80,
+    "kind": "FunctionCall",
+    "receiver": "near-prime-public.poolv1.near",
+    "receiver_category": "staking pool",
+    "submission_time_utc": "2025-09-03T07:11:21.226005728Z"
+   },
+   "status": "Approved"
+  },
+  {
+   "id": 81,
+   "pool_receiver": "near-prime-public.poolv1.near",
+   "record": {
+    "calls": [
+     {
+      "deposit_raw": "0",
+      "method": "withdraw_all"
+     }
+    ],
+    "id": 81,
+    "kind": "FunctionCall",
+    "receiver": "near-prime-public.poolv1.near",
+    "receiver_category": "staking pool",
+    "submission_time_utc": "2025-09-03T07:11:52.568224936Z"
+   },
+   "status": "Approved"
+  },
+  {
+   "id": 82,
+   "pool_receiver": null,
+   "record": {
+    "amount_raw": "6150000000000000000000000000",
+    "id": 82,
+    "kind": "Transfer",
+    "recipient": "sha256:72c447305260e673",
+    "recipient_category": "named account",
+    "submission_time_utc": "2025-09-03T12:55:18.340777429Z",
+    "token": "NEAR"
+   },
+   "status": "Approved"
+  },
+  {
+   "id": 83,
+   "pool_receiver": null,
+   "record": {
+    "amount_raw": "55200000000000000000000000000",
+    "id": 83,
+    "kind": "Transfer",
+    "recipient": "jasnah-payments.near",
+    "recipient_category": "owner payments account",
+    "submission_time_utc": "2025-09-05T08:18:34.014618479Z",
+    "token": "NEAR"
+   },
+   "status": "Approved"
+  },
+  {
+   "id": 84,
+   "pool_receiver": null,
+   "record": {
+    "amount_raw": "18500000000000000000000000000",
+    "id": 84,
+    "kind": "Transfer",
+    "recipient": "jasnah-payments.near",
+    "recipient_category": "owner payments account",
+    "submission_time_utc": "2025-09-08T14:09:06.110851821Z",
+    "token": "NEAR"
+   },
+   "status": "Approved"
+  },
+  {
+   "id": 85,
+   "pool_receiver": "near-prime-public.poolv1.near",
+   "record": {
+    "calls": [
+     {
+      "amount_raw": "100000000000000000000000000000",
+      "deposit_raw": "0",
+      "method": "unstake"
+     }
+    ],
+    "id": 85,
+    "kind": "FunctionCall",
+    "receiver": "near-prime-public.poolv1.near",
+    "receiver_category": "staking pool",
+    "submission_time_utc": "2025-09-10T10:04:12.187057949Z"
+   },
+   "status": "Approved"
+  },
+  {
+   "id": 86,
+   "pool_receiver": "near-prime-public.poolv1.near",
+   "record": {
+    "calls": [
+     {
+      "deposit_raw": "0",
+      "method": "withdraw_all"
+     }
+    ],
+    "id": 86,
+    "kind": "FunctionCall",
+    "receiver": "near-prime-public.poolv1.near",
+    "receiver_category": "staking pool",
+    "submission_time_utc": "2025-09-10T10:04:35.768345207Z"
+   },
+   "status": "Approved"
+  },
+  {
+   "id": 87,
+   "pool_receiver": null,
+   "record": {
+    "amount_raw": "17674310000000000000000000000",
+    "id": 87,
+    "kind": "Transfer",
+    "recipient": "jasnah-payments.near",
+    "recipient_category": "owner payments account",
+    "submission_time_utc": "2025-09-17T11:45:56.431506260Z",
+    "token": "NEAR"
+   },
+   "status": "Approved"
+  },
+  {
+   "id": 88,
+   "pool_receiver": null,
+   "record": {
+    "amount_raw": "2846860000000000000000000000",
+    "id": 88,
+    "kind": "Transfer",
+    "recipient": "sha256:670271d9f840b311",
+    "recipient_category": "named account",
+    "submission_time_utc": "2025-09-19T06:43:08.228454123Z",
+    "token": "NEAR"
+   },
+   "status": "Approved"
+  },
+  {
+   "id": 89,
+   "pool_receiver": null,
+   "record": {
+    "amount_raw": "4000000000000000000000000",
+    "id": 89,
+    "kind": "Transfer",
+    "recipient": "sha256:a05be71c28c23ca1",
+    "recipient_category": "named account",
+    "submission_time_utc": "2025-09-19T13:18:33.022592604Z",
+    "token": "NEAR"
+   },
+   "status": "Approved"
+  },
+  {
+   "id": 90,
+   "pool_receiver": null,
+   "record": {
+    "amount_raw": "17670310000000000000000000000",
+    "id": 90,
+    "kind": "Transfer",
+    "recipient": "sha256:a05be71c28c23ca1",
+    "recipient_category": "named account",
+    "submission_time_utc": "2025-09-19T14:29:20.711898402Z",
+    "token": "NEAR"
+   },
+   "status": "Approved"
+  },
+  {
+   "id": 91,
+   "pool_receiver": null,
+   "record": {
+    "amount_raw": "24999000000000000000000000000",
+    "id": 91,
+    "kind": "Transfer",
+    "recipient": "jasnah-payments.near",
+    "recipient_category": "owner payments account",
+    "submission_time_utc": "2025-09-26T06:32:06.290771090Z",
+    "token": "NEAR"
+   },
+   "status": "Approved"
+  },
+  {
+   "id": 92,
+   "pool_receiver": null,
+   "record": {
+    "amount_raw": "2260000000000000000000000",
+    "id": 92,
+    "kind": "Transfer",
+    "recipient": "sha256:083aa2db69941f7f",
+    "recipient_category": "implicit account",
+    "submission_time_utc": "2025-09-29T14:08:52.090446859Z",
+    "token": "NEAR"
+   },
+   "status": "Approved"
+  },
+  {
+   "id": 93,
+   "pool_receiver": null,
+   "record": {
+    "amount_raw": "5030000000000000000000000000",
+    "id": 93,
+    "kind": "Transfer",
+    "recipient": "sha256:083aa2db69941f7f",
+    "recipient_category": "implicit account",
+    "submission_time_utc": "2025-09-29T15:52:39.420914406Z",
+    "token": "NEAR"
+   },
+   "status": "Approved"
+  },
+  {
+   "id": 94,
+   "pool_receiver": "near-prime-public.poolv1.near",
+   "record": {
+    "calls": [
+     {
+      "amount_raw": "16054660000000000000000000000",
+      "deposit_raw": "0",
+      "method": "unstake"
+     }
+    ],
+    "id": 94,
+    "kind": "FunctionCall",
+    "receiver": "near-prime-public.poolv1.near",
+    "receiver_category": "staking pool",
+    "submission_time_utc": "2025-10-01T15:27:06.753132376Z"
+   },
+   "status": "Approved"
+  },
+  {
+   "id": 95,
+   "pool_receiver": "near-prime-public.poolv1.near",
+   "record": {
+    "calls": [
+     {
+      "deposit_raw": "0",
+      "method": "withdraw_all"
+     }
+    ],
+    "id": 95,
+    "kind": "FunctionCall",
+    "receiver": "near-prime-public.poolv1.near",
+    "receiver_category": "staking pool",
+    "submission_time_utc": "2025-10-01T15:27:35.064866960Z"
+   },
+   "status": "Approved"
+  },
+  {
+   "id": 96,
+   "pool_receiver": null,
+   "record": {
+    "amount_raw": "3500000000000000000000000000",
+    "id": 96,
+    "kind": "Transfer",
+    "recipient": "jasnah-payments.near",
+    "recipient_category": "owner payments account",
+    "submission_time_utc": "2025-10-02T13:19:10.681987904Z",
+    "token": "NEAR"
+   },
+   "status": "Approved"
+  },
+  {
+   "id": 97,
+   "pool_receiver": null,
+   "record": {
+    "amount_raw": "80000000000000000000000000000",
+    "id": 97,
+    "kind": "Transfer",
+    "recipient": "jasnah-payments.near",
+    "recipient_category": "owner payments account",
+    "submission_time_utc": "2025-10-03T09:06:50.727624937Z",
+    "token": "NEAR"
+   },
+   "status": "Approved"
+  },
+  {
+   "id": 98,
+   "pool_receiver": null,
+   "record": {
+    "amount_raw": "5000000000000000000000000000",
+    "id": 98,
+    "kind": "Transfer",
+    "recipient": "sha256:72c447305260e673",
+    "recipient_category": "named account",
+    "submission_time_utc": "2025-10-07T12:02:32.014234896Z",
+    "token": "NEAR"
+   },
+   "status": "Approved"
+  },
+  {
+   "id": 99,
+   "pool_receiver": "near-prime-public.poolv1.near",
+   "record": {
+    "calls": [
+     {
+      "amount_raw": "43362810000000000000000000000",
+      "deposit_raw": "0",
+      "method": "unstake"
+     }
+    ],
+    "id": 99,
+    "kind": "FunctionCall",
+    "receiver": "near-prime-public.poolv1.near",
+    "receiver_category": "staking pool",
+    "submission_time_utc": "2025-10-10T11:56:23.596473347Z"
+   },
+   "status": "Approved"
+  }
+ ]
+}

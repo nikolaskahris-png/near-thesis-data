@@ -1,0 +1,122 @@
+{
+ "redacted_value": [
+  {
+   "id": 200,
+   "pool_receiver": null,
+   "record": {
+    "amount_raw": "15000000000",
+    "id": 200,
+    "kind": "Transfer",
+    "recipient": "jasnah-payments.near",
+    "recipient_category": "owner payments account",
+    "submission_time_utc": "2026-10-15T20:54:54.654142257Z",
+    "token": "USDC"
+   },
+   "status": "Approved"
+  },
+  {
+   "id": 201,
+   "pool_receiver": null,
+   "record": {
+    "amount_raw": "7003170000000000000000000000",
+    "id": 201,
+    "kind": "Transfer",
+    "recipient": "jasnah-payments.near",
+    "recipient_category": "owner payments account",
+    "submission_time_utc": "2026-10-15T20:56:00.954084220Z",
+    "token": "NEAR"
+   },
+   "status": "Approved"
+  },
+  {
+   "id": 202,
+   "pool_receiver": null,
+   "record": {
+    "id": 202,
+    "kind": "ChangePolicy",
+    "submission_time_utc": "2026-10-21T09:13:36.651500862Z"
+   },
+   "status": "Approved"
+  },
+  {
+   "id": 203,
+   "pool_receiver": null,
+   "record": {
+    "id": 203,
+    "kind": "ChangePolicy",
+    "submission_time_utc": "2026-10-21T14:16:31.138800599Z"
+   },
+   "status": "Approved"
+  },
+  {
+   "id": 204,
+   "pool_receiver": null,
+   "record": {
+    "amount_raw": "250000000000",
+    "id": 204,
+    "kind": "Transfer",
+    "recipient": "jasnah-payments.near",
+    "recipient_category": "owner payments account",
+    "submission_time_utc": "2026-10-21T14:29:02.648549365Z",
+    "token": "USDC"
+   },
+   "status": "Approved"
+  },
+  {
+   "id": 205,
+   "pool_receiver": null,
+   "record": {
+    "amount_raw": "1000000000000000000000000",
+    "id": 205,
+    "kind": "Transfer",
+    "recipient": "sha256:50ef1055cf876be4",
+    "recipient_category": "implicit account",
+    "submission_time_utc": "2026-10-23T09:24:10.400014390Z",
+    "token": "NEAR"
+   },
+   "status": "Approved"
+  },
+  {
+   "id": 206,
+   "pool_receiver": null,
+   "record": {
+    "amount_raw": "2064150000000000000000000000",
+    "id": 206,
+    "kind": "Transfer",
+    "recipient": "sha256:31b2b035dba9cdf2",
+    "recipient_category": "implicit account",
+    "submission_time_utc": "2026-10-26T16:31:29.159271682Z",
+    "token": "NEAR"
+   },
+   "status": "Approved"
+  },
+  {
+   "id": 207,
+   "pool_receiver": null,
+   "record": {
+    "amount_raw": "18709000000000000000000000000",
+    "id": 207,
+    "kind": "Transfer",
+    "recipient": "sha256:50ef1055cf876be4",
+    "recipient_category": "implicit account",
+    "submission_time_utc": "2026-10-27T10:31:43.690917888Z",
+    "token": "NEAR"
+   },
+   "status": "Approved"
+  },
+  {
+   "id": 208,
+   "pool_receiver": null,
+   "record": {
+    "amount_raw": "45000000000",
+    "id": 208,
+    "kind": "Transfer",
+    "recipient": "jasnah-payments.near",
+    "recipient_category": "owner payments account",
+    "submission_time_utc": "2026-10-28T12:23:25.369602597Z",
+    "token": "USDC"
+   },
+   "status": "Approved"
+  }
+ ]
+}

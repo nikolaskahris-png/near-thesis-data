@@ -7,6 +7,7 @@ Run: python -m unittest discover -s tests
 """
 import base64
 import json
+import shutil
 import sys
 import tempfile
 import unittest
@@ -234,6 +235,34 @@ class ControlMapTest(unittest.TestCase):
         p.write_bytes(p.read_bytes() + b" ")
         problems, _ = cm.verify(out)
         self.assertIn(f"sha256 mismatch: {doc['raw_files'][f'{cm.INTENTS}/fee']['path']}", problems)
+
+    def test_offline_recompute_from_redacted_copies(self):
+        doc, out = self.save()
+        redacted = [self.root / f["redacted"]["path"] for f in doc["raw_files"].values()
+                    if f["private"]]
+        self.assertTrue(redacted)
+        for p in redacted:
+            text = p.read_text(encoding="utf-8")
+            for name in ["c0.near", "a0.near", "g0.near", "rv0.near", "v0.poolv1.near", HEX,
+                         "pm.bridge.near"]:
+                self.assertNotIn(name, text, p.name)
+        shutil.rmtree(self.root / "data" / "private")
+        self.assertEqual(cm.verify(out), ([], len(redacted)))
+        d = json.loads(out.read_text(encoding="utf-8"))
+        d["links"]["issuance"]["validators"] += 1   # a wrong number is caught without private files
+        out.write_text(json.dumps(d), encoding="utf-8")
+        self.assertTrue(any("does not recompute" in p for p in cm.verify(out)[0]))
+
+    def test_redacted_copy_must_match_original(self):
+        doc, out = self.save()
+        f = doc["raw_files"]["validators"]
+        p = self.root / f["redacted"]["path"]
+        d = json.loads(p.read_bytes())
+        d["result"]["current_validators"] = d["result"]["current_validators"][1:]
+        p.write_bytes(json.dumps(d).encode())
+        doc["raw_files"]["validators"]["redacted"]["sha256"] = cm.lw.sha256(p.read_bytes())
+        out.write_text(json.dumps(doc), encoding="utf-8")
+        self.assertIn("redacted copy does not match its original: validators", cm.verify(out)[0])
 
 
 if __name__ == "__main__":

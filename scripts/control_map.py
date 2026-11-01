@@ -24,8 +24,10 @@ Rules used, from the contracts' own code:
     of the epoch's stake run it; counts below use the validators of the locked block's epoch.
 
 Privacy: answers that list accounts of people (DAO members, role grantees, guardians,
-reviewers, validators) go to data/private/control/ (not committed). The public file keeps
-their sha256 and request, and only counts, thresholds and the accounts in PUBLIC_ACCOUNTS.
+reviewers, validators) go to data/private/control/ (not committed). Each has a redacted
+copy in data/raw/redacted/control/ (scripts/privacy.py): only the fields used below, with
+accounts outside PUBLIC_ACCOUNTS as sha256 tags. The map is always computed from the
+public files and the redacted copies, so --verify recomputes it offline.
 
 Read-only: JSON-RPC "query", "EXPERIMENTAL_protocol_config" and "validators".
 No keys, nothing written on chain.
@@ -46,6 +48,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import lock_window as lw  # noqa: E402
+import privacy  # noqa: E402
 
 REPO = lw.REPO
 OUT_NAME = "control_map.json"
@@ -130,7 +133,37 @@ class Store:
 
 
 def decode(raw):
-    return json.loads(bytes(json.loads(raw)["result"]["result"]).decode())
+    doc = json.loads(raw)
+    if "redacted_value" in doc:
+        return doc["redacted_value"]
+    return json.loads(bytes(doc["result"]["result"]).decode())
+
+
+def project(key, raw):
+    """Redacted copy of a private answer: the fields build() reads, people as tags."""
+    pub = PUBLIC_ACCOUNTS
+    if key == "validators":
+        res = json.loads(raw)["result"]
+        return privacy.dumps({"result": {
+            "current_validators": [{"stake": v["stake"]} for v in res["current_validators"]],
+            "epoch_start_height": res.get("epoch_start_height")}})
+    v = decode(raw)
+    if key.endswith("/get_policy"):
+        v = {"roles": [{"name": r["name"], "kind": privacy.redact(r["kind"], pub),
+                        "permissions": r["permissions"], "vote_policy": r.get("vote_policy", {})}
+                       for r in v["roles"]],
+             "default_vote_policy": v["default_vote_policy"]}
+    elif key == f"{VOTE}/get_config":
+        v = {k: privacy.redact(v[k], pub) for k in ("owner_account_id", "reviewer_ids",
+                                                    "council_ids", "guardians",
+                                                    "max_active_proposals") if k in v}
+    elif key == f"{STAKE_DAO}/get_config":
+        v = {k: privacy.redact(v[k], pub) for k in ("owner_account_id", "guardians") if k in v}
+    elif "/grantees/" in key:
+        v = privacy.redact(v, pub)
+    else:
+        raise ValueError(f"no redaction rule for {key}")
+    return privacy.dumps({"redacted_value": v})
 
 
 def collect(chain, store, height, start_height, epoch_id):
@@ -257,7 +290,7 @@ def ratio(part, total, places=6):
 def build(root, files, window):
     """Everything computed from the raw files. Used by run() and by --verify."""
     def raw(key):
-        return (root / files[key]["path"]).read_bytes()
+        return privacy.read(root, files[key])
 
     def view(key):
         return decode(raw(key))
@@ -408,12 +441,14 @@ def run(chain, data_dir, window_path):
     header = json.loads(block_file.read_bytes())["result"]["header"]
     store = Store(data_dir)
     collect(chain, store, end["height"], start["height"], header["epoch_id"])
+    privacy.write_redacted(data_dir.parent, store.files, project)
     doc = {
         "measure": "control map: who can change each link of the value path, as k of n",
         "window_file": Path(window_path).resolve().relative_to(data_dir.parent.resolve()).as_posix(),
         "source": {"rpc": chain.url},
         "privacy": "answers that list people's accounts stay in data/private/control/ "
-                   "(not committed); their requests and sha256 are below",
+                   "(not committed); their requests and sha256 are below, with a redacted "
+                   "copy under data/raw/redacted/control/ that the map is computed from",
         "raw_files": store.files,
     }
     doc.update(build(data_dir.parent, store.files, window))
@@ -421,36 +456,31 @@ def run(chain, data_dir, window_path):
 
 
 def verify(path, archival=False, chain=None):
-    """Offline check (or re-fetch with archival=True). Returns (problems, missing_private)."""
+    """Offline check (or re-fetch with archival=True). Returns (problems, private absent)."""
     path = Path(path)
     doc = json.loads(path.read_text(encoding="utf-8"))
     root = path.resolve().parent.parent
-    problems, missing = [], 0
-    for key, f in doc["raw_files"].items():
-        p = root / f["path"]
-        if archival:
+    problems = []
+    if archival:
+        for key, f in doc["raw_files"].items():
+            p = root / f["path"]
             raw = fetch(chain, f["request"])
             if lw.sha256(raw) != f["sha256"]:
                 problems.append(f"archival answer differs: {key}")
             elif not p.exists():
                 p.parent.mkdir(parents=True, exist_ok=True)
                 p.write_bytes(raw)
-        if not p.exists():
-            if f["private"]:
-                missing += 1
-            else:
-                problems.append(f"missing raw file {f['path']}")
-        elif lw.sha256(p.read_bytes()) != f["sha256"]:
-            problems.append(f"sha256 mismatch: {f['path']}")
-    if problems or missing:
-        return problems, missing
+    p2, absent = privacy.check_files(root, doc["raw_files"], project)
+    problems += p2
+    if problems:
+        return problems, absent
     window = json.loads((root / doc["window_file"]).read_text(encoding="utf-8"))
     again = build(root, doc["raw_files"], window)
     for key, value in again.items():
         if doc.get(key) != value:
             problems.append(f"'{key}' does not recompute from the raw files")
     problems += [f"check failed: {k}" for k, ok in again["checks"].items() if not ok]
-    return problems, 0
+    return problems, absent
 
 
 def show(doc):
@@ -500,11 +530,7 @@ def main():
         if problems:
             print("FAILED:\n  " + "\n  ".join(problems))
             sys.exit(1)
-        if missing:
-            print(f"OK for public files; {missing} private raw file(s) absent, so the map is not "
-                  f"recomputed here (run --verify --archival to re-fetch and compare sha256)")
-            return
-        print("OK: raw sha256 match and the control map recomputes exactly")
+        print(privacy.status_line("the control map", missing))
         return
     if not args.window:
         parser.error("--window is required")

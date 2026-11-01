@@ -33,17 +33,29 @@
     "get_validator_217788180.json": {
       "path": "data/private/farm/get_validator_217788180.json",
       "sha256": "b59718f7f6ca3687f04ccb44654fdf82360e893247bc5d56f68d22771164b07b",
-      "private": true
+      "private": true,
+      "redacted": {
+        "path": "data/raw/redacted/farm/get_validator_217788180.json",
+        "sha256": "ba732683c6d77c62b7c23bb2b93c1eb77f37d4e32546335704a03780c78df294"
+      }
     },
     "nearblocks_edit_price/page_001.json": {
       "path": "data/private/farm/nearblocks_edit_price/page_001.json",
       "sha256": "daa0f813f50315f6d94697089ad2d1ab1b157fb90951d8c8c0f0d0f5f0c42b7d",
-      "private": true
+      "private": true,
+      "redacted": {
+        "path": "data/raw/redacted/farm/nearblocks_edit_price/page_001.json",
+        "sha256": "e4950ea97b375293482b5070622e9b9f8369f013e1cb0bab767b3571bab8c73f"
+      }
     },
     "txn/ENjbDSPRNzL3BTtCvWRUNDkM1vQmyrhTpvm18feaFn6S.json": {
       "path": "data/private/farm/txn/ENjbDSPRNzL3BTtCvWRUNDkM1vQmyrhTpvm18feaFn6S.json",
       "sha256": "fd964ee943e0682f9fb3f1bd8b96976812d9d5bd851b45ee55bccc33a582876a",
-      "private": true
+      "private": true,
+      "redacted": {
+        "path": "data/raw/redacted/farm/txn/ENjbDSPRNzL3BTtCvWRUNDkM1vQmyrhTpvm18feaFn6S.json",
+        "sha256": "80fc9fb0258b2a8f44090900d81ef2d4f1b723da5effe119caa890812c405ad0"
+      }
     }
   },
   "edit_price_receipts_all_time": 1,

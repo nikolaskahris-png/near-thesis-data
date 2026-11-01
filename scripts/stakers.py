@@ -522,9 +522,13 @@ def main():
             print(f"FAILED: {len(problems)} problem(s)")
             return 1
         absent = sum(st["private_check"] != "recomputed" for st in results)
-        print(f"OK: {len(results)} snapshot(s) recomputed from the public lists"
-              + (f"; private files absent for {absent}, so the lists were not re-derived "
-                 "(PARTIAL)" if absent else "; the private files give the same lists"))
+        if absent:
+            print(f"OK: {len(results)} snapshot(s) recompute offline from the public lists "
+                  f"(PUBLIC_FULL); private originals of {absent} not in git for privacy, so "
+                  f"their match with the public lists was not checked here")
+        else:
+            print(f"OK: {len(results)} snapshot(s) recompute offline from the public lists, and "
+                  f"the private originals give the same lists")
         return 0
 
     if not args.dates:

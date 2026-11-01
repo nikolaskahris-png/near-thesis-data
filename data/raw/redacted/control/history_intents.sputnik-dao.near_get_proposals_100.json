@@ -1,0 +1,133 @@
+{
+ "redacted_value": [
+  {
+   "id": 100,
+   "kind": {
+    "FunctionCall": {
+     "actions": [
+      {
+       "method_name": "pa_unpause_feature"
+      }
+     ],
+     "receiver_id": "intents.near"
+    }
+   },
+   "status": "Approved",
+   "submission_time": "1790891499488783586"
+  },
+  {
+   "id": 101,
+   "kind": {
+    "FunctionCall": {
+     "actions": [
+      {
+       "method_name": "add_release_info"
+      }
+     ],
+     "receiver_id": "ctl-intents.near"
+    }
+   },
+   "status": "Approved",
+   "submission_time": "1790947372050351446"
+  },
+  {
+   "id": 102,
+   "kind": {
+    "ChangePolicy": {}
+   },
+   "status": "Approved",
+   "submission_time": "1791384124371096781"
+  },
+  {
+   "id": 103,
+   "kind": {
+    "FunctionCall": {
+     "actions": [
+      {
+       "method_name": "add_release_info"
+      }
+     ],
+     "receiver_id": "ctl-intents.near"
+    }
+   },
+   "status": "Approved",
+   "submission_time": "1791398586112756123"
+  },
+  {
+   "id": 104,
+   "kind": {
+    "FunctionCall": {
+     "actions": [
+      {
+       "method_name": "pa_unpause_feature"
+      }
+     ],
+     "receiver_id": "intents.near"
+    }
+   },
+   "status": "Approved",
+   "submission_time": "1791398726162572619"
+  },
+  {
+   "id": 105,
+   "kind": {
+    "AddMemberToRole": {}
+   },
+   "status": "Approved",
+   "submission_time": "1791795533286471678"
+  },
+  {
+   "id": 106,
+   "kind": {
+    "RemoveMemberFromRole": {}
+   },
+   "status": "Approved",
+   "submission_time": "1791795682466599083"
+  },
+  {
+   "id": 107,
+   "kind": {
+    "FunctionCall": {
+     "actions": [
+      {
+       "method_name": "acl_grant_role"
+      }
+     ],
+     "receiver_id": "intents.near"
+    }
+   },
+   "status": "Approved",
+   "submission_time": "1792156701374686237"
+  },
+  {
+   "id": 108,
+   "kind": {
+    "FunctionCall": {
+     "actions": [
+      {
+       "method_name": "acl_grant_role"
+      }
+     ],
+     "receiver_id": "intents.near"
+    }
+   },
+   "status": "Approved",
+   "submission_time": "1793359353854206548"
+  },
+  {
+   "id": 109,
+   "kind": {
+    "FunctionCall": {
+     "actions": [
+      {
+       "method_name": "w_execute_extension"
+      }
+     ],
+     "receiver_id": "outlayer-admin.near"
+    }
+   },
+   "status": "InProgress",
+   "submission_time": "1793445278129519471"
+  }
+ ]
+}

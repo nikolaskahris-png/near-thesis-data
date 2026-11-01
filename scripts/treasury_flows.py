@@ -23,7 +23,10 @@ not Approved at the start block. Exact, with no timestamps needed.
 Privacy: proposal texts and counterparties can name private people. Those raw
 responses go to data/private/ (not committed). The public file keeps their sha256,
 the request that produced them, and records without names (recipients as sha256
-prefixes; staking pools, token contracts and the owner's own accounts by name).
+prefixes; staking pools, token contracts and the owner's own accounts by name). Each
+private file has a redacted copy under data/raw/redacted/ (scripts/privacy.py) holding
+only those records, the payments account's token movements and the stake receipts'
+blocks; the result is always computed from them, so --verify recomputes it offline.
 Anyone can re-fetch the same archival blocks (--archival) and compare the hashes.
 
 Read-only: JSON-RPC "block", "query" and NearBlocks GET. No keys, nothing written on chain.
@@ -47,6 +50,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import lock_window as lw  # noqa: E402
+import privacy  # noqa: E402
 import stakers  # noqa: E402
 
 TREASURY = "jasnah-treasury.sputnik-dao.near"
@@ -145,6 +149,8 @@ def fetch(chain, request):
 def value_of(raw):
     """Decoded value of a saved query, or None when the account/contract was missing."""
     doc = json.loads(raw)
+    if "redacted_value" in doc:
+        return doc["redacted_value"]
     if error_name(doc) is not None:
         return None
     res = doc["result"]
@@ -485,12 +491,42 @@ def fmt_positions(pos):
     return out
 
 
+# ---------------------------------------------------------------- redacted copies
+
+def pool_receiver(p):
+    fc = (p.get("kind") or {}).get("FunctionCall") if isinstance(p.get("kind"), dict) else None
+    if fc and any(a.get("method_name") in POOL_METHODS for a in fc.get("actions", [])):
+        return fc["receiver_id"]
+    return None
+
+
+def projector(pools):
+    """project(key, raw) for this script's private files (scripts/privacy.py)."""
+    def project(key, raw):
+        if "/proposals/" in key:
+            return privacy.dumps({"redacted_value": [
+                {"id": p["id"], "status": p.get("status"), "record": record(p, pools),
+                 "pool_receiver": pool_receiver(p)} for p in (value_of(raw) or [])]})
+        if key.startswith(f"nearblocks/mt_{PAYMENTS}/"):
+            rows = [mt_row(r, PAYMENTS) for r in mt_rows_raw(json.loads(raw))]
+            return privacy.dumps({"redacted_rows": [r for r in rows if r is not None]})
+        if key.startswith("stake_receipts/"):
+            return privacy.dumps({"data": [
+                {"predecessor_account_id": privacy.tag(r["predecessor_account_id"]),
+                 "block": {"block_height": (r.get("block") or {}).get("block_height"),
+                           "block_timestamp": (r.get("block") or {}).get("block_timestamp")},
+                 "outcome": {"status": (r.get("outcome") or {}).get("status")}}
+                for r in stakers.receipts_in(json.loads(raw))]})
+        raise ValueError(f"no redaction rule for {key}")
+    return project
+
+
 # ---------------------------------------------------------------- build
 
 def build(root, files, meta):
     """Everything computed from the saved files. Used by run() and --verify."""
     def raw(key):
-        return (root / files[key]["path"]).read_bytes()
+        return privacy.read(root, files[key])
 
     missing = set()
 
@@ -511,21 +547,19 @@ def build(root, files, meta):
 
     end_props = proposals("end")
     pools = meta["pools"]
-    assert pools == pools_from(end_props), "pool list does not match the proposals"
+    found = sorted(set(KNOWN_POOLS) | {p["pool_receiver"] for p in end_props if p["pool_receiver"]})
+    assert pools == found, "pool list does not match the proposals"
 
     rows = []
     for key in sorted(k for k in files if k.startswith(f"nearblocks/mt_{PAYMENTS}/")):
-        for r in mt_rows_raw(json.loads(raw(key))):
-            n = mt_row(r, PAYMENTS)
-            if n is not None:
-                rows.append(n)
+        rows += json.loads(raw(key))["redacted_rows"]
     all_swaps = swaps_from_rows(unique_rows(rows))
 
     end_h = meta["end_block"]
     windows = {}
     for name, label in (("since_stake_dao", "stake_dao_start"), ("year_2026", "y2026_start")):
         start_h = meta[f"{label}_block"]
-        recs = [record(p, pools) for p in approved_between(proposals(label), end_props)]
+        recs = [p["record"] for p in approved_between(proposals(label), end_props)]
         f = flows(recs)
         p0, p1 = positions(val, label, pools), positions(val, "end", pools)
         change = p1["owner_total_near"] - p0["owner_total_near"]
@@ -562,9 +596,10 @@ def build(root, files, meta):
                      "near_given": near(-s["wnear"]), "usdc_received": usdc(max(s["usdc"], 0)),
                      "usdt_received": usdc(max(s["usdt"], 0))}
                     for s in all_swaps]
-    recs_public = [record(p, pools) for p in approved_between(proposals("y2026_start"), end_props)]
+    recs_public = [p["record"] for p in approved_between(proposals("y2026_start"), end_props)]
     keys = val("end/access_keys")
-    first_stake = first_stake_receipt(root, meta["stake_receipt_pages"])
+    first_stake = first_stake_receipt(
+        [json.loads(raw(k)) for k in sorted(k for k in files if k.startswith("stake_receipts/"))])
     return {
         "windows": windows,
         "approved_proposals_2026": recs_public,
@@ -580,10 +615,10 @@ def lw_header(raw):
     return json.loads(raw)["result"]["header"]
 
 
-def first_stake_receipt(root, pages):
+def first_stake_receipt(docs):
     best = None
-    for rel in pages:
-        for r in stakers.receipts_in(json.loads((root / rel).read_bytes())):
+    for doc in docs:
+        for r in stakers.receipts_in(doc):
             b = r.get("block") or {}
             h = int(b.get("block_height"))
             ok = (r.get("outcome") or {}).get("status")
@@ -614,7 +649,13 @@ def run(chain, data_dir, window_file, get=stakers.http_get, wait=stakers.PAGE_WA
     mt_pages(store, PAYMENTS, get=get, wait=wait, reuse_dir=data_dir / "private" / "treasury")
 
     # 2. Window starts.
-    first = first_stake_receipt(data_dir.parent, stake_pages)
+    for rel in stake_pages:
+        b = (data_dir.parent / rel).read_bytes()
+        store.files[f"stake_receipts/{Path(rel).stem}"] = {
+            "path": rel, "sha256": sha256(b), "private": True, "kind": "nearblocks",
+            "request": {"url": stakers.NEARBLOCKS + "?method=stake (stakers.py)"}}
+    first = first_stake_receipt([json.loads((data_dir.parent / rel).read_bytes())
+                                 for rel in stake_pages])
     created = first_block_with_account(chain, STAKE_DAO, CREATION_LOW, first["height"])
     final = chain.final_header()
     ref = chain.block(REF_HEIGHT)
@@ -662,6 +703,7 @@ def run(chain, data_dir, window_file, get=stakers.http_get, wait=stakers.PAGE_WA
         "meta": meta,
         "raw_files": store.files,
     }
+    privacy.write_redacted(data_dir.parent, store.files, projector(pools))
     doc.update(build(data_dir.parent, store.files, meta))
     return doc
 
@@ -672,16 +714,7 @@ def verify(path, archival=False, chain=None):
     path = Path(path)
     doc = json.loads(path.read_text(encoding="utf-8"))
     root = path.resolve().parent.parent
-    problems, missing_private = [], 0
-    for key, f in doc["raw_files"].items():
-        p = root / f["path"]
-        if not p.exists():
-            if f["private"]:
-                missing_private += 1
-                continue
-            problems.append(f"missing raw file {f['path']}")
-        elif sha256(p.read_bytes()) != f["sha256"]:
-            problems.append(f"sha256 mismatch: {f['path']}")
+    problems = []
     if archival:
         chain = chain or lw.Chain()
         for key, f in doc["raw_files"].items():
@@ -694,15 +727,15 @@ def verify(path, archival=False, chain=None):
                 raw = fetch(chain, f["request"])
             if sha256(raw) != f["sha256"]:
                 problems.append(f"archival re-fetch differs: {key}")
+    p2, absent = privacy.check_files(root, doc["raw_files"], projector(doc["meta"]["pools"]))
+    problems += p2
     if problems:
-        return problems, missing_private
-    if missing_private:
-        return problems, missing_private  # cannot recompute without them
+        return problems, absent
     again = build(root, doc["raw_files"], doc["meta"])
     for key, value in again.items():
         if doc.get(key) != value:
             problems.append(f"'{key}' does not recompute from the raw files")
-    return problems, 0
+    return problems, absent
 
 
 # ---------------------------------------------------------------- main
@@ -739,12 +772,8 @@ def main():
         if problems:
             print("FAILED:\n  " + "\n  ".join(problems))
             sys.exit(1)
-        if missing:
-            print(f"OK for public files; {missing} private raw file(s) absent, so the result "
-                  f"was not recomputed{' (archival hashes match)' if args.archival else ''}.")
-        else:
-            print("OK: sha256 match and every number recomputes from the raw files"
-                  + (" · archival re-fetch matches" if args.archival else ""))
+        print(privacy.status_line("every number", missing)
+              + (" · archival re-fetch matches" if args.archival else ""))
         return
     if not args.window:
         parser.error("--window is required")

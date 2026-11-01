@@ -42,6 +42,10 @@
       "kind": "nearblocks",
       "request": {
         "url": "https://api.nearblocks.io/v3/accounts/jasnah-payments.near/mt-txns?limit=100"
+      },
+      "redacted": {
+        "path": "data/raw/redacted/treasury/nearblocks_mt_jasnah-payments.near_page_001.json",
+        "sha256": "ad34ffde0662060f74018dd2d9ceecfe6edeab3718dd23579907e6ffa7c9ecf2"
       }
     },
     "nearblocks/mt_jasnah-payments.near/page_002": {
@@ -51,6 +55,10 @@
       "kind": "nearblocks",
       "request": {
         "url": "https://api.nearblocks.io/v3/accounts/jasnah-payments.near/mt-txns?limit=100&next=eyJpbmRleCI6Miwic2hhcmQiOjcsInRpbWVzdGFtcCI6IjE3ODA2NTgwNzEwNzEzNjcxODEifQ%3D%3D"
+      },
+      "redacted": {
+        "path": "data/raw/redacted/treasury/nearblocks_mt_jasnah-payments.near_page_002.json",
+        "sha256": "6424b4e0e12a618166c19ad16b0aa45e4d7f0d5e7fd99786bdba7180f6d7932f"
       }
     },
     "nearblocks/mt_jasnah-payments.near/page_003": {
@@ -60,6 +68,10 @@
       "kind": "nearblocks",
       "request": {
         "url": "https://api.nearblocks.io/v3/accounts/jasnah-payments.near/mt-txns?limit=100&next=eyJpbmRleCI6MCwic2hhcmQiOjcsInRpbWVzdGFtcCI6IjE3NjQ2MTMzOTgyNzI3NzE4MzYifQ%3D%3D"
+      },
+      "redacted": {
+        "path": "data/raw/redacted/treasury/nearblocks_mt_jasnah-payments.near_page_003.json",
+        "sha256": "40c99daadaa99e8815d1de5982c26f5866dac9e77ac3225b26344add6ae1732f"
       }
     },
     "nearblocks/mt_jasnah-payments.near/page_004": {
@@ -69,6 +81,10 @@
       "kind": "nearblocks",
       "request": {
         "url": "https://api.nearblocks.io/v3/accounts/jasnah-payments.near/mt-txns?limit=100&next=eyJpbmRleCI6MCwic2hhcmQiOjcsInRpbWVzdGFtcCI6IjE3NTE5NzIyNTkwOTk2MzA0NjkifQ%3D%3D"
+      },
+      "redacted": {
+        "path": "data/raw/redacted/treasury/nearblocks_mt_jasnah-payments.near_page_004.json",
+        "sha256": "f8e6a7c4b3fecdca81166384e3f8c25bf6f15b7e653162d8304d3f40aa4eb309"
       }
     },
     "block/208930590": {
@@ -274,6 +290,10 @@
         "account_id": "jasnah-treasury.sputnik-dao.near",
         "method_name": "get_proposals",
         "args_base64": "eyJmcm9tX2luZGV4IjogMCwgImxpbWl0IjogMTAwfQ=="
+      },
+      "redacted": {
+        "path": "data/raw/redacted/treasury/stake_dao_start_proposals_00000.json",
+        "sha256": "6f08bd7621c1c7c4801a52d6c1b430f9ed9ec3023c9f5c3e4568ecdbc09e863b"
       }
     },
     "stake_dao_start/proposals/00100": {
@@ -287,6 +307,10 @@
         "account_id": "jasnah-treasury.sputnik-dao.near",
         "method_name": "get_proposals",
         "args_base64": "eyJmcm9tX2luZGV4IjogMTAwLCAibGltaXQiOiAxMDB9"
+      },
+      "redacted": {
+        "path": "data/raw/redacted/treasury/stake_dao_start_proposals_00100.json",
+        "sha256": "4a594d644561b2ab7f9e4b02d101001d663aa0ce3e75be9e6c17ea7f6f1ad33b"
       }
     },
     "y2026_start/account/treasury": {
@@ -452,6 +476,10 @@
         "account_id": "jasnah-treasury.sputnik-dao.near",
         "method_name": "get_proposals",
         "args_base64": "eyJmcm9tX2luZGV4IjogMCwgImxpbWl0IjogMTAwfQ=="
+      },
+      "redacted": {
+        "path": "data/raw/redacted/treasury/y2026_start_proposals_00000.json",
+        "sha256": "6f08bd7621c1c7c4801a52d6c1b430f9ed9ec3023c9f5c3e4568ecdbc09e863b"
       }
     },
     "y2026_start/proposals/00100": {
@@ -465,6 +493,10 @@
         "account_id": "jasnah-treasury.sputnik-dao.near",
         "method_name": "get_proposals",
         "args_base64": "eyJmcm9tX2luZGV4IjogMTAwLCAibGltaXQiOiAxMDB9"
+      },
+      "redacted": {
+        "path": "data/raw/redacted/treasury/y2026_start_proposals_00100.json",
+        "sha256": "fa8be2a822fb7e3a2ad903687cc03f5418902b083fad46817293659f3a3df1b7"
       }
     },
     "end/account/treasury": {
@@ -630,6 +662,10 @@
         "account_id": "jasnah-treasury.sputnik-dao.near",
         "method_name": "get_proposals",
         "args_base64": "eyJmcm9tX2luZGV4IjogMCwgImxpbWl0IjogMTAwfQ=="
+      },
+      "redacted": {
+        "path": "data/raw/redacted/treasury/end_proposals_00000.json",
+        "sha256": "6f08bd7621c1c7c4801a52d6c1b430f9ed9ec3023c9f5c3e4568ecdbc09e863b"
       }
     },
     "end/proposals/00100": {
@@ -643,6 +679,10 @@
         "account_id": "jasnah-treasury.sputnik-dao.near",
         "method_name": "get_proposals",
         "args_base64": "eyJmcm9tX2luZGV4IjogMTAwLCAibGltaXQiOiAxMDB9"
+      },
+      "redacted": {
+        "path": "data/raw/redacted/treasury/end_proposals_00100.json",
+        "sha256": "66c110b2eb2cf3b11fc6c0499f6fc626dbd764926d700bd5b436ac5db44b1c1d"
       }
     },
     "end/proposals/00200": {
@@ -656,6 +696,10 @@
         "account_id": "jasnah-treasury.sputnik-dao.near",
         "method_name": "get_proposals",
         "args_base64": "eyJmcm9tX2luZGV4IjogMjAwLCAibGltaXQiOiAxMDB9"
+      },
+      "redacted": {
+        "path": "data/raw/redacted/treasury/end_proposals_00200.json",
+        "sha256": "b131272b209e37161a8cd157f22efa59aa8831d6d19b58869223b067c700bc91"
       }
     },
     "end/access_keys": {
@@ -667,6 +711,58 @@
         "request_type": "view_access_key_list",
         "block_id": 222491356,
         "account_id": "jasnah-treasury.sputnik-dao.near"
+      }
+    },
+    "stake_receipts/page_001": {
+      "path": "data/private/nearblocks/stake_receipts_2026-11-01/page_001.json",
+      "sha256": "597f71af25ea01e4b1ce9a126ca807b8e5a60c44ecbc034c672b63b082fc75d8",
+      "private": true,
+      "kind": "nearblocks",
+      "request": {
+        "url": "https://api.nearblocks.io/v3/accounts/stake.dao/receipts?method=stake (stakers.py)"
+      },
+      "redacted": {
+        "path": "data/raw/redacted/nearblocks/stake_receipts_2026-11-01/page_001.json",
+        "sha256": "68c2f621d58a3552d96051affaa2fe037bdd1e70b3d1ee7a36b31a5567abe812"
+      }
+    },
+    "stake_receipts/page_002": {
+      "path": "data/private/nearblocks/stake_receipts_2026-11-01/page_002.json",
+      "sha256": "4e183c93cddb27193ead92cc2d9824a5cbab16b133c07a2dacf8ca908ede82ab",
+      "private": true,
+      "kind": "nearblocks",
+      "request": {
+        "url": "https://api.nearblocks.io/v3/accounts/stake.dao/receipts?method=stake (stakers.py)"
+      },
+      "redacted": {
+        "path": "data/raw/redacted/nearblocks/stake_receipts_2026-11-01/page_002.json",
+        "sha256": "3165043c9cef2865aecbed5dcf68a7f958d99f330660ba4f55c064bab74f5479"
+      }
+    },
+    "stake_receipts/page_003": {
+      "path": "data/private/nearblocks/stake_receipts_2026-11-01/page_003.json",
+      "sha256": "8d87c66abda53ae9e935beca93c67181731c69b7b99d3222c720a71353a354cf",
+      "private": true,
+      "kind": "nearblocks",
+      "request": {
+        "url": "https://api.nearblocks.io/v3/accounts/stake.dao/receipts?method=stake (stakers.py)"
+      },
+      "redacted": {
+        "path": "data/raw/redacted/nearblocks/stake_receipts_2026-11-01/page_003.json",
+        "sha256": "21ced04b0e7d00362cf5391ff09a830a33f2ee6fa11c47da3c0a8551d45efc75"
+      }
+    },
+    "stake_receipts/page_004": {
+      "path": "data/private/nearblocks/stake_receipts_2026-11-01/page_004.json",
+      "sha256": "ab0b67a788cf441acbf703812c6566bdc3c26a5390295d8cd61764d9a9147658",
+      "private": true,
+      "kind": "nearblocks",
+      "request": {
+        "url": "https://api.nearblocks.io/v3/accounts/stake.dao/receipts?method=stake (stakers.py)"
+      },
+      "redacted": {
+        "path": "data/raw/redacted/nearblocks/stake_receipts_2026-11-01/page_004.json",
+        "sha256": "28309c62959781bba51b39199a4e8f0121ca2dd4b7151c86ed975b37a4145ac4"
       }
     }
   },

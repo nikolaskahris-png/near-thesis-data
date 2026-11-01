@@ -4,7 +4,7 @@
   "source": {
     "rpc": "https://archival-rpc.mainnet.fastnear.com"
   },
-  "privacy": "proposal texts, proposers and votes stay in data/private/control/ (not committed); their requests and sha256 are below",
+  "privacy": "proposal texts, proposers and votes stay in data/private/control/ (not committed); their requests and sha256 are below, with a redacted copy under data/raw/redacted/control/ that the history is computed from",
   "raw_files": {
     "history/intents.sputnik-dao.near/get_last_proposal_id": {
       "path": "data/raw/control/history_intents.sputnik-dao.near_get_last_proposal_id.json",
@@ -34,6 +34,10 @@
           "method_name": "get_proposals",
           "args_base64": "eyJmcm9tX2luZGV4IjogMCwgImxpbWl0IjogMTAwfQ=="
         }
+      },
+      "redacted": {
+        "path": "data/raw/redacted/control/history_intents.sputnik-dao.near_get_proposals_0.json",
+        "sha256": "d0d060a2bc9a18ec43c1e587ebf28923d090da44f36a5654ce7ad3be10d9310b"
       }
     },
     "history/intents.sputnik-dao.near/get_proposals_100": {
@@ -49,6 +53,10 @@
           "method_name": "get_proposals",
           "args_base64": "eyJmcm9tX2luZGV4IjogMTAwLCAibGltaXQiOiAxMDB9"
         }
+      },
+      "redacted": {
+        "path": "data/raw/redacted/control/history_intents.sputnik-dao.near_get_proposals_100.json",
+        "sha256": "284434ed2ba1018329c2faf190b8f74beb192fbd1796e3154986c5a0d05d9725"
       }
     },
     "history/1csfundsadmin.sputnik-dao.near/get_last_proposal_id": {
@@ -79,6 +87,10 @@
           "method_name": "get_proposals",
           "args_base64": "eyJmcm9tX2luZGV4IjogMCwgImxpbWl0IjogMTAwfQ=="
         }
+      },
+      "redacted": {
+        "path": "data/raw/redacted/control/history_1csfundsadmin.sputnik-dao.near_get_proposals_0.json",
+        "sha256": "e01669500b3c46ca08a30987826548862f80ff5cd4c6432571ad2fb51ab9193e"
       }
     },
     "history/fefundsadmin.sputnik-dao.near/get_last_proposal_id": {
@@ -109,6 +121,10 @@
           "method_name": "get_proposals",
           "args_base64": "eyJmcm9tX2luZGV4IjogMCwgImxpbWl0IjogMTAwfQ=="
         }
+      },
+      "redacted": {
+        "path": "data/raw/redacted/control/history_fefundsadmin.sputnik-dao.near_get_proposals_0.json",
+        "sha256": "4800a4bab08799cdac5d499e738052c392b053ba70ceaed211c160e8701cd58e"
       }
     },
     "history/hos-root.sputnik-dao.near/get_last_proposal_id": {
@@ -139,6 +155,10 @@
           "method_name": "get_proposals",
           "args_base64": "eyJmcm9tX2luZGV4IjogMCwgImxpbWl0IjogMTAwfQ=="
         }
+      },
+      "redacted": {
+        "path": "data/raw/redacted/control/history_hos-root.sputnik-dao.near_get_proposals_0.json",
+        "sha256": "5ca31fd33d3eb935ed90769aa92b28475f1f863a198334594ee4884d584c3b39"
       }
     },
     "history/jasnah-treasury.sputnik-dao.near/get_last_proposal_id": {
@@ -169,6 +189,10 @@
           "method_name": "get_proposals",
           "args_base64": "eyJmcm9tX2luZGV4IjogMCwgImxpbWl0IjogMTAwfQ=="
         }
+      },
+      "redacted": {
+        "path": "data/raw/redacted/control/history_jasnah-treasury.sputnik-dao.near_get_proposals_0.json",
+        "sha256": "458d5b2ebf9201874a53ace171c6a4c8f5278bbcd190884894807e2cf97536d3"
       }
     },
     "history/jasnah-treasury.sputnik-dao.near/get_proposals_100": {
@@ -184,6 +208,10 @@
           "method_name": "get_proposals",
           "args_base64": "eyJmcm9tX2luZGV4IjogMTAwLCAibGltaXQiOiAxMDB9"
         }
+      },
+      "redacted": {
+        "path": "data/raw/redacted/control/history_jasnah-treasury.sputnik-dao.near_get_proposals_100.json",
+        "sha256": "f3da81e6b87b64248732893b3618cb598579a22354362d4a5fa51afef1a9e751"
       }
     },
     "history/jasnah-treasury.sputnik-dao.near/get_proposals_200": {
@@ -199,6 +227,10 @@
           "method_name": "get_proposals",
           "args_base64": "eyJmcm9tX2luZGV4IjogMjAwLCAibGltaXQiOiAxMDB9"
         }
+      },
+      "redacted": {
+        "path": "data/raw/redacted/control/history_jasnah-treasury.sputnik-dao.near_get_proposals_200.json",
+        "sha256": "da5e973090045fa53683a1f46e074bd64020f4998b1741a89001f692b8dd7e00"
       }
     },
     "history/ctl-intents.near/get_deployment": {
