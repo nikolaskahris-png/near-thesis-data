@@ -454,6 +454,48 @@ def build(data_dir, window_file):
         n.add("c.intents_fee_change", None, None, None, status="pending",
               note="control_map.py has not run")
 
+    # ---- control history: how often each lever was used (control_history.py), end block
+    ch_path = data_dir / "control_history.json"
+    if ch_path.exists():
+        chd = json.loads(ch_path.read_text(encoding="utf-8"))
+        hsrc3 = n.source(ch_path)
+        same("control history block", chd["block"]["height"], last_b["height"])
+        same("control history window file", chd["window_file"], wsrc)
+        if not all(chd["checks"].values()):
+            problems.append("control_history.json: a check failed")
+        hc3 = {"block": chd["block"]["height"], "as_of": chd["block"]["timestamp_utc"][:19] + "Z",
+               "note": "approved actions in the control map's DAOs; dates are submission dates"}
+        n.add("h.proposals_total", sum(d["proposals"] for d in chd["per_dao"].values()),
+              f_int(sum(d["proposals"] for d in chd["per_dao"].values())), hsrc3,
+              unit="proposals", **hc3)
+        for lever, v in chd["all_daos"].items():
+            n.add(f"h.{lever}.approved_actions", v["approved_actions"], f_int(v["approved_actions"]),
+                  hsrc3, unit="actions", **hc3)
+            if v["approved_actions"]:
+                n.add(f"h.{lever}.first", v["first"], v["first"], hsrc3, **hc3)
+                n.add(f"h.{lever}.last", v["last"], v["last"], hsrc3, **hc3)
+        a = chd["all_daos"]
+        for key, lever, method in (
+                ("set_fee", "fee", "intents.near.set_fee"),
+                ("set_fee_collector", "fee", "intents.near.set_fee_collector"),
+                ("add_release_info", "code", "ctl-intents.near.add_release_info"),
+                ("intents_acl_grant_role", "roles", "intents.near.acl_grant_role"),
+                ("catalog_manager_added", "roles", "stake.dao.add_validator_catalog_manager"),
+                ("ft_force_withdraw", "user_funds", "intents.near.ft_force_withdraw"),
+                ("mt_force_transfer", "user_funds", "intents.near.mt_force_transfer"),
+                ("pause_feature", "pause", "intents.near.pa_pause_feature"),
+                ("unpause_feature", "pause", "intents.near.pa_unpause_feature")):
+            val = a[lever]["by_method"].get(method, 0)
+            n.add(f"h.{key}", val, f_int(val), hsrc3, unit="actions", **hc3)
+        cc3 = chd["intents_code_changes"]
+        n.add("h.intents_code_changes", cc3["count"], f_int(cc3["count"]), hsrc3,
+              unit="executed upgrades and downgrades", **hc3)
+        n.add("h.intents_code_downgrades", cc3["downgrades"], f_int(cc3["downgrades"]), hsrc3,
+              unit="downgrades", **hc3)
+    else:
+        n.add("h.proposals_total", None, None, None, status="pending",
+              note="control_history.py has not run")
+
     # ---- finding 8: HSP-029 (hsp029.py), once the vote has closed
     hsp_path = data_dir / "hsp029.json"
     if hsp_path.exists():

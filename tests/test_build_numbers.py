@@ -306,5 +306,38 @@ class MarkerTest(unittest.TestCase):
             self.assertTrue(any("control map block" in p for p in problems))
             self.assertIn("control_map.json: a check failed", problems)
 
+    def test_control_history(self):
+        lev = lambda n, first=None, last=None, bm=None: {
+            "approved_actions": n, "first": first, "last": last, "by_year": {}, "by_method": bm or {}}
+        hist = {"block": {"height": B1, "timestamp_utc": "2026-11-01T00:00:00.17Z"},
+                "window_file": f"data/window_{START}_{END}.json", "checks": {"a": True},
+                "per_dao": {"x.sputnik-dao.near": {"proposals": 110}, "y.sputnik-dao.near": {"proposals": 17}},
+                "all_daos": {"fee": lev(6, "2024-11-07", "2025-10-02", {"intents.near.set_fee": 3}),
+                             "user_funds": lev(12, "2025-01-14", "2026-06-10",
+                                               {"intents.near.ft_force_withdraw": 9}),
+                             "code": lev(0), "roles": lev(0), "pause": lev(0)},
+                "intents_code_changes": {"count": 20, "downgrades": 1, "changes": []}}
+        with tempfile.TemporaryDirectory() as tmp, \
+                mock.patch.object(bn.stakers, "compute", fake_stats), \
+                mock.patch.object(bn.daily, "build_row", fake_row):
+            data, window = fake_repo(tmp)
+            self.assertEqual(bn.build(data, window)[0]["numbers"]["h.proposals_total"]["status"],
+                             "pending")
+            write(data / "control_history.json", hist)
+            doc, problems = bn.build(data, window)
+            self.assertEqual(problems, [])
+            n = doc["numbers"]
+            self.assertEqual(n["h.proposals_total"]["text"], "127")
+            self.assertEqual(n["h.fee.approved_actions"]["text"], "6")
+            self.assertEqual(n["h.fee.last"]["text"], "2025-10-02")
+            self.assertEqual(n["h.set_fee"]["text"], "3")
+            self.assertEqual(n["h.set_fee_collector"]["text"], "0")
+            self.assertEqual(n["h.ft_force_withdraw"]["text"], "9")
+            self.assertNotIn("h.code.first", n)
+            self.assertEqual(n["h.intents_code_downgrades"]["text"], "1")
+            hist["block"]["height"] = B1 + 1
+            write(data / "control_history.json", hist)
+            self.assertTrue(any("control history block" in p for p in bn.build(data, window)[1]))
+
 if __name__ == "__main__":
     unittest.main()

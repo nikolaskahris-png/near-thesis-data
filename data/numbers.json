@@ -91,6 +91,7 @@
     "n2.volume_usd_per_day"
   ],
   "sources": {
+    "data/control_history.json": "c86862334aa57f4d75f9e5ec613a5017f623454d286209b419b423dc839b4268",
     "data/control_map.json": "01946bd20ce7906249906d5f63b116a53990c323f80e3464baa358d6d6455f2b",
     "data/coverage_monthly.json": "74c24cad7c5a975e989fb70a62b157caef271901f16b9dfe9f708b3e98f8e9e9",
     "data/daily/2026-11-01.json": "175ddea59ee744ae15112e72eee4a4023546ac3b80e85f44de604ef8c7fbd8d8",
@@ -1930,6 +1931,339 @@
       "note": "fefundsadmin.sputnik-dao.near / (buybacks.multisignature.near + 1csfundsadmin + fefundsadmin), net NEAR kept per day, measured on the wallets",
       "window": "2026-10-02 00:00 UTC to 2026-11-01 00:00 UTC",
       "blocks": "218126921-222491356"
+    },
+    "h.add_release_info": {
+      "value": "18",
+      "text": "18",
+      "source": "data/control_history.json",
+      "unit": "actions",
+      "block": 222491356,
+      "as_of": "2026-11-01T00:00:00Z",
+      "note": "approved actions in the control map's DAOs; dates are submission dates"
+    },
+    "h.catalog_manager_added": {
+      "value": "1",
+      "text": "1",
+      "source": "data/control_history.json",
+      "unit": "actions",
+      "block": 222491356,
+      "as_of": "2026-11-01T00:00:00Z",
+      "note": "approved actions in the control map's DAOs; dates are submission dates"
+    },
+    "h.code.approved_actions": {
+      "value": "37",
+      "text": "37",
+      "source": "data/control_history.json",
+      "unit": "actions",
+      "block": 222491356,
+      "as_of": "2026-11-01T00:00:00Z",
+      "note": "approved actions in the control map's DAOs; dates are submission dates"
+    },
+    "h.code.first": {
+      "value": "2024-11-22",
+      "text": "2024-11-22",
+      "source": "data/control_history.json",
+      "block": 222491356,
+      "as_of": "2026-11-01T00:00:00Z",
+      "note": "approved actions in the control map's DAOs; dates are submission dates"
+    },
+    "h.code.last": {
+      "value": "2026-10-14",
+      "text": "2026-10-14",
+      "source": "data/control_history.json",
+      "block": 222491356,
+      "as_of": "2026-11-01T00:00:00Z",
+      "note": "approved actions in the control map's DAOs; dates are submission dates"
+    },
+    "h.fee.approved_actions": {
+      "value": "6",
+      "text": "6",
+      "source": "data/control_history.json",
+      "unit": "actions",
+      "block": 222491356,
+      "as_of": "2026-11-01T00:00:00Z",
+      "note": "approved actions in the control map's DAOs; dates are submission dates"
+    },
+    "h.fee.first": {
+      "value": "2024-11-07",
+      "text": "2024-11-07",
+      "source": "data/control_history.json",
+      "block": 222491356,
+      "as_of": "2026-11-01T00:00:00Z",
+      "note": "approved actions in the control map's DAOs; dates are submission dates"
+    },
+    "h.fee.last": {
+      "value": "2025-10-02",
+      "text": "2025-10-02",
+      "source": "data/control_history.json",
+      "block": 222491356,
+      "as_of": "2026-11-01T00:00:00Z",
+      "note": "approved actions in the control map's DAOs; dates are submission dates"
+    },
+    "h.ft_force_withdraw": {
+      "value": "9",
+      "text": "9",
+      "source": "data/control_history.json",
+      "unit": "actions",
+      "block": 222491356,
+      "as_of": "2026-11-01T00:00:00Z",
+      "note": "approved actions in the control map's DAOs; dates are submission dates"
+    },
+    "h.intents_acl_grant_role": {
+      "value": "12",
+      "text": "12",
+      "source": "data/control_history.json",
+      "unit": "actions",
+      "block": 222491356,
+      "as_of": "2026-11-01T00:00:00Z",
+      "note": "approved actions in the control map's DAOs; dates are submission dates"
+    },
+    "h.intents_code_changes": {
+      "value": "20",
+      "text": "20",
+      "source": "data/control_history.json",
+      "unit": "executed upgrades and downgrades",
+      "block": 222491356,
+      "as_of": "2026-11-01T00:00:00Z",
+      "note": "approved actions in the control map's DAOs; dates are submission dates"
+    },
+    "h.intents_code_downgrades": {
+      "value": "1",
+      "text": "1",
+      "source": "data/control_history.json",
+      "unit": "downgrades",
+      "block": 222491356,
+      "as_of": "2026-11-01T00:00:00Z",
+      "note": "approved actions in the control map's DAOs; dates are submission dates"
+    },
+    "h.mt_force_transfer": {
+      "value": "1",
+      "text": "1",
+      "source": "data/control_history.json",
+      "unit": "actions",
+      "block": 222491356,
+      "as_of": "2026-11-01T00:00:00Z",
+      "note": "approved actions in the control map's DAOs; dates are submission dates"
+    },
+    "h.other.approved_actions": {
+      "value": "75",
+      "text": "75",
+      "source": "data/control_history.json",
+      "unit": "actions",
+      "block": 222491356,
+      "as_of": "2026-11-01T00:00:00Z",
+      "note": "approved actions in the control map's DAOs; dates are submission dates"
+    },
+    "h.other.first": {
+      "value": "2024-11-07",
+      "text": "2024-11-07",
+      "source": "data/control_history.json",
+      "block": 222491356,
+      "as_of": "2026-11-01T00:00:00Z",
+      "note": "approved actions in the control map's DAOs; dates are submission dates"
+    },
+    "h.other.last": {
+      "value": "2026-10-22",
+      "text": "2026-10-22",
+      "source": "data/control_history.json",
+      "block": 222491356,
+      "as_of": "2026-11-01T00:00:00Z",
+      "note": "approved actions in the control map's DAOs; dates are submission dates"
+    },
+    "h.pause.approved_actions": {
+      "value": "7",
+      "text": "7",
+      "source": "data/control_history.json",
+      "unit": "actions",
+      "block": 222491356,
+      "as_of": "2026-11-01T00:00:00Z",
+      "note": "approved actions in the control map's DAOs; dates are submission dates"
+    },
+    "h.pause.first": {
+      "value": "2026-01-15",
+      "text": "2026-01-15",
+      "source": "data/control_history.json",
+      "block": 222491356,
+      "as_of": "2026-11-01T00:00:00Z",
+      "note": "approved actions in the control map's DAOs; dates are submission dates"
+    },
+    "h.pause.last": {
+      "value": "2026-10-07",
+      "text": "2026-10-07",
+      "source": "data/control_history.json",
+      "block": 222491356,
+      "as_of": "2026-11-01T00:00:00Z",
+      "note": "approved actions in the control map's DAOs; dates are submission dates"
+    },
+    "h.pause_feature": {
+      "value": "1",
+      "text": "1",
+      "source": "data/control_history.json",
+      "unit": "actions",
+      "block": 222491356,
+      "as_of": "2026-11-01T00:00:00Z",
+      "note": "approved actions in the control map's DAOs; dates are submission dates"
+    },
+    "h.proposals_total": {
+      "value": "390",
+      "text": "390",
+      "source": "data/control_history.json",
+      "unit": "proposals",
+      "block": 222491356,
+      "as_of": "2026-11-01T00:00:00Z",
+      "note": "approved actions in the control map's DAOs; dates are submission dates"
+    },
+    "h.roles.approved_actions": {
+      "value": "58",
+      "text": "58",
+      "source": "data/control_history.json",
+      "unit": "actions",
+      "block": 222491356,
+      "as_of": "2026-11-01T00:00:00Z",
+      "note": "approved actions in the control map's DAOs; dates are submission dates"
+    },
+    "h.roles.first": {
+      "value": "2024-09-26",
+      "text": "2024-09-26",
+      "source": "data/control_history.json",
+      "block": 222491356,
+      "as_of": "2026-11-01T00:00:00Z",
+      "note": "approved actions in the control map's DAOs; dates are submission dates"
+    },
+    "h.roles.last": {
+      "value": "2026-10-30",
+      "text": "2026-10-30",
+      "source": "data/control_history.json",
+      "block": 222491356,
+      "as_of": "2026-11-01T00:00:00Z",
+      "note": "approved actions in the control map's DAOs; dates are submission dates"
+    },
+    "h.set_fee": {
+      "value": "3",
+      "text": "3",
+      "source": "data/control_history.json",
+      "unit": "actions",
+      "block": 222491356,
+      "as_of": "2026-11-01T00:00:00Z",
+      "note": "approved actions in the control map's DAOs; dates are submission dates"
+    },
+    "h.set_fee_collector": {
+      "value": "3",
+      "text": "3",
+      "source": "data/control_history.json",
+      "unit": "actions",
+      "block": 222491356,
+      "as_of": "2026-11-01T00:00:00Z",
+      "note": "approved actions in the control map's DAOs; dates are submission dates"
+    },
+    "h.staking.approved_actions": {
+      "value": "57",
+      "text": "57",
+      "source": "data/control_history.json",
+      "unit": "actions",
+      "block": 222491356,
+      "as_of": "2026-11-01T00:00:00Z",
+      "note": "approved actions in the control map's DAOs; dates are submission dates"
+    },
+    "h.staking.first": {
+      "value": "2025-07-09",
+      "text": "2025-07-09",
+      "source": "data/control_history.json",
+      "block": 222491356,
+      "as_of": "2026-11-01T00:00:00Z",
+      "note": "approved actions in the control map's DAOs; dates are submission dates"
+    },
+    "h.staking.last": {
+      "value": "2026-10-02",
+      "text": "2026-10-02",
+      "source": "data/control_history.json",
+      "block": 222491356,
+      "as_of": "2026-11-01T00:00:00Z",
+      "note": "approved actions in the control map's DAOs; dates are submission dates"
+    },
+    "h.transfer.approved_actions": {
+      "value": "149",
+      "text": "149",
+      "source": "data/control_history.json",
+      "unit": "actions",
+      "block": 222491356,
+      "as_of": "2026-11-01T00:00:00Z",
+      "note": "approved actions in the control map's DAOs; dates are submission dates"
+    },
+    "h.transfer.first": {
+      "value": "2024-09-26",
+      "text": "2024-09-26",
+      "source": "data/control_history.json",
+      "block": 222491356,
+      "as_of": "2026-11-01T00:00:00Z",
+      "note": "approved actions in the control map's DAOs; dates are submission dates"
+    },
+    "h.transfer.last": {
+      "value": "2026-10-28",
+      "text": "2026-10-28",
+      "source": "data/control_history.json",
+      "block": 222491356,
+      "as_of": "2026-11-01T00:00:00Z",
+      "note": "approved actions in the control map's DAOs; dates are submission dates"
+    },
+    "h.unpause_feature": {
+      "value": "6",
+      "text": "6",
+      "source": "data/control_history.json",
+      "unit": "actions",
+      "block": 222491356,
+      "as_of": "2026-11-01T00:00:00Z",
+      "note": "approved actions in the control map's DAOs; dates are submission dates"
+    },
+    "h.user_funds.approved_actions": {
+      "value": "12",
+      "text": "12",
+      "source": "data/control_history.json",
+      "unit": "actions",
+      "block": 222491356,
+      "as_of": "2026-11-01T00:00:00Z",
+      "note": "approved actions in the control map's DAOs; dates are submission dates"
+    },
+    "h.user_funds.first": {
+      "value": "2025-01-14",
+      "text": "2025-01-14",
+      "source": "data/control_history.json",
+      "block": 222491356,
+      "as_of": "2026-11-01T00:00:00Z",
+      "note": "approved actions in the control map's DAOs; dates are submission dates"
+    },
+    "h.user_funds.last": {
+      "value": "2026-06-10",
+      "text": "2026-06-10",
+      "source": "data/control_history.json",
+      "block": 222491356,
+      "as_of": "2026-11-01T00:00:00Z",
+      "note": "approved actions in the control map's DAOs; dates are submission dates"
+    },
+    "h.voting.approved_actions": {
+      "value": "5",
+      "text": "5",
+      "source": "data/control_history.json",
+      "unit": "actions",
+      "block": 222491356,
+      "as_of": "2026-11-01T00:00:00Z",
+      "note": "approved actions in the control map's DAOs; dates are submission dates"
+    },
+    "h.voting.first": {
+      "value": "2026-02-09",
+      "text": "2026-02-09",
+      "source": "data/control_history.json",
+      "block": 222491356,
+      "as_of": "2026-11-01T00:00:00Z",
+      "note": "approved actions in the control map's DAOs; dates are submission dates"
+    },
+    "h.voting.last": {
+      "value": "2026-07-22",
+      "text": "2026-07-22",
+      "source": "data/control_history.json",
+      "block": 222491356,
+      "as_of": "2026-11-01T00:00:00Z",
+      "note": "approved actions in the control map's DAOs; dates are submission dates"
     },
     "n1.buybacks_near_per_day": {
       "value": "9569.750",
