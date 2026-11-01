@@ -339,5 +339,32 @@ class MarkerTest(unittest.TestCase):
             write(data / "control_history.json", hist)
             self.assertTrue(any("control history block" in p for p in bn.build(data, window)[1]))
 
+    def test_offchain_credit_rate(self):
+        import hashlib
+        cfg = (b'{"contract_id":"stake.dao","farm_product_id":"%s","farm_price_id":"%s",'
+               b'"credit_nano_usd_per_reward_unit":1000000000}'
+               % (bn.stakers.FARM_PRODUCT.encode(), bn.stakers.FARM_PRICE.encode()))
+        with tempfile.TemporaryDirectory() as tmp, \
+                mock.patch.object(bn.stakers, "compute", fake_stats), \
+                mock.patch.object(bn.daily, "build_row", fake_row):
+            data, window = fake_repo(tmp)
+            (data / "offchain").mkdir()
+            (data / "offchain" / "cfg_2026.json").write_bytes(cfg)
+            meta = {"raw_file": "data/offchain/cfg_2026.json", "fetched_utc": "2026-11-01T20:58:37Z",
+                    "sha256": hashlib.sha256(cfg).hexdigest()}
+            write(data / "offchain" / "nearai_cloud_farm_config.json", meta)
+            doc, problems = bn.build(data, window)
+            self.assertEqual(problems, [])
+            n = doc["numbers"]
+            self.assertEqual(n["f6.usd_per_reward_unit"]["text"], "$1.00")
+            self.assertEqual(n["f6.usd_per_reward_unit"]["status"], "off-chain")
+            self.assertEqual(n["f6.usd_per_near_month"]["text"], "$0.02")
+            self.assertEqual(n["f6.largest_usd_per_day"]["text"], "$657.1")
+            self.assertNotIn("f6.usd_per_reward_unit", doc["provisional_or_pending"])
+            meta["sha256"] = "0" * 64
+            write(data / "offchain" / "nearai_cloud_farm_config.json", meta)
+            self.assertIn("off-chain NEAR AI Cloud config: sha256 differs from its record",
+                          bn.build(data, window)[1])
+
 if __name__ == "__main__":
     unittest.main()

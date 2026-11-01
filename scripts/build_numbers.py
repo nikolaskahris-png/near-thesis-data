@@ -263,6 +263,31 @@ def build(data_dir, window_file):
         n.add("f6.rate_changes", None, None, None, status="pending",
               note="farm_rate.py has not run")
 
+    # ---- finding 6: reward units -> US dollars of credits (NEAR AI Cloud, off-chain snapshot)
+    oc_meta = data_dir / "offchain" / "nearai_cloud_farm_config.json"
+    if oc_meta.exists() and "f6.units_per_near_year" in n.items:
+        om = json.loads(oc_meta.read_text(encoding="utf-8"))
+        n.source(oc_meta)
+        rawp = root / om["raw_file"]
+        rsrc = n.source(rawp)
+        if sha256_file(rawp) != om["sha256"]:
+            problems.append("off-chain NEAR AI Cloud config: sha256 differs from its record")
+        cfg = json.loads(rawp.read_bytes())
+        same("off-chain config contract", cfg["contract_id"], "stake.dao")
+        same("off-chain config farm product", cfg["farm_product_id"], stakers.FARM_PRODUCT)
+        same("off-chain config farm price", cfg["farm_price_id"], stakers.FARM_PRICE)
+        usd = dec(cfg["credit_nano_usd_per_reward_unit"]) / dec(10 ** 9)
+        oc = {"status": "off-chain", "as_of": om["fetched_utc"],
+              "note": "NEAR AI Cloud setting read in a signed-in session; not on chain, can change "
+                      "without an on-chain trace (data/offchain/nearai_cloud_farm_config.json)"}
+        n.add("f6.usd_per_reward_unit", usd, f_usd(usd, 2), rsrc, unit="USD per reward unit", **oc)
+        per_month = dec(n.items["f6.units_per_near_year"]["value"]) * usd / 12
+        n.add("f6.usd_per_near_month", per_month, f_usd(per_month, 2), rsrc,
+              unit="USD of credits per staked NEAR per month", **oc)
+        largest = dec(n.items["f6.largest_units_per_day"]["value"]) * usd
+        n.add("f6.largest_usd_per_day", largest, f_usd(largest, 1), rsrc,
+              unit="USD of credits per day, largest farm position", **oc)
+
     # ---- finding 5: concentration over time (every saved stakers snapshot)
     for path in sorted((data_dir / "stakers").glob("20*.json")):
         st, p = stakers.compute(path, data_dir.resolve())
@@ -492,6 +517,20 @@ def build(data_dir, window_file):
               unit="executed upgrades and downgrades", **hc3)
         n.add("h.intents_code_downgrades", cc3["downgrades"], f_int(cc3["downgrades"]), hsrc3,
               unit="downgrades", **hc3)
+        short = {"buybacks.multisignature.near": "buybacks", "treasury.near": "treasury",
+                 "stake.dao": "stake_dao", "ctl-intents.near": "ctl_intents",
+                 "intents.near": "intents", "nearai.pool.near": "nearai_pool", "vote.dao": "vote_dao"}
+        for acc, kh in (chd.get("key_history") or {}).items():
+            k = f"h.keys.{short.get(acc, acc)}"
+            kc = {**hc3, "note": "access keys from NearBlocks up to the end block's time; active "
+                                 "keys checked against the chain at the end block"}
+            n.add(f"{k}.ever", kh["keys_ever"], f_int(kh["keys_ever"]), hsrc3, unit="keys", **kc)
+            n.add(f"{k}.full_access_ever", kh["full_access_ever"], f_int(kh["full_access_ever"]),
+                  hsrc3, unit="keys", **kc)
+            n.add(f"{k}.active_at_end", kh["active_at_end"], f_int(kh["active_at_end"]), hsrc3,
+                  unit="keys", **kc)
+            if kh["last_change"]:
+                n.add(f"{k}.last_change", kh["last_change"], kh["last_change"], hsrc3, **kc)
     else:
         n.add("h.proposals_total", None, None, None, status="pending",
               note="control_history.py has not run")

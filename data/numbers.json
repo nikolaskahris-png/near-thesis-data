@@ -97,6 +97,8 @@
     "data/daily/2026-11-01.json": "175ddea59ee744ae15112e72eee4a4023546ac3b80e85f44de604ef8c7fbd8d8",
     "data/farm_rate.json": "d1ad56d759c561d85ed924dc8bb49dbd4887663e04e5435523696dc74650f35a",
     "data/fees_2026-10-02_2026-11-01.json": "5d7abc7ebfe804bc53afb5571240b4eeb809b8bd7d2af0354f63907782ddb598",
+    "data/offchain/nearai_cloud_farm_config.json": "4fab756a3e94d72a2db918e8f3f47526a5da3a2d41990ba2f479406ac22b4214",
+    "data/offchain/nearai_cloud_farm_config_20261101T205837Z.json": "95bb1adc1b3eb738cdc19c7622e5a3641edce4ea9653ced4ba6e32439c5f253d",
     "data/stakers/2026-08-01.json": "e1da2618c3332451ce41a34d64af1a23fc6122497c02cb7cc9ce633b0fa016f1",
     "data/stakers/2026-08-15.json": "9cc6ee8a3aeba21d2ab9e496c0ffee3f926f1d97d79c06bc1d81af0f60c3a9ef",
     "data/stakers/2026-09-01.json": "8bc4772523cc10bbfc79c78d055532ff4570c413a5ae4fd5e842f8f4758ac8ab",
@@ -1747,6 +1749,15 @@
       "block": 222491356,
       "as_of": "2026-11-01 00:00 UTC"
     },
+    "f6.largest_usd_per_day": {
+      "value": "657.084189",
+      "text": "$657.1",
+      "source": "data/offchain/nearai_cloud_farm_config_20261101T205837Z.json",
+      "unit": "USD of credits per day, largest farm position",
+      "status": "off-chain",
+      "as_of": "2026-11-01T20:58:37Z",
+      "note": "NEAR AI Cloud setting read in a signed-in session; not on chain, can change without an on-chain trace (data/offchain/nearai_cloud_farm_config.json)"
+    },
     "f6.rate_changes": {
       "value": "1",
       "text": "1",
@@ -1819,6 +1830,24 @@
       "source": "data/stakers/2026-11-01.json",
       "unit": "reward units per staked NEAR per year",
       "block": 222491356
+    },
+    "f6.usd_per_near_month": {
+      "value": "0.020000",
+      "text": "$0.02",
+      "source": "data/offchain/nearai_cloud_farm_config_20261101T205837Z.json",
+      "unit": "USD of credits per staked NEAR per month",
+      "status": "off-chain",
+      "as_of": "2026-11-01T20:58:37Z",
+      "note": "NEAR AI Cloud setting read in a signed-in session; not on chain, can change without an on-chain trace (data/offchain/nearai_cloud_farm_config.json)"
+    },
+    "f6.usd_per_reward_unit": {
+      "value": "1",
+      "text": "$1.00",
+      "source": "data/offchain/nearai_cloud_farm_config_20261101T205837Z.json",
+      "unit": "USD per reward unit",
+      "status": "off-chain",
+      "as_of": "2026-11-01T20:58:37Z",
+      "note": "NEAR AI Cloud setting read in a signed-in session; not on chain, can change without an on-chain trace (data/offchain/nearai_cloud_farm_config.json)"
     },
     "f7.active_lock_near_vs_farm": {
       "value": "0.010924",

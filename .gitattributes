@@ -2,3 +2,5 @@
 * text=auto eol=lf
 # Raw API responses are stored byte-for-byte.
 data/raw/** -text
+# Off-chain snapshots are stored byte-for-byte too.
+data/offchain/*_2*.json -text

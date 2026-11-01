@@ -1,0 +1,11 @@
+{
+  "what": "NEAR AI Cloud's conversion from stake.dao farm reward units to US dollars of credits",
+  "source": "GET https://cloud.near.ai/api/staking/farm/config, read in a signed-in NEAR AI Cloud session (the dashboard's Credits page calls it). The backing API, https://cloud-api.near.ai/v1/staking/farm/config, answers 401 without authorization.",
+  "fetched_utc": "2026-11-01T20:58:37Z",
+  "fetched_note": "server Date header of the response",
+  "raw_file": "data/offchain/nearai_cloud_farm_config_20261101T205837Z.json",
+  "sha256": "95bb1adc1b3eb738cdc19c7622e5a3641edce4ea9653ced4ba6e32439c5f253d",
+  "off_chain": true,
+  "how_to_check": "Sign in at cloud.near.ai (any method), open the organization's Credits page, and read the response of /api/staking/farm/config in the browser's network tab. The page also states the same rate in words: \"$2.00 monthly credits / 100 NEAR\".",
+  "limits": "Off-chain and behind a sign-in: it cannot be read from the chain, a judge needs an account, and it can change with no on-chain trace. It is a snapshot at the time above."
+}
