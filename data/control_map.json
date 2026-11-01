@@ -1,0 +1,1625 @@
+{
+  "measure": "control map: who can change each link of the value path, as k of n",
+  "window_file": "data/window_2026-10-02_2026-11-01.json",
+  "source": {
+    "rpc": "https://archival-rpc.mainnet.fastnear.com"
+  },
+  "privacy": "answers that list people's accounts stay in data/private/control/ (not committed); their requests and sha256 are below",
+  "raw_files": {
+    "account/intents.near": {
+      "path": "data/raw/control/account_intents.near.json",
+      "sha256": "57a68b643002f2a2cb4c0b08e2bd247499f5572379b247e175dedc24b9b4c917",
+      "private": false,
+      "request": {
+        "method": "query",
+        "params": {
+          "request_type": "view_account",
+          "block_id": 222491356,
+          "account_id": "intents.near"
+        }
+      }
+    },
+    "keys/intents.near": {
+      "path": "data/raw/control/keys_intents.near.json",
+      "sha256": "666715f9521c8de27a3c36487f6f14304667806fb6e4f45625c47e76e0ea2cf9",
+      "private": false,
+      "request": {
+        "method": "query",
+        "params": {
+          "request_type": "view_access_key_list",
+          "block_id": 222491356,
+          "account_id": "intents.near"
+        }
+      }
+    },
+    "account/ctl-intents.near": {
+      "path": "data/raw/control/account_ctl-intents.near.json",
+      "sha256": "8da55e78d5576797677d45514e609792cce5a4a7d64431e7c12dfb1809b83119",
+      "private": false,
+      "request": {
+        "method": "query",
+        "params": {
+          "request_type": "view_account",
+          "block_id": 222491356,
+          "account_id": "ctl-intents.near"
+        }
+      }
+    },
+    "keys/ctl-intents.near": {
+      "path": "data/raw/control/keys_ctl-intents.near.json",
+      "sha256": "c7a97e1bbbf68b15fd15fb6ad379821ee76f70394c902bc268bbf0c1c166a0e0",
+      "private": false,
+      "request": {
+        "method": "query",
+        "params": {
+          "request_type": "view_access_key_list",
+          "block_id": 222491356,
+          "account_id": "ctl-intents.near"
+        }
+      }
+    },
+    "account/intents.sputnik-dao.near": {
+      "path": "data/raw/control/account_intents.sputnik-dao.near.json",
+      "sha256": "cb97d48ba09884c229d6539571b75685c7b94d0081dbc62d6ac176e7ab98e58f",
+      "private": false,
+      "request": {
+        "method": "query",
+        "params": {
+          "request_type": "view_account",
+          "block_id": 222491356,
+          "account_id": "intents.sputnik-dao.near"
+        }
+      }
+    },
+    "keys/intents.sputnik-dao.near": {
+      "path": "data/raw/control/keys_intents.sputnik-dao.near.json",
+      "sha256": "c7a97e1bbbf68b15fd15fb6ad379821ee76f70394c902bc268bbf0c1c166a0e0",
+      "private": false,
+      "request": {
+        "method": "query",
+        "params": {
+          "request_type": "view_access_key_list",
+          "block_id": 222491356,
+          "account_id": "intents.sputnik-dao.near"
+        }
+      }
+    },
+    "account/buybacks.multisignature.near": {
+      "path": "data/raw/control/account_buybacks.multisignature.near.json",
+      "sha256": "98aaab46f3e70ea2d2180f198695a806aea2f4e019ce29257a9a83e6bbf9f835",
+      "private": false,
+      "request": {
+        "method": "query",
+        "params": {
+          "request_type": "view_account",
+          "block_id": 222491356,
+          "account_id": "buybacks.multisignature.near"
+        }
+      }
+    },
+    "keys/buybacks.multisignature.near": {
+      "path": "data/raw/control/keys_buybacks.multisignature.near.json",
+      "sha256": "d90641b7075fa0f3bbcbfa68474c87eda0ea668c82f03da987a5392201987cf6",
+      "private": false,
+      "request": {
+        "method": "query",
+        "params": {
+          "request_type": "view_access_key_list",
+          "block_id": 222491356,
+          "account_id": "buybacks.multisignature.near"
+        }
+      }
+    },
+    "account/treasury.near": {
+      "path": "data/raw/control/account_treasury.near.json",
+      "sha256": "e98f45c3b0ef294fc6f010874f3a673d336953bd5d2256d1f90c0c5e316d39db",
+      "private": false,
+      "request": {
+        "method": "query",
+        "params": {
+          "request_type": "view_account",
+          "block_id": 222491356,
+          "account_id": "treasury.near"
+        }
+      }
+    },
+    "keys/treasury.near": {
+      "path": "data/raw/control/keys_treasury.near.json",
+      "sha256": "1d2e45af47e8ed18fba54cf76fc25f02e87709ae4d9c0332e9c6523e4a30c222",
+      "private": false,
+      "request": {
+        "method": "query",
+        "params": {
+          "request_type": "view_access_key_list",
+          "block_id": 222491356,
+          "account_id": "treasury.near"
+        }
+      }
+    },
+    "account/1csfundsadmin.sputnik-dao.near": {
+      "path": "data/raw/control/account_1csfundsadmin.sputnik-dao.near.json",
+      "sha256": "ac7baceeea52a713bde825a9fc5ef692c2a05973fab2e201be59098a03d55a00",
+      "private": false,
+      "request": {
+        "method": "query",
+        "params": {
+          "request_type": "view_account",
+          "block_id": 222491356,
+          "account_id": "1csfundsadmin.sputnik-dao.near"
+        }
+      }
+    },
+    "keys/1csfundsadmin.sputnik-dao.near": {
+      "path": "data/raw/control/keys_1csfundsadmin.sputnik-dao.near.json",
+      "sha256": "c7a97e1bbbf68b15fd15fb6ad379821ee76f70394c902bc268bbf0c1c166a0e0",
+      "private": false,
+      "request": {
+        "method": "query",
+        "params": {
+          "request_type": "view_access_key_list",
+          "block_id": 222491356,
+          "account_id": "1csfundsadmin.sputnik-dao.near"
+        }
+      }
+    },
+    "account/fefundsadmin.sputnik-dao.near": {
+      "path": "data/raw/control/account_fefundsadmin.sputnik-dao.near.json",
+      "sha256": "b70dfe0fecbf5d169717f3ebd456164174260fd95adb8c8ca4ee732a8ad7d4bf",
+      "private": false,
+      "request": {
+        "method": "query",
+        "params": {
+          "request_type": "view_account",
+          "block_id": 222491356,
+          "account_id": "fefundsadmin.sputnik-dao.near"
+        }
+      }
+    },
+    "keys/fefundsadmin.sputnik-dao.near": {
+      "path": "data/raw/control/keys_fefundsadmin.sputnik-dao.near.json",
+      "sha256": "c7a97e1bbbf68b15fd15fb6ad379821ee76f70394c902bc268bbf0c1c166a0e0",
+      "private": false,
+      "request": {
+        "method": "query",
+        "params": {
+          "request_type": "view_access_key_list",
+          "block_id": 222491356,
+          "account_id": "fefundsadmin.sputnik-dao.near"
+        }
+      }
+    },
+    "account/vote.dao": {
+      "path": "data/raw/control/account_vote.dao.json",
+      "sha256": "e3beb20abf5c42208daabaeacc69594ac94490b0214ae981591bb40376cb6ef1",
+      "private": false,
+      "request": {
+        "method": "query",
+        "params": {
+          "request_type": "view_account",
+          "block_id": 222491356,
+          "account_id": "vote.dao"
+        }
+      }
+    },
+    "keys/vote.dao": {
+      "path": "data/raw/control/keys_vote.dao.json",
+      "sha256": "c7a97e1bbbf68b15fd15fb6ad379821ee76f70394c902bc268bbf0c1c166a0e0",
+      "private": false,
+      "request": {
+        "method": "query",
+        "params": {
+          "request_type": "view_access_key_list",
+          "block_id": 222491356,
+          "account_id": "vote.dao"
+        }
+      }
+    },
+    "account/hos-root.sputnik-dao.near": {
+      "path": "data/raw/control/account_hos-root.sputnik-dao.near.json",
+      "sha256": "9fc382a8569e9ecdf32a9b99b292ed9b07df552f68264a795358eeff62185bcd",
+      "private": false,
+      "request": {
+        "method": "query",
+        "params": {
+          "request_type": "view_account",
+          "block_id": 222491356,
+          "account_id": "hos-root.sputnik-dao.near"
+        }
+      }
+    },
+    "keys/hos-root.sputnik-dao.near": {
+      "path": "data/raw/control/keys_hos-root.sputnik-dao.near.json",
+      "sha256": "c7a97e1bbbf68b15fd15fb6ad379821ee76f70394c902bc268bbf0c1c166a0e0",
+      "private": false,
+      "request": {
+        "method": "query",
+        "params": {
+          "request_type": "view_access_key_list",
+          "block_id": 222491356,
+          "account_id": "hos-root.sputnik-dao.near"
+        }
+      }
+    },
+    "account/nearai.pool.near": {
+      "path": "data/raw/control/account_nearai.pool.near.json",
+      "sha256": "b450437fb2487c60c921c7c7bc967d0b2de39510fa6d48149180e153908311a4",
+      "private": false,
+      "request": {
+        "method": "query",
+        "params": {
+          "request_type": "view_account",
+          "block_id": 222491356,
+          "account_id": "nearai.pool.near"
+        }
+      }
+    },
+    "keys/nearai.pool.near": {
+      "path": "data/raw/control/keys_nearai.pool.near.json",
+      "sha256": "c7a97e1bbbf68b15fd15fb6ad379821ee76f70394c902bc268bbf0c1c166a0e0",
+      "private": false,
+      "request": {
+        "method": "query",
+        "params": {
+          "request_type": "view_access_key_list",
+          "block_id": 222491356,
+          "account_id": "nearai.pool.near"
+        }
+      }
+    },
+    "account/jasnah-treasury.sputnik-dao.near": {
+      "path": "data/raw/control/account_jasnah-treasury.sputnik-dao.near.json",
+      "sha256": "8a39ae3a656ab3f2f4e67b51d9e5065d85dfe35dd35f5e38098296de745d17b1",
+      "private": false,
+      "request": {
+        "method": "query",
+        "params": {
+          "request_type": "view_account",
+          "block_id": 222491356,
+          "account_id": "jasnah-treasury.sputnik-dao.near"
+        }
+      }
+    },
+    "keys/jasnah-treasury.sputnik-dao.near": {
+      "path": "data/raw/control/keys_jasnah-treasury.sputnik-dao.near.json",
+      "sha256": "c7a97e1bbbf68b15fd15fb6ad379821ee76f70394c902bc268bbf0c1c166a0e0",
+      "private": false,
+      "request": {
+        "method": "query",
+        "params": {
+          "request_type": "view_access_key_list",
+          "block_id": 222491356,
+          "account_id": "jasnah-treasury.sputnik-dao.near"
+        }
+      }
+    },
+    "account/stake.dao": {
+      "path": "data/raw/control/account_stake.dao.json",
+      "sha256": "200b72c185b9a816cea2dea93935e53ce6a52ecb9758f4f80aed3c2d6bb53bd6",
+      "private": false,
+      "request": {
+        "method": "query",
+        "params": {
+          "request_type": "view_account",
+          "block_id": 222491356,
+          "account_id": "stake.dao"
+        }
+      }
+    },
+    "keys/stake.dao": {
+      "path": "data/raw/control/keys_stake.dao.json",
+      "sha256": "e4a51b4bb533ddd7d8a7e25c01310f2f9dceca8f5cd1a4a6e78294264d0c8ef7",
+      "private": false,
+      "request": {
+        "method": "query",
+        "params": {
+          "request_type": "view_access_key_list",
+          "block_id": 222491356,
+          "account_id": "stake.dao"
+        }
+      }
+    },
+    "account_start/treasury.near": {
+      "path": "data/raw/control/account_start_treasury.near.json",
+      "sha256": "9c7b6f401ccafa47c26662cef1108410fe5030fe5bb27dfd79b44159a98e35e8",
+      "private": false,
+      "request": {
+        "method": "query",
+        "params": {
+          "request_type": "view_account",
+          "block_id": 218126921,
+          "account_id": "treasury.near"
+        }
+      }
+    },
+    "intents.near/contract_source_metadata": {
+      "path": "data/raw/control/intents.near_contract_source_metadata.json",
+      "sha256": "155b4851a1ba18e35a01bdfbbb442b3f6272b797b29683d62b40bed339bb28c5",
+      "private": false,
+      "request": {
+        "method": "query",
+        "params": {
+          "request_type": "call_function",
+          "block_id": 222491356,
+          "account_id": "intents.near",
+          "method_name": "contract_source_metadata",
+          "args_base64": "e30="
+        }
+      }
+    },
+    "intents.near/acl_role_variants": {
+      "path": "data/raw/control/intents.near_acl_role_variants.json",
+      "sha256": "1ff7b43f26228515a07b02c715abe20b5b98ee3c8dde9f77ffac55f6d028c536",
+      "private": false,
+      "request": {
+        "method": "query",
+        "params": {
+          "request_type": "call_function",
+          "block_id": 222491356,
+          "account_id": "intents.near",
+          "method_name": "acl_role_variants",
+          "args_base64": "e30="
+        }
+      }
+    },
+    "intents.near/acl_get_super_admins": {
+      "path": "data/raw/control/intents.near_acl_get_super_admins.json",
+      "sha256": "6787b9b5815d497b7907bcf6dd362fc1e4d50d005fba5d9b0e847df0f9a5ca42",
+      "private": false,
+      "request": {
+        "method": "query",
+        "params": {
+          "request_type": "call_function",
+          "block_id": 222491356,
+          "account_id": "intents.near",
+          "method_name": "acl_get_super_admins",
+          "args_base64": "eyJza2lwIjogMCwgImxpbWl0IjogMTAwfQ=="
+        }
+      }
+    },
+    "intents.near/grantees/DAO": {
+      "path": "data/private/control/intents.near_grantees_DAO.json",
+      "sha256": "f6d510ff7b7e73fced1c79d5708c5467e40e5f0240b603a30b9cb55115826e69",
+      "private": true,
+      "request": {
+        "method": "query",
+        "params": {
+          "request_type": "call_function",
+          "block_id": 222491356,
+          "account_id": "intents.near",
+          "method_name": "acl_get_grantees",
+          "args_base64": "eyJyb2xlIjogIkRBTyIsICJza2lwIjogMCwgImxpbWl0IjogMTAwfQ=="
+        }
+      }
+    },
+    "intents.near/grantees/FeesManager": {
+      "path": "data/private/control/intents.near_grantees_FeesManager.json",
+      "sha256": "1b178f0c74c816dbcdc5d9216fa7d25e573cf0d2c9465237782c74f949fc04d7",
+      "private": true,
+      "request": {
+        "method": "query",
+        "params": {
+          "request_type": "call_function",
+          "block_id": 222491356,
+          "account_id": "intents.near",
+          "method_name": "acl_get_grantees",
+          "args_base64": "eyJyb2xlIjogIkZlZXNNYW5hZ2VyIiwgInNraXAiOiAwLCAibGltaXQiOiAxMDB9"
+        }
+      }
+    },
+    "intents.near/grantees/RelayerKeysManager": {
+      "path": "data/private/control/intents.near_grantees_RelayerKeysManager.json",
+      "sha256": "7521ec4ac0e29984940cef49ede8e08cfb97dc101c83f585c488bd2c45f63a7d",
+      "private": true,
+      "request": {
+        "method": "query",
+        "params": {
+          "request_type": "call_function",
+          "block_id": 222491356,
+          "account_id": "intents.near",
+          "method_name": "acl_get_grantees",
+          "args_base64": "eyJyb2xlIjogIlJlbGF5ZXJLZXlzTWFuYWdlciIsICJza2lwIjogMCwgImxpbWl0IjogMTAwfQ=="
+        }
+      }
+    },
+    "intents.near/grantees/UnrestrictedWithdrawer": {
+      "path": "data/private/control/intents.near_grantees_UnrestrictedWithdrawer.json",
+      "sha256": "1b178f0c74c816dbcdc5d9216fa7d25e573cf0d2c9465237782c74f949fc04d7",
+      "private": true,
+      "request": {
+        "method": "query",
+        "params": {
+          "request_type": "call_function",
+          "block_id": 222491356,
+          "account_id": "intents.near",
+          "method_name": "acl_get_grantees",
+          "args_base64": "eyJyb2xlIjogIlVucmVzdHJpY3RlZFdpdGhkcmF3ZXIiLCAic2tpcCI6IDAsICJsaW1pdCI6IDEwMH0="
+        }
+      }
+    },
+    "intents.near/grantees/PauseManager": {
+      "path": "data/private/control/intents.near_grantees_PauseManager.json",
+      "sha256": "a3ec62ec9179d61d21950dab8ba00345cd78a584f38ef02f3f7a9c73d97fa0c4",
+      "private": true,
+      "request": {
+        "method": "query",
+        "params": {
+          "request_type": "call_function",
+          "block_id": 222491356,
+          "account_id": "intents.near",
+          "method_name": "acl_get_grantees",
+          "args_base64": "eyJyb2xlIjogIlBhdXNlTWFuYWdlciIsICJza2lwIjogMCwgImxpbWl0IjogMTAwfQ=="
+        }
+      }
+    },
+    "intents.near/grantees/Upgrader": {
+      "path": "data/private/control/intents.near_grantees_Upgrader.json",
+      "sha256": "d778439189d7aa65dbecb71b2f02433f4b3adadac03d47c870b3e3baece8d6f7",
+      "private": true,
+      "request": {
+        "method": "query",
+        "params": {
+          "request_type": "call_function",
+          "block_id": 222491356,
+          "account_id": "intents.near",
+          "method_name": "acl_get_grantees",
+          "args_base64": "eyJyb2xlIjogIlVwZ3JhZGVyIiwgInNraXAiOiAwLCAibGltaXQiOiAxMDB9"
+        }
+      }
+    },
+    "intents.near/grantees/UnpauseManager": {
+      "path": "data/private/control/intents.near_grantees_UnpauseManager.json",
+      "sha256": "1b178f0c74c816dbcdc5d9216fa7d25e573cf0d2c9465237782c74f949fc04d7",
+      "private": true,
+      "request": {
+        "method": "query",
+        "params": {
+          "request_type": "call_function",
+          "block_id": 222491356,
+          "account_id": "intents.near",
+          "method_name": "acl_get_grantees",
+          "args_base64": "eyJyb2xlIjogIlVucGF1c2VNYW5hZ2VyIiwgInNraXAiOiAwLCAibGltaXQiOiAxMDB9"
+        }
+      }
+    },
+    "intents.near/grantees/UnrestrictedAccountLocker": {
+      "path": "data/private/control/intents.near_grantees_UnrestrictedAccountLocker.json",
+      "sha256": "ecc4025784f952e03114158b362af391362896d61d5cec73f2b9556e35aa507f",
+      "private": true,
+      "request": {
+        "method": "query",
+        "params": {
+          "request_type": "call_function",
+          "block_id": 222491356,
+          "account_id": "intents.near",
+          "method_name": "acl_get_grantees",
+          "args_base64": "eyJyb2xlIjogIlVucmVzdHJpY3RlZEFjY291bnRMb2NrZXIiLCAic2tpcCI6IDAsICJsaW1pdCI6IDEwMH0="
+        }
+      }
+    },
+    "intents.near/grantees/UnrestrictedAccountUnlocker": {
+      "path": "data/private/control/intents.near_grantees_UnrestrictedAccountUnlocker.json",
+      "sha256": "1b178f0c74c816dbcdc5d9216fa7d25e573cf0d2c9465237782c74f949fc04d7",
+      "private": true,
+      "request": {
+        "method": "query",
+        "params": {
+          "request_type": "call_function",
+          "block_id": 222491356,
+          "account_id": "intents.near",
+          "method_name": "acl_get_grantees",
+          "args_base64": "eyJyb2xlIjogIlVucmVzdHJpY3RlZEFjY291bnRVbmxvY2tlciIsICJza2lwIjogMCwgImxpbWl0IjogMTAwfQ=="
+        }
+      }
+    },
+    "intents.near/grantees/SaltManager": {
+      "path": "data/private/control/intents.near_grantees_SaltManager.json",
+      "sha256": "1b178f0c74c816dbcdc5d9216fa7d25e573cf0d2c9465237782c74f949fc04d7",
+      "private": true,
+      "request": {
+        "method": "query",
+        "params": {
+          "request_type": "call_function",
+          "block_id": 222491356,
+          "account_id": "intents.near",
+          "method_name": "acl_get_grantees",
+          "args_base64": "eyJyb2xlIjogIlNhbHRNYW5hZ2VyIiwgInNraXAiOiAwLCAibGltaXQiOiAxMDB9"
+        }
+      }
+    },
+    "intents.near/grantees/GarbageCollector": {
+      "path": "data/private/control/intents.near_grantees_GarbageCollector.json",
+      "sha256": "1b178f0c74c816dbcdc5d9216fa7d25e573cf0d2c9465237782c74f949fc04d7",
+      "private": true,
+      "request": {
+        "method": "query",
+        "params": {
+          "request_type": "call_function",
+          "block_id": 222491356,
+          "account_id": "intents.near",
+          "method_name": "acl_get_grantees",
+          "args_base64": "eyJyb2xlIjogIkdhcmJhZ2VDb2xsZWN0b3IiLCAic2tpcCI6IDAsICJsaW1pdCI6IDEwMH0="
+        }
+      }
+    },
+    "intents.near/grantees/UnrestrictedAccountManager": {
+      "path": "data/private/control/intents.near_grantees_UnrestrictedAccountManager.json",
+      "sha256": "1b178f0c74c816dbcdc5d9216fa7d25e573cf0d2c9465237782c74f949fc04d7",
+      "private": true,
+      "request": {
+        "method": "query",
+        "params": {
+          "request_type": "call_function",
+          "block_id": 222491356,
+          "account_id": "intents.near",
+          "method_name": "acl_get_grantees",
+          "args_base64": "eyJyb2xlIjogIlVucmVzdHJpY3RlZEFjY291bnRNYW5hZ2VyIiwgInNraXAiOiAwLCAibGltaXQiOiAxMDB9"
+        }
+      }
+    },
+    "ctl-intents.near/contract_source_metadata": {
+      "path": "data/raw/control/ctl-intents.near_contract_source_metadata.json",
+      "sha256": "e0670d4e062903ae6b07bc53877b4463df7d675fdb235b7ffc5b6e525d003b9b",
+      "private": false,
+      "request": {
+        "method": "query",
+        "params": {
+          "request_type": "call_function",
+          "block_id": 222491356,
+          "account_id": "ctl-intents.near",
+          "method_name": "contract_source_metadata",
+          "args_base64": "e30="
+        }
+      }
+    },
+    "ctl-intents.near/acl_role_variants": {
+      "path": "data/raw/control/ctl-intents.near_acl_role_variants.json",
+      "sha256": "b269fd71e363edea3428da2f0cc0c36c6f79cb30bb9ceafd4b4a84e5ebc32fc8",
+      "private": false,
+      "request": {
+        "method": "query",
+        "params": {
+          "request_type": "call_function",
+          "block_id": 222491356,
+          "account_id": "ctl-intents.near",
+          "method_name": "acl_role_variants",
+          "args_base64": "e30="
+        }
+      }
+    },
+    "ctl-intents.near/acl_get_super_admins": {
+      "path": "data/raw/control/ctl-intents.near_acl_get_super_admins.json",
+      "sha256": "53f6ec0f7401f5593b2e4eb05cfdf85c81ac7df11b0f7feb1b8d613fb319202f",
+      "private": false,
+      "request": {
+        "method": "query",
+        "params": {
+          "request_type": "call_function",
+          "block_id": 222491356,
+          "account_id": "ctl-intents.near",
+          "method_name": "acl_get_super_admins",
+          "args_base64": "eyJza2lwIjogMCwgImxpbWl0IjogMTAwfQ=="
+        }
+      }
+    },
+    "ctl-intents.near/grantees/DAO": {
+      "path": "data/private/control/ctl-intents.near_grantees_DAO.json",
+      "sha256": "f6d510ff7b7e73fced1c79d5708c5467e40e5f0240b603a30b9cb55115826e69",
+      "private": true,
+      "request": {
+        "method": "query",
+        "params": {
+          "request_type": "call_function",
+          "block_id": 222491356,
+          "account_id": "ctl-intents.near",
+          "method_name": "acl_get_grantees",
+          "args_base64": "eyJyb2xlIjogIkRBTyIsICJza2lwIjogMCwgImxpbWl0IjogMTAwfQ=="
+        }
+      }
+    },
+    "ctl-intents.near/grantees/Deployer": {
+      "path": "data/private/control/ctl-intents.near_grantees_Deployer.json",
+      "sha256": "1b178f0c74c816dbcdc5d9216fa7d25e573cf0d2c9465237782c74f949fc04d7",
+      "private": true,
+      "request": {
+        "method": "query",
+        "params": {
+          "request_type": "call_function",
+          "block_id": 222491356,
+          "account_id": "ctl-intents.near",
+          "method_name": "acl_get_grantees",
+          "args_base64": "eyJyb2xlIjogIkRlcGxveWVyIiwgInNraXAiOiAwLCAibGltaXQiOiAxMDB9"
+        }
+      }
+    },
+    "ctl-intents.near/grantees/Pauser": {
+      "path": "data/private/control/ctl-intents.near_grantees_Pauser.json",
+      "sha256": "1b178f0c74c816dbcdc5d9216fa7d25e573cf0d2c9465237782c74f949fc04d7",
+      "private": true,
+      "request": {
+        "method": "query",
+        "params": {
+          "request_type": "call_function",
+          "block_id": 222491356,
+          "account_id": "ctl-intents.near",
+          "method_name": "acl_get_grantees",
+          "args_base64": "eyJyb2xlIjogIlBhdXNlciIsICJza2lwIjogMCwgImxpbWl0IjogMTAwfQ=="
+        }
+      }
+    },
+    "ctl-intents.near/grantees/Releaser": {
+      "path": "data/private/control/ctl-intents.near_grantees_Releaser.json",
+      "sha256": "1b178f0c74c816dbcdc5d9216fa7d25e573cf0d2c9465237782c74f949fc04d7",
+      "private": true,
+      "request": {
+        "method": "query",
+        "params": {
+          "request_type": "call_function",
+          "block_id": 222491356,
+          "account_id": "ctl-intents.near",
+          "method_name": "acl_get_grantees",
+          "args_base64": "eyJyb2xlIjogIlJlbGVhc2VyIiwgInNraXAiOiAwLCAibGltaXQiOiAxMDB9"
+        }
+      }
+    },
+    "ctl-intents.near/grantees/Updater": {
+      "path": "data/private/control/ctl-intents.near_grantees_Updater.json",
+      "sha256": "806d96c803b16c13b5f26aa4f31000c208ae59797f74fe579904101899ffa1bd",
+      "private": true,
+      "request": {
+        "method": "query",
+        "params": {
+          "request_type": "call_function",
+          "block_id": 222491356,
+          "account_id": "ctl-intents.near",
+          "method_name": "acl_get_grantees",
+          "args_base64": "eyJyb2xlIjogIlVwZGF0ZXIiLCAic2tpcCI6IDAsICJsaW1pdCI6IDEwMH0="
+        }
+      }
+    },
+    "ctl-intents.near/grantees/Unpauser": {
+      "path": "data/private/control/ctl-intents.near_grantees_Unpauser.json",
+      "sha256": "1b178f0c74c816dbcdc5d9216fa7d25e573cf0d2c9465237782c74f949fc04d7",
+      "private": true,
+      "request": {
+        "method": "query",
+        "params": {
+          "request_type": "call_function",
+          "block_id": 222491356,
+          "account_id": "ctl-intents.near",
+          "method_name": "acl_get_grantees",
+          "args_base64": "eyJyb2xlIjogIlVucGF1c2VyIiwgInNraXAiOiAwLCAibGltaXQiOiAxMDB9"
+        }
+      }
+    },
+    "ctl-intents.near/grantees/Downgrader": {
+      "path": "data/private/control/ctl-intents.near_grantees_Downgrader.json",
+      "sha256": "ab230b97e878cb7a884820c7d6cf15ab5de79fecf66f18fc2d48e9efde876e0a",
+      "private": true,
+      "request": {
+        "method": "query",
+        "params": {
+          "request_type": "call_function",
+          "block_id": 222491356,
+          "account_id": "ctl-intents.near",
+          "method_name": "acl_get_grantees",
+          "args_base64": "eyJyb2xlIjogIkRvd25ncmFkZXIiLCAic2tpcCI6IDAsICJsaW1pdCI6IDEwMH0="
+        }
+      }
+    },
+    "intents.near/fee": {
+      "path": "data/raw/control/intents.near_fee.json",
+      "sha256": "64b96e224dc296b2e153f3131aa9aac70a77c7821354d4d3b7724b286b0292ef",
+      "private": false,
+      "request": {
+        "method": "query",
+        "params": {
+          "request_type": "call_function",
+          "block_id": 222491356,
+          "account_id": "intents.near",
+          "method_name": "fee",
+          "args_base64": "e30="
+        }
+      }
+    },
+    "ctl-intents.near/get_deployment": {
+      "path": "data/raw/control/ctl-intents.near_get_deployment.json",
+      "sha256": "234773dda80bb9a2cb3d2ae99e2658436ff0e256efaac678e0b4cfaa0f854d0d",
+      "private": false,
+      "request": {
+        "method": "query",
+        "params": {
+          "request_type": "call_function",
+          "block_id": 222491356,
+          "account_id": "ctl-intents.near",
+          "method_name": "get_deployment",
+          "args_base64": "eyJhY2NvdW50X2lkIjogImludGVudHMubmVhciJ9"
+        }
+      }
+    },
+    "ctl-intents.near/get_releases": {
+      "path": "data/raw/control/ctl-intents.near_get_releases.json",
+      "sha256": "3e16b876056075f3e3c88892373b003d3f672fec9606ecc8f46943a80fac35b7",
+      "private": false,
+      "request": {
+        "method": "query",
+        "params": {
+          "request_type": "call_function",
+          "block_id": 222491356,
+          "account_id": "ctl-intents.near",
+          "method_name": "get_releases",
+          "args_base64": "e30="
+        }
+      }
+    },
+    "intents.sputnik-dao.near/get_policy": {
+      "path": "data/private/control/intents.sputnik-dao.near_get_policy.json",
+      "sha256": "86db1839aa56a2538f5b45e87312c89e4cd985d41210fcdf52a909a84af2aae8",
+      "private": true,
+      "request": {
+        "method": "query",
+        "params": {
+          "request_type": "call_function",
+          "block_id": 222491356,
+          "account_id": "intents.sputnik-dao.near",
+          "method_name": "get_policy",
+          "args_base64": "e30="
+        }
+      }
+    },
+    "1csfundsadmin.sputnik-dao.near/get_policy": {
+      "path": "data/private/control/1csfundsadmin.sputnik-dao.near_get_policy.json",
+      "sha256": "1d6cd0b164497c5325d0c818890d5b559474dc84769258a5d55bcc3f9c79a6ee",
+      "private": true,
+      "request": {
+        "method": "query",
+        "params": {
+          "request_type": "call_function",
+          "block_id": 222491356,
+          "account_id": "1csfundsadmin.sputnik-dao.near",
+          "method_name": "get_policy",
+          "args_base64": "e30="
+        }
+      }
+    },
+    "fefundsadmin.sputnik-dao.near/get_policy": {
+      "path": "data/private/control/fefundsadmin.sputnik-dao.near_get_policy.json",
+      "sha256": "08f113720c0e6a3a1fc22522d4289bcb145b05c754ac7f2128a92cd4db38c100",
+      "private": true,
+      "request": {
+        "method": "query",
+        "params": {
+          "request_type": "call_function",
+          "block_id": 222491356,
+          "account_id": "fefundsadmin.sputnik-dao.near",
+          "method_name": "get_policy",
+          "args_base64": "e30="
+        }
+      }
+    },
+    "hos-root.sputnik-dao.near/get_policy": {
+      "path": "data/private/control/hos-root.sputnik-dao.near_get_policy.json",
+      "sha256": "1d2bac89c44adce285a4cd14b4ed1f6699e0b2a961ef3878d066df3587de1ff6",
+      "private": true,
+      "request": {
+        "method": "query",
+        "params": {
+          "request_type": "call_function",
+          "block_id": 222491356,
+          "account_id": "hos-root.sputnik-dao.near",
+          "method_name": "get_policy",
+          "args_base64": "e30="
+        }
+      }
+    },
+    "jasnah-treasury.sputnik-dao.near/get_policy": {
+      "path": "data/private/control/jasnah-treasury.sputnik-dao.near_get_policy.json",
+      "sha256": "f6fd55149b2eef008926f34e4133ccfc49b16e1f55240ffa53cf983f65a22921",
+      "private": true,
+      "request": {
+        "method": "query",
+        "params": {
+          "request_type": "call_function",
+          "block_id": 222491356,
+          "account_id": "jasnah-treasury.sputnik-dao.near",
+          "method_name": "get_policy",
+          "args_base64": "e30="
+        }
+      }
+    },
+    "buybacks.multisignature.near/get_num_confirmations": {
+      "path": "data/raw/control/buybacks.multisignature.near_get_num_confirmations.json",
+      "sha256": "4d53d989f214c3ad2be3fd3e4b2afac2995215ce7d14ef6bce58871dd8e5b782",
+      "private": false,
+      "request": {
+        "method": "query",
+        "params": {
+          "request_type": "call_function",
+          "block_id": 222491356,
+          "account_id": "buybacks.multisignature.near",
+          "method_name": "get_num_confirmations",
+          "args_base64": "e30="
+        }
+      }
+    },
+    "treasury.near/get_num_confirmations": {
+      "path": "data/raw/control/treasury.near_get_num_confirmations.json",
+      "sha256": "4d53d989f214c3ad2be3fd3e4b2afac2995215ce7d14ef6bce58871dd8e5b782",
+      "private": false,
+      "request": {
+        "method": "query",
+        "params": {
+          "request_type": "call_function",
+          "block_id": 222491356,
+          "account_id": "treasury.near",
+          "method_name": "get_num_confirmations",
+          "args_base64": "e30="
+        }
+      }
+    },
+    "vote.dao/get_config": {
+      "path": "data/private/control/vote.dao_get_config.json",
+      "sha256": "014434d41329304c5e89b84646b47a66314dc21ca5d4868f6e1474c47c8c72b7",
+      "private": true,
+      "request": {
+        "method": "query",
+        "params": {
+          "request_type": "call_function",
+          "block_id": 222491356,
+          "account_id": "vote.dao",
+          "method_name": "get_config",
+          "args_base64": "e30="
+        }
+      }
+    },
+    "stake.dao/get_config": {
+      "path": "data/private/control/stake.dao_get_config.json",
+      "sha256": "3eb13aeeba667bd2d7b63e9d1382ceda9ef5a069c6a3b351fe90ce746db95842",
+      "private": true,
+      "request": {
+        "method": "query",
+        "params": {
+          "request_type": "call_function",
+          "block_id": 222491356,
+          "account_id": "stake.dao",
+          "method_name": "get_config",
+          "args_base64": "e30="
+        }
+      }
+    },
+    "nearai.pool.near/get_reward_fee_fraction": {
+      "path": "data/raw/control/nearai.pool.near_get_reward_fee_fraction.json",
+      "sha256": "0ca207a6ecc3a3926dc403c9a0310a755626696c32f8919a5cf612dda2dc844e",
+      "private": false,
+      "request": {
+        "method": "query",
+        "params": {
+          "request_type": "call_function",
+          "block_id": 222491356,
+          "account_id": "nearai.pool.near",
+          "method_name": "get_reward_fee_fraction",
+          "args_base64": "e30="
+        }
+      }
+    },
+    "nearai.pool.near/get_owner_id": {
+      "path": "data/raw/control/nearai.pool.near_get_owner_id.json",
+      "sha256": "bbbb9ec687873107e7f00b38ae8f0d877b84f85d4d20ea7439fbb3ca8f0e538d",
+      "private": false,
+      "request": {
+        "method": "query",
+        "params": {
+          "request_type": "call_function",
+          "block_id": 222491356,
+          "account_id": "nearai.pool.near",
+          "method_name": "get_owner_id",
+          "args_base64": "e30="
+        }
+      }
+    },
+    "protocol_config": {
+      "path": "data/raw/control/protocol_config.json",
+      "sha256": "7802eea4e229b50101e6b25a42c38226c5b5519d48d2e271df5772fa347c011c",
+      "private": false,
+      "request": {
+        "method": "EXPERIMENTAL_protocol_config",
+        "params": {
+          "block_id": 222491356
+        }
+      }
+    },
+    "validators": {
+      "path": "data/private/control/validators.json",
+      "sha256": "d1c2d5dee9605b6eae2b7918edd4c5ab07d69371ee4a9d568530b4f934a747b9",
+      "private": true,
+      "request": {
+        "method": "validators",
+        "params": {
+          "epoch_id": "5eVUDtrHWj7m9wQyXEgZhZxakaV16naDip8cXAb5SQNd"
+        }
+      }
+    }
+  },
+  "block": {
+    "height": 222491356,
+    "timestamp_utc": "2026-11-01T00:00:00.175647275Z"
+  },
+  "rules_source": {
+    "sputnik": "near-daos/sputnik-dao-contract sputnikdao2/src/policy.rs (proposal_status, WeightOrRatio::to_weight, can_execute_action)",
+    "intents": "near/intents 0.4.5 contracts/defuse/src/contract/fees.rs (set_fee: DAO, FeesManager), upgrade.rs (upgrade: DAO, Upgrader)",
+    "ctl": "aurora-is-near/aurora-controller-factory 0.3.3 contract/src/lib.rs (add_release_info, unrestricted_upgrade: DAO; upgrade: DAO, Updater; downgrade: DAO, Downgrader)"
+  },
+  "source_versions": {
+    "intents.near": "0.4.5",
+    "ctl-intents.near": "0.3.3"
+  },
+  "accounts": {
+    "intents.near": {
+      "code_hash": "BtA1BEFNS619KkvXFsgcpQ21Tb5yMm32aaUkn7xNothk",
+      "full_access": 0,
+      "function_call_on_itself": 9,
+      "function_call_other": 0
+    },
+    "ctl-intents.near": {
+      "code_hash": "5ndbayBGx3kZc43QJHUn9WsoD6ZHo31L9ZWa83qkjywq",
+      "full_access": 0,
+      "function_call_on_itself": 0,
+      "function_call_other": 0
+    },
+    "intents.sputnik-dao.near": {
+      "code_hash": "4zSoHkLjJWZm34Psd4Eq2WUXHELt6LxtKmUXpsZWAECp",
+      "full_access": 0,
+      "function_call_on_itself": 0,
+      "function_call_other": 0
+    },
+    "buybacks.multisignature.near": {
+      "code_hash": "2v9kZJHN4sogHuKtKHaqYAqQBazkqH2cjY1rrjQYvNQa",
+      "full_access": 0,
+      "function_call_on_itself": 4,
+      "function_call_other": 0
+    },
+    "treasury.near": {
+      "code_hash": "55E7imniT2uuYrECn17qJAk9fLcwQW4ftNSwmCJL5Di",
+      "full_access": 0,
+      "function_call_on_itself": 4,
+      "function_call_other": 0
+    },
+    "1csfundsadmin.sputnik-dao.near": {
+      "code_hash": "4zSoHkLjJWZm34Psd4Eq2WUXHELt6LxtKmUXpsZWAECp",
+      "full_access": 0,
+      "function_call_on_itself": 0,
+      "function_call_other": 0
+    },
+    "fefundsadmin.sputnik-dao.near": {
+      "code_hash": "4zSoHkLjJWZm34Psd4Eq2WUXHELt6LxtKmUXpsZWAECp",
+      "full_access": 0,
+      "function_call_on_itself": 0,
+      "function_call_other": 0
+    },
+    "vote.dao": {
+      "code_hash": "6tquw22BwFDJKrdt3Bde7dgQysLmwEsybZjttCncbFGr",
+      "full_access": 0,
+      "function_call_on_itself": 0,
+      "function_call_other": 0
+    },
+    "hos-root.sputnik-dao.near": {
+      "code_hash": "4zSoHkLjJWZm34Psd4Eq2WUXHELt6LxtKmUXpsZWAECp",
+      "full_access": 0,
+      "function_call_on_itself": 0,
+      "function_call_other": 0
+    },
+    "nearai.pool.near": {
+      "code_hash": "AjD4YJaXgpiRdiArqnzyDi7Bkr1gJms9Z2w7Ev5esTKB",
+      "full_access": 0,
+      "function_call_on_itself": 0,
+      "function_call_other": 0
+    },
+    "jasnah-treasury.sputnik-dao.near": {
+      "code_hash": "2Zof1Tyy4pMeJM48mDSi5ww2QQhTz97b9S8h6W6r4HnK",
+      "full_access": 0,
+      "function_call_on_itself": 0,
+      "function_call_other": 0
+    },
+    "stake.dao": {
+      "code_hash": "FKrsKgaS3BgCPdPXsYwMdx6hHdQ9SDmudpjj1pyETJbr",
+      "full_access": 2,
+      "function_call_on_itself": 0,
+      "function_call_other": 0
+    }
+  },
+  "daos": {
+    "intents.sputnik-dao.near": {
+      "kinds": {
+        "transfer": {
+          "k": 3,
+          "n": 5,
+          "role": "council"
+        },
+        "call": {
+          "k": 3,
+          "n": 5,
+          "role": "council"
+        },
+        "upgrade_self": {
+          "k": 3,
+          "n": 5,
+          "role": "council"
+        },
+        "upgrade_remote": {
+          "k": 3,
+          "n": 5,
+          "role": "council"
+        },
+        "policy": {
+          "k": 3,
+          "n": 5,
+          "role": "council"
+        },
+        "policy_add_or_update_role": {
+          "k": 3,
+          "n": 5,
+          "role": "council"
+        },
+        "policy_update_default_vote_policy": {
+          "k": 3,
+          "n": 5,
+          "role": "council"
+        },
+        "add_member_to_role": {
+          "k": 3,
+          "n": 5,
+          "role": "council"
+        }
+      },
+      "rules": {
+        "k": 3,
+        "n": 5,
+        "role": "council"
+      },
+      "roles": [
+        {
+          "name": "council",
+          "members": 5,
+          "permissions": [
+            "*:*"
+          ]
+        },
+        {
+          "name": "all",
+          "members": "Everyone",
+          "permissions": [
+            "add_member_to_role:AddProposal",
+            "call:AddProposal",
+            "config:AddProposal",
+            "policy:AddProposal",
+            "remove_member_from_role:AddProposal"
+          ]
+        }
+      ]
+    },
+    "1csfundsadmin.sputnik-dao.near": {
+      "kinds": {
+        "transfer": {
+          "k": 2,
+          "n": 4,
+          "role": "Approver"
+        },
+        "call": {
+          "k": 2,
+          "n": 4,
+          "role": "Approver"
+        },
+        "upgrade_self": {
+          "k": 2,
+          "n": 4,
+          "role": "Admin"
+        },
+        "upgrade_remote": {
+          "k": 2,
+          "n": 4,
+          "role": "Admin"
+        },
+        "policy": {
+          "k": 2,
+          "n": 4,
+          "role": "Admin"
+        },
+        "policy_add_or_update_role": {
+          "k": 3,
+          "n": 4,
+          "role": "Admin"
+        },
+        "policy_update_default_vote_policy": {
+          "k": 3,
+          "n": 4,
+          "role": "Admin"
+        },
+        "add_member_to_role": {
+          "k": 2,
+          "n": 4,
+          "role": "Admin"
+        }
+      },
+      "rules": {
+        "k": 2,
+        "n": 4,
+        "role": "Admin"
+      },
+      "roles": [
+        {
+          "name": "Requestor",
+          "members": 4,
+          "permissions": [
+            "call:AddProposal",
+            "call:VoteRemove",
+            "transfer:AddProposal",
+            "transfer:VoteRemove"
+          ]
+        },
+        {
+          "name": "Admin",
+          "members": 4,
+          "permissions": [
+            "add_bounty:*",
+            "add_member_to_role:*",
+            "bounty_done:*",
+            "config:*",
+            "factory_info_update:*",
+            "policy:*",
+            "policy_add_or_update_role:*",
+            "policy_remove_role:*",
+            "policy_update_default_vote_policy:*",
+            "policy_update_parameters:*",
+            "remove_member_from_role:*",
+            "set_vote_token:*",
+            "upgrade_remote:*",
+            "upgrade_self:*"
+          ]
+        },
+        {
+          "name": "Approver",
+          "members": 4,
+          "permissions": [
+            "call:Finalize",
+            "call:RemoveProposal",
+            "call:VoteApprove",
+            "call:VoteReject",
+            "transfer:Finalize",
+            "transfer:RemoveProposal",
+            "transfer:VoteApprove",
+            "transfer:VoteReject"
+          ]
+        }
+      ]
+    },
+    "fefundsadmin.sputnik-dao.near": {
+      "kinds": {
+        "transfer": {
+          "k": 2,
+          "n": 5,
+          "role": "Approver"
+        },
+        "call": {
+          "k": 2,
+          "n": 5,
+          "role": "Approver"
+        },
+        "upgrade_self": {
+          "k": 1,
+          "n": 5,
+          "role": "Admin"
+        },
+        "upgrade_remote": {
+          "k": 1,
+          "n": 5,
+          "role": "Admin"
+        },
+        "policy": {
+          "k": 1,
+          "n": 5,
+          "role": "Admin"
+        },
+        "policy_add_or_update_role": {
+          "k": 1,
+          "n": 5,
+          "role": "Admin"
+        },
+        "policy_update_default_vote_policy": {
+          "k": 1,
+          "n": 5,
+          "role": "Admin"
+        },
+        "add_member_to_role": {
+          "k": 1,
+          "n": 5,
+          "role": "Admin"
+        }
+      },
+      "rules": {
+        "k": 1,
+        "n": 5,
+        "role": "Admin"
+      },
+      "roles": [
+        {
+          "name": "Requestor",
+          "members": 5,
+          "permissions": [
+            "call:AddProposal",
+            "call:VoteRemove",
+            "transfer:AddProposal",
+            "transfer:VoteRemove"
+          ]
+        },
+        {
+          "name": "Admin",
+          "members": 5,
+          "permissions": [
+            "add_bounty:*",
+            "add_member_to_role:*",
+            "bounty_done:*",
+            "config:*",
+            "factory_info_update:*",
+            "policy:*",
+            "policy_add_or_update_role:*",
+            "policy_remove_role:*",
+            "policy_update_default_vote_policy:*",
+            "policy_update_parameters:*",
+            "remove_member_from_role:*",
+            "set_vote_token:*",
+            "upgrade_remote:*",
+            "upgrade_self:*"
+          ]
+        },
+        {
+          "name": "Approver",
+          "members": 5,
+          "permissions": [
+            "call:Finalize",
+            "call:RemoveProposal",
+            "call:VoteApprove",
+            "call:VoteReject",
+            "transfer:Finalize",
+            "transfer:RemoveProposal",
+            "transfer:VoteApprove",
+            "transfer:VoteReject"
+          ]
+        }
+      ]
+    },
+    "hos-root.sputnik-dao.near": {
+      "kinds": {
+        "transfer": {
+          "k": 3,
+          "n": 5,
+          "role": "Admin"
+        },
+        "call": {
+          "k": 3,
+          "n": 5,
+          "role": "Admin"
+        },
+        "upgrade_self": {
+          "k": 3,
+          "n": 5,
+          "role": "Admin"
+        },
+        "upgrade_remote": {
+          "k": 3,
+          "n": 5,
+          "role": "Admin"
+        },
+        "policy": {
+          "k": 3,
+          "n": 5,
+          "role": "Admin"
+        },
+        "policy_add_or_update_role": {
+          "k": 3,
+          "n": 5,
+          "role": "Admin"
+        },
+        "policy_update_default_vote_policy": {
+          "k": 3,
+          "n": 5,
+          "role": "Admin"
+        },
+        "add_member_to_role": {
+          "k": 3,
+          "n": 5,
+          "role": "Admin"
+        }
+      },
+      "rules": {
+        "k": 3,
+        "n": 5,
+        "role": "Admin"
+      },
+      "roles": [
+        {
+          "name": "Admin",
+          "members": 5,
+          "permissions": [
+            "*:*"
+          ]
+        }
+      ]
+    },
+    "jasnah-treasury.sputnik-dao.near": {
+      "kinds": {
+        "transfer": {
+          "k": 2,
+          "n": 3,
+          "role": "council"
+        },
+        "call": {
+          "k": 2,
+          "n": 3,
+          "role": "council"
+        },
+        "upgrade_self": {
+          "k": 2,
+          "n": 3,
+          "role": "council"
+        },
+        "upgrade_remote": {
+          "k": 2,
+          "n": 3,
+          "role": "council"
+        },
+        "policy": {
+          "k": 2,
+          "n": 3,
+          "role": "council"
+        },
+        "policy_add_or_update_role": null,
+        "policy_update_default_vote_policy": null,
+        "add_member_to_role": {
+          "k": 2,
+          "n": 3,
+          "role": "council"
+        }
+      },
+      "rules": {
+        "k": 2,
+        "n": 3,
+        "role": "council"
+      },
+      "roles": [
+        {
+          "name": "all",
+          "members": "Everyone",
+          "permissions": []
+        },
+        {
+          "name": "council",
+          "members": 3,
+          "permissions": [
+            "*:Finalize",
+            "add_bounty:AddProposal",
+            "add_bounty:VoteApprove",
+            "add_bounty:VoteReject",
+            "add_bounty:VoteRemove",
+            "add_member_to_role:AddProposal",
+            "add_member_to_role:VoteApprove",
+            "add_member_to_role:VoteReject",
+            "add_member_to_role:VoteRemove",
+            "bounty_done:AddProposal",
+            "bounty_done:VoteApprove",
+            "bounty_done:VoteReject",
+            "bounty_done:VoteRemove",
+            "call:AddProposal",
+            "call:VoteApprove",
+            "call:VoteReject",
+            "call:VoteRemove",
+            "config:AddProposal",
+            "config:VoteApprove",
+            "config:VoteReject",
+            "config:VoteRemove",
+            "policy:AddProposal",
+            "policy:VoteApprove",
+            "policy:VoteReject",
+            "policy:VoteRemove",
+            "remove_member_from_role:AddProposal",
+            "remove_member_from_role:VoteApprove",
+            "remove_member_from_role:VoteReject",
+            "remove_member_from_role:VoteRemove",
+            "set_vote_token:AddProposal",
+            "set_vote_token:VoteApprove",
+            "set_vote_token:VoteReject",
+            "set_vote_token:VoteRemove",
+            "transfer:AddProposal",
+            "transfer:VoteApprove",
+            "transfer:VoteReject",
+            "transfer:VoteRemove",
+            "upgrade_remote:AddProposal",
+            "upgrade_remote:VoteApprove",
+            "upgrade_remote:VoteReject",
+            "upgrade_remote:VoteRemove",
+            "upgrade_self:AddProposal",
+            "upgrade_self:VoteApprove",
+            "upgrade_self:VoteReject",
+            "upgrade_self:VoteRemove",
+            "vote:AddProposal",
+            "vote:VoteApprove",
+            "vote:VoteReject",
+            "vote:VoteRemove"
+          ]
+        }
+      ]
+    }
+  },
+  "links": {
+    "intents_protocol_fee": {
+      "value": {
+        "fee_pips": 1,
+        "fee_percent": "0.0001"
+      },
+      "changed_by": "role DAO or FeesManager on intents.near",
+      "dao_grantees": {
+        "public": [
+          "intents.sputnik-dao.near"
+        ],
+        "others": 0,
+        "total": 1
+      },
+      "fees_manager_grantees": {
+        "public": [],
+        "others": 0,
+        "total": 0
+      },
+      "via": {
+        "intents.sputnik-dao.near": {
+          "k": 3,
+          "n": 5,
+          "role": "council"
+        }
+      }
+    },
+    "intents_code": {
+      "changed_by": "role DAO or Upgrader on intents.near",
+      "upgrader_grantees": {
+        "public": [
+          "ctl-intents.near"
+        ],
+        "others": 0,
+        "total": 1
+      },
+      "controller": {
+        "add_release": {
+          "intents.sputnik-dao.near": {
+            "k": 3,
+            "n": 5,
+            "role": "council"
+          }
+        },
+        "updater_grantees": {
+          "public": [],
+          "others": 1,
+          "total": 1
+        },
+        "downgrader_grantees": {
+          "public": [],
+          "others": 2,
+          "total": 2
+        },
+        "releaser_grantees": {
+          "public": [],
+          "others": 0,
+          "total": 0
+        },
+        "dao_grantees": {
+          "public": [
+            "intents.sputnik-dao.near"
+          ],
+          "others": 0,
+          "total": 1
+        },
+        "full_access_keys": 0
+      },
+      "deployed_version": "0.4.5",
+      "code_changes": 20,
+      "last_upgrade_utc": "2026-10-07T19:53:17.418572403Z",
+      "releases": 19
+    },
+    "user_fee_1click": {
+      "changed_by": "off-chain (1Click terms)",
+      "on_chain": false
+    },
+    "buybacks_wallet": {
+      "multisig": {
+        "confirmations": 2,
+        "member_keys": 4,
+        "full_access_keys": 0
+      }
+    },
+    "wallet_1cs": {
+      "dao": {
+        "k": 2,
+        "n": 4,
+        "role": "Approver"
+      },
+      "rules": {
+        "k": 2,
+        "n": 4,
+        "role": "Admin"
+      }
+    },
+    "wallet_front_end": {
+      "dao": {
+        "k": 2,
+        "n": 5,
+        "role": "Approver"
+      },
+      "rules": {
+        "k": 1,
+        "n": 5,
+        "role": "Admin"
+      }
+    },
+    "issuance": {
+      "max_inflation_rate": "1/40",
+      "protocol_upgrade_stake_threshold": "4/5",
+      "protocol_version": 86,
+      "validators": 381,
+      "validators_to_reach_threshold": 44,
+      "validators_to_block_upgrade": 5,
+      "validators_to_reach_two_thirds": 27,
+      "validators_to_exceed_one_third": 9,
+      "largest_validator_share": "0.056168",
+      "epoch_start_height": 222450737
+    },
+    "protocol_treasury": {
+      "account": "treasury.near",
+      "reported_protocol_reward_rate": "0/1",
+      "balance_change_near": "268972.864",
+      "share_of_new_supply": "0.101432",
+      "multisig": {
+        "confirmations": 2,
+        "member_keys": 4,
+        "full_access_keys": 0
+      },
+      "note": "measured from balances; the RPC field protocol_reward_rate is reported, not used"
+    },
+    "hsp_voting": {
+      "owner": "hos-root.sputnik-dao.near",
+      "owner_dao": {
+        "k": 3,
+        "n": 5,
+        "role": "Admin"
+      },
+      "reviewers": 5,
+      "council": 5,
+      "guardians": 5,
+      "max_active_proposals": 3,
+      "full_access_keys": 0
+    },
+    "nearai_pool_rewards": {
+      "reward_fee": "100/100",
+      "owner": "jasnah-treasury.sputnik-dao.near",
+      "owner_dao": {
+        "k": 2,
+        "n": 3,
+        "role": "council"
+      },
+      "owner_rules": {
+        "k": 2,
+        "n": 3,
+        "role": "council"
+      },
+      "full_access_keys": 0
+    },
+    "farm_contract": {
+      "owner": "stake.dao",
+      "full_access_keys": 2,
+      "guardians": 5,
+      "credits_rate": "see data/farm_rate.json (edit_price by one catalog manager)"
+    }
+  },
+  "checks": {
+    "intents_source_version_matches_rules": true,
+    "controller_source_version_matches_rules": true,
+    "deployed_intents_version_equals_metadata": true,
+    "validators_epoch_contains_end_block": true,
+    "public_output_names_allowlisted": true
+  }
+}
