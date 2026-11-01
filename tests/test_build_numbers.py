@@ -153,6 +153,38 @@ class BuildTest(unittest.TestCase):
             (data / "history.csv").write_text((data / "history.csv").read_text() + "\n")
             self.assertTrue(any("source changed" in p for p in bn.verify(out, run_scripts=False)))
 
+    def test_hsp029_and_voters_after_the_vote(self):
+        hc = {"closing_block": {"height": 222600000, "timestamp_utc": "2026-11-02T16:48:08.5Z"},
+              "reported_status_at_close": "Voting",
+              "result": {"computed_status": "Succeeded",
+                         "options": [{"index": 0, "label": "For", "venear": "3285084.854",
+                                      "votes": 28}],
+                         "turnout_of_snapshot": "0.622998",
+                         "approval_share_for_of_for_plus_against": "1.000000",
+                         "quorum_required_venear": "1846160.804",
+                         "snapshot_total_venear": "5274745.155", "snapshot_accounts": 496}}
+        stats = {"voters": 32, "for_voters": 28, "top1_share_of_votes_cast": "0.301000",
+                 "top3_share_of_votes_cast": "0.700000", "top8_share_of_votes_cast": "0.920400",
+                 "top10_share_of_votes_cast": "0.950000", "top8_share_of_for": "0.921000",
+                 "largest_venear": "989000.000", "median_venear": "1200.500",
+                 "fewest_voters_reaching_quorum": 3}
+        for block, trial, ok in ((222600000, False, True), (222599999, False, False),
+                                 (222600000, True, False)):
+            with tempfile.TemporaryDirectory() as tmp, \
+                    mock.patch.object(bn.stakers, "compute", fake_stats):
+                data, window = fake_repo(tmp)
+                write(data / "hsp029.json", hc)
+                write(data / "hsp029_voters.json", {"block": block, "trial": trial,
+                                                    "sums_match_contract": True, "stats": stats})
+                doc, problems = bn.build(data, window)
+                self.assertEqual(not problems, ok, (block, trial, problems))
+                if ok:
+                    n = doc["numbers"]
+                    self.assertEqual(n["f8.top8_share_of_votes_cast"]["text"], "92.0%")
+                    self.assertEqual(n["f8.fewest_voters_reaching_quorum"]["text"], "3")
+                    self.assertEqual(n["f8.for_votes"]["text"], "28")
+                    self.assertNotIn("f8.computed_status", doc["provisional_or_pending"])
+
     def test_refuses_inputs_from_another_window(self):
         for kwargs in ({"fees_end_block": B1 + 1}, {"treasury_end": B1 - 7},
                        {"stakers_block": 1}):

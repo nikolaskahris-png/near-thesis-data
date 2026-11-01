@@ -337,6 +337,28 @@ def build(data_dir, window_file):
                 ("snapshot_total_venear", "snapshot_total_venear", f_int),
                 ("snapshot_accounts", "snapshot_accounts", f_int)):
             n.add(f"f8.{key}", r[field], fmt(r[field]), hsrc2, **hc)
+        # who carried the vote (hsp029_voters.py), same closing block
+        vpath = data_dir / "hsp029_voters.json"
+        if vpath.exists():
+            v = json.loads(vpath.read_text(encoding="utf-8"))
+            vsrc = n.source(vpath)
+            same("HSP-029 voters block", v["block"], h["closing_block"]["height"])
+            if not v.get("sums_match_contract") or v.get("trial"):
+                problems.append("hsp029_voters.json: trial file or sums do not match the contract")
+            st = v["stats"]
+            for key, fmt in (("voters", f_int), ("for_voters", f_int),
+                             ("top1_share_of_votes_cast", f_pct),
+                             ("top3_share_of_votes_cast", f_pct),
+                             ("top8_share_of_votes_cast", f_pct),
+                             ("top10_share_of_votes_cast", f_pct),
+                             ("top8_share_of_for", f_pct),
+                             ("largest_venear", f_int), ("median_venear", f_int),
+                             ("fewest_voters_reaching_quorum", f_int)):
+                val = st[key]
+                n.add(f"f8.{key}", val, None if val is None else fmt(val), vsrc, **hc)
+        else:
+            n.add("f8.top8_share_of_votes_cast", None, None, None, status="pending",
+                  note="hsp029_voters.py runs after hsp029.py")
     else:
         n.add("f8.computed_status", None, None, None, status="pending",
               note="hsp029.py runs after the vote closes (2026-11-02 16:48:08 UTC)")
@@ -369,6 +391,7 @@ SCRIPT_CHECKS = [
     ("stakers.py", lambda doc: ["--verify"]),
     ("treasury_flows.py", lambda doc: ["--verify"]),
     ("hsp029.py", lambda doc: ["--verify"]),
+    ("hsp029_voters.py", lambda doc: ["--verify"]),
 ]
 
 
@@ -385,7 +408,8 @@ def verify(path, run_scripts=True, runner=subprocess.run):
             problems.append(f"source changed since the build: {rel}")
     if run_scripts:
         for script, args in SCRIPT_CHECKS:
-            if script == "hsp029.py" and not (root / "data" / "hsp029.json").exists():
+            out_file = {"hsp029.py": "hsp029.json", "hsp029_voters.py": "hsp029_voters.json"}
+            if script in out_file and not (root / "data" / out_file[script]).exists():
                 continue
             res = runner([sys.executable, str(root / "scripts" / script)] + args(doc),
                          cwd=root, capture_output=True, text=True)
