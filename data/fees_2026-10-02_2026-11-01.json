@@ -1,0 +1,587 @@
+{
+  "measure": "number 2: share of new NEAR supply that all NEAR Intents fees could buy",
+  "window_file": "data/window_2026-10-02_2026-11-01.json",
+  "window": {
+    "start": "2026-10-02",
+    "end": "2026-11-01",
+    "days": 30
+  },
+  "rules": {
+    "max_coverage": "mean over counted days of (dailyFees_d / NEAR price_d) / new NEAR per day",
+    "equilibrium_price": "mean dailyFees per counted day (USD) / new NEAR per day",
+    "new_supply": "(total_supply at last boundary - total_supply at first boundary) / window days",
+    "price": "coins.llama.fi coingecko:near at 12:00 UTC of each day",
+    "incomplete_day": "fees < 20% of the median day of the same window or month; not counted in fee averages",
+    "warnings": "fees/volume < 50% of the median day, or revenue > fees: shown, still counted",
+    "final": "fetched >= 48 h after window end, and a fetch >= 24 h earlier has the same fees and prices for every window day",
+    "hsp029_scenario": "new supply x 16/25 (maximum inflation 2.5% -> 1.6%), scenario only"
+  },
+  "fetched_utc": "2026-11-01T13:02:17Z",
+  "final": {
+    "ready": false,
+    "hours_after_window_end": 13.0,
+    "previous_fetch": null,
+    "hours_since_previous_fetch": null,
+    "days_changed_since_previous_fetch": null
+  },
+  "raw": {
+    "fees": {
+      "path": "data/raw/defillama/20261101T130217Z/fees.json",
+      "sha256": "75021f0be2effe156728b39179594a5e8ff20ec160b0ff9809c9f846cfb8c97c",
+      "url": "https://api.llama.fi/summary/fees/near-intents?dataType=dailyFees&excludeTotalDataChartBreakdown=true"
+    },
+    "revenue": {
+      "path": "data/raw/defillama/20261101T130217Z/revenue.json",
+      "sha256": "2f886c8f60808cdc77d20045f89246df7c7c993cd9c29cf84ba06152352214bc",
+      "url": "https://api.llama.fi/summary/fees/near-intents?dataType=dailyRevenue&excludeTotalDataChartBreakdown=true"
+    },
+    "volume": {
+      "path": "data/raw/defillama/20261101T130217Z/volume.json",
+      "sha256": "60186981881bb53492b61be48655e02ba65d765117b8a7e962e4d0089696d6e4",
+      "url": "https://api.llama.fi/summary/dexs/near-intents?excludeTotalDataChartBreakdown=true"
+    },
+    "price": {
+      "path": "data/raw/defillama/20261101T130217Z/price.json",
+      "sha256": "8e6418d38f270746abd694556308a65a796238acbc1878e466742a11a0b3cfeb",
+      "url": "https://coins.llama.fi/chart/coingecko:near?start=1772366400&span=245&period=1d"
+    }
+  },
+  "result": {
+    "window": {
+      "first_day": "2026-10-02",
+      "last_day": "2026-10-31",
+      "days": 30,
+      "counted_days": 29,
+      "excluded": {
+        "2026-10-31": "fees_below_20pct_of_median"
+      },
+      "warnings": {
+        "2026-10-30": "fees_per_volume_below_half_of_median;revenue_above_fees"
+      },
+      "volume_usd_per_day": "130592125.00",
+      "fees_usd_per_day": "197837.45",
+      "revenue_usd_per_day": "71504.41",
+      "fees_bps": "15.15",
+      "revenue_bps": "5.48",
+      "take_rate": "0.361430",
+      "mean_price_usd": "4.8977",
+      "fees_weighted_price_usd": "4.9160",
+      "fees_near_per_day": "40243.8",
+      "revenue_near_per_day": "14726.0",
+      "block_start": 218126921,
+      "block_end": 222491356,
+      "new_near_per_day": "88392.087",
+      "max_coverage": "0.455287",
+      "equilibrium_price_usd": "2.2382",
+      "defillama_revenue_coverage": "0.166598",
+      "hsp029_scenario_new_near_per_day": "56570.936",
+      "hsp029_scenario_max_coverage": "0.711387",
+      "hsp029_scenario_equilibrium_price_usd": "3.4972"
+    },
+    "days": [
+      {
+        "date": "2026-10-02",
+        "fees_usd": "225596.00",
+        "revenue_usd": "54327.00",
+        "volume_usd": "124137317.00",
+        "price_usd": "4.845312",
+        "fees_bps": "18.17",
+        "fees_near": "46559.6",
+        "flags": "",
+        "warnings": ""
+      },
+      {
+        "date": "2026-10-03",
+        "fees_usd": "117971.00",
+        "revenue_usd": "25842.00",
+        "volume_usd": "76633486.00",
+        "price_usd": "4.668628",
+        "fees_bps": "15.39",
+        "fees_near": "25268.9",
+        "flags": "",
+        "warnings": ""
+      },
+      {
+        "date": "2026-10-04",
+        "fees_usd": "240708.00",
+        "revenue_usd": "146154.00",
+        "volume_usd": "64354236.00",
+        "price_usd": "4.873416",
+        "fees_bps": "37.40",
+        "fees_near": "49392.1",
+        "flags": "",
+        "warnings": ""
+      },
+      {
+        "date": "2026-10-05",
+        "fees_usd": "207150.00",
+        "revenue_usd": "53207.00",
+        "volume_usd": "117176998.00",
+        "price_usd": "5.014736",
+        "fees_bps": "17.68",
+        "fees_near": "41308.3",
+        "flags": "",
+        "warnings": ""
+      },
+      {
+        "date": "2026-10-06",
+        "fees_usd": "225250.00",
+        "revenue_usd": "61629.00",
+        "volume_usd": "126234797.00",
+        "price_usd": "5.252634",
+        "fees_bps": "17.84",
+        "fees_near": "42883.2",
+        "flags": "",
+        "warnings": ""
+      },
+      {
+        "date": "2026-10-07",
+        "fees_usd": "238952.00",
+        "revenue_usd": "63423.00",
+        "volume_usd": "119708258.00",
+        "price_usd": "5.031641",
+        "fees_bps": "19.96",
+        "fees_near": "47489.9",
+        "flags": "",
+        "warnings": ""
+      },
+      {
+        "date": "2026-10-08",
+        "fees_usd": "401457.00",
+        "revenue_usd": "118720.00",
+        "volume_usd": "256069392.00",
+        "price_usd": "5.080515",
+        "fees_bps": "15.68",
+        "fees_near": "79019.0",
+        "flags": "",
+        "warnings": ""
+      },
+      {
+        "date": "2026-10-09",
+        "fees_usd": "339710.00",
+        "revenue_usd": "113449.00",
+        "volume_usd": "255697796.00",
+        "price_usd": "4.870267",
+        "fees_bps": "13.29",
+        "fees_near": "69751.8",
+        "flags": "",
+        "warnings": ""
+      },
+      {
+        "date": "2026-10-10",
+        "fees_usd": "219737.00",
+        "revenue_usd": "78515.00",
+        "volume_usd": "153185460.00",
+        "price_usd": "5.306773",
+        "fees_bps": "14.34",
+        "fees_near": "41406.9",
+        "flags": "",
+        "warnings": ""
+      },
+      {
+        "date": "2026-10-11",
+        "fees_usd": "162447.00",
+        "revenue_usd": "81286.00",
+        "volume_usd": "122774330.00",
+        "price_usd": "5.286515",
+        "fees_bps": "13.23",
+        "fees_near": "30728.6",
+        "flags": "",
+        "warnings": ""
+      },
+      {
+        "date": "2026-10-12",
+        "fees_usd": "202627.00",
+        "revenue_usd": "62759.00",
+        "volume_usd": "139501825.00",
+        "price_usd": "5.654506",
+        "fees_bps": "14.53",
+        "fees_near": "35834.6",
+        "flags": "",
+        "warnings": ""
+      },
+      {
+        "date": "2026-10-13",
+        "fees_usd": "200723.00",
+        "revenue_usd": "56520.00",
+        "volume_usd": "133642221.00",
+        "price_usd": "5.026188",
+        "fees_bps": "15.02",
+        "fees_near": "39935.4",
+        "flags": "",
+        "warnings": ""
+      },
+      {
+        "date": "2026-10-14",
+        "fees_usd": "229844.00",
+        "revenue_usd": "82736.00",
+        "volume_usd": "145432171.00",
+        "price_usd": "5.087194",
+        "fees_bps": "15.80",
+        "fees_near": "45180.9",
+        "flags": "",
+        "warnings": ""
+      },
+      {
+        "date": "2026-10-15",
+        "fees_usd": "170811.00",
+        "revenue_usd": "162768.00",
+        "volume_usd": "99643158.00",
+        "price_usd": "4.594912",
+        "fees_bps": "17.14",
+        "fees_near": "37173.9",
+        "flags": "",
+        "warnings": ""
+      },
+      {
+        "date": "2026-10-16",
+        "fees_usd": "143463.00",
+        "revenue_usd": "46209.00",
+        "volume_usd": "88174962.00",
+        "price_usd": "5.306275",
+        "fees_bps": "16.27",
+        "fees_near": "27036.5",
+        "flags": "",
+        "warnings": ""
+      },
+      {
+        "date": "2026-10-17",
+        "fees_usd": "213822.00",
+        "revenue_usd": "32347.00",
+        "volume_usd": "130727860.00",
+        "price_usd": "5.114412",
+        "fees_bps": "16.36",
+        "fees_near": "41807.7",
+        "flags": "",
+        "warnings": ""
+      },
+      {
+        "date": "2026-10-18",
+        "fees_usd": "252096.00",
+        "revenue_usd": "46284.00",
+        "volume_usd": "138807317.00",
+        "price_usd": "4.920662",
+        "fees_bps": "18.16",
+        "fees_near": "51232.1",
+        "flags": "",
+        "warnings": ""
+      },
+      {
+        "date": "2026-10-19",
+        "fees_usd": "150645.00",
+        "revenue_usd": "53083.00",
+        "volume_usd": "97672919.00",
+        "price_usd": "4.945673",
+        "fees_bps": "15.42",
+        "fees_near": "30460.0",
+        "flags": "",
+        "warnings": ""
+      },
+      {
+        "date": "2026-10-20",
+        "fees_usd": "218703.00",
+        "revenue_usd": "78180.00",
+        "volume_usd": "121452063.00",
+        "price_usd": "4.669184",
+        "fees_bps": "18.01",
+        "fees_near": "46839.7",
+        "flags": "",
+        "warnings": ""
+      },
+      {
+        "date": "2026-10-21",
+        "fees_usd": "214208.00",
+        "revenue_usd": "63787.00",
+        "volume_usd": "151452049.00",
+        "price_usd": "5.170600",
+        "fees_bps": "14.14",
+        "fees_near": "41428.1",
+        "flags": "",
+        "warnings": ""
+      },
+      {
+        "date": "2026-10-22",
+        "fees_usd": "160494.00",
+        "revenue_usd": "58819.00",
+        "volume_usd": "132262403.00",
+        "price_usd": "4.971184",
+        "fees_bps": "12.13",
+        "fees_near": "32284.9",
+        "flags": "",
+        "warnings": ""
+      },
+      {
+        "date": "2026-10-23",
+        "fees_usd": "147974.00",
+        "revenue_usd": "38629.00",
+        "volume_usd": "95545767.00",
+        "price_usd": "4.928184",
+        "fees_bps": "15.49",
+        "fees_near": "30026.1",
+        "flags": "",
+        "warnings": ""
+      },
+      {
+        "date": "2026-10-24",
+        "fees_usd": "164861.00",
+        "revenue_usd": "47262.00",
+        "volume_usd": "85994134.00",
+        "price_usd": "4.494944",
+        "fees_bps": "19.17",
+        "fees_near": "36677.0",
+        "flags": "",
+        "warnings": ""
+      },
+      {
+        "date": "2026-10-25",
+        "fees_usd": "127083.00",
+        "revenue_usd": "61742.00",
+        "volume_usd": "89290005.00",
+        "price_usd": "4.480623",
+        "fees_bps": "14.23",
+        "fees_near": "28362.8",
+        "flags": "",
+        "warnings": ""
+      },
+      {
+        "date": "2026-10-26",
+        "fees_usd": "190376.00",
+        "revenue_usd": "79250.00",
+        "volume_usd": "134322214.00",
+        "price_usd": "4.578466",
+        "fees_bps": "14.17",
+        "fees_near": "41580.7",
+        "flags": "",
+        "warnings": ""
+      },
+      {
+        "date": "2026-10-27",
+        "fees_usd": "158080.00",
+        "revenue_usd": "76747.00",
+        "volume_usd": "141264151.00",
+        "price_usd": "4.476136",
+        "fees_bps": "11.19",
+        "fees_near": "35316.2",
+        "flags": "",
+        "warnings": ""
+      },
+      {
+        "date": "2026-10-28",
+        "fees_usd": "144527.00",
+        "revenue_usd": "57359.00",
+        "volume_usd": "112385956.00",
+        "price_usd": "4.660163",
+        "fees_bps": "12.86",
+        "fees_near": "31013.3",
+        "flags": "",
+        "warnings": ""
+      },
+      {
+        "date": "2026-10-29",
+        "fees_usd": "199177.00",
+        "revenue_usd": "94993.00",
+        "volume_usd": "141723823.00",
+        "price_usd": "4.415751",
+        "fees_bps": "14.05",
+        "fees_near": "45106.0",
+        "flags": "",
+        "warnings": ""
+      },
+      {
+        "date": "2026-10-30",
+        "fees_usd": "68794.00",
+        "revenue_usd": "77602.00",
+        "volume_usd": "191904557.00",
+        "price_usd": "4.308677",
+        "fees_bps": "3.58",
+        "fees_near": "15966.4",
+        "flags": "",
+        "warnings": "fees_per_volume_below_half_of_median;revenue_above_fees"
+      },
+      {
+        "date": "2026-10-31",
+        "fees_usd": "11755.00",
+        "revenue_usd": "46297.00",
+        "volume_usd": "73433291.00",
+        "price_usd": "4.337696",
+        "fees_bps": "1.60",
+        "fees_near": "2710.0",
+        "flags": "fees_below_20pct_of_median",
+        "warnings": ""
+      }
+    ],
+    "monthly": [
+      {
+        "first_day": "2026-03-01",
+        "last_day": "2026-03-31",
+        "days": 31,
+        "counted_days": 30,
+        "excluded": {
+          "2026-03-17": "fees_below_20pct_of_median"
+        },
+        "warnings": {
+          "2026-03-27": "revenue_above_fees"
+        },
+        "volume_usd_per_day": "67484494.93",
+        "fees_usd_per_day": "119146.23",
+        "revenue_usd_per_day": "18380.33",
+        "fees_bps": "17.66",
+        "revenue_bps": "2.72",
+        "take_rate": "0.154267",
+        "mean_price_usd": "1.2767",
+        "fees_weighted_price_usd": "1.2781",
+        "fees_near_per_day": "93221.0",
+        "revenue_near_per_day": "14813.8",
+        "month": "2026-03",
+        "full_month": true
+      },
+      {
+        "first_day": "2026-04-01",
+        "last_day": "2026-04-30",
+        "days": 30,
+        "counted_days": 30,
+        "excluded": {},
+        "warnings": {},
+        "volume_usd_per_day": "63184683.40",
+        "fees_usd_per_day": "106908.53",
+        "revenue_usd_per_day": "8624.67",
+        "fees_bps": "16.92",
+        "revenue_bps": "1.36",
+        "take_rate": "0.080673",
+        "mean_price_usd": "1.3414",
+        "fees_weighted_price_usd": "1.3334",
+        "fees_near_per_day": "80177.6",
+        "revenue_near_per_day": "6451.7",
+        "month": "2026-04",
+        "full_month": true
+      },
+      {
+        "first_day": "2026-05-01",
+        "last_day": "2026-05-31",
+        "days": 31,
+        "counted_days": 31,
+        "excluded": {},
+        "warnings": {
+          "2026-05-31": "fees_per_volume_below_half_of_median"
+        },
+        "volume_usd_per_day": "64377032.23",
+        "fees_usd_per_day": "96848.68",
+        "revenue_usd_per_day": "19987.55",
+        "fees_bps": "15.04",
+        "revenue_bps": "3.10",
+        "take_rate": "0.206379",
+        "mean_price_usd": "1.7893",
+        "fees_weighted_price_usd": "1.6758",
+        "fees_near_per_day": "57792.8",
+        "revenue_near_per_day": "10580.0",
+        "month": "2026-05",
+        "full_month": true
+      },
+      {
+        "first_day": "2026-06-01",
+        "last_day": "2026-06-30",
+        "days": 30,
+        "counted_days": 30,
+        "excluded": {},
+        "warnings": {},
+        "volume_usd_per_day": "78489733.80",
+        "fees_usd_per_day": "103727.07",
+        "revenue_usd_per_day": "20649.17",
+        "fees_bps": "13.22",
+        "revenue_bps": "2.63",
+        "take_rate": "0.199072",
+        "mean_price_usd": "2.1295",
+        "fees_weighted_price_usd": "2.1177",
+        "fees_near_per_day": "48981.9",
+        "revenue_near_per_day": "9618.0",
+        "month": "2026-06",
+        "full_month": true
+      },
+      {
+        "first_day": "2026-07-01",
+        "last_day": "2026-07-31",
+        "days": 31,
+        "counted_days": 31,
+        "excluded": {},
+        "warnings": {},
+        "volume_usd_per_day": "71147732.61",
+        "fees_usd_per_day": "105545.58",
+        "revenue_usd_per_day": "16285.94",
+        "fees_bps": "14.83",
+        "revenue_bps": "2.29",
+        "take_rate": "0.154302",
+        "mean_price_usd": "1.8871",
+        "fees_weighted_price_usd": "1.8952",
+        "fees_near_per_day": "55689.6",
+        "revenue_near_per_day": "8615.2",
+        "month": "2026-07",
+        "full_month": true
+      },
+      {
+        "first_day": "2026-08-01",
+        "last_day": "2026-08-31",
+        "days": 31,
+        "counted_days": 31,
+        "excluded": {},
+        "warnings": {},
+        "volume_usd_per_day": "89591201.71",
+        "fees_usd_per_day": "123773.39",
+        "revenue_usd_per_day": "23331.03",
+        "fees_bps": "13.82",
+        "revenue_bps": "2.60",
+        "take_rate": "0.188498",
+        "mean_price_usd": "1.7386",
+        "fees_weighted_price_usd": "1.7790",
+        "fees_near_per_day": "69576.5",
+        "revenue_near_per_day": "13201.0",
+        "month": "2026-08",
+        "full_month": true
+      },
+      {
+        "first_day": "2026-09-01",
+        "last_day": "2026-09-30",
+        "days": 30,
+        "counted_days": 30,
+        "excluded": {},
+        "warnings": {},
+        "volume_usd_per_day": "160103145.90",
+        "fees_usd_per_day": "244193.07",
+        "revenue_usd_per_day": "61317.10",
+        "fees_bps": "15.25",
+        "revenue_bps": "3.83",
+        "take_rate": "0.251101",
+        "mean_price_usd": "3.2774",
+        "fees_weighted_price_usd": "3.1720",
+        "fees_near_per_day": "76984.5",
+        "revenue_near_per_day": "19129.4",
+        "month": "2026-09",
+        "full_month": true
+      },
+      {
+        "first_day": "2026-10-01",
+        "last_day": "2026-10-31",
+        "days": 31,
+        "counted_days": 30,
+        "excluded": {
+          "2026-10-31": "fees_below_20pct_of_median"
+        },
+        "warnings": {
+          "2026-10-30": "fees_per_volume_below_half_of_median;revenue_above_fees"
+        },
+        "volume_usd_per_day": "130406943.67",
+        "fees_usd_per_day": "198129.40",
+        "revenue_usd_per_day": "71500.53",
+        "fees_bps": "15.19",
+        "revenue_bps": "5.48",
+        "take_rate": "0.360878",
+        "mean_price_usd": "4.9049",
+        "fees_weighted_price_usd": "4.9226",
+        "fees_near_per_day": "40249.1",
+        "revenue_near_per_day": "14700.5",
+        "month": "2026-10",
+        "full_month": true
+      }
+    ]
+  },
+  "revisions_vs_previous_fetch": []
+}

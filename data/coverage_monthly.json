@@ -1,0 +1,207 @@
+{
+  "measure": "finding 1: monthly coverage of new NEAR supply by the revenue wallets",
+  "rule": "first block whose header timestamp is at or after 00:00:00 UTC of the date",
+  "source": {
+    "rpc": "https://archival-rpc.mainnet.fastnear.com"
+  },
+  "accounts": {
+    "buybacks": [
+      "buybacks.multisignature.near",
+      "1csfundsadmin.sputnik-dao.near"
+    ],
+    "front_end_fund": "fefundsadmin.sputnik-dao.near"
+  },
+  "boundaries": [
+    {
+      "date": "2026-04-01",
+      "height": 192013995,
+      "previous_height": 192013994
+    },
+    {
+      "date": "2026-05-01",
+      "height": 196336954,
+      "previous_height": 196336953
+    },
+    {
+      "date": "2026-06-01",
+      "height": 200773914,
+      "previous_height": 200773913
+    },
+    {
+      "date": "2026-07-01",
+      "height": 205022619,
+      "previous_height": 205022618
+    },
+    {
+      "date": "2026-08-01",
+      "height": 209393356,
+      "previous_height": 209393355
+    },
+    {
+      "date": "2026-09-01",
+      "height": 213761242,
+      "previous_height": 213761241
+    },
+    {
+      "date": "2026-10-01",
+      "height": 217984974,
+      "previous_height": 217984973
+    },
+    {
+      "date": "2026-11-01",
+      "height": 222491356,
+      "previous_height": 222491355
+    }
+  ],
+  "raw_files": {
+    "data/raw/accounts/192013995_1csfundsadmin.sputnik-dao.near.json": "86bc75a88c9938ec27139cb2e37e80b0ec5cc12c89b5584f98fb582abe186079",
+    "data/raw/accounts/192013995_buybacks.multisignature.near.json": "e6c6327550de801f0304d97d1488da430e90504dc8f0148c1964c000ceffffa2",
+    "data/raw/accounts/192013995_buybacks.multisignature.near_intents_wnear.json": "c6daf7d93f0dc3489ce99295233b447537312813ce5c2de60b0daca0a30d48d9",
+    "data/raw/accounts/192013995_fefundsadmin.sputnik-dao.near.json": "ebf017b54f49c57fc300be75400e3627875c90eccc2476fce59696774326e3b7",
+    "data/raw/accounts/192013995_fefundsadmin.sputnik-dao.near_intents_wnear.json": "c6daf7d93f0dc3489ce99295233b447537312813ce5c2de60b0daca0a30d48d9",
+    "data/raw/accounts/196336954_1csfundsadmin.sputnik-dao.near.json": "db06a9f3b08661b9674819afded4a119dcdd03cf632c417d8fbde67ad04ba7c0",
+    "data/raw/accounts/196336954_buybacks.multisignature.near.json": "0a559c07ad384033403ea6d43b11e79657ce2eabaf69750ed4022e21468ed998",
+    "data/raw/accounts/196336954_buybacks.multisignature.near_intents_wnear.json": "24436fd7f60cb0d9b99a482f1070ced19510064e22c8f6f987a4b750cf11d8cc",
+    "data/raw/accounts/196336954_fefundsadmin.sputnik-dao.near.json": "b8d1a15ad6992e7dc0ca59c179989c8ed673578706b6408dd8e82ea00fe4a425",
+    "data/raw/accounts/196336954_fefundsadmin.sputnik-dao.near_intents_wnear.json": "24436fd7f60cb0d9b99a482f1070ced19510064e22c8f6f987a4b750cf11d8cc",
+    "data/raw/accounts/200773914_1csfundsadmin.sputnik-dao.near.json": "5c6833a6bb73c2e227542780a67fe626ac66d61c6a6d0de8866c77440c5c53a0",
+    "data/raw/accounts/200773914_buybacks.multisignature.near.json": "9d7226cfcba776ae535ac9ae6d5e0482077b64ae9fe1fe76a93deff4ae87bcb4",
+    "data/raw/accounts/200773914_buybacks.multisignature.near_intents_wnear.json": "c07c4a9919f9c9b857028410c05f6376e6a61e8535a5a7eaca516ac8914e6ffc",
+    "data/raw/accounts/200773914_fefundsadmin.sputnik-dao.near.json": "6767b4759e43a8d42de691a732c25800909c996409f94bf5233b6f353161a8ed",
+    "data/raw/accounts/200773914_fefundsadmin.sputnik-dao.near_intents_wnear.json": "c07c4a9919f9c9b857028410c05f6376e6a61e8535a5a7eaca516ac8914e6ffc",
+    "data/raw/accounts/205022619_1csfundsadmin.sputnik-dao.near.json": "4f119e8b69ec88512964c4463342c3f033c04d1e690f159c6cc7f0f365730722",
+    "data/raw/accounts/205022619_buybacks.multisignature.near.json": "3607283cbd2051b95925771737be55d437b2f83b20667158227f121bf40299c1",
+    "data/raw/accounts/205022619_buybacks.multisignature.near_intents_wnear.json": "074c4f27ecfbcb5540be189c6846e3e56f63c0158745cd64b285d1fafd3b0f22",
+    "data/raw/accounts/205022619_fefundsadmin.sputnik-dao.near.json": "541f3eb58b16b641e77bb5e9f197cd2c711a28c088f7038a08b91e91c9c6dfce",
+    "data/raw/accounts/205022619_fefundsadmin.sputnik-dao.near_intents_wnear.json": "074c4f27ecfbcb5540be189c6846e3e56f63c0158745cd64b285d1fafd3b0f22",
+    "data/raw/accounts/209393356_1csfundsadmin.sputnik-dao.near.json": "94e13f11880ef0cca71d037160a49b276b51e1e465e7412740d435826b008493",
+    "data/raw/accounts/209393356_buybacks.multisignature.near.json": "39ede30118080a41ef35109426de7ee5c857d8c3ab5bd31a2028febc114c36a0",
+    "data/raw/accounts/209393356_buybacks.multisignature.near_intents_wnear.json": "c649f0fd58c7888f3304f444f8d92c2d22ce981ba5eb3b2712f534970949620f",
+    "data/raw/accounts/209393356_fefundsadmin.sputnik-dao.near.json": "786ba3b2b3b7042c86608a94ae6c71210fbbf707f7cb8e1332109252f3c92e4f",
+    "data/raw/accounts/209393356_fefundsadmin.sputnik-dao.near_intents_wnear.json": "c649f0fd58c7888f3304f444f8d92c2d22ce981ba5eb3b2712f534970949620f",
+    "data/raw/accounts/213761242_1csfundsadmin.sputnik-dao.near.json": "0cc2d8d7cdc2560c0e854c25cbc3a4d577e594936ec2ee491bb8cdf1010e2e5d",
+    "data/raw/accounts/213761242_buybacks.multisignature.near.json": "b7d442684647c9a514196ad9dd7e416fd380f4a32a77fdc10b4e2b37c0a8cbc3",
+    "data/raw/accounts/213761242_buybacks.multisignature.near_intents_wnear.json": "b0de89e3ff7741d63a47ae8473736e39625c8b96ac6e08db6f38dc90fd71fd24",
+    "data/raw/accounts/213761242_fefundsadmin.sputnik-dao.near.json": "2151a94bf3e09297ed6007052f0c4e1db7ebdaae8470e2d5e5745cf6d834ae84",
+    "data/raw/accounts/213761242_fefundsadmin.sputnik-dao.near_intents_wnear.json": "b0de89e3ff7741d63a47ae8473736e39625c8b96ac6e08db6f38dc90fd71fd24",
+    "data/raw/accounts/217984974_1csfundsadmin.sputnik-dao.near.json": "a37a2431dc474fdc542115ee7b64d65645f9169f19b5d8d68ab440c44f0c768c",
+    "data/raw/accounts/217984974_buybacks.multisignature.near.json": "0f45f564e50a3515c61f6fd5fbbfa32ba757c2c424834bcbfb0aba0255cf66aa",
+    "data/raw/accounts/217984974_buybacks.multisignature.near_intents_wnear.json": "b955c69383564bdfbd3fcc4dfee8a36edcd2733e1354df2df6fa094d93fa804e",
+    "data/raw/accounts/217984974_fefundsadmin.sputnik-dao.near.json": "8af46d64cc18750e284ef5e1f58eb89e6357d8f8e56393bbe6d54759f2870568",
+    "data/raw/accounts/217984974_fefundsadmin.sputnik-dao.near_intents_wnear.json": "b955c69383564bdfbd3fcc4dfee8a36edcd2733e1354df2df6fa094d93fa804e",
+    "data/raw/accounts/222491356_1csfundsadmin.sputnik-dao.near.json": "58a9686e46ecbdd463e47ba0cf8f7f8f7b7b281956e5f18127f3ca03228b014e",
+    "data/raw/accounts/222491356_buybacks.multisignature.near.json": "5959705b7acaa64861616a15941d42a90d75f7b70b8c14dcb3d7f444f95b670a",
+    "data/raw/accounts/222491356_buybacks.multisignature.near_intents_wnear.json": "e040edfbcb3bd6ec5639e625f33093d4fe3a19b4f9aad83375545a22c3425a47",
+    "data/raw/accounts/222491356_fefundsadmin.sputnik-dao.near.json": "29f7fc351ab70c78f39a024d069c5b202dbe0ef9c134b44fd47de632d144235b",
+    "data/raw/accounts/222491356_fefundsadmin.sputnik-dao.near_intents_wnear.json": "e040edfbcb3bd6ec5639e625f33093d4fe3a19b4f9aad83375545a22c3425a47",
+    "data/raw/blocks/block_192013994.json": "77063b29bde4dc7c1d435d6d0dfd44985dd5fb73771bac832260795201e8062f",
+    "data/raw/blocks/block_192013995.json": "3d9117ce0128a10528e07e8ea96745b42579af6f27ce1c37d23f5f20a147aadd",
+    "data/raw/blocks/block_196336953.json": "408fbd04d73dd72e349efe8847c5514526dbd91d73dbea2f67db586fc31bbea6",
+    "data/raw/blocks/block_196336954.json": "11e4e12828dbbe2b5ee098573d7ba08ce3adc3fad89e0056aab65ff94de5e96f",
+    "data/raw/blocks/block_200773913.json": "8277d4c479eaf472a5f5189373c43e49b3b3929b747deeb17d0d53805a5a7091",
+    "data/raw/blocks/block_200773914.json": "0faea298937a3a09fc95b0a96aa449c460c9b7df42e9ab724615d403b00e5997",
+    "data/raw/blocks/block_205022618.json": "f28e5d0115e0c554c8e250d14c0794d15e3c032c352bd99595fd701c0e5457a9",
+    "data/raw/blocks/block_205022619.json": "0bf313d9b9aea35ce4d40bb471798c27c5f46e361fa2a756e9bd6a97401094d5",
+    "data/raw/blocks/block_209393355.json": "9b4a65c878e119c4a121d1ba81a91f8be5da2be387979344d7347ddde5774d37",
+    "data/raw/blocks/block_209393356.json": "674e866e8b24fd74ea8553762877f0a62fb34977dd1e40ceec6e914bb01900c2",
+    "data/raw/blocks/block_213761241.json": "0e63a5dcbbbb382d22fbd50556060b1d36c8a7a638a22838be2c6263f7fff947",
+    "data/raw/blocks/block_213761242.json": "8b86c38ceaa41581bef342c3591b8191a06ba535c20864fe17f81742ecfc9f1b",
+    "data/raw/blocks/block_217984973.json": "757e1b71bfdc08fc2ee5db2bb488dc7dd7876e99a918978a1f7e406077828f3b",
+    "data/raw/blocks/block_217984974.json": "6d082d484e3c670062fc95e9adc2a353d57040c592b0a1aa9475c34b38320a5b",
+    "data/raw/blocks/block_222491355.json": "f0b92192aad5507c74c90fd4b2075a89fe2c63801770545a2382936861222395",
+    "data/raw/blocks/block_222491356.json": "95d8666c0bb7c9f69166698a2d394a7c58f0b8da205e1df4551324a6dd4ed71e"
+  },
+  "rows": [
+    {
+      "month": "2026-04",
+      "window_start": "2026-04-01",
+      "date": "2026-05-01",
+      "block_start": 192013995,
+      "block_end": 196336954,
+      "new_supply_per_day": "87523.615",
+      "buybacks_per_day": "4674.519",
+      "fefunds_per_day": "270.705",
+      "coverage_buybacks": "0.053409",
+      "coverage_with_fe": "0.056502",
+      "flags": "1cs_balance_changed"
+    },
+    {
+      "month": "2026-05",
+      "window_start": "2026-05-01",
+      "date": "2026-06-01",
+      "block_start": 196336954,
+      "block_end": 200773914,
+      "new_supply_per_day": "87990.720",
+      "buybacks_per_day": "7352.985",
+      "fefunds_per_day": "3093.385",
+      "coverage_buybacks": "0.083565",
+      "coverage_with_fe": "0.118721",
+      "flags": ""
+    },
+    {
+      "month": "2026-06",
+      "window_start": "2026-06-01",
+      "date": "2026-07-01",
+      "block_start": 200773914,
+      "block_end": 205022619,
+      "new_supply_per_day": "87468.202",
+      "buybacks_per_day": "7462.783",
+      "fefunds_per_day": "2293.185",
+      "coverage_buybacks": "0.085320",
+      "coverage_with_fe": "0.111537",
+      "flags": ""
+    },
+    {
+      "month": "2026-07",
+      "window_start": "2026-07-01",
+      "date": "2026-08-01",
+      "block_start": 205022619,
+      "block_end": 209393356,
+      "new_supply_per_day": "87769.199",
+      "buybacks_per_day": "5450.567",
+      "fefunds_per_day": "2559.638",
+      "coverage_buybacks": "0.062101",
+      "coverage_with_fe": "0.091264",
+      "flags": "1cs_balance_changed"
+    },
+    {
+      "month": "2026-08",
+      "window_start": "2026-08-01",
+      "date": "2026-09-01",
+      "block_start": 209393356,
+      "block_end": 213761242,
+      "new_supply_per_day": "88125.100",
+      "buybacks_per_day": "8971.791",
+      "fefunds_per_day": "4105.197",
+      "coverage_buybacks": "0.101807",
+      "coverage_with_fe": "0.148391",
+      "flags": "1cs_balance_changed"
+    },
+    {
+      "month": "2026-09",
+      "window_start": "2026-09-01",
+      "date": "2026-10-01",
+      "block_start": 213761242,
+      "block_end": 217984974,
+      "new_supply_per_day": "88352.543",
+      "buybacks_per_day": "13478.332",
+      "fefunds_per_day": "5327.698",
+      "coverage_buybacks": "0.152552",
+      "coverage_with_fe": "0.212852",
+      "flags": "1cs_balance_changed"
+    },
+    {
+      "month": "2026-10",
+      "window_start": "2026-10-01",
+      "date": "2026-11-01",
+      "block_start": 217984974,
+      "block_end": 222491356,
+      "new_supply_per_day": "88091.533",
+      "buybacks_per_day": "9588.935",
+      "fefunds_per_day": "4975.049",
+      "coverage_buybacks": "0.108852",
+      "coverage_with_fe": "0.165328",
+      "flags": ""
+    }
+  ]
+}
