@@ -92,9 +92,9 @@
   ],
   "sources": {
     "data/coverage_monthly.json": "74c24cad7c5a975e989fb70a62b157caef271901f16b9dfe9f708b3e98f8e9e9",
+    "data/daily/2026-11-01.json": "175ddea59ee744ae15112e72eee4a4023546ac3b80e85f44de604ef8c7fbd8d8",
     "data/farm_rate.json": "d1ad56d759c561d85ed924dc8bb49dbd4887663e04e5435523696dc74650f35a",
     "data/fees_2026-10-02_2026-11-01.json": "5d7abc7ebfe804bc53afb5571240b4eeb809b8bd7d2af0354f63907782ddb598",
-    "data/history.csv": "ca21a4a8ab0108fd9cbdf9af65f60bdca38e6b8afd63be873aad8469242221b1",
     "data/stakers/2026-08-01.json": "e1da2618c3332451ce41a34d64af1a23fc6122497c02cb7cc9ce633b0fa016f1",
     "data/stakers/2026-08-15.json": "9cc6ee8a3aeba21d2ab9e496c0ffee3f926f1d97d79c06bc1d81af0f60c3a9ef",
     "data/stakers/2026-09-01.json": "8bc4772523cc10bbfc79c78d055532ff4570c413a5ae4fd5e842f8f4758ac8ab",
@@ -1645,7 +1645,7 @@
     "f9.front_end_share_of_wallets": {
       "value": "0.3424850988596387503647516635",
       "text": "34.2%",
-      "source": "data/history.csv",
+      "source": "data/daily/2026-11-01.json",
       "unit": "share",
       "note": "fefundsadmin.sputnik-dao.near / (buybacks.multisignature.near + 1csfundsadmin + fefundsadmin), net NEAR kept per day, measured on the wallets",
       "window": "2026-10-02 00:00 UTC to 2026-11-01 00:00 UTC",
@@ -1654,7 +1654,7 @@
     "n1.buybacks_near_per_day": {
       "value": "9569.750",
       "text": "9,570",
-      "source": "data/history.csv",
+      "source": "data/daily/2026-11-01.json",
       "unit": "NEAR/day",
       "note": "buybacks.multisignature.near + 1csfundsadmin",
       "window": "2026-10-02 00:00 UTC to 2026-11-01 00:00 UTC",
@@ -1663,7 +1663,7 @@
     "n1.coverage_buybacks": {
       "value": "0.108265",
       "text": "10.8%",
-      "source": "data/history.csv",
+      "source": "data/daily/2026-11-01.json",
       "unit": "share",
       "window": "2026-10-02 00:00 UTC to 2026-11-01 00:00 UTC",
       "blocks": "218126921-222491356"
@@ -1671,7 +1671,7 @@
     "n1.coverage_with_front_end": {
       "value": "0.164658",
       "text": "16.5%",
-      "source": "data/history.csv",
+      "source": "data/daily/2026-11-01.json",
       "unit": "share",
       "window": "2026-10-02 00:00 UTC to 2026-11-01 00:00 UTC",
       "blocks": "218126921-222491356"
@@ -1679,7 +1679,7 @@
     "n1.front_end_near_per_day": {
       "value": "4984.673",
       "text": "4,985",
-      "source": "data/history.csv",
+      "source": "data/daily/2026-11-01.json",
       "unit": "NEAR/day",
       "note": "fefundsadmin.sputnik-dao.near",
       "window": "2026-10-02 00:00 UTC to 2026-11-01 00:00 UTC",
@@ -1688,7 +1688,7 @@
     "n1.new_near_not_absorbed_per_day": {
       "value": "78822.337",
       "text": "78,822",
-      "source": "data/history.csv",
+      "source": "data/daily/2026-11-01.json",
       "unit": "NEAR/day",
       "note": "new NEAR minus NEAR kept by the buybacks wallet; total supply still grows by n1.new_near_per_day",
       "window": "2026-10-02 00:00 UTC to 2026-11-01 00:00 UTC",
@@ -1697,7 +1697,7 @@
     "n1.new_near_per_day": {
       "value": "88392.087",
       "text": "88,392",
-      "source": "data/history.csv",
+      "source": "data/daily/2026-11-01.json",
       "unit": "NEAR/day",
       "window": "2026-10-02 00:00 UTC to 2026-11-01 00:00 UTC",
       "blocks": "218126921-222491356"

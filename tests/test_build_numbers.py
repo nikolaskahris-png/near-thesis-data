@@ -34,6 +34,7 @@ def fake_repo(tmp, fees_end_block=B1, treasury_end=B1, stakers_block=B1):
     (data / "history.csv").write_text(
         cols + f"\n{END},{START},{B0},{B1},x,1,2,88392.087,0,0,9569.750,0,0,4984.673,"
         "0.108265,0.164658,,,,\n", encoding="utf-8")
+    write(data / "daily" / f"{END}.json", {"date": END, "stub": True})
     fw = {"block_start": B0, "block_end": fees_end_block, "new_near_per_day": "88392.087",
           "counted_days": 29, "excluded": {"2026-10-31": "fees_below_20pct_of_median"},
           "max_coverage": "0.455287", "equilibrium_price_usd": "2.2382",
@@ -84,6 +85,16 @@ def fake_repo(tmp, fees_end_block=B1, treasury_end=B1, stakers_block=B1):
     return data, window
 
 
+ROW = {"date": END, "window_start": START, "block_start": B0, "block_end": B1,
+       "new_supply_per_day": "88392.087", "buybacks_per_day": "9569.750",
+       "fefunds_per_day": "4984.673", "coverage_buybacks": "0.108265",
+       "coverage_with_fe": "0.164658"}
+
+
+def fake_row(day_doc, data_root):
+    return dict(ROW), []
+
+
 def fake_stats(path, data_root):
     block = json.loads(Path(path).read_text())["stub"]
     return ({"date": Path(path).stem, "block": block, "stakers_active": 112,
@@ -116,7 +127,8 @@ class FormatTest(unittest.TestCase):
 class BuildTest(unittest.TestCase):
     def test_builds_same_window_and_marks_provisional(self):
         with tempfile.TemporaryDirectory() as tmp, \
-                mock.patch.object(bn.stakers, "compute", fake_stats):
+                mock.patch.object(bn.stakers, "compute", fake_stats), \
+                    mock.patch.object(bn.daily, "build_row", fake_row):
             data, window = fake_repo(tmp)
             doc, problems = bn.build(data, window)
             self.assertEqual(problems, [])
@@ -162,12 +174,16 @@ class BuildTest(unittest.TestCase):
             (data / "farm_rate.json").unlink()
             self.assertFalse(doc["complete"])
             self.assertIn("n2.max_coverage", doc["provisional_or_pending"])
-            self.assertIn("history.csv", " ".join(doc["sources"]))
+            self.assertIn(f"data/daily/{END}.json", doc["sources"])
+            self.assertNotIn("data/history.csv", doc["sources"])
 
             out = data / bn.OUT_NAME
             out.write_text(json.dumps(doc), encoding="utf-8")
             self.assertEqual(bn.verify(out, run_scripts=False), [])
-            (data / "history.csv").write_text((data / "history.csv").read_text() + "\n")
+            # a new day in history.csv (the daily Action) must not break the check
+            (data / "history.csv").write_text((data / "history.csv").read_text() + "x\n")
+            self.assertEqual(bn.verify(out, run_scripts=False), [])
+            (data / "daily" / f"{END}.json").write_text("{}")
             self.assertTrue(any("source changed" in p for p in bn.verify(out, run_scripts=False)))
 
     def test_hsp029_and_voters_after_the_vote(self):
@@ -188,7 +204,8 @@ class BuildTest(unittest.TestCase):
         for block, trial, ok in ((222600000, False, True), (222599999, False, False),
                                  (222600000, True, False)):
             with tempfile.TemporaryDirectory() as tmp, \
-                    mock.patch.object(bn.stakers, "compute", fake_stats):
+                    mock.patch.object(bn.stakers, "compute", fake_stats), \
+                    mock.patch.object(bn.daily, "build_row", fake_row):
                 data, window = fake_repo(tmp)
                 write(data / "hsp029.json", hc)
                 write(data / "hsp029_voters.json", {"block": block, "trial": trial,
@@ -206,7 +223,8 @@ class BuildTest(unittest.TestCase):
         for kwargs in ({"fees_end_block": B1 + 1}, {"treasury_end": B1 - 7},
                        {"stakers_block": 1}):
             with tempfile.TemporaryDirectory() as tmp, \
-                    mock.patch.object(bn.stakers, "compute", fake_stats):
+                    mock.patch.object(bn.stakers, "compute", fake_stats), \
+                    mock.patch.object(bn.daily, "build_row", fake_row):
                 data, window = fake_repo(tmp, **kwargs)
                 _, problems = bn.build(data, window)
                 self.assertTrue(problems, kwargs)

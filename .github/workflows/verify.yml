@@ -1,0 +1,29 @@
+# On every push: run the tests and every script's offline check, with no network use
+# by the checks themselves. Nothing is committed. The badge in the README shows the result.
+name: verify
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Tests (no network)
+        run: python -m unittest discover -s tests
+      - name: Every number rebuilds from the committed raw files
+        run: python scripts/build_numbers.py --verify
+      - name: Pre-registration file matches its anchored hash
+        run: |
+          echo "PREREG.md sha256: $(sha256sum PREREG.md | cut -d' ' -f1)" >> "$GITHUB_STEP_SUMMARY"

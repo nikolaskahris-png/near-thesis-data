@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Anchor PREREG.md on NEAR</title>
+<style>
+  :root { --bg:#fff; --fg:#111; --muted:#555; --line:#ddd; --ok:#0a7a33; --bad:#b00020; }
+  @media (prefers-color-scheme: dark) { :root { --bg:#111; --fg:#eee; --muted:#aaa; --line:#333; --ok:#4cc27a; --bad:#ff6b81; } }
+  body { background:var(--bg); color:var(--fg); font:16px/1.5 system-ui, sans-serif; max-width:760px; margin:0 auto; padding:24px 16px; }
+  code, pre { font-family: ui-monospace, monospace; font-size:14px; word-break:break-all; white-space:pre-wrap; }
+  pre { border:1px solid var(--line); padding:12px; border-radius:6px; }
+  button { font-size:16px; padding:10px 16px; margin:6px 8px 6px 0; cursor:pointer; }
+  button:disabled { opacity:.5; cursor:not-allowed; }
+  .ok { color:var(--ok); } .bad { color:var(--bad); } .muted { color:var(--muted); }
+</style>
+</head>
+<body>
+<h1>Anchor PREREG.md on NEAR mainnet</h1>
+<p class="muted">Writes the SHA-256 of <code>PREREG.md</code> to SocialDB (<code>social.near</code>), signed by
+<code>samerice7976.near</code> in its own wallet. Nothing is signed without the wallet's approval screen.
+Attached deposit: 0.05 NEAR (SocialDB storage; it stays as the account's storage balance).</p>
+
+<h2>1. The file</h2>
+<pre id="file">Reading PREREG.md from GitHub…</pre>
+
+<h2>2. The record</h2>
+<pre id="record">—</pre>
+
+<h2>3. Sign</h2>
+<button id="connect" disabled>Connect Meteor</button>
+<button id="send" disabled>Write the record</button>
+<button id="out" disabled>Disconnect</button>
+<pre id="log">—</pre>
+
+<script type="module">
+const REPO = "nikolaskahris-png/near-thesis-data";
+const EXPECTED_SHA256 = "d3f48ed9172b1785b4dcf290b84e9a06c870b8b9b5481c6d40e51a4605b1d494";
+const SIGNER = "samerice7976.near";
+const KEY = "1";
+const DEPOSIT = "50000000000000000000000";   // 0.05 NEAR
+const GAS = "100000000000000";               // 100 Tgas
+
+const $ = (id) => document.getElementById(id);
+const log = (msg, cls) => { $("log").textContent = msg; $("log").className = cls || ""; };
+let record = null, selector = null, wallet = null;
+
+async function readFile() {
+  const commits = await fetch(`https://api.github.com/repos/${REPO}/commits?path=PREREG.md&per_page=1`).then(r => r.json());
+  const commit = commits[0].sha;
+  const bytes = new Uint8Array(await fetch(`https://raw.githubusercontent.com/${REPO}/${commit}/PREREG.md`).then(r => r.arrayBuffer()));
+  const digest = [...new Uint8Array(await crypto.subtle.digest("SHA-256", bytes))].map(b => b.toString(16).padStart(2, "0")).join("");
+  const match = digest === EXPECTED_SHA256;
+  $("file").innerHTML = `commit  ${commit}\nbytes   ${bytes.length}\nsha256  ${digest}\nfrozen  ${EXPECTED_SHA256}\n` +
+    (match ? `<span class="ok">match</span>` : `<span class="bad">DOES NOT MATCH: nothing will be written</span>`);
+  if (!match) return;
+  record = { file: "PREREG.md", bytes: String(bytes.length), commit, sha256: digest,
+             project: "near-thesis-data (NEAR HACKATHON 2026, Investment Thesis)" };
+  $("record").textContent = JSON.stringify({ data: { [SIGNER]: { thesis: { prereg: { [KEY]: record } } } } }, null, 2);
+  $("connect").disabled = false;
+}
+
+async function setup() {
+  const { setupWalletSelector } = await import("https://esm.sh/@near-wallet-selector/core@10.1.4");
+  const { setupMeteorWallet } = await import("https://esm.sh/@near-wallet-selector/meteor-wallet@10.1.4");
+  selector = await setupWalletSelector({ network: "mainnet", modules: [setupMeteorWallet()] });
+  wallet = await selector.wallet("meteor-wallet");
+}
+
+async function account() {
+  const accounts = await wallet.getAccounts();
+  return accounts.length ? accounts[0].accountId : null;
+}
+
+$("connect").onclick = async () => {
+  try {
+    if (!wallet) await setup();
+    let id = await account();
+    if (!id) { await wallet.signIn({ contractId: "social.near", methodNames: ["set"] }); id = await account(); }
+    if (id !== SIGNER) { log(`Connected as ${id}. Only ${SIGNER} may sign this record. Disconnect and use that account.`, "bad"); $("out").disabled = false; return; }
+    log(`Connected as ${id}.`, "ok"); $("send").disabled = false; $("out").disabled = false;
+  } catch (e) { log("Connect failed: " + (e && e.message || e), "bad"); }
+};
+
+$("send").onclick = async () => {
+  try {
+    if ((await account()) !== SIGNER) { log(`Not ${SIGNER}: refused.`, "bad"); return; }
+    $("send").disabled = true; log("Waiting for the wallet…");
+    const res = await wallet.signAndSendTransaction({
+      receiverId: "social.near",
+      actions: [{ type: "FunctionCall", params: { methodName: "set",
+        args: { data: { [SIGNER]: { thesis: { prereg: { [KEY]: record } } } } }, gas: GAS, deposit: DEPOSIT } }]
+    });
+    const hash = res && res.transaction && res.transaction.hash || JSON.stringify(res).slice(0, 200);
+    const ok = res && res.status && ("SuccessValue" in res.status);
+    log((ok ? "Written. " : "Sent; check the status. ") + `Transaction: ${hash}\nhttps://nearblocks.io/txns/${hash}`, ok ? "ok" : "");
+  } catch (e) { log("Not written: " + (e && e.message || e), "bad"); $("send").disabled = false; }
+};
+
+$("out").onclick = async () => { try { await wallet.signOut(); } catch (e) {} log("Disconnected."); $("send").disabled = true; };
+
+readFile().catch(e => $("file").innerHTML = `<span class="bad">Could not read PREREG.md: ${e.message}</span>`);
+</script>
+</body>
+</html>

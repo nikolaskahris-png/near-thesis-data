@@ -19,7 +19,6 @@ Usage:
     python scripts/build_numbers.py --render README.md
 """
 import argparse
-import csv
 import hashlib
 import json
 import re
@@ -29,6 +28,7 @@ from decimal import ROUND_HALF_UP, Decimal
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+import daily  # noqa: E402
 import lock_window as lw  # noqa: E402
 import stakers  # noqa: E402
 
@@ -89,12 +89,18 @@ class Numbers:
         self.items[key] = item
 
 
-def history_row(data_dir, date):
-    with open(data_dir / "history.csv", newline="", encoding="utf-8") as fh:
-        rows = [r for r in csv.DictReader(fh) if r["date"] == date]
-    if not rows:
-        raise SystemExit(f"history.csv has no row for {date}: run daily.py for that date.")
-    return rows[-1]
+def day_row(data_dir, date):
+    """Number 1 for one date, recomputed from its own day file (data/daily/D.json).
+
+    The day file never changes once written; history.csv grows every day, so it is not
+    used as a source here (its sha256 would change with each new row).
+    Returns (path of the day file, row, problems)."""
+    path = data_dir / "daily" / f"{date}.json"
+    if not path.exists():
+        raise SystemExit(f"No day file for {date}: run daily.py --date {date}.")
+    row, problems = daily.build_row(json.loads(path.read_text(encoding="utf-8")),
+                                    data_dir.resolve())
+    return path, row, problems
 
 
 def build(data_dir, window_file):
@@ -115,8 +121,11 @@ def build(data_dir, window_file):
               "blocks": f"{first_b['height']}-{last_b['height']}"}
 
     # ---- number 1: coverage by the revenue wallets (daily.py, same window)
-    row = history_row(data_dir, end_date)
-    hsrc = n.source(data_dir / "history.csv")
+    dpath, row, dp = day_row(data_dir, end_date)
+    problems += [f"daily {end_date}: {x}" for x in dp]
+    if not row:
+        return None, problems
+    hsrc = n.source(dpath)
     same("number 1 window start", row["window_start"], start_date)
     same("number 1 start block", row["block_start"], first_b["height"])
     same("number 1 end block", row["block_end"], last_b["height"])
