@@ -14,7 +14,8 @@ Three predictions, judged on 16 November 2026, are in [`PREREG.md`](PREREG.md). 
 NEAR mainnet before judging: its SHA-256 is stored in SocialDB (`social.near`) under the key
 `samerice7976.near/thesis/prereg/1`, written by transaction
 [`8fZ8VTUyM1UjnybqPd1QCQi4c3y75dDRGR5TjkNGgnPL`](https://nearblocks.io/txns/8fZ8VTUyM1UjnybqPd1QCQi4c3y75dDRGR5TjkNGgnPL)
-from `samerice7976.near`. `PREREG.md` has not changed since.
+from `samerice7976.near`. The transaction was included in block 222,606,824 (2026-11-01 18:30:38 UTC)
+and executed by `social.near` in block 222,606,825 (18:30:39 UTC). `PREREG.md` has not changed since.
 
 Anchored SHA-256: `d3f48ed9172b1785b4dcf290b84e9a06c870b8b9b5481c6d40e51a4605b1d494`
 
