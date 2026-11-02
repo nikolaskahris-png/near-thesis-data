@@ -367,6 +367,9 @@ def build(root, files, window):
             "validators_to_reach_two_thirds": stake_needed(stakes, 2, 3, False),
             "validators_to_exceed_one_third": stake_needed(stakes, 1, 3, True),
             "largest_validator_share": ratio(max(stakes), sum(stakes)),
+            "total_stake_near": ratio(sum(stakes), YOCTO, 3),
+            "total_supply_near": ratio(int(last_b["total_supply_yocto"]), YOCTO, 3),
+            "staked_share_of_supply": ratio(sum(stakes), int(last_b["total_supply_yocto"])),
             "epoch_start_height": vals.get("epoch_start_height"),
         },
         "protocol_treasury": {

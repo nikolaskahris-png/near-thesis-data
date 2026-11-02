@@ -26,7 +26,8 @@ def fake_repo(tmp, fees_end_block=B1, treasury_end=B1, stakers_block=B1):
     data = root / "data"
     window = data / f"window_{START}_{END}.json"
     write(window, {"window": {"start": START, "end": END},
-                   "boundaries": [{"height": B0}, {"height": B1}]})
+                   "boundaries": [{"height": B0, "total_supply_yocto": str(1_307_821_213 * 10 ** 24)},
+                                  {"height": B1, "total_supply_yocto": str(1_310_472_976 * 10 ** 24)}]})
     cols = ("date,window_start,block_start,block_end,block_end_utc,total_supply_start,"
             "total_supply_end,new_supply_per_day,buybacks_start,buybacks_end,buybacks_per_day,"
             "fefunds_start,fefunds_end,fefunds_per_day,coverage_buybacks,coverage_with_fe,"
@@ -146,6 +147,9 @@ class BuildTest(unittest.TestCase):
             self.assertEqual(n["iv.wallets_multiple_with_front_end"]["text"], "×6.1")
             self.assertEqual(n["iv.fees_multiple"]["text"], "×2.2")
             self.assertEqual(n["iv.fees_multiple"]["status"], "provisional")
+            # revenue at which today's revenue buys as many NEAR as are issued
+            self.assertEqual(n["iv.revenue_equilibrium_price_usd"]["status"], "provisional")
+            self.assertIn("iv.issuance_rate_per_year", n)
             self.assertNotIn("status", n["iv.wallets_multiple_buybacks"])
             # finding 7
             self.assertEqual(n["f7.locks_active"]["text"], "43")

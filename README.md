@@ -8,18 +8,21 @@ few signers or by a company off-chain, not by code. Issuance, on the other side 
 
 **In short**
 
-- **Measured.** Users pay <!--n:n2.fees_usd_per_day-->$197,837<!--/n--> a day in fees. The NEAR that the buybacks
+- **Verdict.** Hold NEAR staked, not for the fees it captures: supply grows
+  <!--n:iv.issuance_rate_per_year-->2.46%<!--/n--> a year, staking pays about
+  <!--n:iv.staking_yield_gross-->4.9%<!--/n--> before commissions, and the buybacks offset
+  <!--n:iv.buybacks_offset_points_per_year-->0.27<!--/n--> of those points. The view turns positive only on the
+  conditions in the [Investment view](#investment-view).
+- **Measured.** Users pay <!--n:n2.fees_usd_per_day-->$197,837<!--/n--> a day in fees (DefiLlama, *provisional*). The NEAR that the buybacks
   wallets keep equals <!--n:n1.coverage_buybacks-->10.8%<!--/n--> of the NEAR issued in the same days
   (<!--n:n1.coverage_with_front_end-->16.5%<!--/n--> with the front-end fund).
-- **Ceiling.** If NEAR kept every fee, coverage would be <!--n:n2.max_coverage-->45.5%<!--/n-->. Covering all of
+- **Ceiling.** If NEAR kept every fee, coverage would be <!--n:n2.max_coverage-->45.5%<!--/n--> (*provisional*). Covering all of
   issuance needs what the buybacks wallets keep to grow <!--n:iv.wallets_multiple_buybacks-->×9.2<!--/n-->, or, with
   every fee kept, fees to grow <!--n:iv.fees_multiple-->×2.2<!--/n-->.
 - **Control.** Each link from fee to holder is set by a multisig, a DAO or a company off-chain; nothing
   bought is burned. The [control map](#the-control-map-who-can-change-each-link) shows who signs each link and how
   often they have used it.
-- **View.** Today NEAR is not held for the fees it captures. A long-term position is a bet on three conditions,
-  each measured here with a date to check it ([Investment view](#investment-view)).
-- **Check.** Four offline commands, about two minutes ([Check it in two minutes](#check-it-in-two-minutes)).
+- **Check.** Four offline commands that run in seconds, no network ([Check it in two minutes](#check-it-in-two-minutes)).
   Three predictions are anchored on chain and judged on 16 November 2026 ([Pre-registration](#pre-registration)).
 
 Investment Thesis track, NEAR HACKATHON (1–14 November 2026). Every measured figure below comes from a script in
@@ -37,7 +40,7 @@ Block heights, dates, protocol constants and figures quoted from other projects'
 ## The thesis in one paragraph
 
 Users of NEAR Intents pay <!--n:n2.fees_usd_per_day-->$197,837<!--/n--> a day in fees (all fees recorded by
-DefiLlama). The wallets that keep the bought-back NEAR gain <!--n:n1.buybacks_near_per_day-->9,570<!--/n--> NEAR a
+DefiLlama; like every DefiLlama figure here, *provisional* until its data settles). The wallets that keep the bought-back NEAR gain <!--n:n1.buybacks_near_per_day-->9,570<!--/n--> NEAR a
 day, against <!--n:n1.new_near_per_day-->88,392<!--/n--> new NEAR a day from issuance: they cover
 **<!--n:n1.coverage_buybacks-->10.8%<!--/n-->** of issuance, or **<!--n:n1.coverage_with_front_end-->16.5%<!--/n-->**
 if the fund of the near-intents.org front end is counted too. Even if NEAR kept every fee DefiLlama records,
@@ -63,9 +66,20 @@ in them is measured.*
 
 **Position.** On today's evidence, fees do not pay a NEAR holder back for issuance: the buybacks absorb
 <!--n:n1.coverage_buybacks-->10.8%<!--/n--> of new NEAR, and they are a choice of a few signers, not a rule. Holding
-NEAR for the long term is a bet that the three conditions below come true, not a claim on today's fees. Most new
-NEAR is paid to validators and the accounts that stake with them, so issuance dilutes mainly NEAR that is not
-staked; the staked share and the staking yield are not measured here yet.
+NEAR for the long term is a bet that the three conditions below come true, not a claim on today's fees.
+
+**Verdict: hold NEAR staked with a validator; do not hold it for fee capture.** At the end block
+<!--n:c.issuance_staked_share-->45.2%<!--/n--> of supply is staked with the current validators
+(<!--n:c.issuance_total_stake_near-->592,027,869<!--/n--> NEAR). What each kind of holder gets:
+
+| Holder | NEAR received | What changes |
+|---|---|---|
+| Not staked | none | owns a smaller share as supply grows <!--n:iv.issuance_rate_per_year-->2.46%<!--/n--> a year; the buybacks offset <!--n:iv.buybacks_offset_points_per_year-->0.27<!--/n--> points of it |
+| Staked with a validator | about <!--n:iv.staking_yield_gross-->4.9%<!--/n--> a year, before the validator's commission | keeps pace with issuance |
+| Staked in the NEAR AI farm | none: `nearai.pool.near` keeps <!--n:c.nearai_pool_reward_fee-->100%<!--/n--> of rewards | <!--n:f6.units_per_near_year-->0.24<!--/n--> reward units per NEAR a year, <!--n:f6.usd_per_reward_unit-->$1.00<!--/n--> of credits each (off-chain setting) |
+
+The staking yield is new NEAR per year not kept by `treasury.near`, divided by the validators' stake; validator
+commissions and downtime lower it.
 
 | Condition | Today | Turns positive when | How far | Measured by |
 |---|---|---|---|---|
@@ -73,9 +87,16 @@ staked; the staked share and the staking yield are not measured here yet.
 | **(b)** A rule, not a choice | bought NEAR held by a <!--n:c.buybacks_confirmations-->2 of 4<!--/n--> multisig, nothing burned | bought NEAR moves by a published rule to an account no one can spend from, or the protocol fee on `intents.near` is routed there | no rule yet ([Path to rules](#path-to-rules)) | `scripts/control_map.py` |
 | **(c)** Stake spread | the largest account holds <!--n:n3.largest_share-->73.3%<!--/n--> of the NEAR AI farm | the largest account holds less than half | prediction 1 expects at least 70% on 16 November | `scripts/stakers.py` |
 
+**Weight of each condition.** (a) and (b) decide value. (c) is small: the farm holds
+<!--n:iv.farm_share_of_stake-->0.23%<!--/n--> of all stake. It is a signal of whether NEAR AI's demand for stake
+reaches beyond one account, not a lever on supply.
+
 If HSP-029 lowers issuance as proposed (×16/25), (a) needs growth of <!--n:iv.hsp029_wallets_multiple_with_front_end-->×3.9<!--/n-->
 with the front-end fund, or fees <!--n:iv.hsp029_fees_multiple-->×1.4<!--/n--> with all of them kept. (c) does not
-offset (a), for the reason given in [the thesis paragraph](#the-thesis-in-one-paragraph).
+offset (a), for the reason given in [the thesis paragraph](#the-thesis-in-one-paragraph). At today's DefiLlama
+revenue (front-end fund included), the price at which revenue buys as many NEAR as are issued is
+<!--n:iv.revenue_equilibrium_price_usd-->$0.81<!--/n--> (*provisional*); with every fee kept it is
+<!--n:n2.equilibrium_price_usd-->$2.24<!--/n-->.
 
 **What would make it worse:** the buybacks wallets pay NEAR out (number 1 falls while DefiLlama revenue does not),
 or monthly coverage drops back to its April level (<!--n:f1.coverage_buybacks.2026-04-->5.3%<!--/n-->).
@@ -141,7 +162,7 @@ flowchart TD
   F --> E["Front-end fund<br/>transfers <!--n:c.front_end_transfer-->2 of 5<!--/n--> · rules <!--n:c.front_end_rules-->1 of 5<!--/n-->"]
   B --> H["NEAR holders<br/>coverage <!--n:n1.coverage_buybacks-->10.8%<!--/n--> of issuance<br/>(<!--n:n1.coverage_with_front_end-->16.5%<!--/n--> if the front-end fund is counted)"]
   I["Issuance: at most <!--n:c.issuance_max_inflation_rate-->1/40<!--/n--> a year<br/>changed by <!--n:c.issuance_upgrade_stake_threshold-->4/5<!--/n--> of stake: at least <!--n:c.issuance_validators_to_pass_upgrade-->44<!--/n--> of <!--n:c.issuance_validators-->381<!--/n--> validators"] --> S["Stakers"]
-  I --> T["treasury.near: <!--n:c.treasury_share_of_new_supply-->10.1%<!--/n--> of new supply<br/>multisig <!--n:c.treasury_confirmations-->2 of 4<!--/n-->"]
+  I --> T["treasury.near: balance grew by <!--n:c.treasury_share_of_new_supply-->10.1%<!--/n--> of new supply<br/>multisig <!--n:c.treasury_confirmations-->2 of 4<!--/n-->"]
   S --> N["nearai.pool.near keeps <!--n:c.nearai_pool_reward_fee-->100%<!--/n--> of rewards<br/>owner DAO <!--n:c.nearai_pool_owner_transfer-->2 of 3<!--/n-->"]
   N -.-> C["NEAR AI credits rate<br/>set by 1 account · changed <!--n:f6.rate_changes-->1<!--/n--> time, <!--n:f6.change1.ratio-->×2.0<!--/n-->"]
   P --- K["intents.near code: v<!--n:c.intents_code_version-->0.4.5<!--/n--><br/>release by DAO <!--n:c.intents_code_add_release-->3 of 5<!--/n--> · installed by <!--n:c.intents_code_updater_accounts-->1<!--/n--> Updater account<br/><!--n:c.intents_code_changes-->20<!--/n--> code changes"]
@@ -155,7 +176,7 @@ flowchart TD
 | Protocol fee (`intents.near` `fee`) | <!--n:c.intents_fee_pips-->1 pip<!--/n--> = <!--n:c.intents_fee_percent-->0.0001%<!--/n--> | `intents.sputnik-dao.near` (role DAO); FeesManager role: <!--n:c.intents_fees_manager_accounts-->0<!--/n--> accounts | <!--n:c.intents_fee_change-->3 of 5<!--/n--> | `set_fee` <!--n:h.set_fee-->3<!--/n-->, `set_fee_collector` <!--n:h.set_fee_collector-->3<!--/n--> (<!--n:h.fee.first-->2024-11-07<!--/n--> → <!--n:h.fee.last-->2025-10-02<!--/n-->) |
 | Buybacks wallet (`buybacks.multisignature.near`) | holds the bought NEAR; nothing is burned | its multisig members (<!--n:c.buybacks_full_access_keys-->0<!--/n--> full-access keys) | <!--n:c.buybacks_confirmations-->2 of 4<!--/n--> | keys unchanged since <!--n:h.keys.buybacks.last_change-->2026-03-18<!--/n--> |
 | 1Click fund (`1csfundsadmin.sputnik-dao.near`) | counted with the buybacks wallet in number 1 | DAO: transfers / its own rules | <!--n:c.wallet_1cs_transfer-->2 of 4<!--/n--> / <!--n:c.wallet_1cs_rules-->2 of 4<!--/n--> | — |
-| Front-end fund (`fefundsadmin.sputnik-dao.near`) | <!--n:f9.front_end_share_of_wallets-->34.2%<!--/n--> of what the three wallets kept | DAO: transfers / its own rules, upgrades and members | <!--n:c.front_end_transfer-->2 of 5<!--/n--> / <!--n:c.front_end_rules-->1 of 5<!--/n--> | — |
+| Front-end fund (`fefundsadmin.sputnik-dao.near`) | <!--n:f9.front_end_share_of_wallets-->34.2%<!--/n--> of what the three wallets kept | DAO: transfers / its own rules, upgrades and members. One Admin can change the rules alone, so one key can also move the funds, in two steps | <!--n:c.front_end_transfer-->2 of 5<!--/n--> / <!--n:c.front_end_rules-->1 of 5<!--/n--> | — |
 | Issuance (`max_inflation_rate`) | <!--n:c.issuance_max_inflation_rate-->1/40<!--/n--> a year | a new nearcore release, run by validators with <!--n:c.issuance_upgrade_stake_threshold-->4/5<!--/n--> of stake | at least <!--n:c.issuance_validators_to_pass_upgrade-->44<!--/n--> of <!--n:c.issuance_validators-->381<!--/n--> validators (the largest); the <!--n:c.issuance_validators_to_block_upgrade-->5<!--/n--> largest can block; largest holds <!--n:c.issuance_largest_validator_share-->5.6%<!--/n--> | see HSP-027 below |
 | Protocol treasury (`treasury.near`) | its balance grew by <!--n:c.treasury_share_of_new_supply-->10.1%<!--/n--> of new supply (<!--n:c.treasury_near_received-->268,973<!--/n--> NEAR in the window) | its multisig members | <!--n:c.treasury_confirmations-->2 of 4<!--/n--> | keys last changed <!--n:h.keys.treasury.last_change-->2025-09-05<!--/n--> |
 | House of Stake voting (`vote.dao`) | decides what reaches a vote | owner `hos-root.sputnik-dao.near`; <!--n:c.hsp_reviewers-->5<!--/n--> reviewers choose what is put to a vote | <!--n:c.hsp_owner_rules-->3 of 5<!--/n--> | reviewers, council or guardians changed <!--n:h.voting.approved_actions-->5<!--/n--> times (<!--n:h.voting.first-->2026-02-09<!--/n--> → <!--n:h.voting.last-->2026-07-22<!--/n-->) |
@@ -233,7 +254,11 @@ not measured. *From 1 January to 1 November 2026:* the owner's NEAR
 | Active accounts | <!--n:f5.stakers_active.2026-08-01-->16<!--/n--> | <!--n:f5.stakers_active.2026-08-15-->46<!--/n--> | <!--n:f5.stakers_active.2026-09-01-->51<!--/n--> | <!--n:f5.stakers_active.2026-09-15-->73<!--/n--> | <!--n:f5.stakers_active.2026-10-01-->88<!--/n--> | <!--n:f5.stakers_active.2026-10-15-->99<!--/n--> | <!--n:f5.stakers_active.2026-11-01-->112<!--/n--> |
 | Largest account's share | <!--n:f5.largest_share.2026-08-01-->36.2%<!--/n--> | <!--n:f5.largest_share.2026-08-15-->76.9%<!--/n--> | <!--n:f5.largest_share.2026-09-01-->76.1%<!--/n--> | <!--n:f5.largest_share.2026-09-15-->75.7%<!--/n--> | <!--n:f5.largest_share.2026-10-01-->74.1%<!--/n--> | <!--n:f5.largest_share.2026-10-15-->58.9%<!--/n--> | <!--n:f5.largest_share.2026-11-01-->73.3%<!--/n--> |
 
-On 1 August the largest account was a different one; the 1,000,000 NEAR position entered later. Outside the top
+On 1 August the largest account was a different one. The account that is largest on 1 November has been the
+largest since <!--n:f5.largest_same_account_since-->2026-08-15<!--/n-->: it held
+<!--n:f5.largest_near.2026-10-15-->500,000<!--/n--> NEAR on 15 October and
+<!--n:f5.largest_near.2026-11-01-->1,000,000<!--/n--> on 1 November; its lower share on 15 October came from other
+accounts' new stake. Outside the top
 10 on 1 November: <!--n:n3.outside_top10_accounts-->102<!--/n--> accounts with <!--n:n3.outside_top10_near-->48,611<!--/n-->
 NEAR in all, median <!--n:n3.outside_top10_median_near-->60<!--/n--> NEAR.
 
@@ -352,8 +377,11 @@ record inside the transaction's own arguments. It also checks the signer and tha
   `data/stakers/`) with only the fields the computation reads and people as tags (`scripts/privacy.py`). Every
   number is computed from these copies, so the offline check recomputes all of them; with the originals present
   it also checks that they give the same copies, byte for byte. `--archival` re-fetches the originals.
-- **No names.** In public files an account of a person appears only as a tag: `sha256:` and the first 16 hex
-  characters of the SHA-256 of its account ID, so anyone can check a known account by hashing it. One exception:
+- **No names.** In the current files an account of a person appears only as a tag: `sha256:` and the first 16
+  hex characters of the SHA-256 of its account ID, so anyone can check a known account by hashing it. Tags are
+  pseudonyms, not anonymity: the same accounts are public on chain and on NearBlocks. Until commit `7851eb5`
+  (2 November 2026) the raw `stake.dao` responses, with account IDs, were in the repository; they remain in its
+  git history. One exception:
   `PREREG.md` names the implicit account of the largest farm position, which prediction 1 needs. DAOs, contracts
   and validator pools are named by their account.
 
@@ -410,7 +438,7 @@ python scripts/treasury_flows.py --verify --archival
 | Fees, revenue | DefiLlama's figures for NEAR Intents: what users pay, and the part DefiLlama counts as NEAR's |
 | Take rate | revenue ÷ fees |
 | bps, pip | 1 bps = 0.01%; 1 pip = 0.0001% (the unit of the `intents.near` fee) |
-| k of n | k signatures out of n members are needed to act |
+| k of n | k signatures out of n members are needed to act; for the two multisigs, n counts member keys |
 | Farm | NEAR staked through `stake.dao` into the NEAR AI pool, paid in reward units |
 | Reward unit | what the farm pays; NEAR AI Cloud turns it into credits off-chain |
 | Locks | NEAR AI Agents subscriptions on the same contract, not counted in the farm |

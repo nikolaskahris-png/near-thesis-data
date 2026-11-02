@@ -289,6 +289,7 @@ def build(data_dir, window_file):
               unit="USD of credits per day, largest farm position", **oc)
 
     # ---- finding 5: concentration over time (every saved stakers snapshot)
+    largest_by_date = []
     for path in sorted((data_dir / "stakers").glob("20*.json")):
         st, p = stakers.compute(path, data_dir.resolve())
         problems += [f"stakers {path.name}: {x}" for x in p]
@@ -298,6 +299,10 @@ def build(data_dir, window_file):
         d = st["date"]
         n.add(f"f5.largest_share.{d}", st["largest_share"], f_pct(st["largest_share"]), src,
               unit="share of farm", block=st["block"])
+        if "largest_near" in st and "largest_account" in st:
+            n.add(f"f5.largest_near.{d}", st["largest_near"], f_int(st["largest_near"]), src,
+                  unit="NEAR", block=st["block"])
+            largest_by_date.append((d, st["largest_account"], src))
         n.add(f"f5.stakers_active.{d}", st["stakers_active"], f_int(st["stakers_active"]), src,
               unit="accounts", block=st["block"])
         if st.get("farm_units_per_near_year"):
@@ -305,6 +310,16 @@ def build(data_dir, window_file):
                   f_num(st["farm_units_per_near_year"], 2), src,
                   unit="reward units per staked NEAR per year", block=st["block"])
 
+    if largest_by_date:
+        end_tag = largest_by_date[-1][1]
+        since = largest_by_date[-1][0]
+        for d, t, _ in reversed(largest_by_date):
+            if t != end_tag:
+                break
+            since = d
+        n.add("f5.largest_same_account_since", since, since, largest_by_date[-1][2],
+              note="first snapshot date from which the largest farm account is the same tag as "
+                   "at the end block")
     # ---- finding 1: monthly coverage by the wallets (coverage.py)
     cov_path = data_dir / "coverage_monthly.json"
     cov = json.loads(cov_path.read_text(encoding="utf-8"))
@@ -451,6 +466,13 @@ def build(data_dir, window_file):
             add_int(f"c.issuance_{key}", i[field], "validators")
         n.add("c.issuance_largest_validator_share", i["largest_validator_share"],
               f_pct(i["largest_validator_share"]), csrc, unit="share of stake", **cc)
+        if "total_stake_near" in i:
+            n.add("c.issuance_total_stake_near", i["total_stake_near"], f_int(i["total_stake_near"]),
+                  csrc, unit="NEAR", note="stake of the current validators of the end block's "
+                  "epoch", **cc)
+            n.add("c.issuance_staked_share", i["staked_share_of_supply"],
+                  f_pct(i["staked_share_of_supply"]), csrc, unit="share of total supply",
+                  note="c.issuance_total_stake_near / total_supply at the end block", **cc)
         t = L["protocol_treasury"]
         tw = {"window": common["window"], "blocks": common["blocks"]}
         n.add("c.treasury_share_of_new_supply", t["share_of_new_supply"],
@@ -610,6 +632,34 @@ def build(data_dir, window_file):
            "kept every fee")
     derive("iv.hsp029_fees_multiple", 1 / hsp_cov, ["n2.hsp029_max_coverage"],
            "1 / n2.hsp029_max_coverage")
+    new_day = dec(n.items["n1.new_near_per_day"]["value"])
+    supply_end = dec(last_b["total_supply_yocto"]) / dec(10 ** 24)
+    year_rate = new_day * dec("365.25") / supply_end
+    n.add("iv.issuance_rate_per_year", year_rate, f"{rnd(year_rate * 100, 2)}%",
+          n.items["n1.new_near_per_day"]["source"], unit="share of total supply per year",
+          note="n1.new_near_per_day x 365.25 / total_supply at the end block", **common)
+    n.add("iv.buybacks_offset_points_per_year", cov_b * year_rate,
+          f"{rnd(cov_b * year_rate * 100, 2)}", n.items["n1.coverage_buybacks"]["source"],
+          unit="percentage points of supply per year",
+          note="n1.coverage_buybacks x iv.issuance_rate_per_year", **common)
+    rev = dec(n.items["n2.revenue_usd_per_day"]["value"])
+    n.add("iv.revenue_equilibrium_price_usd", rev / new_day, f_usd(rev / new_day, 2),
+          n.items["n2.revenue_usd_per_day"]["source"], unit="USD",
+          note="n2.revenue_usd_per_day / n1.new_near_per_day: the price at which DefiLlama "
+               "revenue buys as many NEAR as are issued", status="provisional",
+          window=common["window"], blocks=common["blocks"])
+    if "c.issuance_total_stake_near" in n.items:
+        stake = dec(n.items["c.issuance_total_stake_near"]["value"])
+        to_val = 1 - dec(n.items["c.treasury_share_of_new_supply"]["value"])
+        y = new_day * dec("365.25") * to_val / stake
+        n.add("iv.staking_yield_gross", y, f_pct(y), n.items["c.issuance_total_stake_near"]["source"],
+              unit="share of stake per year",
+              note="new NEAR per year not kept by treasury.near / stake of the current "
+                   "validators; before validator commissions and downtime")
+        farm = dec(n.items["n3.farm_total_near"]["value"])
+        n.add("iv.farm_share_of_stake", farm / stake, f_pct(farm / stake, 2),
+              n.items["n3.farm_total_near"]["source"], unit="share of stake",
+              note="n3.farm_total_near / c.issuance_total_stake_near (same end block)")
     derive("iv.hsp029_wallets_multiple_with_front_end", (1 / cov_fe) * (max_cov / hsp_cov),
            ["n1.coverage_with_front_end", "n2.max_coverage", "n2.hsp029_max_coverage"],
            "(1 / n1.coverage_with_front_end) x issuance ratio of the HSP-029 scenario "
@@ -702,6 +752,8 @@ REQUIRED_IN_README = [
     "iv.wallets_multiple_buybacks", "iv.wallets_multiple_with_front_end", "iv.fees_multiple",
     "c.buybacks_confirmations", "c.treasury_share_of_new_supply", "c.nearai_pool_reward_fee",
     "f6.change1.ratio", "f9.front_end_share_of_wallets",
+    "iv.issuance_rate_per_year", "iv.staking_yield_gross", "c.issuance_staked_share",
+    "iv.revenue_equilibrium_price_usd",
 ]
 
 

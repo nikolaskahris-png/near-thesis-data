@@ -80,6 +80,7 @@
     "iv.fees_multiple",
     "iv.hsp029_fees_multiple",
     "iv.hsp029_wallets_multiple_with_front_end",
+    "iv.revenue_equilibrium_price_usd",
     "n2.defillama_revenue_coverage",
     "n2.equilibrium_price_usd",
     "n2.fees_bps",
@@ -95,7 +96,7 @@
   ],
   "sources": {
     "data/control_history.json": "7cab767c832b77a597a18d90dc1d0b5b2113e76b050624456522585a9fcc9190",
-    "data/control_map.json": "b3d87bfa97ba29917a10daeb169c2721135649e7ac61dfc59aab60f3a4fc3bf0",
+    "data/control_map.json": "6f557db6c579e595008df0bccd143aae331392135492518fe26071ba7c66758c",
     "data/coverage_monthly.json": "74c24cad7c5a975e989fb70a62b157caef271901f16b9dfe9f708b3e98f8e9e9",
     "data/daily/2026-11-01.json": "175ddea59ee744ae15112e72eee4a4023546ac3b80e85f44de604ef8c7fbd8d8",
     "data/farm_rate.json": "9506223b29241924653bb78af227f7387a66d00dd4671f86d5e882b0cfb6b002",
@@ -277,6 +278,24 @@
       "value": "1/40",
       "text": "1/40",
       "source": "data/control_map.json",
+      "block": 222491356,
+      "as_of": "2026-11-01T00:00:00Z"
+    },
+    "c.issuance_staked_share": {
+      "value": "0.451767",
+      "text": "45.2%",
+      "source": "data/control_map.json",
+      "unit": "share of total supply",
+      "note": "c.issuance_total_stake_near / total_supply at the end block",
+      "block": 222491356,
+      "as_of": "2026-11-01T00:00:00Z"
+    },
+    "c.issuance_total_stake_near": {
+      "value": "592027869.065",
+      "text": "592,027,869",
+      "source": "data/control_map.json",
+      "unit": "NEAR",
+      "note": "stake of the current validators of the end block's epoch",
       "block": 222491356,
       "as_of": "2026-11-01T00:00:00Z"
     },
@@ -1588,6 +1607,61 @@
       "blocks": "179199136-222491356",
       "window": "2026-01-01T00:00 UTC to 2026-11-01T00:00 UTC"
     },
+    "f5.largest_near.2026-08-01": {
+      "value": "6534.500",
+      "text": "6,535",
+      "source": "data/stakers/2026-08-01.json",
+      "unit": "NEAR",
+      "block": 209393356
+    },
+    "f5.largest_near.2026-08-15": {
+      "value": "500000.000",
+      "text": "500,000",
+      "source": "data/stakers/2026-08-15.json",
+      "unit": "NEAR",
+      "block": 211368454
+    },
+    "f5.largest_near.2026-09-01": {
+      "value": "500000.000",
+      "text": "500,000",
+      "source": "data/stakers/2026-09-01.json",
+      "unit": "NEAR",
+      "block": 213761242
+    },
+    "f5.largest_near.2026-09-15": {
+      "value": "500000.000",
+      "text": "500,000",
+      "source": "data/stakers/2026-09-15.json",
+      "unit": "NEAR",
+      "block": 215706980
+    },
+    "f5.largest_near.2026-10-01": {
+      "value": "500000.000",
+      "text": "500,000",
+      "source": "data/stakers/2026-10-01.json",
+      "unit": "NEAR",
+      "block": 217984974
+    },
+    "f5.largest_near.2026-10-15": {
+      "value": "500000.000",
+      "text": "500,000",
+      "source": "data/stakers/2026-10-15.json",
+      "unit": "NEAR",
+      "block": 220001294
+    },
+    "f5.largest_near.2026-11-01": {
+      "value": "1000000.000",
+      "text": "1,000,000",
+      "source": "data/stakers/2026-11-01.json",
+      "unit": "NEAR",
+      "block": 222491356
+    },
+    "f5.largest_same_account_since": {
+      "value": "2026-08-15",
+      "text": "2026-08-15",
+      "source": "data/stakers/2026-11-01.json",
+      "note": "first snapshot date from which the largest farm account is the same tag as at the end block"
+    },
     "f5.largest_share.2026-08-01": {
       "value": "0.361682",
       "text": "36.2%",
@@ -2509,6 +2583,22 @@
       "as_of": "2026-11-01T00:00:00Z",
       "note": "approved actions in the control map's DAOs; dates are submission dates"
     },
+    "iv.buybacks_offset_points_per_year": {
+      "value": "0.002667249382443417129134389021",
+      "text": "0.27",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "percentage points of supply per year",
+      "note": "n1.coverage_buybacks x iv.issuance_rate_per_year",
+      "window": "2026-10-02 00:00 UTC to 2026-11-01 00:00 UTC",
+      "blocks": "218126921-222491356"
+    },
+    "iv.farm_share_of_stake": {
+      "value": "0.002304532727749350888574963677",
+      "text": "0.23%",
+      "source": "data/stakers/2026-11-01.json",
+      "unit": "share of stake",
+      "note": "n3.farm_total_near / c.issuance_total_stake_near (same end block)"
+    },
     "iv.fees_multiple": {
       "value": "2.196416765688455853121218045",
       "text": "×2.2",
@@ -2549,6 +2639,32 @@
       "window": "2026-10-02 00:00 UTC to 2026-11-01 00:00 UTC",
       "blocks": "218126921-222491356",
       "status": "provisional"
+    },
+    "iv.issuance_rate_per_year": {
+      "value": "0.02463630335236149382657727817",
+      "text": "2.46%",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "share of total supply per year",
+      "note": "n1.new_near_per_day x 365.25 / total_supply at the end block",
+      "window": "2026-10-02 00:00 UTC to 2026-11-01 00:00 UTC",
+      "blocks": "218126921-222491356"
+    },
+    "iv.revenue_equilibrium_price_usd": {
+      "value": "0.8089458279223568960420631317",
+      "text": "$0.81",
+      "source": "data/fees_2026-10-02_2026-11-01.json",
+      "unit": "USD",
+      "note": "n2.revenue_usd_per_day / n1.new_near_per_day: the price at which DefiLlama revenue buys as many NEAR as are issued",
+      "status": "provisional",
+      "window": "2026-10-02 00:00 UTC to 2026-11-01 00:00 UTC",
+      "blocks": "218126921-222491356"
+    },
+    "iv.staking_yield_gross": {
+      "value": "0.04900184247152320162034634200",
+      "text": "4.9%",
+      "source": "data/control_map.json",
+      "unit": "share of stake per year",
+      "note": "new NEAR per year not kept by treasury.near / stake of the current validators; before validator commissions and downtime"
     },
     "iv.wallets_multiple_buybacks": {
       "value": "9.236595390938899921488939177",
