@@ -13,9 +13,10 @@ few signers or by a company off-chain, not by code. Issuance, on the other side 
   <!--n:iv.staking_yield_gross-->4.9%<!--/n--> before commissions, and the buybacks offset
   <!--n:iv.buybacks_offset_points_per_year-->0.27<!--/n--> of those points. The view turns positive only on the
   conditions in the [Investment view](#investment-view).
-- **Measured.** Users pay <!--n:n2.fees_usd_per_day-->$197,837<!--/n--> a day in fees (DefiLlama, *provisional*). The NEAR that the buybacks
-  wallets keep equals <!--n:n1.coverage_buybacks-->10.8%<!--/n--> of the NEAR issued in the same days
-  (<!--n:n1.coverage_with_front_end-->16.5%<!--/n--> with the front-end fund).
+- **Measured.** Users pay <!--n:n2.fees_usd_per_day-->$197,837<!--/n--> a day in fees (DefiLlama, *provisional*). *Coverage*, the NEAR that
+  the buybacks wallets (the two wallets that hold bought-back NEAR) keep ÷ the NEAR issued in the same days, is
+  <!--n:n1.coverage_buybacks-->10.8%<!--/n-->; <!--n:n1.coverage_with_front_end-->16.5%<!--/n--> counting the
+  front-end fund too (the near-intents.org front end's own fees, kept in a separate fund).
 - **Ceiling.** If NEAR kept every fee, coverage would be <!--n:n2.max_coverage-->45.5%<!--/n--> (*provisional*). Covering all of
   issuance needs what the buybacks wallets keep to grow <!--n:iv.wallets_multiple_buybacks-->×9.2<!--/n-->, or, with
   every fee kept, fees to grow <!--n:iv.fees_multiple-->×2.2<!--/n-->.
@@ -37,40 +38,45 @@ Block heights, dates, protocol constants and figures quoted from other projects'
 > 218,126,921 → 222,491,356. Numbers 1 and 3 are final for this window. Number 2 and every DefiLlama-based
 > figure are **provisional** until DefiLlama's data settles (rule in [Method](#method)).
 
-## The thesis in one paragraph
+## The three numbers
 
-Users of NEAR Intents pay <!--n:n2.fees_usd_per_day-->$197,837<!--/n--> a day in fees (all fees recorded by
-DefiLlama; like every DefiLlama figure here, *provisional* until its data settles). The wallets that keep the bought-back NEAR gain <!--n:n1.buybacks_near_per_day-->9,570<!--/n--> NEAR a
-day, against <!--n:n1.new_near_per_day-->88,392<!--/n--> new NEAR a day from issuance: they cover
-**<!--n:n1.coverage_buybacks-->10.8%<!--/n-->** of issuance, or **<!--n:n1.coverage_with_front_end-->16.5%<!--/n-->**
-if the fund of the near-intents.org front end is counted too. Even if NEAR kept every fee DefiLlama records,
-it would cover <!--n:n2.max_coverage-->45.5%<!--/n--> of issuance (each day's fees at that day's price; mean price
-<!--n:n2.mean_price_usd-->$4.90<!--/n-->); above <!--n:n2.equilibrium_price_usd-->$2.24<!--/n--> a NEAR, all fees
-together buy fewer NEAR than are issued. The thesis turns positive only if **(a)** coverage approaches 100%,
-**(b)** buybacks become a binding rule instead of a choice, and **(c)** stake in NEAR AI spreads beyond a few
-accounts (today one account holds <!--n:n3.largest_share-->73.3%<!--/n--> of the farm). (c) does not offset (a):
-buybacks buy NEAR from the market with money from outside (fees), while staking is where issuance itself goes.
+| # | What an investor watches | Value | Window or block | Reproduce (no network) |
+|---|---|---|---|---|
+| 1 | New NEAR supply covered by the buybacks wallets | **<!--n:n1.coverage_buybacks-->10.8%<!--/n-->** (<!--n:n1.buybacks_near_per_day-->9,570<!--/n--> of <!--n:n1.new_near_per_day-->88,392<!--/n--> NEAR a day) · with the front-end fund **<!--n:n1.coverage_with_front_end-->16.5%<!--/n-->** | 2 Oct → 1 Nov 2026, blocks 218,126,921 → 222,491,356 | `python scripts/daily.py --verify` |
+| 2 | The ceiling: all fees recorded by DefiLlama ÷ issuance | **<!--n:n2.max_coverage-->45.5%<!--/n-->** · equilibrium price **<!--n:n2.equilibrium_price_usd-->$2.24<!--/n-->** · *provisional* | same window, complete DefiLlama days only | `python scripts/fees.py --verify data/fees_2026-10-02_2026-11-01.json` |
+| 3 | How widely the NEAR AI farm is spread (NEAR staked through `stake.dao`, paid in credits instead of NEAR) | **<!--n:n3.stakers_active-->112<!--/n-->** active accounts · largest **<!--n:n3.largest_share-->73.3%<!--/n-->** · top 10 <!--n:n3.top10_share-->96.4%<!--/n--> · median outside the top 10 <!--n:n3.outside_top10_median_near-->60<!--/n--> NEAR | block 222,491,356 (1 Nov 2026 00:00 UTC) | `python scripts/stakers.py --verify` |
 
-**Dilution, defined.** The bought NEAR is held, not burned, so total supply grows by
-<!--n:n1.new_near_per_day-->88,392<!--/n--> NEAR a day either way. "Not absorbed"
-(<!--n:n1.new_near_not_absorbed_per_day-->78,822<!--/n--> NEAR a day) means new NEAR that did not end up in the
-buybacks wallets: it is supply outside those wallets, not total supply.
-
-Multisigs and DAOs are a common way to run protocol funds. This repository only measures what a holder relies
-on today, and shows for each link the mechanism NEAR already has to turn it into a rule ([Path to rules](#path-to-rules)).
+- **1.** Balance change of `buybacks.multisignature.near` + `1csfundsadmin.sputnik-dao.near` (the 1Click fund that
+  collected fees until April 2026 and later moved its NEAR to the buybacks wallet; summing the two cancels that
+  internal move) ÷ change of `total_supply` in the two block headers. wNEAR that the buybacks wallet and the
+  front-end fund hold inside `intents.near` counts as held. The front-end fund is `fefundsadmin.sputnik-dao.near`
+  (<!--n:n1.front_end_near_per_day-->4,985<!--/n--> NEAR a day): near-intents.org's fees, collected by the front
+  end's operator. Balances are net: anything paid out is already subtracted.
+- **2.** Mean over counted days of (fees of the day ÷ NEAR price at 12:00 UTC; mean price
+  <!--n:n2.mean_price_usd-->$4.90<!--/n-->) ÷ new NEAR per day. Equilibrium
+  price = fees per day ÷ new NEAR per day. If HSP-029 were in force (issuance × 16/25), the ceiling would be
+  <!--n:n2.hsp029_max_coverage-->71.1%<!--/n--> and the equilibrium price <!--n:n2.hsp029_equilibrium_price_usd-->$3.50<!--/n-->.
+- **3.** Every account that ever called `stake` on `stake.dao` is read with `get_farm_position` at the block:
+  <!--n:n3.stakers_ever-->188<!--/n--> have entered the farm, <!--n:n3.stakers_left-->76<!--/n--> of them
+  (<!--n:n3.left_share_of_ever-->40.4%<!--/n-->) have left. The active positions add up exactly to the farm's
+  `total_farm_shares` (<!--n:n3.farm_total_near-->1,364,348<!--/n--> NEAR); the run fails otherwise.
+  *Why the farm only:* NEAR AI Agents subscriptions are locks on the same contract, but their status does not
+  follow their term: of <!--n:f7.locks_active-->43<!--/n--> locks marked Active, <!--n:f7.locks_active_within_term-->11<!--/n-->
+  are within their term, and <!--n:f7.locks_past_end-->75<!--/n--> of all <!--n:f7.locks-->86<!--/n--> are past their
+  `end_ns`. Counting the farm or an Active lock gives <!--n:n3.farm_or_active_lock_accounts-->145<!--/n--> accounts; the
+  farm or any lock, <!--n:n3.farm_or_any_lock_accounts-->181<!--/n-->. The farm is the definition that adds up exactly;
+  the rule was fixed in `PREREG.md` after measuring all three on 31 October.
 
 ## Investment view
 
 *Dated 2 November 2026. Horizon: 12 months, to November 2027. Thresholds are the author's choice; every figure
 in them is measured.*
 
-**Position.** On today's evidence, fees do not pay a NEAR holder back for issuance: the buybacks absorb
-<!--n:n1.coverage_buybacks-->10.8%<!--/n--> of new NEAR, and they are a choice of a few signers, not a rule. Holding
-NEAR for the long term is a bet that the three conditions below come true, not a claim on today's fees.
-
-**Verdict: hold NEAR staked with a validator; do not hold it for fee capture.** At the end block
-<!--n:c.issuance_staked_share-->45.2%<!--/n--> of supply is staked with the current validators
-(<!--n:c.issuance_total_stake_near-->592,027,869<!--/n--> NEAR). What each kind of holder gets:
+**Verdict: hold NEAR staked with a validator; do not hold it for fee capture.** Today fees do not pay a holder
+back for issuance: the buybacks absorb a small part of new NEAR, and they are a choice of a few signers, not a rule.
+Holding NEAR for the long term is a bet that the three conditions below come
+true, not a claim on today's fees. At the end block <!--n:c.issuance_staked_share-->45.2%<!--/n--> of supply
+(<!--n:c.issuance_total_stake_near-->592,027,869<!--/n--> NEAR) is staked with validators. What each holder gets:
 
 | Holder | NEAR received | What changes |
 |---|---|---|
@@ -87,50 +93,25 @@ commissions and downtime lower it.
 | **(b)** A rule, not a choice | bought NEAR held by a <!--n:c.buybacks_confirmations-->2 of 4<!--/n--> multisig, nothing burned | bought NEAR moves by a published rule to an account no one can spend from, or the protocol fee on `intents.near` is routed there | no rule yet ([Path to rules](#path-to-rules)) | `scripts/control_map.py` |
 | **(c)** Stake spread | the largest account holds <!--n:n3.largest_share-->73.3%<!--/n--> of the NEAR AI farm | the largest account holds less than half | prediction 1 expects at least 70% on 16 November | `scripts/stakers.py` |
 
-**Weight of each condition.** (a) and (b) decide value. (c) is small: the farm holds
-<!--n:iv.farm_share_of_stake-->0.23%<!--/n--> of all stake. It is a signal of whether NEAR AI's demand for stake
-reaches beyond one account, not a lever on supply.
+**Weight of each condition.** (a) and (b) decide value. (c) is a signal, not a lever: the farm holds
+<!--n:iv.farm_share_of_stake-->0.23%<!--/n--> of all stake, and stake cannot offset issuance in any case, because
+stakers are the ones who receive the new NEAR. Buybacks offset it because they pay for NEAR with money from
+outside: the fees users pay.
 
-If HSP-029 lowers issuance as proposed (×16/25), (a) needs growth of <!--n:iv.hsp029_wallets_multiple_with_front_end-->×3.9<!--/n-->
-with the front-end fund, or fees <!--n:iv.hsp029_fees_multiple-->×1.4<!--/n--> with all of them kept. (c) does not
-offset (a), for the reason given in [the thesis paragraph](#the-thesis-in-one-paragraph). At today's DefiLlama
-revenue (front-end fund included), the price at which revenue buys as many NEAR as are issued is
-<!--n:iv.revenue_equilibrium_price_usd-->$0.81<!--/n--> (*provisional*); with every fee kept it is
-<!--n:n2.equilibrium_price_usd-->$2.24<!--/n-->.
+**Break-even prices** (*provisional*). Fees buy as many NEAR a day as are issued when NEAR costs
+<!--n:n2.equilibrium_price_usd-->$2.24<!--/n--> or less, if NEAR kept every fee; with today's revenue only (the part
+DefiLlama counts as NEAR's, front-end fund included), when it costs <!--n:iv.revenue_equilibrium_price_usd-->$0.81<!--/n-->
+or less.
+
+**If HSP-029 is adopted** (issuance ×16/25), what the wallets keep must grow
+<!--n:iv.hsp029_wallets_multiple_with_front_end-->×3.9<!--/n--> (front-end fund included), or, with every fee kept,
+fees <!--n:iv.hsp029_fees_multiple-->×1.4<!--/n-->.
 
 **What would make it worse:** the buybacks wallets pay NEAR out (number 1 falls while DefiLlama revenue does not),
 or monthly coverage drops back to its April level (<!--n:f1.coverage_buybacks.2026-04-->5.3%<!--/n-->).
 
 **When to check:** 16 November 2026 (the three predictions); every month from `data/history.csv`; in full in
 November 2027. DefiLlama-based multiples (fees ×) are *provisional* like number 2.
-
-## The three numbers
-
-| # | What an investor watches | Value | Window or block | Reproduce (no network) |
-|---|---|---|---|---|
-| 1 | New NEAR supply covered by the buybacks wallets | **<!--n:n1.coverage_buybacks-->10.8%<!--/n-->** (<!--n:n1.buybacks_near_per_day-->9,570<!--/n--> of <!--n:n1.new_near_per_day-->88,392<!--/n--> NEAR a day) · with the front-end fund **<!--n:n1.coverage_with_front_end-->16.5%<!--/n-->** | 2 Oct → 1 Nov 2026, blocks 218,126,921 → 222,491,356 | `python scripts/daily.py --verify` |
-| 2 | The ceiling: all fees recorded by DefiLlama ÷ issuance | **<!--n:n2.max_coverage-->45.5%<!--/n-->** · equilibrium price **<!--n:n2.equilibrium_price_usd-->$2.24<!--/n-->** · *provisional* | same window, complete DefiLlama days only | `python scripts/fees.py --verify data/fees_2026-10-02_2026-11-01.json` |
-| 3 | How widely NEAR AI staking is spread | **<!--n:n3.stakers_active-->112<!--/n-->** active accounts · largest **<!--n:n3.largest_share-->73.3%<!--/n-->** · top 10 <!--n:n3.top10_share-->96.4%<!--/n--> · median outside the top 10 <!--n:n3.outside_top10_median_near-->60<!--/n--> NEAR | block 222,491,356 (1 Nov 2026 00:00 UTC) | `python scripts/stakers.py --verify` |
-
-- **1.** Balance change of `buybacks.multisignature.near` + `1csfundsadmin.sputnik-dao.near` (the 1Click fund that
-  collected fees until April 2026 and later moved its NEAR to the buybacks wallet; summing the two cancels that
-  internal move) ÷ change of `total_supply` in the two block headers. wNEAR that the buybacks wallet and the
-  front-end fund hold inside `intents.near` counts as held. The front-end fund is `fefundsadmin.sputnik-dao.near`
-  (<!--n:n1.front_end_near_per_day-->4,985<!--/n--> NEAR a day): near-intents.org's fees, collected by the front
-  end's operator. Balances are net: anything paid out is already subtracted.
-- **2.** Mean over counted days of (fees of the day ÷ NEAR price at 12:00 UTC) ÷ new NEAR per day. Equilibrium
-  price = fees per day ÷ new NEAR per day. If HSP-029 were in force (issuance × 16/25), the ceiling would be
-  <!--n:n2.hsp029_max_coverage-->71.1%<!--/n--> and the equilibrium price <!--n:n2.hsp029_equilibrium_price_usd-->$3.50<!--/n-->.
-- **3.** Every account that ever called `stake` on `stake.dao` is read with `get_farm_position` at the block:
-  <!--n:n3.stakers_ever-->188<!--/n--> have entered the farm, <!--n:n3.stakers_left-->76<!--/n--> of them
-  (<!--n:n3.left_share_of_ever-->40.4%<!--/n-->) have left. The active positions add up exactly to the farm's
-  `total_farm_shares` (<!--n:n3.farm_total_near-->1,364,348<!--/n--> NEAR); the run fails otherwise.
-  *Why the farm only:* NEAR AI Agents subscriptions are locks on the same contract, but their status does not
-  follow their term: of <!--n:f7.locks_active-->43<!--/n--> locks marked Active, <!--n:f7.locks_active_within_term-->11<!--/n-->
-  are within their term, and <!--n:f7.locks_past_end-->75<!--/n--> of all <!--n:f7.locks-->86<!--/n--> are past their
-  `end_ns`. Counting the farm or an Active lock gives <!--n:n3.farm_or_active_lock_accounts-->145<!--/n--> accounts; the
-  farm or any lock, <!--n:n3.farm_or_any_lock_accounts-->181<!--/n-->. The farm is the definition that adds up exactly;
-  the rule was fixed in `PREREG.md` after measuring all three on 31 October.
 
 ## Check it in two minutes
 
@@ -149,6 +130,9 @@ the private originals ([Method](#method)). The `verify` badge runs these, and th
 the chain, are in [Verify live](#verify-live).
 
 ## The control map: who can change each link
+
+Multisigs and DAOs are a common way to run protocol funds. This repository only measures what a holder relies
+on today, and shows for each link the mechanism NEAR already has to turn it into a rule ([Path to rules](#path-to-rules)).
 
 From the fee a user pays to the NEAR a holder keeps. Every value is read at block 222,491,356 by
 `scripts/control_map.py` (`data/control_map.json`); "used" comes from every proposal of the five DAOs involved,
@@ -201,94 +185,87 @@ characterize.
 
 ## Findings
 
-**1. Monthly coverage, from the wallets alone** (`scripts/coverage.py`, `data/coverage_monthly.json`; balances and
-block headers only, independent of DefiLlama):
+**1. Coverage has been below a quarter of issuance in every month since April.** From the wallets alone: balances
+and block headers, independent of DefiLlama (`scripts/coverage.py`, `data/coverage_monthly.json`).
 
 | | Apr | May | Jun | Jul | Aug | Sep | Oct |
 |---|---|---|---|---|---|---|---|
 | Buybacks wallets | <!--n:f1.coverage_buybacks.2026-04-->5.3%<!--/n--> | <!--n:f1.coverage_buybacks.2026-05-->8.4%<!--/n--> | <!--n:f1.coverage_buybacks.2026-06-->8.5%<!--/n--> | <!--n:f1.coverage_buybacks.2026-07-->6.2%<!--/n--> | <!--n:f1.coverage_buybacks.2026-08-->10.2%<!--/n--> | <!--n:f1.coverage_buybacks.2026-09-->15.3%<!--/n--> | <!--n:f1.coverage_buybacks.2026-10-->10.9%<!--/n--> |
 | With the front-end fund | <!--n:f1.coverage_with_front_end.2026-04-->5.7%<!--/n--> | <!--n:f1.coverage_with_front_end.2026-05-->11.9%<!--/n--> | <!--n:f1.coverage_with_front_end.2026-06-->11.2%<!--/n--> | <!--n:f1.coverage_with_front_end.2026-07-->9.1%<!--/n--> | <!--n:f1.coverage_with_front_end.2026-08-->14.8%<!--/n--> | <!--n:f1.coverage_with_front_end.2026-09-->21.3%<!--/n--> | <!--n:f1.coverage_with_front_end.2026-10-->16.5%<!--/n--> |
 
-Months run between the first blocks at or after 00:00 UTC of each 1st, so October here is 1 Oct–1 Nov (number 1
-is 2 Oct–1 Nov). Over 2 Oct–1 Nov, DefiLlama's revenue ÷ issuance gives
-<!--n:n2.defillama_revenue_coverage-->16.7%<!--/n--> against <!--n:n1.coverage_with_front_end-->16.5%<!--/n--> from the
-wallets. DefiLlama counts inflows to the same wallets and we measure their balances, so the two methods agreeing
-means almost nothing flowed out.
+Months run from the first block at or after 00:00 UTC of each 1st, so October here is 1 Oct–1 Nov (number 1 is
+2 Oct–1 Nov). Over 2 Oct–1 Nov, DefiLlama's revenue ÷ issuance gives <!--n:n2.defillama_revenue_coverage-->16.7%<!--/n--> against
+<!--n:n1.coverage_with_front_end-->16.5%<!--/n--> from the wallets. DefiLlama counts inflows to the same wallets and we measure
+their balances, so the two agreeing means almost nothing flowed out.
 
-**2. From September to October, revenue rose in dollars but bought fewer NEAR.** The take rate (DefiLlama revenue ÷
-fees; revenue includes the front-end fund) went from <!--n:f2.take_rate.2026-04-->8.1%<!--/n--> in April to
-<!--n:f2.take_rate.2026-10-->36.1%<!--/n--> in October, while fees per dollar of volume stayed between
-<!--n:f2.fees_bps.2026-08-->13.8<!--/n--> and <!--n:f2.fees_bps.2026-09-->15.3<!--/n--> bps from August to October.
-Coverage still fell from September to October: <!--n:f1.coverage_buybacks.2026-09-->15.3%<!--/n--> →
-<!--n:f1.coverage_buybacks.2026-10-->10.9%<!--/n--> for the buybacks wallets,
-<!--n:f1.coverage_with_front_end.2026-09-->21.3%<!--/n--> → <!--n:f1.coverage_with_front_end.2026-10-->16.5%<!--/n--> with
-the front-end fund. Revenue in dollars rose <!--n:f2.change.2026-09_2026-10.revenue_usd-->+17%<!--/n-->
-(<!--n:f2.revenue_usd_per_day.2026-09-->$61,317<!--/n--> → <!--n:f2.revenue_usd_per_day.2026-10-->$71,501<!--/n--> a day),
-but the mean NEAR price rose <!--n:f2.change.2026-09_2026-10.mean_price-->+50%<!--/n-->
-(<!--n:f2.mean_price_usd.2026-09-->$3.28<!--/n--> → <!--n:f2.mean_price_usd.2026-10-->$4.90<!--/n-->), so the NEAR that
-revenue buys fell <!--n:f2.change.2026-09_2026-10.revenue_near-->-23%<!--/n-->. The wallets kept
-<!--n:f2.wallets_kept_share_of_revenue.2026-09-->98%<!--/n--> and <!--n:f2.wallets_kept_share_of_revenue.2026-10-->99%<!--/n-->
-of that revenue: no outflow explains the drop. Revenue is denominated in dollars and issuance in NEAR, so a higher
-price alone lowers coverage. *Provisional, like every DefiLlama figure.*
+**2. October's revenue rose in dollars but bought fewer NEAR, because the NEAR price rose faster.** From September
+to October, revenue rose <!--n:f2.change.2026-09_2026-10.revenue_usd-->+17%<!--/n-->
+(<!--n:f2.revenue_usd_per_day.2026-09-->$61,317<!--/n--> → <!--n:f2.revenue_usd_per_day.2026-10-->$71,501<!--/n--> a day) and the mean NEAR price
+<!--n:f2.change.2026-09_2026-10.mean_price-->+50%<!--/n--> (<!--n:f2.mean_price_usd.2026-09-->$3.28<!--/n--> → <!--n:f2.mean_price_usd.2026-10-->$4.90<!--/n-->),
+so the NEAR that revenue buys fell <!--n:f2.change.2026-09_2026-10.revenue_near-->-23%<!--/n-->. Coverage fell with it:
+<!--n:f1.coverage_buybacks.2026-09-->15.3%<!--/n--> → <!--n:f1.coverage_buybacks.2026-10-->10.9%<!--/n--> for the buybacks wallets,
+<!--n:f1.coverage_with_front_end.2026-09-->21.3%<!--/n--> → <!--n:f1.coverage_with_front_end.2026-10-->16.5%<!--/n--> with the front-end fund. The
+wallets kept <!--n:f2.wallets_kept_share_of_revenue.2026-09-->98%<!--/n--> and <!--n:f2.wallets_kept_share_of_revenue.2026-10-->99%<!--/n--> of
+that revenue, so no outflow explains the drop: revenue is in dollars, issuance in NEAR. Over the longer run the
+take rate (revenue ÷ fees; revenue includes the front-end fund) rose from <!--n:f2.take_rate.2026-04-->8.1%<!--/n--> in April to
+<!--n:f2.take_rate.2026-10-->36.1%<!--/n--> in October, while fees per dollar of volume stayed between <!--n:f2.fees_bps.2026-08-->13.8<!--/n--> and
+<!--n:f2.fees_bps.2026-09-->15.3<!--/n--> bps from August to October. *Provisional, like every DefiLlama figure.*
 
-**3. Flows of the NEAR AI pool's owner since the farm opened** (`scripts/treasury_flows.py`,
-`data/treasury_flows.json`). From the creation of `stake.dao` (<!--n:f4.stake_dao_start_utc-->2026-07-28<!--/n-->; first
-`stake` call <!--n:f4.first_stake_utc-->2026-07-30<!--/n-->) to block 222,491,356, the owner, a DAO that acts only
-through proposals, approved unstaking <!--n:f4.since_stake_dao.unstaked_near-->425,334<!--/n--> NEAR and sending out
-<!--n:f4.since_stake_dao.near_sent_out-->423,980<!--/n--> NEAR (<!--n:f4.since_stake_dao.near_to_payments_account-->280,338<!--/n-->
-to its own payments account) and <!--n:f4.since_stake_dao.usdc_sent_out-->$365,000<!--/n--> in USDC. Its NEAR, liquid
-and in every pool, went from <!--n:f4.since_stake_dao.owner_near_start-->1,336,984<!--/n--> to
-<!--n:f4.since_stake_dao.owner_near_end-->935,136<!--/n--> (<!--n:f4.since_stake_dao.owner_near_change-->-401,848<!--/n-->).
-Its payments account swapped <!--n:f4.since_stake_dao.swaps_near_given-->139,546<!--/n--> NEAR for
-<!--n:f4.since_stake_dao.swaps_usd_received-->$296,652<!--/n--> in <!--n:f4.since_stake_dao.swaps-->7<!--/n--> swaps through
-NEAR Intents (mean price <!--n:f4.since_stake_dao.swaps_mean_price_usd-->$2.13<!--/n-->). Over the same period the
-farm, which did not exist before `stake.dao`, grew to <!--n:n3.farm_total_near-->1,364,348<!--/n--> NEAR of users'
-stake. The two are separate figures, not a net: users' stake can be withdrawn, and the purpose of each payment is
-not measured. *From 1 January to 1 November 2026:* the owner's NEAR
-<!--n:f4.y2026.owner_near_start-->1,795,378<!--/n--> → <!--n:f4.y2026.owner_near_end-->935,136<!--/n-->, swaps
-<!--n:f4.y2026.swaps_near_given-->237,732<!--/n--> NEAR → <!--n:f4.y2026.swaps_usd_received-->$481,611<!--/n-->.
+**3. Since the farm opened, the NEAR held by the NEAR AI pool's owner changed by <!--n:f4.since_stake_dao.owner_near_change-->-401,848<!--/n--> NEAR.**
+From the creation of `stake.dao` (<!--n:f4.stake_dao_start_utc-->2026-07-28<!--/n-->; first `stake` call <!--n:f4.first_stake_utc-->2026-07-30<!--/n-->) to
+block 222,491,356 (`scripts/treasury_flows.py`, `data/treasury_flows.json`), the owner, a DAO that acts only
+through proposals:
 
-**4. Concentration over time** (`scripts/stakers.py`, first block of the 1st and the 15th):
+- approved unstaking <!--n:f4.since_stake_dao.unstaked_near-->425,334<!--/n--> NEAR and sending out
+  <!--n:f4.since_stake_dao.near_sent_out-->423,980<!--/n--> NEAR (<!--n:f4.since_stake_dao.near_to_payments_account-->280,338<!--/n--> to its own
+  payments account) and <!--n:f4.since_stake_dao.usdc_sent_out-->$365,000<!--/n--> in USDC;
+- held <!--n:f4.since_stake_dao.owner_near_start-->1,336,984<!--/n--> → <!--n:f4.since_stake_dao.owner_near_end-->935,136<!--/n--> NEAR, liquid and in
+  every pool;
+- through its payments account, swapped <!--n:f4.since_stake_dao.swaps_near_given-->139,546<!--/n--> NEAR for
+  <!--n:f4.since_stake_dao.swaps_usd_received-->$296,652<!--/n--> in <!--n:f4.since_stake_dao.swaps-->7<!--/n--> swaps on NEAR Intents (mean price
+  <!--n:f4.since_stake_dao.swaps_mean_price_usd-->$2.13<!--/n-->).
+
+In the same period users' stake in the farm, which did not exist before `stake.dao`, reached
+<!--n:n3.farm_total_near-->1,364,348<!--/n--> NEAR. The two are separate figures, not a net: users' stake can be withdrawn, and the
+purpose of each payment is not measured. *1 January to 1 November 2026:* the owner's NEAR
+<!--n:f4.y2026.owner_near_start-->1,795,378<!--/n--> → <!--n:f4.y2026.owner_near_end-->935,136<!--/n-->; swaps <!--n:f4.y2026.swaps_near_given-->237,732<!--/n--> NEAR →
+<!--n:f4.y2026.swaps_usd_received-->$481,611<!--/n-->.
+
+**4. The same account has been the largest in the farm since <!--n:f5.largest_same_account_since-->2026-08-15<!--/n-->, with between
+<!--n:f5.largest_share.2026-10-15-->58.9%<!--/n--> and <!--n:f5.largest_share.2026-08-15-->76.9%<!--/n--> of it.** First block of the 1st and the
+15th (`scripts/stakers.py`):
 
 | | 1 Aug | 15 Aug | 1 Sep | 15 Sep | 1 Oct | 15 Oct | 1 Nov |
 |---|---|---|---|---|---|---|---|
 | Active accounts | <!--n:f5.stakers_active.2026-08-01-->16<!--/n--> | <!--n:f5.stakers_active.2026-08-15-->46<!--/n--> | <!--n:f5.stakers_active.2026-09-01-->51<!--/n--> | <!--n:f5.stakers_active.2026-09-15-->73<!--/n--> | <!--n:f5.stakers_active.2026-10-01-->88<!--/n--> | <!--n:f5.stakers_active.2026-10-15-->99<!--/n--> | <!--n:f5.stakers_active.2026-11-01-->112<!--/n--> |
 | Largest account's share | <!--n:f5.largest_share.2026-08-01-->36.2%<!--/n--> | <!--n:f5.largest_share.2026-08-15-->76.9%<!--/n--> | <!--n:f5.largest_share.2026-09-01-->76.1%<!--/n--> | <!--n:f5.largest_share.2026-09-15-->75.7%<!--/n--> | <!--n:f5.largest_share.2026-10-01-->74.1%<!--/n--> | <!--n:f5.largest_share.2026-10-15-->58.9%<!--/n--> | <!--n:f5.largest_share.2026-11-01-->73.3%<!--/n--> |
 
-On 1 August the largest account was a different one. The account that is largest on 1 November has been the
-largest since <!--n:f5.largest_same_account_since-->2026-08-15<!--/n-->: it held
-<!--n:f5.largest_near.2026-10-15-->500,000<!--/n--> NEAR on 15 October and
-<!--n:f5.largest_near.2026-11-01-->1,000,000<!--/n--> on 1 November; its lower share on 15 October came from other
-accounts' new stake. Outside the top
-10 on 1 November: <!--n:n3.outside_top10_accounts-->102<!--/n--> accounts with <!--n:n3.outside_top10_near-->48,611<!--/n-->
-NEAR in all, median <!--n:n3.outside_top10_median_near-->60<!--/n--> NEAR.
+On 1 August the largest was another account. The largest of 1 November held <!--n:f5.largest_near.2026-10-15-->500,000<!--/n--> NEAR
+on 15 October and <!--n:f5.largest_near.2026-11-01-->1,000,000<!--/n--> on 1 November; its lower share on 15 October came from other
+accounts' new stake. Outside the top 10 on 1 November: <!--n:n3.outside_top10_accounts-->102<!--/n--> accounts with
+<!--n:n3.outside_top10_near-->48,611<!--/n--> NEAR in all.
 
 **5. The credits rate is a setting, changed once by one account** (`scripts/farm_rate.py`, `data/farm_rate.json`).
 The farm pays reward units, not dollars: the contract has no USD conversion. The rate was
-<!--n:f6.change1.units_per_near_year_before-->0.12<!--/n--> units per staked NEAR per year until
-<!--n:f6.change1.utc-->2026-09-29 14:21 UTC<!--/n-->, then <!--n:f6.change1.units_per_near_year_after-->0.24<!--/n-->
-(<!--n:f6.change1.ratio-->×2.0<!--/n-->), through <!--n:f6.edit_price_receipts_all_time-->1<!--/n--> `edit_price` call,
-the only one in the contract's history. It was signed by the pool's catalog manager, not by the pool owner's DAO,
-and needed no proposal. At today's rate the largest position receives <!--n:f6.largest_units_per_day-->657.1<!--/n-->
-units a day. Off-chain, NEAR AI Cloud pays <!--n:f6.usd_per_reward_unit-->$1.00<!--/n--> of credits per unit (setting
-read on 2026-11-01 20:58:37 UTC in a signed-in session, saved in `data/offchain/`), so
-<!--n:f6.largest_usd_per_day-->$657.1<!--/n--> of credits a day for that position; whether the credits are used is
-not visible.
+<!--n:f6.change1.units_per_near_year_before-->0.12<!--/n--> units per staked NEAR per year until <!--n:f6.change1.utc-->2026-09-29 14:21 UTC<!--/n-->, then
+<!--n:f6.change1.units_per_near_year_after-->0.24<!--/n--> (<!--n:f6.change1.ratio-->×2.0<!--/n-->), through <!--n:f6.edit_price_receipts_all_time-->1<!--/n-->
+`edit_price` call, the only one in the contract's history. It was signed by the pool's catalog manager, not by the
+pool owner's DAO, and needed no proposal. At today's rate the largest position receives
+<!--n:f6.largest_units_per_day-->657.1<!--/n--> units a day. Off-chain, NEAR AI Cloud pays <!--n:f6.usd_per_reward_unit-->$1.00<!--/n--> of credits
+per unit (read on 2026-11-01 20:58:37 UTC in a signed-in session, saved in `data/offchain/`), so
+<!--n:f6.largest_usd_per_day-->$657.1<!--/n--> of credits a day for that position; whether the credits are used is not visible.
 
-**6. NEAR AI Agents subscriptions** (locks on `stake.dao`): <!--n:f7.locks-->86<!--/n--> locks from
-<!--n:f7.lock_accounts-->83<!--/n--> accounts, <!--n:f7.locks_active-->43<!--/n--> Active and
-<!--n:f7.locks_unlock_requested-->43<!--/n--> UnlockRequested; <!--n:f7.locks_past_end-->75<!--/n--> of the
-<!--n:f7.locks-->86<!--/n--> are past their `end_ns`. NEAR in Active locks is
-<!--n:f7.active_lock_near_vs_farm-->1.1%<!--/n--> of the farm. They are a separate product, kept out of number 3
-(see number 3 above).
+**6. NEAR AI Agents subscriptions are a separate product.** They are locks on `stake.dao`: <!--n:f7.locks-->86<!--/n--> locks
+from <!--n:f7.lock_accounts-->83<!--/n--> accounts; NEAR in Active locks is <!--n:f7.active_lock_near_vs_farm-->1.1%<!--/n--> of the farm. Why
+they are kept out of number 3 is under [the three numbers](#the-three-numbers).
 
-**7. A method note on DefiLlama's "buybacks".** DefiLlama counts the front-end fund's inflows in its buyback figure.
-In the window, <!--n:f9.front_end_share_of_wallets-->34.2%<!--/n--> of what the three wallets kept went to the
-front-end fund (near-intents.org's fees), not to the buybacks wallet. NEAR's docs publish where these fees go
-([fees](https://docs.near-intents.org/resources/fees)); it is why number 1 is given both ways. NEAR's own dashboard
-([revenue.near.org](https://revenue.near.org/), read on 23 October 2026) shows less NEAR in the buybacks wallet
-than `view_account` returns: it books the two transfers from `1csfundsadmin.sputnik-dao.near` to the buybacks
-wallet (July and September 2026) under 1Click. Number 1 adds the two wallets, so that move cancels out.
+**7. Of what the three wallets kept, <!--n:f9.front_end_share_of_wallets-->34.2%<!--/n--> went to the front-end fund, which
+DefiLlama counts as buybacks.** It holds near-intents.org's fees, not bought-back NEAR; NEAR's docs publish where
+these fees go ([fees](https://docs.near-intents.org/resources/fees)). This is why number 1 is given both ways.
+NEAR's own dashboard ([revenue.near.org](https://revenue.near.org/), read on 23 October 2026) shows less NEAR in
+the buybacks wallet than `view_account` returns: it books the two transfers from `1csfundsadmin.sputnik-dao.near`
+to the buybacks wallet (July and September 2026) under 1Click. Number 1 adds the two wallets, so that move cancels
+out.
 
 ## Path to rules
 
@@ -441,6 +418,7 @@ python scripts/treasury_flows.py --verify --archival
 |---|---|
 | Issuance, new NEAR | the change of `total_supply` between two block headers, per day |
 | Coverage | NEAR the wallets kept ÷ new NEAR, over the same window |
+| Dilution | total supply grows by <!--n:n1.new_near_per_day-->88,392<!--/n--> NEAR a day whatever the buybacks do, because bought NEAR is held, not burned; buybacks lower only the supply outside their wallets |
 | Buybacks wallets | `buybacks.multisignature.near` + `1csfundsadmin.sputnik-dao.near`; they hold bought NEAR |
 | Front-end fund | `fefundsadmin.sputnik-dao.near`: fees of the near-intents.org front end |
 | Fees, revenue | DefiLlama's figures for NEAR Intents: what users pay, and the part DefiLlama counts as NEAR's |
