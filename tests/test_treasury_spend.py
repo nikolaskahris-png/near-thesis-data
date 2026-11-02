@@ -25,11 +25,28 @@ SPEND_AT, SPEND = 1500, 2 * Y  # an outflow in the middle of the second "month"
 MONTH_SPEC = [(date(2026, 1, 1), 1090), (date(2026, 1, 2), 1390), (date(2026, 1, 3), 1690)]
 
 
+def stamp(h):
+    return T_BASE + (h - 1100) * SECONDS_PER_BLOCK * lw.NS
+
+
+def prev_existing(h):
+    return max(x for x in tb.EXISTING if x < h)
+
+
+def reward_at(i):
+    """What the protocol pays the treasury at the i-th epoch start (the formula, from the chain)."""
+    if i < 2:
+        return 0
+    p, q = prev_existing(tb.STARTS_REAL[i]), prev_existing(tb.STARTS_REAL[i - 1])
+    return ts.treasury_reward(tb.SUPPLY[p], stamp(p) - stamp(q))
+
+
+def rewards_in(lo, hi):
+    return sum(reward_at(i) for i, s in enumerate(tb.STARTS_REAL) if lo < s <= hi)
+
+
 def treasury_at(h, extra):
-    bal = TREASURY0
-    for s, m in zip(tb.STARTS_REAL, tb.MINTED):
-        if m and s <= h:
-            bal += m // 10
+    bal = TREASURY0 + rewards_in(0, h)
     for at, amt in extra.items():
         if at <= h:
             bal += amt
@@ -55,7 +72,7 @@ class FakeTreasuryChain(tb.FakeBurnChain):
         doc = json.loads(raw)
         if "result" in doc:
             h = doc["result"]["header"]["height"]
-            doc["result"]["header"]["timestamp"] = T_BASE + (h - 1100) * SECONDS_PER_BLOCK * lw.NS
+            doc["result"]["header"]["timestamp"] = stamp(h)
             raw = json.dumps(doc).encode()
         return raw
 
@@ -63,6 +80,7 @@ class FakeTreasuryChain(tb.FakeBurnChain):
 class TreasurySpendTest(unittest.TestCase):
     def setUp(self):
         burn.EPOCH_LENGTH = 100
+        ts.ANCHOR_BACK = 150
         tmp = tempfile.TemporaryDirectory()
         self.addCleanup(tmp.cleanup)
         self.data, self.w0, self.w1 = tb.make_data(tmp.name)
@@ -72,18 +90,20 @@ class TreasurySpendTest(unittest.TestCase):
     def rule(self, **kw):
         return ts.run_rule(FakeTreasuryChain(**kw), self.data)
 
-    def test_rule_holds_on_every_epoch_start(self):
+    def test_formula_holds_on_every_epoch_start(self):
         doc, problems = self.rule()
         self.assertEqual(problems, [])
         r = doc["results"]["rule"]
         self.assertEqual((r["epochs"], r["exact"], r["outside_rule"]), (5, 5, 0))
-        self.assertEqual(r["max_deviation_yocto"], "0")
-        self.assertEqual(r["rewards_near"], daily.near((9 + 7 + 8 + 6 + 5) * Y // 10))
+        want = rewards_in(self.w0, self.w1)
+        self.assertEqual(r["rewards_near"], daily.near(want))
+        # the formula, not minted / 10, is what the treasury gets
+        self.assertNotEqual(r["rewards_near"], daily.near((9 + 7 + 8 + 6 + 5) * Y // 10))
         w = doc["results"]["window"]
-        self.assertEqual(w["other_net_near"], daily.near(-SPEND))  # the outflow at 1500 is in the window
+        self.assertEqual(w["other_net_near"], daily.near(-SPEND))  # the outflow at 1500
 
     def test_other_movement_in_an_epoch_start_block_is_shown(self):
-        start = tb.STARTS_REAL[3]  # 1290: the treasury also receives 1 NEAR in that block
+        start = next(s for s in tb.STARTS_REAL if s >= 1290)  # the treasury also gets 1 NEAR there
         doc, problems = self.rule(extra={start: Y})
         self.assertTrue(any(f"start {start}" in x for x in problems), problems)
         self.assertEqual(doc["results"]["rule"]["outside_rule"], 1)
@@ -96,16 +116,17 @@ class TreasurySpendTest(unittest.TestCase):
         m1, m2 = doc["results"]["months"]
         self.assertEqual(m1["epochs"], 2)  # starts 1106 and 1290
         self.assertEqual(m1["minted_near"], daily.near(15 * Y))
-        self.assertEqual(m1["treasury_in_near"], daily.near(Y * 3 // 2))
+        self.assertEqual(m1["treasury_in_near"], daily.near(rewards_in(1100, 1400)))
         self.assertEqual(m1["other_net_near"], "0.000")
         self.assertEqual(m1["kept_share"], "1.000000")
         self.assertEqual(m2["epochs"], 2)  # starts 1403 and 1695
         self.assertEqual(m2["minted_near"], daily.near(11 * Y))
+        self.assertEqual(m2["treasury_in_near"], daily.near(rewards_in(1400, 1700)))
         self.assertEqual(m2["other_net_near"], daily.near(-SPEND))
-        self.assertEqual(m2["balance_change_near"], daily.near(11 * Y // 10 - SPEND))
+        self.assertEqual(m2["balance_change_near"],
+                         daily.near(rewards_in(1400, 1700) - SPEND))
         total = doc["results"]["total"]
         self.assertEqual(total["other_net_near"], daily.near(-SPEND))
-        self.assertEqual(m2["end"], "2026-01-03")
 
     def test_verify_offline_and_tampering(self):
         self.rule()
@@ -140,7 +161,7 @@ class TreasurySpendTest(unittest.TestCase):
         self.assertEqual(len(doc["results"]["months"]), 2)
 
     def test_months_refuse_to_run_when_the_rule_failed(self):
-        self.rule(extra={tb.STARTS_REAL[3]: Y})
+        self.rule(extra={1290: Y})
         with self.assertRaises(SystemExit):
             ts.run_months(FakeTreasuryChain(), self.data, MONTH_SPEC, step=50)
 

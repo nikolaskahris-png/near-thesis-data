@@ -1,27 +1,36 @@
 """What treasury.near receives and keeps, month by month in 2026, from balances and block headers.
 
-treasury.near is the protocol treasury account. Two steps, run separately:
+treasury.near is the protocol treasury account. At each epoch start the protocol pays it a tenth
+of the *maximum* reward of the epoch that just ended (nearcore, chain/epoch-manager reward
+calculation). The maximum reward is fixed by the supply and the epoch's length:
 
-  Step A (default): prove the rule "the treasury receives exactly 1/10 of the NEAR minted at each
-  epoch start". For every epoch start in data/burn.json (the locked window), the treasury's balance
-  is read at the start block and at the block before it; the difference must be a tenth of what
-  burn.py found minted there, up to integer rounding (minted - 10 * reward between 0 and 9 yocto).
-  Anything else (another movement of the treasury in that block) is reported, not hidden.
-  Also reads the balance at the window's two ends: the change minus the rewards is what came in or
-  went out some other way.
+    max_reward(epoch)  = floor(supply(P) * (time(P) - time(P_previous)) / (40 * 365 days))
+    treasury(epoch)    = floor(max_reward / 10)
 
-  Step B (--months): the same for each month 1 Jan -> 1 Nov 2026 (first block at or after 00:00 UTC
-  of the 1st). Per month: minted (all epoch starts found by search on epoch_id, as in burn.py),
-  treasury_in = minted / 10, the balance change, and other_net = balance change - treasury_in
-  (negative = net outflow; it is net of any other inflows in the month). Amounts and months only:
-  nothing about recipients or purposes.
+P = the last block of the epoch that ended, P_previous = the last block of the epoch before it
+(time in nanoseconds from the block headers; 40 = the 2.5% yearly cap on issuance). The NEAR
+actually minted is smaller when validators miss their targets: that part is not paid out.
+
+Two steps, run separately:
+
+  Step A (default): for every epoch start in data/burn.json (the locked window) the treasury's
+  balance is read at the start block and at the block before it, and the difference must equal
+  the formula above exactly (to the yocto). Also reads the balance at the window's two ends: the
+  change minus the rewards is what came in or went out some other way. Reports the share of the
+  maximum reward that was not minted, and the treasury's share of what was minted.
+
+  Step B (--months): for each month 1 Jan -> 1 Nov 2026 (first block at or after 00:00 UTC of the
+  1st): all epoch starts (search on epoch_id, as in burn.py), treasury_in = sum of the formula,
+  the balance change, and other_net = balance change - treasury_in (negative = net outflow; it
+  is net of any other inflows in the month). Amounts and months only: nothing about recipients
+  or purposes.
 
 Block responses of step B are kept as slim files (the fields used, plus the sha256 of the full
 response, so any block can be re-fetched and compared). Read-only: JSON-RPC "block" and
 "view_account". No keys.
 
 Usage:
-    python scripts/treasury_spend.py              step A (about 200 calls)
+    python scripts/treasury_spend.py              step A (about 210 calls)
     python scripts/treasury_spend.py --months     step B (about 3,000 calls; resumes if cut)
     python scripts/treasury_spend.py --verify     offline, from the saved files
 """
@@ -41,20 +50,34 @@ import lock_window as lw  # noqa: E402
 REPO = Path(__file__).resolve().parent.parent
 OUT_NAME = "treasury_spend.json"
 ACCOUNT = "treasury.near"
-RULE_DIVISOR = 10
-MAX_ROUNDING = RULE_DIVISOR - 1  # minted - 10 * reward, in yocto
-RULE_TEXT = ("at each epoch start the treasury receives minted // 10 "
-             "(minted - 10 * reward in 0..9 yocto)")
+TREASURY_DIVISOR = 10
+CAP_DIVISOR = 40 * 365 * 86_400 * 10 ** 9  # 2.5% a year, time in nanoseconds
+ANCHOR_BACK = 60_000  # blocks to step back from a boundary to be sure to be in an earlier epoch
+RULE_TEXT = ("at each epoch start the treasury receives floor(floor(supply(P) * (time(P) - "
+             "time(P_previous)) / (40 * 365 days)) / 10), P = last block of the epoch that ended")
 
 
 def sha256(data):
     return hashlib.sha256(data).hexdigest()
 
 
+def max_reward(supply, dt_ns):
+    return supply * dt_ns // CAP_DIVISOR
+
+
+def treasury_reward(supply, dt_ns):
+    return max_reward(supply, dt_ns) // TREASURY_DIVISOR
+
+
 # ---------------------------------------------------------------- files
 
 def acct_rel(data_root, height):
     p = data_root / "raw" / "treasury_spend" / "accounts" / f"{height}_{ACCOUNT}.json"
+    return p, p.relative_to(data_root.parent).as_posix()
+
+
+def anchor_rel(data_root, height):
+    p = data_root / "raw" / "treasury_spend" / "blocks" / f"block_{height}.json"
     return p, p.relative_to(data_root.parent).as_posix()
 
 
@@ -89,6 +112,20 @@ def preload(chain, data_root):
             chain.headers[h["height"]] = h
 
 
+def find_anchor(chain, height):
+    """Height of the last block of the epoch before the one that contains `height`."""
+    here = chain.block(height)
+    e = here["epoch_id"]
+    lo = burn.existing_at(chain, max(1, height - ANCHOR_BACK))
+    if lo[1]["epoch_id"] == e:
+        raise RuntimeError(f"block {lo[0]} is still in the epoch of {height}: step back further")
+    while True:
+        start = burn.find_next_start(chain, lo)
+        if start[1]["epoch_id"] == e:
+            return start[1]["prev_height"]
+        lo = start
+
+
 def slim(raw):
     res = json.loads(raw)["result"]
     h = res["header"]
@@ -110,11 +147,26 @@ def check_rule(doc, data_root, rd, problems):
         problems += [f"burn.json: {x}" for x in bproblems]
         return None
     sup = lambda w: int(w["header"]["total_supply"])  # noqa: E731
-    exact = off = max_dev = 0
-    rewards = 0
+    try:
+        anchor = json.loads(rd[anchor_rel(data_root, doc["anchor"])[1]])["result"]
+    except KeyError:
+        problems.append("the block before the first epoch is not saved")
+        return None
+    w_start = json.loads((base / bdoc["window_file"]).read_text(encoding="utf-8"))["boundaries"][0]
+    w_epoch = blocks[w_start["height"]]["header"]["epoch_id"]
+    if anchor["header"]["next_epoch_id"] != w_epoch or anchor["header"]["epoch_id"] == w_epoch:
+        problems.append("the saved block before the first epoch is not the last block of the "
+                        "epoch before the window's first")
+    prevs = [anchor] + [blocks[ep["previous"]] for ep in bdoc["epochs"]]
+    exact = off = 0
+    rewards = minted_all = 0
+    shares = []
     for k, ep in enumerate(bdoc["epochs"]):
-        s, p = blocks[ep["start"]], blocks[ep["previous"]]
-        minted = sup(s) - sup(p) + burn.burnt_new(s)
+        s = blocks[ep["start"]]
+        minted = sup(s) - sup(prevs[k + 1]) + burn.burnt_new(s)
+        dt = prevs[k + 1]["header"]["timestamp"] - prevs[k]["header"]["timestamp"]
+        total = max_reward(sup(prevs[k + 1]), dt)
+        want = total // TREASURY_DIVISOR
         try:
             a_s = amount_of(rd[acct_rel(data_root, ep["start"])[1]], ep["start"])
             a_p = amount_of(rd[acct_rel(data_root, ep["previous"])[1]], ep["previous"])
@@ -123,18 +175,22 @@ def check_rule(doc, data_root, rd, problems):
             continue
         if a_s[1] or a_p[1]:
             problems.append(f"epoch {k}: locked balance is not zero")
-        reward = a_s[0] - a_p[0]
-        dev = minted - RULE_DIVISOR * reward
-        rewards += reward
-        if dev == 0:
+        got = a_s[0] - a_p[0]
+        rewards += got
+        minted_all += minted
+        shares.append(Fraction(total - minted, total))
+        if got == want:
             exact += 1
-        if not 0 <= dev <= MAX_ROUNDING:
+        else:
             off += 1
-            problems.append(f"epoch {k} (start {ep['start']}): treasury received {reward} yocto, "
-                            f"minted {minted}: minted - 10 * received = {dev}")
-        max_dev = max(max_dev, abs(dev))
+            problems.append(f"epoch {k} (start {ep['start']}): treasury received {got} yocto, "
+                            f"the formula gives {want}: difference {got - want}")
     res = {"epochs": len(bdoc["epochs"]), "exact": exact, "outside_rule": off,
-           "max_deviation_yocto": str(max_dev), "rewards_near": daily.near(rewards)}
+           "rewards_near": daily.near(rewards),
+           "treasury_share_of_minted": daily.ratio(rewards, minted_all),
+           "unminted_share_of_max_mean": daily.ratio(sum(shares), len(shares)),
+           "unminted_share_of_max_min": daily.ratio(min(shares), 1),
+           "unminted_share_of_max_max": daily.ratio(max(shares), 1)}
     win = json.loads((base / bdoc["window_file"]).read_text(encoding="utf-8"))
     h0, h1 = win["boundaries"][0]["height"], win["boundaries"][-1]["height"]
     try:
@@ -165,14 +221,19 @@ def check_month(m, data_root, rd, problems):
     blocks = {int(k): v for k, v in fa["blocks"].items()}
     a, pa = blocks.get(m["start"]["height"]), blocks.get(m["start"]["previous_height"])
     b, pb = blocks.get(m["end"]["height"]), blocks.get(m["end"]["previous_height"])
-    if None in (a, pa, b, pb):
+    anchor = blocks.get(fa.get("anchor"))
+    if None in (a, pa, b, pb, anchor):
         problems.append(f"{label}: boundary blocks not saved")
         return None
     for blk, prv, d in ((a, pa, m["start"]["date"]), (b, pb, m["end"]["date"])):
         target = lw.midnight_ns(date.fromisoformat(d))
         if not (blk["timestamp"] >= target > prv["timestamp"] and blk["prev_hash"] == prv["hash"]):
             problems.append(f"{label}: {blk['height']} is not the first block of {d}")
-    minted, prev_epoch, last_h, starts = 0, a["epoch_id"], a["height"], []
+    if anchor["next_epoch_id"] != a["epoch_id"] or anchor["epoch_id"] == a["epoch_id"]:
+        problems.append(f"{label}: the saved anchor is not the last block of the epoch before "
+                        f"the month's first")
+    minted = treasury_in = 0
+    prev_epoch, last_h, starts, before = a["epoch_id"], a["height"], [], anchor
     for k, ep in enumerate(fa["epochs"]):
         s, p = blocks.get(ep["start"]), blocks.get(ep["previous"])
         if s is None or p is None:
@@ -189,9 +250,11 @@ def check_month(m, data_root, rd, problems):
         got = int(s["total_supply"]) - int(p["total_supply"]) + int(s["burnt_new"])
         if got <= 0:
             problems.append(f"{label}: epoch {k}: nothing minted at {s['height']}")
+        tk = treasury_reward(int(p["total_supply"]), p["timestamp"] - before["timestamp"])
         minted += got
-        starts.append((s["height"], got))
-        prev_epoch, last_h = s["epoch_id"], s["height"]
+        treasury_in += tk
+        starts.append((s["height"], tk))
+        prev_epoch, last_h, before = s["epoch_id"], s["height"], p
     if prev_epoch != b["epoch_id"]:
         problems.append(f"{label}: the last epoch start is not in the month's final epoch")
     try:
@@ -201,14 +264,13 @@ def check_month(m, data_root, rd, problems):
         problems.append(f"{label}: balance not available ({e})")
         return None
     change = amt_b - amt_a
-    tin = Fraction(minted, RULE_DIVISOR)
     row = {"start": m["start"]["date"], "end": m["end"]["date"], "epochs": len(fa["epochs"]),
-           "minted_near": daily.near(minted), "treasury_in_near": daily.near(tin),
+           "minted_near": daily.near(minted), "treasury_in_near": daily.near(treasury_in),
            "balance_start_near": daily.near(amt_a), "balance_end_near": daily.near(amt_b),
            "balance_change_near": daily.near(change),
-           "other_net_near": daily.near(change - tin),
-           "kept_share": daily.ratio(change, tin), "locked_nonzero": bool(lock_a or lock_b)}
-    return row, minted, change, tin, starts, b["height"]
+           "other_net_near": daily.near(change - treasury_in),
+           "kept_share": daily.ratio(change, treasury_in), "locked_nonzero": bool(lock_a or lock_b)}
+    return row, minted, change, treasury_in, starts, b["height"]
 
 
 def compute(doc, data_root):
@@ -235,8 +297,7 @@ def compute(doc, data_root):
     bdoc = json.loads((base / doc["burn_file"]).read_text(encoding="utf-8"))
     win = json.loads((base / bdoc["window_file"]).read_text(encoding="utf-8"))
     w0, w1 = win["boundaries"][0]["height"], win["boundaries"][-1]["height"]
-    tot_minted = tot_change = 0
-    tot_in = Fraction(0)
+    tot_minted = tot_change = tot_in = 0
     prev_end = None
     for m in doc.get("months", []):
         got = check_month(m, data_root, rd, problems)
@@ -248,9 +309,10 @@ def compute(doc, data_root):
         prev_end = m["end"]["height"]
         if end_h == w1:
             in_window = sum(x for h, x in starts if h > w0)
-            if daily.near(in_window) != bdoc["results"]["minted_near"]:
-                problems.append(f"{row['start']}: minted in the locked window {daily.near(in_window)} "
-                                f"differs from burn.json's {bdoc['results']['minted_near']}")
+            if daily.near(in_window) != res["rule"]["rewards_near"]:
+                problems.append(f"{row['start']}: treasury rewards in the locked window "
+                                f"{daily.near(in_window)} differ from step A's "
+                                f"{res['rule']['rewards_near']}")
         res["months"].append(row)
         tot_minted += minted
         tot_change += change
@@ -270,7 +332,7 @@ def compute(doc, data_root):
 def new_doc():
     return {"measure": "what treasury.near receives and keeps, from balances and block headers",
             "account": ACCOUNT, "rule": RULE_TEXT, "burn_file": "data/" + burn.OUT_NAME,
-            "raw_files": {}, "months": [], "results": {}}
+            "anchor": None, "raw_files": {}, "months": [], "results": {}}
 
 
 def save(doc, data_root):
@@ -283,10 +345,19 @@ def run_rule(chain, data_root):
     """Step A. Returns (doc, problems)."""
     bdoc = json.loads((data_root / burn.OUT_NAME).read_text(encoding="utf-8"))
     win = json.loads((data_root.parent / bdoc["window_file"]).read_text(encoding="utf-8"))
-    heights = {win["boundaries"][0]["height"], win["boundaries"][-1]["height"]}
+    w0, w1 = win["boundaries"][0]["height"], win["boundaries"][-1]["height"]
+    preload(chain, data_root)
+    heights = {w0, w1}
     for ep in bdoc["epochs"]:
         heights |= {ep["start"], ep["previous"]}
     doc = new_doc()
+    anchor = find_anchor(chain, w0)
+    chain.block(anchor)
+    path, rel = anchor_rel(data_root, anchor)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_bytes(chain.raw[anchor])
+    doc["anchor"] = anchor
+    doc["raw_files"][rel] = sha256(chain.raw[anchor])
     for i, h in enumerate(sorted(heights), 1):
         fetch_account(chain, data_root, h, doc["raw_files"])
         if i % 50 == 0:
@@ -307,7 +378,7 @@ def run_months(chain, data_root, spec, step=2000):
     path = data_root / OUT_NAME
     doc = json.loads(path.read_text(encoding="utf-8"))
     if doc["results"]["rule"]["outside_rule"]:
-        raise SystemExit("step A found epochs outside the 1/10 rule: stop and redesign")
+        raise SystemExit("step A found epochs outside the formula: stop and redesign")
     preload(chain, data_root)
     done = {(m["start"]["date"], m["end"]["date"]) for m in doc["months"]}
     points = {}
@@ -321,12 +392,13 @@ def run_months(chain, data_root, spec, step=2000):
         a, b = points[d0], points[d1]
         cur = (a["height"], chain.block(a["height"]))
         end_epoch = chain.block(b["height"])["epoch_id"]
+        anchor = find_anchor(chain, a["height"])
         epochs, guess = [], None
         while cur[1]["epoch_id"] != end_epoch:
             start = burn.find_next_start(chain, cur, guess)
             epochs.append({"start": start[0], "previous": start[1]["prev_height"]})
             cur, guess = start, start[0] + burn.EPOCH_LENGTH
-        need = {a["height"], a["previous_height"], b["height"], b["previous_height"]}
+        need = {a["height"], a["previous_height"], b["height"], b["previous_height"], anchor}
         for e in epochs:
             need |= {e["start"], e["previous"]}
         blocks = {}
@@ -336,8 +408,8 @@ def run_months(chain, data_root, spec, step=2000):
             blocks[str(h)] = slim(chain.raw[h])
         rel = f"data/raw/treasury_spend/blocks_{d0.isoformat()}_{d1.isoformat()}.json"
         text = json.dumps({"note": "slim copies of block responses: the fields used, and the "
-                           "sha256 of the full response", "blocks": blocks, "epochs": epochs},
-                          indent=1) + "\n"
+                           "sha256 of the full response", "anchor": anchor, "blocks": blocks,
+                           "epochs": epochs}, indent=1) + "\n"
         out = data_root.parent / rel
         out.parent.mkdir(parents=True, exist_ok=True)
         out.write_bytes(text.encode("utf-8"))
@@ -378,8 +450,10 @@ def real_spec(data_root):
 
 def show(res):
     r, w = res["rule"], res["window"]
-    print(f"rule: {r['exact']} of {r['epochs']} epoch starts exact, {r['outside_rule']} outside "
-          f"(max deviation {r['max_deviation_yocto']} yocto); rewards {r['rewards_near']} NEAR")
+    print(f"formula: {r['exact']} of {r['epochs']} epoch starts exact, {r['outside_rule']} outside; "
+          f"rewards {r['rewards_near']} NEAR = {r['treasury_share_of_minted']} of minted; "
+          f"unminted share of the maximum: mean {r['unminted_share_of_max_mean']}, "
+          f"min {r['unminted_share_of_max_min']}, max {r['unminted_share_of_max_max']}")
     if w:
         print(f"window: balance change {w['balance_change_near']}, rewards {w['rewards_near']}, "
               f"other net {w['other_net_near']}")
@@ -419,7 +493,7 @@ def main():
     show(doc["results"])
     print(f"{chain.calls} RPC calls")
     if problems:
-        print("FAILED:\n  " + "\n  ".join(problems))
+        print("FAILED:\n  " + "\n  ".join(problems[:10]))
         return 1
     print("Offline check: OK")
     return 0

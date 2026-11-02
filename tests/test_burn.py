@@ -18,8 +18,8 @@ Y = 10 ** 24
 H_FIRST, H_LAST = 1000, 1700  # the window; the chain goes on after it, as the real one does
 CHAIN_END = 2400
 # first block of each epoch: uneven lengths, so the search cannot rely on the guess
-STARTS = [900, 1010, 1105, 1290, 1403, 1695, 1990]
-MINTED = [None, 9 * Y, 7 * Y, 8 * Y, 6 * Y, 5 * Y, 4 * Y]  # minted at each start
+STARTS = [790, 900, 1010, 1105, 1290, 1403, 1695, 1990]
+MINTED = [None, None, 9 * Y, 7 * Y, 8 * Y, 6 * Y, 5 * Y, 4 * Y]  # minted at each start
 S0 = 1_000_000 * Y
 
 
