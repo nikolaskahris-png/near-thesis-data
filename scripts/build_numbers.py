@@ -263,6 +263,30 @@ def build(data_dir, window_file):
         n.add("f6.rate_changes", None, None, None, status="pending",
               note="farm_rate.py has not run")
 
+    # ---- gas burnt and gross issuance in the same window (burn.py)
+    bpath = data_dir / "burn.json"
+    if bpath.exists():
+        bd = json.loads(bpath.read_text(encoding="utf-8"))
+        same("burn.json window", bd["window_file"], wsrc)
+        br = bd["results"]
+        same("burn net issuance = number 1", br["net_near_per_day"], row["new_supply_per_day"])
+        bsrc = n.source(bpath)
+        for key, txt, unit in (
+                ("epochs", f_int(br["epochs"]), "epoch starts"),
+                ("minted_near_per_day", f_int(br["minted_near_per_day"]), "NEAR/day"),
+                ("burnt_near_per_day", f_int(br["burnt_near_per_day"]), "NEAR/day"),
+                ("burnt_share_of_minted", f_pct(br["burnt_share_of_minted"], 1), "share"),
+                ("max_mint_near_per_day", f_int(br["max_mint_near_per_day"]), "NEAR/day"),
+                ("minted_share_of_max", f_pct(br["minted_share_of_max"], 2), "share"),
+                ("hsp027_extra_burn_max_near_per_day", f_int(br["hsp027_extra_burn_max_near_per_day"]),
+                 "NEAR/day"),
+                ("hsp027_extra_max_share_of_minted", f_pct(br["hsp027_extra_max_share_of_minted"], 2),
+                 "share")):
+            n.add(f"b.{key}", br[key], txt, bsrc, unit=unit, **common)
+        if br.get("treasury_share_of_minted"):
+            n.add("b.treasury_share_of_minted", br["treasury_share_of_minted"],
+                  f_pct(br["treasury_share_of_minted"], 1), bsrc, unit="share", **common)
+
     # ---- finding 6: reward units -> US dollars of credits (NEAR AI Cloud, off-chain snapshot)
     oc_meta = data_dir / "offchain" / "nearai_cloud_farm_config.json"
     if oc_meta.exists() and "f6.units_per_near_year" in n.items:
@@ -695,6 +719,7 @@ SCRIPT_CHECKS = [
     ("hsp029.py", lambda doc: ["--verify"]),
     ("hsp029_voters.py", lambda doc: ["--verify"]),
     ("farm_rate.py", lambda doc: ["--verify"]),
+    ("burn.py", lambda doc: ["--verify"]),
     ("check_prereg.py", lambda doc: ["--verify"]),
     ("control_map.py", lambda doc: ["--verify"]),
     ("control_history.py", lambda doc: ["--verify"]),
@@ -717,6 +742,7 @@ def verify(path, run_scripts=True, runner=subprocess.run):
         for script, args in SCRIPT_CHECKS:
             out_file = {"hsp029.py": "hsp029.json", "hsp029_voters.py": "hsp029_voters.json",
                         "farm_rate.py": "farm_rate.json",
+                        "burn.py": "burn.json",
                         "check_prereg.py": "prereg.json",
                         "control_map.py": "control_map.json",
                         "control_history.py": "control_history.json"}

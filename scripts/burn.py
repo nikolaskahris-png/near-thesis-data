@@ -228,7 +228,8 @@ def compute(doc, data_root):
     res["treasury_share_of_minted"] = ""
     if cm.exists():
         cmd = json.loads(cm.read_text(encoding="utf-8"))
-        if cmd.get("block") == b1["height"]:
+        blk = cmd.get("block")
+        if (blk.get("height") if isinstance(blk, dict) else blk) == b1["height"]:
             t = Decimal(cmd["links"]["protocol_treasury"]["balance_change_near"])
             res["treasury_share_of_minted"] = f"{float(t / Decimal(minted) * 10 ** 24):.6f}"
     return res, problems

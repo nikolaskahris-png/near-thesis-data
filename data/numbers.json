@@ -95,6 +95,7 @@
     "n2.volume_usd_per_day"
   ],
   "sources": {
+    "data/burn.json": "d301a278701801757b4c9582f61b4f9546327f0dd1dfaed0a3a143b0c407f0fd",
     "data/control_history.json": "7cab767c832b77a597a18d90dc1d0b5b2113e76b050624456522585a9fcc9190",
     "data/control_map.json": "6f557db6c579e595008df0bccd143aae331392135492518fe26071ba7c66758c",
     "data/coverage_monthly.json": "74c24cad7c5a975e989fb70a62b157caef271901f16b9dfe9f708b3e98f8e9e9",
@@ -114,6 +115,78 @@
     "data/window_2026-10-02_2026-11-01.json": "b77a705e870e9df42e3d11ec6f7c7f5266f7ba692600cda716b1874ca40baaf9"
   },
   "numbers": {
+    "b.burnt_near_per_day": {
+      "value": "973.573",
+      "text": "974",
+      "source": "data/burn.json",
+      "unit": "NEAR/day",
+      "window": "2026-10-02 00:00 UTC to 2026-11-01 00:00 UTC",
+      "blocks": "218126921-222491356"
+    },
+    "b.burnt_share_of_minted": {
+      "value": "0.010894",
+      "text": "1.1%",
+      "source": "data/burn.json",
+      "unit": "share",
+      "window": "2026-10-02 00:00 UTC to 2026-11-01 00:00 UTC",
+      "blocks": "218126921-222491356"
+    },
+    "b.epochs": {
+      "value": "101",
+      "text": "101",
+      "source": "data/burn.json",
+      "unit": "epoch starts",
+      "window": "2026-10-02 00:00 UTC to 2026-11-01 00:00 UTC",
+      "blocks": "218126921-222491356"
+    },
+    "b.hsp027_extra_burn_max_near_per_day": {
+      "value": "417.246",
+      "text": "417",
+      "source": "data/burn.json",
+      "unit": "NEAR/day",
+      "window": "2026-10-02 00:00 UTC to 2026-11-01 00:00 UTC",
+      "blocks": "218126921-222491356"
+    },
+    "b.hsp027_extra_max_share_of_minted": {
+      "value": "0.004669",
+      "text": "0.47%",
+      "source": "data/burn.json",
+      "unit": "share",
+      "window": "2026-10-02 00:00 UTC to 2026-11-01 00:00 UTC",
+      "blocks": "218126921-222491356"
+    },
+    "b.max_mint_near_per_day": {
+      "value": "89515.483",
+      "text": "89,515",
+      "source": "data/burn.json",
+      "unit": "NEAR/day",
+      "window": "2026-10-02 00:00 UTC to 2026-11-01 00:00 UTC",
+      "blocks": "218126921-222491356"
+    },
+    "b.minted_near_per_day": {
+      "value": "89365.660",
+      "text": "89,366",
+      "source": "data/burn.json",
+      "unit": "NEAR/day",
+      "window": "2026-10-02 00:00 UTC to 2026-11-01 00:00 UTC",
+      "blocks": "218126921-222491356"
+    },
+    "b.minted_share_of_max": {
+      "value": "0.998326",
+      "text": "99.83%",
+      "source": "data/burn.json",
+      "unit": "share",
+      "window": "2026-10-02 00:00 UTC to 2026-11-01 00:00 UTC",
+      "blocks": "218126921-222491356"
+    },
+    "b.treasury_share_of_minted": {
+      "value": "0.100327",
+      "text": "10.0%",
+      "source": "data/burn.json",
+      "unit": "share",
+      "window": "2026-10-02 00:00 UTC to 2026-11-01 00:00 UTC",
+      "blocks": "218126921-222491356"
+    },
     "c.buybacks_confirmations": {
       "value": "2 of 4",
       "text": "2 of 4",

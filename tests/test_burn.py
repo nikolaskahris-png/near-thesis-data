@@ -163,6 +163,18 @@ class BurnTest(unittest.TestCase):
         _, _, problems, _, _ = self.measure(net_override=12345)
         self.assertTrue(any("differs from number 1" in x for x in problems))
 
+    def test_treasury_share_uses_control_map_at_the_same_block(self):
+        data, doc, _, _, (w0, w1) = self.measure()
+        (data / "control_map.json").write_text(json.dumps({
+            "block": {"height": w1}, "links": {"protocol_treasury": {"balance_change_near": "3.500"}}}))
+        r, p = burn.compute(doc, data)
+        self.assertEqual(p, [])
+        self.assertEqual(r["treasury_share_of_minted"], "0.100000")  # 3.5 of 35 minted
+        (data / "control_map.json").write_text(json.dumps({
+            "block": {"height": w1 - 1}, "links": {"protocol_treasury": {"balance_change_near": "3.500"}}}))
+        r, _ = burn.compute(doc, data)
+        self.assertEqual(r["treasury_share_of_minted"], "")
+
     def test_new_chunks_only(self):
         r = json.loads(FakeBurnChain()._post({"params": {"block_id": 1500}}))["result"]
         self.assertEqual(burn.burnt_new(r), burnt_of(1500))

@@ -281,7 +281,11 @@ changes nothing on chain by itself (`actions: null`): it takes a nearcore releas
 2.14.0, and mainnet validators can start voting for it on 4 November 2026 00:00 UTC
 ([`core/primitives/src/version.rs`](https://github.com/near/nearcore/blob/2.14.0/core/primitives/src/version.rs)).
 `scripts/upgrade_watch.py` records every day in `data/upgrade_watch.csv` how much stake signals version 87, so
-"passed" versus "in force" is measured live during the hackathon.
+"passed" versus "in force" is measured live during the hackathon. The change is small: gas burns
+<!--n:b.burnt_near_per_day-->974<!--/n--> NEAR a day in the window, and removing the rebate would add at most
+<!--n:b.hsp027_extra_burn_max_near_per_day-->417<!--/n--> a day, <!--n:b.hsp027_extra_max_share_of_minted-->0.47%<!--/n--> of gross issuance (`scripts/burn.py`;
+the burn is counted after the rebate, so the rebate is at most 3/7 of it). The buybacks wallets keep
+<!--n:n1.buybacks_near_per_day-->9,570<!--/n--> a day.
 
 | Link | What would make it a rule | Trade-off |
 |---|---|---|
@@ -346,7 +350,13 @@ record inside the transaction's own arguments. It also checks the signer and tha
 - **treasury.near from balances.** Its share of new supply (<!--n:c.treasury_share_of_new_supply-->10.1%<!--/n-->)
   is its balance change ÷ the change of `total_supply`. The RPC's `protocol_reward_rate` field reads `0/1` at the
   end block, so it is saved but not used. HSP-029's author measured the same split independently, 10.13% over
-  28 days, and reports the same `0/1` (proposal text on `vote.dao`).
+  28 days, and reports the same `0/1` (proposal text on `vote.dao`). Against gross issuance (below) the share is
+  <!--n:b.treasury_share_of_minted-->10.0%<!--/n-->: the protocol's 10%. The 10.1% is higher because new supply is net of gas burnt.
+- **Issuance is net of gas burnt.** `total_supply(block) = total_supply(previous) + minted − balance_burnt of its
+  new chunks` (nearcore 2.14.0, `core/primitives/src/block.rs`), and NEAR is minted only in the first block of an
+  epoch. `scripts/burn.py` reads every epoch start in the window (<!--n:b.epochs-->101<!--/n-->): gross issuance
+  <!--n:b.minted_near_per_day-->89,366<!--/n--> NEAR a day, gas burnt <!--n:b.burnt_near_per_day-->974<!--/n--> (<!--n:b.burnt_share_of_minted-->1.1%<!--/n-->), net
+  <!--n:n1.new_near_per_day-->88,392<!--/n-->, exactly number 1. Gross issuance is <!--n:b.minted_share_of_max-->99.83%<!--/n--> of the 1/40 cap.
 - **Issuance only over 30 days or more.** `total_supply` rises at the end of each epoch, so a single day can read
   far from the mean; over 30 days the error is about one epoch (about ±1%). The one exception is prediction 2,
   which covers 15 days (about ±2%).
@@ -420,7 +430,7 @@ python scripts/treasury_flows.py --verify --archival
 
 | Term | Meaning here |
 |---|---|
-| Issuance, new NEAR | the change of `total_supply` between two block headers, per day |
+| Issuance, new NEAR | the change of `total_supply` between two block headers, per day: NEAR minted minus gas burnt |
 | Coverage | NEAR the wallets kept ÷ new NEAR, over the same window |
 | Dilution | total supply grows by <!--n:n1.new_near_per_day-->88,392<!--/n--> NEAR a day whatever the buybacks do, because bought NEAR is held, not burned; buybacks lower only the supply outside their wallets |
 | Buybacks wallets | `buybacks.multisignature.near` + `1csfundsadmin.sputnik-dao.near`; they hold bought NEAR |
