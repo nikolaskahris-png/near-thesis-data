@@ -145,7 +145,8 @@ python scripts/check_prereg.py --file              # PREREG.md matches the ancho
 
 The second command ends with `VERIFY: PASS (PUBLIC_FULL)`: every number recomputed with no network and without
 the private originals ([Method](#method)). The `verify` badge runs these, and the check of
-`data/upgrade_watch.csv`, on every push. Five live read-only calls are in [Verify live](#verify-live).
+`data/upgrade_watch.csv`, on every push. Five live read-only calls, and a re-measurement of numbers 1 and 3 from
+the chain, are in [Verify live](#verify-live).
 
 ## The control map: who can change each link
 
@@ -407,6 +408,13 @@ SHA-256 above. The base64 arguments are `{}`, `{"price_id":"price_QzmSvxbZqdbV0X
 `{"keys":["samerice7976.near/thesis/prereg/1/**"]}`. Live answers can differ from the
 locked block; that difference is the point of checking.
 
+To re-measure numbers 1 and 3 at the locked end block, into a temporary folder, and compare with the saved
+files (network, no keys, a few minutes; last line `REMEASURE: SAME`):
+
+```
+python scripts/remeasure.py
+```
+
 To re-fetch the locked blocks themselves from an archival RPC:
 
 ```
@@ -457,6 +465,7 @@ python scripts/treasury_flows.py --verify --archival
 | `scripts/` | one script per number or finding; each has `--verify` and a test in `tests/` |
 | `PREREG.md` | the three predictions, anchored on chain |
 | `docs/sign.html` | the page used once to sign the anchoring transaction |
+| `AGENTS.md`, `CLAUDE.md` | the checking steps for automated reviewers (identical files) |
 
 Data sources: FastNEAR RPC and archival RPC, NearBlocks API, DefiLlama (`api.llama.fi`, `coins.llama.fi`), and one
 read of NEAR AI Cloud's farm setting in a signed-in session (`data/offchain/`). No API keys.

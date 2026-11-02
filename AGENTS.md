@@ -1,0 +1,98 @@
+# Checking this repository
+
+Steps for an automated reviewer to check the claims in [README.md](README.md). Claude Code reads `CLAUDE.md`,
+Codex reads `AGENTS.md`; the two files are identical (`tests/test_remeasure.py` fails otherwise). This file
+contains no measured number and states no conclusion: the claims and their numbers are in the README, the
+numbers come from [`data/numbers.json`](data/numbers.json), and each section below says how to check them.
+
+Requirements: Python 3.10 or later (`python` below, `python3` on some systems), standard library only. No
+`pip install`, no API keys. No command here signs anything or writes to the chain.
+
+## 1. Offline check (no network, about 5 seconds)
+
+Run from the repository root:
+
+| Command | What it checks | Last line when it passes |
+|---|---|---|
+| `python -m unittest discover -s tests` | every script's logic on simulated chains and APIs | `OK` |
+| `python scripts/build_numbers.py --verify` | every script's own offline check, then `numbers.json` rebuilds byte for byte | starts with `VERIFY: PASS (PUBLIC_FULL)` |
+| `python scripts/build_numbers.py --check README.md` | every marked number in the README equals `numbers.json` | `OK: <count> marked numbers in README.md match numbers.json` |
+| `python scripts/check_prereg.py --file` | `PREREG.md` hashes to the SHA-256 anchored on chain (saved copy of the record) | `OK: PREREG.md is the anchored file` |
+
+Each passing command exits with code 0. Any other last line, or another exit code, is a failure.
+
+`build_numbers.py --verify` prints one `OK` line per script before the verdict. `PUBLIC_FULL` means every
+number was recomputed from files in git. Responses that list people's accounts are not in git (see
+[What is not in the repository](#what-is-not-in-the-repository)); offline, the verdict says which scripts have
+such originals and that their match was not checked. Section 2 re-fetches them.
+
+## 2. Re-measure from the chain (network, no keys, a few minutes)
+
+```
+python scripts/remeasure.py
+```
+
+Re-measures numbers 1 and 3 at the end of the locked window (first block at or after 1 November 2026
+00:00 UTC) with the same code that made the saved files. It writes only into a new temporary folder and compares
+with `data/history.csv` and `data/stakers/2026-11-01.json`. Last line when it passes: `REMEASURE: SAME`. Each
+difference is printed as `DIFFERENT <field>: saved ..., now ...`. `--only 1` runs number 1 alone (under a
+minute). Number 3 takes longer because NearBlocks is read without a key, with a 12-second pause between pages.
+
+The control map, the control history and the NEAR AI pool's flows re-fetch their locked blocks with:
+
+```
+python scripts/control_map.py --verify --archival
+python scripts/control_history.py --verify --archival
+python scripts/treasury_flows.py --verify --archival
+```
+
+Each exits with code 0 when the re-fetched answers give the saved results. Endpoints used:
+`archival-rpc.mainnet.fastnear.com` and `api.nearblocks.io`. On HTTP 429 the scripts slow down and retry.
+
+## 3. Live state (five read-only calls)
+
+[README, Verify live](README.md#verify-live): five `curl` calls to a public RPC, with the answers saved at the
+locked block for comparison. Live answers can differ from the locked block.
+
+## Where each number comes from
+
+Each entry of `data/numbers.json` has `value`, `text` (the README form), `source` (a file) and that file's
+SHA-256. In the README each figure is wrapped as `<!--n:KEY-->text<!--/n-->`, where `KEY` is the entry.
+
+| Key prefix | What | Script | Source file |
+|---|---|---|---|
+| `n1.` | Number 1: coverage of new supply by the buybacks wallets | `daily.py` | `data/daily/2026-11-01.json` |
+| `n2.` | Number 2: ceiling if every DefiLlama fee were kept | `fees.py` | `data/fees_2026-10-02_2026-11-01.json` |
+| `n3.` | Number 3: spread of NEAR AI staking | `stakers.py` | `data/stakers/2026-11-01.json` |
+| `f1.`, `f2.` | Monthly coverage; fees and take rate | `coverage.py`, `fees.py` | `data/coverage_monthly.json`, fees file |
+| `f4.` | NEAR AI pool owner's flows | `treasury_flows.py` | `data/treasury_flows.json` |
+| `f5.`, `f7.` | Concentration over time; Agents locks | `stakers.py` | `data/stakers/*.json` |
+| `f6.` | Farm reward rate and credits | `farm_rate.py`, `stakers.py` | `data/farm_rate.json`, `data/offchain/` |
+| `f8.` | HSP-029 vote | `hsp029.py`, `hsp029_voters.py` | written after the vote closes |
+| `f9.`, `iv.` | Front-end share; investment view (derived) | `build_numbers.py` | files named in each entry |
+| `c.` | Control map | `control_map.py` | `data/control_map.json` |
+| `h.` | Control history | `control_history.py` | `data/control_history.json` |
+
+All flows use one window: `data/window_2026-10-02_2026-11-01.json` (`lock_window.py`), blocks 218,126,921 →
+222,491,356. Public raw responses are under `data/raw/`, byte for byte.
+
+An entry with no `status` is final for that window. Other values:
+
+- `provisional`: based on DefiLlama, final only when its data settles (rule in [README, Method](README.md#method)).
+- `pending`: measured after an on-chain vote closes.
+- `off-chain`: NEAR AI Cloud's credit setting, read once in a signed-in session (`data/offchain/`); it cannot be
+  re-read without an account.
+- `not-measured`: stated as not measured, with the reason in the entry.
+
+To list them: `python -c "import json,collections; n=json.load(open('data/numbers.json'))['numbers']; print(collections.Counter(v.get('status','final') for v in n.values()))"`
+
+## What is not in the repository
+
+- `data/private/` (in `.gitignore`): responses that list people's accounts (stake.dao positions and locks,
+  NearBlocks pages, DAO proposal texts, validators, voters). Public files keep each one's SHA-256 and the exact
+  request. Numbers are computed from redacted copies under `data/raw/redacted/` (and the account lists inside
+  `data/stakers/`), where people's accounts appear as `sha256:` tags. Section 2 re-fetches the originals.
+- Until commit `7851eb5` the raw stake.dao responses, with account IDs, were committed; they remain in the git
+  history (disclosed in [README, Method](README.md#method)).
+- The research notes written before the first commit (disclosed in
+  [README, Timeline and disclosure](README.md#timeline-and-disclosure)).
