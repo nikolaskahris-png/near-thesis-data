@@ -5,22 +5,30 @@ Between two blocks, balance(h) - balance(start) - (protocol rewards paid at epoc
 changes only when something else moves: an outflow lowers it. For a month with net outflows the
 script bisects that quantity over the block heights, down to single steps (about 25 balance
 reads per step), then asks the node for the cause of the change in that block
-(EXPERIMENTAL_changes, account_changes). Amounts, blocks and hashes only: who received the NEAR
-is public in the explorer and is not collected here.
+(EXPERIMENTAL_changes, account_changes).
+
+--recipients then reads, for every step of at least 1 NEAR caused by a transaction, that
+transaction's receipts (EXPERIMENTAL_tx_status) and records each transfer treasury.near sent:
+receiver, deposit and whether it succeeded. Multisig and DAO contracts (*.multisignature.near,
+*.sputnik-dao.near) are named; every other receiver is shown as a sha256 tag (see privacy.py).
+The full answers stay in data/private/ (not in git); their redacted copies are public.
 
 The steps found must add up to the month's other_net in data/treasury_spend.json to the yocto;
 otherwise the run says so (a step hidden by an equal inflow in the same bisection interval
 would show up as a difference).
 
-Read-only: JSON-RPC "view_account", "block" and "EXPERIMENTAL_changes". No keys.
+Read-only: JSON-RPC "view_account", "block", "EXPERIMENTAL_changes", "EXPERIMENTAL_tx_status".
+No keys.
 
 Usage:
     python scripts/treasury_exits.py            needs data/treasury_spend.json (about 200 calls)
+    python scripts/treasury_exits.py --recipients   adds the receivers (one call per large step)
     python scripts/treasury_exits.py --verify   offline, from the saved files
 """
 import argparse
 import hashlib
 import json
+import re
 import sys
 from pathlib import Path
 
@@ -28,10 +36,102 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import burn  # noqa: E402
 import daily  # noqa: E402
 import lock_window as lw  # noqa: E402
+import privacy  # noqa: E402
 import treasury_spend as ts  # noqa: E402
 
 REPO = Path(__file__).resolve().parent.parent
 OUT_NAME = "treasury_exits.json"
+MIN_RECIPIENT_YOCTO = 10 ** 24  # steps of at least 1 NEAR get their receivers
+# Receivers shown by name: multisig and DAO contracts. Everyone else gets a sha256 tag.
+INSTITUTIONAL = re.compile(r"^[a-z0-9_-]+(?:\.[a-z0-9_-]+)*\.(?:multisignature|sputnik-dao)\.near$")
+
+
+def tx_rel(tx_hash):
+    return f"data/private/treasury_exits/tx/{tx_hash}.json"
+
+
+def project_tx(key, raw):
+    """Redacted copy of one EXPERIMENTAL_tx_status answer: the transfers treasury.near sent."""
+    res = json.loads(raw)["result"]
+    status = {o["id"]: o["outcome"]["status"] for o in res["receipts_outcome"]}
+    transfers = []
+    for r in res.get("receipts", []):
+        action = r["receipt"].get("Action")
+        if not action or r["predecessor_id"] != ts.ACCOUNT or r["receiver_id"] == ts.ACCOUNT:
+            continue
+        dep = 0
+        for a in action["actions"]:
+            if isinstance(a, dict):
+                for kind in ("Transfer", "FunctionCall"):
+                    if kind in a:
+                        dep += int(a[kind].get("deposit", "0"))
+        if dep:
+            st = status.get(r["receipt_id"], {})
+            transfers.append({"receipt_id": r["receipt_id"], "receiver_id": r["receiver_id"],
+                              "deposit_yocto": str(dep),
+                              "ok": "SuccessValue" in st or "SuccessReceiptId" in st})
+    out = {"tx_hash": res["transaction"]["hash"], "signer_id": res["transaction"]["signer_id"],
+           "transfers": transfers}
+    public = {ts.ACCOUNT} | {t["receiver_id"] for t in transfers
+                             if INSTITUTIONAL.match(t["receiver_id"])}
+    return privacy.dumps(privacy.redact(out, public))
+
+
+def recipients_of(doc, base):
+    """From the redacted copies: (receivers per exit height, summary by receiver, problems)."""
+    per, summary, problems = {}, {}, []
+    for e in doc["exits"]:
+        f = doc.get("tx_files", {}).get(e["cause"].get("tx_hash", ""))
+        if not f:
+            continue
+        red = json.loads(privacy.read(base, f))
+        rows = [{"account": t["receiver_id"], "amount_near": daily.near(int(t["deposit_yocto"])),
+                 "ok": t["ok"]} for t in red["transfers"]]
+        sent = sum(int(t["deposit_yocto"]) for t in red["transfers"])
+        rest = int(e["amount_yocto"]) - sent
+        if not 0 <= rest < MIN_RECIPIENT_YOCTO:
+            problems.append(f"block {e['height']}: transfers {daily.near(sent)} do not explain "
+                            f"the fall of {e['amount_near']} NEAR")
+        per[e["height"]] = rows
+        for t in red["transfers"]:
+            if t["ok"]:
+                s = summary.setdefault(t["receiver_id"], [0, 0])
+                s[0] += int(t["deposit_yocto"])
+                s[1] += 1
+    out = [{"account": a, "amount_near": daily.near(v[0]), "transfers": v[1]}
+           for a, v in sorted(summary.items(), key=lambda x: -x[1][0])]
+    return per, out, problems
+
+
+def add_recipients(chain, data_root):
+    base = data_root.parent
+    doc = json.loads((data_root / OUT_NAME).read_text(encoding="utf-8"))
+    files = doc.setdefault("tx_files", {})
+    for e in doc["exits"]:
+        h = e["cause"].get("tx_hash")
+        if not h or int(e["amount_yocto"]) < MIN_RECIPIENT_YOCTO:
+            continue
+        rel = tx_rel(h)
+        path = base / rel
+        if not path.exists():
+            raw = chain._post({"jsonrpc": "2.0", "id": "exits", "method": "EXPERIMENTAL_tx_status",
+                               "params": {"tx_hash": h, "sender_account_id": ts.ACCOUNT,
+                                          "wait_until": "NONE"}})
+            if "result" not in json.loads(raw):
+                raise RuntimeError(f"tx {h}: {raw[:200]!r}")
+            path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_bytes(raw)
+        files[h] = {"path": rel, "sha256": sha256(path.read_bytes()), "private": True}
+    privacy.write_redacted(base, files, project_tx)
+    per, _, problems = recipients_of(doc, base)
+    for e in doc["exits"]:
+        if e["height"] in per:
+            e["recipients"] = per[e["height"]]
+    res, p = verify_exits(doc, data_root)
+    doc["results"] = res
+    (data_root / OUT_NAME).write_text(json.dumps(doc, indent=2) + "\n", encoding="utf-8",
+                                      newline="\n")
+    return doc, problems + p
 
 
 def sha256(data):
@@ -120,6 +220,16 @@ def verify_exits(doc, data_root):
         results["months"].append({"month": key, "steps": len(mine), "exits_near": daily.near(got),
                                   "other_net_near": row["other_net_near"]})
     results["total_exits_near"] = daily.near(total)
+    if doc.get("tx_files"):
+        p, absent = privacy.check_files(base, doc["tx_files"], project_tx)
+        problems += p
+        if not p:
+            per, summary, p = recipients_of(doc, base)
+            problems += p
+            for e in doc["exits"]:
+                if per.get(e["height"]) != e.get("recipients"):
+                    problems.append(f"block {e['height']}: receivers differ from the saved copies")
+            results["recipients"] = summary
     return results, problems
 
 
@@ -190,6 +300,8 @@ def show(doc):
         h = c.get("tx_hash") or c.get("receipt_hash") or ""
         print(f"  {e['utc']}  block {e['height']:>11,}  {e['amount_near']:>12} NEAR  "
               f"{c.get('type', '')} {h}")
+        for r in e.get("recipients", []):
+            print(f"      -> {r['account']} {r['amount_near']} NEAR{'' if r['ok'] else ' (failed)'}")
     print(f"total {doc['results']['total_exits_near']} NEAR")
 
 
@@ -197,6 +309,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     parser.add_argument("--data-dir", type=Path, default=REPO / "data")
     parser.add_argument("--verify", action="store_true")
+    parser.add_argument("--recipients", action="store_true")
     args = parser.parse_args()
     data_root = args.data_dir.resolve()
     if args.verify:
@@ -209,6 +322,21 @@ def main():
             return 1
         print(f"OK: {len(doc['exits'])} steps recompute from the saved balances and add up to "
               f"the monthly net outflows")
+        if doc.get("tx_files"):
+            _, absent = privacy.check_files(data_root.parent, doc["tx_files"], project_tx)
+            print(privacy.status_line(f"receivers of {len(doc['tx_files'])} transactions", absent))
+        return 0
+    if args.recipients:
+        chain = lw.Chain()
+        doc, problems = add_recipients(chain, data_root)
+        show(doc)
+        for r in doc["results"].get("recipients", []):
+            print(f"  -> {r['account']}: {r['amount_near']} NEAR in {r['transfers']} transfer(s)")
+        print(f"{chain.calls} RPC calls")
+        if problems:
+            print("FAILED:\n  " + "\n  ".join(problems[:10]))
+            return 1
+        print("Offline check: OK")
         return 0
     chain = lw.Chain()
     doc, problems = run(chain, data_root)

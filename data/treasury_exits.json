@@ -1,0 +1,1427 @@
+{
+  "measure": "blocks, amounts and causes of treasury.near's balance falls",
+  "source_file": "data/treasury_spend.json",
+  "exits": [
+    {
+      "month": "2026-04-01",
+      "height": 193793322,
+      "previous": 193793321,
+      "utc": "2026-04-13T07:39:36Z",
+      "amount_yocto": "15055394706975200000000",
+      "amount_near": "0.015",
+      "cause": {
+        "tx_hash": "9uXub5aeCiaKEALnNC7XCbemfs5nc6bNGj5zssJzoKoV",
+        "type": "transaction_processing"
+      }
+    },
+    {
+      "month": "2026-04-01",
+      "height": 193793323,
+      "previous": 193793322,
+      "utc": "2026-04-13T07:39:37Z",
+      "amount_yocto": "-14785756362083700000000",
+      "amount_near": "-0.015",
+      "cause": {
+        "receipt_hash": "A2c92965KsRJisZZwTFgTcGYh4eE1EsuDoa7GHBZrbAc",
+        "type": "receipt_processing"
+      }
+    },
+    {
+      "month": "2026-04-01",
+      "height": 194108946,
+      "previous": 194108945,
+      "utc": "2026-04-15T12:44:36Z",
+      "amount_yocto": "30078775049141400000000",
+      "amount_near": "0.030",
+      "cause": {
+        "tx_hash": "ApHPCr3jEPmDEXwfYtmdHHprRUthvWPoR3RitpPNHBc2",
+        "type": "transaction_processing"
+      }
+    },
+    {
+      "month": "2026-04-01",
+      "height": 194108947,
+      "previous": 194108946,
+      "utc": "2026-04-15T12:44:36Z",
+      "amount_yocto": "-29863841388860600000000",
+      "amount_near": "-0.030",
+      "cause": {
+        "receipt_hash": "33TPn9rGeguUzeZuBf2gTQ7DnKkEY49FSmNgtqGWm8fK",
+        "type": "receipt_processing"
+      }
+    },
+    {
+      "month": "2026-04-01",
+      "height": 194109262,
+      "previous": 194109261,
+      "utc": "2026-04-15T12:47:49Z",
+      "amount_yocto": "15059084398405700000000",
+      "amount_near": "0.015",
+      "cause": {
+        "tx_hash": "53YFM2RGKKo2YYHZsGpTbcGn3hcBqgQShU9Curx8dDvw",
+        "type": "transaction_processing"
+      }
+    },
+    {
+      "month": "2026-04-01",
+      "height": 194109263,
+      "previous": 194109262,
+      "utc": "2026-04-15T12:47:49Z",
+      "amount_yocto": "-14798022539820300000000",
+      "amount_near": "-0.015",
+      "cause": {
+        "receipt_hash": "7jyTqJsfLu3wQoAJ7pQJmeGGcnCJ9MjVYxoRCJNQwjh9",
+        "type": "receipt_processing"
+      }
+    },
+    {
+      "month": "2026-04-01",
+      "height": 194109287,
+      "previous": 194109286,
+      "utc": "2026-04-15T12:48:03Z",
+      "amount_yocto": "15058667910819400000000",
+      "amount_near": "0.015",
+      "cause": {
+        "tx_hash": "BVj6oeJF147GsXt324QtNzGGZZ3odukhzEZgoKSCtx2s",
+        "type": "transaction_processing"
+      }
+    },
+    {
+      "month": "2026-04-01",
+      "height": 194109288,
+      "previous": 194109287,
+      "utc": "2026-04-15T12:48:04Z",
+      "amount_yocto": "-14796632757243300000000",
+      "amount_near": "-0.015",
+      "cause": {
+        "receipt_hash": "GTUSRsBdcw42x9BEdiUWiu4qeP35Xjn2kFgYzLNYRQoS",
+        "type": "receipt_processing"
+      }
+    },
+    {
+      "month": "2026-04-01",
+      "height": 194109307,
+      "previous": 194109306,
+      "utc": "2026-04-15T12:48:15Z",
+      "amount_yocto": "15058804710819400000000",
+      "amount_near": "0.015",
+      "cause": {
+        "tx_hash": "6EXdVdzvzFsr3ZKAV6pKRkE8SaVscE6nq3UgSrXEGqyL",
+        "type": "transaction_processing"
+      }
+    },
+    {
+      "month": "2026-04-01",
+      "height": 194109308,
+      "previous": 194109307,
+      "utc": "2026-04-15T12:48:16Z",
+      "amount_yocto": "-14797088757243300000000",
+      "amount_near": "-0.015",
+      "cause": {
+        "receipt_hash": "CUKGi59cor8BAHDM4TDib4NtHNwwAgwDSNtWqLxNu3wT",
+        "type": "receipt_processing"
+      }
+    },
+    {
+      "month": "2026-04-01",
+      "height": 194109327,
+      "previous": 194109326,
+      "utc": "2026-04-15T12:48:28Z",
+      "amount_yocto": "15058667910819400000000",
+      "amount_near": "0.015",
+      "cause": {
+        "tx_hash": "7ydL5iZHu7h1Y9GYnDwz6tknKWd7ghqVJSWt4GhDSM7E",
+        "type": "transaction_processing"
+      }
+    },
+    {
+      "month": "2026-04-01",
+      "height": 194109328,
+      "previous": 194109327,
+      "utc": "2026-04-15T12:48:28Z",
+      "amount_yocto": "-14796632757243300000000",
+      "amount_near": "-0.015",
+      "cause": {
+        "receipt_hash": "GH9QJ75bLiA11mSd5CqLagxADiuBpzd6eRknFDBnGS5t",
+        "type": "receipt_processing"
+      }
+    },
+    {
+      "month": "2026-04-01",
+      "height": 194109347,
+      "previous": 194109346,
+      "utc": "2026-04-15T12:48:40Z",
+      "amount_yocto": "15058667910819400000000",
+      "amount_near": "0.015",
+      "cause": {
+        "tx_hash": "E1qaE28pmtRYVT98xDGbrBHFJRaAWpHKXjjBjCybGqKs",
+        "type": "transaction_processing"
+      }
+    },
+    {
+      "month": "2026-04-01",
+      "height": 194109348,
+      "previous": 194109347,
+      "utc": "2026-04-15T12:48:40Z",
+      "amount_yocto": "-14796632757243300000000",
+      "amount_near": "-0.015",
+      "cause": {
+        "receipt_hash": "51J1kFdvx5dLQZvSuSy48uTMNJ1iQt1XrkP9eyB1rSky",
+        "type": "receipt_processing"
+      }
+    },
+    {
+      "month": "2026-04-01",
+      "height": 194109370,
+      "previous": 194109369,
+      "utc": "2026-04-15T12:48:53Z",
+      "amount_yocto": "15058667910819400000000",
+      "amount_near": "0.015",
+      "cause": {
+        "tx_hash": "EXpptBKHf83v1BA55fdFvCH1FUnzW8Fih2zuRy4tzinu",
+        "type": "transaction_processing"
+      }
+    },
+    {
+      "month": "2026-04-01",
+      "height": 194109371,
+      "previous": 194109370,
+      "utc": "2026-04-15T12:48:54Z",
+      "amount_yocto": "-14796632757243300000000",
+      "amount_near": "-0.015",
+      "cause": {
+        "receipt_hash": "DafGsBzSCgiDLU7mahdgRC3htzEQzhWeGJ8Vo1CeqKQo",
+        "type": "receipt_processing"
+      }
+    },
+    {
+      "month": "2026-04-01",
+      "height": 194109585,
+      "previous": 194109584,
+      "utc": "2026-04-15T12:51:06Z",
+      "amount_yocto": "30078625736747500000000",
+      "amount_near": "0.030",
+      "cause": {
+        "tx_hash": "8Ap4qXuJNJ9E71yk12jMDNgDX5Z3SyoKCSBBSfHwMzrz",
+        "type": "transaction_processing"
+      }
+    },
+    {
+      "month": "2026-04-01",
+      "height": 194109586,
+      "previous": 194109585,
+      "utc": "2026-04-15T12:51:07Z",
+      "amount_yocto": "-29863343680881000000000",
+      "amount_near": "-0.030",
+      "cause": {
+        "receipt_hash": "D26EUfap578HVGyaDMW6DHDvEqPra2MZhRq4QSPiZ5sa",
+        "type": "receipt_processing"
+      }
+    },
+    {
+      "month": "2026-04-01",
+      "height": 194109597,
+      "previous": 194109596,
+      "utc": "2026-04-15T12:51:13Z",
+      "amount_yocto": "30078626603834500000000",
+      "amount_near": "0.030",
+      "cause": {
+        "tx_hash": "P3V5boiDuqFY3Co9QPciD57nZVbwUPxnBSHgCQYjxX2",
+        "type": "transaction_processing"
+      }
+    },
+    {
+      "month": "2026-04-01",
+      "height": 194109598,
+      "previous": 194109597,
+      "utc": "2026-04-15T12:51:15Z",
+      "amount_yocto": "-29863346571170800000000",
+      "amount_near": "-0.030",
+      "cause": {
+        "receipt_hash": "4UNSMsjzYun7dGCzxEW1wQH82e7WnTpT4aXzRKD2mcmE",
+        "type": "receipt_processing"
+      }
+    },
+    {
+      "month": "2026-04-01",
+      "height": 194109608,
+      "previous": 194109607,
+      "utc": "2026-04-15T12:51:20Z",
+      "amount_yocto": "30078626603834500000000",
+      "amount_near": "0.030",
+      "cause": {
+        "tx_hash": "HuD643DipGXoFyy125aPeDoidFrC1UT8HVCTRgQwPwP",
+        "type": "transaction_processing"
+      }
+    },
+    {
+      "month": "2026-04-01",
+      "height": 194109609,
+      "previous": 194109608,
+      "utc": "2026-04-15T12:51:21Z",
+      "amount_yocto": "-29863346571170800000000",
+      "amount_near": "-0.030",
+      "cause": {
+        "receipt_hash": "HoXAkPbKmkphQB1hAR2gg9rY5eADRzcKvpnFMTWw8YCU",
+        "type": "receipt_processing"
+      }
+    },
+    {
+      "month": "2026-04-01",
+      "height": 194109621,
+      "previous": 194109620,
+      "utc": "2026-04-15T12:51:29Z",
+      "amount_yocto": "30078626603834500000000",
+      "amount_near": "0.030",
+      "cause": {
+        "tx_hash": "CwrCNH8buaudBNFqVL2ov6e67ZqX4YqjTLDtv2wUh3Jy",
+        "type": "transaction_processing"
+      }
+    },
+    {
+      "month": "2026-04-01",
+      "height": 194109622,
+      "previous": 194109621,
+      "utc": "2026-04-15T12:51:29Z",
+      "amount_yocto": "-29863346571170800000000",
+      "amount_near": "-0.030",
+      "cause": {
+        "receipt_hash": "7eZRuMLcRrsfQhxffyd4p68xhg1QjmmRa2B2SptmoFr9",
+        "type": "receipt_processing"
+      }
+    },
+    {
+      "month": "2026-04-01",
+      "height": 194109633,
+      "previous": 194109632,
+      "utc": "2026-04-15T12:51:36Z",
+      "amount_yocto": "30078626603834500000000",
+      "amount_near": "0.030",
+      "cause": {
+        "tx_hash": "5ReAdEZ9QwNuy9NeBpEFQyaXA8ZFaEokvNTFvZz68SzX",
+        "type": "transaction_processing"
+      }
+    },
+    {
+      "month": "2026-04-01",
+      "height": 194109634,
+      "previous": 194109633,
+      "utc": "2026-04-15T12:51:36Z",
+      "amount_yocto": "-29863346571170800000000",
+      "amount_near": "-0.030",
+      "cause": {
+        "receipt_hash": "F1Ltwd1Prp5Xik6K7a6c2ZtpNfsMgpDoiNy1RmsprBNi",
+        "type": "receipt_processing"
+      }
+    },
+    {
+      "month": "2026-04-01",
+      "height": 194109646,
+      "previous": 194109645,
+      "utc": "2026-04-15T12:51:43Z",
+      "amount_yocto": "30078626603834500000000",
+      "amount_near": "0.030",
+      "cause": {
+        "tx_hash": "3ZssrZrBsZPLQCZrRQZXjWgMkprxXuWgP7iCfnTB2FDS",
+        "type": "transaction_processing"
+      }
+    },
+    {
+      "month": "2026-04-01",
+      "height": 194109647,
+      "previous": 194109646,
+      "utc": "2026-04-15T12:51:44Z",
+      "amount_yocto": "-29863346571170800000000",
+      "amount_near": "-0.030",
+      "cause": {
+        "receipt_hash": "7LWDrUrwxGmaX7G9uw3k8ZVmywNBtiGF6qJZ8p9aawu9",
+        "type": "receipt_processing"
+      }
+    },
+    {
+      "month": "2026-04-01",
+      "height": 194110526,
+      "previous": 194110525,
+      "utc": "2026-04-15T13:00:38Z",
+      "amount_yocto": "4900000030034143106028300000000",
+      "amount_near": "4900000.030",
+      "cause": {
+        "tx_hash": "5Agb9JRAcYWtaooijToh2VgfPaCAEs7qG8EU1E6GobLW",
+        "type": "transaction_processing"
+      },
+      "recipients": [
+        {
+          "account": "ecotreasury5.multisignature.near",
+          "amount_near": "4900000.000",
+          "ok": true
+        }
+      ]
+    },
+    {
+      "month": "2026-04-01",
+      "height": 194110527,
+      "previous": 194110526,
+      "utc": "2026-04-15T13:00:38Z",
+      "amount_yocto": "-29692749988900200000000",
+      "amount_near": "-0.030",
+      "cause": {
+        "receipt_hash": "7nrzLZnpicArs5TrcwCfsS1YMLBc21mxCvFCEAqX4n8g",
+        "type": "receipt_processing"
+      }
+    },
+    {
+      "month": "2026-04-01",
+      "height": 194110540,
+      "previous": 194110539,
+      "utc": "2026-04-15T13:00:46Z",
+      "amount_yocto": "4900000030034143106028300000000",
+      "amount_near": "4900000.030",
+      "cause": {
+        "tx_hash": "GT5th5TLMtBHrHrc1qEEatvdWBvWBAWtqkxFYHjXzqRt",
+        "type": "transaction_processing"
+      },
+      "recipients": [
+        {
+          "account": "ecotreasury4.multisignature.near",
+          "amount_near": "4900000.000",
+          "ok": true
+        }
+      ]
+    },
+    {
+      "month": "2026-04-01",
+      "height": 194110541,
+      "previous": 194110540,
+      "utc": "2026-04-15T13:00:47Z",
+      "amount_yocto": "-29692749988900200000000",
+      "amount_near": "-0.030",
+      "cause": {
+        "receipt_hash": "54z5zs9MbXC3s6kwemP87VGx1mAraiQedVu5RtC75i5S",
+        "type": "receipt_processing"
+      }
+    },
+    {
+      "month": "2026-04-01",
+      "height": 194110788,
+      "previous": 194110787,
+      "utc": "2026-04-15T13:03:18Z",
+      "amount_yocto": "3030007620090266700000000",
+      "amount_near": "3.030",
+      "cause": {
+        "tx_hash": "2vJbCHEYdDpa3zisBRgkzMxD9uU31eyo3ByQBP1rjsTF",
+        "type": "transaction_processing"
+      },
+      "recipients": [
+        {
+          "account": "sha256:7720298de372b4d4",
+          "amount_near": "3.000",
+          "ok": true
+        }
+      ]
+    },
+    {
+      "month": "2026-04-01",
+      "height": 194110789,
+      "previous": 194110788,
+      "utc": "2026-04-15T13:03:18Z",
+      "amount_yocto": "-29604339936361600000000",
+      "amount_near": "-0.030",
+      "cause": {
+        "receipt_hash": "88EPVZmcaH3ii8xZjJ2pcLab1hEEQdYPKzRzjoB2aDmo",
+        "type": "receipt_processing"
+      }
+    },
+    {
+      "month": "2026-04-01",
+      "height": 194111044,
+      "previous": 194111043,
+      "utc": "2026-04-15T13:05:51Z",
+      "amount_yocto": "-3000000000000000000000000",
+      "amount_near": "-3.000",
+      "cause": {
+        "receipt_hash": "3G8dGmjKgKQrDJLqHhWEF3vqbKWJK5tHjVRh7uvjdJpy",
+        "type": "receipt_processing"
+      }
+    },
+    {
+      "month": "2026-05-01",
+      "height": 198175973,
+      "previous": 198175972,
+      "utc": "2026-05-13T17:32:26Z",
+      "amount_yocto": "15058612571410800000000",
+      "amount_near": "0.015",
+      "cause": {
+        "tx_hash": "4MAfBRcEBKCDmkTWqjGiroDGqEY4MY9M1RKnzJWi4QUz",
+        "type": "transaction_processing"
+      }
+    },
+    {
+      "month": "2026-05-01",
+      "height": 198175974,
+      "previous": 198175973,
+      "utc": "2026-05-13T17:32:26Z",
+      "amount_yocto": "-14796406555113300000000",
+      "amount_near": "-0.015",
+      "cause": {
+        "receipt_hash": "EC1K95KKWHyMh9CAn6zqJgRUb5EZt4ELvxawK6VYbYRP",
+        "type": "receipt_processing"
+      }
+    },
+    {
+      "month": "2026-05-01",
+      "height": 198176049,
+      "previous": 198176048,
+      "utc": "2026-05-13T17:33:16Z",
+      "amount_yocto": "30078588299764900000000",
+      "amount_near": "0.030",
+      "cause": {
+        "tx_hash": "BRpbc7CZtu6gi9c6aMJ8YvjjFhnxaZi54GvDpqm3zByD",
+        "type": "transaction_processing"
+      }
+    },
+    {
+      "month": "2026-05-01",
+      "height": 198176050,
+      "previous": 198176049,
+      "utc": "2026-05-13T17:33:17Z",
+      "amount_yocto": "-29863218890938800000000",
+      "amount_near": "-0.030",
+      "cause": {
+        "receipt_hash": "B5EK6fzqPtNx2ZbbcEQEwtNRAVozEtrYddbP9mRZY9WJ",
+        "type": "receipt_processing"
+      }
+    },
+    {
+      "month": "2026-05-01",
+      "height": 198176087,
+      "previous": 198176086,
+      "utc": "2026-05-13T17:33:44Z",
+      "amount_yocto": "100029915197414431100000000",
+      "amount_near": "100.030",
+      "cause": {
+        "tx_hash": "2P7SoiBRkDRz4wKadS3kBVdCFGkWfKMD77HtwpTtzndY",
+        "type": "transaction_processing"
+      },
+      "recipients": [
+        {
+          "account": "sha256:e630d735067c39fe",
+          "amount_near": "100.000",
+          "ok": true
+        }
+      ]
+    },
+    {
+      "month": "2026-05-01",
+      "height": 198176088,
+      "previous": 198176087,
+      "utc": "2026-05-13T17:33:44Z",
+      "amount_yocto": "-28901087837743000000000",
+      "amount_near": "-0.029",
+      "cause": {
+        "receipt_hash": "BP4mNNYsc9ka2nfYjJeB85DdfwSynfWpyQGKvaAftuiL",
+        "type": "receipt_processing"
+      }
+    },
+    {
+      "month": "2026-05-01",
+      "height": 198176360,
+      "previous": 198176359,
+      "utc": "2026-05-13T17:36:59Z",
+      "amount_yocto": "15058585068694300000000",
+      "amount_near": "0.015",
+      "cause": {
+        "tx_hash": "N2fsK4zfLSaKBYgRdE7VDEbZC9yvP76VvDrjvni6efy",
+        "type": "transaction_processing"
+      }
+    },
+    {
+      "month": "2026-05-01",
+      "height": 198176361,
+      "previous": 198176360,
+      "utc": "2026-05-13T17:37:00Z",
+      "amount_yocto": "-14796308916900900000000",
+      "amount_near": "-0.015",
+      "cause": {
+        "receipt_hash": "5X5RUYBUDhZEns5DVEj4K36Hvq35SWzE8mh34CXNnsqJ",
+        "type": "receipt_processing"
+      }
+    },
+    {
+      "month": "2026-05-01",
+      "height": 198176374,
+      "previous": 198176373,
+      "utc": "2026-05-13T17:37:09Z",
+      "amount_yocto": "15058585068694300000000",
+      "amount_near": "0.015",
+      "cause": {
+        "tx_hash": "8z5fJtyzQWJZAM7GVZpQqigkBbcRtCHA1A4ZRVUyXswu",
+        "type": "transaction_processing"
+      }
+    },
+    {
+      "month": "2026-05-01",
+      "height": 198176375,
+      "previous": 198176374,
+      "utc": "2026-05-13T17:37:10Z",
+      "amount_yocto": "-14796308916900900000000",
+      "amount_near": "-0.015",
+      "cause": {
+        "receipt_hash": "2nyraBxVghPVGQfUSXxPvzExHgpK9iv34De2Tr32LHvT",
+        "type": "receipt_processing"
+      }
+    },
+    {
+      "month": "2026-05-01",
+      "height": 198176385,
+      "previous": 198176384,
+      "utc": "2026-05-13T17:37:16Z",
+      "amount_yocto": "15058585068694300000000",
+      "amount_near": "0.015",
+      "cause": {
+        "tx_hash": "GKvioowBXQdAWT3YscH4GNzp4f3iTrMMfq2uKAHKtDP5",
+        "type": "transaction_processing"
+      }
+    },
+    {
+      "month": "2026-05-01",
+      "height": 198176386,
+      "previous": 198176385,
+      "utc": "2026-05-13T17:37:17Z",
+      "amount_yocto": "-14796308916900900000000",
+      "amount_near": "-0.015",
+      "cause": {
+        "receipt_hash": "FEjcu1KXoeSkFizB2cEwPTxRXVNTarQgp8iYXrhZvg6m",
+        "type": "receipt_processing"
+      }
+    },
+    {
+      "month": "2026-05-01",
+      "height": 198176410,
+      "previous": 198176409,
+      "utc": "2026-05-13T17:37:33Z",
+      "amount_yocto": "15058585068694300000000",
+      "amount_near": "0.015",
+      "cause": {
+        "tx_hash": "H751JwqgS8spXnN97WiTZ3S9u7ZXASbrxWriuAhxjq7K",
+        "type": "transaction_processing"
+      }
+    },
+    {
+      "month": "2026-05-01",
+      "height": 198176411,
+      "previous": 198176410,
+      "utc": "2026-05-13T17:37:34Z",
+      "amount_yocto": "-14796308916900900000000",
+      "amount_near": "-0.015",
+      "cause": {
+        "receipt_hash": "EVW9GWbBJ9gB3JNy56W4rAfA9Z1ZHUjsebgdjQxTLcjN",
+        "type": "receipt_processing"
+      }
+    },
+    {
+      "month": "2026-05-01",
+      "height": 198176433,
+      "previous": 198176432,
+      "utc": "2026-05-13T17:37:48Z",
+      "amount_yocto": "30078588299764900000000",
+      "amount_near": "0.030",
+      "cause": {
+        "tx_hash": "9BfrqhTyKou3YEga9HqjzntAQbv5HDoSUjUDZyUAZ1bp",
+        "type": "transaction_processing"
+      }
+    },
+    {
+      "month": "2026-05-01",
+      "height": 198176434,
+      "previous": 198176433,
+      "utc": "2026-05-13T17:37:49Z",
+      "amount_yocto": "-29863218890938800000000",
+      "amount_near": "-0.030",
+      "cause": {
+        "receipt_hash": "C14U9UeM4zb9Hrk6CPQp1ngDj4s18N954fK6YYbtSbd6",
+        "type": "receipt_processing"
+      }
+    },
+    {
+      "month": "2026-05-01",
+      "height": 198176442,
+      "previous": 198176441,
+      "utc": "2026-05-13T17:37:55Z",
+      "amount_yocto": "30078588299764900000000",
+      "amount_near": "0.030",
+      "cause": {
+        "tx_hash": "F5ymWNdEPNB3TfwnDYTyyfeQQWPAyBHWXF6F35dSBMpG",
+        "type": "transaction_processing"
+      }
+    },
+    {
+      "month": "2026-05-01",
+      "height": 198176443,
+      "previous": 198176442,
+      "utc": "2026-05-13T17:37:56Z",
+      "amount_yocto": "-29863218890938800000000",
+      "amount_near": "-0.030",
+      "cause": {
+        "receipt_hash": "3NTVxTJ97EmF8Mu1azFUrW5KC33ggTzkSSyGnqNqSnKa",
+        "type": "receipt_processing"
+      }
+    },
+    {
+      "month": "2026-05-01",
+      "height": 198176451,
+      "previous": 198176450,
+      "utc": "2026-05-13T17:38:00Z",
+      "amount_yocto": "30078588299764900000000",
+      "amount_near": "0.030",
+      "cause": {
+        "tx_hash": "6rrRP9gJxw1jfv8Gw9U9PYqSoCwKtgMEADZ2nyhcrh96",
+        "type": "transaction_processing"
+      }
+    },
+    {
+      "month": "2026-05-01",
+      "height": 198176452,
+      "previous": 198176451,
+      "utc": "2026-05-13T17:38:01Z",
+      "amount_yocto": "-29863218890938800000000",
+      "amount_near": "-0.030",
+      "cause": {
+        "receipt_hash": "HFccDLZTibmuBkmgpx7fHYzpvMZi7t4GTNVatRwL6HY4",
+        "type": "receipt_processing"
+      }
+    },
+    {
+      "month": "2026-05-01",
+      "height": 198176460,
+      "previous": 198176459,
+      "utc": "2026-05-13T17:38:07Z",
+      "amount_yocto": "30078588299764900000000",
+      "amount_near": "0.030",
+      "cause": {
+        "tx_hash": "J5BcRX91EpDgmZv2PA54Kc1KpHoZPux7TpWjS6oQLgrW",
+        "type": "transaction_processing"
+      }
+    },
+    {
+      "month": "2026-05-01",
+      "height": 198176461,
+      "previous": 198176460,
+      "utc": "2026-05-13T17:38:07Z",
+      "amount_yocto": "-29863218890938800000000",
+      "amount_near": "-0.030",
+      "cause": {
+        "receipt_hash": "8a25hhNPRidmhHakcSacMWhvY66SjqhFN5WCBTvVAZD9",
+        "type": "receipt_processing"
+      }
+    },
+    {
+      "month": "2026-05-01",
+      "height": 198176479,
+      "previous": 198176478,
+      "utc": "2026-05-13T17:38:19Z",
+      "amount_yocto": "30015118507293000000000",
+      "amount_near": "0.030",
+      "cause": {
+        "tx_hash": "HByAWVStAtEH4upogXZTS8kwyGQdoZAggtrTDP4t2JZJ",
+        "type": "transaction_processing"
+      }
+    },
+    {
+      "month": "2026-05-01",
+      "height": 198176480,
+      "previous": 198176479,
+      "utc": "2026-05-13T17:38:19Z",
+      "amount_yocto": "-29651642481673900000000",
+      "amount_near": "-0.030",
+      "cause": {
+        "receipt_hash": "fDQ1kCqfkZkrZrdNRkdQuVajBn1nCMLpRHZ2QQ9TAoK",
+        "type": "receipt_processing"
+      }
+    },
+    {
+      "month": "2026-05-01",
+      "height": 198176491,
+      "previous": 198176490,
+      "utc": "2026-05-13T17:38:27Z",
+      "amount_yocto": "30015118507293000000000",
+      "amount_near": "0.030",
+      "cause": {
+        "tx_hash": "7pFKdamoczbgerw6fC1UeFJEhi9cvJW1LstjKoMudXbh",
+        "type": "transaction_processing"
+      }
+    },
+    {
+      "month": "2026-05-01",
+      "height": 198176492,
+      "previous": 198176491,
+      "utc": "2026-05-13T17:38:28Z",
+      "amount_yocto": "-29651642481673900000000",
+      "amount_near": "-0.030",
+      "cause": {
+        "receipt_hash": "HMJ4x4KRzbEPnyYoYycqUTq87EpGd28X1keUAoNtLDEq",
+        "type": "receipt_processing"
+      }
+    },
+    {
+      "month": "2026-05-01",
+      "height": 198176501,
+      "previous": 198176500,
+      "utc": "2026-05-13T17:38:34Z",
+      "amount_yocto": "30015118507293000000000",
+      "amount_near": "0.030",
+      "cause": {
+        "tx_hash": "ByzhLQWJdHBXWJK2hTUihdMvZuHxtWKNyiPmvynvgkTh",
+        "type": "transaction_processing"
+      }
+    },
+    {
+      "month": "2026-05-01",
+      "height": 198176502,
+      "previous": 198176501,
+      "utc": "2026-05-13T17:38:35Z",
+      "amount_yocto": "-29651642481673900000000",
+      "amount_near": "-0.030",
+      "cause": {
+        "receipt_hash": "5wcrAKRs2mc64cimBWWybyorU8JnQr5pJsdX9XFr965w",
+        "type": "receipt_processing"
+      }
+    },
+    {
+      "month": "2026-05-01",
+      "height": 198176513,
+      "previous": 198176512,
+      "utc": "2026-05-13T17:38:42Z",
+      "amount_yocto": "30015253501221300000000",
+      "amount_near": "0.030",
+      "cause": {
+        "tx_hash": "GCeDz6zz6ut5EEkALKyg7LSWBuTikF1Uo23zuNsr2j7B",
+        "type": "transaction_processing"
+      }
+    },
+    {
+      "month": "2026-05-01",
+      "height": 198176514,
+      "previous": 198176513,
+      "utc": "2026-05-13T17:38:42Z",
+      "amount_yocto": "-29652092461434800000000",
+      "amount_near": "-0.030",
+      "cause": {
+        "receipt_hash": "533AhUBg6chjqjVoKh5p4uXLEE5W8ACKh1qMDuBtvrx7",
+        "type": "receipt_processing"
+      }
+    },
+    {
+      "month": "2026-05-01",
+      "height": 198176557,
+      "previous": 198176556,
+      "utc": "2026-05-13T17:39:11Z",
+      "amount_yocto": "5000000029888385744642600000000",
+      "amount_near": "5000000.030",
+      "cause": {
+        "tx_hash": "2VonmPe8QCDhqMwwt1RtdwaNSx7nT5svyHHJpagVQFi3",
+        "type": "transaction_processing"
+      },
+      "recipients": [
+        {
+          "account": "sha256:e630d735067c39fe",
+          "amount_near": "5000000.000",
+          "ok": true
+        }
+      ]
+    },
+    {
+      "month": "2026-05-01",
+      "height": 198176558,
+      "previous": 198176557,
+      "utc": "2026-05-13T17:39:11Z",
+      "amount_yocto": "-28811715605114500000000",
+      "amount_near": "-0.029",
+      "cause": {
+        "receipt_hash": "Aq8RJkVP9h61CpJBmviDwLUHYUyhHZVnPo5MXXNF6apH",
+        "type": "receipt_processing"
+      }
+    },
+    {
+      "month": "2026-05-01",
+      "height": 198176651,
+      "previous": 198176650,
+      "utc": "2026-05-13T17:40:17Z",
+      "amount_yocto": "5000000029915197414431100000000",
+      "amount_near": "5000000.030",
+      "cause": {
+        "tx_hash": "3k7ibt3pSqsJQPiC9MuWJbmhoEssbjgWWuhVCDQG35CT",
+        "type": "transaction_processing"
+      },
+      "recipients": [
+        {
+          "account": "sha256:e630d735067c39fe",
+          "amount_near": "5000000.000",
+          "ok": true
+        }
+      ]
+    },
+    {
+      "month": "2026-05-01",
+      "height": 198176652,
+      "previous": 198176651,
+      "utc": "2026-05-13T17:40:18Z",
+      "amount_yocto": "-28901087837743000000000",
+      "amount_near": "-0.029",
+      "cause": {
+        "receipt_hash": "2mkeQ95UY55sMuyvuhGgPexbnibqaW6QmwA87BGf8rdo",
+        "type": "receipt_processing"
+      }
+    },
+    {
+      "month": "2026-05-01",
+      "height": 198177045,
+      "previous": 198177044,
+      "utc": "2026-05-13T17:44:48Z",
+      "amount_yocto": "5000000029915197414431100000000",
+      "amount_near": "5000000.030",
+      "cause": {
+        "tx_hash": "CxjQGFCjG7287HFdoW11xrfaqfXk1L1MvPYtPBKFhoHe",
+        "type": "transaction_processing"
+      },
+      "recipients": [
+        {
+          "account": "sha256:e630d735067c39fe",
+          "amount_near": "5000000.000",
+          "ok": true
+        }
+      ]
+    },
+    {
+      "month": "2026-05-01",
+      "height": 198177046,
+      "previous": 198177045,
+      "utc": "2026-05-13T17:44:49Z",
+      "amount_yocto": "-28901087837743000000000",
+      "amount_near": "-0.029",
+      "cause": {
+        "receipt_hash": "6LoX2RVLGXc3jRWucgay2hFcAd1QoBUqspspVwjhT2AE",
+        "type": "receipt_processing"
+      }
+    },
+    {
+      "month": "2026-05-01",
+      "height": 198177168,
+      "previous": 198177167,
+      "utc": "2026-05-13T17:46:16Z",
+      "amount_yocto": "5371100029920234071626400000000",
+      "amount_near": "5371100.030",
+      "cause": {
+        "tx_hash": "3SQxSc3FNLNhqq1mQTtE6PBqW84m2C74EHtZJfjfSjkK",
+        "type": "transaction_processing"
+      },
+      "recipients": [
+        {
+          "account": "sha256:e630d735067c39fe",
+          "amount_near": "5371100.000",
+          "ok": true
+        }
+      ]
+    },
+    {
+      "month": "2026-05-01",
+      "height": 198177169,
+      "previous": 198177168,
+      "utc": "2026-05-13T17:46:17Z",
+      "amount_yocto": "-28917876695060400000000",
+      "amount_near": "-0.029",
+      "cause": {
+        "receipt_hash": "2fbUsUnXtRHNRYCCD6o7wHDiTaKuPbskCKNBsx9WctvE",
+        "type": "receipt_processing"
+      }
+    }
+  ],
+  "raw_files": {
+    "data/raw/treasury_spend/accounts/193094734_treasury.near.json": "ff590a395e4ca628f076788bf53274bcfeefa4eec20a55945585b0100b7c797f",
+    "data/raw/treasury_spend/accounts/193635104_treasury.near.json": "13efb960a17eb5d039853b2fd1c5a5ea8edd695b1cab57c825193a4e2609da66",
+    "data/raw/treasury_spend/accounts/193770196_treasury.near.json": "c75e051ffd0b4b9f0d93494fd03f716a5d467a560ca65304708662254fc3b8a6",
+    "data/raw/treasury_spend/accounts/193787082_treasury.near.json": "b072a14c24cc8f3a89ada2748d964604045afdeaecfc790f140fe7026a3a25fa",
+    "data/raw/treasury_spend/accounts/193791303_treasury.near.json": "4caf01bd9a2b18e803bc38ed757991480f820f4a5985f3b3665bf29bbd6f5eb5",
+    "data/raw/treasury_spend/accounts/193792358_treasury.near.json": "a276475a2602d70f2c62729e78d46144827d46a161847084b2a1d113977f95f4",
+    "data/raw/treasury_spend/accounts/193792886_treasury.near.json": "ef04bf81743e78b400643c14fa8f80622833c92ab89f3fbc7debe74a320957af",
+    "data/raw/treasury_spend/accounts/193793150_treasury.near.json": "c67d343da8b01ff991a18d831014cd0897256f4120e25a732f00403f91bb068e",
+    "data/raw/treasury_spend/accounts/193793282_treasury.near.json": "b551ca51d75028bc5c80cd86149df30f2dde90fdf57e2912b8ca0f727c79969b",
+    "data/raw/treasury_spend/accounts/193793315_treasury.near.json": "3f6dce93a227e28eb3b2593634ec1420de56c173134f53caa62917d6d5df8bfb",
+    "data/raw/treasury_spend/accounts/193793319_treasury.near.json": "222367d8d7a26d2e8c231fe33970114dc995ae7fec00be9f406b8061cc64b958",
+    "data/raw/treasury_spend/accounts/193793321_treasury.near.json": "436776ddc06bb1135fb1cc3b3495325fe3981f7332ab208551ad377a715843b2",
+    "data/raw/treasury_spend/accounts/193793322_treasury.near.json": "0a1072d7797e9aa3c0db992458ee61890d1c6239e87b2baad9ea51f51bca0f4f",
+    "data/raw/treasury_spend/accounts/193793323_treasury.near.json": "0874258316bb569f13d96fa7b64d7e0b64c9a217fc552834807e1db9101b0501",
+    "data/raw/treasury_spend/accounts/193793331_treasury.near.json": "ae6716356f20d3a987798313d861c4a3c759f94325b85309c4e0d3546b42f2a2",
+    "data/raw/treasury_spend/accounts/193793348_treasury.near.json": "48f8039e132462cc25471168df0f27fac777be9e0cd962f3da94317339888d6a",
+    "data/raw/treasury_spend/accounts/193793414_treasury.near.json": "699076a0e6caf915b54b15c016afba8b6a431767b5026af8643d3c91c3e4fa7e",
+    "data/raw/treasury_spend/accounts/193795525_treasury.near.json": "1f2a28a8d403100f41b6d3b64ad2f274491f8b993dfb700dac835910fa3d5249",
+    "data/raw/treasury_spend/accounts/193803969_treasury.near.json": "9776d8653bacbc7a6100264bdac34850d3581ed1288b83381e7ad6cd97fea922",
+    "data/raw/treasury_spend/accounts/193837742_treasury.near.json": "6ad681a8053f4d4966eb09e838102d72523a7a581be6fdda8f8835d355b5a37a",
+    "data/raw/treasury_spend/accounts/193905289_treasury.near.json": "248a1d7d00d50d0c24817ebdf7ad831cb3201ec2f9e842dc492387d885391977",
+    "data/raw/treasury_spend/accounts/194040381_treasury.near.json": "8d0e78f4b559c310a6987f11587034f89528598d1265370c0627228e2bcedf15",
+    "data/raw/treasury_spend/accounts/194107927_treasury.near.json": "737c84758671fca6284fea6583116b055717d12104e8ac709bcd4766fff884ce",
+    "data/raw/treasury_spend/accounts/194108454_treasury.near.json": "2d58ab35f3441bc12f5122ab35e630a60b070d334f96fdf606af9b2afb3ad135",
+    "data/raw/treasury_spend/accounts/194108718_treasury.near.json": "1a75316079e186d6516ca985b3dac2cff3eae233d0db40fc5b3942c29021a810",
+    "data/raw/treasury_spend/accounts/194108850_treasury.near.json": "e0409d79603bd69a0b06794c8938577efbcdf8dcc1e2c5186797b345c3dfb66e",
+    "data/raw/treasury_spend/accounts/194108916_treasury.near.json": "2a20dfc108ee7c7945c28e3b3262ced86728a9e1f69502100eaba2c30c31e3a4",
+    "data/raw/treasury_spend/accounts/194108932_treasury.near.json": "dbdc8760167751f49fc102c1e8df8001f48c323265606bf2e7f3ff087f6dec0a",
+    "data/raw/treasury_spend/accounts/194108940_treasury.near.json": "c699bbcb78deff0bb3e61859cff64831fb87bc1bab3868ba02169016d7fc0c4e",
+    "data/raw/treasury_spend/accounts/194108944_treasury.near.json": "15a65c3e19d346116415b1aed5d2aeda04d8cfe3f29c02dbb56805c384758778",
+    "data/raw/treasury_spend/accounts/194108945_treasury.near.json": "78c9c28470a078a60d8989270971ce2428bcacfb173bba30a0ea336cec7da70c",
+    "data/raw/treasury_spend/accounts/194108946_treasury.near.json": "af84e7ecd8f81c03699bcea0a3451e8a02f1c9e5f3ca573ad1c262d2e3f69d47",
+    "data/raw/treasury_spend/accounts/194108947_treasury.near.json": "22a18ea5784a9a6391f0e683c7c7821a0428758990969bc6554d835c403a4158",
+    "data/raw/treasury_spend/accounts/194108949_treasury.near.json": "046dc5976bcc2aac51e1ae93a7e9114b5586e8686a34e57b4660c7b8325878ff",
+    "data/raw/treasury_spend/accounts/194108982_treasury.near.json": "56c9c7ce559a3c64d2eb9786cb1f4fa5a5ecfe2f1ca8bc9671195ec748bbd9d5",
+    "data/raw/treasury_spend/accounts/194109245_treasury.near.json": "c9fc910674d27ae2ac1833155d0ac146f3d48b23dba55c242623b60e63989020",
+    "data/raw/treasury_spend/accounts/194109261_treasury.near.json": "21b54d25420939c3954c2cc5a6acec75a1e97f6a31c70f77f26f40cfd7751d9d",
+    "data/raw/treasury_spend/accounts/194109262_treasury.near.json": "374db87b59019736662d16d6712f9841571ec169f839ad6338f032d3cb45d2d7",
+    "data/raw/treasury_spend/accounts/194109263_treasury.near.json": "aacb1caa96ab58ce1eab862a7daaaeba9333d95813723679d729dc8cbf5c942d",
+    "data/raw/treasury_spend/accounts/194109265_treasury.near.json": "aad83c4e6191502d7bb6a8c1ab6858c3cc41560203c8de1810f4cc1c059a3bc7",
+    "data/raw/treasury_spend/accounts/194109269_treasury.near.json": "f64e37319fe2da0b1125fa3f2bda05ed2db25bf6ca442e4bf0733206d82571e7",
+    "data/raw/treasury_spend/accounts/194109278_treasury.near.json": "97caa86891737ce5784f2130ad5dfa810d76a12497a4c458def8ae3a986c0ea2",
+    "data/raw/treasury_spend/accounts/194109286_treasury.near.json": "7836b2a038ef4bb61812817313591921bc50fa4bb3554747b3f951fd16aea1c6",
+    "data/raw/treasury_spend/accounts/194109287_treasury.near.json": "3e2e5176e53557379afe504afcecf7e26ebe8b42818ab02cc36de3d7e92bd256",
+    "data/raw/treasury_spend/accounts/194109288_treasury.near.json": "cc602fed49141146b95fcdfdc1de5dd2789c5affa1bf6facdfa02010b2f3c345",
+    "data/raw/treasury_spend/accounts/194109290_treasury.near.json": "918d75dec02e79e846af579104ab48bfb1a8f175b87c98212f5d6f60a8758043",
+    "data/raw/treasury_spend/accounts/194109294_treasury.near.json": "b06b2facaa9842e4c5322c4fadc364bf7c69586954187e9559e33ec73e46e4b9",
+    "data/raw/treasury_spend/accounts/194109302_treasury.near.json": "3d71dd71a3ee2afd01c35e95754e40b8dace43a34e8aa61e047c22d2f8c05f59",
+    "data/raw/treasury_spend/accounts/194109306_treasury.near.json": "2ecf9539ba2b0c43df7ce29226b742f0273abf09f5342f53916bbeb6ccf706aa",
+    "data/raw/treasury_spend/accounts/194109307_treasury.near.json": "5fc3267b2605dea60406f3ee65f14764fb180064cdbe33114a5c74240f082949",
+    "data/raw/treasury_spend/accounts/194109308_treasury.near.json": "3cacd0a62c5957927f13513bf045adb919010f8b76b242db5a33d52b886626d9",
+    "data/raw/treasury_spend/accounts/194109311_treasury.near.json": "427e3aeba3b89311cd75a620be79581788c94bd0610a7179c6a9c7cb926886ec",
+    "data/raw/treasury_spend/accounts/194109319_treasury.near.json": "076c0b97d206eb35e48c80315eeb0242d5939154ee4c55e44cdae19f28c61052",
+    "data/raw/treasury_spend/accounts/194109323_treasury.near.json": "ae27b68b0aa959fb42abe9495608009fb233a30039d82df2cd97f2e52d455f29",
+    "data/raw/treasury_spend/accounts/194109325_treasury.near.json": "b81dbb4fc9624f7dc828710255a6e47e624b908ac11c9b761d6f1e49a9f7189b",
+    "data/raw/treasury_spend/accounts/194109326_treasury.near.json": "81cad8a2dae5c1cdde50ac83bd00efdeeb472ef1909c98c139b95e106f77cc62",
+    "data/raw/treasury_spend/accounts/194109327_treasury.near.json": "bf409a80b3cbd70992b7606123db845b9130fad6b8aa7c3ef15cf5dd9b545149",
+    "data/raw/treasury_spend/accounts/194109328_treasury.near.json": "32ff4cd54e88baddebdaaa892148b14d0d48343a07c5c3c97be62f31248edccb",
+    "data/raw/treasury_spend/accounts/194109329_treasury.near.json": "f8ea22a229597a1b439f47fe02b501422f79ed3680550c058da986f84b581e11",
+    "data/raw/treasury_spend/accounts/194109331_treasury.near.json": "ffcc75dee4169cfd7891a0d43c4867e4c3f427cb2cf47ffb9804eb3dd833dc58",
+    "data/raw/treasury_spend/accounts/194109335_treasury.near.json": "723a415a7ef1bdabcb36681003292836dc0c6380c3c3924e1d27f367dfd693cf",
+    "data/raw/treasury_spend/accounts/194109344_treasury.near.json": "cce356175c7c51dc72bc2da4ee8d56aa3868d54afdcd8f7fc9f084ed4585325f",
+    "data/raw/treasury_spend/accounts/194109346_treasury.near.json": "764ad4a2dd3aca487a7526c3d6f034e6dadce9768572d37204b05868cab2ea6f",
+    "data/raw/treasury_spend/accounts/194109347_treasury.near.json": "bf528fcae2247e52aecf263ab6fc18dcdcdf9b537b5e6fa922a4327e14953f31",
+    "data/raw/treasury_spend/accounts/194109348_treasury.near.json": "5426bd3e0eb9eddc111d95dafb5bcccffd21ff8b7df87ad575b594fdd089d510",
+    "data/raw/treasury_spend/accounts/194109352_treasury.near.json": "47ecc15f43271ff6fb3de79cc68639e27d2788569f9579f84917c668c5f84898",
+    "data/raw/treasury_spend/accounts/194109360_treasury.near.json": "8e81a722cf7a94ad4c146b55d4250a08cf8509776a390d709a5181ee1b97035c",
+    "data/raw/treasury_spend/accounts/194109368_treasury.near.json": "262940ae1d20a779c136ace775f1c8876c622aa0e4b01b8fb2a188c1f4fcb335",
+    "data/raw/treasury_spend/accounts/194109369_treasury.near.json": "2c3fd4fdc7cdb5343e91e76b06b34f7a05e5b4f2621cd33294f35d93b00f0381",
+    "data/raw/treasury_spend/accounts/194109370_treasury.near.json": "9974715d51bdd82cd0e11f2fd4336b20f4e0bc0f181404c42031cba75edb4628",
+    "data/raw/treasury_spend/accounts/194109371_treasury.near.json": "ee5bf394114858d60dda5a6ae591fafafa58911cf1cb8b11c2172b792900c3b0",
+    "data/raw/treasury_spend/accounts/194109372_treasury.near.json": "38ccb5fed4671a3fec6e9d310b0c5350ba2d4907556f10f92829eae64810a95a",
+    "data/raw/treasury_spend/accounts/194109377_treasury.near.json": "896364aa5cba8124073530f219bcf1cc82c3ae3d5c087827d0a3d2beda1912f1",
+    "data/raw/treasury_spend/accounts/194109509_treasury.near.json": "13ef4247d36ee29e1d585ad7b478c93d009a74144d415b56361b598a2024334c",
+    "data/raw/treasury_spend/accounts/194109575_treasury.near.json": "fbde0f8e6b92e2bcfb28c18dc74d0d458290b6da562afdc916662c24fb97fd2e",
+    "data/raw/treasury_spend/accounts/194109583_treasury.near.json": "0f359b96461e2f3f19ae8d44bd91703aaa9d9f134917f3a35c96362a8e4fb253",
+    "data/raw/treasury_spend/accounts/194109584_treasury.near.json": "ab2abcf3a9e9b716b32e4488d4c443e0adc9168ef401945c4912d0c28e3fdfe4",
+    "data/raw/treasury_spend/accounts/194109585_treasury.near.json": "0299b77999c0f96cd23121070660865215d9cb0d3a219a5589031356e8230936",
+    "data/raw/treasury_spend/accounts/194109586_treasury.near.json": "86ea5b271b96cac9f5bec1543f5ceada17665cdd8caa3d9d4918237a060fc82f",
+    "data/raw/treasury_spend/accounts/194109587_treasury.near.json": "77111783a756e0dfab79927e32a092e68ca02f6c6c23d15b846e8c6c9d42fed6",
+    "data/raw/treasury_spend/accounts/194109591_treasury.near.json": "7a5e3439bfa7aa189ee71042a9c1eb674789b6d9176a9c3a2ea783f4184a4f06",
+    "data/raw/treasury_spend/accounts/194109595_treasury.near.json": "183837da2927e0fdb9550c7a5c0c4dca0dc51c541c77e0500f5a261c3c4dfd73",
+    "data/raw/treasury_spend/accounts/194109596_treasury.near.json": "5256dca194a9da271eaee912bb7d1de247c01ee0f319a3d08438b791a1fdde9e",
+    "data/raw/treasury_spend/accounts/194109597_treasury.near.json": "19bc58e9a532704e8a4a9021cc7e45c8abc5265f6aaec51d5798a9a2543cffe7",
+    "data/raw/treasury_spend/accounts/194109598_treasury.near.json": "489a0f75bf4d3c28a8ebaab41b05152dbbe8a7873c0ef7e5288138efd81baefb",
+    "data/raw/treasury_spend/accounts/194109599_treasury.near.json": "f22ac4f856d73cf9207f25833be8ba2193f86cb43df56955d7a7de3b5510e70f",
+    "data/raw/treasury_spend/accounts/194109603_treasury.near.json": "48c3b633e41fc4f77e96b53a2b5b766471678d8320d38585fba4684f5c59a466",
+    "data/raw/treasury_spend/accounts/194109605_treasury.near.json": "d9d9fe523b641765ccb03fd272b36116dcfc0e4df200b193dec2ea6b7797ab2c",
+    "data/raw/treasury_spend/accounts/194109606_treasury.near.json": "3b2a8b9eab14c15e12aa19d7b62fc606c682148b013ba732cf2fa8cef84250df",
+    "data/raw/treasury_spend/accounts/194109607_treasury.near.json": "7cb21362584efd78f864dfecf2a58e138f4eba0badf7c092ab7e354e9739c2fb",
+    "data/raw/treasury_spend/accounts/194109608_treasury.near.json": "0cccff8ff65b1af81e968a55e1741780ddc74d9dc130e6fb78155a0472ce92b9",
+    "data/raw/treasury_spend/accounts/194109609_treasury.near.json": "77733b38afdb164ac44bd0c4458206163075ea5bd6168e40550efdf9fd9aad65",
+    "data/raw/treasury_spend/accounts/194109610_treasury.near.json": "ee547ed1c053ecc17f08bf2760b7bad3f073af41d4801b8d2b437e6364a431b8",
+    "data/raw/treasury_spend/accounts/194109612_treasury.near.json": "f19331e6c8b618f46ca7ab178bc0a93c3ce4d92bb5077363a493936592c762d6",
+    "data/raw/treasury_spend/accounts/194109616_treasury.near.json": "ccf5e4c0530283d47d26b27d339fda9809b1d5828456d6fcb442d3760474beb7",
+    "data/raw/treasury_spend/accounts/194109620_treasury.near.json": "8537ec3e70b53a1a92b7ceedf7159f60f887f659dec46873e08ce85e7161198a",
+    "data/raw/treasury_spend/accounts/194109621_treasury.near.json": "a1c7b5390cbc5fbc59bfc884a08a5367443839d20e39598b20faf5b926955417",
+    "data/raw/treasury_spend/accounts/194109622_treasury.near.json": "f86b947fd5fce55b4f66c72f47fbe695a507c18e1a7845fcc17618e128c3a906",
+    "data/raw/treasury_spend/accounts/194109624_treasury.near.json": "581168e2a127df15c01e1647ad22bfe5873e9340fd8609d8b8d5f79cb01cfd29",
+    "data/raw/treasury_spend/accounts/194109632_treasury.near.json": "b3df4cae8ddd116c50da83fdb8bd21fa8e5543a7c1e44036d6c81647cb0e2248",
+    "data/raw/treasury_spend/accounts/194109633_treasury.near.json": "cc12b2da6a0704b40df40a3ac0294628b2c39203e446e02431c79429d33ec78d",
+    "data/raw/treasury_spend/accounts/194109634_treasury.near.json": "154451d66448a2776b3a58b3666d08813a6ee27ec07e49be70213cc8cd6cfd4f",
+    "data/raw/treasury_spend/accounts/194109636_treasury.near.json": "a2a3627a5d32ba2371006eef96e7f81959b90be18cfd05a1486f72858be48671",
+    "data/raw/treasury_spend/accounts/194109641_treasury.near.json": "ca8e330a2d5f1a04a0448222cfcf395725528a0f2ee674b2c381441c4e3b2962",
+    "data/raw/treasury_spend/accounts/194109645_treasury.near.json": "5a4aaca80a8bd9306e00f449d5fdd5c640360bd1d14243bff5edf351591ff9bd",
+    "data/raw/treasury_spend/accounts/194109646_treasury.near.json": "06321d6d5281ee000b03b59f5bc7519c2795c60a319791b5ff50919686f50554",
+    "data/raw/treasury_spend/accounts/194109647_treasury.near.json": "26608b67a69c85e223bfc7dba1c77bec0a6e6a672ee57d980236763f9e9ace48",
+    "data/raw/treasury_spend/accounts/194109649_treasury.near.json": "ef56680659404d0a22e7f9195bf52fb1467387906eba09b73e6c03e39c5a7b1c",
+    "data/raw/treasury_spend/accounts/194109657_treasury.near.json": "e8afc8c82c4597fa8a7bf9b962fcdbb73a485e1415c1be059cd095d03a292a1a",
+    "data/raw/treasury_spend/accounts/194109674_treasury.near.json": "595a7e9b6690738f2e0ebb320f1e423e574409dd9b14ef5578960cd7bce4c244",
+    "data/raw/treasury_spend/accounts/194109707_treasury.near.json": "ff099cc5efc5da697887e35d08612c441140f43408164f96341342633f88cce4",
+    "data/raw/treasury_spend/accounts/194109773_treasury.near.json": "55825036cd97f458a8cc69197181209fb115b146fdb15ac3ea58e1f6ae70de75",
+    "data/raw/treasury_spend/accounts/194110037_treasury.near.json": "3291cde08e2b5b7bde878e946a47847af795ca7f93c7201ea6c03b44beabb599",
+    "data/raw/treasury_spend/accounts/194110300_treasury.near.json": "b400981251266b6a7ddeb940384cabc5803fd9337d9863de974c8b0a8fbd8169",
+    "data/raw/treasury_spend/accounts/194110432_treasury.near.json": "34a21599780ca99ede24fff37f2954516156b6643f895d75b232e3233d7631cf",
+    "data/raw/treasury_spend/accounts/194110498_treasury.near.json": "5e1095627b096b88f7a620810de83201fb386f9ab38e8dcac83e32628a0f4396",
+    "data/raw/treasury_spend/accounts/194110514_treasury.near.json": "5d9e1a8b098fd09616914591a8ea245be4123809fb7f81d68c30b4256b53e903",
+    "data/raw/treasury_spend/accounts/194110522_treasury.near.json": "004fa90de076f70577a63976efdbf76cb8fb1ee68fd5c2e0881ea8bda8958ba8",
+    "data/raw/treasury_spend/accounts/194110524_treasury.near.json": "6712a5e48a18301188d0c3c39cf6ed2224c2abc070136c3a74be9ccff44de7be",
+    "data/raw/treasury_spend/accounts/194110525_treasury.near.json": "31e90ad45b1837767d989d22e71af1402933adfd49c7fb6b070c2c1a9d196ae8",
+    "data/raw/treasury_spend/accounts/194110526_treasury.near.json": "00c85a5e78f274a8cf612fb5fb7add218f4e7ad553f23ef09b940dbe0ff1235b",
+    "data/raw/treasury_spend/accounts/194110527_treasury.near.json": "0f19cb2dda88089aa5bb93fa613255dc35f403802b050b7f157156fffa4b79bf",
+    "data/raw/treasury_spend/accounts/194110528_treasury.near.json": "55da9ed7b4dfa973d8818a10a965aa95bae1af46a463cc06b164710b87959f53",
+    "data/raw/treasury_spend/accounts/194110531_treasury.near.json": "fe20fdc50a174ec93d0547a76bf00a3c633b3bcbb0531933d8d0bc354752d686",
+    "data/raw/treasury_spend/accounts/194110539_treasury.near.json": "1f9090c9692c309c8f2e32a8c6a0a20a9afa77a9d0f3d4c62fe4e04acad0da3c",
+    "data/raw/treasury_spend/accounts/194110540_treasury.near.json": "092075ed9890f09da6442a7d49d0eaa6f09152e42d8e5cd8fa13504629559030",
+    "data/raw/treasury_spend/accounts/194110541_treasury.near.json": "f965a3dc9354f6480fc8ed9958459592e41e146d321396b812bd07f9f08d946b",
+    "data/raw/treasury_spend/accounts/194110543_treasury.near.json": "2c664d55f47976b173c5a0173ffb5387e17f97a6e49bd7f0a0b0f6dc7a8d294e",
+    "data/raw/treasury_spend/accounts/194110547_treasury.near.json": "112560fcf2f6cf69910a68ff1f23f8f1405502078e255eb6e0fa906a717d853d",
+    "data/raw/treasury_spend/accounts/194110564_treasury.near.json": "d647812c6bd4e435a845ec3c247c85e7addbd32242f9c462d4b22d78a3ff1e25",
+    "data/raw/treasury_spend/accounts/194110696_treasury.near.json": "c3d67846be394c8f4b064bf6d12e4fcf21ef10cc5d34645b84e00e9f8d2a9254",
+    "data/raw/treasury_spend/accounts/194110762_treasury.near.json": "ec158b5393b8f52832049828b5b61b9a45cb9f12050307c8cb3e91b0e9285cc4",
+    "data/raw/treasury_spend/accounts/194110778_treasury.near.json": "8398b675176acec7e2ad591820fecd7fd653d4da6378ba49eefe7f22388a97d5",
+    "data/raw/treasury_spend/accounts/194110786_treasury.near.json": "64e2f234f8715317bcfa4b071de68e18f0c87b2dcb5758266524db4f2ce56168",
+    "data/raw/treasury_spend/accounts/194110787_treasury.near.json": "8cbf16be3c1e2a2818f895d4842cbad553a3eb4216031a71a6b10f3e3f88924a",
+    "data/raw/treasury_spend/accounts/194110788_treasury.near.json": "4e522ab41eab05e0484b3deaad4c587ffa9c374123e21e84955896030349a32f",
+    "data/raw/treasury_spend/accounts/194110789_treasury.near.json": "4f03ebdb58d982de6e5da5727855e5e119655cedb1bf5bd947296bd7634ff9c7",
+    "data/raw/treasury_spend/accounts/194110790_treasury.near.json": "271bfcd0a98b4ae65754d21969d0bcdc29312d1c2947dba9087e7e89bb646e7c",
+    "data/raw/treasury_spend/accounts/194110795_treasury.near.json": "afe5266bfd4aa7c9bd9a77e1ed7dc40de968647591811b68d91237f9e81b22a2",
+    "data/raw/treasury_spend/accounts/194110828_treasury.near.json": "8cd29dab5f04512f9d2e04c0ef8b811e87c45aa4c9bf1efe8906a6ef8255ea8d",
+    "data/raw/treasury_spend/accounts/194110960_treasury.near.json": "c8c68bdbfef342da4e4884d64c9c54c5f20a7e06a9631138bb7af80431d83b89",
+    "data/raw/treasury_spend/accounts/194111026_treasury.near.json": "52d688599b9a3f4776aa35222b0bbca57f339b1a32712d2e2e03d155d86c7f7a",
+    "data/raw/treasury_spend/accounts/194111042_treasury.near.json": "22568c58a7e58884814f41a62949c06dbe7d5e0fc092df836c37d757cf589d81",
+    "data/raw/treasury_spend/accounts/194111043_treasury.near.json": "560166ba338d58703ae7d3c9ea056435e17acce830784f77ebce4f1566d432b2",
+    "data/raw/treasury_spend/accounts/194111044_treasury.near.json": "cf4bd1bcdaa3c600bfe429a52e25c6b7d0e28ac2e8ea3f512bc2a3f9d98347c8",
+    "data/raw/treasury_spend/accounts/194111046_treasury.near.json": "32ad36caf1cf92343a6902b351d747997ccfa17857ab27dd0196da4f734fcee0",
+    "data/raw/treasury_spend/accounts/194111050_treasury.near.json": "b63e66eb30975f4eadaecf94425019a10973ae654f00a54c2e330802f3f84736",
+    "data/raw/treasury_spend/accounts/194111059_treasury.near.json": "c7071fe3ecd3fd0bb763f19acf40e6bdd9d0b379fdbbc5ed07aa31016c189375",
+    "data/raw/treasury_spend/accounts/194111092_treasury.near.json": "c8098f8f0c071128c490d019c8b501967e3a6ac5d5529382fe0aa56433a19da7",
+    "data/raw/treasury_spend/accounts/194112148_treasury.near.json": "1e0b151fd95d556964a3c834c0af54351845c17b5fbe7ae464801f9ed551c766",
+    "data/raw/treasury_spend/accounts/194116370_treasury.near.json": "1bb9b0d7b5b46e954ff4b55c0137b09df1c78615f3f35b936d27eaadbc24a50c",
+    "data/raw/treasury_spend/accounts/194124813_treasury.near.json": "ef654009d22822a0006a8383974ff2ebfe8123c271e59f8f4ced6453c8cb413c",
+    "data/raw/treasury_spend/accounts/194141700_treasury.near.json": "35eb4f8a289f1ea72e693f9023c6cc8d106f7cb61b89581d64e45380c89244f5",
+    "data/raw/treasury_spend/accounts/194175474_treasury.near.json": "0e6d8d5e02c7e6ca700068dbe08eaef22c2650810cfc64163d7b8c24949cf2e3",
+    "data/raw/treasury_spend/accounts/196336954_treasury.near.json": "43bd2fd2d8be1e780b9b506d4dc2ebd08d0de668bd6c09151b029deae948254b",
+    "data/raw/treasury_spend/accounts/197446194_treasury.near.json": "e27773e750bbefcc42598c31a423d1cd53f9d574d013b2ce99dab3e5e4f62b08",
+    "data/raw/treasury_spend/accounts/198000814_treasury.near.json": "1aeae572a00c95b2d47e7d1efe2e39c310263311a3c0168261937e45c282e749",
+    "data/raw/treasury_spend/accounts/198139469_treasury.near.json": "7d2e9d6ee72b53f4d1d66de07753e830bce368895bad071edde9ba7456a065a9",
+    "data/raw/treasury_spend/accounts/198174132_treasury.near.json": "ff760fd25c715dc170cd6131131c18b6d1fe273163a34a9f013f91c2ddde027d",
+    "data/raw/treasury_spend/accounts/198175215_treasury.near.json": "0889ada1e6579bec0785b4e4daece22c04b048820ebe67f4fa823f044f364cf1",
+    "data/raw/treasury_spend/accounts/198175756_treasury.near.json": "66144313b613bf51c2611629a53be8dddd8b8fa6cbb137e3a80eb46ad58e0319",
+    "data/raw/treasury_spend/accounts/198175891_treasury.near.json": "b6f42dc57e37a63ca151c6ec1fa5f265d5aea1bbe45b511d67c6b6274aeb12de",
+    "data/raw/treasury_spend/accounts/198175959_treasury.near.json": "981d16b9f2cad86c644ce22732b3f4626f79971045df63daa5d524a2f227e8c9",
+    "data/raw/treasury_spend/accounts/198175967_treasury.near.json": "b7ade5b21eb75dba8494f35489985a81b193598684fbb0110ae0f5890afb65d1",
+    "data/raw/treasury_spend/accounts/198175971_treasury.near.json": "704dcd34db4003d6287fb0a754ec049dea2b44b92d8d5e2079d15522a80af191",
+    "data/raw/treasury_spend/accounts/198175972_treasury.near.json": "8a0eddb42b679e17204a08db7156cbc5ef5016497ff1f8b968e80edfd66245ae",
+    "data/raw/treasury_spend/accounts/198175973_treasury.near.json": "75f83a8842f6b54fab324e0a234b0ce26de2cf5bc3221f5cead7e322a12642e2",
+    "data/raw/treasury_spend/accounts/198175974_treasury.near.json": "765a0ab0299d0015efa4827c5665a69152d019c1b3217ecf89abba126e26cc9e",
+    "data/raw/treasury_spend/accounts/198175976_treasury.near.json": "3f5ba245ff6700154f5592b5dfb381731bdcfeea5b3b49a3ed4601353db75ac1",
+    "data/raw/treasury_spend/accounts/198175993_treasury.near.json": "8bd8bda8661d69d7994c62be85b5d9177698446c210eaa17c8dbfa54b4480c21",
+    "data/raw/treasury_spend/accounts/198176027_treasury.near.json": "2eb95a49e545df79ddae1b47c06c6956f30869d73b36bdea3d83e35e55423ed1",
+    "data/raw/treasury_spend/accounts/198176043_treasury.near.json": "eb5981692f9a717bdd45942dd0e7253c6877b49a224608edc3425b4b1e74a274",
+    "data/raw/treasury_spend/accounts/198176047_treasury.near.json": "22c947ae1ca491759440d7b78a5f118e9193113e746a95e2a8671bb655498174",
+    "data/raw/treasury_spend/accounts/198176048_treasury.near.json": "8ff193264a72fe6e8c610115183afcacb350b5485b1b47dcbf2ec965d3ee508d",
+    "data/raw/treasury_spend/accounts/198176049_treasury.near.json": "452af2e9f4d193d0ff977b8f009cf8d97bc41a3ca2d74ee473b39423ef8bab90",
+    "data/raw/treasury_spend/accounts/198176050_treasury.near.json": "17d32012bbf21a0f115d0f189a044fb367f91ddd99723fbbe6b50c1ee569a763",
+    "data/raw/treasury_spend/accounts/198176051_treasury.near.json": "48b8f9e4e816dcf44b524426e98afd5d3a87e7bf9a34923dc290c0bcf8ba443c",
+    "data/raw/treasury_spend/accounts/198176060_treasury.near.json": "f876c92be8cd8433d01293e49a3980554cb92ffcd4b32446ca08350d93a37c66",
+    "data/raw/treasury_spend/accounts/198176077_treasury.near.json": "16f793205b38a193089f026cdf666753058d0d1317e5017392a7937064461feb",
+    "data/raw/treasury_spend/accounts/198176085_treasury.near.json": "f467676dc584b2b7ab6ad840365ceb6b15a264592af79b45b6974e4a45474a2c",
+    "data/raw/treasury_spend/accounts/198176086_treasury.near.json": "e4e6f78fc393f4b2dea0b3d18e860d98e1234438625b15dff7685c4a7b5917a1",
+    "data/raw/treasury_spend/accounts/198176087_treasury.near.json": "e4079894fc1501497585fa4c22bc6342aca38789f6818d92403b1b84f3f334bb",
+    "data/raw/treasury_spend/accounts/198176088_treasury.near.json": "7e913832edc0bbaa9281b357ec8a2af924506e1547806e59315f52b8168b9b66",
+    "data/raw/treasury_spend/accounts/198176089_treasury.near.json": "d7e2439fdf71a991da07a858e447b4ffd6de3a1051ac9509f61010c925daa0cd",
+    "data/raw/treasury_spend/accounts/198176094_treasury.near.json": "7309c940064eb838593cfefa04f88dae5f965016b5b29b10f72e325353b85f3e",
+    "data/raw/treasury_spend/accounts/198176162_treasury.near.json": "8afe0fced8461e90ea931f505f480cf0d212b195e210c7bec5918f650ea7e0e8",
+    "data/raw/treasury_spend/accounts/198176298_treasury.near.json": "8402df7febbdee97d88b7f23f954757f81124896acab9a46c2bf92f646e55913",
+    "data/raw/treasury_spend/accounts/198176331_treasury.near.json": "41001b7cab1fdef8e297d5b3fa279cf3ccfc54a2aa53055ab4a051fd616e9e66",
+    "data/raw/treasury_spend/accounts/198176348_treasury.near.json": "f2cf1e6821af2eae25415a3f72a082d16dff12ff552cfccdfe16299bc9f0d673",
+    "data/raw/treasury_spend/accounts/198176356_treasury.near.json": "4319e7705c65e2a037dafe00931f49600df09bb286994b89b9aa9109fd25ddf3",
+    "data/raw/treasury_spend/accounts/198176358_treasury.near.json": "48c7ded35cd2a0579bf14b069d4b9d297dbd9cfc0c56cc4ca0e02e1b687a714d",
+    "data/raw/treasury_spend/accounts/198176359_treasury.near.json": "cc3f11dea73cf2840a1f2f8e69f97ed87cc6f801a02bb8c0fae852b527d35b98",
+    "data/raw/treasury_spend/accounts/198176360_treasury.near.json": "15f0259245365371bb5191f3bc559538a5ba07700a0a9fb04fa9afa2f8ddabfc",
+    "data/raw/treasury_spend/accounts/198176361_treasury.near.json": "e6a60ca1cd8a44e2cbdc1d240bf1b316d20f095dbfa25713067edee5d75a12e0",
+    "data/raw/treasury_spend/accounts/198176362_treasury.near.json": "f7f131bead82ecd9f7405205b6b6328591a5913932b6546139724384f9466c36",
+    "data/raw/treasury_spend/accounts/198176365_treasury.near.json": "0f30934c9774d2c068bc73497f4bee71d1e7d4efebdeb3ab9e5ab8c41ac1dea6",
+    "data/raw/treasury_spend/accounts/198176373_treasury.near.json": "6e0bab3fb430a8c372ed6d86a01574efee4999af5af88d861375deb9721ae77b",
+    "data/raw/treasury_spend/accounts/198176374_treasury.near.json": "e7a2bfe1ffbb771c5c31881ab46e21df8609af6f7d70d5e7d05a4bf0e21e74f2",
+    "data/raw/treasury_spend/accounts/198176375_treasury.near.json": "496bd14bf57d62e7d89faf5cb21aad0c46177d691d26b58b370fab95d39f9304",
+    "data/raw/treasury_spend/accounts/198176377_treasury.near.json": "af46ab3a4666dcc6da16010fa95b4b4fae51af4f68a232eb87ae8d994820d3cf",
+    "data/raw/treasury_spend/accounts/198176382_treasury.near.json": "032ba4dcef2ae0398a23a66f59f2091b2c39361530bb10841e7f48f69e2073d3",
+    "data/raw/treasury_spend/accounts/198176384_treasury.near.json": "c5259bef6e7f6ecac798212bcc6ab293edced59f3cfb1ff3f527ff7e5b842525",
+    "data/raw/treasury_spend/accounts/198176385_treasury.near.json": "f8d4fe6f88742fa384fdc125724dd2531e3286cc420ff51a99c9f5d085599917",
+    "data/raw/treasury_spend/accounts/198176386_treasury.near.json": "39906f24ef36bb48cc3172bb06d4c126b2980201b5459410d6b283e989047f44",
+    "data/raw/treasury_spend/accounts/198176390_treasury.near.json": "17b1bbff174e388b03f4462f64b48f7760f0bba14a20caf62a426b309277de2f",
+    "data/raw/treasury_spend/accounts/198176399_treasury.near.json": "9a3e43b08877b2e9cbded6784322ca64352d71402ba0c8a8a20fc1d31710e633",
+    "data/raw/treasury_spend/accounts/198176407_treasury.near.json": "6b413e25e26de529bccc95b0dc08038a58e95f614480537bc6a3766fffdfc0ff",
+    "data/raw/treasury_spend/accounts/198176409_treasury.near.json": "f36b7593da9e9a6b9a3f00fc53692b52ef9c346893c3c64b3a00b71fb9703cb9",
+    "data/raw/treasury_spend/accounts/198176410_treasury.near.json": "65d05b722ba7bda176a43193e7f754ecef73151829be0acc857e715e493e95d2",
+    "data/raw/treasury_spend/accounts/198176411_treasury.near.json": "1ba6039d9be7a57433734e7d109ae0272202722dc20b6512fc4607f95b0d6078",
+    "data/raw/treasury_spend/accounts/198176416_treasury.near.json": "aa7c204ddbe7c4ea76e9c652fe6dc288c29314da80178909c17d7f9c0eda8dd6",
+    "data/raw/treasury_spend/accounts/198176424_treasury.near.json": "f5c255b17b3c8ff912f9384fc6053dc2b0afeb25d477a0bb15cce2c1e2eaef12",
+    "data/raw/treasury_spend/accounts/198176428_treasury.near.json": "0327e8af26916a0a502a5ade084183a1d0a0fd3de7431a7b507895c26248de15",
+    "data/raw/treasury_spend/accounts/198176430_treasury.near.json": "31f0f0477b1e88fd3c772d91bb1e5102cded6675a2ed285b1951cfd5ff734bb4",
+    "data/raw/treasury_spend/accounts/198176431_treasury.near.json": "fc738543f4c3caa63f3d3a92506940e6e90ed63d42de73623f46df6ea9112679",
+    "data/raw/treasury_spend/accounts/198176432_treasury.near.json": "0917a7e0887132289be237cfabd5f734c3dfa3ef42447d381eaa5b738fac03c1",
+    "data/raw/treasury_spend/accounts/198176433_treasury.near.json": "b4e53d509bca6e22e094088e6e8888eb83aeb5f1386f515014a9dc88e02ce5fb",
+    "data/raw/treasury_spend/accounts/198176434_treasury.near.json": "099aaef6e48b574142397062f4e5af92bada63b1563b01aeacfbeb540bd7b1f0",
+    "data/raw/treasury_spend/accounts/198176435_treasury.near.json": "ed7fc684a8d318b8e8248e18b970f2c52562c29784e4b00fb68091e0f38dfebc",
+    "data/raw/treasury_spend/accounts/198176437_treasury.near.json": "2c78a84841215a4ca614d99ea59a2e22660fdb7b142ee2cfb9d2f800e55d6e79",
+    "data/raw/treasury_spend/accounts/198176441_treasury.near.json": "f79d915a46ec9340aea4e92fd507c1abcb1b05f87cd697d67b455b2116687947",
+    "data/raw/treasury_spend/accounts/198176442_treasury.near.json": "d123b821f77e55f88b3d4b51ed0eee10abb17ce23c993d75fb7fb2149233308c",
+    "data/raw/treasury_spend/accounts/198176443_treasury.near.json": "9c5b2d977e07216668c45074f8ca42057258f1962824429cce460d325618a164",
+    "data/raw/treasury_spend/accounts/198176445_treasury.near.json": "c465ac2499ea4fbbb37cae132e3d52f0f604afe8d967f4e1c17e5085b064b4d7",
+    "data/raw/treasury_spend/accounts/198176449_treasury.near.json": "b060b58b8fbd2ea47acc0dc1c8881fe0f5757eb30d9e69cee19c1d5cc180203c",
+    "data/raw/treasury_spend/accounts/198176450_treasury.near.json": "0008476309a2d3ddebb91e1cc51dbc41db4056e413ef104f13cc130b32d12c32",
+    "data/raw/treasury_spend/accounts/198176451_treasury.near.json": "2b5dc05af5feefd0af4ef27e709148d6d357b6b73ec619ca29c0d53d2e651d4b",
+    "data/raw/treasury_spend/accounts/198176452_treasury.near.json": "6e1b0d88d5d503020ced87bacb967bc41c2e067e4be7dc23a24f324a898a9888",
+    "data/raw/treasury_spend/accounts/198176453_treasury.near.json": "16f09e66c4b2959681f9c240a2ffcce76e29eafe60dbdf4e2dd719827b363589",
+    "data/raw/treasury_spend/accounts/198176457_treasury.near.json": "dd5d2e260e2628dfe376d61c6fdaf9dd632f4a42a00946fffcfb61ae7c6bc6bb",
+    "data/raw/treasury_spend/accounts/198176459_treasury.near.json": "cb714f385562daa8777c5fc50fa5c1202fb448baad0a67a44a29d0bb5e616381",
+    "data/raw/treasury_spend/accounts/198176460_treasury.near.json": "79f6f3fe01b6e9eb3a9c787b6a98ce0f96fd50e9f98c98f6cfc48b66fc48a9b8",
+    "data/raw/treasury_spend/accounts/198176461_treasury.near.json": "bda83a6fa79739b13c6c9a4fc9ca75f476c18162b2b6c24f9426d3d616dd314c",
+    "data/raw/treasury_spend/accounts/198176466_treasury.near.json": "41c130f97ac0562da7fe62c8b3cf57fa6e9a56ddd07e09568d6ea197e3f90ec5",
+    "data/raw/treasury_spend/accounts/198176474_treasury.near.json": "171d5e175505a77a23fed69901f391b6800f9ad8a159b209354c584633361dbd",
+    "data/raw/treasury_spend/accounts/198176478_treasury.near.json": "6645df6b38cff0c27bb76b073956a49c6fea01213eb083b7844d4438f2589ab7",
+    "data/raw/treasury_spend/accounts/198176479_treasury.near.json": "b0cbe7791cd1cff73cb757875ff96704c5efaca2f5ca80b55cceb2f2c22fdc62",
+    "data/raw/treasury_spend/accounts/198176480_treasury.near.json": "6774cc3f7ecc79ebff2530dee047add42a3f817bf45ff3aa0c4e120c1ecc4716",
+    "data/raw/treasury_spend/accounts/198176483_treasury.near.json": "18d6beb5505ac1fb2e35693fddc731d65ae079917790314661232da96a6b4bb9",
+    "data/raw/treasury_spend/accounts/198176487_treasury.near.json": "757ee80c09744958f1cda29575d1afc92cb45f743af1e11eca985f78fba2ef62",
+    "data/raw/treasury_spend/accounts/198176489_treasury.near.json": "c33821d35d0f438ce1e08ec3106222851301df0796489eb5bad60b2d91be4443",
+    "data/raw/treasury_spend/accounts/198176490_treasury.near.json": "bef596d0b77c3693d699a821610908c1f380901fa10c987522e96ca8301247d6",
+    "data/raw/treasury_spend/accounts/198176491_treasury.near.json": "237e862a0ca8792c7207840acb15c1260e6f6c106c584472387a1b653c651bbd",
+    "data/raw/treasury_spend/accounts/198176492_treasury.near.json": "8bc672501cc1e393eda3db4af30fa24fce9831928dc5371250c4d7fe7fc9df72",
+    "data/raw/treasury_spend/accounts/198176493_treasury.near.json": "d5a05981fad78b8f317d9ef1e8ab0eb8f08d25994837addf4263e1ba80d03cf6",
+    "data/raw/treasury_spend/accounts/198176495_treasury.near.json": "335d62962e30eae116e958b2f72159714d1bcdfb531143ac866727f5946e4d25",
+    "data/raw/treasury_spend/accounts/198176500_treasury.near.json": "88a670252a575af176a3471d330607b00f5559088f0e66fc6f8cde56e41ade3e",
+    "data/raw/treasury_spend/accounts/198176501_treasury.near.json": "1a4596341062b5fde73b77acbfbbdfa11c6c6a660ad4dfd6d3183b6ee5792d1d",
+    "data/raw/treasury_spend/accounts/198176502_treasury.near.json": "9e6ab2a080316ac4111ef00eeceefe93487cf5e14c2bcb01014de243e5fbcef7",
+    "data/raw/treasury_spend/accounts/198176504_treasury.near.json": "1e733e01d6d24153d5b655a337c2efba9fdf901376b7cfb7fd8dd8ca3b125cc8",
+    "data/raw/treasury_spend/accounts/198176508_treasury.near.json": "2b0f03886c4241188deb31286cc386f224d84b49093136a4b8f4401cf5103024",
+    "data/raw/treasury_spend/accounts/198176512_treasury.near.json": "40b78a2e827b2a58083c73648476ba5da040db5463c4124d957a82d17631c797",
+    "data/raw/treasury_spend/accounts/198176513_treasury.near.json": "c973c1aed8266ae8f1d8968e6937840fae37e2ba2d82caa55b636f6d7d3b7271",
+    "data/raw/treasury_spend/accounts/198176514_treasury.near.json": "7e9e24c87238a7b8f01b5107bfe7185ac69e9ae28ca46f484fac54d27641c295",
+    "data/raw/treasury_spend/accounts/198176517_treasury.near.json": "2920fb996ace1214d7f3446e523bf20c137d95a2f691d2ccb6fa66e0390c56f6",
+    "data/raw/treasury_spend/accounts/198176534_treasury.near.json": "a66d392f0bdf19b2e9d8fbe8d30088b687217e1b1f0013f7cc8ffd4c11615f20",
+    "data/raw/treasury_spend/accounts/198176551_treasury.near.json": "1cc83a40a73ab454d59e7c82e578b1d430136c0e68288734d40a1462d4329d22",
+    "data/raw/treasury_spend/accounts/198176555_treasury.near.json": "cb981d28b14a2cd4a820fdf6db0084b5532576cacc6deced0f751fce27f84c0f",
+    "data/raw/treasury_spend/accounts/198176556_treasury.near.json": "17beb9a2312208acf8caf374fb8ed756e3c05aea90f7846f6d6e4285218ffce4",
+    "data/raw/treasury_spend/accounts/198176557_treasury.near.json": "4718332730196129314ef1f95ef191b90e3edafcb971ffbdd1f903548c5736df",
+    "data/raw/treasury_spend/accounts/198176558_treasury.near.json": "22449b272eb9d8129f2e19b6284f486e0b5b596b6133238e3bb9930f22db9044",
+    "data/raw/treasury_spend/accounts/198176559_treasury.near.json": "ba3770c67f388a3baed8dd465a80fbd3ec56574e144a0967a0ed89b7a10ae85b",
+    "data/raw/treasury_spend/accounts/198176568_treasury.near.json": "356c5022e746f2dfd3e1a183730ad4f269a14a0b11ead36487cc2e28b50281fe",
+    "data/raw/treasury_spend/accounts/198176635_treasury.near.json": "be6a30c44a14f0b8ee631a6d6b9395d83af22f537196db6fe8f570e2ea99edfb",
+    "data/raw/treasury_spend/accounts/198176643_treasury.near.json": "6368c0477a46179d24458d57250b1d0da631008a90a04e337071404af52060c1",
+    "data/raw/treasury_spend/accounts/198176647_treasury.near.json": "29690433626e3ac198a8721fc7307b3dc0b8d624a62f9f06c184f1b2fe812e58",
+    "data/raw/treasury_spend/accounts/198176649_treasury.near.json": "b2745c4102295a28907c9864bb4ebd2465d5cfe7a9cede92f50ed3e3d835a520",
+    "data/raw/treasury_spend/accounts/198176650_treasury.near.json": "9a2eb1064726e8bafca7076af7cf4da6d8e36e47d4d3ad4915b55054ebfb539b",
+    "data/raw/treasury_spend/accounts/198176651_treasury.near.json": "7d2c991863cada25d8e2392c7df1c7255e86ef49b3cc2cf4b61b181e9253380a",
+    "data/raw/treasury_spend/accounts/198176652_treasury.near.json": "7d6994ab6a237e6f2d0cb8178b20ad4cf72c4678b89c07cccb58c53b637c8307",
+    "data/raw/treasury_spend/accounts/198176669_treasury.near.json": "2d19d1182c15478ab4f5275d789c9f98714a93336cfe787d3e22093f75f63a34",
+    "data/raw/treasury_spend/accounts/198176703_treasury.near.json": "fb6f461ea6deb91c51af775355749284a2716f2fdf45ec620f6e020c8ac9256c",
+    "data/raw/treasury_spend/accounts/198176839_treasury.near.json": "4eb325c4a32f4770cf7bb6b780dac7d5d7fa2a413fae31912e796244cf02c723",
+    "data/raw/treasury_spend/accounts/198176974_treasury.near.json": "c5d7c09f700fd925ccf7d19bf3a666623a3792e1cb9c36f2cb5b1ef2edb9b08d",
+    "data/raw/treasury_spend/accounts/198177042_treasury.near.json": "7cbfc742518e8f3aae3c932bcc8c6c52a01eecf1e7d29e05519640510304492a",
+    "data/raw/treasury_spend/accounts/198177044_treasury.near.json": "5be743a0a09e6627d5797f598c3c31400d9359499d6861c44798bb9b0378bffd",
+    "data/raw/treasury_spend/accounts/198177045_treasury.near.json": "95a68d5700cf8c54b79832a82ec16aea478b44f849026f95ec019387de20adfe",
+    "data/raw/treasury_spend/accounts/198177046_treasury.near.json": "3f20a6bb824b46a68e6d19519d9db3116053a9af65321967111c788793a57348",
+    "data/raw/treasury_spend/accounts/198177050_treasury.near.json": "ec707a68524a9b18a1b1aa1e5ceb4d660d9aea960a063993cd07f72f86e85047",
+    "data/raw/treasury_spend/accounts/198177059_treasury.near.json": "39193834600cf2f6fb41b55b95072918c2f25359e975f607718e0b241e942044",
+    "data/raw/treasury_spend/accounts/198177076_treasury.near.json": "b0110f0805233c0cd9f2b49d4f23499ff6d8adff66797496cb36a9f9df02cffb",
+    "data/raw/treasury_spend/accounts/198177110_treasury.near.json": "c1c0afe7e5a4afab68d533809908d466f14535c558af474ceb299a82581aa286",
+    "data/raw/treasury_spend/accounts/198177143_treasury.near.json": "8bdb0ff6e12ad5f2283ecbe972142098e54a261971ce259b49c2c6d4adf8c6ee",
+    "data/raw/treasury_spend/accounts/198177160_treasury.near.json": "bc071a966e023d1ea4b9e42f34c28659b3c86afdedba0feec1512de5a0405937",
+    "data/raw/treasury_spend/accounts/198177165_treasury.near.json": "16e1050ef305324710aedc7958d19ec43ed8dffc298e526f61e8f178c1fa9a52",
+    "data/raw/treasury_spend/accounts/198177166_treasury.near.json": "e3d46a4a19a08bd3ae1434e8af35b1e77312b48a6a68f297be56b52aabab546d",
+    "data/raw/treasury_spend/accounts/198177167_treasury.near.json": "d9570784d04c4cc7beadfbff8d51bdd9853720aff6f44613319499fc7482ffa1",
+    "data/raw/treasury_spend/accounts/198177168_treasury.near.json": "ac04fba61c33cbc9ad32ae744c9713c653293f5551b0410e20bc30156aa044e4",
+    "data/raw/treasury_spend/accounts/198177169_treasury.near.json": "af53dd57de46c24ef9e7b5551e116dba2cc1f1c010fb6e11036a0b46248a8876",
+    "data/raw/treasury_spend/accounts/198177170_treasury.near.json": "e1f1b3e3c50e868837948a0ebb966938ae595dafce624e3099b7e9b9c4b80e0e",
+    "data/raw/treasury_spend/accounts/198177172_treasury.near.json": "efb01cbaa95e60d0eb19f43e47b4a634ab7477d2f184b95f3c0a7a434ab6bc8b",
+    "data/raw/treasury_spend/accounts/198177177_treasury.near.json": "797f4345c58d80f03634662e9f1ebe95cf42ca550304d3e865d97439420ee281",
+    "data/raw/treasury_spend/accounts/198177245_treasury.near.json": "701d2c8c95df05b892c454c612361a491aeaa1c0b1bbae97f1164430809f420f",
+    "data/raw/treasury_spend/accounts/198177381_treasury.near.json": "fbed69da0511e58ba40892f59e84f0cfbf0872de995766bddd9a41e1d2d65333",
+    "data/raw/treasury_spend/accounts/198178465_treasury.near.json": "17af4620da0ddd5deee528d431768c5c7fb5f5af4520b8d5bbd6d881944d2d7e",
+    "data/raw/treasury_spend/accounts/198182798_treasury.near.json": "21c5a66e213e1e3a23e9e2b192f754d95b7fd1b726516a4e894226fada841670",
+    "data/raw/treasury_spend/accounts/198191464_treasury.near.json": "2c30a1dde1870d8d224d61a61c29b86f2455356c0d2e5d2cfea0d6f8f9ba99b5",
+    "data/raw/treasury_spend/accounts/198208796_treasury.near.json": "f0cc8743e85a324d3da3964ed4dcf92ae367d107fe1336f1fc306b244bb371dc",
+    "data/raw/treasury_spend/accounts/198278124_treasury.near.json": "050df4331b0e56d5148db10dbe7ebad3844b736e15b9431acaf5a04c22af4203",
+    "data/raw/treasury_spend/accounts/198555434_treasury.near.json": "09587850723116b91cee9f63eeaeb1c351f155d801efc5becb474805c5281046",
+    "data/raw/treasury_spend/accounts/200773914_treasury.near.json": "c9b39e4fc828636be422cb996e44bf5ff4bb4be495396d08aef067e1121155f7",
+    "data/raw/treasury_spend/changes/193793322_treasury.near.json": "1bb742e0339b382515202ad82941fefae37dc37f2d16ac8094226f53897080cf",
+    "data/raw/treasury_spend/changes/193793323_treasury.near.json": "393cd85a6dbdd3a9809129e02992c66f99fd35f6f8a80454ac383552c8f10aab",
+    "data/raw/treasury_spend/changes/194108946_treasury.near.json": "65e542c8ac09ed8725fe9a3403327e5241ac9b2db1acfba78e76a74ef0fa4310",
+    "data/raw/treasury_spend/changes/194108947_treasury.near.json": "d886e8307003067e6dc387efaa98912421df29e6a07318b87b1e73b42d1e9131",
+    "data/raw/treasury_spend/changes/194109262_treasury.near.json": "9a20c7dbc9b60ffd960e5e45d41a44cb10e383e4df8658f862e32ca8c5ebc60c",
+    "data/raw/treasury_spend/changes/194109263_treasury.near.json": "52ca4022c2f7b20a0259a997977cb2211c0ce2bd784e13c66a282087e4ed61fc",
+    "data/raw/treasury_spend/changes/194109287_treasury.near.json": "02ce7ff6441e42428c02be1e6a2d5fc29d67f11f1159b0ead381035e5504ee25",
+    "data/raw/treasury_spend/changes/194109288_treasury.near.json": "a98860fdf17fbff8bbf1e06c896c1ccf0d54b8bca1666dd0dbd76d107895c66a",
+    "data/raw/treasury_spend/changes/194109307_treasury.near.json": "d30115c90456347894ce910bd070e19f1f593ba9eea68dc9c750cce08f10bff4",
+    "data/raw/treasury_spend/changes/194109308_treasury.near.json": "98d0648da7e137e54d9fad80d50fb9b55b393a2545d2cefafa3e1637f0afc42b",
+    "data/raw/treasury_spend/changes/194109327_treasury.near.json": "62cad1010bba10dfe6931ce3be7156e3055624222fd662ca90b5fa95db6ed8f0",
+    "data/raw/treasury_spend/changes/194109328_treasury.near.json": "a6a64a5d887cab1723ccaa370d41605a9a3c2090c2fdfebd2b47d9ee80c0bab8",
+    "data/raw/treasury_spend/changes/194109347_treasury.near.json": "35eb8daa5cc7ef486b26c97b4ab74de1307c4008278dac0c3089d5a43ca10b12",
+    "data/raw/treasury_spend/changes/194109348_treasury.near.json": "f4eebd00a6ae934a44a841443bd622483f56ffc5323ec21ef4df8d7abecb0edb",
+    "data/raw/treasury_spend/changes/194109370_treasury.near.json": "1b443e61334252462f8501d957e82554148dcba2c4b2aae4732d35397d54baaf",
+    "data/raw/treasury_spend/changes/194109371_treasury.near.json": "21ac489ef8f7320020583f69f770023aef0d74c1b39ca6df83f9c0900897ac32",
+    "data/raw/treasury_spend/changes/194109585_treasury.near.json": "512f0ee738e15507d5a31688d11270f0493b9be4985e69d84ee9995cfb6e578c",
+    "data/raw/treasury_spend/changes/194109586_treasury.near.json": "f06a9cb75c77296efbebb1258718a128aa3c03a86e1faa105ec8ec2e72f7f6d5",
+    "data/raw/treasury_spend/changes/194109597_treasury.near.json": "ef939d6b3755192eca8764c4aeb952ee660bb8d836a7307f174dd899249d83ef",
+    "data/raw/treasury_spend/changes/194109598_treasury.near.json": "6295407811870885eeb2e5a68cb9e1a32908dadad7397276134b23f94fed6bf8",
+    "data/raw/treasury_spend/changes/194109608_treasury.near.json": "0e1540fdd922ff5ad565af6718dd4b85996fbb861b9e7de0f2aa5b5a14fd6643",
+    "data/raw/treasury_spend/changes/194109609_treasury.near.json": "2e3805e9d5350caeb4583a502a90901ced7897b9c60f4ba8c3dc4033c5a96d5f",
+    "data/raw/treasury_spend/changes/194109621_treasury.near.json": "0bf1d6e50c17e031c6444182fdd6509287b19ac47960feb277d89ea6684bae9e",
+    "data/raw/treasury_spend/changes/194109622_treasury.near.json": "aa6702c0f17391df201de8d76ed2757e5f81b884f3c117514b09415397fa1536",
+    "data/raw/treasury_spend/changes/194109633_treasury.near.json": "df314af233b027bb4c26c5a2710f873f22ca735452cd97e1a472b9cf463c288d",
+    "data/raw/treasury_spend/changes/194109634_treasury.near.json": "5b930e1b932d0dea58e80611bd9c8ebd8f49f7fb37c8b57de8a092397defac32",
+    "data/raw/treasury_spend/changes/194109646_treasury.near.json": "da42a607938bb9d1060fa94cbb457b8e056cc2064fe44331e5ccd75e1dd06a18",
+    "data/raw/treasury_spend/changes/194109647_treasury.near.json": "f29a937c0faeaa27a064cecfbbd46775b0ab5771a79b6ecc235f9fe1f4d94d7a",
+    "data/raw/treasury_spend/changes/194110526_treasury.near.json": "d89a3c98b02975c2d0a1cbeb7fda7a5b2a7ea82f9d93d48fca8607e3c85bf861",
+    "data/raw/treasury_spend/changes/194110527_treasury.near.json": "d97b03ac17ee1456b697079eb278d35b75952d2a9b4e4b47a80cc8b5c3d9e770",
+    "data/raw/treasury_spend/changes/194110540_treasury.near.json": "eb69cb4ac073b1f5b063dd975c20f21823685beae58723121d6d2b572ebab81e",
+    "data/raw/treasury_spend/changes/194110541_treasury.near.json": "b547c70c91a08180845f09e1e3dc5616fdbfe558a3b904d85c2bc24afe66fc77",
+    "data/raw/treasury_spend/changes/194110788_treasury.near.json": "f7eb8a6a68be0871402a5009dc9e0558d24a6174f559e6bd6331b558b961bf46",
+    "data/raw/treasury_spend/changes/194110789_treasury.near.json": "50a4fddfcd2073e4810593d4261e33fe30a0f43d55f7f69added3d007d911ebd",
+    "data/raw/treasury_spend/changes/194111044_treasury.near.json": "2cf65b99fa1330c5d1dade2dc1fd1fa6368e5261d61d728d8d284417d9c72b5f",
+    "data/raw/treasury_spend/changes/198175973_treasury.near.json": "ca408c3b4f4f02195f2e7c8c07d9d01f41ccf70489a34d862e652a7d68f9aaa7",
+    "data/raw/treasury_spend/changes/198175974_treasury.near.json": "0c39d3d786507fc628557801fc8400a2be20054c57925aa6ab8934fa77bdcba9",
+    "data/raw/treasury_spend/changes/198176049_treasury.near.json": "faad8d98177d81fbecd1694bbf57ab3c356a8d8770b73046f44461f0b49df161",
+    "data/raw/treasury_spend/changes/198176050_treasury.near.json": "b80354a69719de8cda77cb059c86105f2061b5b70674bc5127806f4bb038fb27",
+    "data/raw/treasury_spend/changes/198176087_treasury.near.json": "24f7d5485bb5ade024ca3055a629c0531ad9846cf6d9102485486c554c6b84d3",
+    "data/raw/treasury_spend/changes/198176088_treasury.near.json": "9edab2c4a6c7836eed53d7fc9ae586ca981e0f046a46ffeb468392a960fe4c34",
+    "data/raw/treasury_spend/changes/198176360_treasury.near.json": "2f2d3d0a56b29fda7efe53e7d7a3e5e4b698f66323b0c0147c1d15867d3cbf8b",
+    "data/raw/treasury_spend/changes/198176361_treasury.near.json": "ab1b14d54a4eb12f03a242cd382138698a324db0ab519f9ffedad3e31afaaa98",
+    "data/raw/treasury_spend/changes/198176374_treasury.near.json": "eaf749571e48eabac3c9a3e503169c9a061c039b932e7cb1c8dc39d1fffef8e7",
+    "data/raw/treasury_spend/changes/198176375_treasury.near.json": "754c7b07a2fd5471883e7d14c86c9015138ee5026a24c910d3591a66364504ea",
+    "data/raw/treasury_spend/changes/198176385_treasury.near.json": "3c846e875a4e2a113d27595d3db0714fa8ea1dff51ca7f80b7ac648b5cc8d8e8",
+    "data/raw/treasury_spend/changes/198176386_treasury.near.json": "8057af0a61179704630230424dd9f03be07cf4b85eb7627ba385480ba2bfbbef",
+    "data/raw/treasury_spend/changes/198176410_treasury.near.json": "06f828189f1770bc8bbd9b2a73e1627811238d41aacb67c13297144a73b6527e",
+    "data/raw/treasury_spend/changes/198176411_treasury.near.json": "25cbd1ecd6c0651b0db7daba2f6f7898bf139236701a1d4d21657b2fc2f54503",
+    "data/raw/treasury_spend/changes/198176433_treasury.near.json": "5ed917cf602743b4355cbb9d2cf7dacbb5d034e151bd73e6996a916fe0b63709",
+    "data/raw/treasury_spend/changes/198176434_treasury.near.json": "7804d886b33a0b5408ed31582ea2ee8aa2c4f96c8668314a9c1316c15a1d6dfe",
+    "data/raw/treasury_spend/changes/198176442_treasury.near.json": "b88e990d45457f9716f6afe8a67d8fed68294d43af0faaf7eff4f1a4df674560",
+    "data/raw/treasury_spend/changes/198176443_treasury.near.json": "4eb95ae062753455dbe6baac0d88a80fd49e62d11044084b32b6f18b022f914c",
+    "data/raw/treasury_spend/changes/198176451_treasury.near.json": "3b6b1a2234773862eb316dc21dfc686cc951f124c82e2b9c5a2d2c1116e68218",
+    "data/raw/treasury_spend/changes/198176452_treasury.near.json": "c4c88d7377cb3c781741af6e085b7e76ce7a343ecf6bc03ede653f2961ce1ced",
+    "data/raw/treasury_spend/changes/198176460_treasury.near.json": "8ea90f2e43af9c85a1b406485ca6bf776a9c5c5036a67c567acfd0bd66209952",
+    "data/raw/treasury_spend/changes/198176461_treasury.near.json": "38b5f48b1dfb86f2c6410db5b4ab933be8335f59470ca91c4f5959a22ebfcba0",
+    "data/raw/treasury_spend/changes/198176479_treasury.near.json": "c1c471d3329413a144e718f8df800cd659be6ac7c9366e6212b09ebcfe7431e6",
+    "data/raw/treasury_spend/changes/198176480_treasury.near.json": "4268d6628c353d5a268cd75c06017407644552ad57208c33fb31afeddae50a73",
+    "data/raw/treasury_spend/changes/198176491_treasury.near.json": "602360c74d0788ebbdca16761fcecfad6916e6baf5f3e0fbd6367a75c3c2182d",
+    "data/raw/treasury_spend/changes/198176492_treasury.near.json": "4b0aaad1230701f51c613ebe517b361629f9caeb13dfa125cf8ea1dad44b406e",
+    "data/raw/treasury_spend/changes/198176501_treasury.near.json": "f408d4e59dda3568d530c3f0e7689dffe7e42b6b7e5d043e15a07a7334d04937",
+    "data/raw/treasury_spend/changes/198176502_treasury.near.json": "1adae418370c2bc4ed11cec12bf51b48670031a6d2cda8dcab825ab4e4ded9a8",
+    "data/raw/treasury_spend/changes/198176513_treasury.near.json": "9dce10ba595693eb82f221dd468fc009f60c9446c31da3a96c93c9d0ccd417a1",
+    "data/raw/treasury_spend/changes/198176514_treasury.near.json": "5a028a30bde407eced0218c6eb1ab045f85018705770f8bfdce2a81b57a59112",
+    "data/raw/treasury_spend/changes/198176557_treasury.near.json": "ad8f847a599a8a147d9ae4a0728a0000f0bb007c9dd2ec984d1d4d4d898256d6",
+    "data/raw/treasury_spend/changes/198176558_treasury.near.json": "f1295cbbadbbfc25f40f51e174fac117973cdfeeb1b6d744979b07f1d97e5b4d",
+    "data/raw/treasury_spend/changes/198176651_treasury.near.json": "b8f934817c7c131fd723900287e157fd2c21093f5c206f9ef1f97d681135033d",
+    "data/raw/treasury_spend/changes/198176652_treasury.near.json": "a1e6587efa2fccfc18eda0ef21b7d14b7e3fbd970d04e2a686978785fe030516",
+    "data/raw/treasury_spend/changes/198177045_treasury.near.json": "f963ae337d79ce58e91ca86e355698fcccb5eaaf597c86ef294996a119ff36b5",
+    "data/raw/treasury_spend/changes/198177046_treasury.near.json": "d0ea486555318527a31839133a2c67fcdd73f11ca27514f31bf4100cd35bc3a0",
+    "data/raw/treasury_spend/changes/198177168_treasury.near.json": "ed49e17bd6f725ab0de5848133a8aa26fe59012437f4b0c70835af6419c4ef2f",
+    "data/raw/treasury_spend/changes/198177169_treasury.near.json": "57907cb2891b7494464b19b3b04022372a79aee3b04d73681feed0298d5e1ac7"
+  },
+  "results": {
+    "months": [
+      {
+        "month": "2026-04-01",
+        "steps": 35,
+        "exits_near": "9800000.004",
+        "other_net_near": "-9800000.004"
+      },
+      {
+        "month": "2026-05-01",
+        "steps": 38,
+        "exits_near": "20371200.009",
+        "other_net_near": "-20371200.009"
+      }
+    ],
+    "total_exits_near": "30171200.013",
+    "recipients": [
+      {
+        "account": "sha256:e630d735067c39fe",
+        "amount_near": "20371200.000",
+        "transfers": 5
+      },
+      {
+        "account": "ecotreasury5.multisignature.near",
+        "amount_near": "4900000.000",
+        "transfers": 1
+      },
+      {
+        "account": "ecotreasury4.multisignature.near",
+        "amount_near": "4900000.000",
+        "transfers": 1
+      },
+      {
+        "account": "sha256:7720298de372b4d4",
+        "amount_near": "3.000",
+        "transfers": 1
+      }
+    ]
+  },
+  "tx_files": {
+    "5Agb9JRAcYWtaooijToh2VgfPaCAEs7qG8EU1E6GobLW": {
+      "path": "data/private/treasury_exits/tx/5Agb9JRAcYWtaooijToh2VgfPaCAEs7qG8EU1E6GobLW.json",
+      "sha256": "3823ddfc7fdd41e83836711e830c7bb9156e4d71e3cb4c9b0a6bb8dc182ef52d",
+      "private": true,
+      "redacted": {
+        "path": "data/raw/redacted/treasury_exits/tx/5Agb9JRAcYWtaooijToh2VgfPaCAEs7qG8EU1E6GobLW.json",
+        "sha256": "f93fd7579d5fbdf21c49e37ad615955fb569e0011f87b8629b5306278fc289b4"
+      }
+    },
+    "GT5th5TLMtBHrHrc1qEEatvdWBvWBAWtqkxFYHjXzqRt": {
+      "path": "data/private/treasury_exits/tx/GT5th5TLMtBHrHrc1qEEatvdWBvWBAWtqkxFYHjXzqRt.json",
+      "sha256": "2bcedf57cae3880ff1141682eefa5dc931b90fcaea53e999287b4e02afaabc39",
+      "private": true,
+      "redacted": {
+        "path": "data/raw/redacted/treasury_exits/tx/GT5th5TLMtBHrHrc1qEEatvdWBvWBAWtqkxFYHjXzqRt.json",
+        "sha256": "0fd5b10c7fc342e93db8299e26e8d721fca21221783faf5274538fe503b32711"
+      }
+    },
+    "2vJbCHEYdDpa3zisBRgkzMxD9uU31eyo3ByQBP1rjsTF": {
+      "path": "data/private/treasury_exits/tx/2vJbCHEYdDpa3zisBRgkzMxD9uU31eyo3ByQBP1rjsTF.json",
+      "sha256": "1428e010853aa5b92760bdd8f406d04d7407381e0373b211892e8ab091d89b70",
+      "private": true,
+      "redacted": {
+        "path": "data/raw/redacted/treasury_exits/tx/2vJbCHEYdDpa3zisBRgkzMxD9uU31eyo3ByQBP1rjsTF.json",
+        "sha256": "34d8fce448c20d1ad921e7ca7d85f734d0f21ae5db5ea368caab1044243e262d"
+      }
+    },
+    "2P7SoiBRkDRz4wKadS3kBVdCFGkWfKMD77HtwpTtzndY": {
+      "path": "data/private/treasury_exits/tx/2P7SoiBRkDRz4wKadS3kBVdCFGkWfKMD77HtwpTtzndY.json",
+      "sha256": "c919311b378a174a55460c04acf478fc18e80c7f0d01eb4d798e64c22f561537",
+      "private": true,
+      "redacted": {
+        "path": "data/raw/redacted/treasury_exits/tx/2P7SoiBRkDRz4wKadS3kBVdCFGkWfKMD77HtwpTtzndY.json",
+        "sha256": "14e50a01cf0ee5fb3e620f85123800c394f8c9a72c02211be5f92c2e9bf07b84"
+      }
+    },
+    "2VonmPe8QCDhqMwwt1RtdwaNSx7nT5svyHHJpagVQFi3": {
+      "path": "data/private/treasury_exits/tx/2VonmPe8QCDhqMwwt1RtdwaNSx7nT5svyHHJpagVQFi3.json",
+      "sha256": "0e06e8778d528d984e3b0c992a9507a30a93c6b72cde7d1c86e05d1c437de334",
+      "private": true,
+      "redacted": {
+        "path": "data/raw/redacted/treasury_exits/tx/2VonmPe8QCDhqMwwt1RtdwaNSx7nT5svyHHJpagVQFi3.json",
+        "sha256": "a0d95c5777f7bddbefa2662be7e63fe773cfe3d878889cd952fc19eaddfee634"
+      }
+    },
+    "3k7ibt3pSqsJQPiC9MuWJbmhoEssbjgWWuhVCDQG35CT": {
+      "path": "data/private/treasury_exits/tx/3k7ibt3pSqsJQPiC9MuWJbmhoEssbjgWWuhVCDQG35CT.json",
+      "sha256": "4d9fd9f1c47632ce0a8e0cd9798e48902625da112d5ac6a5b97880cf2e166ae2",
+      "private": true,
+      "redacted": {
+        "path": "data/raw/redacted/treasury_exits/tx/3k7ibt3pSqsJQPiC9MuWJbmhoEssbjgWWuhVCDQG35CT.json",
+        "sha256": "631bb315ba2a5c6530bed3ca180f6e1dae5b97862035ec28839eac7d81faaa64"
+      }
+    },
+    "CxjQGFCjG7287HFdoW11xrfaqfXk1L1MvPYtPBKFhoHe": {
+      "path": "data/private/treasury_exits/tx/CxjQGFCjG7287HFdoW11xrfaqfXk1L1MvPYtPBKFhoHe.json",
+      "sha256": "f960feb4509f4c8a726ff856cd29e8cbb85abd65eb7d69c7e518ad555cb2f803",
+      "private": true,
+      "redacted": {
+        "path": "data/raw/redacted/treasury_exits/tx/CxjQGFCjG7287HFdoW11xrfaqfXk1L1MvPYtPBKFhoHe.json",
+        "sha256": "34bc983cb5477f37bfdea889d99b7d60439e92765fa1d14d362df16ca9cd31c8"
+      }
+    },
+    "3SQxSc3FNLNhqq1mQTtE6PBqW84m2C74EHtZJfjfSjkK": {
+      "path": "data/private/treasury_exits/tx/3SQxSc3FNLNhqq1mQTtE6PBqW84m2C74EHtZJfjfSjkK.json",
+      "sha256": "94ff63e262b446d3dd0a7a42e31c453c04f6c1f55a8f5d63c0d89eea69c8a3d4",
+      "private": true,
+      "redacted": {
+        "path": "data/raw/redacted/treasury_exits/tx/3SQxSc3FNLNhqq1mQTtE6PBqW84m2C74EHtZJfjfSjkK.json",
+        "sha256": "0a5c0f8c43ab3e2e298a9b719fa276fa857f31e4db20d926ab2411f50e0202ce"
+      }
+    }
+  }
+}
