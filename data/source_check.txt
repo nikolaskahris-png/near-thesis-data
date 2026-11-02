@@ -1,22 +1,22 @@
-Date (UTC): 2026-10-31 13:52:45
-Python: 3.12.15 on Linux 7.0.0-1017-azure
+Date (UTC): 2026-11-02 20:28:50
+Python: 3.12.15 on Linux 7.0.0-1014-aws
 
 === GET endpoints
-fastnear-rpc         OK   HTTP 200  117 ms  4824 bytes
-fastnear-archival    OK   HTTP 200  89 ms  4824 bytes
-neardata             OK   HTTP 200  113 ms  99703 bytes
-nearblocks           OK   HTTP 200  510 ms  355 bytes
-defillama-fees       OK   HTTP 200  634 ms  13910 bytes
-defillama-price      OK   HTTP 200  135 ms  112 bytes
-nearstats            OK   HTTP 200  1715 ms  151234 bytes
-github-api           OK   HTTP 200  89 ms  2262 bytes
+fastnear-rpc         OK   HTTP 200  227 ms  4828 bytes
+fastnear-archival    OK   HTTP 200  183 ms  4828 bytes
+neardata             OK   HTTP 200  167 ms  119273 bytes
+nearblocks           OK   HTTP 200  165 ms  355 bytes
+defillama-fees       OK   HTTP 200  560 ms  13948 bytes
+defillama-price      OK   HTTP 200  31 ms  110 bytes
+nearstats            OK   HTTP 200  234 ms  151331 bytes
+github-api           OK   HTTP 200  81 ms  2262 bytes
 
 === RPC calls (read-only)
-rpc view_account     OK   49 ms  block=222429032
-archival block       OK   128 ms  total_supply MATCHES reference
-archival view_acct   OK   152 ms  amount MATCHES reference
+rpc view_account     OK   50 ms  block=222768806
+archival block       OK   149 ms  total_supply MATCHES reference
+archival view_acct   OK   60 ms  amount MATCHES reference
 
 === Archival rate check: 20 calls back to back
-ok=20  http429=0  other=0  slowest=219 ms  median=53 ms
+ok=20  http429=0  other=0  slowest=377 ms  median=124 ms
 
 === Result: 9/9 core checks passed
