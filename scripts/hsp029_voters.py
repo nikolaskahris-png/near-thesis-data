@@ -359,6 +359,10 @@ def main():
                         metavar="FILE")
     args = parser.parse_args()
     if args.verify:
+        if not Path(args.verify).exists():
+            print(f"SKIPPED: {Path(args.verify).name} does not exist yet; it is made after "
+                  f"hsp029.py, once the vote has closed (2026-11-02 16:48:08 UTC)")
+            return
         problems, doc = verify(args.verify)
         if problems:
             print("FAILED:\n  " + "\n  ".join(problems))

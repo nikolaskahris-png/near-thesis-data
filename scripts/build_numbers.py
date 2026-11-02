@@ -2,12 +2,12 @@
 
 Nothing here touches the network or re-measures anything. Each number keeps:
   value   the exact figure as its source file states it
-  text    the form used in README and dashboard (English formatting)
+  text    the form used in the README (English formatting)
   source  the file it comes from, with that file's sha256
 The build fails when the inputs do not describe the same window: numbers 1, 2 and 3
 and the treasury flows must end at the last boundary of the same locked window file.
 
-README and dashboard never contain a typed number. They mark each one:
+The README never contains a typed measured number. It marks each one:
     <!--n:n1.coverage_buybacks-->10.8%<!--/n-->
 `--check FILE` fails if a marked text differs from numbers.json; `--render FILE`
 rewrites the marked texts from numbers.json.
@@ -618,7 +618,7 @@ def build(data_dir, window_file):
     provisional = sorted(k for k, v in n.items.items() if v.get("status") in ("provisional",
                                                                                   "pending"))
     doc = {
-        "about": "Every number used in the README and the dashboard. Built by "
+        "about": "Every measured number used in the README. Built by "
                  "scripts/build_numbers.py from the files listed in 'sources'; check with "
                  "python scripts/build_numbers.py --verify",
         "window_file": wsrc,
@@ -692,8 +692,24 @@ def verify(path, run_scripts=True, runner=subprocess.run):
 
 # ---------------------------------------------------------------- README markers
 
-def check_text(text, numbers):
+# Headline numbers that must appear, marked, in the README: a figure typed by hand instead
+# of marked would otherwise go unchecked.
+REQUIRED_IN_README = [
+    "n1.coverage_buybacks", "n1.coverage_with_front_end", "n1.new_near_per_day",
+    "n1.buybacks_near_per_day", "n2.fees_usd_per_day", "n2.max_coverage",
+    "n2.equilibrium_price_usd", "n2.hsp029_max_coverage", "n3.stakers_active",
+    "n3.largest_share", "n3.top10_share", "n3.outside_top10_median_near",
+    "iv.wallets_multiple_buybacks", "iv.wallets_multiple_with_front_end", "iv.fees_multiple",
+    "c.buybacks_confirmations", "c.treasury_share_of_new_supply", "c.nearai_pool_reward_fee",
+    "f6.change1.ratio", "f9.front_end_share_of_wallets",
+]
+
+
+def check_text(text, numbers, required=()):
     problems = []
+    marked = {m.group(1) for m in MARK.finditer(text)}
+    problems += [f"required number '{k}' is not marked in the text" for k in required
+                 if k not in marked]
     for m in MARK.finditer(text):
         key, shown = m.group(1), m.group(2)
         item = numbers.get(key)
@@ -748,7 +764,8 @@ def main():
         if args.render:
             target.write_text(render_text(text, numbers), encoding="utf-8", newline="\n")
             text = target.read_text(encoding="utf-8")
-        problems = check_text(text, numbers)
+        required = REQUIRED_IN_README if target.name == "README.md" else ()
+        problems = check_text(text, numbers, required)
         if problems:
             print("FAILED:\n  " + "\n  ".join(problems))
             sys.exit(1)

@@ -343,6 +343,10 @@ def main():
     parser.add_argument("--data-dir", type=Path, default=REPO / "data")
     args = parser.parse_args()
     if args.verify:
+        if not Path(args.verify).exists():
+            print(f"SKIPPED: {Path(args.verify).name} does not exist yet; it is made after the "
+                  f"vote closes (2026-11-02 16:48:08 UTC)")
+            return
         problems = verify(args.verify)
         if problems:
             print("FAILED:\n  " + "\n  ".join(problems))

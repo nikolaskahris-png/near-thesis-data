@@ -246,6 +246,18 @@ class MarkerTest(unittest.TestCase):
                "<!--n:f8.computed_status-->Passed<!--/n-->")
         self.assertEqual(len(bn.check_text(bad, self.numbers)), 3)
 
+    def test_required_numbers_must_be_marked(self):
+        text = "Coverage is 10.8% of new NEAR."   # typed by hand, not marked
+        problems = bn.check_text(text, self.numbers, ["n1.coverage_buybacks"])
+        self.assertEqual(problems, ["required number 'n1.coverage_buybacks' is not marked in the text"])
+        marked = "Coverage is <!--n:n1.coverage_buybacks-->10.8%<!--/n-->."
+        self.assertEqual(bn.check_text(marked, self.numbers, ["n1.coverage_buybacks"]), [])
+
+    def test_readme_marks_every_required_number(self):
+        readme = (Path(__file__).resolve().parent.parent / "README.md").read_text(encoding="utf-8")
+        marked = {m.group(1) for m in bn.MARK.finditer(readme)}
+        self.assertEqual([k for k in bn.REQUIRED_IN_README if k not in marked], [])
+
     def test_render_rewrites_marked_text_only(self):
         text = "a <!--n:n1.coverage_buybacks-->old<!--/n--> b 11%"
         self.assertEqual(bn.render_text(text, self.numbers),
