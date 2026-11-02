@@ -54,7 +54,7 @@ Block heights, dates, protocol constants and figures quoted from other projects'
   end's operator. Balances are net: anything paid out is already subtracted.
 - **2.** Mean over counted days of (fees of the day ÷ NEAR price at 12:00 UTC; mean price
   <!--n:n2.mean_price_usd-->$4.90<!--/n-->) ÷ new NEAR per day. Equilibrium
-  price = fees per day ÷ new NEAR per day. If HSP-029 were in force (issuance × 16/25), the ceiling would be
+  price = fees per day ÷ new NEAR per day. At HSP-029's target rate (issuance × 16/25, the end of its ramp), the ceiling would be
   <!--n:n2.hsp029_max_coverage-->71.1%<!--/n--> and the equilibrium price <!--n:n2.hsp029_equilibrium_price_usd-->$3.50<!--/n-->.
 - **3.** Every account that ever called `stake` on `stake.dao` is read with `get_farm_position` at the block:
   <!--n:n3.stakers_ever-->188<!--/n--> have entered the farm, <!--n:n3.stakers_left-->76<!--/n--> of them
@@ -103,9 +103,11 @@ outside: the fees users pay.
 DefiLlama counts as NEAR's, front-end fund included), when it costs <!--n:iv.revenue_equilibrium_price_usd-->$0.81<!--/n-->
 or less.
 
-**If HSP-029 is adopted** (issuance ×16/25), what the wallets keep must grow
+**At HSP-029's target rate** (1.6% a year instead of 2.5%: issuance ×16/25), what the wallets keep must grow
 <!--n:iv.hsp029_wallets_multiple_with_front_end-->×3.9<!--/n--> (front-end fund included), or, with every fee kept,
-fees <!--n:iv.hsp029_fees_multiple-->×1.4<!--/n-->.
+fees <!--n:iv.hsp029_fees_multiple-->×1.4<!--/n-->. The proposal reaches that rate at the end of a 24-month linear
+ramp that starts one quarter after ratification, and only once validators adopt it, so the target lies beyond this
+view's 12-month horizon (proposal text on `vote.dao`, `get_proposal` 29).
 
 **What would make it worse:** the buybacks wallets pay NEAR out (number 1 falls while DefiLlama revenue does not),
 or monthly coverage drops back to its April level (<!--n:f1.coverage_buybacks.2026-04-->5.3%<!--/n-->).
@@ -271,7 +273,8 @@ out.
 
 Each link that decides value can become a rule with a mechanism NEAR already has. Governance has started on this
 path: HSP-027 (remove the developer gas rebate; `vote.dao` proposal 27) passed on 3 July 2026, and
-[HSP-029](https://gov.houseofstake.org/proposals/29) proposes the same path for issuance; its vote closes on
+[HSP-029](https://gov.houseofstake.org/proposals/29) proposes the same path for issuance (2.5% → 1.6% a year on a
+24-month per-epoch ramp, starting one quarter after ratification); its vote closes on
 2 November 2026 16:48:08 UTC and its result will be added here from `scripts/hsp029.py`. A House of Stake vote
 changes nothing on chain by itself (`actions: null`): it takes a nearcore release that validators with
 <!--n:c.issuance_upgrade_stake_threshold-->4/5<!--/n--> of stake run. HSP-027 is protocol version 87 in nearcore
@@ -342,7 +345,8 @@ record inside the transaction's own arguments. It also checks the signer and tha
   Number 3, the control map and the NEAR AI flows are read at the window's end block.
 - **treasury.near from balances.** Its share of new supply (<!--n:c.treasury_share_of_new_supply-->10.1%<!--/n-->)
   is its balance change ÷ the change of `total_supply`. The RPC's `protocol_reward_rate` field reads `0/1` at the
-  end block, so it is saved but not used.
+  end block, so it is saved but not used. HSP-029's author measured the same split independently, 10.13% over
+  28 days, and reports the same `0/1` (proposal text on `vote.dao`).
 - **Issuance only over 30 days or more.** `total_supply` rises at the end of each epoch, so a single day can read
   far from the mean; over 30 days the error is about one epoch (about ±1%). The one exception is prediction 2,
   which covers 15 days (about ±2%).
