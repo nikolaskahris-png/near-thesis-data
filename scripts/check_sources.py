@@ -153,7 +153,7 @@ def main():
     if args.out:
         out = Path(args.out)
         out.parent.mkdir(parents=True, exist_ok=True)
-        out.write_text("\n".join(lines) + "\n", encoding="utf-8")
+        out.write_text("\n".join(lines) + "\n", encoding="utf-8", newline="\n")
         print(f"\nSaved to {out}")
     return 0
 

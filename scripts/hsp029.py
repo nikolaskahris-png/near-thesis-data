@@ -359,7 +359,8 @@ def main():
     chain = lw.Chain()
     doc = run(chain, args.data_dir, args.proposal)
     out = args.data_dir / OUT_NAME
-    out.write_text(json.dumps(doc, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    out.write_text(json.dumps(doc, indent=2, ensure_ascii=False) + "\n", encoding="utf-8",
+                   newline="\n")
     show(doc)
     print(f"Saved {out.relative_to(args.data_dir.parent).as_posix()} ({chain.calls} calls)")
     problems = verify(out)
