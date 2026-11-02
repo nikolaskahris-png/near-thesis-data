@@ -29,6 +29,12 @@ import urllib.request
 from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 
+# a Windows console cannot print every character the scripts use: replace, do not crash
+try:
+    sys.stdout.reconfigure(errors="replace")
+except (AttributeError, ValueError):
+    pass
+
 USER_AGENT = "near-thesis-data/0.1 (+https://github.com/nikolaskahris-png/near-thesis-data)"
 RPC = "https://rpc.mainnet.fastnear.com"
 ARCHIVAL = "https://archival-rpc.mainnet.fastnear.com"
