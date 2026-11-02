@@ -1,0 +1,117 @@
+{
+  "measure": "finding 8: final on-chain result of HSP-029",
+  "contract": "vote.dao",
+  "source": {
+    "rpc": "https://archival-rpc.mainnet.fastnear.com",
+    "methods": [
+      "block",
+      "get_proposal",
+      "get_config"
+    ]
+  },
+  "rules": {
+    "closing_block": "first block whose header timestamp is at or after voting_start_time_ns + voting_duration_ns",
+    "quorum_required": "max(quorum_threshold_bps x snapshot total_venear / 10000, quorum_floor)",
+    "quorum_met": "total_votes.total_venear (all options) >= quorum_required",
+    "approval_met": "For x 10000 >= approval_threshold_bps x (For + Against); votes[0] = For, votes[1] = Against",
+    "source": "houseofstake/house-of-stake-contracts voting-contract/src/proposal.rs compute_final_status (commit 32611da, 2026-09-21)"
+  },
+  "fetched_utc": "20261102T191754Z",
+  "raw_files": {
+    "closing_block": {
+      "path": "data/raw/hos/block_222745764.json",
+      "sha256": "8e3379ea2a7d98be0378d0b09d72d81c79a841148317078e7d06f34052f1d5da"
+    },
+    "previous_block": {
+      "path": "data/raw/hos/block_222745763.json",
+      "sha256": "fcd1850b23fdbf8f795ea3aefc9ac02c86c64efc60d809b37ea76b25134ec5ce"
+    },
+    "proposal_at_close": {
+      "path": "data/raw/hos/get_proposal_29_at_222745764.json",
+      "sha256": "e8a5d26c9dfe38e0a593d21d4f355b08108d3d66d1c9f822a22281b1452cbbe3"
+    },
+    "proposal_before_close": {
+      "path": "data/raw/hos/get_proposal_29_at_222745763.json",
+      "sha256": "594aeb0de4136bfb89ae92adc4a3e786dcdaabdb3b42a1b1c9cfce678be07dc6"
+    },
+    "config_at_close": {
+      "path": "data/raw/hos/get_config_at_222745764.json",
+      "sha256": "c6819944927a4ed3ab163910a084b94dda3e10ed716b8b8edb5f9932e8adb882"
+    },
+    "proposal_latest": {
+      "path": "data/raw/hos/get_proposal_29_final_20261102T191754Z.json",
+      "sha256": "d8121782aeaf7aadc28ad6744048eefcd4d5400f0ee53b80333588a80a0ee6fd"
+    }
+  },
+  "proposal": {
+    "proposal_id": 29,
+    "title": "Establish a 24-Month Issuance Ramp to a 1.6% Target Rate Of NEAR Token Emissions",
+    "link": "https://gov.near.org/t/hsp-xxx-establish-a-24-month-issuance-ramp-to-a-1-6-target-rate-of-near-token-emissions/42644",
+    "voting_start_utc": "2026-10-19T16:48:08.461922091Z",
+    "voting_end_utc": "2026-11-02T16:48:08.461922091Z",
+    "voting_end_ns": "1793638088461922091",
+    "timelock_end_utc": "2026-11-16T16:48:08.461922091Z"
+  },
+  "closing_block": {
+    "height": 222745764,
+    "hash": "2YnmLPLf6Hn57VWzZcdFNhZitcQSYsHMCarBUsZZtm6j",
+    "timestamp_utc": "2026-11-02T16:48:09.071547939Z"
+  },
+  "previous_block": {
+    "height": 222745763,
+    "hash": "D4dE1y4SXfaJSpMEHu7gvWkEGgJEaeDoZEAastxYb5ii",
+    "timestamp_utc": "2026-11-02T16:48:08.425411809Z"
+  },
+  "checks": {
+    "closing_timestamp_at_or_after_end": true,
+    "previous_timestamp_before_end": true,
+    "closing_prev_hash_is_previous_block": true,
+    "proposal_read_at_closing_block": true,
+    "proposal_read_at_previous_block": true,
+    "no_vote_counted_in_closing_block": true,
+    "latest_votes_equal_close": true
+  },
+  "result": {
+    "computed_status": "Succeeded",
+    "quorum_met": true,
+    "approval_met": true,
+    "snapshot_block": 220563095,
+    "snapshot_accounts": 496,
+    "snapshot_total_venear": "5274745.155",
+    "quorum_threshold_bps": 3500,
+    "quorum_floor_venear": "1000.000",
+    "quorum_required_venear": "1846160.804",
+    "approval_threshold_bps": 6667,
+    "options": [
+      {
+        "index": 0,
+        "label": "For",
+        "venear": "3287728.662",
+        "votes": 32
+      },
+      {
+        "index": 1,
+        "label": "Against",
+        "venear": "0.000",
+        "votes": 1
+      },
+      {
+        "index": 2,
+        "label": "Abstain",
+        "venear": "1070.573",
+        "votes": 3
+      }
+    ],
+    "total_venear": "3288799.235",
+    "total_votes": 36,
+    "options_sum_equals_total": true,
+    "turnout_of_snapshot": "0.623499",
+    "turnout_of_quorum": "1.781426",
+    "approval_share_for_of_for_plus_against": "1.000000",
+    "for_share_of_all_votes": "0.999674",
+    "has_actions": false
+  },
+  "reported_status_at_close": "Timelock",
+  "reported_status_latest": "Timelock",
+  "latest_block": 222761312
+}

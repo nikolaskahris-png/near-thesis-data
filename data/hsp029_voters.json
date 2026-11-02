@@ -1,0 +1,612 @@
+{
+  "measure": "finding 8: veNEAR of every HSP-029 voter, from vote.dao events",
+  "trial": false,
+  "block": 222745764,
+  "fetched_utc": "20261102T191851Z",
+  "method": "1. NearBlocks receipts to vote.dao with method `vote` (direct votes and the contract's own\n     chained call from take_snapshot_and_vote), newest first, back to the proposal's\n     creation time. Receipts with method take_snapshot_and_vote give the signer of\n     chained votes.\n  2. Archival RPC `tx` for every transaction: the logs of each successful receipt\n     executed by vote.dao.\n  3. Replay add/remove events for proposal 29 in block order -> each account's final\n     option and veNEAR.\n  4. Check: per option, the sum of the voters' veNEAR and their count equal the contract's\n     own totals (get_proposal) at the same block, to the yoctoNEAR. Otherwise nothing is\n     published.",
+  "privacy": "account IDs stay in data/private/ (not committed); public voters are sha256 tags",
+  "raw_files": {
+    "proposal": {
+      "path": "data/raw/hos/get_proposal_29_at_222745764.json",
+      "sha256": "e8a5d26c9dfe38e0a593d21d4f355b08108d3d66d1c9f822a22281b1452cbbe3",
+      "private": false,
+      "request": {
+        "method": "get_proposal",
+        "block_id": 222745764
+      }
+    },
+    "nearblocks_take_snapshot_and_vote/page_001.json": {
+      "path": "data/private/hos/nearblocks_take_snapshot_and_vote/page_001.json",
+      "sha256": "8fe32e407a1038ee38753b70e5374b3a46d6ae9d5f16cd5b73c53abaca8f5ed0",
+      "private": true,
+      "request": {
+        "url": "https://api.nearblocks.io/v3/accounts/vote.dao/receipts?method=take_snapshot_and_vote&limit=100"
+      }
+    },
+    "nearblocks_vote/page_001.json": {
+      "path": "data/private/hos/nearblocks_vote/page_001.json",
+      "sha256": "c98367c9f4542d34911861a3a52dadf8308f1f042b29338306f424e0dd15d7e0",
+      "private": true,
+      "request": {
+        "url": "https://api.nearblocks.io/v3/accounts/vote.dao/receipts?method=vote&limit=100"
+      }
+    },
+    "tx/2jmNe1Tsy3ED5kKimLvFB9keQTx5BWvhANVT4ZhVV2xS.json": {
+      "path": "data/private/hos/tx/2jmNe1Tsy3ED5kKimLvFB9keQTx5BWvhANVT4ZhVV2xS.json",
+      "sha256": "09c39d14af50c472f924c21f76d02b577005100ddbf7b240cbcc3e7a6d6a61b7",
+      "private": true,
+      "request": {
+        "rpc": "https://archival-rpc.mainnet.fastnear.com",
+        "method": "tx"
+      }
+    },
+    "tx/3NqazQstsMreCbfo3VbBFT5YJJExv2L1dG4Rw31RtScf.json": {
+      "path": "data/private/hos/tx/3NqazQstsMreCbfo3VbBFT5YJJExv2L1dG4Rw31RtScf.json",
+      "sha256": "74a462a28f002976f3eef7aa647cea4544af6e47e01187e476f1263038658ad3",
+      "private": true,
+      "request": {
+        "rpc": "https://archival-rpc.mainnet.fastnear.com",
+        "method": "tx"
+      }
+    },
+    "tx/3ffSHvo9k6fd83mYHb5yYkcFMHn8BL5ackYedkKhxnV3.json": {
+      "path": "data/private/hos/tx/3ffSHvo9k6fd83mYHb5yYkcFMHn8BL5ackYedkKhxnV3.json",
+      "sha256": "52587efe843bdd7f217645ed282d283cc92ffc52897e5ecbbf6a2274edaaa775",
+      "private": true,
+      "request": {
+        "rpc": "https://archival-rpc.mainnet.fastnear.com",
+        "method": "tx"
+      }
+    },
+    "tx/5RNBVKojvNWDoMw9L4veTLUYfV5gDHKvFiMPoRun6TvE.json": {
+      "path": "data/private/hos/tx/5RNBVKojvNWDoMw9L4veTLUYfV5gDHKvFiMPoRun6TvE.json",
+      "sha256": "2a19947b43d057eefca51343b14d95c9bc4716a7afe5fc26ab88e197874063a2",
+      "private": true,
+      "request": {
+        "rpc": "https://archival-rpc.mainnet.fastnear.com",
+        "method": "tx"
+      }
+    },
+    "tx/6BC9uLP3TpGWwM2ovTUKHEoKD7h6KycLrjR46hVNKxQc.json": {
+      "path": "data/private/hos/tx/6BC9uLP3TpGWwM2ovTUKHEoKD7h6KycLrjR46hVNKxQc.json",
+      "sha256": "09b53ef887ba5bea3085340869ba172a3a2c570b9dbaeef416fed523fd24bddf",
+      "private": true,
+      "request": {
+        "rpc": "https://archival-rpc.mainnet.fastnear.com",
+        "method": "tx"
+      }
+    },
+    "tx/6P8GpDmzkkkNgHwNaQ62qjaAnsoEoufda3Ct3oY1JaFD.json": {
+      "path": "data/private/hos/tx/6P8GpDmzkkkNgHwNaQ62qjaAnsoEoufda3Ct3oY1JaFD.json",
+      "sha256": "093ac182b86dff37da4ead6737ec40004ddd8d382a53555c4e65c5afa199ebb8",
+      "private": true,
+      "request": {
+        "rpc": "https://archival-rpc.mainnet.fastnear.com",
+        "method": "tx"
+      }
+    },
+    "tx/7P6qVNJxTqSDwC5nHwpoH58gpxQ5UUzTasZUXT1vS3e4.json": {
+      "path": "data/private/hos/tx/7P6qVNJxTqSDwC5nHwpoH58gpxQ5UUzTasZUXT1vS3e4.json",
+      "sha256": "81b341df3579112ea419313afb3f337f935b20a96d5bceb91f37dab22fb8b2ab",
+      "private": true,
+      "request": {
+        "rpc": "https://archival-rpc.mainnet.fastnear.com",
+        "method": "tx"
+      }
+    },
+    "tx/7Udt9dMNf2rGmyZP7ppBKBG2nSS8CH8kcPWriF3proJN.json": {
+      "path": "data/private/hos/tx/7Udt9dMNf2rGmyZP7ppBKBG2nSS8CH8kcPWriF3proJN.json",
+      "sha256": "71a8b4a2aa12b35d7b4ac2639870e201ee5f97861d41df2619cc46b9b0122e6e",
+      "private": true,
+      "request": {
+        "rpc": "https://archival-rpc.mainnet.fastnear.com",
+        "method": "tx"
+      }
+    },
+    "tx/7cEYQRTciX1pd9YXXhVpuPChQkqvwZSUDmbEyB7bCTN4.json": {
+      "path": "data/private/hos/tx/7cEYQRTciX1pd9YXXhVpuPChQkqvwZSUDmbEyB7bCTN4.json",
+      "sha256": "1ce53d866a656f7a2f8bc3b0ebf3e7eddfbbfc5e68b830ae3af3d0dbd2434b57",
+      "private": true,
+      "request": {
+        "rpc": "https://archival-rpc.mainnet.fastnear.com",
+        "method": "tx"
+      }
+    },
+    "tx/7fT2n51JLDszgvV5iaUwPbScrGXNFxfWfnmVGV9fCUa6.json": {
+      "path": "data/private/hos/tx/7fT2n51JLDszgvV5iaUwPbScrGXNFxfWfnmVGV9fCUa6.json",
+      "sha256": "12fda5e2830949b82c1bdc65c7d56439925c5f0f3f24a78e15eb56e15da882ce",
+      "private": true,
+      "request": {
+        "rpc": "https://archival-rpc.mainnet.fastnear.com",
+        "method": "tx"
+      }
+    },
+    "tx/8RsSQSD98voejhKAP76LBRNZuVRJ3LAmBqXZ55pm8o9P.json": {
+      "path": "data/private/hos/tx/8RsSQSD98voejhKAP76LBRNZuVRJ3LAmBqXZ55pm8o9P.json",
+      "sha256": "3bbce424e725decab75fd1e183b7fbf3658637efea5e7012665f955c7ee05dc4",
+      "private": true,
+      "request": {
+        "rpc": "https://archival-rpc.mainnet.fastnear.com",
+        "method": "tx"
+      }
+    },
+    "tx/8bVLSWC1WPtjGiCnfzp7nmx452C4XnKvMunahHpxAxRU.json": {
+      "path": "data/private/hos/tx/8bVLSWC1WPtjGiCnfzp7nmx452C4XnKvMunahHpxAxRU.json",
+      "sha256": "58dd9dfa1090a4c5f0ab3fa54923aa96fa9e799b3a18c668670d85bc17df2a6d",
+      "private": true,
+      "request": {
+        "rpc": "https://archival-rpc.mainnet.fastnear.com",
+        "method": "tx"
+      }
+    },
+    "tx/93yr73bEXjGxsDQ8XRA9wvkoRZZCtcn2TyPBQiKBFpgR.json": {
+      "path": "data/private/hos/tx/93yr73bEXjGxsDQ8XRA9wvkoRZZCtcn2TyPBQiKBFpgR.json",
+      "sha256": "57b343d9d891ae94935d21134bdf56f46111c10d870e0c84cf2448fa4821d633",
+      "private": true,
+      "request": {
+        "rpc": "https://archival-rpc.mainnet.fastnear.com",
+        "method": "tx"
+      }
+    },
+    "tx/9C8TA3PMatErPVNov7CnDc1oiWveDesU2rtUjmm5VRgA.json": {
+      "path": "data/private/hos/tx/9C8TA3PMatErPVNov7CnDc1oiWveDesU2rtUjmm5VRgA.json",
+      "sha256": "89263f8ec36eb237b3ac38a1c5c1d8f0c8b2c6f6a6e6eb7dd1e3b556a07dcf20",
+      "private": true,
+      "request": {
+        "rpc": "https://archival-rpc.mainnet.fastnear.com",
+        "method": "tx"
+      }
+    },
+    "tx/AGLxCfme3WwntWNDJk9fYE3JQUxbFBjp3APiZAniFAKE.json": {
+      "path": "data/private/hos/tx/AGLxCfme3WwntWNDJk9fYE3JQUxbFBjp3APiZAniFAKE.json",
+      "sha256": "104cfaf5f5b0dd41c26191d3fba55c36e43b1b2ff18f962c915908313e383309",
+      "private": true,
+      "request": {
+        "rpc": "https://archival-rpc.mainnet.fastnear.com",
+        "method": "tx"
+      }
+    },
+    "tx/AP6cAU2yGJzoMaKuqXmPNTYiUdnX82xkG8JzfhbiRXyR.json": {
+      "path": "data/private/hos/tx/AP6cAU2yGJzoMaKuqXmPNTYiUdnX82xkG8JzfhbiRXyR.json",
+      "sha256": "b19d2714137aa69a7e231532972e79d23e746a2b4fbb3d978b841289dfd7783e",
+      "private": true,
+      "request": {
+        "rpc": "https://archival-rpc.mainnet.fastnear.com",
+        "method": "tx"
+      }
+    },
+    "tx/B3UENg3Pz4Q8RFLqWMh3ucBq48vq5WJcQZtbJtzRwx56.json": {
+      "path": "data/private/hos/tx/B3UENg3Pz4Q8RFLqWMh3ucBq48vq5WJcQZtbJtzRwx56.json",
+      "sha256": "ce4f3324652348db97f1aa2ffe374c60aff00782d631c3afce908a5b75e2a77b",
+      "private": true,
+      "request": {
+        "rpc": "https://archival-rpc.mainnet.fastnear.com",
+        "method": "tx"
+      }
+    },
+    "tx/B62ZGWm4r7gEWx3A4ZE7b5ATtYePpnH2xPbYe2HbCzZY.json": {
+      "path": "data/private/hos/tx/B62ZGWm4r7gEWx3A4ZE7b5ATtYePpnH2xPbYe2HbCzZY.json",
+      "sha256": "7f3bb6d6503c8c3b1571dc282c16fe9079aefe3776cef4a671671610f021c63c",
+      "private": true,
+      "request": {
+        "rpc": "https://archival-rpc.mainnet.fastnear.com",
+        "method": "tx"
+      }
+    },
+    "tx/BVUHjSpZBCTfzdfgoh68FMAK1GPzMBaTCYwmYGhGzVds.json": {
+      "path": "data/private/hos/tx/BVUHjSpZBCTfzdfgoh68FMAK1GPzMBaTCYwmYGhGzVds.json",
+      "sha256": "516129b99b2332fc407db9ec40806cff65102725c814f11cbae4733298e574ab",
+      "private": true,
+      "request": {
+        "rpc": "https://archival-rpc.mainnet.fastnear.com",
+        "method": "tx"
+      }
+    },
+    "tx/CVVC7djpWyiD1qhtujhFHnxCeRTAdwLXtFh6KdP6FeuF.json": {
+      "path": "data/private/hos/tx/CVVC7djpWyiD1qhtujhFHnxCeRTAdwLXtFh6KdP6FeuF.json",
+      "sha256": "79667752fc373f85eec1b3b078b2678608365b58f569d163c1c4166adfb64889",
+      "private": true,
+      "request": {
+        "rpc": "https://archival-rpc.mainnet.fastnear.com",
+        "method": "tx"
+      }
+    },
+    "tx/CYnJfHeaaMqQkdyfSFRBjqozcMDe9q3KNXUhknAyt43V.json": {
+      "path": "data/private/hos/tx/CYnJfHeaaMqQkdyfSFRBjqozcMDe9q3KNXUhknAyt43V.json",
+      "sha256": "a599f8e186de85476cac3eb6d86770dbc5e490b0b3711b64567e0a19a05f40c2",
+      "private": true,
+      "request": {
+        "rpc": "https://archival-rpc.mainnet.fastnear.com",
+        "method": "tx"
+      }
+    },
+    "tx/CnXtpUHBYfGoFUvo4Rc7k4EvR4YVxCCJijZ8Mk8LRL5P.json": {
+      "path": "data/private/hos/tx/CnXtpUHBYfGoFUvo4Rc7k4EvR4YVxCCJijZ8Mk8LRL5P.json",
+      "sha256": "495c11de614ffabdec7b3d8cde731daf3d72af6a57694de237fa07c2c416f215",
+      "private": true,
+      "request": {
+        "rpc": "https://archival-rpc.mainnet.fastnear.com",
+        "method": "tx"
+      }
+    },
+    "tx/Cur95cagX5LMLZp9Vu9n9VBRzB8CmLB7wfQgFwNEnVuK.json": {
+      "path": "data/private/hos/tx/Cur95cagX5LMLZp9Vu9n9VBRzB8CmLB7wfQgFwNEnVuK.json",
+      "sha256": "c4f1edac283ee5d4483a8e3f7e245ccf5cfc7774582a8b1114b6fc1dfc038eec",
+      "private": true,
+      "request": {
+        "rpc": "https://archival-rpc.mainnet.fastnear.com",
+        "method": "tx"
+      }
+    },
+    "tx/DGfoRureu7VBRqu6kPfzig3MrM1FHiyLYtFNXTpKyXF1.json": {
+      "path": "data/private/hos/tx/DGfoRureu7VBRqu6kPfzig3MrM1FHiyLYtFNXTpKyXF1.json",
+      "sha256": "d5cd0a1acda9aaa814938c8b98574edda8cb5b62e1a4faee35a9e7987846e839",
+      "private": true,
+      "request": {
+        "rpc": "https://archival-rpc.mainnet.fastnear.com",
+        "method": "tx"
+      }
+    },
+    "tx/DdyfcWjR7Gjh8WirbAVrWT7PnwN8tmFxMSDYZQbFoVfh.json": {
+      "path": "data/private/hos/tx/DdyfcWjR7Gjh8WirbAVrWT7PnwN8tmFxMSDYZQbFoVfh.json",
+      "sha256": "9602dacd139a51cc58e8eb1a099501cbeaa81063d1949317317c8040834aeac5",
+      "private": true,
+      "request": {
+        "rpc": "https://archival-rpc.mainnet.fastnear.com",
+        "method": "tx"
+      }
+    },
+    "tx/E2NV5HQendytBqXhHTMSdTg67oo2ojRYp9GVhjWkDbue.json": {
+      "path": "data/private/hos/tx/E2NV5HQendytBqXhHTMSdTg67oo2ojRYp9GVhjWkDbue.json",
+      "sha256": "e58f3c8f18007d94b6b2c71a089fb33c3be02ff7bc834f1710d98b219ab5ad36",
+      "private": true,
+      "request": {
+        "rpc": "https://archival-rpc.mainnet.fastnear.com",
+        "method": "tx"
+      }
+    },
+    "tx/E3Qx7Lb93FcWasHv3DqvhZmD669j7E5zSRo6DE2ndgT9.json": {
+      "path": "data/private/hos/tx/E3Qx7Lb93FcWasHv3DqvhZmD669j7E5zSRo6DE2ndgT9.json",
+      "sha256": "6f3bab9fe6f32591c5bbe1368a9abcb2cf75b5e10ed304491a6ed856a10b7dab",
+      "private": true,
+      "request": {
+        "rpc": "https://archival-rpc.mainnet.fastnear.com",
+        "method": "tx"
+      }
+    },
+    "tx/EFnfBpSWWBpswUW66WnVYexmwNpBu6sH4rQM5G51csTh.json": {
+      "path": "data/private/hos/tx/EFnfBpSWWBpswUW66WnVYexmwNpBu6sH4rQM5G51csTh.json",
+      "sha256": "a8cb7e4f75d6b1ea217f1ae4283c57c83cedf0a34f7a8303f5dbfd1c4f2d9c26",
+      "private": true,
+      "request": {
+        "rpc": "https://archival-rpc.mainnet.fastnear.com",
+        "method": "tx"
+      }
+    },
+    "tx/EQBPETQ38W2NqVtGgK2Zah8ZGBUas7wVVGrCSPjDivep.json": {
+      "path": "data/private/hos/tx/EQBPETQ38W2NqVtGgK2Zah8ZGBUas7wVVGrCSPjDivep.json",
+      "sha256": "da81788805ddcc9fc20271102288452209012231d0ae3b3c240f80f055b7fb25",
+      "private": true,
+      "request": {
+        "rpc": "https://archival-rpc.mainnet.fastnear.com",
+        "method": "tx"
+      }
+    },
+    "tx/EUHcnhwKqo9FaNB2eTmqxpQLDuwLyffYKLVFy1s44351.json": {
+      "path": "data/private/hos/tx/EUHcnhwKqo9FaNB2eTmqxpQLDuwLyffYKLVFy1s44351.json",
+      "sha256": "c6073b4d43dca5c638b736d1aa04a15d1cd6f667d01b395d1b0c7962937c9e95",
+      "private": true,
+      "request": {
+        "rpc": "https://archival-rpc.mainnet.fastnear.com",
+        "method": "tx"
+      }
+    },
+    "tx/EUUNUVN18pvBfq8LLk2rxAcFj4DGuCH55mBnLLRbGwqN.json": {
+      "path": "data/private/hos/tx/EUUNUVN18pvBfq8LLk2rxAcFj4DGuCH55mBnLLRbGwqN.json",
+      "sha256": "be5207a178104ccce2b045668a66fe5dc5149d97ce5a759958cba1c80a61478a",
+      "private": true,
+      "request": {
+        "rpc": "https://archival-rpc.mainnet.fastnear.com",
+        "method": "tx"
+      }
+    },
+    "tx/FFPGKtveYoQaxfCDDJzR2pPDA91w7SRtceBTEVUUdE3a.json": {
+      "path": "data/private/hos/tx/FFPGKtveYoQaxfCDDJzR2pPDA91w7SRtceBTEVUUdE3a.json",
+      "sha256": "7125db477bbc8a9ab1c5a60805d02a3d08cbe7d54ac9552856560e8ace3686d2",
+      "private": true,
+      "request": {
+        "rpc": "https://archival-rpc.mainnet.fastnear.com",
+        "method": "tx"
+      }
+    },
+    "tx/FjJPnpW9ZDqmHhww453j6wkS4qiUPtmkzYdvWAi1Aqzw.json": {
+      "path": "data/private/hos/tx/FjJPnpW9ZDqmHhww453j6wkS4qiUPtmkzYdvWAi1Aqzw.json",
+      "sha256": "d589775ede72eead247af1f7ecd19977071e65e81a7011c5d12aa3802ed24414",
+      "private": true,
+      "request": {
+        "rpc": "https://archival-rpc.mainnet.fastnear.com",
+        "method": "tx"
+      }
+    },
+    "tx/GSSESZzyiQTCJTLbaGLttkR1iDYKy47Wu1a1urHp1cfq.json": {
+      "path": "data/private/hos/tx/GSSESZzyiQTCJTLbaGLttkR1iDYKy47Wu1a1urHp1cfq.json",
+      "sha256": "985db2d099e4c6090ad43f3e49c0f186967709efe02917d83baa0d6c954fa4fd",
+      "private": true,
+      "request": {
+        "rpc": "https://archival-rpc.mainnet.fastnear.com",
+        "method": "tx"
+      }
+    },
+    "tx/H3mQqY3ah7Z6D9Hx3HU9rEGTktNeg8hoEC6sXuLQCRf7.json": {
+      "path": "data/private/hos/tx/H3mQqY3ah7Z6D9Hx3HU9rEGTktNeg8hoEC6sXuLQCRf7.json",
+      "sha256": "9fd9371524922f0b76853d7da88de05348fb03241aef387b86e991d0509f08e7",
+      "private": true,
+      "request": {
+        "rpc": "https://archival-rpc.mainnet.fastnear.com",
+        "method": "tx"
+      }
+    },
+    "tx/HhQ1qj9bWNRHS2VJfFMEHBoapNyNSyiqNY7F6G6QvKPZ.json": {
+      "path": "data/private/hos/tx/HhQ1qj9bWNRHS2VJfFMEHBoapNyNSyiqNY7F6G6QvKPZ.json",
+      "sha256": "1ed48e1612f210623a5bd55b69fa5649f5e5b8565ac53167fed6b15642e308a5",
+      "private": true,
+      "request": {
+        "rpc": "https://archival-rpc.mainnet.fastnear.com",
+        "method": "tx"
+      }
+    },
+    "tx/HjEwtd1vyjZ357uo7xSDyUk88m1sBm7SQzcoMsLitVNP.json": {
+      "path": "data/private/hos/tx/HjEwtd1vyjZ357uo7xSDyUk88m1sBm7SQzcoMsLitVNP.json",
+      "sha256": "13a627828c4514dd286701e6129f3d55fa826f61a2520fbdfadc41a684fc3269",
+      "private": true,
+      "request": {
+        "rpc": "https://archival-rpc.mainnet.fastnear.com",
+        "method": "tx"
+      }
+    },
+    "tx/HmtMQDd1XELcxc8ttRQvHrhV5YpBoWZWxPuioniQF9Jy.json": {
+      "path": "data/private/hos/tx/HmtMQDd1XELcxc8ttRQvHrhV5YpBoWZWxPuioniQF9Jy.json",
+      "sha256": "7327a94642ae7d42eb79c1e095822129ccc8a9bff031a38e984aceb59777bcb1",
+      "private": true,
+      "request": {
+        "rpc": "https://archival-rpc.mainnet.fastnear.com",
+        "method": "tx"
+      }
+    }
+  },
+  "voters": [
+    {
+      "tag": "sha256:c85c30e2f6ae6f1b",
+      "option": 0,
+      "venear": "400189.442",
+      "venear_yocto": "400189442226669412934514564068"
+    },
+    {
+      "tag": "sha256:8d50c091968068c2",
+      "option": 0,
+      "venear": "348547.489",
+      "venear_yocto": "348547488534729416275300000001"
+    },
+    {
+      "tag": "sha256:00215ad0d7d939b2",
+      "option": 0,
+      "venear": "330215.563",
+      "venear_yocto": "330215563329874587316837657339"
+    },
+    {
+      "tag": "sha256:8b4555ab3d03dc94",
+      "option": 0,
+      "venear": "330192.971",
+      "venear_yocto": "330192971079005153099345689561"
+    },
+    {
+      "tag": "sha256:447860baf416e514",
+      "option": 0,
+      "venear": "320458.847",
+      "venear_yocto": "320458846553408331420768921284"
+    },
+    {
+      "tag": "sha256:3668eb68c616390f",
+      "option": 0,
+      "venear": "316993.077",
+      "venear_yocto": "316993076746632592672800000001"
+    },
+    {
+      "tag": "sha256:a62bce6ce1bf0d94",
+      "option": 0,
+      "venear": "302435.009",
+      "venear_yocto": "302435008793834422399677112063"
+    },
+    {
+      "tag": "sha256:0608674bfd832122",
+      "option": 0,
+      "venear": "301586.755",
+      "venear_yocto": "301586755092524352244900000001"
+    },
+    {
+      "tag": "sha256:de323a07d412430d",
+      "option": 0,
+      "venear": "300278.957",
+      "venear_yocto": "300278956871583070000000000000"
+    },
+    {
+      "tag": "sha256:91eb7cf64735a35f",
+      "option": 0,
+      "venear": "225727.455",
+      "venear_yocto": "225727455334620082661400000001"
+    },
+    {
+      "tag": "sha256:c8ae9a13a3a97acd",
+      "option": 0,
+      "venear": "104731.663",
+      "venear_yocto": "104731663408357019000000000000"
+    },
+    {
+      "tag": "sha256:26595a2d758a7240",
+      "option": 0,
+      "venear": "2037.658",
+      "venear_yocto": "2037658418369878268300000001"
+    },
+    {
+      "tag": "sha256:9a881619b2bd3761",
+      "option": 0,
+      "venear": "1816.769",
+      "venear_yocto": "1816768746150755313926523102"
+    },
+    {
+      "tag": "sha256:9ad4d53dcb367f55",
+      "option": 0,
+      "venear": "1695.590",
+      "venear_yocto": "1695590361829098948095206598"
+    },
+    {
+      "tag": "sha256:fa947823217c0b41",
+      "option": 2,
+      "venear": "976.355",
+      "venear_yocto": "976355339691659301800000002"
+    },
+    {
+      "tag": "sha256:644dfa348cb6639e",
+      "option": 0,
+      "venear": "439.244",
+      "venear_yocto": "439243566350771400000000000"
+    },
+    {
+      "tag": "sha256:14ca27a34f9ae11e",
+      "option": 0,
+      "venear": "151.104",
+      "venear_yocto": "151104430973452616500000001"
+    },
+    {
+      "tag": "sha256:521770c8b40d1b89",
+      "option": 2,
+      "venear": "94.100",
+      "venear_yocto": "94100015424914689217908397"
+    },
+    {
+      "tag": "sha256:ec528947c6d12259",
+      "option": 0,
+      "venear": "84.678",
+      "venear_yocto": "84677832094901225351402255"
+    },
+    {
+      "tag": "sha256:ca8b8b4487f18c81",
+      "option": 0,
+      "venear": "44.928",
+      "venear_yocto": "44927644239870000000000000"
+    },
+    {
+      "tag": "sha256:0c6936bf87b83f79",
+      "option": 0,
+      "venear": "19.168",
+      "venear_yocto": "19167964752175715296803512"
+    },
+    {
+      "tag": "sha256:7c7458aee74bcab2",
+      "option": 0,
+      "venear": "16.666",
+      "venear_yocto": "16665797958488868200000004"
+    },
+    {
+      "tag": "sha256:3c8820b48aa683fc",
+      "option": 0,
+      "venear": "15.802",
+      "venear_yocto": "15801899785057910800000001"
+    },
+    {
+      "tag": "sha256:8795f1979bc995b1",
+      "option": 0,
+      "venear": "15.081",
+      "venear_yocto": "15080787686251249200000001"
+    },
+    {
+      "tag": "sha256:9848ff3354341be7",
+      "option": 0,
+      "venear": "8.988",
+      "venear_yocto": "8988199780507200000000000"
+    },
+    {
+      "tag": "sha256:778d94a23c652eef",
+      "option": 0,
+      "venear": "6.806",
+      "venear_yocto": "6806149676246958400000001"
+    },
+    {
+      "tag": "sha256:6525857add2e8b65",
+      "option": 0,
+      "venear": "5.400",
+      "venear_yocto": "5400481188281347300000003"
+    },
+    {
+      "tag": "sha256:7f028af50102239d",
+      "option": 0,
+      "venear": "4.139",
+      "venear_yocto": "4138517349536185624014126"
+    },
+    {
+      "tag": "sha256:2bf74f360ced10c8",
+      "option": 0,
+      "venear": "2.679",
+      "venear_yocto": "2679205076841804200000001"
+    },
+    {
+      "tag": "sha256:e806ace5999f3383",
+      "option": 0,
+      "venear": "2.322",
+      "venear_yocto": "2321525887695000000000000"
+    },
+    {
+      "tag": "sha256:3c98d5c800e8a0c2",
+      "option": 0,
+      "venear": "2.166",
+      "venear_yocto": "2166170679855000000000000"
+    },
+    {
+      "tag": "sha256:55654e9945778f17",
+      "option": 0,
+      "venear": "2.129",
+      "venear_yocto": "2128877067450000000000000"
+    },
+    {
+      "tag": "sha256:501b5d4e984aa621",
+      "option": 0,
+      "venear": "0.118",
+      "venear_yocto": "117696366500000000000000"
+    },
+    {
+      "tag": "sha256:340df7456f6db24f",
+      "option": 2,
+      "venear": "0.117",
+      "venear_yocto": "117460929015000000000000"
+    },
+    {
+      "tag": "sha256:9d37013fd2677a86",
+      "option": 1,
+      "venear": "0.000",
+      "venear_yocto": "15456460682700000001"
+    },
+    {
+      "tag": "sha256:499dfd6a01669e68",
+      "option": 0,
+      "venear": "0.000",
+      "venear_yocto": "15128448584800000001"
+    }
+  ],
+  "stats": {
+    "voters": 36,
+    "total_venear": "3288799.235",
+    "largest_venear": "400189.442",
+    "median_venear": "89.389",
+    "for_voters": 32,
+    "fewest_voters_reaching_quorum": 6,
+    "top1_share_of_votes_cast": "0.121683",
+    "top3_share_of_votes_cast": "0.328069",
+    "top8_share_of_votes_cast": "0.805953",
+    "top10_share_of_votes_cast": "0.965892",
+    "top8_share_of_for": "0.806216"
+  },
+  "sums_match_contract": true,
+  "problems": [],
+  "private_check": "recomputed",
+  "private_absent": 0
+}
