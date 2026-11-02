@@ -265,6 +265,7 @@ def build(root, doc):
         out["problems"] = problems + p
     else:
         out["private_check"] = f"{len(txs) - len(present)} private file(s) absent"
+    out["private_absent"] = len(txs) - len(present)
     return out
 
 
@@ -337,7 +338,18 @@ def verify(path):
     problems += again["problems"]
     if again["private_check"] == "differs":
         problems.append("private raw files do not give the same voter list")
-    return problems, dict(doc, private_check=again["private_check"])
+    return problems, dict(doc, private_check=again["private_check"],
+                          private_absent=again["private_absent"])
+
+
+def verify_line(absent):
+    """The --verify verdict. Same PUBLIC_FULL wording as the other scripts."""
+    if absent:
+        return (f"OK: the voters add up to the contract's totals and every statistic recomputes "
+                f"offline from the public voter list (PUBLIC_FULL); {absent} private original(s) "
+                f"not in git for privacy, so their match with the public list was not checked here")
+    return ("OK: the voters add up to the contract's totals and every statistic recomputes "
+            "offline, and the private originals give the same voter list")
 
 
 def show(doc):
@@ -367,8 +379,7 @@ def main():
         if problems:
             print("FAILED:\n  " + "\n  ".join(problems))
             sys.exit(1)
-        print(f"OK: public sha256 match, voters add up to the contract's totals, stats "
-              f"recompute; private files: {doc['private_check']}")
+        print(verify_line(doc["private_absent"]))
         return
     chain = lw.Chain()
     if args.trial:

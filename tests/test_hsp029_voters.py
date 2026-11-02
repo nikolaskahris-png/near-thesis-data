@@ -148,11 +148,14 @@ class VotersTest(unittest.TestCase):
         problems, d = hv.verify(path)
         self.assertEqual(problems, [])
         self.assertEqual(d["private_check"], "recomputed")
+        self.assertNotIn("PUBLIC_FULL", hv.verify_line(d["private_absent"]))
         # clean clone: private folder absent -> still OK from the public list
         shutil.rmtree(root / "data" / "private")
         problems, d = hv.verify(path)
         self.assertEqual(problems, [])
         self.assertIn("absent", d["private_check"])
+        self.assertIn("PUBLIC_FULL", hv.verify_line(d["private_absent"]))
+        self.assertIn(f"{d['private_absent']} private original(s)", hv.verify_line(d["private_absent"]))
         # tampered public voter list -> sums no longer match the contract
         doc2 = json.loads(path.read_text())
         doc2["voters"][0]["venear_yocto"] = str(int(doc2["voters"][0]["venear_yocto"]) - 1)
