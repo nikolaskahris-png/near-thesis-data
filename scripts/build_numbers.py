@@ -287,6 +287,68 @@ def build(data_dir, window_file):
             n.add("b.treasury_share_of_minted", br["treasury_share_of_minted"],
                   f_pct(br["treasury_share_of_minted"], 1), bsrc, unit="share", **common)
 
+    # ---- finding 13: treasury.near in 2026 (treasury_spend.py) and its exits (treasury_exits.py)
+    tpath = data_dir / "treasury_spend.json"
+    if tpath.exists():
+        td = json.loads(tpath.read_text(encoding="utf-8"))
+        tsrc = n.source(tpath)
+        tr = td["results"]
+        rule, tw, tot = tr["rule"], tr["window"], tr["total"]
+        same("treasury_spend rule in window = control map", tw["equals_control_map"], True)
+        same("treasury_spend rule exact", rule["exact"], rule["epochs"])
+        n.add("ts.rule_epochs", rule["epochs"], f_int(rule["epochs"]), tsrc, unit="epochs", **common,
+              note="epochs in the window where treasury.near's reward equals "
+                   "floor(floor(supply * dt / (40 * 365 days)) / 10), to the yocto")
+        n.add("ts.rule_exact", rule["exact"], f_int(rule["exact"]), tsrc, unit="epochs", **common)
+        n.add("ts.share_of_minted", rule["treasury_share_of_minted"],
+              f_pct(rule["treasury_share_of_minted"], 2), tsrc, unit="share", **common,
+              note="above 10% because validators below full uptime receive less than the maximum")
+        for key in ("mean", "min", "max"):
+            v = rule[f"unminted_share_of_max_{key}"]
+            n.add(f"ts.unminted_share_of_max_{key}", v, f_pct(v, 2), tsrc, unit="share", **common)
+        n.add("ts.window_other_net_near", tw["other_net_near"], f_num(tw["other_net_near"], 3), tsrc,
+              unit="NEAR", **common, note="balance change minus protocol rewards in the window")
+        months = td["months"]
+        yc = {"window": f"{tot['from']} 00:00 UTC to {tot['to']} 00:00 UTC",
+              "blocks": f"{months[0]['start']['height']}-{months[-1]['end']['height']}"}
+        n.add("ts.year_treasury_in_near", tot["treasury_in_near"], f_int(tot["treasury_in_near"]),
+              tsrc, unit="NEAR", **yc)
+        out = -dec(tot["other_net_near"])
+        n.add("ts.year_out_near", out, f_int(out), tsrc, unit="NEAR", **yc,
+              note="minus other_net: what left treasury.near besides protocol rewards")
+        rows = tr["months"]
+        n.add("ts.balance_start_near", rows[0]["balance_start_near"],
+              f_int(rows[0]["balance_start_near"]), tsrc, unit="NEAR", **yc)
+        n.add("ts.balance_end_near", rows[-1]["balance_end_near"],
+              f_int(rows[-1]["balance_end_near"]), tsrc, unit="NEAR", **yc)
+        out_months = [r for r in rows if dec(r["other_net_near"]) != 0]
+        n.add("ts.months_with_outflows", len(out_months), f_int(len(out_months)), tsrc,
+              unit="months", **yc)
+        for r in out_months:
+            v = -dec(r["other_net_near"])
+            n.add(f"ts.out_near.{r['start'][:7]}", v, f_int(v), tsrc, unit="NEAR",
+                  window=f"{r['start']} 00:00 UTC to {r['end']} 00:00 UTC", blocks=yc["blocks"])
+        epath = data_dir / "treasury_exits.json"
+        if epath.exists():
+            ed = json.loads(epath.read_text(encoding="utf-8"))
+            esrc = n.source(epath)
+            er = ed["results"]
+            same("treasury_exits total = treasury_spend other_net", er["total_exits_near"],
+                 f"{out:.3f}")
+            n.add("te.steps", len(ed["exits"]), f_int(len(ed["exits"])), esrc,
+                  unit="balance steps", **yc)
+            big = [e for e in ed["exits"] if "recipients" in e]
+            n.add("te.transactions_read", len(big), f_int(len(big)), esrc,
+                  unit="transactions of 1 NEAR or more", **yc)
+            for i, r in enumerate(er.get("recipients", []), 1):
+                acct = r["account"]
+                short = acct.split(".")[0] if not acct.startswith("sha256:") else \
+                    "sha256_" + acct[len("sha256:"):][:8]
+                n.add(f"te.to.{short}.amount", r["amount_near"], f_int(r["amount_near"]), esrc,
+                      unit="NEAR", account=acct, transfers=r["transfers"], **yc)
+                n.add(f"te.to.{short}.transfers", r["transfers"], f_int(r["transfers"]), esrc,
+                      unit="transfers", account=acct, **yc)
+
     # ---- finding 6: reward units -> US dollars of credits (NEAR AI Cloud, off-chain snapshot)
     oc_meta = data_dir / "offchain" / "nearai_cloud_farm_config.json"
     if oc_meta.exists() and "f6.units_per_near_year" in n.items:
@@ -720,6 +782,8 @@ SCRIPT_CHECKS = [
     ("hsp029_voters.py", lambda doc: ["--verify"]),
     ("farm_rate.py", lambda doc: ["--verify"]),
     ("burn.py", lambda doc: ["--verify"]),
+    ("treasury_spend.py", lambda doc: ["--verify"]),
+    ("treasury_exits.py", lambda doc: ["--verify"]),
     ("check_prereg.py", lambda doc: ["--verify"]),
     ("control_map.py", lambda doc: ["--verify"]),
     ("control_history.py", lambda doc: ["--verify"]),

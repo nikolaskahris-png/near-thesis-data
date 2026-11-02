@@ -165,7 +165,7 @@ flowchart TD
 | 1Click fund (`1csfundsadmin.sputnik-dao.near`) | counted with the buybacks wallet in number 1 | DAO: transfers / its own rules | <!--n:c.wallet_1cs_transfer-->2 of 4<!--/n--> / <!--n:c.wallet_1cs_rules-->2 of 4<!--/n--> | — |
 | Front-end fund (`fefundsadmin.sputnik-dao.near`) | <!--n:f9.front_end_share_of_wallets-->34.2%<!--/n--> of what the three wallets kept | DAO: transfers / its own rules, upgrades and members. One Admin can change the rules alone, so one key can also move the funds, in two steps | <!--n:c.front_end_transfer-->2 of 5<!--/n--> / <!--n:c.front_end_rules-->1 of 5<!--/n--> | — |
 | Issuance (`max_inflation_rate`) | <!--n:c.issuance_max_inflation_rate-->1/40<!--/n--> a year | a new nearcore release, run by validators with <!--n:c.issuance_upgrade_stake_threshold-->4/5<!--/n--> of stake | at least <!--n:c.issuance_validators_to_pass_upgrade-->44<!--/n--> of <!--n:c.issuance_validators-->381<!--/n--> validators (the largest); the <!--n:c.issuance_validators_to_block_upgrade-->5<!--/n--> largest can block; largest holds <!--n:c.issuance_largest_validator_share-->5.6%<!--/n--> | see HSP-027 below |
-| Protocol treasury (`treasury.near`) | its balance grew by <!--n:c.treasury_share_of_new_supply-->10.1%<!--/n--> of new supply (<!--n:c.treasury_near_received-->268,973<!--/n--> NEAR in the window) | its multisig members | <!--n:c.treasury_confirmations-->2 of 4<!--/n--> | keys last changed <!--n:h.keys.treasury.last_change-->2025-09-05<!--/n--> |
+| Protocol treasury (`treasury.near`) | its balance grew by <!--n:c.treasury_share_of_new_supply-->10.1%<!--/n--> of new supply (<!--n:c.treasury_near_received-->268,973<!--/n--> NEAR in the window) | its multisig members | <!--n:c.treasury_confirmations-->2 of 4<!--/n--> | keys last changed <!--n:h.keys.treasury.last_change-->2025-09-05<!--/n-->; paid out <!--n:ts.year_out_near-->30,171,200<!--/n--> NEAR in 2026 (finding 9) |
 | House of Stake voting (`vote.dao`) | decides what reaches a vote | owner `hos-root.sputnik-dao.near`; <!--n:c.hsp_reviewers-->5<!--/n--> reviewers choose what is put to a vote | <!--n:c.hsp_owner_rules-->3 of 5<!--/n--> | reviewers, council or guardians changed <!--n:h.voting.approved_actions-->5<!--/n--> times (<!--n:h.voting.first-->2026-02-09<!--/n--> → <!--n:h.voting.last-->2026-07-22<!--/n-->) |
 | NEAR AI pool rewards (`nearai.pool.near`) | the pool keeps <!--n:c.nearai_pool_reward_fee-->100%<!--/n--> of staking rewards | its owner, a DAO with no access keys | <!--n:c.nearai_pool_owner_transfer-->2 of 3<!--/n--> | <!--n:h.staking.approved_actions-->57<!--/n--> staking actions by the owner |
 | NEAR AI credits rate (`stake.dao` `edit_price`) | <!--n:f6.units_per_near_year-->0.24<!--/n--> reward units per staked NEAR per year | one catalog manager of the pool, named by the owner's DAO (<!--n:h.catalog_manager_added-->1<!--/n--> proposal) | 1 | changed <!--n:f6.rate_changes-->1<!--/n--> time: <!--n:f6.change1.utc-->2026-09-29 14:21 UTC<!--/n-->, <!--n:f6.change1.ratio-->×2.0<!--/n-->, without a proposal |
@@ -269,13 +269,46 @@ the buybacks wallet than `view_account` returns: it books the two transfers from
 to the buybacks wallet (July and September 2026) under 1Click. Number 1 adds the two wallets, so that move cancels
 out.
 
+**8. HSP-029 passed with no veNEAR against, and <!--n:f8.fewest_voters_reaching_quorum-->6<!--/n--> voters were enough for its quorum.**
+At the vote's last block, 222,745,764 (`scripts/hsp029.py`, `scripts/hsp029_voters.py`): <!--n:f8.for_venear-->3,287,729<!--/n--> veNEAR
+for, <!--n:f8.against_venear-->0<!--/n--> against and <!--n:f8.abstain_venear-->1,071<!--/n--> abstaining, from <!--n:f8.voters-->36<!--/n--> voters.
+<!--n:f8.turnout_of_snapshot-->62.3%<!--/n--> of the <!--n:f8.snapshot_total_venear-->5,274,745<!--/n--> veNEAR in the snapshot voted, against a quorum of
+<!--n:f8.quorum_required_venear-->1,846,161<!--/n-->. The largest voter cast <!--n:f8.top1_share_of_votes_cast-->12.2%<!--/n--> of the votes and the 8
+largest <!--n:f8.top8_share_of_votes_cast-->80.6%<!--/n-->. `vote.dao` reports the proposal as `<!--n:f8.contract_status_at_close-->Timelock<!--/n-->`.
+The vote executes nothing on chain (`actions: null`): issuance falls only when validators run a release that
+includes it ([Path to rules](#path-to-rules)).
+
+**9. `treasury.near` receives 10% of the maximum issuance; in 2026 it paid out
+<!--n:ts.year_out_near-->30,171,200<!--/n--> NEAR, all in April and May.** `scripts/treasury_spend.py` reproduces its reward at
+<!--n:ts.rule_exact-->101<!--/n--> of the <!--n:ts.rule_epochs-->101<!--/n--> epoch starts in the window to the yocto:
+floor(floor(supply × Δt / (40 × 365 days)) / 10), the protocol's 10% of the maximum. That is
+<!--n:ts.share_of_minted-->10.03%<!--/n--> of what is actually minted, because validators below full uptime receive less (on
+average <!--n:ts.unminted_share_of_max_mean-->0.29%<!--/n--> of the maximum is not minted). From 1 January to 1 November 2026 it
+received <!--n:ts.year_treasury_in_near-->2,700,599<!--/n--> NEAR and its balance went from <!--n:ts.balance_start_near-->28,996,906<!--/n--> to
+<!--n:ts.balance_end_near-->1,526,304<!--/n-->. Besides rewards, <!--n:ts.year_out_near-->30,171,200<!--/n--> NEAR left it in
+<!--n:ts.months_with_outflows-->2<!--/n--> months: <!--n:ts.out_near.2026-04-->9,800,000<!--/n--> in April and <!--n:ts.out_near.2026-05-->20,371,200<!--/n--> in May; none in the
+window of number 1 (<!--n:ts.window_other_net_near-->0.000<!--/n--> NEAR). `scripts/treasury_exits.py` finds each of the
+<!--n:te.steps-->73<!--/n--> balance steps of those months to the block, and reads the <!--n:te.transactions_read-->8<!--/n-->
+transactions of 1 NEAR or more (`data/treasury_exits.json`):
+
+| Date (UTC) | Receiver | NEAR | Transfers |
+|---|---|---|---|
+| 2026-04-15 | `ecotreasury5.multisignature.near` | <!--n:te.to.ecotreasury5.amount-->4,900,000<!--/n--> | <!--n:te.to.ecotreasury5.transfers-->1<!--/n--> |
+| 2026-04-15 | `ecotreasury4.multisignature.near` | <!--n:te.to.ecotreasury4.amount-->4,900,000<!--/n--> | <!--n:te.to.ecotreasury4.transfers-->1<!--/n--> |
+| 2026-05-13 | one implicit account, `sha256:e630d735067c39fe` | <!--n:te.to.sha256_e630d735.amount-->20,371,200<!--/n--> | <!--n:te.to.sha256_e630d735.transfers-->5<!--/n--> |
+| 2026-04-15 | one named account, `sha256:7720298de372b4d4` | <!--n:te.to.sha256_7720298d.amount-->3<!--/n--> (came back to `treasury.near` 153 seconds later) | <!--n:te.to.sha256_7720298d.transfers-->1<!--/n--> |
+
+Each payment is a `confirm` on the multisig (<!--n:c.treasury_confirmations-->2 of 4<!--/n--> keys). Multisig and DAO receivers are
+named; other accounts are shown as tags ([Method](#method)). The purpose of each payment is not on chain and is
+not characterized here.
+
 ## Path to rules
 
 Each link that decides value can become a rule with a mechanism NEAR already has. Governance has started on this
 path: HSP-027 (remove the developer gas rebate; `vote.dao` proposal 27) passed on 3 July 2026, and
 [HSP-029](https://gov.houseofstake.org/proposals/29) proposes the same path for issuance (2.5% → 1.6% a year on a
-24-month per-epoch ramp, starting one quarter after ratification); its vote closes on
-2 November 2026 16:48:08 UTC and its result will be added here from `scripts/hsp029.py`. A House of Stake vote
+24-month per-epoch ramp, starting one quarter after ratification); it passed on 2 November 2026 with
+<!--n:f8.against_venear-->0<!--/n--> veNEAR against (finding 8). A House of Stake vote
 changes nothing on chain by itself (`actions: null`): it takes a nearcore release that validators with
 <!--n:c.issuance_upgrade_stake_threshold-->4/5<!--/n--> of stake run. HSP-027 is protocol version 87 in nearcore
 2.14.0, and mainnet validators can start voting for it on 4 November 2026 00:00 UTC
@@ -292,7 +325,7 @@ the burn is counted after the rebate, so the rebate is at most 3/7 of it). The b
 | Fees users pay | Part of the fee charged as the protocol fee on `intents.near` (up to 100% is allowed; today <!--n:c.intents_fee_pips-->1 pip<!--/n-->), with `fee_collector` set to the buybacks wallet or a locked account | The fee can still change by DAO vote (<!--n:c.intents_fee_change-->3 of 5<!--/n-->), but visibly and with a history |
 | Buybacks wallet | Move bought NEAR on a published schedule to an account with no keys and no code, or to a contract with no withdraw method | Native NEAR cannot be burned by a call: locking lowers circulating supply, not `total_supply` |
 | Issuance | Already a protocol rule; HSP-029 would lower it if validators adopt it | <!--n:c.issuance_validators_to_block_upgrade-->5<!--/n--> validators are enough to block |
-| Protocol treasury | A public spending rule voted as an HSP, or a lower share through the protocol | How the treasury spends is not measured here |
+| Protocol treasury | A public spending rule voted as an HSP, or a lower share through the protocol | Today <!--n:c.treasury_confirmations-->2 of 4<!--/n--> keys approve each payment; <!--n:ts.year_out_near-->30,171,200<!--/n--> NEAR left in 2026 (finding 9) |
 | NEAR AI credits rate | A formula in the contract (the docs say the budget depends on APY and price), or changes only by DAO proposal with a delay | The rate follows neither today: it changed once, by hand |
 | Front-end and 1Click funds, pool rewards | Their DAOs' spending and fee choices written as public rules (for example, an HSP), not decided proposal by proposal | Less room to adjust |
 | `intents.near` code | A published delay between a release and its installation | A delay would also slow urgent fixes; pausing would stay immediate |
@@ -422,7 +455,8 @@ python scripts/treasury_flows.py --verify --archival
 - **Credits in dollars.** The conversion from reward units to credits is an off-chain NEAR AI Cloud setting, read
   only with a signed-in session, and can change with no trace on chain. Whether credits are used is not visible.
 - **The largest farm position.** Who holds it, and where its NEAR came from, is not visible to us on chain.
-- **How `treasury.near` spends** its share of issuance: not measured yet.
+- **What `treasury.near`'s payments were for.** Amounts, blocks and receivers are measured (finding 9); the
+  purpose is not on chain.
 - **Whether HSP-027 is in force** before validators adopt version 87; until then it is "passed", not "in force".
 - **Peers** are compared from their docs and press, not from their chains.
 

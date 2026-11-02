@@ -76,7 +76,6 @@
     "f2.wallets_kept_share_of_revenue.2026-08",
     "f2.wallets_kept_share_of_revenue.2026-09",
     "f2.wallets_kept_share_of_revenue.2026-10",
-    "f8.computed_status",
     "iv.fees_multiple",
     "iv.hsp029_fees_multiple",
     "iv.hsp029_wallets_multiple_with_front_end",
@@ -102,6 +101,8 @@
     "data/daily/2026-11-01.json": "175ddea59ee744ae15112e72eee4a4023546ac3b80e85f44de604ef8c7fbd8d8",
     "data/farm_rate.json": "9506223b29241924653bb78af227f7387a66d00dd4671f86d5e882b0cfb6b002",
     "data/fees_2026-10-02_2026-11-01.json": "5d7abc7ebfe804bc53afb5571240b4eeb809b8bd7d2af0354f63907782ddb598",
+    "data/hsp029.json": "fa11828fa174319fbfe296279c5315877b5740334f1f31b55027190ea92fcac4",
+    "data/hsp029_voters.json": "1ccc3bf7b0924d4799bc5f9bd08278d78f65ac4341e989b4875c87fb49ad063c",
     "data/offchain/nearai_cloud_farm_config.json": "4fab756a3e94d72a2db918e8f3f47526a5da3a2d41990ba2f479406ac22b4214",
     "data/offchain/nearai_cloud_farm_config_20261101T205837Z.json": "95bb1adc1b3eb738cdc19c7622e5a3641edce4ea9653ced4ba6e32439c5f253d",
     "data/stakers/2026-08-01.json": "6c0d7643ed4d8e74bd61bb2e7e4de0ef509039d63a63fff8f2a98293357289c9",
@@ -111,7 +112,9 @@
     "data/stakers/2026-10-01.json": "8c87ef1bfa2b0de6194a52d0203ae190e5305ec3f8a208d32b582182991bba1d",
     "data/stakers/2026-10-15.json": "57b225440a4882e042b9b84544a93df4a96c9c2c26fe5eddf3682f6be94fd4c9",
     "data/stakers/2026-11-01.json": "a175a388a9a89dd86b753859bbf0f89a9f6a480256c696fcce3ba1daf9b72369",
+    "data/treasury_exits.json": "ee01c10c4091066ab144531a3add59cc368ad35ada865f670af7256c949c7771",
     "data/treasury_flows.json": "0d1a8c74b15fbc3c3e794f2ef3f3e8152faeeada13c7962e973fa97348099c50",
+    "data/treasury_spend.json": "e196c8e8c703e0cd830aabedc32a1b271f46332b742dfb186473de37f6c7f1f2",
     "data/window_2026-10-02_2026-11-01.json": "b77a705e870e9df42e3d11ec6f7c7f5266f7ba692600cda716b1874ca40baaf9"
   },
   "numbers": {
@@ -2095,12 +2098,172 @@
       "block": 222491356,
       "as_of": "2026-11-01 00:00 UTC"
     },
+    "f8.abstain_venear": {
+      "value": "1070.573",
+      "text": "1,071",
+      "source": "data/hsp029.json",
+      "unit": "veNEAR",
+      "block": 222745764,
+      "as_of": "2026-11-02T16:48:09Z"
+    },
+    "f8.abstain_votes": {
+      "value": "3",
+      "text": "3",
+      "source": "data/hsp029.json",
+      "unit": "votes",
+      "block": 222745764,
+      "as_of": "2026-11-02T16:48:09Z"
+    },
+    "f8.against_venear": {
+      "value": "0.000",
+      "text": "0",
+      "source": "data/hsp029.json",
+      "unit": "veNEAR",
+      "block": 222745764,
+      "as_of": "2026-11-02T16:48:09Z"
+    },
+    "f8.against_votes": {
+      "value": "1",
+      "text": "1",
+      "source": "data/hsp029.json",
+      "unit": "votes",
+      "block": 222745764,
+      "as_of": "2026-11-02T16:48:09Z"
+    },
+    "f8.approval_share": {
+      "value": "1.000000",
+      "text": "100.0%",
+      "source": "data/hsp029.json",
+      "block": 222745764,
+      "as_of": "2026-11-02T16:48:09Z"
+    },
     "f8.computed_status": {
-      "value": null,
-      "text": null,
-      "source": null,
-      "status": "pending",
-      "note": "hsp029.py runs after the vote closes (2026-11-02 16:48:08 UTC)"
+      "value": "Succeeded",
+      "text": "Succeeded",
+      "source": "data/hsp029.json",
+      "block": 222745764,
+      "as_of": "2026-11-02T16:48:09Z"
+    },
+    "f8.contract_status_at_close": {
+      "value": "Timelock",
+      "text": "Timelock",
+      "source": "data/hsp029.json",
+      "block": 222745764,
+      "as_of": "2026-11-02T16:48:09Z"
+    },
+    "f8.fewest_voters_reaching_quorum": {
+      "value": "6",
+      "text": "6",
+      "source": "data/hsp029_voters.json",
+      "block": 222745764,
+      "as_of": "2026-11-02T16:48:09Z"
+    },
+    "f8.for_venear": {
+      "value": "3287728.662",
+      "text": "3,287,729",
+      "source": "data/hsp029.json",
+      "unit": "veNEAR",
+      "block": 222745764,
+      "as_of": "2026-11-02T16:48:09Z"
+    },
+    "f8.for_voters": {
+      "value": "32",
+      "text": "32",
+      "source": "data/hsp029_voters.json",
+      "block": 222745764,
+      "as_of": "2026-11-02T16:48:09Z"
+    },
+    "f8.for_votes": {
+      "value": "32",
+      "text": "32",
+      "source": "data/hsp029.json",
+      "unit": "votes",
+      "block": 222745764,
+      "as_of": "2026-11-02T16:48:09Z"
+    },
+    "f8.largest_venear": {
+      "value": "400189.442",
+      "text": "400,189",
+      "source": "data/hsp029_voters.json",
+      "block": 222745764,
+      "as_of": "2026-11-02T16:48:09Z"
+    },
+    "f8.median_venear": {
+      "value": "89.389",
+      "text": "89",
+      "source": "data/hsp029_voters.json",
+      "block": 222745764,
+      "as_of": "2026-11-02T16:48:09Z"
+    },
+    "f8.quorum_required_venear": {
+      "value": "1846160.804",
+      "text": "1,846,161",
+      "source": "data/hsp029.json",
+      "block": 222745764,
+      "as_of": "2026-11-02T16:48:09Z"
+    },
+    "f8.snapshot_accounts": {
+      "value": "496",
+      "text": "496",
+      "source": "data/hsp029.json",
+      "block": 222745764,
+      "as_of": "2026-11-02T16:48:09Z"
+    },
+    "f8.snapshot_total_venear": {
+      "value": "5274745.155",
+      "text": "5,274,745",
+      "source": "data/hsp029.json",
+      "block": 222745764,
+      "as_of": "2026-11-02T16:48:09Z"
+    },
+    "f8.top10_share_of_votes_cast": {
+      "value": "0.965892",
+      "text": "96.6%",
+      "source": "data/hsp029_voters.json",
+      "block": 222745764,
+      "as_of": "2026-11-02T16:48:09Z"
+    },
+    "f8.top1_share_of_votes_cast": {
+      "value": "0.121683",
+      "text": "12.2%",
+      "source": "data/hsp029_voters.json",
+      "block": 222745764,
+      "as_of": "2026-11-02T16:48:09Z"
+    },
+    "f8.top3_share_of_votes_cast": {
+      "value": "0.328069",
+      "text": "32.8%",
+      "source": "data/hsp029_voters.json",
+      "block": 222745764,
+      "as_of": "2026-11-02T16:48:09Z"
+    },
+    "f8.top8_share_of_for": {
+      "value": "0.806216",
+      "text": "80.6%",
+      "source": "data/hsp029_voters.json",
+      "block": 222745764,
+      "as_of": "2026-11-02T16:48:09Z"
+    },
+    "f8.top8_share_of_votes_cast": {
+      "value": "0.805953",
+      "text": "80.6%",
+      "source": "data/hsp029_voters.json",
+      "block": 222745764,
+      "as_of": "2026-11-02T16:48:09Z"
+    },
+    "f8.turnout_of_snapshot": {
+      "value": "0.623499",
+      "text": "62.3%",
+      "source": "data/hsp029.json",
+      "block": 222745764,
+      "as_of": "2026-11-02T16:48:09Z"
+    },
+    "f8.voters": {
+      "value": "36",
+      "text": "36",
+      "source": "data/hsp029_voters.json",
+      "block": 222745764,
+      "as_of": "2026-11-02T16:48:09Z"
     },
     "f9.front_end_share_of_wallets": {
       "value": "0.3424850988596387503647516635",
@@ -3101,6 +3264,214 @@
       "unit": "share of farm",
       "block": 222491356,
       "as_of": "2026-11-01 00:00 UTC"
+    },
+    "te.steps": {
+      "value": "73",
+      "text": "73",
+      "source": "data/treasury_exits.json",
+      "unit": "balance steps",
+      "window": "2026-01-01 00:00 UTC to 2026-11-01 00:00 UTC",
+      "blocks": "179199136-222491356"
+    },
+    "te.to.ecotreasury4.amount": {
+      "value": "4900000.000",
+      "text": "4,900,000",
+      "source": "data/treasury_exits.json",
+      "unit": "NEAR",
+      "account": "ecotreasury4.multisignature.near",
+      "transfers": 1,
+      "window": "2026-01-01 00:00 UTC to 2026-11-01 00:00 UTC",
+      "blocks": "179199136-222491356"
+    },
+    "te.to.ecotreasury4.transfers": {
+      "value": "1",
+      "text": "1",
+      "source": "data/treasury_exits.json",
+      "unit": "transfers",
+      "account": "ecotreasury4.multisignature.near",
+      "window": "2026-01-01 00:00 UTC to 2026-11-01 00:00 UTC",
+      "blocks": "179199136-222491356"
+    },
+    "te.to.ecotreasury5.amount": {
+      "value": "4900000.000",
+      "text": "4,900,000",
+      "source": "data/treasury_exits.json",
+      "unit": "NEAR",
+      "account": "ecotreasury5.multisignature.near",
+      "transfers": 1,
+      "window": "2026-01-01 00:00 UTC to 2026-11-01 00:00 UTC",
+      "blocks": "179199136-222491356"
+    },
+    "te.to.ecotreasury5.transfers": {
+      "value": "1",
+      "text": "1",
+      "source": "data/treasury_exits.json",
+      "unit": "transfers",
+      "account": "ecotreasury5.multisignature.near",
+      "window": "2026-01-01 00:00 UTC to 2026-11-01 00:00 UTC",
+      "blocks": "179199136-222491356"
+    },
+    "te.to.sha256_7720298d.amount": {
+      "value": "3.000",
+      "text": "3",
+      "source": "data/treasury_exits.json",
+      "unit": "NEAR",
+      "account": "sha256:7720298de372b4d4",
+      "transfers": 1,
+      "window": "2026-01-01 00:00 UTC to 2026-11-01 00:00 UTC",
+      "blocks": "179199136-222491356"
+    },
+    "te.to.sha256_7720298d.transfers": {
+      "value": "1",
+      "text": "1",
+      "source": "data/treasury_exits.json",
+      "unit": "transfers",
+      "account": "sha256:7720298de372b4d4",
+      "window": "2026-01-01 00:00 UTC to 2026-11-01 00:00 UTC",
+      "blocks": "179199136-222491356"
+    },
+    "te.to.sha256_e630d735.amount": {
+      "value": "20371200.000",
+      "text": "20,371,200",
+      "source": "data/treasury_exits.json",
+      "unit": "NEAR",
+      "account": "sha256:e630d735067c39fe",
+      "transfers": 5,
+      "window": "2026-01-01 00:00 UTC to 2026-11-01 00:00 UTC",
+      "blocks": "179199136-222491356"
+    },
+    "te.to.sha256_e630d735.transfers": {
+      "value": "5",
+      "text": "5",
+      "source": "data/treasury_exits.json",
+      "unit": "transfers",
+      "account": "sha256:e630d735067c39fe",
+      "window": "2026-01-01 00:00 UTC to 2026-11-01 00:00 UTC",
+      "blocks": "179199136-222491356"
+    },
+    "te.transactions_read": {
+      "value": "8",
+      "text": "8",
+      "source": "data/treasury_exits.json",
+      "unit": "transactions of 1 NEAR or more",
+      "window": "2026-01-01 00:00 UTC to 2026-11-01 00:00 UTC",
+      "blocks": "179199136-222491356"
+    },
+    "ts.balance_end_near": {
+      "value": "1526304.187",
+      "text": "1,526,304",
+      "source": "data/treasury_spend.json",
+      "unit": "NEAR",
+      "window": "2026-01-01 00:00 UTC to 2026-11-01 00:00 UTC",
+      "blocks": "179199136-222491356"
+    },
+    "ts.balance_start_near": {
+      "value": "28996905.539",
+      "text": "28,996,906",
+      "source": "data/treasury_spend.json",
+      "unit": "NEAR",
+      "window": "2026-01-01 00:00 UTC to 2026-11-01 00:00 UTC",
+      "blocks": "179199136-222491356"
+    },
+    "ts.months_with_outflows": {
+      "value": "2",
+      "text": "2",
+      "source": "data/treasury_spend.json",
+      "unit": "months",
+      "window": "2026-01-01 00:00 UTC to 2026-11-01 00:00 UTC",
+      "blocks": "179199136-222491356"
+    },
+    "ts.out_near.2026-04": {
+      "value": "9800000.004",
+      "text": "9,800,000",
+      "source": "data/treasury_spend.json",
+      "unit": "NEAR",
+      "window": "2026-04-01 00:00 UTC to 2026-05-01 00:00 UTC",
+      "blocks": "179199136-222491356"
+    },
+    "ts.out_near.2026-05": {
+      "value": "20371200.009",
+      "text": "20,371,200",
+      "source": "data/treasury_spend.json",
+      "unit": "NEAR",
+      "window": "2026-05-01 00:00 UTC to 2026-06-01 00:00 UTC",
+      "blocks": "179199136-222491356"
+    },
+    "ts.rule_epochs": {
+      "value": "101",
+      "text": "101",
+      "source": "data/treasury_spend.json",
+      "unit": "epochs",
+      "window": "2026-10-02 00:00 UTC to 2026-11-01 00:00 UTC",
+      "blocks": "218126921-222491356",
+      "note": "epochs in the window where treasury.near's reward equals floor(floor(supply * dt / (40 * 365 days)) / 10), to the yocto"
+    },
+    "ts.rule_exact": {
+      "value": "101",
+      "text": "101",
+      "source": "data/treasury_spend.json",
+      "unit": "epochs",
+      "window": "2026-10-02 00:00 UTC to 2026-11-01 00:00 UTC",
+      "blocks": "218126921-222491356"
+    },
+    "ts.share_of_minted": {
+      "value": "0.100327",
+      "text": "10.03%",
+      "source": "data/treasury_spend.json",
+      "unit": "share",
+      "window": "2026-10-02 00:00 UTC to 2026-11-01 00:00 UTC",
+      "blocks": "218126921-222491356",
+      "note": "above 10% because validators below full uptime receive less than the maximum"
+    },
+    "ts.unminted_share_of_max_max": {
+      "value": "0.049836",
+      "text": "4.98%",
+      "source": "data/treasury_spend.json",
+      "unit": "share",
+      "window": "2026-10-02 00:00 UTC to 2026-11-01 00:00 UTC",
+      "blocks": "218126921-222491356"
+    },
+    "ts.unminted_share_of_max_mean": {
+      "value": "0.002858",
+      "text": "0.29%",
+      "source": "data/treasury_spend.json",
+      "unit": "share",
+      "window": "2026-10-02 00:00 UTC to 2026-11-01 00:00 UTC",
+      "blocks": "218126921-222491356"
+    },
+    "ts.unminted_share_of_max_min": {
+      "value": "0.000545",
+      "text": "0.05%",
+      "source": "data/treasury_spend.json",
+      "unit": "share",
+      "window": "2026-10-02 00:00 UTC to 2026-11-01 00:00 UTC",
+      "blocks": "218126921-222491356"
+    },
+    "ts.window_other_net_near": {
+      "value": "0.000",
+      "text": "0.000",
+      "source": "data/treasury_spend.json",
+      "unit": "NEAR",
+      "window": "2026-10-02 00:00 UTC to 2026-11-01 00:00 UTC",
+      "blocks": "218126921-222491356",
+      "note": "balance change minus protocol rewards in the window"
+    },
+    "ts.year_out_near": {
+      "value": "30171200.013",
+      "text": "30,171,200",
+      "source": "data/treasury_spend.json",
+      "unit": "NEAR",
+      "window": "2026-01-01 00:00 UTC to 2026-11-01 00:00 UTC",
+      "blocks": "179199136-222491356",
+      "note": "minus other_net: what left treasury.near besides protocol rewards"
+    },
+    "ts.year_treasury_in_near": {
+      "value": "2700598.661",
+      "text": "2,700,599",
+      "source": "data/treasury_spend.json",
+      "unit": "NEAR",
+      "window": "2026-01-01 00:00 UTC to 2026-11-01 00:00 UTC",
+      "blocks": "179199136-222491356"
     }
   }
 }

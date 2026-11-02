@@ -68,9 +68,11 @@ SHA-256. In the README each figure is wrapped as `<!--n:KEY-->text<!--/n-->`, wh
 | `f4.` | NEAR AI pool owner's flows | `treasury_flows.py` | `data/treasury_flows.json` |
 | `f5.`, `f7.` | Concentration over time; Agents locks | `stakers.py` | `data/stakers/*.json` |
 | `f6.` | Farm reward rate and credits | `farm_rate.py`, `stakers.py` | `data/farm_rate.json`, `data/offchain/` |
-| `f8.` | HSP-029 vote | `hsp029.py`, `hsp029_voters.py` | written after the vote closes |
+| `f8.` | HSP-029 vote, at its last block | `hsp029.py`, `hsp029_voters.py` | `data/hsp029.json`, `data/hsp029_voters.json` |
 | `f9.`, `iv.` | Front-end share; investment view (derived) | `build_numbers.py` | files named in each entry |
 | `b.` | Gross issuance and gas burnt | `burn.py` | `data/burn.json` |
+| `ts.` | `treasury.near`: reward rule, 2026 inflows and outflows | `treasury_spend.py` | `data/treasury_spend.json` |
+| `te.` | `treasury.near`: each outflow's block and receiver | `treasury_exits.py` | `data/treasury_exits.json` |
 | `c.` | Control map | `control_map.py` | `data/control_map.json` |
 | `h.` | Control history | `control_history.py` | `data/control_history.json` |
 
