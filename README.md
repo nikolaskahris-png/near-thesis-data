@@ -208,7 +208,11 @@ to October revenue rose <!--n:f2.change.2026-09_2026-10.revenue_usd-->+15%<!--/n
 (<!--n:f2.mean_price_usd.2026-09-->$3.28<!--/n--> → <!--n:f2.mean_price_usd.2026-10-->$4.89<!--/n-->), so the NEAR that revenue buys fell
 <!--n:f2.change.2026-09_2026-10.revenue_near-->-24%<!--/n-->, and coverage with it (<!--n:f1.coverage_buybacks.2026-09-->15.3%<!--/n--> →
 <!--n:f1.coverage_buybacks.2026-10-->10.9%<!--/n-->). The wallets kept <!--n:f2.wallets_kept_share_of_revenue.2026-09-->98%<!--/n--> and
-<!--n:f2.wallets_kept_share_of_revenue.2026-10-->100%<!--/n--> of that revenue: the fall is the price, not an outflow. Over the
+<!--n:f2.wallets_kept_share_of_revenue.2026-10-->100%<!--/n--> of that revenue: the fall is the price, not an outflow. From April
+to October they kept <!--n:f2.wallets_kept_share_of_revenue.2026-04_2026-10-->96.9%<!--/n--> (<!--n:f2.wallets_kept_near.2026-04_2026-10-->2,434,241<!--/n--> of
+<!--n:f2.revenue_near.2026-04_2026-10-->2,511,525<!--/n--> NEAR; lowest month April, <!--n:f2.wallets_kept_share_of_revenue.2026-04-->77%<!--/n-->); the
+<!--n:f2.revenue_not_kept_near.2026-04_2026-10-->77,285<!--/n--> NEAR difference is not split between payments out, timing at month edges and
+DefiLlama's attribution. Over the
 longer run the take rate (revenue ÷ fees) rose from <!--n:f2.take_rate.2026-04-->8.1%<!--/n--> in April to <!--n:f2.take_rate.2026-10-->34.3%<!--/n-->
 in October, while fees per dollar of volume stayed between <!--n:f2.fees_bps.2026-08-->13.8<!--/n--> and <!--n:f2.fees_bps.2026-10-->16.0<!--/n-->
 bps from August to October. *Provisional, like every DefiLlama figure.*

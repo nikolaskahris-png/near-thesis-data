@@ -462,6 +462,31 @@ def build(data_dir, window_file):
                   fsrc, unit="wallets NEAR / DefiLlama revenue NEAR", also=csrc,
                   note="wallets counted on every day of the month; DefiLlama revenue on "
                   "its counted days", **mc)
+    # H2: what the wallets kept of DefiLlama's revenue over every month with both,
+    # as totals (per-day x calendar days), so long months weigh more than short ones.
+    # Same rule as the monthly share: wallets on every day, DefiLlama's mean over its
+    # counted days; days DefiLlama left out are listed in excluded_days.
+    both = sorted(k for k in fmon if k in kept_by_month)
+    if both:
+        kept_tot = sum(kept_by_month[k] * fmon[k]["days"] for k in both)
+        rev_tot = sum(dec(fmon[k]["revenue_near_per_day"]) * fmon[k]["days"] for k in both)
+        span = f"{both[0]}_{both[-1]}"
+        sc = {"status": status, "fetched_utc": fees["fetched_utc"], "months": both,
+              "days": sum(fmon[k]["days"] for k in both),
+              "excluded_days": sorted(d for k in both for d in fmon[k]["excluded"])}
+        lowest = min(both, key=lambda k: kept_by_month[k] / dec(fmon[k]["revenue_near_per_day"]))
+        n.add(f"f2.wallets_kept_near.{span}", kept_tot, f_int(kept_tot), csrc, unit="NEAR",
+              note="buybacks + 1cs + fefundsadmin, net balance change, sum of months", **sc)
+        n.add(f"f2.revenue_near.{span}", rev_tot, f_int(rev_tot), fsrc, unit="NEAR",
+              note="DefiLlama revenue in NEAR (daily revenue / daily price), mean over counted "
+                   "days x days in month, sum of months", **sc)
+        n.add(f"f2.wallets_kept_share_of_revenue.{span}", kept_tot / rev_tot,
+              f_pct(kept_tot / rev_tot), fsrc, unit="wallets NEAR / DefiLlama revenue NEAR",
+              also=csrc, lowest_month=lowest, **sc)
+        n.add(f"f2.revenue_not_kept_near.{span}", rev_tot - kept_tot, f_int(rev_tot - kept_tot),
+              fsrc, unit="NEAR", also=csrc,
+              note="revenue minus what the wallets kept: payments out (e.g. to third parties), "
+                   "timing at month edges and DefiLlama attribution together; not split", **sc)
     months = sorted(fmon)
     if len(months) >= 2:
         a, b = months[-2], months[-1]

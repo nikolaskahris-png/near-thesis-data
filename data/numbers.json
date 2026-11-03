@@ -45,6 +45,7 @@
     "f2.mean_price_usd.2026-08",
     "f2.mean_price_usd.2026-09",
     "f2.mean_price_usd.2026-10",
+    "f2.revenue_near.2026-04_2026-10",
     "f2.revenue_near_per_day.2026-03",
     "f2.revenue_near_per_day.2026-04",
     "f2.revenue_near_per_day.2026-05",
@@ -53,6 +54,7 @@
     "f2.revenue_near_per_day.2026-08",
     "f2.revenue_near_per_day.2026-09",
     "f2.revenue_near_per_day.2026-10",
+    "f2.revenue_not_kept_near.2026-04_2026-10",
     "f2.revenue_usd_per_day.2026-03",
     "f2.revenue_usd_per_day.2026-04",
     "f2.revenue_usd_per_day.2026-05",
@@ -77,7 +79,9 @@
     "f2.volume_usd_per_day.2026-08",
     "f2.volume_usd_per_day.2026-09",
     "f2.volume_usd_per_day.2026-10",
+    "f2.wallets_kept_near.2026-04_2026-10",
     "f2.wallets_kept_share_of_revenue.2026-04",
+    "f2.wallets_kept_share_of_revenue.2026-04_2026-10",
     "f2.wallets_kept_share_of_revenue.2026-05",
     "f2.wallets_kept_share_of_revenue.2026-06",
     "f2.wallets_kept_share_of_revenue.2026-07",
@@ -1071,6 +1075,26 @@
       "days": 31,
       "excluded_days": []
     },
+    "f2.revenue_near.2026-04_2026-10": {
+      "value": "2511525.3",
+      "text": "2,511,525",
+      "source": "data/fees_2026-10-02_2026-11-01.json",
+      "unit": "NEAR",
+      "note": "DefiLlama revenue in NEAR (daily revenue / daily price), mean over counted days x days in month, sum of months",
+      "status": "provisional",
+      "fetched_utc": "2026-11-03T14:39:56Z",
+      "months": [
+        "2026-04",
+        "2026-05",
+        "2026-06",
+        "2026-07",
+        "2026-08",
+        "2026-09",
+        "2026-10"
+      ],
+      "days": 214,
+      "excluded_days": []
+    },
     "f2.revenue_near_per_day.2026-03": {
       "value": "14813.8",
       "text": "14,814",
@@ -1167,6 +1191,27 @@
       "month": "2026-10",
       "counted_days": 31,
       "days": 31,
+      "excluded_days": []
+    },
+    "f2.revenue_not_kept_near.2026-04_2026-10": {
+      "value": "77284.683",
+      "text": "77,285",
+      "source": "data/fees_2026-10-02_2026-11-01.json",
+      "unit": "NEAR",
+      "also": "data/coverage_monthly.json",
+      "note": "revenue minus what the wallets kept: payments out (e.g. to third parties), timing at month edges and DefiLlama attribution together; not split",
+      "status": "provisional",
+      "fetched_utc": "2026-11-03T14:39:56Z",
+      "months": [
+        "2026-04",
+        "2026-05",
+        "2026-06",
+        "2026-07",
+        "2026-08",
+        "2026-09",
+        "2026-10"
+      ],
+      "days": 214,
       "excluded_days": []
     },
     "f2.revenue_usd_per_day.2026-03": {
@@ -1463,6 +1508,26 @@
       "days": 31,
       "excluded_days": []
     },
+    "f2.wallets_kept_near.2026-04_2026-10": {
+      "value": "2434240.617",
+      "text": "2,434,241",
+      "source": "data/coverage_monthly.json",
+      "unit": "NEAR",
+      "note": "buybacks + 1cs + fefundsadmin, net balance change, sum of months",
+      "status": "provisional",
+      "fetched_utc": "2026-11-03T14:39:56Z",
+      "months": [
+        "2026-04",
+        "2026-05",
+        "2026-06",
+        "2026-07",
+        "2026-08",
+        "2026-09",
+        "2026-10"
+      ],
+      "days": 214,
+      "excluded_days": []
+    },
     "f2.wallets_kept_near_per_day.2026-04": {
       "value": "4945.224",
       "text": "4,945",
@@ -1531,6 +1596,27 @@
       "month": "2026-04",
       "counted_days": 30,
       "days": 30,
+      "excluded_days": []
+    },
+    "f2.wallets_kept_share_of_revenue.2026-04_2026-10": {
+      "value": "0.9692279894612250173231382539",
+      "text": "96.9%",
+      "source": "data/fees_2026-10-02_2026-11-01.json",
+      "unit": "wallets NEAR / DefiLlama revenue NEAR",
+      "also": "data/coverage_monthly.json",
+      "lowest_month": "2026-04",
+      "status": "provisional",
+      "fetched_utc": "2026-11-03T14:39:56Z",
+      "months": [
+        "2026-04",
+        "2026-05",
+        "2026-06",
+        "2026-07",
+        "2026-08",
+        "2026-09",
+        "2026-10"
+      ],
+      "days": 214,
       "excluded_days": []
     },
     "f2.wallets_kept_share_of_revenue.2026-05": {

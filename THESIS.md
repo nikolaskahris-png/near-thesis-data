@@ -71,9 +71,11 @@ nearcore release that at least <!--n:c.issuance_validators_to_pass_upgrade-->44<
 
 What weakens the claim, as measured by the same scripts:
 
-1. **The discretion has not been used against holders.** The wallets kept
-   <!--n:f2.wallets_kept_share_of_revenue.2026-09-->98%<!--/n--> of DefiLlama's revenue in September and
-   <!--n:f2.wallets_kept_share_of_revenue.2026-10-->100%<!--/n--> in October, and the buybacks wallet's keys have not changed
+1. **The discretion has not been used against holders.** From April to October the wallets kept
+   <!--n:f2.wallets_kept_share_of_revenue.2026-04_2026-10-->96.9%<!--/n--> of DefiLlama's revenue
+   (<!--n:f2.wallets_kept_near.2026-04_2026-10-->2,434,241<!--/n--> of <!--n:f2.revenue_near.2026-04_2026-10-->2,511,525<!--/n--> NEAR); the lowest month was April
+   (<!--n:f2.wallets_kept_share_of_revenue.2026-04-->77%<!--/n-->), September and October
+   <!--n:f2.wallets_kept_share_of_revenue.2026-09-->98%<!--/n--> and <!--n:f2.wallets_kept_share_of_revenue.2026-10-->100%<!--/n-->. The buybacks wallet's keys have not changed
    since <!--n:h.keys.buybacks.last_change-->2026-03-18<!--/n-->. "Discretionary" describes what can change, not a change that
    has happened.
 2. **Capture is rising.** The take rate (revenue ÷ fees) rose from <!--n:f2.take_rate.2026-04-->8.1%<!--/n--> in April to

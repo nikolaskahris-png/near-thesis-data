@@ -156,6 +156,12 @@ class FormatTest(unittest.TestCase):
 
 
 class BuildTest(unittest.TestCase):
+    @staticmethod
+    def _days(month):
+        import calendar
+        y, m = map(int, month.split("-"))
+        return calendar.monthrange(y, m)[1]
+
     def test_builds_same_window_and_marks_provisional(self):
         with tempfile.TemporaryDirectory() as tmp, \
                 mock.patch.object(bn.stakers, "compute", fake_stats), \
@@ -197,6 +203,22 @@ class BuildTest(unittest.TestCase):
             self.assertEqual(n["f2.change.2026-09_2026-10.mean_price"]["text"], "+50%")
             self.assertEqual(n["f2.change.2026-09_2026-10.revenue_near"]["text"], "-23%")
             self.assertIn("f2.take_rate.2026-10", doc["provisional_or_pending"])
+            # H2: totals over every month with both wallets and complete DefiLlama days
+            span = [k for k in n if k.startswith("f2.wallets_kept_share_of_revenue.")
+                    and "_" in k.rsplit(".", 1)[1]]
+            self.assertEqual(len(span), 1)
+            s_ = n[span[0]]
+            tag = span[0].rsplit(".", 1)[1]
+            kept = sum(bn.dec(n[f"f2.wallets_kept_near_per_day.{m}"]["value"]) * self._days(m)
+                       for m in s_["months"])
+            self.assertEqual(s_["days"], sum(self._days(m) for m in s_["months"]))
+            self.assertEqual(bn.dec(n[f"f2.wallets_kept_near.{tag}"]["value"]), kept)
+            rev = bn.dec(n[f"f2.revenue_near.{tag}"]["value"])
+            self.assertEqual(bn.dec(n[f"f2.revenue_not_kept_near.{tag}"]["value"]), rev - kept)
+            self.assertEqual(bn.dec(s_["value"]), kept / rev)
+            self.assertEqual(s_["status"], "provisional")
+            self.assertIn(s_["lowest_month"], s_["months"])
+            self.assertEqual(s_["excluded_days"], ["2026-10-31"])   # the fixture's missing day
             # finding 6 at the end block; farm_rate.py not run yet -> pending
             self.assertEqual(n["f6.units_per_near_year"]["text"], "0.24")
             self.assertEqual(n["f6.largest_units_per_day"]["text"], "657.1")
