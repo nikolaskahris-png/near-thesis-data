@@ -44,6 +44,7 @@ and protocol constants are written as they are.
 
 | Criterion | Where to look |
 |---|---|
+| Thesis | [`THESIS.md`](THESIS.md): claim, evidence for, evidence against, what would change our mind, metrics we cannot compute |
 | Reproducibility | [Check it in two minutes](#check-it-in-two-minutes): four offline commands, Python standard library only. Every figure in this file is checked against `data/numbers.json`, and each entry there against the saved raw responses and their SHA-256 |
 | Evidence | each finding names its script and data file; `scripts/remeasure.py` re-measures numbers 1 and 3 from the chain; DefiLlama's revenue is checked against the wallets' own balances (finding 1) |
 | Technical implementation | accounting from block headers and balances, to the yoctoNEAR: issuance net of gas burnt (`burn.py`), `treasury.near`'s reward reproduced at every epoch start (`treasury_spend.py`), its balance falls located block by block (`treasury_exits.py`), farm positions that add up to the contract's total (`stakers.py`) |

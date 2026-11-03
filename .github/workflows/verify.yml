@@ -28,6 +28,8 @@ jobs:
         run: python scripts/build_numbers.py --check README.md
       - name: Every number in docs/DETAILS.md matches numbers.json
         run: python scripts/build_numbers.py --check docs/DETAILS.md
+      - name: Every number in THESIS.md matches numbers.json
+        run: python scripts/build_numbers.py --check THESIS.md
       - name: Validators' vote samples recompute
         run: python scripts/upgrade_watch.py --verify
       - name: Pre-registration file matches its anchored hash
