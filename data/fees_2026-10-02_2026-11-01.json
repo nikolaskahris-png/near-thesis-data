@@ -16,32 +16,32 @@
     "final": "fetched >= 48 h after window end, and a fetch >= 24 h earlier has the same fees and prices for every window day",
     "hsp029_scenario": "new supply x 16/25 (maximum inflation 2.5% -> 1.6%), scenario only"
   },
-  "fetched_utc": "2026-11-01T13:02:17Z",
+  "fetched_utc": "2026-11-03T14:39:56Z",
   "final": {
     "ready": false,
-    "hours_after_window_end": 13.0,
-    "previous_fetch": null,
-    "hours_since_previous_fetch": null,
-    "days_changed_since_previous_fetch": null
+    "hours_after_window_end": 62.7,
+    "previous_fetch": "2026-11-01T13:02:17Z",
+    "hours_since_previous_fetch": 49.6,
+    "days_changed_since_previous_fetch": 2
   },
   "raw": {
     "fees": {
-      "path": "data/raw/defillama/20261101T130217Z/fees.json",
-      "sha256": "75021f0be2effe156728b39179594a5e8ff20ec160b0ff9809c9f846cfb8c97c",
+      "path": "data/raw/defillama/20261103T143956Z/fees.json",
+      "sha256": "99054239942933e5145fa27ba35290ceb25b6e66f13fe9a711a57eabca084640",
       "url": "https://api.llama.fi/summary/fees/near-intents?dataType=dailyFees&excludeTotalDataChartBreakdown=true"
     },
     "revenue": {
-      "path": "data/raw/defillama/20261101T130217Z/revenue.json",
-      "sha256": "2f886c8f60808cdc77d20045f89246df7c7c993cd9c29cf84ba06152352214bc",
+      "path": "data/raw/defillama/20261103T143956Z/revenue.json",
+      "sha256": "21002922ec5200ea40a90c1a8ee0bd2864d7a4ec75a0637c1344d8f41727afe8",
       "url": "https://api.llama.fi/summary/fees/near-intents?dataType=dailyRevenue&excludeTotalDataChartBreakdown=true"
     },
     "volume": {
-      "path": "data/raw/defillama/20261101T130217Z/volume.json",
-      "sha256": "60186981881bb53492b61be48655e02ba65d765117b8a7e962e4d0089696d6e4",
+      "path": "data/raw/defillama/20261103T143956Z/volume.json",
+      "sha256": "05679c0cfc8e1799084be2af070698390764bbfee9f0103439a3d804d56ca2fe",
       "url": "https://api.llama.fi/summary/dexs/near-intents?excludeTotalDataChartBreakdown=true"
     },
     "price": {
-      "path": "data/raw/defillama/20261101T130217Z/price.json",
+      "path": "data/raw/defillama/20261103T143956Z/price.json",
       "sha256": "8e6418d38f270746abd694556308a65a796238acbc1878e466742a11a0b3cfeb",
       "url": "https://coins.llama.fi/chart/coingecko:near?start=1772366400&span=245&period=1d"
     }
@@ -51,32 +51,28 @@
       "first_day": "2026-10-02",
       "last_day": "2026-10-31",
       "days": 30,
-      "counted_days": 29,
-      "excluded": {
-        "2026-10-31": "fees_below_20pct_of_median"
-      },
-      "warnings": {
-        "2026-10-30": "fees_per_volume_below_half_of_median;revenue_above_fees"
-      },
-      "volume_usd_per_day": "130592125.00",
-      "fees_usd_per_day": "197837.45",
-      "revenue_usd_per_day": "71504.41",
-      "fees_bps": "15.15",
-      "revenue_bps": "5.48",
-      "take_rate": "0.361430",
-      "mean_price_usd": "4.8977",
-      "fees_weighted_price_usd": "4.9160",
-      "fees_near_per_day": "40243.8",
-      "revenue_near_per_day": "14726.0",
+      "counted_days": 30,
+      "excluded": {},
+      "warnings": {},
+      "volume_usd_per_day": "128686830.53",
+      "fees_usd_per_day": "206049.33",
+      "revenue_usd_per_day": "70604.43",
+      "fees_bps": "16.01",
+      "revenue_bps": "5.49",
+      "take_rate": "0.342658",
+      "mean_price_usd": "4.8791",
+      "fees_weighted_price_usd": "4.8674",
+      "fees_near_per_day": "42332.3",
+      "revenue_near_per_day": "14577.0",
       "block_start": 218126921,
       "block_end": 222491356,
       "new_near_per_day": "88392.087",
-      "max_coverage": "0.455287",
-      "equilibrium_price_usd": "2.2382",
-      "defillama_revenue_coverage": "0.166598",
+      "max_coverage": "0.478915",
+      "equilibrium_price_usd": "2.3311",
+      "defillama_revenue_coverage": "0.164913",
       "hsp029_scenario_new_near_per_day": "56570.936",
-      "hsp029_scenario_max_coverage": "0.711387",
-      "hsp029_scenario_equilibrium_price_usd": "3.4972"
+      "hsp029_scenario_max_coverage": "0.748305",
+      "hsp029_scenario_equilibrium_price_usd": "3.6423"
     },
     "days": [
       {
@@ -389,24 +385,24 @@
       },
       {
         "date": "2026-10-30",
-        "fees_usd": "68794.00",
-        "revenue_usd": "77602.00",
+        "fees_usd": "387696.00",
+        "revenue_usd": "75590.00",
         "volume_usd": "191904557.00",
         "price_usd": "4.308677",
-        "fees_bps": "3.58",
-        "fees_near": "15966.4",
+        "fees_bps": "20.20",
+        "fees_near": "89980.3",
         "flags": "",
-        "warnings": "fees_per_volume_below_half_of_median;revenue_above_fees"
+        "warnings": ""
       },
       {
         "date": "2026-10-31",
-        "fees_usd": "11755.00",
-        "revenue_usd": "46297.00",
+        "fees_usd": "125292.00",
+        "revenue_usd": "46517.00",
         "volume_usd": "73433291.00",
         "price_usd": "4.337696",
-        "fees_bps": "1.60",
-        "fees_near": "2710.0",
-        "flags": "fees_below_20pct_of_median",
+        "fees_bps": "17.06",
+        "fees_near": "28884.5",
+        "flags": "",
         "warnings": ""
       }
     ],
@@ -561,27 +557,48 @@
         "first_day": "2026-10-01",
         "last_day": "2026-10-31",
         "days": 31,
-        "counted_days": 30,
-        "excluded": {
-          "2026-10-31": "fees_below_20pct_of_median"
-        },
-        "warnings": {
-          "2026-10-30": "fees_per_volume_below_half_of_median;revenue_above_fees"
-        },
-        "volume_usd_per_day": "130406943.67",
-        "fees_usd_per_day": "198129.40",
-        "revenue_usd_per_day": "71500.53",
-        "fees_bps": "15.19",
-        "revenue_bps": "5.48",
-        "take_rate": "0.360878",
-        "mean_price_usd": "4.9049",
-        "fees_weighted_price_usd": "4.9226",
-        "fees_near_per_day": "40249.1",
-        "revenue_near_per_day": "14700.5",
+        "counted_days": 31,
+        "excluded": {},
+        "warnings": {},
+        "volume_usd_per_day": "128569083.90",
+        "fees_usd_per_day": "206066.97",
+        "revenue_usd_per_day": "70629.71",
+        "fees_bps": "16.03",
+        "revenue_bps": "5.49",
+        "take_rate": "0.342751",
+        "mean_price_usd": "4.8866",
+        "fees_weighted_price_usd": "4.8750",
+        "fees_near_per_day": "42270.0",
+        "revenue_near_per_day": "14557.1",
         "month": "2026-10",
         "full_month": true
       }
     ]
   },
-  "revisions_vs_previous_fetch": []
+  "revisions_vs_previous_fetch": [
+    {
+      "date": "2026-10-30",
+      "previous_fetch": "2026-11-01T13:02:17Z",
+      "fees_usd": [
+        "68794.00",
+        "387696.00"
+      ],
+      "price_usd": [
+        "4.308677",
+        "4.308677"
+      ]
+    },
+    {
+      "date": "2026-10-31",
+      "previous_fetch": "2026-11-01T13:02:17Z",
+      "fees_usd": [
+        "11755.00",
+        "125292.00"
+      ],
+      "price_usd": [
+        "4.337696",
+        "4.337696"
+      ]
+    }
+  ]
 }
