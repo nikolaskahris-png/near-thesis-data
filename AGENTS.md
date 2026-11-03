@@ -17,6 +17,7 @@ Run from the repository root:
 | `python -m unittest discover -s tests` | every script's logic on simulated chains and APIs | `OK` |
 | `python scripts/build_numbers.py --verify` | every script's own offline check, then `numbers.json` rebuilds byte for byte | starts with `VERIFY: PASS (PUBLIC_FULL)` |
 | `python scripts/build_numbers.py --check README.md` | every marked number in the README equals `numbers.json` | `OK: <count> marked numbers in README.md match numbers.json` |
+| `python scripts/build_numbers.py --check docs/DETAILS.md` | the same for `docs/DETAILS.md` (method, live checks, terms) | `OK: <count> marked numbers in DETAILS.md match numbers.json` |
 | `python scripts/check_prereg.py --file` | `PREREG.md` hashes to the SHA-256 anchored on chain (saved copy of the record) | `OK: PREREG.md is the anchored file` |
 
 Each passing command exits with code 0. Any other last line, or another exit code, is a failure.
@@ -51,13 +52,13 @@ Each exits with code 0 when the re-fetched answers give the saved results. Endpo
 
 ## 3. Live state (five read-only calls)
 
-[README, Verify live](README.md#verify-live): five `curl` calls to a public RPC, with the answers saved at the
+[docs/DETAILS.md, Verify live](docs/DETAILS.md#verify-live): five `curl` calls to a public RPC, with the answers saved at the
 locked block for comparison. Live answers can differ from the locked block.
 
 ## Where each number comes from
 
 Each entry of `data/numbers.json` has `value`, `text` (the README form), `source` (a file) and that file's
-SHA-256. In the README each figure is wrapped as `<!--n:KEY-->text<!--/n-->`, where `KEY` is the entry.
+SHA-256. In the README and `docs/DETAILS.md` each figure is wrapped as `<!--n:KEY-->text<!--/n-->`, where `KEY` is the entry.
 
 | Key prefix | What | Script | Source file |
 |---|---|---|---|
@@ -81,7 +82,7 @@ All flows use one window: `data/window_2026-10-02_2026-11-01.json` (`lock_window
 
 An entry with no `status` is final for that window. Other values:
 
-- `provisional`: based on DefiLlama, final only when its data settles (rule in [README, Method](README.md#method)).
+- `provisional`: based on DefiLlama, final only when its data settles (rule in [docs/DETAILS.md, Method](docs/DETAILS.md#method)).
 - `pending`: measured after an on-chain vote closes.
 - `off-chain`: NEAR AI Cloud's credit setting, read once in a signed-in session (`data/offchain/`); it cannot be
   re-read without an account.
@@ -96,6 +97,6 @@ To list them: `python -c "import json,collections; n=json.load(open('data/number
   request. Numbers are computed from redacted copies under `data/raw/redacted/` (and the account lists inside
   `data/stakers/`), where people's accounts appear as `sha256:` tags. Section 2 re-fetches the originals.
 - Until commit `7851eb5` the raw stake.dao responses, with account IDs, were committed; they remain in the git
-  history (disclosed in [README, Method](README.md#method)).
+  history (disclosed in [docs/DETAILS.md, Method](docs/DETAILS.md#method)).
 - The research notes written before the first commit (disclosed in
   [README, Timeline and disclosure](README.md#timeline-and-disclosure)).
