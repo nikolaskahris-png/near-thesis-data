@@ -20,18 +20,10 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: Tests (no network)
-        run: python -m unittest discover -s tests
-      - name: Every number rebuilds from the committed raw files
-        run: python scripts/build_numbers.py --verify
-      - name: Every number in README.md matches numbers.json
-        run: python scripts/build_numbers.py --check README.md
-      - name: Every number in docs/DETAILS.md matches numbers.json
-        run: python scripts/build_numbers.py --check docs/DETAILS.md
-      - name: Every number in THESIS.md matches numbers.json
-        run: python scripts/build_numbers.py --check THESIS.md
-      - name: Validators' vote samples recompute
-        run: python scripts/upgrade_watch.py --verify
+      - name: One command rebuilds and checks everything (tests, numbers, texts, PREREG)
+        run: |
+          set -o pipefail
+          python scripts/rebuild.py | tee -a "$GITHUB_STEP_SUMMARY"
       - name: Pre-registration file matches its anchored hash
         run: |
           set -o pipefail

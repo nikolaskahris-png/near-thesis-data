@@ -8,9 +8,15 @@ numbers come from [`data/numbers.json`](data/numbers.json), and each section bel
 Requirements: Python 3.10 or later (`python` below, `python3` on some systems), standard library only. No
 `pip install`, no API keys. No command here signs anything or writes to the chain.
 
-## 1. Offline check (no network, about 5 seconds)
+## 1. Offline check (no network, under two minutes)
 
-Run from the repository root:
+Run from the repository root. One command runs every check below in order:
+
+```
+python scripts/rebuild.py
+```
+
+Its last line is `REBUILD: PASS`. The same checks, one by one:
 
 | Command | What it checks | Last line when it passes |
 |---|---|---|
@@ -18,6 +24,8 @@ Run from the repository root:
 | `python scripts/build_numbers.py --verify` | every script's own offline check, then `numbers.json` rebuilds byte for byte | starts with `VERIFY: PASS (PUBLIC_FULL)` |
 | `python scripts/build_numbers.py --check README.md` | every marked number in the README equals `numbers.json` | `OK: <count> marked numbers in README.md match numbers.json` |
 | `python scripts/build_numbers.py --check docs/DETAILS.md` | the same for `docs/DETAILS.md` (method, live checks, terms) | `OK: <count> marked numbers in DETAILS.md match numbers.json` |
+| `python scripts/build_numbers.py --check THESIS.md` | the same for `THESIS.md` (claim, evidence for and against) | `OK: <count> marked numbers in THESIS.md match numbers.json` |
+| `python scripts/upgrade_watch.py --verify` | the validators' vote samples recompute | `OK: <count> day(s) recompute from the saved samples` |
 | `python scripts/check_prereg.py --file` | `PREREG.md` hashes to the SHA-256 anchored on chain (saved copy of the record) | `OK: PREREG.md is the anchored file` |
 
 Each passing command exits with code 0. Any other last line, or another exit code, is a failure.

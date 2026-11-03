@@ -25,7 +25,7 @@ few signers or by a company off-chain, not by code. Issuance, on the other side 
   <!--n:iv.staking_yield_gross-->4.9%<!--/n--> before commissions, and the buybacks offset
   <!--n:iv.buybacks_offset_points_per_year-->0.27<!--/n--> of those points. The view turns positive only on the
   conditions in the [Investment view](#investment-view).
-- **Check.** Four offline commands that run in seconds, no network ([Check it in two minutes](#check-it-in-two-minutes)).
+- **Check.** One offline command, `python scripts/rebuild.py`, ends with `REBUILD: PASS`; no network ([Check it in two minutes](#check-it-in-two-minutes)).
   Five predictions are anchored on chain: two, with stated probabilities, are judged on 6 and 8 November, before
   the deadline; three on 16 November ([Pre-registration](#pre-registration)).
 
@@ -46,7 +46,7 @@ and protocol constants are written as they are.
 |---|---|
 | Dashboard | [dashboard](https://nikolaskahris-png.github.io/near-thesis-data/dashboard/): the control map with five live checks from your browser, then one chart per finding, each with its query, source and a table view. Locally: `python -m http.server` in the repository root, then open `http://localhost:8000/dashboard/` |
 | Thesis | [`THESIS.md`](THESIS.md): claim, evidence for, evidence against, what would change our mind, metrics we cannot compute |
-| Reproducibility | [Check it in two minutes](#check-it-in-two-minutes): four offline commands, Python standard library only. Every figure in this file is checked against `data/numbers.json`, and each entry there against the saved raw responses and their SHA-256 |
+| Reproducibility | [Check it in two minutes](#check-it-in-two-minutes): one offline command, Python standard library only. Every figure in this file is checked against `data/numbers.json`, and each entry there against the saved raw responses and their SHA-256 |
 | Evidence | each finding names its script and data file; `scripts/remeasure.py` re-measures numbers 1 and 3 from the chain; DefiLlama's revenue is checked against the wallets' own balances (finding 1) |
 | Technical implementation | accounting from block headers and balances, to the yoctoNEAR: issuance net of gas burnt (`burn.py`), `treasury.near`'s reward reproduced at every epoch start (`treasury_spend.py`), its balance falls located block by block (`treasury_exits.py`), farm positions that add up to the contract's total (`stakers.py`) |
 | What this adds | who can change each link from fee to holder, and how often they have ([control map](#the-control-map-who-can-change-each-link)); the NEAR AI farm, its owner's flows and its credits rate (findings 3–5); the weight of each HSP-029 voter (finding 8) |
@@ -55,7 +55,14 @@ and protocol constants are written as they are.
 
 ## Check it in two minutes
 
-Python 3.12 (`python` below; `python3` on some systems), standard library only, no network, no keys:
+Python 3.12 (`python` below; `python3` on some systems), standard library only, no network, no keys.
+One command runs everything below and ends with `REBUILD: PASS`:
+
+```
+python scripts/rebuild.py
+```
+
+The same, step by step:
 
 ```
 python -m unittest discover -s tests              # every script's logic on fixed inputs

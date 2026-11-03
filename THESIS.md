@@ -123,11 +123,12 @@ probabilities).
 
 ## Reproduce
 
-Python standard library only, no network, no keys:
+Python standard library only, no network, no keys. One command rebuilds every number and every chart's
+input from the committed raw files, checks every marked figure in this file, the README and the details, and
+ends with `REBUILD: PASS`:
 
 ```
-python -m unittest discover -s tests
-python scripts/build_numbers.py --verify
-python scripts/build_numbers.py --check THESIS.md
-python scripts/check_prereg.py --file
+python scripts/rebuild.py
 ```
+
+The charts, each with its query: [dashboard](https://nikolaskahris-png.github.io/near-thesis-data/dashboard/).
