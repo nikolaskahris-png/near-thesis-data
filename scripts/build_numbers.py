@@ -438,7 +438,10 @@ def build(data_dir, window_file):
                 ("fees_bps", "fees_bps", lambda v: f_num(v, 1), "bps of volume"),
                 ("take_rate", "take_rate", f_pct, "revenue / fees"),
                 ("mean_price_usd", "mean_price_usd", lambda v: f_usd(v, 2), "USD"),
-                ("revenue_near_per_day", "revenue_near_per_day", f_int, "NEAR/day")):
+                ("revenue_near_per_day", "revenue_near_per_day", f_int, "NEAR/day"),
+                ("fees_near_per_day", "fees_near_per_day", f_int, "NEAR/day")):
+            if field not in m:
+                continue
             n.add(f"f2.{key}.{k}", m[field], fmt(m[field]), fsrc, unit=unit, **mc)
         if k in kept_by_month and dec(m["revenue_near_per_day"]) > 0:
             kept_share = kept_by_month[k] / dec(m["revenue_near_per_day"])

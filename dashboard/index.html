@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NEAR value capture</title>
+<meta name="description" content="Who decides what NEAR holders get: every link from the fee a user pays to the NEAR a holder keeps, measured on chain.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="wrap top">
+  <p class="eyebrow">Investment Thesis · NEAR HACKATHON</p>
+  <h1>NEAR's value capture is real, small and discretionary.</h1>
+  <p class="lede">Users pay real fees on NEAR Intents, but only a small part reaches NEAR holders, and every link from
+    the fee a user pays to the NEAR a holder keeps is set by a few signers or by a company off-chain, not by code.
+    <strong>Verdict: hold NEAR staked, not for the fees it captures.</strong></p>
+  <div class="tiles">
+    <div class="tile"><span class="tile-k">Coverage</span>
+      <span class="tile-v" data-n="n1.coverage_buybacks"></span>
+      <span class="tile-s">of new NEAR kept by the buybacks wallets · <span data-n="n1.coverage_with_front_end"></span> with the front-end fund</span></div>
+    <div class="tile"><span class="tile-k">Ceiling</span>
+      <span class="tile-v" data-n="n2.max_coverage"></span>
+      <span class="tile-s">if NEAR kept every fee · equilibrium price <span data-n="n2.equilibrium_price_usd"></span> · <em>provisional</em></span></div>
+    <div class="tile"><span class="tile-k">NEAR AI farm</span>
+      <span class="tile-v" data-n="n3.largest_share"></span>
+      <span class="tile-s">held by the largest of <span data-n="n3.stakers_active"></span> active accounts</span></div>
+  </div>
+  <p class="status" id="status"></p>
+  <nav class="links"><a href="../README.md">README</a><a href="../THESIS.md">THESIS</a><a href="../PREREG.md">PREREG</a><a href="https://github.com/nikolaskahris-png/near-thesis-data">Repository</a></nav>
+</header>
+
+<main class="wrap">
+<section id="p1">
+  <h2>Who can change each link from the fee a user pays to the NEAR a holder keeps</h2>
+  <p class="what">Each card is one link: its value at the locked end block, who signs to change it, and how often they have.
+    <span class="not">It does not show why a link is set the way it is.</span></p>
+  <div class="map">
+    <div class="lane"><h3>Fees → holders</h3>
+      <div class="card"><b>Fees users pay</b><span><span data-n="n2.fees_bps"></span> bps of volume</span><span class="who">set off-chain by the distribution channels</span></div>
+      <div class="arrow" aria-hidden="true">↓</div>
+      <div class="card" data-live="fee"><b>Protocol fee on <code>intents.near</code></b><span data-n="c.intents_fee_pips"></span><span class="who">DAO <span data-n="c.intents_fee_change"></span> · used <span data-n="h.fee.approved_actions"></span> times</span></div>
+      <div class="arrow" aria-hidden="true">↓</div>
+      <div class="card" data-live="buybacks"><b>Buybacks wallet</b><span>holds bought NEAR · nothing burned</span><span class="who">multisig <span data-n="c.buybacks_confirmations"></span> · keys unchanged since <span data-n="h.keys.buybacks.last_change"></span></span></div>
+      <div class="card"><b>Front-end fund</b><span><span data-n="f9.front_end_share_of_wallets"></span> of what the three wallets kept</span><span class="who">transfers <span data-n="c.front_end_transfer"></span> · rules <span data-n="c.front_end_rules"></span></span></div>
+      <div class="arrow" aria-hidden="true">↓</div>
+      <div class="card end"><b>NEAR holders</b><span>coverage <span data-n="n1.coverage_buybacks"></span> of issuance</span></div>
+    </div>
+    <div class="lane"><h3>Issuance → stakers</h3>
+      <div class="card rule"><b>Issuance</b><span>at most <span data-n="c.issuance_max_inflation_rate"></span> a year · a protocol rule</span><span class="who">changed by <span data-n="c.issuance_upgrade_stake_threshold"></span> of stake: at least <span data-n="c.issuance_validators_to_pass_upgrade"></span> of <span data-n="c.issuance_validators"></span> validators</span></div>
+      <div class="arrow" aria-hidden="true">↓</div>
+      <div class="card"><b><code>treasury.near</code></b><span>paid out <span data-n="ts.year_out_near"></span> NEAR in this year</span><span class="who">multisig <span data-n="c.treasury_confirmations"></span></span></div>
+      <div class="card" data-live="pool"><b>NEAR AI pool rewards</b><span>the pool keeps <span data-n="c.nearai_pool_reward_fee"></span> of rewards</span><span class="who">owner DAO <span data-n="c.nearai_pool_owner_transfer"></span></span></div>
+      <div class="arrow" aria-hidden="true">↓</div>
+      <div class="card" data-live="farm"><b>NEAR AI credits rate</b><span><span data-n="f6.units_per_near_year"></span> reward units per NEAR a year</span><span class="who">set by one account · changed <span data-n="f6.rate_changes"></span> time, <span data-n="f6.change1.ratio"></span></span></div>
+    </div>
+    <div class="lane"><h3>Votes → rules</h3>
+      <div class="card"><b>House of Stake (<code>vote.dao</code>)</b><span><span data-n="c.hsp_reviewers"></span> reviewers choose what is put to a vote</span><span class="who">owner DAO <span data-n="c.hsp_owner_rules"></span> · used <span data-n="h.voting.approved_actions"></span> times</span></div>
+      <div class="arrow" aria-hidden="true">↓</div>
+      <div class="card"><b>HSP-029: issuance cut</b><span>passed; <span data-n="f8.fewest_voters_reaching_quorum"></span> voters were enough for the quorum</span><span class="who">in timelock until <span data-n="f8.timelock_end_utc"></span> · executes nothing on chain</span></div>
+      <div class="arrow" aria-hidden="true">↓</div>
+      <div class="card"><b>A rule only when validators run it</b><span>a nearcore release with <span data-n="c.issuance_upgrade_stake_threshold"></span> of stake</span><span class="who">measured live below</span></div>
+    </div>
+  </div>
+  <p class="foot">The <span data-n="c.dao_count"></span> DAOs have <span data-n="c.dao_member_accounts"></span> member accounts; the number in more than one DAO is <span data-n="c.dao_members_in_two_or_more"></span>.
+    “Check live” calls a public NEAR RPC from your browser and compares its answer with the answer saved at the locked block.</p>
+  <div class="meta" data-meta="p1"></div>
+</section>
+
+<section id="p2">
+  <h2>The buybacks wallets keep <span data-n="n1.coverage_buybacks"></span> of the NEAR issued</h2>
+  <p class="what">NEAR per day kept by the wallets, against NEAR issued per day, month by month. Full coverage needs what
+    the buybacks wallets keep to grow <span data-n="iv.wallets_multiple_buybacks"></span>.
+    <span class="not">It does not show why the wallets receive what they do.</span></p>
+  <div class="chart" id="c2"></div>
+  <div class="meta" data-meta="p2"></div>
+</section>
+
+<section id="p3">
+  <h2>Even every fee would buy <span data-n="n2.max_coverage"></span> of the NEAR issued</h2>
+  <p class="what">What all fees recorded by DefiLlama would buy in NEAR per day, against what the wallets kept and what
+    was issued. Fees must grow <span data-n="iv.fees_multiple"></span> to cover issuance. <em>Provisional.</em>
+    <span class="not">It does not include confidential volume, solver spreads or gas.</span></p>
+  <div class="chart" id="c3"></div>
+  <div class="meta" data-meta="p3"></div>
+</section>
+
+<section id="p4">
+  <h2>One account holds <span data-n="n3.largest_share"></span> of the NEAR AI farm</h2>
+  <p class="what">Active accounts and the largest account's share, on the first block of the first and the fifteenth of each month. The credits
+    rate changed once, <span data-n="f6.change1.ratio"></span> on <span data-n="f6.change1.utc"></span>: credits now pay more than a
+    validator only while NEAR is below <span data-n="iv.farm_breakeven_price_usd"></span> (before: <span data-n="iv.farm_breakeven_price_before_usd"></span>).
+    <span class="not">It does not show who holds the largest position, or whether credits are used.</span></p>
+  <div class="pair"><div class="chart" id="c4a"></div><div class="chart" id="c4b"></div></div>
+  <div class="stats">
+    <div><span class="k">Owner's NEAR since the farm opened</span><span data-n="f4.since_stake_dao.owner_near_start"></span> → <span data-n="f4.since_stake_dao.owner_near_end"></span></div>
+    <div><span class="k">Owner's swaps on NEAR Intents</span><span data-n="f4.since_stake_dao.swaps_near_given"></span> NEAR → <span data-n="f4.since_stake_dao.swaps_usd_received"></span></div>
+    <div><span class="k">Users' stake in the farm</span><span data-n="n3.farm_total_near"></span> NEAR</div>
+  </div>
+  <div class="meta" data-meta="p4"></div>
+</section>
+
+<section id="p5">
+  <h2><code>treasury.near</code> paid out <span data-n="ts.year_out_near"></span> NEAR this year, all in April and May</h2>
+  <p class="what">Balance at the end of each month. Its reward rule is reproduced at <span data-n="ts.rule_exact"></span> of
+    <span data-n="ts.rule_epochs"></span> epoch starts. <span class="not">The purpose of each payment is not on chain.</span></p>
+  <div class="chart" id="c5"></div>
+  <table class="plain"><thead><tr><th>Receiver</th><th>NEAR</th></tr></thead><tbody>
+    <tr><td><code>ecotreasury5.multisignature.near</code></td><td data-n="te.to.ecotreasury5.amount"></td></tr>
+    <tr><td><code>ecotreasury4.multisignature.near</code></td><td data-n="te.to.ecotreasury4.amount"></td></tr>
+    <tr><td>one implicit account (tag <code>sha256:e630d735…</code>)</td><td data-n="te.to.sha256_e630d735.amount"></td></tr>
+    <tr><td><code>foundation.near</code> (came back seconds later)</td><td data-n="te.to.foundation.amount"></td></tr>
+  </tbody></table>
+  <div class="meta" data-meta="p5"></div>
+</section>
+
+<section id="p6">
+  <h2>Passed is not in force</h2>
+  <p class="what">A House of Stake vote changes nothing on chain by itself. Left: the share of stake whose block
+    producers signal HSP-027's protocol version, against the threshold. Right: the veNEAR of each HSP-029 voter,
+    largest first; the first <span data-n="f8.fewest_voters_reaching_quorum"></span> reach the quorum.
+    <span class="not">It does not show which release each validator runs before it signals.</span></p>
+  <div class="pair"><div class="chart" id="c6a"></div><div class="chart" id="c6b"></div></div>
+  <div class="meta" data-meta="p6"></div>
+</section>
+
+<section id="p7">
+  <h2>Five predictions, anchored on chain before they are judged</h2>
+  <p class="what">The file's SHA-256 is stored in SocialDB by a NEAR transaction; anyone can read it back.</p>
+  <div class="preds" id="preds"></div>
+  <div class="card inline" data-live="prereg"><b>Pre-registration record in SocialDB</b><span>the stored record must contain the SHA-256 of <code>PREREG.md</code></span></div>
+  <div class="meta" data-meta="p7"></div>
+</section>
+
+<section id="p8">
+  <h2>What this does not show, and how to check it</h2>
+  <ul class="limits">
+    <li>Confidential NEAR Intents volume, reported separately by NearStats.</li>
+    <li>Volume rebuilt from the chain: DefiLlama's volume comes from a NEAR dataset on Dune.</li>
+    <li>Credits in dollars: an off-chain NEAR AI Cloud setting, read only with a signed-in session; whether credits are used.</li>
+    <li>Who holds the largest farm position, and where its NEAR came from.</li>
+    <li>What <code>treasury.near</code>'s payments were for.</li>
+  </ul>
+  <pre class="cmd" id="cmds"></pre>
+</section>
+</main>
+<footer class="wrap foot">Every figure on this page is read from <code>data/numbers.json</code> and the data files of the repository; none is written by hand.</footer>
+<div id="tip" role="tooltip" hidden></div>
+<script src="app.js"></script>
+</body>
+</html>

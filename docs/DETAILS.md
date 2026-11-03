@@ -181,6 +181,7 @@ python scripts/treasury_flows.py --verify --archival
 | `data/raw/redacted/` | redacted copies of the responses that name people, which the numbers are computed from |
 | `data/history.csv` | one row a day from the `daily` workflow (00:15 UTC): number 1 over the last 30 days |
 | `data/upgrade_watch.csv` | one row a day: stake signalling the next protocol version |
+| `dashboard/` | static page (`index.html`, `app.js`, `style.css`, no libraries) that reads every figure from `data/`; `tests/test_dashboard.py` fails if it shows a number written by hand |
 | `scripts/` | one script per number or finding; each has `--verify` and a test in `tests/` |
 | `docs/DETAILS.md` | this file: method, live checks, terms, layout |
 | `PREREG.md` | the three predictions, anchored on chain |

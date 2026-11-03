@@ -44,6 +44,7 @@ and protocol constants are written as they are.
 
 | Criterion | Where to look |
 |---|---|
+| Dashboard | [dashboard](https://nikolaskahris-png.github.io/near-thesis-data/dashboard/): the control map with five live checks from your browser, then one chart per finding, each with its query, source and a table view. Locally: `python -m http.server` in the repository root, then open `http://localhost:8000/dashboard/` |
 | Thesis | [`THESIS.md`](THESIS.md): claim, evidence for, evidence against, what would change our mind, metrics we cannot compute |
 | Reproducibility | [Check it in two minutes](#check-it-in-two-minutes): four offline commands, Python standard library only. Every figure in this file is checked against `data/numbers.json`, and each entry there against the saved raw responses and their SHA-256 |
 | Evidence | each finding names its script and data file; `scripts/remeasure.py` re-measures numbers 1 and 3 from the chain; DefiLlama's revenue is checked against the wallets' own balances (finding 1) |
