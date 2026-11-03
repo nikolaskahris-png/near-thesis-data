@@ -10,7 +10,8 @@ reads per step), then asks the node for the cause of the change in that block
 --recipients then reads, for every step of at least 1 NEAR caused by a transaction, that
 transaction's receipts (EXPERIMENTAL_tx_status) and records each transfer treasury.near sent:
 receiver, deposit and whether it succeeded. Multisig and DAO contracts (*.multisignature.near,
-*.sputnik-dao.near) are named; every other receiver is shown as a sha256 tag (see privacy.py).
+*.sputnik-dao.near) and foundation.near are named; every other receiver is shown as a sha256
+tag (see privacy.py).
 The full answers stay in data/private/ (not in git); their redacted copies are public.
 
 The steps found must add up to the month's other_net in data/treasury_spend.json to the yocto;
@@ -42,8 +43,10 @@ import treasury_spend as ts  # noqa: E402
 REPO = Path(__file__).resolve().parent.parent
 OUT_NAME = "treasury_exits.json"
 MIN_RECIPIENT_YOCTO = 10 ** 24  # steps of at least 1 NEAR get their receivers
-# Receivers shown by name: multisig and DAO contracts. Everyone else gets a sha256 tag.
+# Receivers shown by name: multisig and DAO contracts, and named institutional accounts.
+# Everyone else gets a sha256 tag.
 INSTITUTIONAL = re.compile(r"^[a-z0-9_-]+(?:\.[a-z0-9_-]+)*\.(?:multisignature|sputnik-dao)\.near$")
+INSTITUTIONAL_NAMES = {"foundation.near"}
 
 
 def tx_rel(tx_hash):
@@ -73,7 +76,8 @@ def project_tx(key, raw):
     out = {"tx_hash": res["transaction"]["hash"], "signer_id": res["transaction"]["signer_id"],
            "transfers": transfers}
     public = {ts.ACCOUNT} | {t["receiver_id"] for t in transfers
-                             if INSTITUTIONAL.match(t["receiver_id"])}
+                             if INSTITUTIONAL.match(t["receiver_id"])
+                             or t["receiver_id"] in INSTITUTIONAL_NAMES}
     return privacy.dumps(privacy.redact(out, public))
 
 

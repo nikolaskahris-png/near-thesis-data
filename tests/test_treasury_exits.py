@@ -103,7 +103,8 @@ class RecipientsTest(unittest.TestCase):
         gas = 3 * 10 ** 22
         answers = {"T1": [("ecotreasury4.multisignature.near", 49 * 10 ** 29, True)],
                    "T2": [(IMPLICIT, 5 * 10 ** 30, True)],
-                   "T3": [("someone.near", 3 * Y, False)]}
+                   "T3": [("someone.near", 3 * Y, False)],
+                   "T4": [("foundation.near", Y, True)]}
         self.doc = {"exits": [], "tx_files": {}}
         for n, (h, tr) in enumerate(answers.items()):
             rel = te.tx_rel(h)
@@ -122,9 +123,10 @@ class RecipientsTest(unittest.TestCase):
         self.assertEqual(per[100][0]["account"], "ecotreasury4.multisignature.near")
         self.assertEqual(per[101][0]["account"], privacy.tag(IMPLICIT))
         self.assertEqual(per[102][0]["account"], privacy.tag("someone.near"))
+        self.assertEqual(per[103][0]["account"], "foundation.near")
         self.assertFalse(per[102][0]["ok"])
         self.assertEqual([s["account"] for s in summary],
-                         [privacy.tag(IMPLICIT), "ecotreasury4.multisignature.near"])
+                         [privacy.tag(IMPLICIT), "ecotreasury4.multisignature.near", "foundation.near"])
         public = b"".join((self.base / f["redacted"]["path"]).read_bytes()
                           for f in self.doc["tx_files"].values())
         self.assertNotIn(IMPLICIT.encode(), public)
@@ -139,10 +141,10 @@ class RecipientsTest(unittest.TestCase):
         for f in self.doc["tx_files"].values():
             (self.base / f["path"]).unlink()
         p, absent = privacy.check_files(self.base, self.doc["tx_files"], te.project_tx)
-        self.assertEqual((p, absent), ([], 3))
+        self.assertEqual((p, absent), ([], 4))
         per, _, problems = te.recipients_of(self.doc, self.base)
         self.assertEqual(problems, [])
-        self.assertEqual(len(per), 3)
+        self.assertEqual(len(per), 4)
 
 
 if __name__ == "__main__":

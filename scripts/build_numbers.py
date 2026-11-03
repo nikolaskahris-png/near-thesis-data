@@ -658,6 +658,10 @@ def build(data_dir, window_file):
         n.add("f8.computed_status", r["computed_status"], r["computed_status"], hsrc2, **hc)
         n.add("f8.contract_status_at_close", h["reported_status_at_close"],
               h["reported_status_at_close"], hsrc2, **hc)
+        tl = (h.get("proposal") or {}).get("timelock_end_utc")
+        if tl:
+            n.add("f8.timelock_end_utc", tl, tl[:10] + " " + tl[11:16] + " UTC", hsrc2,
+                  note="voting end + vote.dao's timelock_duration_ns, from get_proposal", **hc)
         for o in r["options"]:
             lab = (o["label"] or str(o["index"])).lower()
             n.add(f"f8.{lab}_venear", o["venear"], f_int(o["venear"]), hsrc2, unit="veNEAR", **hc)

@@ -8,11 +8,11 @@ few signers or by a company off-chain, not by code. Issuance, on the other side 
 
 **In short**
 
-- **Verdict.** Hold NEAR staked, not for the fees it captures: supply grows
-  <!--n:iv.issuance_rate_per_year-->2.46%<!--/n--> a year, staking pays about
-  <!--n:iv.staking_yield_gross-->4.9%<!--/n--> before commissions, and the buybacks offset
-  <!--n:iv.buybacks_offset_points_per_year-->0.27<!--/n--> of those points. The view turns positive only on the
-  conditions in the [Investment view](#investment-view).
+- **Control.** Each link from the fee a user pays to the NEAR a holder keeps is set by a multisig, a DAO or a
+  company off-chain, not by code: the buybacks wallet needs <!--n:c.buybacks_confirmations-->2 of 4<!--/n--> signatures and burns nothing, one account
+  changed the NEAR AI credits rate <!--n:f6.change1.ratio-->×2.0<!--/n-->, and <!--n:f8.fewest_voters_reaching_quorum-->6<!--/n--> voters were enough for the quorum of HSP-029, the
+  issuance cut. A passed vote becomes a rule only when validators run it, and that step is measured live
+  ([control map](#the-control-map-who-can-change-each-link), [Path to rules](#path-to-rules)).
 - **Measured.** Users pay <!--n:n2.fees_usd_per_day-->$206,049<!--/n--> a day in fees (DefiLlama, *provisional*). *Coverage*, the NEAR that
   the buybacks wallets (the two wallets that hold bought-back NEAR) keep ÷ the NEAR issued in the same days, is
   <!--n:n1.coverage_buybacks-->10.8%<!--/n-->; <!--n:n1.coverage_with_front_end-->16.5%<!--/n--> counting the
@@ -20,11 +20,14 @@ few signers or by a company off-chain, not by code. Issuance, on the other side 
 - **Ceiling.** If NEAR kept every fee, coverage would be <!--n:n2.max_coverage-->47.9%<!--/n--> (*provisional*). Covering all of
   issuance needs what the buybacks wallets keep to grow <!--n:iv.wallets_multiple_buybacks-->×9.2<!--/n-->, or, with
   every fee kept, fees to grow <!--n:iv.fees_multiple-->×2.1<!--/n-->.
-- **Control.** Each link from fee to holder is set by a multisig, a DAO or a company off-chain; nothing
-  bought is burned. The [control map](#the-control-map-who-can-change-each-link) shows who signs each link and how
-  often they have used it.
+- **Verdict.** Hold NEAR staked, not for the fees it captures: supply grows
+  <!--n:iv.issuance_rate_per_year-->2.46%<!--/n--> a year, staking pays about
+  <!--n:iv.staking_yield_gross-->4.9%<!--/n--> before commissions, and the buybacks offset
+  <!--n:iv.buybacks_offset_points_per_year-->0.27<!--/n--> of those points. The view turns positive only on the
+  conditions in the [Investment view](#investment-view).
 - **Check.** Four offline commands that run in seconds, no network ([Check it in two minutes](#check-it-in-two-minutes)).
-  Three predictions are anchored on chain and judged on 16 November 2026 ([Pre-registration](#pre-registration)).
+  Five predictions are anchored on chain: two, with stated probabilities, are judged on 6 and 8 November, before
+  the deadline; three on 16 November ([Pre-registration](#pre-registration)).
 
 Investment Thesis track, NEAR HACKATHON (1–14 November 2026). Every figure below is computed by a script in this
 repository and copied here from [`data/numbers.json`](data/numbers.json) with a hidden marker of its key (view the
@@ -45,7 +48,7 @@ and protocol constants are written as they are.
 | Evidence | each finding names its script and data file; `scripts/remeasure.py` re-measures numbers 1 and 3 from the chain; DefiLlama's revenue is checked against the wallets' own balances (finding 1) |
 | Technical implementation | accounting from block headers and balances, to the yoctoNEAR: issuance net of gas burnt (`burn.py`), `treasury.near`'s reward reproduced at every epoch start (`treasury_spend.py`), its balance falls located block by block (`treasury_exits.py`), farm positions that add up to the contract's total (`stakers.py`) |
 | What this adds | who can change each link from fee to holder, and how often they have ([control map](#the-control-map-who-can-change-each-link)); the NEAR AI farm, its owner's flows and its credits rate (findings 3–5); the weight of each HSP-029 voter (finding 8) |
-| Falsifiable | three predictions anchored on NEAR mainnet on 1 November, judged on 16 November ([Pre-registration](#pre-registration)) |
+| Falsifiable | five predictions anchored on NEAR mainnet: two with stated probabilities, anchored before the event and judged on 6 and 8 November, before the deadline; three judged on 16 November ([Pre-registration](#pre-registration)) |
 | Limits | [What we can't measure](#what-we-cant-measure); people's accounts appear only as SHA-256 tags ([Method](docs/DETAILS.md#method)) |
 
 ## Check it in two minutes
@@ -237,7 +240,7 @@ At the vote's last block, 222,745,764 (`scripts/hsp029.py`, `scripts/hsp029_vote
 for, <!--n:f8.against_venear-->0<!--/n--> against and <!--n:f8.abstain_venear-->1,071<!--/n--> abstaining, from <!--n:f8.voters-->36<!--/n--> voters.
 <!--n:f8.turnout_of_snapshot-->62.3%<!--/n--> of the <!--n:f8.snapshot_total_venear-->5,274,745<!--/n--> veNEAR in the snapshot voted, against a quorum of
 <!--n:f8.quorum_required_venear-->1,846,161<!--/n-->. The largest voter cast <!--n:f8.top1_share_of_votes_cast-->12.2%<!--/n--> of the votes and the 8
-largest <!--n:f8.top8_share_of_votes_cast-->80.6%<!--/n-->. `vote.dao` reports the proposal as `<!--n:f8.contract_status_at_close-->Timelock<!--/n-->`.
+largest <!--n:f8.top8_share_of_votes_cast-->80.6%<!--/n-->. `vote.dao` holds it in `<!--n:f8.contract_status_at_close-->Timelock<!--/n-->` until <!--n:f8.timelock_end_utc-->2026-11-16 16:48 UTC<!--/n-->.
 The vote executes nothing on chain (`actions: null`): issuance falls only when validators run a release that
 includes it ([Path to rules](#path-to-rules)).
 
@@ -255,18 +258,18 @@ the <!--n:te.transactions_read-->8<!--/n--> transactions of 1 NEAR or more (`dat
 | 2026-04-15 | `ecotreasury5.multisignature.near` | <!--n:te.to.ecotreasury5.amount-->4,900,000<!--/n--> | <!--n:te.to.ecotreasury5.transfers-->1<!--/n--> |
 | 2026-04-15 | `ecotreasury4.multisignature.near` | <!--n:te.to.ecotreasury4.amount-->4,900,000<!--/n--> | <!--n:te.to.ecotreasury4.transfers-->1<!--/n--> |
 | 2026-05-13 | one implicit account, `sha256:e630d735067c39fe` | <!--n:te.to.sha256_e630d735.amount-->20,371,200<!--/n--> | <!--n:te.to.sha256_e630d735.transfers-->5<!--/n--> |
-| 2026-04-15 | one named account, `sha256:7720298de372b4d4` | <!--n:te.to.sha256_7720298d.amount-->3<!--/n--> (came back to `treasury.near` 153 seconds later) | <!--n:te.to.sha256_7720298d.transfers-->1<!--/n--> |
+| 2026-04-15 | `foundation.near` | <!--n:te.to.foundation.amount-->3<!--/n--> (3 NEAR came back to `treasury.near` 153 seconds later) | <!--n:te.to.foundation.transfers-->1<!--/n--> |
 
-Each payment is a `confirm` on the multisig (<!--n:c.treasury_confirmations-->2 of 4<!--/n--> keys). Multisig and DAO receivers are
-named; other accounts are shown as tags ([Method](docs/DETAILS.md#method)). The purpose of each payment is not on chain and is
+Each payment is a `confirm` on the multisig (<!--n:c.treasury_confirmations-->2 of 4<!--/n--> keys). Multisig, DAO and institutional
+receivers are named; other accounts are shown as tags ([Method](docs/DETAILS.md#method)). The purpose of each payment is not on chain and is
 not characterized here.
 
 ## Path to rules
 
 Each link that decides value can become a rule with a mechanism NEAR already has. Governance has started on this
 path: HSP-027 (remove the developer gas rebate) passed on 3 July 2026, and
-[HSP-029](https://gov.houseofstake.org/proposals/29) (issuance 2.5% → 1.6% a year over a 24-month ramp) on
-2 November (finding 8). A House of Stake vote changes nothing on chain by itself (`actions: null`): it takes a
+[HSP-029](https://gov.houseofstake.org/proposals/29) (issuance 2.5% → 1.6% a year over a 24-month ramp) passed its
+vote on 2 November and stays in `vote.dao`'s timelock until <!--n:f8.timelock_end_utc-->2026-11-16 16:48 UTC<!--/n--> (finding 8). A House of Stake vote changes nothing on chain by itself (`actions: null`): it takes a
 nearcore release that validators with <!--n:c.issuance_upgrade_stake_threshold-->4/5<!--/n--> of stake run. HSP-027 is protocol
 version 87 in nearcore 2.14.0, open to validator votes from 4 November 2026 00:00 UTC
 ([`version.rs`](https://github.com/near/nearcore/blob/2.14.0/core/primitives/src/version.rs)); `scripts/upgrade_watch.py`
@@ -306,6 +309,21 @@ Anchored SHA-256: `d3f48ed9172b1785b4dcf290b84e9a06c870b8b9b5481c6d40e51a4605b1d
 | 3 | Fewer than 150 accounts are active in the NEAR AI farm on 16 Nov | count < 150 | <!--n:n3.stakers_active-->112<!--/n--> |
 
 Exact rules, timing and void conditions are in `PREREG.md`. The results will be published whatever they are.
+
+**Second pre-registration: when HSP-027 takes effect.** [`PREREG-2.md`](PREREG-2.md) was anchored the same way,
+under `samerice7976.near/thesis/prereg/2`, by transaction
+[`EZ6mexrYfaMFivjLqccSjxGkTgWDEqUBUeiZDoAx9art`](https://nearblocks.io/txns/EZ6mexrYfaMFivjLqccSjxGkTgWDEqUBUeiZDoAx9art),
+included in block 222,916,018 (2026-11-03 19:48:55 UTC), four hours before validators' voting for protocol
+version 87 opened. It states a probability for each prediction, so the result is scored, not only counted.
+
+Anchored SHA-256: `545cf67530b37c902b2674cb4014818d3f79eb1718fe6bbab896a361e48ce0d3`
+
+| # | Prediction | Holds if | Probability stated | Judged at |
+|---|---|---|---|---|
+| 4 | Protocol version 87 (HSP-027) is in effect on NEAR mainnet | `protocol_version` ≥ 87 | 0.85 | first block at or after 2026-11-06 00:00 UTC |
+| 5 | Protocol version 88 is in effect on NEAR mainnet | `protocol_version` ≥ 88 | 0.75 | first block at or after 2026-11-08 00:00 UTC |
+
+Both are judged before the hackathon's deadline; the results and their Brier scores will be added here.
 
 ```
 python scripts/check_prereg.py --file     # no network: PREREG.md against the saved anchored SHA-256

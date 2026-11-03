@@ -199,6 +199,7 @@ class BuildTest(unittest.TestCase):
     def test_hsp029_and_voters_after_the_vote(self):
         hc = {"closing_block": {"height": 222600000, "timestamp_utc": "2026-11-02T16:48:08.5Z"},
               "reported_status_at_close": "Voting",
+              "proposal": {"timelock_end_utc": "2026-11-16T16:48:08.461922091Z"},
               "result": {"computed_status": "Succeeded",
                          "options": [{"index": 0, "label": "For", "venear": "3285084.854",
                                       "votes": 28}],
@@ -227,6 +228,7 @@ class BuildTest(unittest.TestCase):
                     self.assertEqual(n["f8.top8_share_of_votes_cast"]["text"], "92.0%")
                     self.assertEqual(n["f8.fewest_voters_reaching_quorum"]["text"], "3")
                     self.assertEqual(n["f8.for_votes"]["text"], "28")
+                    self.assertEqual(n["f8.timelock_end_utc"]["text"], "2026-11-16 16:48 UTC")
                     self.assertNotIn("f8.computed_status", doc["provisional_or_pending"])
 
     def test_refuses_inputs_from_another_window(self):

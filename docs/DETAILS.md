@@ -184,7 +184,8 @@ python scripts/treasury_flows.py --verify --archival
 | `scripts/` | one script per number or finding; each has `--verify` and a test in `tests/` |
 | `docs/DETAILS.md` | this file: method, live checks, terms, layout |
 | `PREREG.md` | the three predictions, anchored on chain |
-| `docs/sign.html` | the page used once to sign the anchoring transaction |
+| `PREREG-2.md` | predictions 4 and 5 (protocol versions 87 and 88), anchored on chain on 3 November |
+| `docs/sign.html`, `docs/sign-2.html` | the pages used once each to sign the two anchoring transactions |
 | `AGENTS.md`, `CLAUDE.md` | the checking steps for automated reviewers (identical files) |
 
 Data sources: FastNEAR RPC and archival RPC, NearBlocks API, DefiLlama (`api.llama.fi`, `coins.llama.fi`), and one
