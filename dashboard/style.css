@@ -121,3 +121,27 @@ table.plain { max-width: 620px; margin-top: 14px; }
   section { padding: 18px 14px; }
 }
 @media (forced-colors: active) { svg .s1, svg .s2, svg .s3, svg .sn { fill: CanvasText; } }
+
+.ladder { display: flex; flex-direction: column; gap: 10px; }
+.step { display: grid; grid-template-columns: minmax(0, 15rem) minmax(0, 1fr); gap: 4px 16px; align-items: center; }
+.step .nm { font-size: 14px; }
+.step .who { grid-column: 2; color: var(--text-muted); font-size: 12.5px; margin-top: -2px; }
+.track { position: relative; height: 26px; background: var(--surface-0); border-radius: 6px; }
+.fill { position: absolute; left: 0; top: 0; bottom: 0; border-radius: 6px; background: var(--series-1); }
+.fill.choice { background: var(--series-1); }
+.fill.rule { background: var(--series-3); }
+.track .v { position: absolute; top: 4px; font-size: 13px; font-weight: 650; font-variant-numeric: tabular-nums; color: var(--text-primary); }
+.track .full { position: absolute; top: -3px; bottom: -3px; right: 0; border-right: 2px dashed var(--ref); }
+.ladder .end { color: var(--text-secondary); font-size: 13.5px; margin-top: 4px; }
+h3.sub { margin: 22px 0 6px; }
+.calc { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px 24px; align-items: start; }
+.calc label { display: flex; flex-direction: column; gap: 4px; font-size: 13.5px; color: var(--text-secondary); }
+.calc label b { color: var(--text-primary); font-variant-numeric: tabular-nums; }
+.calc input[type=range] { width: 100%; accent-color: var(--series-1); }
+.calc .out { grid-column: 1 / -1; background: var(--surface-0); border-radius: 10px; padding: 12px 14px; }
+.calc .out .big { font-size: 28px; font-weight: 650; font-variant-numeric: tabular-nums; }
+.calc .out .chk { color: var(--text-muted); font-size: 12.5px; }
+.calc .row { display: flex; gap: 14px; flex-wrap: wrap; font-size: 13.5px; color: var(--text-secondary); }
+.calc button.reset { justify-self: start; font: inherit; font-size: 13px; padding: 4px 10px; border-radius: 6px;
+  border: 1px solid var(--border); background: var(--surface-0); color: var(--text-primary); cursor: pointer; }
+@media (max-width: 760px) { .step { grid-template-columns: minmax(0, 1fr); } .step .who { grid-column: 1; } .calc { grid-template-columns: minmax(0, 1fr); } }

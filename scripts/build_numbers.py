@@ -748,6 +748,22 @@ def build(data_dir, window_file):
            "kept every fee")
     derive("iv.hsp029_fees_multiple", 1 / hsp_cov, ["n2.hsp029_max_coverage"],
            "1 / n2.hsp029_max_coverage")
+    # Lever model inputs (dashboard): what share of all fees the wallets keep, and the price
+    # at which DefiLlama's fees were converted to NEAR (fees in USD / fees in NEAR). With
+    # them, coverage = fees_usd x growth x kept / price / (issuance x factor) reproduces
+    # n2.max_coverage, n2.hsp029_max_coverage and the equilibrium prices exactly.
+    prov = {"status": "provisional", "window": n.items["n2.max_coverage"].get("window"),
+            "blocks": n.items["n2.max_coverage"].get("blocks")}
+    for key, cov, of in (("iv.wallets_share_of_fees_buybacks", cov_b, "n1.coverage_buybacks"),
+                         ("iv.wallets_share_of_fees_with_front_end", cov_fe, "n1.coverage_with_front_end")):
+        n.add(key, cov / max_cov, f_pct(cov / max_cov), n.items[of]["source"], unit="share of all fees",
+              derived_from=[of, "n2.max_coverage"], note=f"{of} / n2.max_coverage", **prov)
+    fusd = dec(n.items["n2.fees_usd_per_day"]["value"])
+    fnear = dec(n.items["n2.fees_near_per_day"]["value"])
+    n.add("iv.fees_conversion_price_usd", fusd / fnear, f_usd(fusd / fnear, 2),
+          n.items["n2.fees_usd_per_day"]["source"], unit="USD per NEAR",
+          derived_from=["n2.fees_usd_per_day", "n2.fees_near_per_day"],
+          note="n2.fees_usd_per_day / n2.fees_near_per_day: each day's fees at that day's price", **prov)
     new_day = dec(n.items["n1.new_near_per_day"]["value"])
     supply_end = dec(last_b["total_supply_yocto"]) / dec(10 ** 24)
     year_rate = new_day * dec("365.25") / supply_end

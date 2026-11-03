@@ -116,6 +116,19 @@ At the end block <!--n:c.issuance_staked_share-->45.2%<!--/n--> of supply (<!--n
 | **(b)** A rule, not a choice | bought NEAR held by a <!--n:c.buybacks_confirmations-->2 of 4<!--/n--> multisig, nothing burned | bought NEAR moves by a published rule to an account no one can spend from, or the protocol fee on `intents.near` is routed there | no rule yet ([Path to rules](#path-to-rules)) | `scripts/control_map.py` |
 | **(c)** Stake spread | the largest account holds <!--n:n3.largest_share-->73.3%<!--/n--> of the NEAR AI farm | the largest account holds less than half | prediction 1 expects at least 70% on 16 November | `scripts/stakers.py` |
 
+**The lever model.** Coverage if each lever were pulled in turn; only the last step is a rule. Every figure
+is derived from `data/numbers.json`, and the [dashboard](https://nikolaskahris-png.github.io/near-thesis-data/dashboard/#p3b)
+re-runs the same formula with the reader's own assumptions (coverage = fees in USD × growth × share kept ÷ NEAR
+price ÷ (NEAR issued × issuance factor)).
+
+| Step | Coverage | Who moves the lever |
+|---|---|---|
+| Today: the buybacks wallets keep <!--n:iv.wallets_share_of_fees_buybacks-->22.6%<!--/n--> of all fees | <!--n:n1.coverage_buybacks-->10.8%<!--/n--> | a <!--n:c.buybacks_confirmations-->2 of 4<!--/n--> multisig; a choice |
+| + the front-end fund (<!--n:iv.wallets_share_of_fees_with_front_end-->34.4%<!--/n--> of all fees) | <!--n:n1.coverage_with_front_end-->16.5%<!--/n--> | its DAO, transfers <!--n:c.front_end_transfer-->2 of 5<!--/n-->; a choice |
+| + every fee kept by NEAR | <!--n:n2.max_coverage-->47.9%<!--/n--> (*provisional*) | the distribution channels off-chain, or the protocol fee by DAO (<!--n:c.intents_fee_change-->3 of 5<!--/n-->); a choice |
+| + HSP-029 at the end of its 24-month ramp | <!--n:n2.hsp029_max_coverage-->74.8%<!--/n--> (*provisional*) | validators with <!--n:c.issuance_upgrade_stake_threshold-->4/5<!--/n--> of stake; a rule once they run it |
+| Full coverage | 100% | fees grow a further <!--n:iv.hsp029_fees_multiple-->×1.3<!--/n-->, or NEAR at or below <!--n:n2.hsp029_equilibrium_price_usd-->$3.64<!--/n--> |
+
 **Weight of each condition.** (a) and (b) decide value. (c) is a signal, not a lever: the farm holds
 <!--n:iv.farm_share_of_stake-->0.23%<!--/n--> of all stake, and stake cannot offset issuance, because stakers are the ones who
 receive the new NEAR. Buybacks can, because they pay for NEAR with money from outside: the fees users pay.

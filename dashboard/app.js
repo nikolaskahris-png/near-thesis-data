@@ -11,6 +11,11 @@ const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "
 
 // Every numbers.json key this script reads (data-n keys in index.html are listed there).
 const KEYS = [
+  "n2.fees_usd_per_day", "n1.new_near_per_day", "iv.fees_conversion_price_usd",
+  "iv.wallets_share_of_fees_with_front_end", "n2.hsp029_max_coverage", "n2.hsp029_equilibrium_price_usd",
+  "iv.hsp029_fees_multiple", "n2.equilibrium_price_usd", "n1.coverage_with_front_end",
+  "c.front_end_transfer", "c.front_end_rules", "c.intents_fee_change", "c.buybacks_confirmations",
+  "c.issuance_upgrade_stake_threshold", "c.issuance_validators_to_pass_upgrade", "iv.issuance_rate_per_year",
   "f6.change1.utc", "f8.quorum_required_venear", "f8.fewest_voters_reaching_quorum",
   "f8.top8_share_of_votes_cast", "n1.coverage_buybacks", "n3.largest_share",
   "n2.max_coverage", "n3.stakers_active",
@@ -33,6 +38,12 @@ const QUERIES = {
       "DefiLlama: NEAR Intents daily fees and revenue; coins.llama.fi: daily NEAR price. " +
       "Issuance and wallets as in the chart above.",
     files: "numbers.json keys f2.fees_near_per_day.*, f2.wallets_kept_near_per_day.*, f2.take_rate.*" },
+  p3b: { sentence: "Each step uses only figures already in numbers.json; the calculator re-runs the same formula in your browser.",
+    query: "python scripts/build_numbers.py --verify\nKeys: n1.coverage_buybacks, n1.coverage_with_front_end, " +
+      "n2.max_coverage, n2.hsp029_max_coverage, iv.hsp029_fees_multiple, n2.hsp029_equilibrium_price_usd; " +
+      "calculator inputs n2.fees_usd_per_day, n1.new_near_per_day, iv.fees_conversion_price_usd, " +
+      "iv.wallets_share_of_fees_with_front_end. HSP-029's target rate is issuance × 16/25.",
+    files: "data/numbers.json" },
   p4: { sentence: "More accounts joined, but one account still holds most of the farm.",
     query: "python scripts/stakers.py --verify\nNearBlocks: receipts of stake to stake.dao (the list of " +
       "accounts); RPC call_function stake.dao get_farm_position for every account at each date's first block",
@@ -347,6 +358,75 @@ function chartVoters(vd) {
   host.appendChild(lg);
 }
 
+// ---------------------------------------------------------------- lever model
+const HSP029_FACTOR = 16 / 25;
+
+function ladder() {
+  const steps = [
+    { name: "Today: the buybacks wallets", key: "n1.coverage_buybacks",
+      who: `multisig ${txt("c.buybacks_confirmations")} holds it; nothing is burned · a choice` },
+    { name: "+ the front-end fund", key: "n1.coverage_with_front_end",
+      who: `its DAO: transfers ${txt("c.front_end_transfer")}, rules ${txt("c.front_end_rules")} · a choice` },
+    { name: "+ every fee kept by NEAR", key: "n2.max_coverage",
+      who: `the distribution channels, off-chain; or the protocol fee, DAO ${txt("c.intents_fee_change")} · a choice` },
+    { name: "+ HSP-029 at the end of its ramp", key: "n2.hsp029_max_coverage", rule: true,
+      who: `validators with ${txt("c.issuance_upgrade_stake_threshold")} of stake, at least ${txt("c.issuance_validators_to_pass_upgrade")} of them · a rule once they run it` },
+  ];
+  const host = $("#ladder");
+  host.innerHTML = steps.map(s => {
+    const v = Math.min(1, val(s.key));
+    return `<div class="step"><span class="nm">${s.name}</span>` +
+      `<div class="track" data-tip="<b>${s.name}</b><br>coverage ${txt(s.key)}"><div class="fill ${s.rule ? "rule" : "choice"}" style="width:${(v * 100).toFixed(2)}%"></div>` +
+      `<span class="v" style="left:calc(${(v * 100).toFixed(2)}% + 8px)">${txt(s.key)}</span><span class="full"></span></div>` +
+      `<span class="who">${s.who}</span></div>`;
+  }).join("") +
+    `<p class="end">Dashed line: full coverage. After the last step, fees must still grow ${txt("iv.hsp029_fees_multiple")}, ` +
+    `or the NEAR price be at or below ${txt("n2.hsp029_equilibrium_price_usd")}. HSP-029 reaches its target rate after a ` +
+    `24-month ramp, beyond this thesis's 12-month horizon.</p>`;
+}
+
+function calculator() {
+  const feesUsd = val("n2.fees_usd_per_day"), issued = val("n1.new_near_per_day");
+  const p0 = val("iv.fees_conversion_price_usd"), k0 = val("iv.wallets_share_of_fees_with_front_end");
+  const coverage = (g, k, p, f) => feesUsd * g * k / p / (issued * f);
+  const breakEven = (g, k, f) => feesUsd * g * k / (issued * f);
+  const host = $("#calc");
+  host.innerHTML = `
+    <label>Share of all fees kept by NEAR's wallets <b id="kv"></b><input id="k" type="range" min="0" max="1" step="any"></label>
+    <label>Growth of fees (in dollars) <b id="gv"></b><input id="g" type="range" min="0.5" max="10" step="0.1"></label>
+    <label>NEAR price <b id="pv"></b><input id="p" type="range" min="0.5" max="15" step="any"></label>
+    <label>Issuance <b id="fv"></b><select id="f"><option value="1">today's rate</option><option value="hsp">HSP-029 target (× 16/25)</option></select></label>
+    <div class="out"><div class="big" id="cv"></div><div class="row" id="cx"></div><div class="chk" id="ck"></div></div>
+    <button type="button" class="reset" id="reset">Back to today's values</button>`;
+  const k = $("#k"), g = $("#g"), p = $("#p"), f = $("#f");
+  const reset = () => { k.value = k0; g.value = 1; p.value = p0; f.value = "1"; draw(); };
+  const draw = () => {
+    const kk = Number(k.value), gg = Number(g.value), pp = Number(p.value), ff = f.value === "hsp" ? HSP029_FACTOR : 1;
+    $("#kv").textContent = fmtPct(kk, 1) + (Math.abs(kk - k0) < 0.005 ? ` (today, with the front-end fund: ${txt("iv.wallets_share_of_fees_with_front_end")})` : "");
+    $("#gv").textContent = "×" + gg.toFixed(1);
+    $("#pv").textContent = "$" + pp.toFixed(2) + (Math.abs(pp - p0) < 0.005 ? ` (the fees' conversion price: ${txt("iv.fees_conversion_price_usd")})` : "");
+    $("#fv").textContent = ff === 1 ? txt("iv.issuance_rate_per_year") + " a year" : "× 16/25";
+    const c = coverage(gg, kk, pp, ff);
+    $("#cv").textContent = "Coverage " + fmtPct(c, 1);
+    $("#cx").innerHTML = `<span>${c >= 1 ? "✓ covers issuance" : "needs ×" + (1 / c).toFixed(1) + " more to cover issuance"}</span>` +
+      `<span>covers issuance at a NEAR price of $${breakEven(gg, kk, ff).toFixed(2)} or less</span>`;
+  };
+  [k, g, p, f].forEach(x => x.addEventListener("input", draw));
+  $("#reset").addEventListener("click", reset);
+  reset();
+  // Self-check: the formula at today's values reproduces numbers.json.
+  const checks = [
+    [fmtPct(coverage(1, 1, p0, 1), 1), txt("n2.max_coverage")],
+    [fmtPct(coverage(1, 1, p0, HSP029_FACTOR), 1), txt("n2.hsp029_max_coverage")],
+    ["$" + breakEven(1, 1, 1).toFixed(2), txt("n2.equilibrium_price_usd")],
+    ["$" + breakEven(1, 1, HSP029_FACTOR).toFixed(2), txt("n2.hsp029_equilibrium_price_usd")],
+    [fmtPct(coverage(1, k0, p0, 1), 1), txt("n1.coverage_with_front_end")],
+  ];
+  const ok = checks.every(([a, b]) => a === b);
+  $("#ck").textContent = (ok ? "✓ " : "✗ ") + "At today's values the formula gives " + checks.map(c => c[0]).join(", ") +
+    (ok ? ": the same as numbers.json." : "; numbers.json says " + checks.map(c => c[1]).join(", ") + ".");
+}
+
 function predictions() {
   $("#preds").innerHTML = PREDICTIONS.map(p => `<div class="pred"><span class="k">Prediction ${p.n} · ${p.when}</span>` +
     `<div>${p.text}</div><div class="st">Holds if ${p.rule}` +
@@ -443,6 +523,8 @@ async function main() {
   chartCoverage(cov);
   chartHistory(parseCSV(histTxt));
   chartCeiling(cov);
+  ladder();
+  calculator();
   chartFarm();
   chartTreasury(ts);
   chartUpgrade(parseCSV(upTxt));

@@ -82,6 +82,18 @@ class TestDashboard(unittest.TestCase):
         for rel in re.findall(r'saved\("([^"]+)"\)', self.js):
             self.assertTrue((REPO / "data" / rel).exists(), rel)
 
+    def test_lever_model_reproduces_numbers_json(self):
+        # the dashboard's calculator: coverage = fees_usd x growth x kept / price / (issued x factor)
+        v = lambda k: float(self.numbers[k]["value"])
+        fees, issued, p0 = v("n2.fees_usd_per_day"), v("n1.new_near_per_day"), v("iv.fees_conversion_price_usd")
+        cov = lambda k, f=1.0: fees * k / p0 / (issued * f)
+        self.assertAlmostEqual(cov(1), v("n2.max_coverage"), places=5)
+        self.assertAlmostEqual(cov(1, 16 / 25), v("n2.hsp029_max_coverage"), places=5)
+        self.assertAlmostEqual(cov(v("iv.wallets_share_of_fees_with_front_end")), v("n1.coverage_with_front_end"), places=5)
+        self.assertAlmostEqual(cov(v("iv.wallets_share_of_fees_buybacks")), v("n1.coverage_buybacks"), places=5)
+        self.assertAlmostEqual(fees / issued, v("n2.equilibrium_price_usd"), places=3)
+        self.assertIn("HSP029_FACTOR = 16 / 25", self.js)
+
     def test_no_external_scripts_or_styles(self):
         self.assertIsNone(re.search(r'<script[^>]+src="https?:', self.html))
         self.assertIsNone(re.search(r'<link[^>]+href="https?:', self.html))

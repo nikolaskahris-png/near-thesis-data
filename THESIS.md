@@ -53,6 +53,12 @@ buybacks offset <!--n:iv.buybacks_offset_points_per_year-->0.27<!--/n--> of thos
   <!--n:f8.timelock_end_utc-->2026-11-16 16:48 UTC<!--/n-->; it becomes a rule only when validators with
   <!--n:c.issuance_upgrade_stake_threshold-->4/5<!--/n--> of stake run a release that includes it.
 
+Pulled in turn, the levers take coverage from <!--n:n1.coverage_buybacks-->10.8%<!--/n--> to
+<!--n:n1.coverage_with_front_end-->16.5%<!--/n--> (the front-end fund), <!--n:n2.max_coverage-->47.9%<!--/n--> (every fee kept) and
+<!--n:n2.hsp029_max_coverage-->74.8%<!--/n--> (HSP-029 at the end of its ramp); only the last is a rule
+([lever model](README.md#investment-view), re-runnable in the
+[dashboard](https://nikolaskahris-png.github.io/near-thesis-data/dashboard/#p3b)).
+
 Issuance, by contrast, is code: at most <!--n:c.issuance_max_inflation_rate-->1/40<!--/n--> a year, changed only by a
 nearcore release that at least <!--n:c.issuance_validators_to_pass_upgrade-->44<!--/n--> of
 <!--n:c.issuance_validators-->381<!--/n--> validators would have to run.

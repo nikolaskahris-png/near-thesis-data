@@ -84,10 +84,13 @@
     "f2.wallets_kept_share_of_revenue.2026-08",
     "f2.wallets_kept_share_of_revenue.2026-09",
     "f2.wallets_kept_share_of_revenue.2026-10",
+    "iv.fees_conversion_price_usd",
     "iv.fees_multiple",
     "iv.hsp029_fees_multiple",
     "iv.hsp029_wallets_multiple_with_front_end",
     "iv.revenue_equilibrium_price_usd",
+    "iv.wallets_share_of_fees_buybacks",
+    "iv.wallets_share_of_fees_with_front_end",
     "n2.defillama_revenue_coverage",
     "n2.equilibrium_price_usd",
     "n2.fees_bps",
@@ -2990,6 +2993,20 @@
       "unit": "share of stake",
       "note": "n3.farm_total_near / c.issuance_total_stake_near (same end block)"
     },
+    "iv.fees_conversion_price_usd": {
+      "value": "4.867425819055425762361128500",
+      "text": "$4.87",
+      "source": "data/fees_2026-10-02_2026-11-01.json",
+      "unit": "USD per NEAR",
+      "derived_from": [
+        "n2.fees_usd_per_day",
+        "n2.fees_near_per_day"
+      ],
+      "note": "n2.fees_usd_per_day / n2.fees_near_per_day: each day's fees at that day's price",
+      "status": "provisional",
+      "window": "2026-10-02 00:00 UTC to 2026-11-01 00:00 UTC",
+      "blocks": "218126921-222491356"
+    },
     "iv.fees_multiple": {
       "value": "2.088053203595627616591670756",
       "text": "×2.1",
@@ -3078,6 +3095,34 @@
         "n1.coverage_with_front_end"
       ],
       "note": "1 / n1.coverage_with_front_end",
+      "window": "2026-10-02 00:00 UTC to 2026-11-01 00:00 UTC",
+      "blocks": "218126921-222491356"
+    },
+    "iv.wallets_share_of_fees_buybacks": {
+      "value": "0.2260630800872806239102972344",
+      "text": "22.6%",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "share of all fees",
+      "derived_from": [
+        "n1.coverage_buybacks",
+        "n2.max_coverage"
+      ],
+      "note": "n1.coverage_buybacks / n2.max_coverage",
+      "status": "provisional",
+      "window": "2026-10-02 00:00 UTC to 2026-11-01 00:00 UTC",
+      "blocks": "218126921-222491356"
+    },
+    "iv.wallets_share_of_fees_with_front_end": {
+      "value": "0.3438146643976488520927513233",
+      "text": "34.4%",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "share of all fees",
+      "derived_from": [
+        "n1.coverage_with_front_end",
+        "n2.max_coverage"
+      ],
+      "note": "n1.coverage_with_front_end / n2.max_coverage",
+      "status": "provisional",
       "window": "2026-10-02 00:00 UTC to 2026-11-01 00:00 UTC",
       "blocks": "218126921-222491356"
     },
