@@ -14,7 +14,10 @@ user pays to the NEAR a holder keeps is set by a few signers or by a company off
 on the other side of the ledger, is a protocol rule. Holding NEAR long term is therefore a bet on three
 conditions, not a claim on today's fees: **(a)** what the buybacks wallets keep approaches the NEAR issued,
 **(b)** the buybacks become a rule rather than a choice, and **(c)** stake in the NEAR AI farm spreads beyond one
-account. Until then: hold NEAR staked with a validator, not for the fees it captures.
+account. Until then: hold NEAR staked with a validator, not for the fees it captures. At today's revenue,
+front-end fund included, the wallets would cover issuance only at a NEAR price of <!--n:iv.revenue_equilibrium_price_usd-->$0.80<!--/n--> or less, against a mean of
+<!--n:f2.mean_price_usd.2026-10-->$4.89<!--/n--> in October: because revenue is earned in dollars and issuance is paid in NEAR, the
+higher the price, the less the wallets cover.
 
 A Breakpoint 2025 debate put the case against buybacks as "the promise of future buybacks is worth exactly as
 much as your faith in those founders", and the case for them as on-chain transparency
@@ -41,7 +44,8 @@ buybacks offset <!--n:iv.buybacks_offset_points_per_year-->0.27<!--/n--> of thos
 - Fees users pay are set off-chain by the distribution channels; 1Click's terms let its operator change them
   "at any time on a prospective basis". The protocol fee on `intents.near` is <!--n:c.intents_fee_pips-->1 pip<!--/n-->,
   changed by a DAO (<!--n:c.intents_fee_change-->3 of 5<!--/n-->).
-- The bought NEAR sits in a <!--n:c.buybacks_confirmations-->2 of 4<!--/n--> multisig and nothing is burned.
+- The bought NEAR sits in a <!--n:c.buybacks_confirmations-->2 of 4<!--/n--> multisig and nothing is burned: with the front-end fund,
+  <!--n:n1.wallets_held_near-->4,109,089<!--/n--> NEAR at the end block that signers can move.
 - One account changed the NEAR AI credits rate <!--n:f6.change1.ratio-->×2.0<!--/n--> on
   <!--n:f6.change1.utc-->2026-09-29 14:21 UTC<!--/n-->, without a proposal of the owner's DAO. That one call moved the
   NEAR price below which the farm's credits pay more than staking with a validator from

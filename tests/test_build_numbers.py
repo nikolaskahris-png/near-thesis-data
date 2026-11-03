@@ -89,7 +89,8 @@ def fake_repo(tmp, fees_end_block=B1, treasury_end=B1, stakers_block=B1):
 ROW = {"date": END, "window_start": START, "block_start": B0, "block_end": B1,
        "new_supply_per_day": "88392.087", "buybacks_per_day": "9569.750",
        "fefunds_per_day": "4984.673", "coverage_buybacks": "0.108265",
-       "coverage_with_fe": "0.164658"}
+       "coverage_with_fe": "0.164658", "block_end_utc": "2026-11-01T00:00:00.175Z",
+       "buybacks_end": "2145247.526", "fefunds_end": "1963841.864"}
 
 
 def fake_row(day_doc, data_root):
@@ -327,6 +328,9 @@ class MarkerTest(unittest.TestCase):
             self.assertEqual(n["c.treasury_near_received"]["text"], "268,973")
             self.assertEqual(n["c.nearai_pool_reward_fee"]["text"], "100%")
             self.assertEqual(n["c.buybacks_confirmations"]["text"], "2 of 4")
+            self.assertEqual(n["n1.buybacks_held_near"]["text"], "2,145,248")
+            self.assertEqual(n["n1.wallets_held_near"]["text"], "4,109,089")
+            self.assertEqual(n["n1.wallets_held_near"]["block"], B1)
             self.assertIn("data/control_map.json", doc["sources"])
             self.assertNotIn("c.dao_member_accounts", n)
             # members of the DAOs, from redacted policies: distinct accounts and overlaps

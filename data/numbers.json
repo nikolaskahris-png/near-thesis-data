@@ -3126,6 +3126,15 @@
       "window": "2026-10-02 00:00 UTC to 2026-11-01 00:00 UTC",
       "blocks": "218126921-222491356"
     },
+    "n1.buybacks_held_near": {
+      "value": "2145247.526",
+      "text": "2,145,248",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "NEAR",
+      "note": "buybacks.multisignature.near + 1csfundsadmin.sputnik-dao.near at the end block",
+      "block": 222491356,
+      "as_of": "2026-11-01T00:00:00.175Z"
+    },
     "n1.buybacks_near_per_day": {
       "value": "9569.750",
       "text": "9,570",
@@ -3150,6 +3159,15 @@
       "unit": "share",
       "window": "2026-10-02 00:00 UTC to 2026-11-01 00:00 UTC",
       "blocks": "218126921-222491356"
+    },
+    "n1.front_end_held_near": {
+      "value": "1963841.864",
+      "text": "1,963,842",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "NEAR",
+      "note": "fefundsadmin.sputnik-dao.near at the end block",
+      "block": 222491356,
+      "as_of": "2026-11-01T00:00:00.175Z"
     },
     "n1.front_end_near_per_day": {
       "value": "4984.673",
@@ -3176,6 +3194,15 @@
       "unit": "NEAR/day",
       "window": "2026-10-02 00:00 UTC to 2026-11-01 00:00 UTC",
       "blocks": "218126921-222491356"
+    },
+    "n1.wallets_held_near": {
+      "value": "4109089.390",
+      "text": "4,109,089",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "NEAR",
+      "note": "n1.buybacks_held_near + n1.front_end_held_near",
+      "block": 222491356,
+      "as_of": "2026-11-01T00:00:00.175Z"
     },
     "n2.defillama_revenue_coverage": {
       "value": "0.164913",

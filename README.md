@@ -8,8 +8,9 @@ few signers or by a company off-chain, not by code. Issuance, on the other side 
 
 **In short**
 
-- **Control.** Each link from the fee a user pays to the NEAR a holder keeps is set by a multisig, a DAO or a
-  company off-chain, not by code: the buybacks wallet needs <!--n:c.buybacks_confirmations-->2 of 4<!--/n--> signatures and burns nothing, one account
+- **Control.** The wallets that hold the bought-back NEAR and the front-end fund held
+  <!--n:n1.wallets_held_near-->4,109,089<!--/n--> NEAR at the end block, and nothing in them is burned: the buybacks wallet moves with
+  <!--n:c.buybacks_confirmations-->2 of 4<!--/n--> signatures, and in the front-end fund's DAO one Admin can change the rules. One account
   changed the NEAR AI credits rate <!--n:f6.change1.ratio-->×2.0<!--/n-->, and <!--n:f8.fewest_voters_reaching_quorum-->6<!--/n--> voters were enough for the quorum of HSP-029, the
   issuance cut. A passed vote becomes a rule only when validators run it, and that step is measured live
   ([control map](#the-control-map-who-can-change-each-link), [Path to rules](#path-to-rules)).
@@ -23,8 +24,10 @@ few signers or by a company off-chain, not by code. Issuance, on the other side 
 - **Verdict.** Hold NEAR staked, not for the fees it captures: supply grows
   <!--n:iv.issuance_rate_per_year-->2.46%<!--/n--> a year, staking pays about
   <!--n:iv.staking_yield_gross-->4.9%<!--/n--> before commissions, and the buybacks offset
-  <!--n:iv.buybacks_offset_points_per_year-->0.27<!--/n--> of those points. The view turns positive only on the
-  conditions in the [Investment view](#investment-view).
+  <!--n:iv.buybacks_offset_points_per_year-->0.27<!--/n--> of those points. At today's revenue, front-end fund included, the wallets would cover issuance only at a
+  NEAR price of <!--n:iv.revenue_equilibrium_price_usd-->$0.80<!--/n--> or less, against a mean of <!--n:f2.mean_price_usd.2026-10-->$4.89<!--/n--> in October
+  (*provisional*): revenue is in dollars and issuance in NEAR, so the higher the price, the less they cover. The view turns positive only on the conditions in
+  the [Investment view](#investment-view).
 - **Check.** One offline command, `python scripts/rebuild.py`, ends with `REBUILD: PASS`; no network ([Check it in two minutes](#check-it-in-two-minutes)).
   Five predictions are anchored on chain: two, with stated probabilities, are judged on 6 and 8 November, before
   the deadline; three on 16 November ([Pre-registration](#pre-registration)).

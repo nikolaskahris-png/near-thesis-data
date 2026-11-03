@@ -139,6 +139,16 @@ def build(data_dir, window_file):
           hsrc, unit="share", **common)
     n.add("n1.coverage_with_front_end", row["coverage_with_fe"], f_pct(row["coverage_with_fe"]),
           hsrc, unit="share", **common)
+    # NEAR held at the end block by the wallets that k-of-n signers can move (balances,
+    # liquid + wNEAR on intents.near, as daily.py reads them).
+    eb = {"block": last_b["height"], "as_of": row["block_end_utc"]}
+    held_b, held_fe = dec(row["buybacks_end"]), dec(row["fefunds_end"])
+    n.add("n1.buybacks_held_near", held_b, f_int(held_b), hsrc, unit="NEAR",
+          note="buybacks.multisignature.near + 1csfundsadmin.sputnik-dao.near at the end block", **eb)
+    n.add("n1.front_end_held_near", held_fe, f_int(held_fe), hsrc, unit="NEAR",
+          note="fefundsadmin.sputnik-dao.near at the end block", **eb)
+    n.add("n1.wallets_held_near", held_b + held_fe, f_int(held_b + held_fe), hsrc, unit="NEAR",
+          note="n1.buybacks_held_near + n1.front_end_held_near", **eb)
     uncovered = dec(row["new_supply_per_day"]) - dec(row["buybacks_per_day"])
     n.add("n1.new_near_not_absorbed_per_day", uncovered, f_int(uncovered), hsrc,
           unit="NEAR/day", note="new NEAR minus NEAR kept by the buybacks wallet; total "
