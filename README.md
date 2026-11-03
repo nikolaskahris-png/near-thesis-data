@@ -100,7 +100,7 @@ At the end block <!--n:c.issuance_staked_share-->45.2%<!--/n--> of supply (<!--n
 |---|---|---|
 | Not staked | none | owns a smaller share as supply grows <!--n:iv.issuance_rate_per_year-->2.46%<!--/n--> a year; the buybacks offset <!--n:iv.buybacks_offset_points_per_year-->0.27<!--/n--> points of it |
 | Staked with a validator | about <!--n:iv.staking_yield_gross-->4.9%<!--/n--> a year, before the validator's commission | keeps pace with issuance |
-| Staked in the NEAR AI farm | none: `nearai.pool.near` keeps <!--n:c.nearai_pool_reward_fee-->100%<!--/n--> of rewards | <!--n:f6.units_per_near_year-->0.24<!--/n--> reward units per NEAR a year, <!--n:f6.usd_per_reward_unit-->$1.00<!--/n--> of credits each (off-chain setting) |
+| Staked in the NEAR AI farm | none: `nearai.pool.near` keeps <!--n:c.nearai_pool_reward_fee-->100%<!--/n--> of rewards | <!--n:f6.units_per_near_year-->0.24<!--/n--> reward units per NEAR a year, <!--n:f6.usd_per_reward_unit-->$1.00<!--/n--> of credits each (off-chain setting); worth more than a validator's rewards only while NEAR is below <!--n:iv.farm_breakeven_price_usd-->$4.90<!--/n--> |
 
 | Condition | Today | Turns positive when | How far | Measured by |
 |---|---|---|---|---|
@@ -128,6 +128,8 @@ Values are read at block 222,491,356 (`scripts/control_map.py`, `data/control_ma
 proposal of the five DAOs involved (`scripts/control_history.py`, `data/control_history.json`) and key changes from
 NearBlocks, checked against the chain. Multisigs and DAOs are a common way to run protocol funds; the point is what a
 holder relies on today, and the mechanism that could turn each link into a rule ([Path to rules](#path-to-rules)).
+The <!--n:c.dao_count-->5<!--/n--> DAOs have <!--n:c.dao_member_accounts-->22<!--/n--> member accounts, and the number that sit in more than one is <!--n:c.dao_members_in_two_or_more-->0<!--/n-->
+(counted from the redacted policies, where each account is a SHA-256 tag).
 
 ```mermaid
 flowchart TD
@@ -223,7 +225,12 @@ The farm pays reward units; the contract has no USD conversion. The rate went fr
 <!--n:f6.edit_price_receipts_all_time-->1<!--/n--> `edit_price` call, the only one in the contract's history, signed by the pool's catalog
 manager without a proposal of the owner's DAO. NEAR AI Cloud pays <!--n:f6.usd_per_reward_unit-->$1.00<!--/n--> of credits per unit (an off-chain
 setting read on 2026-11-01 in a signed-in session, saved in `data/offchain/`), so the largest position receives
-<!--n:f6.largest_usd_per_day-->$657.1<!--/n--> of credits a day; whether the credits are used is not visible.
+<!--n:f6.largest_usd_per_day-->$657.1<!--/n--> of credits a day; whether the credits are used is not visible. At the staking
+yield of <!--n:iv.staking_yield_gross-->4.9%<!--/n-->, a staked NEAR earns as much in credits as in a validator's rewards (before
+commission) at a NEAR price of <!--n:iv.farm_breakeven_price_usd-->$4.90<!--/n-->; with the rate before its only change, at
+<!--n:iv.farm_breakeven_price_before_usd-->$2.45<!--/n-->. The mean NEAR price was <!--n:f2.mean_price_usd.2026-08-->$1.74<!--/n--> in August,
+<!--n:f2.mean_price_usd.2026-09-->$3.28<!--/n--> in September and <!--n:f2.mean_price_usd.2026-10-->$4.89<!--/n--> in October (*provisional*): the
+rate does not follow the price, and the one change moved the break-even to about October's price.
 
 **6. NEAR AI Agents subscriptions are a separate product.** They are locks on `stake.dao`: <!--n:f7.locks-->86<!--/n--> locks
 from <!--n:f7.lock_accounts-->83<!--/n--> accounts; NEAR in Active locks is <!--n:f7.active_lock_near_vs_farm-->1.1%<!--/n--> of the farm. Why

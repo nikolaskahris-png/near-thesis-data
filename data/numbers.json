@@ -105,6 +105,11 @@
     "data/hsp029_voters.json": "1ccc3bf7b0924d4799bc5f9bd08278d78f65ac4341e989b4875c87fb49ad063c",
     "data/offchain/nearai_cloud_farm_config.json": "4fab756a3e94d72a2db918e8f3f47526a5da3a2d41990ba2f479406ac22b4214",
     "data/offchain/nearai_cloud_farm_config_20261101T205837Z.json": "95bb1adc1b3eb738cdc19c7622e5a3641edce4ea9653ced4ba6e32439c5f253d",
+    "data/raw/redacted/control/1csfundsadmin.sputnik-dao.near_get_policy.json": "4170c345c39f028787bd46da4f3748bce4adc929e2412988e7dbab3a7811177d",
+    "data/raw/redacted/control/fefundsadmin.sputnik-dao.near_get_policy.json": "7771c22b179e418ea8225c37977494d2ed0b8eccf774deb3d7301924357a97af",
+    "data/raw/redacted/control/hos-root.sputnik-dao.near_get_policy.json": "8188cbd4d97cd7240f51058208e9b6b18a2eab0bb88d32657193b4d78354f815",
+    "data/raw/redacted/control/intents.sputnik-dao.near_get_policy.json": "7bea607448f9a04600446a159aca73964de7dfe14f059e83df0089198d5eda7a",
+    "data/raw/redacted/control/jasnah-treasury.sputnik-dao.near_get_policy.json": "eab0d0f5d83d23f747933b4eee1dab5a3a17e1c1f78e839122ace1c71645a943",
     "data/stakers/2026-08-01.json": "6c0d7643ed4d8e74bd61bb2e7e4de0ef509039d63a63fff8f2a98293357289c9",
     "data/stakers/2026-08-15.json": "928f7b8ef99aeb9f492731d94a9c84673dff9fcb98197e914b894f3737039ec3",
     "data/stakers/2026-09-01.json": "1d922db1dc329e170dabb27aab6040a386d802d9cdc30242a364adcdcc2b4605",
@@ -203,6 +208,30 @@
       "text": "0",
       "source": "data/control_map.json",
       "unit": "keys",
+      "block": 222491356,
+      "as_of": "2026-11-01T00:00:00Z"
+    },
+    "c.dao_count": {
+      "value": "5",
+      "text": "5",
+      "source": "data/control_map.json",
+      "unit": "DAOs",
+      "block": 222491356,
+      "as_of": "2026-11-01T00:00:00Z"
+    },
+    "c.dao_member_accounts": {
+      "value": "22",
+      "text": "22",
+      "source": "data/control_map.json",
+      "unit": "accounts",
+      "block": 222491356,
+      "as_of": "2026-11-01T00:00:00Z"
+    },
+    "c.dao_members_in_two_or_more": {
+      "value": "0",
+      "text": "0",
+      "source": "data/control_map.json",
+      "unit": "accounts",
       "block": 222491356,
       "as_of": "2026-11-01T00:00:00Z"
     },
@@ -2819,6 +2848,34 @@
       "note": "n1.coverage_buybacks x iv.issuance_rate_per_year",
       "window": "2026-10-02 00:00 UTC to 2026-11-01 00:00 UTC",
       "blocks": "218126921-222491356"
+    },
+    "iv.farm_breakeven_price_before_usd": {
+      "value": "2.448887510091819014342915631",
+      "text": "$2.45",
+      "source": "data/offchain/nearai_cloud_farm_config_20261101T205837Z.json",
+      "unit": "USD per NEAR",
+      "derived_from": [
+        "f6.change1.units_per_near_year_before",
+        "f6.usd_per_reward_unit",
+        "iv.staking_yield_gross"
+      ],
+      "note": "the same break-even with the rate before its only change, at today's staking yield",
+      "status": "off-chain",
+      "as_of": "2026-11-01T20:58:37Z"
+    },
+    "iv.farm_breakeven_price_usd": {
+      "value": "4.897775020183638028685831263",
+      "text": "$4.90",
+      "source": "data/offchain/nearai_cloud_farm_config_20261101T205837Z.json",
+      "unit": "USD per NEAR",
+      "derived_from": [
+        "f6.units_per_near_year",
+        "f6.usd_per_reward_unit",
+        "iv.staking_yield_gross"
+      ],
+      "note": "below this NEAR price the farm's credits pay more than staking with a validator (before commission); above it, less",
+      "status": "off-chain",
+      "as_of": "2026-11-01T20:58:37Z"
     },
     "iv.farm_share_of_stake": {
       "value": "0.002304532727749350888574963677",

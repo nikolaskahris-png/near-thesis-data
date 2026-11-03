@@ -583,6 +583,29 @@ def build(data_dir, window_file):
         fc = L["farm_contract"]
         add_int("c.farm_contract_full_access_keys", fc["full_access_keys"], "keys")
         add_int("c.farm_contract_guardians", fc["guardians"], "accounts")
+        # Members of the five DAOs that run the links, from the redacted get_policy copies
+        # (accounts as sha256 tags, the same tag for the same account): distinct accounts,
+        # and how many sit in more than one DAO. Counts only; no list is published.
+        pol = {k.split("/")[0]: f for k, f in cm.get("raw_files", {}).items()
+               if k.endswith("/get_policy") and "redacted" in f}
+        if pol:
+            seen = {}
+            for dao, f in sorted(pol.items()):
+                rp = root / f["redacted"]["path"]
+                if not rp.exists() or sha256_file(rp) != f["redacted"]["sha256"]:
+                    problems.append(f"control map: redacted policy of {dao} missing or changed")
+                    continue
+                n.source(rp)
+                roles = json.loads(rp.read_text(encoding="utf-8"))["redacted_value"]["roles"]
+                for r in roles:
+                    kind = r["kind"]
+                    if isinstance(kind, dict) and "Group" in kind:
+                        for acct in kind["Group"]:
+                            seen.setdefault(acct, set()).add(dao)
+            add_int("c.dao_count", len(pol), "DAOs")
+            add_int("c.dao_member_accounts", len(seen), "accounts")
+            add_int("c.dao_members_in_two_or_more", sum(1 for d in seen.values() if len(d) > 1),
+                    "accounts")
     else:
         n.add("c.intents_fee_change", None, None, None, status="pending",
               note="control_map.py has not run")
@@ -750,6 +773,26 @@ def build(data_dir, window_file):
         n.add("iv.farm_share_of_stake", farm / stake, f_pct(farm / stake, 2),
               n.items["n3.farm_total_near"]["source"], unit="share of stake",
               note="n3.farm_total_near / c.issuance_total_stake_near (same end block)")
+        # NEAR price at which a farm staker's credits are worth as much as a validator's
+        # NEAR rewards (before commission): credits per NEAR a year / staking yield.
+        if "f6.usd_per_reward_unit" in n.items:
+            usd = dec(n.items["f6.usd_per_reward_unit"]["value"])
+            oc = {k: n.items["f6.usd_per_reward_unit"][k] for k in ("status", "as_of")}
+            units = dec(n.items["f6.units_per_near_year"]["value"])
+            n.add("iv.farm_breakeven_price_usd", units * usd / y, f_usd(units * usd / y, 2),
+                  n.items["f6.usd_per_reward_unit"]["source"], unit="USD per NEAR",
+                  derived_from=["f6.units_per_near_year", "f6.usd_per_reward_unit",
+                                "iv.staking_yield_gross"],
+                  note="below this NEAR price the farm's credits pay more than staking with a "
+                       "validator (before commission); above it, less", **oc)
+            if "f6.change1.units_per_near_year_before" in n.items:
+                ub = dec(n.items["f6.change1.units_per_near_year_before"]["value"])
+                n.add("iv.farm_breakeven_price_before_usd", ub * usd / y, f_usd(ub * usd / y, 2),
+                      n.items["f6.usd_per_reward_unit"]["source"], unit="USD per NEAR",
+                      derived_from=["f6.change1.units_per_near_year_before",
+                                    "f6.usd_per_reward_unit", "iv.staking_yield_gross"],
+                      note="the same break-even with the rate before its only change, at "
+                           "today's staking yield", **oc)
     derive("iv.hsp029_wallets_multiple_with_front_end", (1 / cov_fe) * (max_cov / hsp_cov),
            ["n1.coverage_with_front_end", "n2.max_coverage", "n2.hsp029_max_coverage"],
            "(1 / n1.coverage_with_front_end) x issuance ratio of the HSP-029 scenario "

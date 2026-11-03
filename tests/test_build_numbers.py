@@ -115,6 +115,35 @@ def fake_stats(path, data_root):
              "largest_units_per_day": "657.084189", "farm_units_per_day": "896.493000"}, [])
 
 
+def control_links():
+    kn = lambda k, n, role: {"k": k, "n": n, "role": role}
+    ms = {"confirmations": 2, "member_keys": 4, "full_access_keys": 0}
+    links = {
+        "intents_protocol_fee": {"value": {"fee_pips": 1, "fee_percent": "0.0001"},
+                                 "fees_manager_grantees": {"public": [], "others": 0, "total": 0},
+                                 "via": {"intents.sputnik-dao.near": kn(3, 5, "council")}},
+        "intents_code": {"controller": {"add_release": {"intents.sputnik-dao.near": kn(3, 5, "council")},
+                                        "updater_grantees": {"total": 1},
+                                        "downgrader_grantees": {"total": 2}},
+                         "code_changes": 20, "last_upgrade_utc": "2026-10-07T03:53:17.418572403Z",
+                         "deployed_version": "0.4.5"},
+        "buybacks_wallet": {"multisig": ms},
+        "wallet_1cs": {"dao": kn(2, 4, "Approver"), "rules": kn(2, 4, "Admin")},
+        "wallet_front_end": {"dao": kn(2, 5, "Approver"), "rules": kn(1, 5, "Admin")},
+        "issuance": {"max_inflation_rate": "1/40", "protocol_upgrade_stake_threshold": "4/5",
+                     "validators": 381, "validators_to_reach_threshold": 44,
+                     "validators_to_block_upgrade": 5, "validators_to_reach_two_thirds": 27,
+                     "validators_to_exceed_one_third": 9, "largest_validator_share": "0.056168"},
+        "protocol_treasury": {"share_of_new_supply": "0.101432", "balance_change_near": "268972.864",
+                              "reported_protocol_reward_rate": "0/1", "multisig": ms},
+        "hsp_voting": {"owner_dao": kn(3, 5, "Admin"), "reviewers": 5, "guardians": 5},
+        "nearai_pool_rewards": {"reward_fee": "100/100", "owner_dao": kn(2, 3, "council"),
+                                "owner_rules": kn(2, 3, "council")},
+        "farm_contract": {"full_access_keys": 2, "guardians": 5},
+    }
+    return links
+
+
 class FormatTest(unittest.TestCase):
     def test_formats(self):
         self.assertEqual(bn.f_pct("0.108265"), "10.8%")
@@ -273,31 +302,7 @@ class MarkerTest(unittest.TestCase):
 
 
     def test_control_map(self):
-        kn = lambda k, n, role: {"k": k, "n": n, "role": role}
-        ms = {"confirmations": 2, "member_keys": 4, "full_access_keys": 0}
-        links = {
-            "intents_protocol_fee": {"value": {"fee_pips": 1, "fee_percent": "0.0001"},
-                                     "fees_manager_grantees": {"public": [], "others": 0, "total": 0},
-                                     "via": {"intents.sputnik-dao.near": kn(3, 5, "council")}},
-            "intents_code": {"controller": {"add_release": {"intents.sputnik-dao.near": kn(3, 5, "council")},
-                                            "updater_grantees": {"total": 1},
-                                            "downgrader_grantees": {"total": 2}},
-                             "code_changes": 20, "last_upgrade_utc": "2026-10-07T03:53:17.418572403Z",
-                             "deployed_version": "0.4.5"},
-            "buybacks_wallet": {"multisig": ms},
-            "wallet_1cs": {"dao": kn(2, 4, "Approver"), "rules": kn(2, 4, "Admin")},
-            "wallet_front_end": {"dao": kn(2, 5, "Approver"), "rules": kn(1, 5, "Admin")},
-            "issuance": {"max_inflation_rate": "1/40", "protocol_upgrade_stake_threshold": "4/5",
-                         "validators": 381, "validators_to_reach_threshold": 44,
-                         "validators_to_block_upgrade": 5, "validators_to_reach_two_thirds": 27,
-                         "validators_to_exceed_one_third": 9, "largest_validator_share": "0.056168"},
-            "protocol_treasury": {"share_of_new_supply": "0.101432", "balance_change_near": "268972.864",
-                                  "reported_protocol_reward_rate": "0/1", "multisig": ms},
-            "hsp_voting": {"owner_dao": kn(3, 5, "Admin"), "reviewers": 5, "guardians": 5},
-            "nearai_pool_rewards": {"reward_fee": "100/100", "owner_dao": kn(2, 3, "council"),
-                                    "owner_rules": kn(2, 3, "council")},
-            "farm_contract": {"full_access_keys": 2, "guardians": 5},
-        }
+        links = control_links()
         with tempfile.TemporaryDirectory() as tmp, \
                 mock.patch.object(bn.stakers, "compute", fake_stats), \
                 mock.patch.object(bn.daily, "build_row", fake_row):
@@ -323,6 +328,35 @@ class MarkerTest(unittest.TestCase):
             self.assertEqual(n["c.nearai_pool_reward_fee"]["text"], "100%")
             self.assertEqual(n["c.buybacks_confirmations"]["text"], "2 of 4")
             self.assertIn("data/control_map.json", doc["sources"])
+            self.assertNotIn("c.dao_member_accounts", n)
+            # members of the DAOs, from redacted policies: distinct accounts and overlaps
+            import hashlib
+            raw = {}
+            for dao, groups in (("a.sputnik-dao.near", [["sha256:1", "sha256:2"], ["sha256:3"]]),
+                                ("b.sputnik-dao.near", [["sha256:3", "sha256:4"]]),
+                                ("c.sputnik-dao.near", [["sha256:5"]])):
+                rel = f"data/raw/redacted/control/{dao}_get_policy.json"
+                body = json.dumps({"redacted_value": {"roles": [
+                    {"name": "r", "kind": {"Group": g}} for g in groups] + [
+                    {"name": "all", "kind": "Everyone"}]}}).encode()
+                (Path(tmp) / rel).parent.mkdir(parents=True, exist_ok=True)
+                (Path(tmp) / rel).write_bytes(body)
+                raw[f"{dao}/get_policy"] = {"path": "data/private/x", "private": True,
+                                            "redacted": {"path": rel,
+                                                         "sha256": hashlib.sha256(body).hexdigest()}}
+            cm["raw_files"] = raw
+            write(data / "control_map.json", cm)
+            doc, problems = bn.build(data, window)
+            self.assertEqual(problems, [])
+            n = doc["numbers"]
+            self.assertEqual(n["c.dao_count"]["text"], "3")
+            self.assertEqual(n["c.dao_member_accounts"]["text"], "5")
+            self.assertEqual(n["c.dao_members_in_two_or_more"]["text"], "1")
+            raw["c.sputnik-dao.near/get_policy"]["redacted"]["sha256"] = "0" * 64
+            write(data / "control_map.json", cm)
+            self.assertIn("control map: redacted policy of c.sputnik-dao.near missing or changed",
+                          bn.build(data, window)[1])
+            del cm["raw_files"]
             cm["block"]["height"] = B1 + 1
             cm["checks"]["a"] = False
             write(data / "control_map.json", cm)
@@ -385,6 +419,21 @@ class MarkerTest(unittest.TestCase):
             self.assertEqual(n["f6.usd_per_near_month"]["text"], "$0.02")
             self.assertEqual(n["f6.largest_usd_per_day"]["text"], "$657.1")
             self.assertNotIn("f6.usd_per_reward_unit", doc["provisional_or_pending"])
+            self.assertNotIn("iv.farm_breakeven_price_usd", n)  # needs the validators' stake
+            links = control_links()
+            links["issuance"].update({"total_stake_near": "592027869.065",
+                                      "staked_share_of_supply": "0.451767"})
+            write(data / "control_map.json",
+                  {"block": {"height": B1, "timestamp_utc": "2026-11-01T00:00:00.17Z"},
+                   "window_file": f"data/window_{START}_{END}.json", "checks": {"a": True},
+                   "links": links})
+            doc, problems = bn.build(data, window)
+            self.assertEqual(problems, [])
+            n = doc["numbers"]
+            y = bn.dec(n["iv.staking_yield_gross"]["value"])
+            units = bn.dec(n["f6.units_per_near_year"]["value"])
+            self.assertEqual(bn.dec(n["iv.farm_breakeven_price_usd"]["value"]), units / y)
+            self.assertEqual(n["iv.farm_breakeven_price_usd"]["status"], "off-chain")
             meta["sha256"] = "0" * 64
             write(data / "offchain" / "nearai_cloud_farm_config.json", meta)
             self.assertIn("off-chain NEAR AI Cloud config: sha256 differs from its record",

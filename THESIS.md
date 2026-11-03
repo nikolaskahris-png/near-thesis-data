@@ -43,7 +43,9 @@ buybacks offset <!--n:iv.buybacks_offset_points_per_year-->0.27<!--/n--> of thos
   changed by a DAO (<!--n:c.intents_fee_change-->3 of 5<!--/n-->).
 - The bought NEAR sits in a <!--n:c.buybacks_confirmations-->2 of 4<!--/n--> multisig and nothing is burned.
 - One account changed the NEAR AI credits rate <!--n:f6.change1.ratio-->×2.0<!--/n--> on
-  <!--n:f6.change1.utc-->2026-09-29 14:21 UTC<!--/n-->, without a proposal of the owner's DAO.
+  <!--n:f6.change1.utc-->2026-09-29 14:21 UTC<!--/n-->, without a proposal of the owner's DAO. That one call moved the
+  NEAR price below which the farm's credits pay more than staking with a validator from
+  <!--n:iv.farm_breakeven_price_before_usd-->$2.45<!--/n--> to <!--n:iv.farm_breakeven_price_usd-->$4.90<!--/n-->.
 - `treasury.near` paid out <!--n:ts.year_out_near-->30,171,200<!--/n--> NEAR in 2026, all in April and May, each payment
   a <!--n:c.treasury_confirmations-->2 of 4<!--/n--> multisig confirmation.
 - <!--n:f8.fewest_voters_reaching_quorum-->6<!--/n--> voters were enough for the quorum of HSP-029, the issuance cut. The
@@ -83,7 +85,9 @@ What weakens the claim, as measured by the same scripts:
    cannot offset issuance, because stakers receive the new NEAR. It stays because it was pre-registered: it tests
    whether the AI narrative brings broad stake, and it is a case where one account sets the economics of a
    product.
-6. **Multisigs and DAOs are a common way to run protocol funds.** That NEAR's links are run this way is not, by
+6. **Control is spread, and multisigs and DAOs are a common way to run protocol funds.** The
+   <!--n:c.dao_count-->5<!--/n--> DAOs that run the links have <!--n:c.dao_member_accounts-->22<!--/n--> member accounts, and the
+   number that sit in more than one is <!--n:c.dao_members_in_two_or_more-->0<!--/n-->. That NEAR's links are run this way is not, by
    itself, a sign of misuse; the claim is only about what a holder can rely on today.
 
 ## What would change our mind
