@@ -23,7 +23,7 @@ few signers or by a company off-chain, not by code. Issuance, on the other side 
   every fee kept, fees to grow <!--n:iv.fees_multiple-->×2.1<!--/n-->.
 - **Verdict.** Hold NEAR staked, not for the fees it captures: supply grows
   <!--n:iv.issuance_rate_per_year-->2.46%<!--/n--> a year, staking pays about
-  <!--n:iv.staking_yield_gross-->4.9%<!--/n--> before commissions, and the buybacks offset
+  <!--n:iv.staking_yield_gross-->5.0%<!--/n--> before commissions, and the buybacks offset
   <!--n:iv.buybacks_offset_points_per_year-->0.27<!--/n--> of those points. At today's revenue, front-end fund included, the wallets would cover issuance only at a
   NEAR price of <!--n:iv.revenue_equilibrium_price_usd-->$0.80<!--/n--> or less, against a mean of <!--n:f2.mean_price_usd.2026-10-->$4.89<!--/n--> in October
   (*provisional*): revenue is in dollars and issuance in NEAR, so the higher the price, the less they cover. The view turns positive only on the conditions in
@@ -110,8 +110,8 @@ At the end block <!--n:c.issuance_staked_share-->45.2%<!--/n--> of supply (<!--n
 | Holder | NEAR received | What changes |
 |---|---|---|
 | Not staked | none | owns a smaller share as supply grows <!--n:iv.issuance_rate_per_year-->2.46%<!--/n--> a year; the buybacks offset <!--n:iv.buybacks_offset_points_per_year-->0.27<!--/n--> points of it |
-| Staked with a validator | about <!--n:iv.staking_yield_gross-->4.9%<!--/n--> a year, before the validator's commission | keeps pace with issuance |
-| Staked in the NEAR AI farm | none: `nearai.pool.near` keeps <!--n:c.nearai_pool_reward_fee-->100%<!--/n--> of rewards | <!--n:f6.units_per_near_year-->0.24<!--/n--> reward units per NEAR a year, <!--n:f6.usd_per_reward_unit-->$1.00<!--/n--> of credits each (off-chain setting); worth more than a validator's rewards only while NEAR is below <!--n:iv.farm_breakeven_price_usd-->$4.90<!--/n--> |
+| Staked with a validator | about <!--n:iv.staking_yield_gross-->5.0%<!--/n--> a year, before the validator's commission | keeps pace with issuance |
+| Staked in the NEAR AI farm | none: `nearai.pool.near` keeps <!--n:c.nearai_pool_reward_fee-->100%<!--/n--> of rewards | <!--n:f6.units_per_near_year-->0.24<!--/n--> reward units per NEAR a year, <!--n:f6.usd_per_reward_unit-->$1.00<!--/n--> of credits each (off-chain setting); worth more than a validator's rewards only while NEAR is below <!--n:iv.farm_breakeven_price_usd-->$4.84<!--/n--> |
 
 | Condition | Today | Turns positive when | How far | Measured by |
 |---|---|---|---|---|
@@ -254,9 +254,9 @@ The farm pays reward units; the contract has no USD conversion. The rate went fr
 manager without a proposal of the owner's DAO. NEAR AI Cloud pays <!--n:f6.usd_per_reward_unit-->$1.00<!--/n--> of credits per unit (an off-chain
 setting read on 2026-11-01 in a signed-in session, saved in `data/offchain/`), so the largest position receives
 <!--n:f6.largest_usd_per_day-->$657.1<!--/n--> of credits a day; whether the credits are used is not visible. At the staking
-yield of <!--n:iv.staking_yield_gross-->4.9%<!--/n-->, a staked NEAR earns as much in credits as in a validator's rewards (before
-commission) at a NEAR price of <!--n:iv.farm_breakeven_price_usd-->$4.90<!--/n-->; with the rate before its only change, at
-<!--n:iv.farm_breakeven_price_before_usd-->$2.45<!--/n-->. The mean NEAR price was <!--n:f2.mean_price_usd.2026-08-->$1.74<!--/n--> in August,
+yield of <!--n:iv.staking_yield_gross-->5.0%<!--/n-->, a staked NEAR earns as much in credits as in a validator's rewards (before
+commission) at a NEAR price of <!--n:iv.farm_breakeven_price_usd-->$4.84<!--/n-->; with the rate before its only change, at
+<!--n:iv.farm_breakeven_price_before_usd-->$2.42<!--/n-->. The mean NEAR price was <!--n:f2.mean_price_usd.2026-08-->$1.74<!--/n--> in August,
 <!--n:f2.mean_price_usd.2026-09-->$3.28<!--/n--> in September and <!--n:f2.mean_price_usd.2026-10-->$4.89<!--/n--> in October (*provisional*): the
 rate does not follow the price, and the one change moved the break-even to about October's price.
 

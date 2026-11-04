@@ -455,8 +455,27 @@ class MarkerTest(unittest.TestCase):
                    "links": links})
             doc, problems = bn.build(data, window)
             self.assertEqual(problems, [])
+            self.assertNotIn("iv.staking_yield_gross", doc["numbers"])  # needs gross minting
+            write(data / "burn.json",
+                  {"window_file": f"data/window_{START}_{END}.json",
+                   "results": {"epochs": 101, "minted_near_per_day": "89365.660",
+                               "burnt_near_per_day": "973.573", "net_near_per_day": "88392.087",
+                               "burnt_share_of_minted": "0.010894",
+                               "max_mint_near_per_day": "89515.483",
+                               "minted_share_of_max": "0.998326",
+                               "hsp027_extra_burn_max_near_per_day": "417.246",
+                               "hsp027_extra_max_share_of_minted": "0.004669"}})
+            doc, problems = bn.build(data, window)
+            self.assertEqual(problems, [])
             n = doc["numbers"]
             y = bn.dec(n["iv.staking_yield_gross"]["value"])
+            to_treasury = bn.dec("88392.087") * bn.dec(n["c.treasury_share_of_new_supply"]["value"])
+            self.assertEqual(y, (bn.dec("89365.660") - to_treasury) * bn.dec("365.25")
+                             / bn.dec("592027869.065"))
+            # gross, not net: gas burnt is not taken out of what validators receive
+            self.assertGreater(y, bn.dec("88392.087") * bn.dec("365.25")
+                               * (1 - bn.dec(n["c.treasury_share_of_new_supply"]["value"]))
+                               / bn.dec("592027869.065"))
             units = bn.dec(n["f6.units_per_near_year"]["value"])
             self.assertEqual(bn.dec(n["iv.farm_breakeven_price_usd"]["value"]), units / y)
             self.assertEqual(n["iv.farm_breakeven_price_usd"]["status"], "off-chain")

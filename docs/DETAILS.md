@@ -28,8 +28,8 @@ way: `python scripts/build_numbers.py --check docs/DETAILS.md`.
 
 ## Investment view: HSP-029 and the staking yield
 
-The staking yield is new NEAR per year not kept by `treasury.near`, divided by the validators' stake; validator
-commissions and downtime lower it.
+The staking yield is gross NEAR minted per year (before gas is burnt, since validators are paid from minting)
+minus what `treasury.near` keeps, divided by the validators' stake; validator commissions and downtime lower it.
 
 **At HSP-029's target rate** (1.6% a year instead of 2.5%: issuance ×16/25), what the wallets keep must grow
 <!--n:iv.hsp029_wallets_multiple_with_front_end-->×3.9<!--/n--> (front-end fund included), or, with every fee kept,

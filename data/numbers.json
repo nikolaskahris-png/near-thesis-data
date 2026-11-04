@@ -3045,8 +3045,8 @@
       "blocks": "218126921-222491356"
     },
     "iv.farm_breakeven_price_before_usd": {
-      "value": "2.448887510091819014342915631",
-      "text": "$2.45",
+      "value": "2.419233598384671344379046557",
+      "text": "$2.42",
       "source": "data/offchain/nearai_cloud_farm_config_20261101T205837Z.json",
       "unit": "USD per NEAR",
       "derived_from": [
@@ -3059,8 +3059,8 @@
       "as_of": "2026-11-01T20:58:37Z"
     },
     "iv.farm_breakeven_price_usd": {
-      "value": "4.897775020183638028685831263",
-      "text": "$4.90",
+      "value": "4.838467196769342688758093113",
+      "text": "$4.84",
       "source": "data/offchain/nearai_cloud_farm_config_20261101T205837Z.json",
       "unit": "USD per NEAR",
       "derived_from": [
@@ -3154,11 +3154,17 @@
       "blocks": "218126921-222491356"
     },
     "iv.staking_yield_gross": {
-      "value": "0.04900184247152320162034634200",
-      "text": "4.9%",
+      "value": "0.04960248571288209479318052819",
+      "text": "5.0%",
       "source": "data/control_map.json",
       "unit": "share of stake per year",
-      "note": "new NEAR per year not kept by treasury.near / stake of the current validators; before validator commissions and downtime"
+      "derived_from": [
+        "b.minted_near_per_day",
+        "n1.new_near_per_day",
+        "c.treasury_share_of_new_supply",
+        "c.issuance_total_stake_near"
+      ],
+      "note": "(gross NEAR minted per day - NEAR per day kept by treasury.near) x 365.25 / stake of the current validators; before validator commissions and downtime"
     },
     "iv.wallets_multiple_buybacks": {
       "value": "9.236595390938899921488939177",

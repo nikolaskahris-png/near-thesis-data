@@ -49,7 +49,7 @@ buybacks offset <!--n:iv.buybacks_offset_points_per_year-->0.27<!--/n--> of thos
 - One account changed the NEAR AI credits rate <!--n:f6.change1.ratio-->×2.0<!--/n--> on
   <!--n:f6.change1.utc-->2026-09-29 14:21 UTC<!--/n-->, without a proposal of the owner's DAO. That one call moved the
   NEAR price below which the farm's credits pay more than staking with a validator from
-  <!--n:iv.farm_breakeven_price_before_usd-->$2.45<!--/n--> to <!--n:iv.farm_breakeven_price_usd-->$4.90<!--/n-->.
+  <!--n:iv.farm_breakeven_price_before_usd-->$2.42<!--/n--> to <!--n:iv.farm_breakeven_price_usd-->$4.84<!--/n-->.
 - `treasury.near` paid out <!--n:ts.year_out_near-->30,171,200<!--/n--> NEAR in 2026, all in April and May, each payment
   a <!--n:c.treasury_confirmations-->2 of 4<!--/n--> multisig confirmation.
 - <!--n:f8.fewest_voters_reaching_quorum-->6<!--/n--> voters were enough for the quorum of HSP-029, the issuance cut. The

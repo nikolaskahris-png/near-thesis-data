@@ -817,16 +817,22 @@ def build(data_dir, window_file):
           window=common["window"], blocks=common["blocks"])
     if "c.issuance_total_stake_near" in n.items:
         stake = dec(n.items["c.issuance_total_stake_near"]["value"])
-        to_val = 1 - dec(n.items["c.treasury_share_of_new_supply"]["value"])
-        y = new_day * dec("365.25") * to_val / stake
-        n.add("iv.staking_yield_gross", y, f_pct(y), n.items["c.issuance_total_stake_near"]["source"],
-              unit="share of stake per year",
-              note="new NEAR per year not kept by treasury.near / stake of the current "
-                   "validators; before validator commissions and downtime")
         farm = dec(n.items["n3.farm_total_near"]["value"])
         n.add("iv.farm_share_of_stake", farm / stake, f_pct(farm / stake, 2),
               n.items["n3.farm_total_near"]["source"], unit="share of stake",
               note="n3.farm_total_near / c.issuance_total_stake_near (same end block)")
+    if "c.issuance_total_stake_near" in n.items and "b.minted_near_per_day" in n.items:
+        # Validators are paid from gross minting (before gas is burnt), less treasury.near's
+        # reward; net issuance would understate what they receive by the gas burnt.
+        to_treasury = new_day * dec(n.items["c.treasury_share_of_new_supply"]["value"])
+        to_val = dec(n.items["b.minted_near_per_day"]["value"]) - to_treasury
+        y = to_val * dec("365.25") / stake
+        n.add("iv.staking_yield_gross", y, f_pct(y), n.items["c.issuance_total_stake_near"]["source"],
+              unit="share of stake per year",
+              derived_from=["b.minted_near_per_day", "n1.new_near_per_day",
+                            "c.treasury_share_of_new_supply", "c.issuance_total_stake_near"],
+              note="(gross NEAR minted per day - NEAR per day kept by treasury.near) x 365.25 / "
+                   "stake of the current validators; before validator commissions and downtime")
         # NEAR price at which a farm staker's credits are worth as much as a validator's
         # NEAR rewards (before commission): credits per NEAR a year / staking yield.
         if "f6.usd_per_reward_unit" in n.items:
