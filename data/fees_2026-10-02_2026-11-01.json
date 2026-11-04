@@ -16,32 +16,32 @@
     "final": "fetched >= 48 h after window end, and a fetch >= 24 h earlier has the same fees and prices for every window day",
     "hsp029_scenario": "new supply x 16/25 (maximum inflation 2.5% -> 1.6%), scenario only"
   },
-  "fetched_utc": "2026-11-03T14:39:56Z",
+  "fetched_utc": "2026-11-04T15:02:25Z",
   "final": {
-    "ready": false,
-    "hours_after_window_end": 62.7,
-    "previous_fetch": "2026-11-01T13:02:17Z",
-    "hours_since_previous_fetch": 49.6,
-    "days_changed_since_previous_fetch": 2
+    "ready": true,
+    "hours_after_window_end": 87.0,
+    "previous_fetch": "2026-11-03T14:39:56Z",
+    "hours_since_previous_fetch": 24.4,
+    "days_changed_since_previous_fetch": 0
   },
   "raw": {
     "fees": {
-      "path": "data/raw/defillama/20261103T143956Z/fees.json",
-      "sha256": "99054239942933e5145fa27ba35290ceb25b6e66f13fe9a711a57eabca084640",
+      "path": "data/raw/defillama/20261104T150225Z/fees.json",
+      "sha256": "153519c7c11343c8bb091bcf30be9d227149d381fb8ee86edaa4c8a41cfa317e",
       "url": "https://api.llama.fi/summary/fees/near-intents?dataType=dailyFees&excludeTotalDataChartBreakdown=true"
     },
     "revenue": {
-      "path": "data/raw/defillama/20261103T143956Z/revenue.json",
-      "sha256": "21002922ec5200ea40a90c1a8ee0bd2864d7a4ec75a0637c1344d8f41727afe8",
+      "path": "data/raw/defillama/20261104T150225Z/revenue.json",
+      "sha256": "67907a3e8b642fad41816cd9a5d63cc5081bb7ca03984d9cc4c57ec66de39a65",
       "url": "https://api.llama.fi/summary/fees/near-intents?dataType=dailyRevenue&excludeTotalDataChartBreakdown=true"
     },
     "volume": {
-      "path": "data/raw/defillama/20261103T143956Z/volume.json",
-      "sha256": "05679c0cfc8e1799084be2af070698390764bbfee9f0103439a3d804d56ca2fe",
+      "path": "data/raw/defillama/20261104T150225Z/volume.json",
+      "sha256": "333321451a37da49c3e22a13bdd2a803057177ef6500300e78449e3007efefa6",
       "url": "https://api.llama.fi/summary/dexs/near-intents?excludeTotalDataChartBreakdown=true"
     },
     "price": {
-      "path": "data/raw/defillama/20261103T143956Z/price.json",
+      "path": "data/raw/defillama/20261104T150225Z/price.json",
       "sha256": "8e6418d38f270746abd694556308a65a796238acbc1878e466742a11a0b3cfeb",
       "url": "https://coins.llama.fi/chart/coingecko:near?start=1772366400&span=245&period=1d"
     }
@@ -575,30 +575,5 @@
       }
     ]
   },
-  "revisions_vs_previous_fetch": [
-    {
-      "date": "2026-10-30",
-      "previous_fetch": "2026-11-01T13:02:17Z",
-      "fees_usd": [
-        "68794.00",
-        "387696.00"
-      ],
-      "price_usd": [
-        "4.308677",
-        "4.308677"
-      ]
-    },
-    {
-      "date": "2026-10-31",
-      "previous_fetch": "2026-11-01T13:02:17Z",
-      "fees_usd": [
-        "11755.00",
-        "125292.00"
-      ],
-      "price_usd": [
-        "4.337696",
-        "4.337696"
-      ]
-    }
-  ]
+  "revisions_vs_previous_fetch": []
 }

@@ -189,6 +189,17 @@ def build(data_dir, window_file):
             ("n2.fees_near_per_day", "fees_near_per_day", f_int, "NEAR/day"),
             ("n2.defillama_revenue_coverage", "defillama_revenue_coverage", f_pct, "share")):
         n.add(key, fw[field], fmt(fw[field]), fsrc, unit=unit, **fc)
+    # Sensitivity to the NEAR Intents exploit of 2026-10-01 (Omni deposits and withdrawals; the
+    # intents.near DAO paused features and installed new code from 1 to 7 October): the same
+    # ceiling without 2 to 7 October, from the same day rows and the same excluded days.
+    calm = [d for d in fees["result"].get("days", [])
+            if d["date"] not in fw["excluded"] and not "2026-10-02" <= d["date"] <= "2026-10-07"]
+    if 0 < len(calm) < fw["counted_days"]:
+        c = (sum(dec(d["fees_usd"]) / dec(d["price_usd"]) for d in calm) / len(calm)
+             / dec(fw["new_near_per_day"]))
+        n.add("n2.max_coverage_without_2026-10-02_to_07", c, f_pct(c), fsrc, unit="share",
+              note="n2.max_coverage over the counted days outside 2026-10-02..07, the days after "
+                   "the NEAR Intents exploit of 2026-10-01", **fc)
 
     # ---- number 3: NEAR AI stakers at the end block (stakers.py)
     snap = data_dir / "stakers" / f"{end_date}.json"
@@ -787,7 +798,7 @@ def build(data_dir, window_file):
     # at which DefiLlama's fees were converted to NEAR (fees in USD / fees in NEAR). With
     # them, coverage = fees_usd x growth x kept / price / (issuance x factor) reproduces
     # n2.max_coverage, n2.hsp029_max_coverage and the equilibrium prices exactly.
-    prov = {"status": "provisional", "window": n.items["n2.max_coverage"].get("window"),
+    prov = {"status": n.items["n2.max_coverage"]["status"], "window": n.items["n2.max_coverage"].get("window"),
             "blocks": n.items["n2.max_coverage"].get("blocks")}
     for key, cov, of in (("iv.wallets_share_of_fees_buybacks", cov_b, "n1.coverage_buybacks"),
                          ("iv.wallets_share_of_fees_with_front_end", cov_fe, "n1.coverage_with_front_end")):
@@ -815,6 +826,38 @@ def build(data_dir, window_file):
           note="n2.revenue_usd_per_day / n1.new_near_per_day: the price at which DefiLlama "
                "revenue buys as many NEAR as are issued", status="provisional",
           window=common["window"], blocks=common["blocks"])
+    # Valuation in the same window: the market value of all NEAR in total_supply at the
+    # window's mean price, against what fees, revenue and the wallets bring in a year.
+    # total_supply, not circulating supply: circulating supply needs an off-chain source.
+    price = dec(n.items["n2.mean_price_usd"]["value"])
+    value = supply_end * price
+    vsrc = n.items["n2.mean_price_usd"]["source"]
+    n.add("iv.supply_value_usd", value, f"${rnd(value / 10 ** 9, 2)}B", vsrc, unit="USD",
+          derived_from=["n2.mean_price_usd"],
+          note="total_supply at the end block x n2.mean_price_usd (mean of the window's daily "
+               "prices); all NEAR, not circulating supply", **prov)
+    kept_day = (dec(n.items["n1.buybacks_near_per_day"]["value"])
+                + dec(n.items["n1.front_end_near_per_day"]["value"]))
+    yearly = (
+        ("iv.issuance_usd_per_year", new_day * price, ["n1.new_near_per_day", "n2.mean_price_usd"],
+         "n1.new_near_per_day x n2.mean_price_usd x 365.25: what a year of issuance is worth"),
+        ("iv.fees_usd_per_year", fusd, ["n2.fees_usd_per_day"], "n2.fees_usd_per_day x 365.25"),
+        ("iv.revenue_usd_per_year", rev, ["n2.revenue_usd_per_day"],
+         "n2.revenue_usd_per_day x 365.25"),
+        ("iv.wallets_kept_usd_per_year", kept_day * price,
+         ["n1.buybacks_near_per_day", "n1.front_end_near_per_day", "n2.mean_price_usd"],
+         "(n1.buybacks_near_per_day + n1.front_end_near_per_day) x n2.mean_price_usd x 365.25: "
+         "what the three wallets kept, in dollars"),
+    )
+    for key, per_day, of, note in yearly:
+        per_year = per_day * dec("365.25")
+        n.add(key, per_year, f"${rnd(per_year / 10 ** 6, 1)}M", vsrc, unit="USD per year",
+              derived_from=of, note=note, **prov)
+        if key != "iv.issuance_usd_per_year":
+            mkey = "iv.value_to_" + key[3:].replace("_usd_per_year", "")
+            n.add(mkey, value / per_year, f"{rnd(value / per_year, 0):,.0f}×", vsrc, unit="multiple",
+                  derived_from=["iv.supply_value_usd", key],
+                  note=f"iv.supply_value_usd / {key}", **prov)
     if "c.issuance_total_stake_near" in n.items:
         stake = dec(n.items["c.issuance_total_stake_near"]["value"])
         farm = dec(n.items["n3.farm_total_near"]["value"])

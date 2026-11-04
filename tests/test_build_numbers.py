@@ -248,6 +248,48 @@ class BuildTest(unittest.TestCase):
             (data / "daily" / f"{END}.json").write_text("{}")
             self.assertTrue(any("source changed" in p for p in bn.verify(out, run_scripts=False)))
 
+    def test_valuation_and_exploit_sensitivity(self):
+        with tempfile.TemporaryDirectory() as tmp, \
+                mock.patch.object(bn.stakers, "compute", fake_stats), \
+                    mock.patch.object(bn.daily, "build_row", fake_row):
+            data, window = fake_repo(tmp)
+            n = bn.build(data, window)[0]["numbers"]
+            d = bn.dec
+            value = d(1_310_472_976) * d("4.8977")    # total_supply at the end block x mean price
+            self.assertEqual(d(n["iv.supply_value_usd"]["value"]), value)
+            self.assertEqual(n["iv.supply_value_usd"]["text"], "$6.42B")
+            fees_year = d("197837.45") * d("365.25")
+            self.assertEqual(d(n["iv.fees_usd_per_year"]["value"]), fees_year)
+            self.assertEqual(d(n["iv.value_to_fees"]["value"]), value / fees_year)
+            self.assertEqual(n["iv.value_to_fees"]["text"], "89×")
+            kept = (d("9569.750") + d("4984.673")) * d("4.8977") * d("365.25")
+            self.assertEqual(d(n["iv.wallets_kept_usd_per_year"]["value"]), kept)
+            self.assertEqual(d(n["iv.value_to_wallets_kept"]["value"]), value / kept)
+            self.assertEqual(d(n["iv.issuance_usd_per_year"]["value"]),
+                             d("88392.087") * d("4.8977") * d("365.25"))
+            for k in ("iv.supply_value_usd", "iv.value_to_revenue", "iv.wallets_share_of_fees_buybacks"):
+                self.assertEqual(n[k]["status"], "provisional")
+            # no day rows in the fees file: no sensitivity figure
+            self.assertNotIn("n2.max_coverage_without_2026-10-02_to_07", n)
+
+            # with day rows: 2-7 October and the excluded day are left out; status follows number 2
+            f = data / f"fees_{START}_{END}.json"
+            doc = json.loads(f.read_text(encoding="utf-8"))
+            doc["result"]["days"] = [
+                {"date": "2026-10-03", "fees_usd": "117971.00", "price_usd": "4.668628"},
+                {"date": "2026-10-08", "fees_usd": "401457.00", "price_usd": "5.080515"},
+                {"date": "2026-10-09", "fees_usd": "339710.00", "price_usd": "4.870267"},
+                {"date": "2026-10-31", "fees_usd": "125292.00", "price_usd": "4.337696"}]
+            doc["final"] = {"ready": True}
+            write(f, doc)
+            n = bn.build(data, window)[0]["numbers"]
+            calm = (d("401457.00") / d("5.080515") + d("339710.00") / d("4.870267")) / 2
+            self.assertEqual(d(n["n2.max_coverage_without_2026-10-02_to_07"]["value"]),
+                             calm / d("88392.087"))
+            for k in ("n2.max_coverage", "n2.max_coverage_without_2026-10-02_to_07",
+                      "iv.supply_value_usd", "iv.value_to_fees", "iv.wallets_share_of_fees_buybacks"):
+                self.assertEqual(n[k]["status"], "final", k)
+
     def test_hsp029_and_voters_after_the_vote(self):
         hc = {"closing_block": {"height": 222600000, "timestamp_utc": "2026-11-02T16:48:08.5Z"},
               "reported_status_at_close": "Voting",

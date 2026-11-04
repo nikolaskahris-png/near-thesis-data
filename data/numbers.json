@@ -90,9 +90,17 @@
     "f2.wallets_kept_share_of_revenue.2026-10",
     "iv.fees_conversion_price_usd",
     "iv.fees_multiple",
+    "iv.fees_usd_per_year",
     "iv.hsp029_fees_multiple",
     "iv.hsp029_wallets_multiple_with_front_end",
+    "iv.issuance_usd_per_year",
     "iv.revenue_equilibrium_price_usd",
+    "iv.revenue_usd_per_year",
+    "iv.supply_value_usd",
+    "iv.value_to_fees",
+    "iv.value_to_revenue",
+    "iv.value_to_wallets_kept",
+    "iv.wallets_kept_usd_per_year",
     "iv.wallets_share_of_fees_buybacks",
     "iv.wallets_share_of_fees_with_front_end",
     "n2.defillama_revenue_coverage",
@@ -103,6 +111,7 @@
     "n2.hsp029_equilibrium_price_usd",
     "n2.hsp029_max_coverage",
     "n2.max_coverage",
+    "n2.max_coverage_without_2026-10-02_to_07",
     "n2.mean_price_usd",
     "n2.revenue_usd_per_day",
     "n2.take_rate",
@@ -3106,6 +3115,19 @@
       "blocks": "218126921-222491356",
       "status": "provisional"
     },
+    "iv.fees_usd_per_year": {
+      "value": "75259517.7825",
+      "text": "$75.3M",
+      "source": "data/fees_2026-10-02_2026-11-01.json",
+      "unit": "USD per year",
+      "derived_from": [
+        "n2.fees_usd_per_day"
+      ],
+      "note": "n2.fees_usd_per_day x 365.25",
+      "status": "provisional",
+      "window": "2026-10-02 00:00 UTC to 2026-11-01 00:00 UTC",
+      "blocks": "218126921-222491356"
+    },
     "iv.hsp029_fees_multiple": {
       "value": "1.336353492225763558976620496",
       "text": "×1.3",
@@ -3143,12 +3165,39 @@
       "window": "2026-10-02 00:00 UTC to 2026-11-01 00:00 UTC",
       "blocks": "218126921-222491356"
     },
+    "iv.issuance_usd_per_year": {
+      "value": "157522767.021740925",
+      "text": "$157.5M",
+      "source": "data/fees_2026-10-02_2026-11-01.json",
+      "unit": "USD per year",
+      "derived_from": [
+        "n1.new_near_per_day",
+        "n2.mean_price_usd"
+      ],
+      "note": "n1.new_near_per_day x n2.mean_price_usd x 365.25: what a year of issuance is worth",
+      "status": "provisional",
+      "window": "2026-10-02 00:00 UTC to 2026-11-01 00:00 UTC",
+      "blocks": "218126921-222491356"
+    },
     "iv.revenue_equilibrium_price_usd": {
       "value": "0.7987641472929584748915363883",
       "text": "$0.80",
       "source": "data/fees_2026-10-02_2026-11-01.json",
       "unit": "USD",
       "note": "n2.revenue_usd_per_day / n1.new_near_per_day: the price at which DefiLlama revenue buys as many NEAR as are issued",
+      "status": "provisional",
+      "window": "2026-10-02 00:00 UTC to 2026-11-01 00:00 UTC",
+      "blocks": "218126921-222491356"
+    },
+    "iv.revenue_usd_per_year": {
+      "value": "25788268.0575",
+      "text": "$25.8M",
+      "source": "data/fees_2026-10-02_2026-11-01.json",
+      "unit": "USD per year",
+      "derived_from": [
+        "n2.revenue_usd_per_day"
+      ],
+      "note": "n2.revenue_usd_per_day x 365.25",
       "status": "provisional",
       "window": "2026-10-02 00:00 UTC to 2026-11-01 00:00 UTC",
       "blocks": "218126921-222491356"
@@ -3165,6 +3214,76 @@
         "c.issuance_total_stake_near"
       ],
       "note": "(gross NEAR minted per day - NEAR per day kept by treasury.near) x 365.25 / stake of the current validators; before validator commissions and downtime"
+    },
+    "iv.supply_value_usd": {
+      "value": "6393928698.180350253386200897",
+      "text": "$6.39B",
+      "source": "data/fees_2026-10-02_2026-11-01.json",
+      "unit": "USD",
+      "derived_from": [
+        "n2.mean_price_usd"
+      ],
+      "note": "total_supply at the end block x n2.mean_price_usd (mean of the window's daily prices); all NEAR, not circulating supply",
+      "status": "provisional",
+      "window": "2026-10-02 00:00 UTC to 2026-11-01 00:00 UTC",
+      "blocks": "218126921-222491356"
+    },
+    "iv.value_to_fees": {
+      "value": "84.95840641257898632996999029",
+      "text": "85×",
+      "source": "data/fees_2026-10-02_2026-11-01.json",
+      "unit": "multiple",
+      "derived_from": [
+        "iv.supply_value_usd",
+        "iv.fees_usd_per_year"
+      ],
+      "note": "iv.supply_value_usd / iv.fees_usd_per_year",
+      "status": "provisional",
+      "window": "2026-10-02 00:00 UTC to 2026-11-01 00:00 UTC",
+      "blocks": "218126921-222491356"
+    },
+    "iv.value_to_revenue": {
+      "value": "247.9394383494010744845539497",
+      "text": "248×",
+      "source": "data/fees_2026-10-02_2026-11-01.json",
+      "unit": "multiple",
+      "derived_from": [
+        "iv.supply_value_usd",
+        "iv.revenue_usd_per_year"
+      ],
+      "note": "iv.supply_value_usd / iv.revenue_usd_per_year",
+      "status": "provisional",
+      "window": "2026-10-02 00:00 UTC to 2026-11-01 00:00 UTC",
+      "blocks": "218126921-222491356"
+    },
+    "iv.value_to_wallets_kept": {
+      "value": "246.5147171692180261455607594",
+      "text": "247×",
+      "source": "data/fees_2026-10-02_2026-11-01.json",
+      "unit": "multiple",
+      "derived_from": [
+        "iv.supply_value_usd",
+        "iv.wallets_kept_usd_per_year"
+      ],
+      "note": "iv.supply_value_usd / iv.wallets_kept_usd_per_year",
+      "status": "provisional",
+      "window": "2026-10-02 00:00 UTC to 2026-11-01 00:00 UTC",
+      "blocks": "218126921-222491356"
+    },
+    "iv.wallets_kept_usd_per_year": {
+      "value": "25937310.240959325",
+      "text": "$25.9M",
+      "source": "data/fees_2026-10-02_2026-11-01.json",
+      "unit": "USD per year",
+      "derived_from": [
+        "n1.buybacks_near_per_day",
+        "n1.front_end_near_per_day",
+        "n2.mean_price_usd"
+      ],
+      "note": "(n1.buybacks_near_per_day + n1.front_end_near_per_day) x n2.mean_price_usd x 365.25: what the three wallets kept, in dollars",
+      "status": "provisional",
+      "window": "2026-10-02 00:00 UTC to 2026-11-01 00:00 UTC",
+      "blocks": "218126921-222491356"
     },
     "iv.wallets_multiple_buybacks": {
       "value": "9.236595390938899921488939177",
@@ -3385,6 +3504,19 @@
       "text": "47.9%",
       "source": "data/fees_2026-10-02_2026-11-01.json",
       "unit": "share",
+      "window": "2026-10-02 00:00 UTC to 2026-11-01 00:00 UTC",
+      "blocks": "218126921-222491356",
+      "status": "provisional",
+      "fetched_utc": "2026-11-03T14:39:56Z",
+      "counted_days": 30,
+      "excluded_days": []
+    },
+    "n2.max_coverage_without_2026-10-02_to_07": {
+      "value": "0.4794296376861074878293393229",
+      "text": "47.9%",
+      "source": "data/fees_2026-10-02_2026-11-01.json",
+      "unit": "share",
+      "note": "n2.max_coverage over the counted days outside 2026-10-02..07, the days after the NEAR Intents exploit of 2026-10-01",
       "window": "2026-10-02 00:00 UTC to 2026-11-01 00:00 UTC",
       "blocks": "218126921-222491356",
       "status": "provisional",
