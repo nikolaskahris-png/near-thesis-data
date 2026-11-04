@@ -170,7 +170,7 @@ python scripts/treasury_flows.py --verify --archival
 | Reward unit | what the farm pays; NEAR AI Cloud turns it into credits off-chain |
 | Locks | NEAR AI Agents subscriptions on the same contract, not counted in the farm |
 | Window | 2 Oct → 1 Nov 2026, 00:00 UTC, blocks 218,126,921 → 222,491,356 |
-| Provisional | a DefiLlama figure that has not yet settled ([Method](#method)) |
+| Final, provisional | a DefiLlama figure is final once a fetch at least 24 hours after an earlier one changes no day of the window; until then it is provisional ([Method](#method)) |
 
 ## Repository
 

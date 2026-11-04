@@ -4,7 +4,7 @@
 Measurement window 2 October → 1 November 2026 (00:00 UTC), blocks 218,126,921 → 222,491,356. Every figure here
 is copied from [`data/numbers.json`](data/numbers.json) with a hidden marker of its key, and
 `python scripts/build_numbers.py --check THESIS.md` fails if any differs. Figures from DefiLlama are
-provisional until its data settles. Thresholds are the author's choice; block heights, dates and protocol
+final for the window: a fetch 24 hours after the previous one changed no day. Thresholds are the author's choice; block heights, dates and protocol
 constants are written as they are. The data, method and findings are in the [README](README.md).*
 
 ## Claim

@@ -240,7 +240,7 @@ function status(doc) {
   const w = doc.window;
   const prov = (doc.provisional_or_pending || []).length;
   $("#status").textContent = `Window ${w.start} → ${w.end} (00:00 UTC), blocks ${fmtInt(w.start_block)} → ` +
-    `${fmtInt(w.end_block)}. DefiLlama-based figures are provisional (${prov} keys).`;
+    `${fmtInt(w.end_block)}. ` + (prov ? `DefiLlama-based figures are provisional (${prov} keys).` : "Every figure is final for this window.");
 }
 
 function chartCoverage(cov) {
@@ -278,7 +278,7 @@ function chartCeiling(cov) {
   barChart(host, {
     cats: months.map(monthLabel), grouped: true, marks: months.map(m => iss[m]), markName: "NEAR issued per day",
     stacks: [{ name: "All fees, in NEAR", cls: "s3", values: fees }, { name: "Kept by the wallets", cls: "s1", values: kept }],
-    unit: "NEAR per day · provisional",
+    unit: "NEAR per day",
     tips: months.map((m, i) => `<b>${monthLabel(m)}</b><br>All fees ${fmtInt(fees[i])} NEAR/day<br>Kept by the wallets ${fmtInt(kept[i])}<br>Issued ${fmtInt(iss[m])}<br>Take rate ${txt("f2.take_rate." + m)} · mean price ${txt("f2.mean_price_usd." + m)}`),
   });
   tableView(host, ["Month", "All fees (NEAR/day)", "Kept by the wallets", "Issued", "Take rate", "Mean price"],

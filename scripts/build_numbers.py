@@ -824,7 +824,8 @@ def build(data_dir, window_file):
     n.add("iv.revenue_equilibrium_price_usd", rev / new_day, f_usd(rev / new_day, 2),
           n.items["n2.revenue_usd_per_day"]["source"], unit="USD",
           note="n2.revenue_usd_per_day / n1.new_near_per_day: the price at which DefiLlama "
-               "revenue buys as many NEAR as are issued", status="provisional",
+               "revenue buys as many NEAR as are issued",
+          status=n.items["n2.revenue_usd_per_day"]["status"],
           window=common["window"], blocks=common["blocks"])
     # Valuation in the same window: the market value of all NEAR in total_supply at the
     # window's mean price, against what fees, revenue and the wallets bring in a year.
