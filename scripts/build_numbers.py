@@ -30,6 +30,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import daily  # noqa: E402
 import lock_window as lw  # noqa: E402
+import longrun  # noqa: E402
 import stakers  # noqa: E402
 
 REPO = lw.REPO
@@ -901,6 +902,42 @@ def build(data_dir, window_file):
            ["n1.coverage_with_front_end", "n2.max_coverage", "n2.hsp029_max_coverage"],
            "(1 / n1.coverage_with_front_end) x issuance ratio of the HSP-029 scenario "
            "(n2.max_coverage / n2.hsp029_max_coverage)")
+
+    # ---- issuance to 2031 under today's rule and HSP-029 (longrun.py): rules, no forecast
+    need = ["c.issuance_max_inflation_rate", "b.epochs", "f8.timelock_end_utc",
+            "iv.staking_yield_gross", "n2.fees_near_per_day"]
+    if all(k in n.items and n.items[k]["value"] is not None for k in need):
+        from datetime import date as _date, datetime as _dt, timezone as _tz
+        from fractions import Fraction
+        v = lambda k: dec(n.items[k]["value"])  # noqa: E731
+        days = (_date.fromisoformat(end_date) - _date.fromisoformat(start_date)).days
+        ratified = _dt.fromisoformat(re.sub(r"(\.\d{6})\d*Z$", r"\1+00:00",
+                                            n.items["f8.timelock_end_utc"]["value"]))
+        kept = {"buybacks": v("n1.buybacks_near_per_day"),
+                "with_front_end": v("n1.buybacks_near_per_day") + v("n1.front_end_near_per_day"),
+                "all_fees": v("n2.fees_near_per_day")}
+        history = {}
+        for name, key in (("kept", "f2.wallets_kept_near_per_day"), ("fees_near", "f2.fees_near_per_day"),
+                          ("take_rate", "f2.take_rate"), ("kept_share", "f2.wallets_kept_share_of_revenue")):
+            if f"{key}.2026-04" in n.items and f"{key}.2026-10" in n.items:
+                history[name] = (v(f"{key}.2026-04"), v(f"{key}.2026-10"))
+        res = longrun.model(supply_end, new_day, Fraction(n.items["c.issuance_max_inflation_rate"]["value"]),
+                            dec(days) / v("b.epochs"),
+                            _dt.fromisoformat(f"{end_date}T00:00:00+00:00"), ratified, kept,
+                            v("iv.staking_yield_gross"), v("iv.wallets_share_of_fees_with_front_end"),
+                            history)
+        problems += [f"longrun: {x}" for x in longrun.check(res)]
+        lsrc = n.items["n1.new_near_per_day"]["source"]
+        fmt = {"ratio": lambda x: f_num(x, 4), "days": lambda x: f_num(x, 4),
+               "utc": lambda x: x.strftime("%Y-%m-%d %H:%M UTC"), "near": f_int,
+               "million": lambda x: f"{rnd(x / 10 ** 6, 2)}M",
+               "signed_pct": lambda x: f"{rnd(x * 100, 1):+.1f}%",
+               "multiple": lambda x: "×" + f_num(x, 1), "growth": lambda x: f"{rnd(x * 100, 0):+.0f}%",
+               "pct": f_pct}
+        lstatus = {k: n.items["n2.max_coverage"][k] for k in ("status",) if k in n.items["n2.max_coverage"]}
+        for key, (value, kind, extra) in res.items():
+            val = value.isoformat() if kind == "utc" else value
+            n.add(key, val, fmt[kind](value), lsrc, unit=kind, **extra, **lstatus)
 
     provisional = sorted(k for k, v in n.items.items() if v.get("status") in ("provisional",
                                                                                   "pending"))

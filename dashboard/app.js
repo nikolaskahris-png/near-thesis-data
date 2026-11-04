@@ -52,7 +52,7 @@ const QUERIES = {
     query: "python scripts/treasury_spend.py --verify\npython scripts/treasury_exits.py --verify\n" +
       "RPC view_account treasury.near at every epoch start; block → header total_supply",
     files: "data/treasury_spend.json · data/treasury_exits.json" },
-  p6: { sentence: "Validators decide when a passed vote becomes a rule; a few voters decided the vote.",
+  p6: { sentence: "Validators decide when a passed vote becomes a rule; a few voters held enough veNEAR to reach the quorum.",
     query: "python scripts/upgrade_watch.py --verify\npython scripts/hsp029_voters.py --verify\n" +
       "RPC block (latest_protocol_version of sampled blocks), validators, EXPERIMENTAL_protocol_config; " +
       "vote.dao get_proposal and the vote events of proposal 29",
@@ -404,7 +404,7 @@ function calculator() {
     const kk = Number(k.value), gg = Number(g.value), pp = Number(p.value), ff = f.value === "hsp" ? HSP029_FACTOR : 1;
     $("#kv").textContent = fmtPct(kk, 1) + (Math.abs(kk - k0) < 0.005 ? ` (today, with the front-end fund: ${txt("iv.wallets_share_of_fees_with_front_end")})` : "");
     $("#gv").textContent = "×" + gg.toFixed(1);
-    $("#pv").textContent = "$" + pp.toFixed(2) + (Math.abs(pp - p0) < 0.005 ? ` (the fees' conversion price: ${txt("iv.fees_conversion_price_usd")})` : "");
+    $("#pv").textContent = "$" + pp.toFixed(2) + (Math.abs(pp - p0) < 0.005 ? ` (each day's fees at that day's price: ${txt("iv.fees_conversion_price_usd")})` : "");
     $("#fv").textContent = ff === 1 ? txt("iv.issuance_rate_per_year") + " a year" : "× 16/25";
     const c = coverage(gg, kk, pp, ff);
     $("#cv").textContent = "Coverage " + fmtPct(c, 1);

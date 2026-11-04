@@ -1,6 +1,6 @@
 # Thesis: NEAR's value capture is real, small and discretionary
 
-*Investment Thesis track, NEAR HACKATHON. Dated 3 November 2026; horizon 12 months, to November 2027.
+*Investment Thesis track, NEAR HACKATHON. Dated 5 November 2026; horizon five years, to 1 January 2031, checked every 12 months.
 Measurement window 2 October → 1 November 2026 (00:00 UTC), blocks 218,126,921 → 222,491,356. Every figure here
 is copied from [`data/numbers.json`](data/numbers.json) with a hidden marker of its key, and
 `python scripts/build_numbers.py --check THESIS.md` fails if any differs. Figures from DefiLlama are
@@ -10,14 +10,19 @@ constants are written as they are. The data, method and findings are in the [REA
 ## Claim
 
 Users pay real fees on NEAR Intents, but only a small part reaches NEAR holders, and every link from the fee a
-user pays to the NEAR a holder keeps is set by a few signers or by a company off-chain, not by code. Issuance,
-on the other side of the ledger, is a protocol rule. Holding NEAR long term is therefore a bet on three
-conditions, not a claim on today's fees: **(a)** what the buybacks wallets keep approaches the NEAR issued,
-**(b)** the buybacks become a rule rather than a choice, and **(c)** stake in the NEAR AI farm spreads beyond one
-account. Until then: hold NEAR staked with a validator, not for the fees it captures. At today's revenue,
-front-end fund included, the wallets would cover issuance only at a NEAR price of <!--n:iv.revenue_equilibrium_price_usd-->$0.80<!--/n--> or less, against a mean of
-<!--n:f2.mean_price_usd.2026-10-->$4.89<!--/n--> in October: because revenue is earned in dollars and issuance is paid in NEAR, the
-higher the price, the less the wallets cover.
+user pays to the NEAR a holder keeps can be changed by a few signers or by a company off-chain; none is fixed in
+code. Issuance, on the other side of the ledger, is a protocol rule.
+
+**Verdict.** Not an own for fee capture today: hold NEAR only staked with a validator, which keeps pace with
+issuance. NEAR becomes an own when **(a)** the NEAR kept from fees grows fast enough to cover issuance by 2031 and
+**(b)** keeping it is a rule rather than a choice; **(c)**, stake spread in the NEAR AI farm, is a signal, not a
+lever. Under HSP-029, what the wallets keep must grow <!--n:lr.required_growth.with_front_end.B.2031-->+41%<!--/n--> a year to cover
+issuance on 1 January 2031 (<!--n:lr.required_growth.with_front_end.A.2031-->+58%<!--/n--> under today's rule), or, if NEAR kept every fee,
+fees counted in NEAR <!--n:lr.required_growth.all_fees.B.2031-->+9%<!--/n--> a year ([model](docs/DETAILS.md#issuance-to-2031)). At today's
+revenue, front-end fund included, the wallets would cover issuance only at a NEAR price of
+<!--n:iv.revenue_equilibrium_price_usd-->$0.80<!--/n--> or less, against a mean of <!--n:n2.mean_price_usd-->$4.88<!--/n--> in the same window: because revenue is
+earned in dollars and issuance is paid in NEAR, the higher the price, the less the wallets cover. At that price
+all NEAR is worth <!--n:iv.supply_value_usd-->$6.39B<!--/n-->, <!--n:iv.value_to_fees-->85×<!--/n--> a year of fees.
 
 A Breakpoint 2025 debate put the case against buybacks as "the promise of future buybacks is worth exactly as
 much as your faith in those founders", and the case for them as on-chain transparency
@@ -28,9 +33,10 @@ faith is still required, since no link is a rule.
 ## Evidence for
 
 **Real.** Users pay <!--n:n2.fees_usd_per_day-->$206,049<!--/n--> a day in fees, <!--n:n2.fees_bps-->16.0<!--/n--> bps of volume
-(DefiLlama). DefiLlama's revenue ÷ issuance gives <!--n:n2.defillama_revenue_coverage-->16.5%<!--/n--> and the wallets'
-own balances give <!--n:n1.coverage_with_front_end-->16.5%<!--/n-->: DefiLlama counts what flows into the wallets and we
-read their balances, so the two agreeing means the revenue arrives and almost none flows out.
+(DefiLlama, from a Dune dataset that is not rebuilt here). The revenue side is checked on chain: DefiLlama's
+revenue ÷ issuance gives <!--n:n2.defillama_revenue_coverage-->16.5%<!--/n--> and the wallets' own balances give
+<!--n:n1.coverage_with_front_end-->16.5%<!--/n-->. DefiLlama counts inflows to the same wallets and we read their balances, so this is an
+outflow check: almost none flows out. It does not check the fees themselves.
 
 **Small.** The buybacks wallets keep <!--n:n1.buybacks_near_per_day-->9,570<!--/n--> of the
 <!--n:n1.new_near_per_day-->88,392<!--/n--> NEAR issued a day: coverage <!--n:n1.coverage_buybacks-->10.8%<!--/n-->,
@@ -39,7 +45,7 @@ month since April (highest: <!--n:f1.coverage_buybacks.2026-09-->15.3%<!--/n-->,
 would be <!--n:n2.max_coverage-->47.9%<!--/n-->. Supply grows <!--n:iv.issuance_rate_per_year-->2.46%<!--/n--> a year and the
 buybacks offset <!--n:iv.buybacks_offset_points_per_year-->0.27<!--/n--> of those points.
 
-**Discretionary.** Each link is set by people, not code (`scripts/control_map.py`, `scripts/control_history.py`):
+**Discretionary.** Each link can be changed by people; none is fixed in code (`scripts/control_map.py`, `scripts/control_history.py`):
 
 - Fees users pay are set off-chain by the distribution channels; 1Click's terms let its operator change them
   "at any time on a prospective basis". The protocol fee on `intents.near` is <!--n:c.intents_fee_pips-->1 pip<!--/n-->,
@@ -52,7 +58,7 @@ buybacks offset <!--n:iv.buybacks_offset_points_per_year-->0.27<!--/n--> of thos
   <!--n:iv.farm_breakeven_price_before_usd-->$2.42<!--/n--> to <!--n:iv.farm_breakeven_price_usd-->$4.84<!--/n-->.
 - `treasury.near` paid out <!--n:ts.year_out_near-->30,171,200<!--/n--> NEAR in 2026, all in April and May, each payment
   a <!--n:c.treasury_confirmations-->2 of 4<!--/n--> multisig confirmation.
-- <!--n:f8.fewest_voters_reaching_quorum-->6<!--/n--> voters were enough for the quorum of HSP-029, the issuance cut. The
+- <!--n:f8.fewest_voters_reaching_quorum-->6<!--/n--> voters held enough veNEAR to reach the quorum of HSP-029, the issuance cut. The
   vote executes nothing on chain (`actions: null`) and stays in `vote.dao`'s timelock until
   <!--n:f8.timelock_end_utc-->2026-11-16 16:48 UTC<!--/n-->; it becomes a rule only when validators with
   <!--n:c.issuance_upgrade_stake_threshold-->4/5<!--/n--> of stake run a release that includes it.
@@ -88,10 +94,11 @@ What weakens the claim, as measured by the same scripts:
    <!--n:f2.change.2026-09_2026-10.revenue_near-->-24%<!--/n-->. Revenue is in dollars and issuance in NEAR: at a mean price of
    <!--n:n2.mean_price_usd-->$4.88<!--/n--> coverage is low, while at <!--n:n2.equilibrium_price_usd-->$2.33<!--/n--> or less every fee
    would buy as many NEAR as are issued.
-4. **Governance is moving toward rules.** HSP-029 passed with <!--n:f8.against_venear-->0<!--/n--> veNEAR against and
+4. **Governance is moving toward rules.** HSP-029 passed with <!--n:f8.against_votes-->1<!--/n--> vote against (<!--n:f8.against_venear-->0<!--/n--> veNEAR, rounded) and
    <!--n:f8.turnout_of_snapshot-->62.3%<!--/n--> turnout. At its target rate the ceiling would be
    <!--n:n2.hsp029_max_coverage-->74.8%<!--/n-->, and full coverage would need fees to grow only
-   <!--n:iv.hsp029_fees_multiple-->×1.3<!--/n--> if NEAR kept every fee. HSP-027 also passed, and its protocol version is
+   <!--n:iv.hsp029_fees_multiple-->×1.3<!--/n--> if NEAR kept every fee; to cover issuance on 1 January 2031, fees counted in NEAR would
+   need <!--n:lr.required_growth.all_fees.B.2031-->+9%<!--/n--> a year. HSP-027 also passed, and its protocol version is
    scheduled for validator votes from 4 November.
 5. **Condition (c) weighs little.** The NEAR AI farm holds <!--n:iv.farm_share_of_stake-->0.23%<!--/n--> of all stake, and stake
    cannot offset issuance, because stakers receive the new NEAR. It stays because it was pre-registered: it tests
@@ -109,10 +116,11 @@ What weakens the claim, as measured by the same scripts:
 | Small | the buybacks wallets alone keep 25% or more of issuance in three consecutive calendar months | highest month <!--n:f1.coverage_buybacks.2026-09-->15.3%<!--/n--> | today <!--n:n1.coverage_buybacks-->10.8%<!--/n--> of the way to full coverage; what they keep must grow <!--n:iv.wallets_multiple_buybacks-->×9.2<!--/n--> to cover issuance | `scripts/coverage.py`, `data/history.csv` |
 | Discretionary: buybacks | bought NEAR moves by a published rule to an account no one can spend from, or the protocol fee on `intents.near` is raised with `fee_collector` set to the buybacks wallet or a locked account | <!--n:c.buybacks_confirmations-->2 of 4<!--/n--> multisig, nothing burned; fee <!--n:c.intents_fee_pips-->1 pip<!--/n--> | no rule yet | `scripts/control_map.py` |
 | Discretionary: credits | the credits rate follows a formula in the contract, or changes only by a DAO proposal | changed <!--n:f6.rate_changes-->1<!--/n--> time by one account | no rule yet | `scripts/farm_rate.py` |
+| Small, over five years | what the three wallets keep a day grows at least <!--n:lr.required_growth.with_front_end.B.2031-->+41%<!--/n--> a year at two yearly checks in a row (November 2027 and 2028): the pace that covers issuance in 2031 under HSP-029 | the window's level | must grow <!--n:lr.required_multiple.with_front_end.B.2031-->×4.2<!--/n--> by 2031 | `scripts/longrun.py`, `data/history.csv` |
 | Issuance is the only rule | HSP-029 is still not in a nearcore release adopted by validators on 1 November 2027 | in timelock until <!--n:f8.timelock_end_utc-->2026-11-16 16:48 UTC<!--/n--> | passed, not in force | `scripts/hsp029.py`, `scripts/upgrade_watch.py` |
 | Stake spread | the largest account holds less than half of the NEAR AI farm | <!--n:n3.largest_share-->73.3%<!--/n--> | prediction 1 expects at least 70% on 16 November | `scripts/stakers.py` |
 
-The verdict changes from "hold staked" to "hold for fee capture" only when (a) and (b) hold together. It gets
+The verdict changes from "hold staked" to "own" only when (a) and (b) hold together. It gets
 worse if the buybacks wallets pay NEAR out (coverage falls while DefiLlama's revenue does not), or monthly
 coverage falls back to its April level. Five predictions are anchored on chain before they are judged:
 [`PREREG.md`](PREREG.md) (16 November) and [`PREREG-2.md`](PREREG-2.md) (6 and 8 November, with stated

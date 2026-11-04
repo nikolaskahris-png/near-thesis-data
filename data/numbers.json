@@ -545,7 +545,7 @@
       "flags": ""
     },
     "f2.change.2026-09_2026-10.mean_price": {
-      "value": "0.490998962592298773417953256",
+      "value": "0.490998962592298773417953255629462378715",
       "text": "+49%",
       "source": "data/fees_2026-10-02_2026-11-01.json",
       "unit": "relative change",
@@ -555,7 +555,7 @@
       "to": "2026-10"
     },
     "f2.change.2026-09_2026-10.revenue_near": {
-      "value": "-0.2390195196922015327192698150",
+      "value": "-0.2390195196922015327192698150490867460558",
       "text": "-24%",
       "source": "data/fees_2026-10-02_2026-11-01.json",
       "unit": "relative change",
@@ -565,7 +565,7 @@
       "to": "2026-10"
     },
     "f2.change.2026-09_2026-10.revenue_usd": {
-      "value": "0.151876230284863439399449746",
+      "value": "0.151876230284863439399449745666380177797",
       "text": "+15%",
       "source": "data/fees_2026-10-02_2026-11-01.json",
       "unit": "relative change",
@@ -575,7 +575,7 @@
       "to": "2026-10"
     },
     "f2.change.2026-09_2026-10.volume_usd": {
-      "value": "-0.1969609143076806962354635406",
+      "value": "-0.1969609143076806962354635406324017771846",
       "text": "-20%",
       "source": "data/fees_2026-10-02_2026-11-01.json",
       "unit": "relative change",
@@ -1486,7 +1486,7 @@
       "month": "2026-10"
     },
     "f2.wallets_kept_share_of_revenue.2026-04": {
-      "value": "0.7664993722584745105941069796",
+      "value": "0.7664993722584745105941069795557759970240",
       "text": "77%",
       "source": "data/fees_2026-10-02_2026-11-01.json",
       "unit": "wallets NEAR / DefiLlama revenue NEAR",
@@ -1500,7 +1500,7 @@
       "excluded_days": []
     },
     "f2.wallets_kept_share_of_revenue.2026-04_2026-10": {
-      "value": "0.9692279894612250173231382539",
+      "value": "0.9692279894612250173231382538730547528229",
       "text": "96.9%",
       "source": "data/fees_2026-10-02_2026-11-01.json",
       "unit": "wallets NEAR / DefiLlama revenue NEAR",
@@ -1521,7 +1521,7 @@
       "excluded_days": []
     },
     "f2.wallets_kept_share_of_revenue.2026-05": {
-      "value": "0.9873695652173913043478260870",
+      "value": "0.9873695652173913043478260869565217391304",
       "text": "99%",
       "source": "data/fees_2026-10-02_2026-11-01.json",
       "unit": "wallets NEAR / DefiLlama revenue NEAR",
@@ -1535,7 +1535,7 @@
       "excluded_days": []
     },
     "f2.wallets_kept_share_of_revenue.2026-06": {
-      "value": "1.014344770222499480141401539",
+      "value": "1.014344770222499480141401538781451445207",
       "text": "101%",
       "source": "data/fees_2026-10-02_2026-11-01.json",
       "unit": "wallets NEAR / DefiLlama revenue NEAR",
@@ -1549,7 +1549,7 @@
       "excluded_days": []
     },
     "f2.wallets_kept_share_of_revenue.2026-07": {
-      "value": "0.9297758612684557526232704987",
+      "value": "0.9297758612684557526232704986535425759123",
       "text": "93%",
       "source": "data/fees_2026-10-02_2026-11-01.json",
       "unit": "wallets NEAR / DefiLlama revenue NEAR",
@@ -1563,7 +1563,7 @@
       "excluded_days": []
     },
     "f2.wallets_kept_share_of_revenue.2026-08": {
-      "value": "0.9906058631921824104234527687",
+      "value": "0.9906058631921824104234527687296416938111",
       "text": "99%",
       "source": "data/fees_2026-10-02_2026-11-01.json",
       "unit": "wallets NEAR / DefiLlama revenue NEAR",
@@ -1577,7 +1577,7 @@
       "excluded_days": []
     },
     "f2.wallets_kept_share_of_revenue.2026-09": {
-      "value": "0.9830956538103651970265664370",
+      "value": "0.9830956538103651970265664370027287839660",
       "text": "98%",
       "source": "data/fees_2026-10-02_2026-11-01.json",
       "unit": "wallets NEAR / DefiLlama revenue NEAR",
@@ -1591,7 +1591,7 @@
       "excluded_days": []
     },
     "f2.wallets_kept_share_of_revenue.2026-10": {
-      "value": "1.000472896387329894003613357",
+      "value": "1.000472896387329894003613357056007034368",
       "text": "100%",
       "source": "data/fees_2026-10-02_2026-11-01.json",
       "unit": "wallets NEAR / DefiLlama revenue NEAR",
@@ -2383,7 +2383,7 @@
       "as_of": "2026-11-02T16:48:09Z"
     },
     "f9.front_end_share_of_wallets": {
-      "value": "0.3424850988596387503647516635",
+      "value": "0.3424850988596387503647516634634021561693",
       "text": "34.2%",
       "source": "data/daily/2026-11-01.json",
       "unit": "share",
@@ -2937,7 +2937,7 @@
       "note": "approved actions in the control map's DAOs; dates are submission dates"
     },
     "iv.buybacks_offset_points_per_year": {
-      "value": "0.002667249382443417129134389021",
+      "value": "0.002667249382443417129134389021328065716404",
       "text": "0.27",
       "source": "data/daily/2026-11-01.json",
       "unit": "percentage points of supply per year",
@@ -2946,7 +2946,7 @@
       "blocks": "218126921-222491356"
     },
     "iv.farm_breakeven_price_before_usd": {
-      "value": "2.419233598384671344379046557",
+      "value": "2.419233598384671344379046556398781826836",
       "text": "$2.42",
       "source": "data/offchain/nearai_cloud_farm_config_20261101T205837Z.json",
       "unit": "USD per NEAR",
@@ -2960,7 +2960,7 @@
       "as_of": "2026-11-01T20:58:37Z"
     },
     "iv.farm_breakeven_price_usd": {
-      "value": "4.838467196769342688758093113",
+      "value": "4.838467196769342688758093112797563653671",
       "text": "$4.84",
       "source": "data/offchain/nearai_cloud_farm_config_20261101T205837Z.json",
       "unit": "USD per NEAR",
@@ -2974,14 +2974,14 @@
       "as_of": "2026-11-01T20:58:37Z"
     },
     "iv.farm_share_of_stake": {
-      "value": "0.002304532727749350888574963677",
+      "value": "0.002304532727749350888574963676655274755347",
       "text": "0.23%",
       "source": "data/stakers/2026-11-01.json",
       "unit": "share of stake",
       "note": "n3.farm_total_near / c.issuance_total_stake_near (same end block)"
     },
     "iv.fees_conversion_price_usd": {
-      "value": "4.867425819055425762361128500",
+      "value": "4.867425819055425762361128499987007556877",
       "text": "$4.87",
       "source": "data/fees_2026-10-02_2026-11-01.json",
       "unit": "USD per NEAR",
@@ -2995,7 +2995,7 @@
       "blocks": "218126921-222491356"
     },
     "iv.fees_multiple": {
-      "value": "2.088053203595627616591670756",
+      "value": "2.088053203595627616591670755770857041437",
       "text": "×2.1",
       "source": "data/fees_2026-10-02_2026-11-01.json",
       "unit": "multiple",
@@ -3021,7 +3021,7 @@
       "blocks": "218126921-222491356"
     },
     "iv.hsp029_fees_multiple": {
-      "value": "1.336353492225763558976620496",
+      "value": "1.336353492225763558976620495653510266536",
       "text": "×1.3",
       "source": "data/fees_2026-10-02_2026-11-01.json",
       "unit": "multiple",
@@ -3034,7 +3034,7 @@
       "status": "final"
     },
     "iv.hsp029_wallets_multiple_with_front_end": {
-      "value": "3.886842623676356781008442983",
+      "value": "3.886842623676356781008442982885136885532",
       "text": "×3.9",
       "source": "data/daily/2026-11-01.json",
       "unit": "multiple",
@@ -3048,7 +3048,7 @@
       "blocks": "218126921-222491356"
     },
     "iv.issuance_rate_per_year": {
-      "value": "0.02463630335236149382657727817",
+      "value": "0.02463630335236149382657727817233700379997",
       "text": "2.46%",
       "source": "data/daily/2026-11-01.json",
       "unit": "share of total supply per year",
@@ -3071,7 +3071,7 @@
       "blocks": "218126921-222491356"
     },
     "iv.revenue_equilibrium_price_usd": {
-      "value": "0.7987641472929584748915363883",
+      "value": "0.7987641472929584748915363883194657458422",
       "text": "$0.80",
       "source": "data/fees_2026-10-02_2026-11-01.json",
       "unit": "USD",
@@ -3094,7 +3094,7 @@
       "blocks": "218126921-222491356"
     },
     "iv.staking_yield_gross": {
-      "value": "0.04960248571288209479318052819",
+      "value": "0.04960248571288209479318052819307948097195",
       "text": "5.0%",
       "source": "data/control_map.json",
       "unit": "share of stake per year",
@@ -3107,7 +3107,7 @@
       "note": "(gross NEAR minted per day - NEAR per day kept by treasury.near) x 365.25 / stake of the current validators; before validator commissions and downtime"
     },
     "iv.supply_value_usd": {
-      "value": "6393928698.180350253386200897",
+      "value": "6393928698.1803502533862008956458266862",
       "text": "$6.39B",
       "source": "data/fees_2026-10-02_2026-11-01.json",
       "unit": "USD",
@@ -3120,7 +3120,7 @@
       "blocks": "218126921-222491356"
     },
     "iv.value_to_fees": {
-      "value": "84.95840641257898632996999029",
+      "value": "84.95840641257898632996999027304824846989",
       "text": "85×",
       "source": "data/fees_2026-10-02_2026-11-01.json",
       "unit": "multiple",
@@ -3134,7 +3134,7 @@
       "blocks": "218126921-222491356"
     },
     "iv.value_to_revenue": {
-      "value": "247.9394383494010744845539497",
+      "value": "247.9394383494010744845539496015775306860",
       "text": "248×",
       "source": "data/fees_2026-10-02_2026-11-01.json",
       "unit": "multiple",
@@ -3148,7 +3148,7 @@
       "blocks": "218126921-222491356"
     },
     "iv.value_to_wallets_kept": {
-      "value": "246.5147171692180261455607594",
+      "value": "246.5147171692180261455607592992162401950",
       "text": "247×",
       "source": "data/fees_2026-10-02_2026-11-01.json",
       "unit": "multiple",
@@ -3177,7 +3177,7 @@
       "blocks": "218126921-222491356"
     },
     "iv.wallets_multiple_buybacks": {
-      "value": "9.236595390938899921488939177",
+      "value": "9.236595390938899921488939177019350667344",
       "text": "×9.2",
       "source": "data/daily/2026-11-01.json",
       "unit": "multiple",
@@ -3189,7 +3189,7 @@
       "blocks": "218126921-222491356"
     },
     "iv.wallets_multiple_with_front_end": {
-      "value": "6.073194135723742545154198399",
+      "value": "6.073194135723742545154198399106025823221",
       "text": "×6.1",
       "source": "data/daily/2026-11-01.json",
       "unit": "multiple",
@@ -3201,7 +3201,7 @@
       "blocks": "218126921-222491356"
     },
     "iv.wallets_share_of_fees_buybacks": {
-      "value": "0.2260630800872806239102972344",
+      "value": "0.2260630800872806239102972343735318375912",
       "text": "22.6%",
       "source": "data/daily/2026-11-01.json",
       "unit": "share of all fees",
@@ -3215,7 +3215,7 @@
       "blocks": "218126921-222491356"
     },
     "iv.wallets_share_of_fees_with_front_end": {
-      "value": "0.3438146643976488520927513233",
+      "value": "0.3438146643976488520927513233037177787290",
       "text": "34.4%",
       "source": "data/daily/2026-11-01.json",
       "unit": "share of all fees",
@@ -3227,6 +3227,1081 @@
       "status": "final",
       "window": "2026-10-02 00:00 UTC to 2026-11-01 00:00 UTC",
       "blocks": "218126921-222491356"
+    },
+    "lr.activation_late_utc": {
+      "value": "2027-08-16T07:48:08.461922+00:00",
+      "text": "2027-08-16 07:48 UTC",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "utc",
+      "note": "the same, six months later",
+      "status": "final"
+    },
+    "lr.activation_utc": {
+      "value": "2027-02-14T16:48:08.461922+00:00",
+      "text": "2027-02-14 16:48 UTC",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "utc",
+      "note": "end of vote.dao's timelock + 90 days",
+      "assumptions": [
+        "k held at the window's level",
+        "epoch length held at the window's level",
+        "HSP-029 active from 2027-02-14 (end of timelock + 90 days)"
+      ],
+      "status": "final"
+    },
+    "lr.epoch_days": {
+      "value": "0.2970297029702970297029702970297029702970",
+      "text": "0.2970",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "days",
+      "note": "window days / epoch starts in the window",
+      "status": "final"
+    },
+    "lr.first_epoch_issuance_per_day": {
+      "value": "88392.08700000000000000000000000000000003",
+      "text": "88,392",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "near",
+      "note": "calibration: equals n1.new_near_per_day",
+      "status": "final"
+    },
+    "lr.history.2026-04_2026-10.fees_near_multiple": {
+      "value": "0.5272046057751791023926882321246832032887",
+      "text": "×0.5",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "multiple",
+      "note": "October / April, measured monthly (fees_near)",
+      "status": "final"
+    },
+    "lr.history.2026-04_2026-10.kept_multiple": {
+      "value": "2.945060527086336230674282904070675059411",
+      "text": "×2.9",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "multiple",
+      "note": "October / April, measured monthly (kept)",
+      "status": "final"
+    },
+    "lr.history.2026-04_2026-10.kept_share_multiple": {
+      "value": "1.305249466075174001651515137781067264826",
+      "text": "×1.3",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "multiple",
+      "note": "October / April, measured monthly (kept_share)",
+      "status": "final"
+    },
+    "lr.history.2026-04_2026-10.take_rate_multiple": {
+      "value": "4.248645767481065536176911730070779566894",
+      "text": "×4.2",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "multiple",
+      "note": "October / April, measured monthly (take_rate)",
+      "status": "final"
+    },
+    "lr.hsp029_proposal.2y": {
+      "value": "11800000",
+      "text": "11.80M",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "million",
+      "note": "the proposal's own figure, from activation (gov.houseofstake.org/proposals/29, read 2026-11-03)",
+      "status": "final"
+    },
+    "lr.hsp029_proposal.6y": {
+      "value": "66100000",
+      "text": "66.10M",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "million",
+      "note": "the proposal's own figure, from activation (gov.houseofstake.org/proposals/29, read 2026-11-03)",
+      "status": "final"
+    },
+    "lr.issuance_per_day.A.2028": {
+      "value": "90968.38966941607329766051896087930469602",
+      "text": "90,968",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "near",
+      "note": "NEAR issued per day on 2028-01-01",
+      "assumptions": [
+        "k held at the window's level",
+        "epoch length held at the window's level"
+      ],
+      "status": "final"
+    },
+    "lr.issuance_per_day.A.2029": {
+      "value": "93241.66926836800819159125690294687388441",
+      "text": "93,242",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "near",
+      "note": "NEAR issued per day on 2029-01-01",
+      "assumptions": [
+        "k held at the window's level",
+        "epoch length held at the window's level"
+      ],
+      "status": "final"
+    },
+    "lr.issuance_per_day.A.2031": {
+      "value": "97948.29949940677978007877839917939097413",
+      "text": "97,948",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "near",
+      "note": "NEAR issued per day on 2031-01-01",
+      "assumptions": [
+        "k held at the window's level",
+        "epoch length held at the window's level"
+      ],
+      "status": "final"
+    },
+    "lr.issuance_per_day.B.2028": {
+      "value": "76481.52612763668289048776269944070601648",
+      "text": "76,482",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "near",
+      "note": "NEAR issued per day on 2028-01-01",
+      "assumptions": [
+        "k held at the window's level",
+        "epoch length held at the window's level",
+        "HSP-029 active from 2027-02-14 (end of timelock + 90 days)"
+      ],
+      "status": "final"
+    },
+    "lr.issuance_per_day.B.2029": {
+      "value": "61230.33074807719984837672955469930578806",
+      "text": "61,230",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "near",
+      "note": "NEAR issued per day on 2029-01-01",
+      "assumptions": [
+        "k held at the window's level",
+        "epoch length held at the window's level",
+        "HSP-029 active from 2027-02-14 (end of timelock + 90 days)"
+      ],
+      "status": "final"
+    },
+    "lr.issuance_per_day.B.2031": {
+      "value": "61107.54876822519347284993915811390658070",
+      "text": "61,108",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "near",
+      "note": "NEAR issued per day on 2031-01-01",
+      "assumptions": [
+        "k held at the window's level",
+        "epoch length held at the window's level",
+        "HSP-029 active from 2027-02-14 (end of timelock + 90 days)"
+      ],
+      "status": "final"
+    },
+    "lr.k": {
+      "value": "0.9854521340944597530630911268934801519988",
+      "text": "0.9855",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "ratio",
+      "note": "issuance in the window / maximum issuance (1/40 of supply)",
+      "status": "final"
+    },
+    "lr.not_issued_B.2y": {
+      "value": "12235408.492262293565988309406040260135",
+      "text": "12.24M",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "million",
+      "note": "NEAR not issued under HSP-029 in the 2 years from activation",
+      "assumptions": [
+        "k held at the window's level",
+        "epoch length held at the window's level",
+        "HSP-029 active from 2027-02-14 (end of timelock + 90 days)"
+      ],
+      "status": "final"
+    },
+    "lr.not_issued_B.6y": {
+      "value": "66353243.358614365557578695330745480070",
+      "text": "66.35M",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "million",
+      "note": "NEAR not issued under HSP-029 in the 6 years from activation",
+      "assumptions": [
+        "k held at the window's level",
+        "epoch length held at the window's level",
+        "HSP-029 active from 2027-02-14 (end of timelock + 90 days)"
+      ],
+      "status": "final"
+    },
+    "lr.not_issued_B_vs_proposal.2y": {
+      "value": "0.036899024767990980168500797122055943644",
+      "text": "+3.7%",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "signed_pct",
+      "note": "model / proposal - 1; the proposal starts from another block and supply",
+      "status": "final"
+    },
+    "lr.not_issued_B_vs_proposal.6y": {
+      "value": "0.003831215712774062898316116955302270348",
+      "text": "+0.4%",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "signed_pct",
+      "note": "model / proposal - 1; the proposal starts from another block and supply",
+      "status": "final"
+    },
+    "lr.required_growth.all_fees.A.2028": {
+      "value": "0.926825528691445388635580006423795487989",
+      "text": "+93%",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "growth",
+      "assumptions": [
+        "k held at the window's level",
+        "epoch length held at the window's level",
+        "all_fees per day starts at the window's level"
+      ],
+      "years": "1.166324435318275154004106776180698151951",
+      "note": "yearly growth that turns the window's all_fees per day into the issuance per day of 2028-01-01",
+      "status": "final"
+    },
+    "lr.required_growth.all_fees.A.2029": {
+      "value": "0.439309702169071318227163073939496321340",
+      "text": "+44%",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "growth",
+      "assumptions": [
+        "k held at the window's level",
+        "epoch length held at the window's level",
+        "all_fees per day starts at the window's level"
+      ],
+      "years": "2.168377823408624229979466119096509240246",
+      "note": "yearly growth that turns the window's all_fees per day into the issuance per day of 2029-01-01",
+      "status": "final"
+    },
+    "lr.required_growth.all_fees.A.2031": {
+      "value": "0.223012306981713557812375108351751829952",
+      "text": "+22%",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "growth",
+      "assumptions": [
+        "k held at the window's level",
+        "epoch length held at the window's level",
+        "all_fees per day starts at the window's level"
+      ],
+      "years": "4.167008898015058179329226557152635181383",
+      "note": "yearly growth that turns the window's all_fees per day into the issuance per day of 2031-01-01",
+      "status": "final"
+    },
+    "lr.required_growth.all_fees.B.2028": {
+      "value": "0.660548166806501766229314910317305263105",
+      "text": "+66%",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "growth",
+      "assumptions": [
+        "k held at the window's level",
+        "epoch length held at the window's level",
+        "HSP-029 active from 2027-02-14 (end of timelock + 90 days)",
+        "all_fees per day starts at the window's level"
+      ],
+      "years": "1.166324435318275154004106776180698151951",
+      "note": "yearly growth that turns the window's all_fees per day into the issuance per day of 2028-01-01",
+      "status": "final"
+    },
+    "lr.required_growth.all_fees.B.2029": {
+      "value": "0.185560729628433253661622682106804265095",
+      "text": "+19%",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "growth",
+      "assumptions": [
+        "k held at the window's level",
+        "epoch length held at the window's level",
+        "HSP-029 active from 2027-02-14 (end of timelock + 90 days)",
+        "all_fees per day starts at the window's level"
+      ],
+      "years": "2.168377823408624229979466119096509240246",
+      "note": "yearly growth that turns the window's all_fees per day into the issuance per day of 2029-01-01",
+      "status": "final"
+    },
+    "lr.required_growth.all_fees.B.2031": {
+      "value": "0.092089865995970499948868934095657568181",
+      "text": "+9%",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "growth",
+      "assumptions": [
+        "k held at the window's level",
+        "epoch length held at the window's level",
+        "HSP-029 active from 2027-02-14 (end of timelock + 90 days)",
+        "all_fees per day starts at the window's level"
+      ],
+      "years": "4.167008898015058179329226557152635181383",
+      "note": "yearly growth that turns the window's all_fees per day into the issuance per day of 2031-01-01",
+      "status": "final"
+    },
+    "lr.required_growth.all_fees.B_late.2028": {
+      "value": "0.813740862464986826196010424451206213918",
+      "text": "+81%",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "growth",
+      "assumptions": [
+        "k held at the window's level",
+        "epoch length held at the window's level",
+        "HSP-029 active from 2027-08-16 (six months late)",
+        "all_fees per day starts at the window's level"
+      ],
+      "years": "1.166324435318275154004106776180698151951",
+      "note": "yearly growth that turns the window's all_fees per day into the issuance per day of 2028-01-01",
+      "status": "final"
+    },
+    "lr.required_growth.all_fees.B_late.2029": {
+      "value": "0.259456513466156121238887629220514660355",
+      "text": "+26%",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "growth",
+      "assumptions": [
+        "k held at the window's level",
+        "epoch length held at the window's level",
+        "HSP-029 active from 2027-08-16 (six months late)",
+        "all_fees per day starts at the window's level"
+      ],
+      "years": "2.168377823408624229979466119096509240246",
+      "note": "yearly growth that turns the window's all_fees per day into the issuance per day of 2029-01-01",
+      "status": "final"
+    },
+    "lr.required_growth.all_fees.B_late.2031": {
+      "value": "0.093252668443586472791790860148830208628",
+      "text": "+9%",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "growth",
+      "assumptions": [
+        "k held at the window's level",
+        "epoch length held at the window's level",
+        "HSP-029 active from 2027-08-16 (six months late)",
+        "all_fees per day starts at the window's level"
+      ],
+      "years": "4.167008898015058179329226557152635181383",
+      "note": "yearly growth that turns the window's all_fees per day into the issuance per day of 2031-01-01",
+      "status": "final"
+    },
+    "lr.required_growth.buybacks.A.2028": {
+      "value": "5.894821748070671103595693873088512833289",
+      "text": "+589%",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "growth",
+      "assumptions": [
+        "k held at the window's level",
+        "epoch length held at the window's level",
+        "buybacks per day starts at the window's level"
+      ],
+      "years": "1.166324435318275154004106776180698151951",
+      "note": "yearly growth that turns the window's buybacks per day into the issuance per day of 2028-01-01",
+      "status": "final"
+    },
+    "lr.required_growth.buybacks.A.2029": {
+      "value": "1.857375590718617452099171237386625961103",
+      "text": "+186%",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "growth",
+      "assumptions": [
+        "k held at the window's level",
+        "epoch length held at the window's level",
+        "buybacks per day starts at the window's level"
+      ],
+      "years": "2.168377823408624229979466119096509240246",
+      "note": "yearly growth that turns the window's buybacks per day into the issuance per day of 2029-01-01",
+      "status": "final"
+    },
+    "lr.required_growth.buybacks.A.2031": {
+      "value": "0.747443747073649803612827564774132054301",
+      "text": "+75%",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "growth",
+      "assumptions": [
+        "k held at the window's level",
+        "epoch length held at the window's level",
+        "buybacks per day starts at the window's level"
+      ],
+      "years": "4.167008898015058179329226557152635181383",
+      "note": "yearly growth that turns the window's buybacks per day into the issuance per day of 2031-01-01",
+      "status": "final"
+    },
+    "lr.required_growth.buybacks.B.2028": {
+      "value": "4.941992901657149554831997602432667418869",
+      "text": "+494%",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "growth",
+      "assumptions": [
+        "k held at the window's level",
+        "epoch length held at the window's level",
+        "HSP-029 active from 2027-02-14 (end of timelock + 90 days)",
+        "buybacks per day starts at the window's level"
+      ],
+      "years": "1.166324435318275154004106776180698151951",
+      "note": "yearly growth that turns the window's buybacks per day into the issuance per day of 2028-01-01",
+      "status": "final"
+    },
+    "lr.required_growth.buybacks.B.2029": {
+      "value": "1.353622910378262323228689667333996592022",
+      "text": "+135%",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "growth",
+      "assumptions": [
+        "k held at the window's level",
+        "epoch length held at the window's level",
+        "HSP-029 active from 2027-02-14 (end of timelock + 90 days)",
+        "buybacks per day starts at the window's level"
+      ],
+      "years": "2.168377823408624229979466119096509240246",
+      "note": "yearly growth that turns the window's buybacks per day into the issuance per day of 2029-01-01",
+      "status": "final"
+    },
+    "lr.required_growth.buybacks.B.2031": {
+      "value": "0.560381360582410398451709902128222265887",
+      "text": "+56%",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "growth",
+      "assumptions": [
+        "k held at the window's level",
+        "epoch length held at the window's level",
+        "HSP-029 active from 2027-02-14 (end of timelock + 90 days)",
+        "buybacks per day starts at the window's level"
+      ],
+      "years": "4.167008898015058179329226557152635181383",
+      "note": "yearly growth that turns the window's buybacks per day into the issuance per day of 2031-01-01",
+      "status": "final"
+    },
+    "lr.required_growth.buybacks.B_late.2028": {
+      "value": "5.490167250576540477146898806106023999302",
+      "text": "+549%",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "growth",
+      "assumptions": [
+        "k held at the window's level",
+        "epoch length held at the window's level",
+        "HSP-029 active from 2027-08-16 (six months late)",
+        "buybacks per day starts at the window's level"
+      ],
+      "years": "1.166324435318275154004106776180698151951",
+      "note": "yearly growth that turns the window's buybacks per day into the issuance per day of 2028-01-01",
+      "status": "final"
+    },
+    "lr.required_growth.buybacks.B_late.2029": {
+      "value": "1.500323796696699528251756658031927181012",
+      "text": "+150%",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "growth",
+      "assumptions": [
+        "k held at the window's level",
+        "epoch length held at the window's level",
+        "HSP-029 active from 2027-08-16 (six months late)",
+        "buybacks per day starts at the window's level"
+      ],
+      "years": "2.168377823408624229979466119096509240246",
+      "note": "yearly growth that turns the window's buybacks per day into the issuance per day of 2029-01-01",
+      "status": "final"
+    },
+    "lr.required_growth.buybacks.B_late.2031": {
+      "value": "0.562042776297173805453149665262145308185",
+      "text": "+56%",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "growth",
+      "assumptions": [
+        "k held at the window's level",
+        "epoch length held at the window's level",
+        "HSP-029 active from 2027-08-16 (six months late)",
+        "buybacks per day starts at the window's level"
+      ],
+      "years": "4.167008898015058179329226557152635181383",
+      "note": "yearly growth that turns the window's buybacks per day into the issuance per day of 2031-01-01",
+      "status": "final"
+    },
+    "lr.required_growth.with_front_end.A.2028": {
+      "value": "3.812783546197135192890552318780008749510",
+      "text": "+381%",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "growth",
+      "assumptions": [
+        "k held at the window's level",
+        "epoch length held at the window's level",
+        "with_front_end per day starts at the window's level"
+      ],
+      "years": "1.166324435318275154004106776180698151951",
+      "note": "yearly growth that turns the window's with_front_end per day into the issuance per day of 2028-01-01",
+      "status": "final"
+    },
+    "lr.required_growth.with_front_end.A.2029": {
+      "value": "1.354995509083246107190419289369137040879",
+      "text": "+135%",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "growth",
+      "assumptions": [
+        "k held at the window's level",
+        "epoch length held at the window's level",
+        "with_front_end per day starts at the window's level"
+      ],
+      "years": "2.168377823408624229979466119096509240246",
+      "note": "yearly growth that turns the window's with_front_end per day into the issuance per day of 2029-01-01",
+      "status": "final"
+    },
+    "lr.required_growth.with_front_end.A.2031": {
+      "value": "0.580171181971726740594413618271504090609",
+      "text": "+58%",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "growth",
+      "assumptions": [
+        "k held at the window's level",
+        "epoch length held at the window's level",
+        "with_front_end per day starts at the window's level"
+      ],
+      "years": "4.167008898015058179329226557152635181383",
+      "note": "yearly growth that turns the window's with_front_end per day into the issuance per day of 2031-01-01",
+      "status": "final"
+    },
+    "lr.required_growth.with_front_end.B.2028": {
+      "value": "3.147681653513079362028164794804873417084",
+      "text": "+315%",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "growth",
+      "assumptions": [
+        "k held at the window's level",
+        "epoch length held at the window's level",
+        "HSP-029 active from 2027-02-14 (end of timelock + 90 days)",
+        "with_front_end per day starts at the window's level"
+      ],
+      "years": "1.166324435318275154004106776180698151951",
+      "note": "yearly growth that turns the window's with_front_end per day into the issuance per day of 2028-01-01",
+      "status": "final"
+    },
+    "lr.required_growth.with_front_end.B.2029": {
+      "value": "0.939811973623763080258438338268413221029",
+      "text": "+94%",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "growth",
+      "assumptions": [
+        "k held at the window's level",
+        "epoch length held at the window's level",
+        "HSP-029 active from 2027-02-14 (end of timelock + 90 days)",
+        "with_front_end per day starts at the window's level"
+      ],
+      "years": "2.168377823408624229979466119096509240246",
+      "note": "yearly growth that turns the window's with_front_end per day into the issuance per day of 2029-01-01",
+      "status": "final"
+    },
+    "lr.required_growth.with_front_end.B.2031": {
+      "value": "0.411015183182453305957571118403864148929",
+      "text": "+41%",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "growth",
+      "assumptions": [
+        "k held at the window's level",
+        "epoch length held at the window's level",
+        "HSP-029 active from 2027-02-14 (end of timelock + 90 days)",
+        "with_front_end per day starts at the window's level"
+      ],
+      "years": "4.167008898015058179329226557152635181383",
+      "note": "yearly growth that turns the window's with_front_end per day into the issuance per day of 2031-01-01",
+      "status": "final"
+    },
+    "lr.required_growth.with_front_end.B_late.2028": {
+      "value": "3.530323088393511643623729232066809691526",
+      "text": "+353%",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "growth",
+      "assumptions": [
+        "k held at the window's level",
+        "epoch length held at the window's level",
+        "HSP-029 active from 2027-08-16 (six months late)",
+        "with_front_end per day starts at the window's level"
+      ],
+      "years": "1.166324435318275154004106776180698151951",
+      "note": "yearly growth that turns the window's with_front_end per day into the issuance per day of 2028-01-01",
+      "status": "final"
+    },
+    "lr.required_growth.with_front_end.B_late.2029": {
+      "value": "1.060720099801030784103992613659280230295",
+      "text": "+106%",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "growth",
+      "assumptions": [
+        "k held at the window's level",
+        "epoch length held at the window's level",
+        "HSP-029 active from 2027-08-16 (six months late)",
+        "with_front_end per day starts at the window's level"
+      ],
+      "years": "2.168377823408624229979466119096509240246",
+      "note": "yearly growth that turns the window's with_front_end per day into the issuance per day of 2029-01-01",
+      "status": "final"
+    },
+    "lr.required_growth.with_front_end.B_late.2031": {
+      "value": "0.412517561292272622620007702657906930362",
+      "text": "+41%",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "growth",
+      "assumptions": [
+        "k held at the window's level",
+        "epoch length held at the window's level",
+        "HSP-029 active from 2027-08-16 (six months late)",
+        "with_front_end per day starts at the window's level"
+      ],
+      "years": "4.167008898015058179329226557152635181383",
+      "note": "yearly growth that turns the window's with_front_end per day into the issuance per day of 2031-01-01",
+      "status": "final"
+    },
+    "lr.required_multiple.all_fees.A.2028": {
+      "value": "2.148912052248899145514430327690187036755",
+      "text": "×2.1",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "multiple",
+      "assumptions": [
+        "k held at the window's level",
+        "epoch length held at the window's level",
+        "all_fees per day starts at the window's level"
+      ],
+      "years": "1.166324435318275154004106776180698151951",
+      "note": "issuance per day on 2028-01-01 / all_fees per day in the window",
+      "status": "final"
+    },
+    "lr.required_multiple.all_fees.A.2029": {
+      "value": "2.202612881142012321361968447330923996202",
+      "text": "×2.2",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "multiple",
+      "assumptions": [
+        "k held at the window's level",
+        "epoch length held at the window's level",
+        "all_fees per day starts at the window's level"
+      ],
+      "years": "2.168377823408624229979466119096509240246",
+      "note": "issuance per day on 2029-01-01 / all_fees per day in the window",
+      "status": "final"
+    },
+    "lr.required_multiple.all_fees.A.2031": {
+      "value": "2.313795836734757614872775124412786240628",
+      "text": "×2.3",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "multiple",
+      "assumptions": [
+        "k held at the window's level",
+        "epoch length held at the window's level",
+        "all_fees per day starts at the window's level"
+      ],
+      "years": "4.167008898015058179329226557152635181383",
+      "note": "issuance per day on 2031-01-01 / all_fees per day in the window",
+      "status": "final"
+    },
+    "lr.required_multiple.all_fees.B.2028": {
+      "value": "1.806694323900111330839282597436017084271",
+      "text": "×1.8",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "multiple",
+      "assumptions": [
+        "k held at the window's level",
+        "epoch length held at the window's level",
+        "HSP-029 active from 2027-02-14 (end of timelock + 90 days)",
+        "all_fees per day starts at the window's level"
+      ],
+      "years": "1.166324435318275154004106776180698151951",
+      "note": "issuance per day on 2028-01-01 / all_fees per day in the window",
+      "status": "final"
+    },
+    "lr.required_multiple.all_fees.B.2029": {
+      "value": "1.446421072043739646756182148257933204387",
+      "text": "×1.4",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "multiple",
+      "assumptions": [
+        "k held at the window's level",
+        "epoch length held at the window's level",
+        "HSP-029 active from 2027-02-14 (end of timelock + 90 days)",
+        "all_fees per day starts at the window's level"
+      ],
+      "years": "2.168377823408624229979466119096509240246",
+      "note": "issuance per day on 2029-01-01 / all_fees per day in the window",
+      "status": "final"
+    },
+    "lr.required_multiple.all_fees.B.2031": {
+      "value": "1.443520639516992780284792916003002590946",
+      "text": "×1.4",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "multiple",
+      "assumptions": [
+        "k held at the window's level",
+        "epoch length held at the window's level",
+        "HSP-029 active from 2027-02-14 (end of timelock + 90 days)",
+        "all_fees per day starts at the window's level"
+      ],
+      "years": "4.167008898015058179329226557152635181383",
+      "note": "issuance per day on 2031-01-01 / all_fees per day in the window",
+      "status": "final"
+    },
+    "lr.required_multiple.all_fees.B_late.2028": {
+      "value": "2.002546539109463163362983248034821384804",
+      "text": "×2.0",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "multiple",
+      "assumptions": [
+        "k held at the window's level",
+        "epoch length held at the window's level",
+        "HSP-029 active from 2027-08-16 (six months late)",
+        "all_fees per day starts at the window's level"
+      ],
+      "years": "1.166324435318275154004106776180698151951",
+      "note": "issuance per day on 2028-01-01 / all_fees per day in the window",
+      "status": "final"
+    },
+    "lr.required_multiple.all_fees.B_late.2029": {
+      "value": "1.649054385305974074881214029222914457297",
+      "text": "×1.6",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "multiple",
+      "assumptions": [
+        "k held at the window's level",
+        "epoch length held at the window's level",
+        "HSP-029 active from 2027-08-16 (six months late)",
+        "all_fees per day starts at the window's level"
+      ],
+      "years": "2.168377823408624229979466119096509240246",
+      "note": "issuance per day on 2029-01-01 / all_fees per day in the window",
+      "status": "final"
+    },
+    "lr.required_multiple.all_fees.B_late.2031": {
+      "value": "1.449936090154700831767184831137931122712",
+      "text": "×1.4",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "multiple",
+      "assumptions": [
+        "k held at the window's level",
+        "epoch length held at the window's level",
+        "HSP-029 active from 2027-08-16 (six months late)",
+        "all_fees per day starts at the window's level"
+      ],
+      "years": "4.167008898015058179329226557152635181383",
+      "note": "issuance per day on 2031-01-01 / all_fees per day in the window",
+      "status": "final"
+    },
+    "lr.required_multiple.buybacks.A.2028": {
+      "value": "9.505827181422301867620420487565433234517",
+      "text": "×9.5",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "multiple",
+      "assumptions": [
+        "k held at the window's level",
+        "epoch length held at the window's level",
+        "buybacks per day starts at the window's level"
+      ],
+      "years": "1.166324435318275154004106776180698151951",
+      "note": "issuance per day on 2028-01-01 / buybacks per day in the window",
+      "status": "final"
+    },
+    "lr.required_multiple.buybacks.A.2029": {
+      "value": "9.743375664815487153958176222257308068070",
+      "text": "×9.7",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "multiple",
+      "assumptions": [
+        "k held at the window's level",
+        "epoch length held at the window's level",
+        "buybacks per day starts at the window's level"
+      ],
+      "years": "2.168377823408624229979466119096509240246",
+      "note": "issuance per day on 2029-01-01 / buybacks per day in the window",
+      "status": "final"
+    },
+    "lr.required_multiple.buybacks.A.2031": {
+      "value": "10.23519940431116589044424132283282123087",
+      "text": "×10.2",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "multiple",
+      "assumptions": [
+        "k held at the window's level",
+        "epoch length held at the window's level",
+        "buybacks per day starts at the window's level"
+      ],
+      "years": "4.167008898015058179329226557152635181383",
+      "note": "issuance per day on 2031-01-01 / buybacks per day in the window",
+      "status": "final"
+    },
+    "lr.required_multiple.buybacks.B.2028": {
+      "value": "7.992008790996283381539513853490499335560",
+      "text": "×8.0",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "multiple",
+      "assumptions": [
+        "k held at the window's level",
+        "epoch length held at the window's level",
+        "HSP-029 active from 2027-02-14 (end of timelock + 90 days)",
+        "buybacks per day starts at the window's level"
+      ],
+      "years": "1.166324435318275154004106776180698151951",
+      "note": "issuance per day on 2028-01-01 / buybacks per day in the window",
+      "status": "final"
+    },
+    "lr.required_multiple.buybacks.B.2029": {
+      "value": "6.398320828451861318046629175756869906535",
+      "text": "×6.4",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "multiple",
+      "assumptions": [
+        "k held at the window's level",
+        "epoch length held at the window's level",
+        "HSP-029 active from 2027-02-14 (end of timelock + 90 days)",
+        "buybacks per day starts at the window's level"
+      ],
+      "years": "2.168377823408624229979466119096509240246",
+      "note": "issuance per day on 2029-01-01 / buybacks per day in the window",
+      "status": "final"
+    },
+    "lr.required_multiple.buybacks.B.2031": {
+      "value": "6.385490610332056059233515939090771083957",
+      "text": "×6.4",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "multiple",
+      "assumptions": [
+        "k held at the window's level",
+        "epoch length held at the window's level",
+        "HSP-029 active from 2027-02-14 (end of timelock + 90 days)",
+        "buybacks per day starts at the window's level"
+      ],
+      "years": "4.167008898015058179329226557152635181383",
+      "note": "issuance per day on 2031-01-01 / buybacks per day in the window",
+      "status": "final"
+    },
+    "lr.required_multiple.buybacks.B_late.2028": {
+      "value": "8.858371520420442275966542046634914110395",
+      "text": "×8.9",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "multiple",
+      "assumptions": [
+        "k held at the window's level",
+        "epoch length held at the window's level",
+        "HSP-029 active from 2027-08-16 (six months late)",
+        "buybacks per day starts at the window's level"
+      ],
+      "years": "1.166324435318275154004106776180698151951",
+      "note": "issuance per day on 2028-01-01 / buybacks per day in the window",
+      "status": "final"
+    },
+    "lr.required_multiple.buybacks.B_late.2029": {
+      "value": "7.294680107117540827095171415060287016968",
+      "text": "×7.3",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "multiple",
+      "assumptions": [
+        "k held at the window's level",
+        "epoch length held at the window's level",
+        "HSP-029 active from 2027-08-16 (six months late)",
+        "buybacks per day starts at the window's level"
+      ],
+      "years": "2.168377823408624229979466119096509240246",
+      "note": "issuance per day on 2029-01-01 / buybacks per day in the window",
+      "status": "final"
+    },
+    "lr.required_multiple.buybacks.B_late.2031": {
+      "value": "6.413869698712698035018469492638808920398",
+      "text": "×6.4",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "multiple",
+      "assumptions": [
+        "k held at the window's level",
+        "epoch length held at the window's level",
+        "HSP-029 active from 2027-08-16 (six months late)",
+        "buybacks per day starts at the window's level"
+      ],
+      "years": "4.167008898015058179329226557152635181383",
+      "note": "issuance per day on 2031-01-01 / buybacks per day in the window",
+      "status": "final"
+    },
+    "lr.required_multiple.with_front_end.A.2028": {
+      "value": "6.250223019450243633681700673457086185830",
+      "text": "×6.3",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "multiple",
+      "assumptions": [
+        "k held at the window's level",
+        "epoch length held at the window's level",
+        "with_front_end per day starts at the window's level"
+      ],
+      "years": "1.166324435318275154004106776180698151951",
+      "note": "issuance per day on 2028-01-01 / with_front_end per day in the window",
+      "status": "final"
+    },
+    "lr.required_multiple.with_front_end.A.2029": {
+      "value": "6.406414687024556603280752311716299154175",
+      "text": "×6.4",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "multiple",
+      "assumptions": [
+        "k held at the window's level",
+        "epoch length held at the window's level",
+        "with_front_end per day starts at the window's level"
+      ],
+      "years": "2.168377823408624229979466119096509240246",
+      "note": "issuance per day on 2029-01-01 / with_front_end per day in the window",
+      "status": "final"
+    },
+    "lr.required_multiple.with_front_end.A.2031": {
+      "value": "6.729796124477540592305086804140527657753",
+      "text": "×6.7",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "multiple",
+      "assumptions": [
+        "k held at the window's level",
+        "epoch length held at the window's level",
+        "with_front_end per day starts at the window's level"
+      ],
+      "years": "4.167008898015058179329226557152635181383",
+      "note": "issuance per day on 2031-01-01 / with_front_end per day in the window",
+      "status": "final"
+    },
+    "lr.required_multiple.with_front_end.B.2028": {
+      "value": "5.254864870124819299981027258823019367822",
+      "text": "×5.3",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "multiple",
+      "assumptions": [
+        "k held at the window's level",
+        "epoch length held at the window's level",
+        "HSP-029 active from 2027-02-14 (end of timelock + 90 days)",
+        "with_front_end per day starts at the window's level"
+      ],
+      "years": "1.166324435318275154004106776180698151951",
+      "note": "issuance per day on 2028-01-01 / with_front_end per day in the window",
+      "status": "final"
+    },
+    "lr.required_multiple.with_front_end.B.2029": {
+      "value": "4.206991286983839884849899549758812547090",
+      "text": "×4.2",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "multiple",
+      "assumptions": [
+        "k held at the window's level",
+        "epoch length held at the window's level",
+        "HSP-029 active from 2027-02-14 (end of timelock + 90 days)",
+        "with_front_end per day starts at the window's level"
+      ],
+      "years": "2.168377823408624229979466119096509240246",
+      "note": "issuance per day on 2029-01-01 / with_front_end per day in the window",
+      "status": "final"
+    },
+    "lr.required_multiple.with_front_end.B.2031": {
+      "value": "4.198555227385186858513727349968728171546",
+      "text": "×4.2",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "multiple",
+      "assumptions": [
+        "k held at the window's level",
+        "epoch length held at the window's level",
+        "HSP-029 active from 2027-02-14 (end of timelock + 90 days)",
+        "with_front_end per day starts at the window's level"
+      ],
+      "years": "4.167008898015058179329226557152635181383",
+      "note": "issuance per day on 2031-01-01 / with_front_end per day in the window",
+      "status": "final"
+    },
+    "lr.required_multiple.with_front_end.B_late.2028": {
+      "value": "5.824511274513838677797863628862818492217",
+      "text": "×5.8",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "multiple",
+      "assumptions": [
+        "k held at the window's level",
+        "epoch length held at the window's level",
+        "HSP-029 active from 2027-08-16 (six months late)",
+        "with_front_end per day starts at the window's level"
+      ],
+      "years": "1.166324435318275154004106776180698151951",
+      "note": "issuance per day on 2028-01-01 / with_front_end per day in the window",
+      "status": "final"
+    },
+    "lr.required_multiple.with_front_end.B_late.2029": {
+      "value": "4.796360869481949667815344974463995012419",
+      "text": "×4.8",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "multiple",
+      "assumptions": [
+        "k held at the window's level",
+        "epoch length held at the window's level",
+        "HSP-029 active from 2027-08-16 (six months late)",
+        "with_front_end per day starts at the window's level"
+      ],
+      "years": "2.168377823408624229979466119096509240246",
+      "note": "issuance per day on 2029-01-01 / with_front_end per day in the window",
+      "status": "final"
+    },
+    "lr.required_multiple.with_front_end.B_late.2031": {
+      "value": "4.217214900876238241847031546848696211865",
+      "text": "×4.2",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "multiple",
+      "assumptions": [
+        "k held at the window's level",
+        "epoch length held at the window's level",
+        "HSP-029 active from 2027-08-16 (six months late)",
+        "with_front_end per day starts at the window's level"
+      ],
+      "years": "4.167008898015058179329226557152635181383",
+      "note": "issuance per day on 2031-01-01 / with_front_end per day in the window",
+      "status": "final"
+    },
+    "lr.supply.A.2031-01-01": {
+      "value": "1452150344.167972840034827552364202531922",
+      "text": "1,452,150,344",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "near",
+      "assumptions": [
+        "k held at the window's level",
+        "epoch length held at the window's level"
+      ],
+      "status": "final"
+    },
+    "lr.supply.B.2031-01-01": {
+      "value": "1415564199.885254802219839913425202223972",
+      "text": "1,415,564,200",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "near",
+      "assumptions": [
+        "k held at the window's level",
+        "epoch length held at the window's level",
+        "HSP-029 active from 2027-02-14 (end of timelock + 90 days)"
+      ],
+      "status": "final"
+    },
+    "lr.take_rate_ceiling_multiple": {
+      "value": "2.908543769510136161012522926307862357128",
+      "text": "×2.9",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "multiple",
+      "note": "1 / share of all fees the three wallets keep today: the most that keeping every fee can add, once",
+      "status": "final"
+    },
+    "lr.yield_gross.B.2028": {
+      "value": "0.04177283249769228785605861884860500788606",
+      "text": "4.2%",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "pct",
+      "note": "today's staking yield x HSP-029's cap on 2028-01-01 / 2.5%",
+      "assumptions": [
+        "k held at the window's level",
+        "epoch length held at the window's level",
+        "HSP-029 active from 2027-02-14 (end of timelock + 90 days)",
+        "staked share of supply and treasury.near's share held"
+      ],
+      "status": "final"
+    },
+    "lr.yield_gross.B.2029": {
+      "value": "0.03282605150175889318124757655603806413128",
+      "text": "3.3%",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "pct",
+      "note": "today's staking yield x HSP-029's cap on 2029-01-01 / 2.5%",
+      "assumptions": [
+        "k held at the window's level",
+        "epoch length held at the window's level",
+        "HSP-029 active from 2027-02-14 (end of timelock + 90 days)",
+        "staked share of supply and treasury.near's share held"
+      ],
+      "status": "final"
+    },
+    "lr.yield_gross.B.2031": {
+      "value": "0.03174559085624454066763553804357086782205",
+      "text": "3.2%",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "pct",
+      "note": "today's staking yield x HSP-029's cap on 2031-01-01 / 2.5%",
+      "assumptions": [
+        "k held at the window's level",
+        "epoch length held at the window's level",
+        "HSP-029 active from 2027-02-14 (end of timelock + 90 days)",
+        "staked share of supply and treasury.near's share held"
+      ],
+      "status": "final"
     },
     "n1.buybacks_held_near": {
       "value": "2145247.526",
@@ -3403,7 +4478,7 @@
       "excluded_days": []
     },
     "n2.max_coverage_without_2026-10-02_to_07": {
-      "value": "0.4794296376861074878293393229",
+      "value": "0.4794296376861074878293393227005299472160",
       "text": "47.9%",
       "source": "data/fees_2026-10-02_2026-11-01.json",
       "unit": "share",
