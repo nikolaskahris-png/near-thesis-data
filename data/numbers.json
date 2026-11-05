@@ -4778,6 +4778,222 @@
       "note": "issuance per day on 2031-01-01 / with_front_end per day in the window",
       "status": "final"
     },
+    "lr.scenario.0.cover_price.all_fees.A.2031": {
+      "value": "2.103653979222456333467968971550851283589",
+      "text": "$2.10",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "usd2",
+      "note": "all_fees in dollars a day, grown 0% a year from the window for 4.167 years, / NEAR issued a day on 2031-01-01 (path A)",
+      "years": "4.167008898015058179329226557152635181383",
+      "status": "final"
+    },
+    "lr.scenario.0.cover_price.all_fees.B.2031": {
+      "value": "3.371912867615168995207344183257490364247",
+      "text": "$3.37",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "usd2",
+      "note": "all_fees in dollars a day, grown 0% a year from the window for 4.167 years, / NEAR issued a day on 2031-01-01 (path B)",
+      "years": "4.167008898015058179329226557152635181383",
+      "status": "final"
+    },
+    "lr.scenario.0.cover_price.buybacks.A.2031": {
+      "value": "0.4766980893352087949764912325275456871610",
+      "text": "$0.48",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "usd2",
+      "note": "buybacks in dollars a day, grown 0% a year from the window for 4.167 years, / NEAR issued a day on 2031-01-01 (path A)",
+      "years": "4.167008898015058179329226557152635181383",
+      "status": "final"
+    },
+    "lr.scenario.0.cover_price.buybacks.B.2031": {
+      "value": "0.7640916411505425016585031128959093549350",
+      "text": "$0.76",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "usd2",
+      "note": "buybacks in dollars a day, grown 0% a year from the window for 4.167 years, / NEAR issued a day on 2031-01-01 (path B)",
+      "years": "4.167008898015058179329226557152635181383",
+      "status": "final"
+    },
+    "lr.scenario.0.cover_price.with_front_end.A.2031": {
+      "value": "0.7249996745449377042668960478588530612364",
+      "text": "$0.72",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "usd2",
+      "note": "with_front_end in dollars a day, grown 0% a year from the window for 4.167 years, / NEAR issued a day on 2031-01-01 (path A)",
+      "years": "4.167008898015058179329226557152635181383",
+      "status": "final"
+    },
+    "lr.scenario.0.cover_price.with_front_end.B.2031": {
+      "value": "1.162090227651631677798903404154112669754",
+      "text": "$1.16",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "usd2",
+      "note": "with_front_end in dollars a day, grown 0% a year from the window for 4.167 years, / NEAR issued a day on 2031-01-01 (path B)",
+      "years": "4.167008898015058179329226557152635181383",
+      "status": "final"
+    },
+    "lr.scenario.100.cover_price.all_fees.A.2031": {
+      "value": "37.78931126357919568509098385852240595717",
+      "text": "$37.79",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "usd2",
+      "note": "all_fees in dollars a day, grown 100% a year from the window for 4.167 years, / NEAR issued a day on 2031-01-01 (path A)",
+      "years": "4.167008898015058179329226557152635181383",
+      "status": "final"
+    },
+    "lr.scenario.100.cover_price.all_fees.B.2031": {
+      "value": "60.57187454139906053527888998905927279724",
+      "text": "$60.57",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "usd2",
+      "note": "all_fees in dollars a day, grown 100% a year from the window for 4.167 years, / NEAR issued a day on 2031-01-01 (path B)",
+      "years": "4.167008898015058179329226557152635181383",
+      "status": "final"
+    },
+    "lr.scenario.100.cover_price.buybacks.A.2031": {
+      "value": "8.563239322894718586471465941036355281520",
+      "text": "$8.56",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "usd2",
+      "note": "buybacks in dollars a day, grown 100% a year from the window for 4.167 years, / NEAR issued a day on 2031-01-01 (path A)",
+      "years": "4.167008898015058179329226557152635181383",
+      "status": "final"
+    },
+    "lr.scenario.100.cover_price.buybacks.B.2031": {
+      "value": "13.72587751908200119042816509922909413089",
+      "text": "$13.73",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "usd2",
+      "note": "buybacks in dollars a day, grown 100% a year from the window for 4.167 years, / NEAR issued a day on 2031-01-01 (path B)",
+      "years": "4.167008898015058179329226557152635181383",
+      "status": "final"
+    },
+    "lr.scenario.100.cover_price.with_front_end.A.2031": {
+      "value": "13.02364297454409141027380994654365820900",
+      "text": "$13.02",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "usd2",
+      "note": "with_front_end in dollars a day, grown 100% a year from the window for 4.167 years, / NEAR issued a day on 2031-01-01 (path A)",
+      "years": "4.167008898015058179329226557152635181383",
+      "status": "final"
+    },
+    "lr.scenario.100.cover_price.with_front_end.B.2031": {
+      "value": "20.87538623881606280331200563943856525905",
+      "text": "$20.88",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "usd2",
+      "note": "with_front_end in dollars a day, grown 100% a year from the window for 4.167 years, / NEAR issued a day on 2031-01-01 (path B)",
+      "years": "4.167008898015058179329226557152635181383",
+      "status": "final"
+    },
+    "lr.scenario.25.cover_price.all_fees.A.2031": {
+      "value": "5.330883512667205896657411472526995753930",
+      "text": "$5.33",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "usd2",
+      "note": "all_fees in dollars a day, grown 25% a year from the window for 4.167 years, / NEAR issued a day on 2031-01-01 (path A)",
+      "years": "4.167008898015058179329226557152635181383",
+      "status": "final"
+    },
+    "lr.scenario.25.cover_price.all_fees.B.2031": {
+      "value": "8.544786780363968483481731682696880232549",
+      "text": "$8.54",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "usd2",
+      "note": "all_fees in dollars a day, grown 25% a year from the window for 4.167 years, / NEAR issued a day on 2031-01-01 (path B)",
+      "years": "4.167008898015058179329226557152635181383",
+      "status": "final"
+    },
+    "lr.scenario.25.cover_price.buybacks.A.2031": {
+      "value": "1.208003792475556783503616643870062417922",
+      "text": "$1.21",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "usd2",
+      "note": "buybacks in dollars a day, grown 25% a year from the window for 4.167 years, / NEAR issued a day on 2031-01-01 (path A)",
+      "years": "4.167008898015058179329226557152635181383",
+      "status": "final"
+    },
+    "lr.scenario.25.cover_price.buybacks.B.2031": {
+      "value": "1.936289699830674611793036518334664286712",
+      "text": "$1.94",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "usd2",
+      "note": "buybacks in dollars a day, grown 25% a year from the window for 4.167 years, / NEAR issued a day on 2031-01-01 (path B)",
+      "years": "4.167008898015058179329226557152635181383",
+      "status": "final"
+    },
+    "lr.scenario.25.cover_price.with_front_end.A.2031": {
+      "value": "1.837226487765455794313441695417878781248",
+      "text": "$1.84",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "usd2",
+      "note": "with_front_end in dollars a day, grown 25% a year from the window for 4.167 years, / NEAR issued a day on 2031-01-01 (path A)",
+      "years": "4.167008898015058179329226557152635181383",
+      "status": "final"
+    },
+    "lr.scenario.25.cover_price.with_front_end.B.2031": {
+      "value": "2.944860559772059528764768352599593468147",
+      "text": "$2.94",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "usd2",
+      "note": "with_front_end in dollars a day, grown 25% a year from the window for 4.167 years, / NEAR issued a day on 2031-01-01 (path B)",
+      "years": "4.167008898015058179329226557152635181383",
+      "status": "final"
+    },
+    "lr.scenario.50.cover_price.all_fees.A.2031": {
+      "value": "11.39588740228607831797607503525554152724",
+      "text": "$11.40",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "usd2",
+      "note": "all_fees in dollars a day, grown 50% a year from the window for 4.167 years, / NEAR issued a day on 2031-01-01 (path A)",
+      "years": "4.167008898015058179329226557152635181383",
+      "status": "final"
+    },
+    "lr.scenario.50.cover_price.all_fees.B.2031": {
+      "value": "18.26628321444045760918443929143834055080",
+      "text": "$18.27",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "usd2",
+      "note": "all_fees in dollars a day, grown 50% a year from the window for 4.167 years, / NEAR issued a day on 2031-01-01 (path B)",
+      "years": "4.167008898015058179329226557152635181383",
+      "status": "final"
+    },
+    "lr.scenario.50.cover_price.buybacks.A.2031": {
+      "value": "2.582362786182568522212901292449169397354",
+      "text": "$2.58",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "usd2",
+      "note": "buybacks in dollars a day, grown 50% a year from the window for 4.167 years, / NEAR issued a day on 2031-01-01 (path A)",
+      "years": "4.167008898015058179329226557152635181383",
+      "status": "final"
+    },
+    "lr.scenario.50.cover_price.buybacks.B.2031": {
+      "value": "4.139227455457285909692207499475892168338",
+      "text": "$4.14",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "usd2",
+      "note": "buybacks in dollars a day, grown 50% a year from the window for 4.167 years, / NEAR issued a day on 2031-01-01 (path B)",
+      "years": "4.167008898015058179329226557152635181383",
+      "status": "final"
+    },
+    "lr.scenario.50.cover_price.with_front_end.A.2031": {
+      "value": "3.927458954472129104602676294318233747772",
+      "text": "$3.93",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "usd2",
+      "note": "with_front_end in dollars a day, grown 50% a year from the window for 4.167 years, / NEAR issued a day on 2031-01-01 (path A)",
+      "years": "4.167008898015058179329226557152635181383",
+      "status": "final"
+    },
+    "lr.scenario.50.cover_price.with_front_end.B.2031": {
+      "value": "6.295260302509365193615317824514163162086",
+      "text": "$6.30",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "usd2",
+      "note": "with_front_end in dollars a day, grown 50% a year from the window for 4.167 years, / NEAR issued a day on 2031-01-01 (path B)",
+      "years": "4.167008898015058179329226557152635181383",
+      "status": "final"
+    },
     "lr.supply.A.2031-01-01": {
       "value": "1452150344.167972840034827552364202531922",
       "text": "1,452,150,344",

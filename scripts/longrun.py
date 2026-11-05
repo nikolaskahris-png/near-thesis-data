@@ -198,6 +198,30 @@ def base_sensitivity(r, bases):
     return out
 
 
+SCENARIO_GROWTH = {"0": D(0), "25": D("0.25"), "50": D("0.5"), "100": D(1)}  # author's choice, not forecasts
+
+
+def usd_scenarios(r, kept_usd):
+    """The NEAR price up to which issuance on 1 January 2031 is covered, if what is kept in
+    dollars grows at each scenario's yearly rate from the window's level.
+
+    `kept_usd` is {name: USD a day in the window}. price = kept_usd x (1 + g) ^ years / NEAR issued
+    a day on 1 January 2031. Below that price the dollars buy at least as many NEAR as are issued.
+    """
+    out = {}
+    for p in ("A", "B"):
+        issued = r[f"lr.issuance_per_day.{p}.2031"][0]
+        years = D(r[f"lr.required_growth.buybacks.{p}.2031"][2]["years"])
+        for g_name, g in SCENARIO_GROWTH.items():
+            for name, usd in kept_usd.items():
+                price = usd * ((1 + g).ln() * years).exp() / issued if g else usd / issued
+                out[f"lr.scenario.{g_name}.cover_price.{name}.{p}.2031"] = (price, "usd2", {
+                    "note": f"{name} in dollars a day, grown {g_name}% a year from the window for "
+                            f"{years:.3f} years, / NEAR issued a day on 2031-01-01 (path {p})",
+                    "years": str(years)})
+    return out
+
+
 def check(r):
     """Problems with a model result: calibration, ramp, and the cross-check with the proposal."""
     problems = []

@@ -119,5 +119,23 @@ class LongRunTest(unittest.TestCase):
         same = lr.base_sensitivity(r, {"w": dict(KEPT)})
         self.assertEqual(same["lr.required_growth.buybacks.B.2031.base.w"][0], r["lr.required_growth.buybacks.B.2031"][0])
 
+    def test_usd_scenarios(self):
+        r = run()
+        usd = {"buybacks": D("46692.3"), "all_fees": D("206049.33")}
+        out = lr.usd_scenarios(r, usd)
+        for p in ("A", "B"):
+            issued = r[f"lr.issuance_per_day.{p}.2031"][0]
+            # no growth: today's dollars over 2031's issuance
+            self.assertEqual(out[f"lr.scenario.0.cover_price.buybacks.{p}.2031"][0], usd["buybacks"] / issued)
+            # +100% a year: doubles every year
+            years = D(out[f"lr.scenario.100.cover_price.all_fees.{p}.2031"][2]["years"])
+            want = usd["all_fees"] * (D(2).ln() * years).exp() / issued
+            self.assertEqual(out[f"lr.scenario.100.cover_price.all_fees.{p}.2031"][0], want)
+            prices = [out[f"lr.scenario.{g}.cover_price.buybacks.{p}.2031"][0] for g in ("0", "25", "50", "100")]
+            self.assertEqual(prices, sorted(prices))
+        # HSP-029 issues less, so the same dollars cover issuance up to a higher price
+        self.assertGreater(out["lr.scenario.50.cover_price.buybacks.B.2031"][0],
+                           out["lr.scenario.50.cover_price.buybacks.A.2031"][0])
+
 if __name__ == "__main__":
     unittest.main()

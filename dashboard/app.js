@@ -20,6 +20,18 @@ const KEYS = [
   "f8.top8_share_of_votes_cast", "n1.coverage_buybacks", "n3.largest_share",
   "n2.max_coverage", "n3.stakers_active",
   // the 2031 section (chartTo2031)
+  "lr.scenario.0.cover_price.buybacks.A.2031", "lr.scenario.0.cover_price.buybacks.B.2031",
+  "lr.scenario.0.cover_price.with_front_end.A.2031", "lr.scenario.0.cover_price.with_front_end.B.2031",
+  "lr.scenario.0.cover_price.all_fees.A.2031", "lr.scenario.0.cover_price.all_fees.B.2031",
+  "lr.scenario.25.cover_price.buybacks.A.2031", "lr.scenario.25.cover_price.buybacks.B.2031",
+  "lr.scenario.25.cover_price.with_front_end.A.2031", "lr.scenario.25.cover_price.with_front_end.B.2031",
+  "lr.scenario.25.cover_price.all_fees.A.2031", "lr.scenario.25.cover_price.all_fees.B.2031",
+  "lr.scenario.50.cover_price.buybacks.A.2031", "lr.scenario.50.cover_price.buybacks.B.2031",
+  "lr.scenario.50.cover_price.with_front_end.A.2031", "lr.scenario.50.cover_price.with_front_end.B.2031",
+  "lr.scenario.50.cover_price.all_fees.A.2031", "lr.scenario.50.cover_price.all_fees.B.2031",
+  "lr.scenario.100.cover_price.buybacks.A.2031", "lr.scenario.100.cover_price.buybacks.B.2031",
+  "lr.scenario.100.cover_price.with_front_end.A.2031", "lr.scenario.100.cover_price.with_front_end.B.2031",
+  "lr.scenario.100.cover_price.all_fees.A.2031", "lr.scenario.100.cover_price.all_fees.B.2031", "n2.mean_price_usd",
   "n1.buybacks_near_per_day", "n1.front_end_near_per_day", "lr.issuance_per_day.A.2028",
   "lr.issuance_per_day.A.2029", "lr.issuance_per_day.A.2031", "lr.issuance_per_day.B.2028",
   "lr.issuance_per_day.B.2029", "lr.issuance_per_day.B.2031", "lr.required_growth.buybacks.A.2028",
@@ -440,6 +452,17 @@ function chartTo2031() {
     years.map(y => [y, `${txt("lr.issuance_per_day.A." + y)} / ${txt("lr.issuance_per_day.B." + y)}`,
       `${g("buybacks", "A", y)} / ${g("buybacks", "B", y)}`, `${g("with_front_end", "A", y)} / ${g("with_front_end", "B", y)}`,
       `${g("all_fees", "A", y)} / ${g("all_fees", "B", y)}`, g("with_front_end", "B_late", y)]));
+  const sc = (gr, c, p) => txt(`lr.scenario.${gr}.cover_price.${c}.${p}.2031`);
+  const d = document.createElement("p");
+  d.className = "src";
+  d.textContent = "Scenarios in dollars: the NEAR price up to which issuance on the first day of 2031 is covered, if what " +
+    "is kept grows at a steady yearly rate in dollars from the window's level (the rates are not forecasts; " +
+    "mean price in the window " + txt("n2.mean_price_usd") + ").";
+  host.appendChild(d);
+  tableView(host, ["Growth in dollars, a year", "Buybacks wallets: HSP-029 / today's rule", "With the front-end fund (HSP-029)",
+    "Every fee kept (HSP-029)"],
+    [["flat", "0"], ["+25%", "25"], ["+50%", "50"], ["+100%", "100"]].map(([lab, gr]) =>
+      [lab, `${sc(gr, "buybacks", "B")} / ${sc(gr, "buybacks", "A")}`, sc(gr, "with_front_end", "B"), sc(gr, "all_fees", "B")]));
 }
 
 function calculator() {

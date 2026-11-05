@@ -977,13 +977,17 @@ def build(data_dir, window_file):
             first, last = min(bases), max(bases)
             bases[f"{first}_{last}"] = {k: v / days_sum for k, v in acc.items()}
             res.update(longrun.base_sensitivity(res, bases))
+        mean_price = v("n2.mean_price_usd")
+        res.update(longrun.usd_scenarios(res, {
+            "buybacks": kept["buybacks"] * mean_price, "with_front_end": kept["with_front_end"] * mean_price,
+            "all_fees": v("n2.fees_usd_per_day")}))
         lsrc = n.items["n1.new_near_per_day"]["source"]
         fmt = {"ratio": lambda x: f_num(x, 4), "days": lambda x: f_num(x, 4),
                "utc": lambda x: x.strftime("%Y-%m-%d %H:%M UTC"), "near": f_int,
                "million": lambda x: f"{rnd(x / 10 ** 6, 2)}M",
                "signed_pct": lambda x: f"{rnd(x * 100, 1):+.1f}%",
                "multiple": lambda x: "×" + f_num(x, 1), "growth": lambda x: f"{rnd(x * 100, 0):+.0f}%",
-               "pct": f_pct}
+               "pct": f_pct, "usd2": lambda x: f_usd(x, 2)}
         lstatus = {k: n.items["n2.max_coverage"][k] for k in ("status",) if k in n.items["n2.max_coverage"]}
         for key, (value, kind, extra) in res.items():
             val = value.isoformat() if kind == "utc" else value
