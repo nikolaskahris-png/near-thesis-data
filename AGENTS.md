@@ -45,8 +45,10 @@ python scripts/remeasure.py
 Re-measures numbers 1 and 3 at the end of the locked window (first block at or after 1 November 2026
 00:00 UTC) with the same code that made the saved files. It writes only into a new temporary folder and compares
 with `data/history.csv` and `data/stakers/2026-11-01.json`. Last line when it passes: `REMEASURE: SAME`. Each
-difference is printed as `DIFFERENT <field>: saved ..., now ...`. `--only 1` runs number 1 alone (under a
-minute). Number 3 takes longer because NearBlocks is read without a key, with a 12-second pause between pages.
+difference is printed as `DIFFERENT <field>: saved ..., now ...`. `--only 1` runs number 1 alone (about a
+minute with a normal connection). Number 3 takes longer because NearBlocks is read without a key, with a 12-second
+pause between pages. If the network refuses the RPC host (for example a sandbox proxy answering 403), it stops at
+once with `REMEASURE: NOT RUN - ...` and exit code 2; a slow or flaky connection prints one line per retry.
 
 The control map, the control history and the NEAR AI pool's flows re-fetch their locked blocks with:
 

@@ -22,6 +22,7 @@ Usage:
 import argparse
 import hashlib
 import json
+import socket
 import sys
 import time
 import urllib.error
@@ -46,15 +47,32 @@ NS = 1_000_000_000
 REPO = Path(__file__).resolve().parent.parent
 
 
+def _log_stderr(line):
+    print(line, file=sys.stderr, flush=True)
+
+
+def network_refused(err):
+    """True when a proxy or firewall refuses the connection: retrying cannot help."""
+    reason = str(getattr(err, "reason", err))
+    return "Tunnel connection failed: 403" in reason or "Tunnel connection failed: 407" in reason
+
+
+def name_not_found(err):
+    """True when the host name does not resolve (no DNS, or no network at all)."""
+    reason = getattr(err, "reason", err)
+    return isinstance(reason, socket.gaierror) or "getaddrinfo failed" in str(reason)
+
+
 class Chain:
     """Archival RPC access. Missing (skipped) heights return None."""
 
     def __init__(self, url=ARCHIVAL, pause=0.5, max_pause=3.0, sleep=time.sleep,
-                 recover_after=20):
+                 recover_after=20, log=_log_stderr):
         # FastNEAR archival answers 429 when called faster than ~2 per second.
         # Each 429 doubles the pause (up to max_pause); after `recover_after`
         # answers in a row without a 429 it halves again, down to the starting pause.
         self.url = url
+        self.log = log  # one line per failed attempt, so a slow network is never silent
         self.pause = pause
         self.base_pause = pause
         self.recover_after = recover_after
@@ -100,12 +118,26 @@ class Chain:
                     self.ok_streak = 0
                     self.pause = min(max(self.pause, 0.25) * 2, self.max_pause)
                 if e.code in (429, 500, 502, 503, 504) and attempt < attempts - 1:
-                    self.sleep(min(5 * 2 ** attempt, 60))
+                    wait = min(5 * 2 ** attempt, 60)
+                    self.log(f"  {self.url}: HTTP {e.code} (attempt {attempt + 1} of {attempts}); "
+                             f"retrying in {wait} s")
+                    self.sleep(wait)
                     continue
                 raise RuntimeError(f"HTTP {e.code} from {self.url}") from None
             except (urllib.error.URLError, TimeoutError, ConnectionError) as e:
+                if network_refused(e):
+                    raise RuntimeError(
+                        f"the network refused the connection to {self.url} ({getattr(e, 'reason', e)}). "
+                        "This check needs direct access to that host; the offline checks do not "
+                        "(python scripts/rebuild.py).") from None
+                if name_not_found(e) and attempt >= 1:
+                    raise RuntimeError(f"cannot resolve the host of {self.url} ({getattr(e, 'reason', e)}); "
+                                       "check the network connection") from None
                 if attempt < attempts - 1:
-                    self.sleep(min(5 * 2 ** attempt, 60))
+                    wait = min(5 * 2 ** attempt, 60)
+                    self.log(f"  {self.url}: {getattr(e, 'reason', e)} (attempt {attempt + 1} of "
+                             f"{attempts}); retrying in {wait} s")
+                    self.sleep(wait)
                     continue
                 raise RuntimeError(f"cannot reach {self.url}: {e}") from None
         raise RuntimeError("unreachable")

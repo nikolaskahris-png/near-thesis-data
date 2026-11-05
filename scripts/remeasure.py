@@ -133,4 +133,9 @@ def main():
 
 
 if __name__ == "__main__":
-    sys.exit(main())
+    try:
+        sys.exit(main())
+    except RuntimeError as e:
+        # network problems (refused, unresolved, too many failed attempts): one clear line
+        print(f"REMEASURE: NOT RUN - {e}", file=sys.stderr)
+        sys.exit(2)

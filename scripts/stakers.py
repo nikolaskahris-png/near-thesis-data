@@ -77,11 +77,17 @@ def http_get(url):
                 return resp.read()
         except urllib.error.HTTPError as e:
             if e.code in (429, 500, 502, 503, 504) and attempt < 5:
+                lw._log_stderr(f"  {url}: HTTP {e.code} (attempt {attempt + 1} of 6); retrying in {30 * (attempt + 1)} s")
                 time.sleep(30 * (attempt + 1))
                 continue
             raise RuntimeError(f"HTTP {e.code} from {url}") from None
         except (urllib.error.URLError, TimeoutError, ConnectionError) as e:
+            if lw.network_refused(e):
+                raise RuntimeError(f"the network refused the connection to {url} "
+                                   f"({getattr(e, 'reason', e)})") from None
             if attempt < 5:
+                lw._log_stderr(f"  {url}: {getattr(e, 'reason', e)} (attempt {attempt + 1} of 6); "
+                               f"retrying in {10 * (attempt + 1)} s")
                 time.sleep(10 * (attempt + 1))
                 continue
             raise RuntimeError(f"cannot reach {url}: {e}") from None

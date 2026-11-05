@@ -103,7 +103,12 @@ def fetch(url, attempts=5, sleep=time.sleep):
                 continue
             raise RuntimeError(f"HTTP {e.code} from {url}") from None
         except (urllib.error.URLError, TimeoutError, ConnectionError) as e:
+            if lw.network_refused(e):
+                raise RuntimeError(f"the network refused the connection to {url} "
+                                   f"({getattr(e, 'reason', e)})") from None
             if attempt < attempts - 1:
+                lw._log_stderr(f"  {url}: {getattr(e, 'reason', e)} (attempt {attempt + 1} of {attempts}); "
+                               f"retrying in {10 * 2 ** attempt} s")
                 sleep(10 * 2 ** attempt)
                 continue
             raise RuntimeError(f"cannot reach {url}: {e}") from None

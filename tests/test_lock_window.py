@@ -134,6 +134,61 @@ class RateLimitTest(unittest.TestCase):
         self.assertEqual(chain.pause, 2.0)           # 0.5 -> 1.0 -> 2.0
         self.assertEqual(waits, [0.5, 5, 1.0, 10, 2.0])
 
+    def test_refused_network_fails_at_once_with_a_clear_message(self):
+        import urllib.error
+        from unittest import mock
+        waits, lines = [], []
+
+        def refused(req, timeout):
+            raise urllib.error.URLError(OSError("Tunnel connection failed: 403 Forbidden"))
+
+        chain = lw.Chain(url="https://x", sleep=waits.append, log=lines.append)
+        with mock.patch("urllib.request.urlopen", refused):
+            with self.assertRaises(RuntimeError) as cm:
+                chain._post({})
+        self.assertEqual(chain.calls, 1)              # no retry
+        self.assertEqual(waits, [0.5])                # only the normal pace
+        self.assertIn("refused", str(cm.exception))
+        self.assertIn("rebuild.py", str(cm.exception))
+
+    def test_unknown_host_fails_after_two_attempts(self):
+        import socket
+        import urllib.error
+        from unittest import mock
+        lines = []
+
+        def no_dns(req, timeout):
+            raise urllib.error.URLError(socket.gaierror(-2, "Name or service not known"))
+
+        chain = lw.Chain(url="https://x", sleep=lambda s: None, log=lines.append)
+        with mock.patch("urllib.request.urlopen", no_dns):
+            with self.assertRaises(RuntimeError) as cm:
+                chain._post({})
+        self.assertEqual(chain.calls, 2)
+        self.assertEqual(len(lines), 1)              # the first failure is reported
+        self.assertIn("resolve", str(cm.exception))
+
+    def test_every_retry_is_reported(self):
+        import io
+        import urllib.error
+        from unittest import mock
+        answers, lines = [503, "timeout", 200], []
+
+        def flaky(req, timeout):
+            a = answers.pop(0)
+            if a == 503:
+                raise urllib.error.HTTPError(req.full_url, 503, "Busy", {}, io.BytesIO())
+            if a == "timeout":
+                raise urllib.error.URLError(TimeoutError("timed out"))
+            return mock.MagicMock(__enter__=lambda s: io.BytesIO(b'{"ok":1}'), __exit__=lambda *x: False)
+
+        chain = lw.Chain(url="https://x", sleep=lambda s: None, log=lines.append)
+        with mock.patch("urllib.request.urlopen", flaky):
+            self.assertEqual(chain._post({}), b'{"ok":1}')
+        self.assertEqual(len(lines), 2)
+        self.assertIn("attempt 1 of 9", lines[0])
+        self.assertIn("retrying in 10 s", lines[1])
+
     def test_json_rpc_error_with_422_status_is_returned(self):
         import io
         import urllib.error

@@ -269,7 +269,8 @@ SHA-256 in the README's [Pre-registration](../README.md#pre-registration). The b
 locked block; that difference is the point of checking.
 
 To re-measure numbers 1 and 3 at the locked end block, into a temporary folder, and compare with the saved
-files (network, no keys, a few minutes; last line `REMEASURE: SAME`):
+files (network, no keys, a few minutes; last line `REMEASURE: SAME`, or `REMEASURE: NOT RUN - ...` at once if
+the network refuses the RPC host):
 
 ```
 python scripts/remeasure.py
