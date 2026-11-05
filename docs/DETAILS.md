@@ -65,6 +65,20 @@ commission under B, holding the staked share: <!--n:lr.yield_gross.B.2028-->4.2%
 <!--n:lr.not_issued_B.6y-->66.35M<!--/n--> in six, against the proposal's <!--n:lr.hsp029_proposal.2y-->11.80M<!--/n--> and <!--n:lr.hsp029_proposal.6y-->66.10M<!--/n--> (<!--n:lr.not_issued_B_vs_proposal.2y-->+3.7%<!--/n-->, <!--n:lr.not_issued_B_vs_proposal.6y-->+0.4%<!--/n-->), which start
 from an earlier block and supply. `build_numbers.py` fails if either differs by more than 10%.
 
+**The base level.** The table above starts from what the wallets kept a day in the window. The same 2031 hurdles from
+each calendar month's level, and from the day-weighted April–October average (`data/coverage_monthly.json`):
+
+| Base | Buybacks wallets, HSP-029 | Buybacks wallets, today's rule | With the front-end fund, HSP-029 | With the front-end fund, today's rule |
+|---|---|---|---|---|
+| April | <!--n:lr.required_growth.buybacks.B.2031.base.2026-04-->+85%<!--/n--> | <!--n:lr.required_growth.buybacks.A.2031.base.2026-04-->+108%<!--/n--> | <!--n:lr.required_growth.with_front_end.B.2031.base.2026-04-->+83%<!--/n--> | <!--n:lr.required_growth.with_front_end.A.2031.base.2026-04-->+105%<!--/n--> |
+| May | <!--n:lr.required_growth.buybacks.B.2031.base.2026-05-->+66%<!--/n--> | <!--n:lr.required_growth.buybacks.A.2031.base.2026-05-->+86%<!--/n--> | <!--n:lr.required_growth.with_front_end.B.2031.base.2026-05-->+53%<!--/n--> | <!--n:lr.required_growth.with_front_end.A.2031.base.2026-05-->+71%<!--/n--> |
+| June | <!--n:lr.required_growth.buybacks.B.2031.base.2026-06-->+66%<!--/n--> | <!--n:lr.required_growth.buybacks.A.2031.base.2026-06-->+85%<!--/n--> | <!--n:lr.required_growth.with_front_end.B.2031.base.2026-06-->+55%<!--/n--> | <!--n:lr.required_growth.with_front_end.A.2031.base.2026-06-->+74%<!--/n--> |
+| July | <!--n:lr.required_growth.buybacks.B.2031.base.2026-07-->+79%<!--/n--> | <!--n:lr.required_growth.buybacks.A.2031.base.2026-07-->+100%<!--/n--> | <!--n:lr.required_growth.with_front_end.B.2031.base.2026-07-->+63%<!--/n--> | <!--n:lr.required_growth.with_front_end.A.2031.base.2026-07-->+82%<!--/n--> |
+| August | <!--n:lr.required_growth.buybacks.B.2031.base.2026-08-->+58%<!--/n--> | <!--n:lr.required_growth.buybacks.A.2031.base.2026-08-->+77%<!--/n--> | <!--n:lr.required_growth.with_front_end.B.2031.base.2026-08-->+45%<!--/n--> | <!--n:lr.required_growth.with_front_end.A.2031.base.2026-08-->+62%<!--/n--> |
+| September | <!--n:lr.required_growth.buybacks.B.2031.base.2026-09-->+44%<!--/n--> | <!--n:lr.required_growth.buybacks.A.2031.base.2026-09-->+61%<!--/n--> | <!--n:lr.required_growth.with_front_end.B.2031.base.2026-09-->+33%<!--/n--> | <!--n:lr.required_growth.with_front_end.A.2031.base.2026-09-->+49%<!--/n--> |
+| October | <!--n:lr.required_growth.buybacks.B.2031.base.2026-10-->+56%<!--/n--> | <!--n:lr.required_growth.buybacks.A.2031.base.2026-10-->+75%<!--/n--> | <!--n:lr.required_growth.with_front_end.B.2031.base.2026-10-->+41%<!--/n--> | <!--n:lr.required_growth.with_front_end.A.2031.base.2026-10-->+58%<!--/n--> |
+| April–October average | <!--n:lr.required_growth.buybacks.B.2031.base.2026-04_2026-10-->+62%<!--/n--> | <!--n:lr.required_growth.buybacks.A.2031.base.2026-04_2026-10-->+82%<!--/n--> | <!--n:lr.required_growth.with_front_end.B.2031.base.2026-04_2026-10-->+50%<!--/n--> | <!--n:lr.required_growth.with_front_end.A.2031.base.2026-04_2026-10-->+68%<!--/n--> |
+
 **April to October, measured.** What the wallets kept a day: <!--n:lr.history.2026-04_2026-10.kept_multiple-->×2.9<!--/n-->; all fees in NEAR:
 <!--n:lr.history.2026-04_2026-10.fees_near_multiple-->×0.5<!--/n-->; take rate: <!--n:lr.history.2026-04_2026-10.take_rate_multiple-->×4.2<!--/n-->; share of revenue the wallets kept:
 <!--n:lr.history.2026-04_2026-10.kept_share_multiple-->×1.3<!--/n-->. Six months are not annualized.
@@ -285,6 +299,7 @@ python scripts/treasury_flows.py --verify --archival
 | Farm | NEAR staked through `stake.dao` into the NEAR AI pool, paid in reward units |
 | Reward unit | what the farm pays; NEAR AI Cloud turns it into credits off-chain |
 | Locks | NEAR AI Agents subscriptions on the same contract, not counted in the farm |
+| Hold, Buy, Avoid | the README's rating. Hold: keep NEAR already owned, staked. Buy: add NEAR. Avoid: do not hold it for this thesis. Each change is tied to a measured condition |
 | Ceiling | coverage if NEAR kept every fee DefiLlama records (number 2) |
 | Equilibrium price | the NEAR price at which a day's fees (or revenue) buy as many NEAR as are issued that day |
 | 1Click | the NEAR Intents swap service whose fees reach the 1Click fund and the buybacks wallet |

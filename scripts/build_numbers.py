@@ -927,6 +927,24 @@ def build(data_dir, window_file):
                             v("iv.staking_yield_gross"), v("iv.wallets_share_of_fees_with_front_end"),
                             history)
         problems += [f"longrun: {x}" for x in longrun.check(res)]
+        # the same hurdles from each month April-October, and from their day-weighted average
+        bases, days_sum, acc = {}, 0, {"buybacks": dec(0), "with_front_end": dec(0)}
+        month_rows = json.loads((data_dir / "coverage_monthly.json").read_text(encoding="utf-8"))["rows"]
+        for row_m in month_rows:
+            y, mo = map(int, row_m["month"].split("-"))
+            if (y, mo) < (2026, 4):
+                continue
+            lvl = {"buybacks": dec(row_m["buybacks_per_day"]),
+                   "with_front_end": dec(row_m["buybacks_per_day"]) + dec(row_m["fefunds_per_day"])}
+            bases[row_m["month"]] = lvl
+            nd = (_date(y + mo // 12, mo % 12 + 1, 1) - _date(y, mo, 1)).days
+            days_sum += nd
+            for k in acc:
+                acc[k] += lvl[k] * nd
+        if len(bases) > 1:
+            first, last = min(bases), max(bases)
+            bases[f"{first}_{last}"] = {k: v / days_sum for k, v in acc.items()}
+            res.update(longrun.base_sensitivity(res, bases))
         lsrc = n.items["n1.new_near_per_day"]["source"]
         fmt = {"ratio": lambda x: f_num(x, 4), "days": lambda x: f_num(x, 4),
                "utc": lambda x: x.strftime("%Y-%m-%d %H:%M UTC"), "near": f_int,

@@ -8,7 +8,7 @@ from pathlib import Path
 REPO = Path(__file__).resolve().parent.parent
 DASH = REPO / "dashboard"
 # Digits allowed in the page's visible text: names and fixed protocol terms, not measurements.
-ALLOWED = ["HSP-027", "HSP-029", "16 November", "1/40", "4/5", "SHA-256",
+ALLOWED = ["HSP-027", "HSP-029", "16 November", "1/40", "4/5", "SHA-256", "2031",  # the horizon
            # account names and the tag of an implicit account, as in the README
            "ecotreasury5.multisignature.near", "ecotreasury4.multisignature.near", "sha256:e630d735"]
 

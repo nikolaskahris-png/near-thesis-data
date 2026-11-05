@@ -2,12 +2,23 @@
 
 [![verify](https://github.com/nikolaskahris-png/near-thesis-data/actions/workflows/verify.yml/badge.svg)](https://github.com/nikolaskahris-png/near-thesis-data/actions/workflows/verify.yml)
 
-**Verdict, five years to 2031, checked every 12 months.** Not an own for fee capture today: hold NEAR only
-staked, which keeps pace with issuance. NEAR becomes an own when (a) the NEAR kept from fees grows fast enough to
-cover issuance by 2031 and (b) keeping it is a rule rather than a choice. Under HSP-029, what the wallets keep must
-grow <!--n:lr.required_growth.with_front_end.B.2031-->+41%<!--/n--> a year to cover issuance on 1 January 2031
-(<!--n:lr.required_growth.with_front_end.A.2031-->+58%<!--/n--> under today's rule); if NEAR kept every fee, fees counted in NEAR would
-need <!--n:lr.required_growth.all_fees.B.2031-->+9%<!--/n--> a year ([the model](#issuance-to-2031)).
+**Rating: Hold, not Buy. Five years, to 2031, reviewed every 12 months.**
+
+- **Hold:** keep NEAR you already own, staked with a validator. Staking pays about <!--n:iv.staking_yield_gross-->5.0%<!--/n--> a year
+  before commission while supply grows <!--n:iv.issuance_rate_per_year-->2.46%<!--/n-->, so a staked holder's share of all NEAR rises. That
+  protects the share, not the dollar value.
+- **Not a Buy:** what holders get from fees covers a small part of issuance, and nothing obliges anyone to keep it.
+- **Upgrade to Buy** when both hold at a yearly check: (a) what the buybacks wallets keep a day has grown at least
+  <!--n:lr.required_growth.buybacks.B.2031-->+56%<!--/n--> a year since this window, the pace that covers issuance on 1 January 2031 under
+  HSP-029 (<!--n:lr.required_growth.with_front_end.B.2031-->+41%<!--/n--> counting the front-end fund; <!--n:lr.required_growth.buybacks.A.2031-->+75%<!--/n--> and
+  <!--n:lr.required_growth.with_front_end.A.2031-->+58%<!--/n--> if HSP-029 is not in force); and (b) keeping it is a published rule. The
+  hurdle depends on the base: from the April–October average it is <!--n:lr.required_growth.buybacks.B.2031.base.2026-04_2026-10-->+62%<!--/n-->; from single months,
+  <!--n:lr.required_growth.buybacks.B.2031.base_min-->+44%<!--/n--> to <!--n:lr.required_growth.buybacks.B.2031.base_max-->+85%<!--/n-->.
+- **Downgrade to Avoid** if the wallets pay NEAR out (coverage falls while DefiLlama's revenue does not) or monthly
+  coverage falls back to its April level (<!--n:f1.coverage_buybacks.2026-04-->5.3%<!--/n-->).
+
+If NEAR kept every fee, fees counted in NEAR would need <!--n:lr.required_growth.all_fees.B.2031-->+9%<!--/n--> a year ([the model](#issuance-to-2031)).
+Thresholds are the author's choice; every figure in them is measured.
 
 Users pay <!--n:n2.fees_usd_per_day-->$206,049<!--/n--> a day in fees on NEAR Intents (DefiLlama). The
 wallets that hold bought-back NEAR took in as much NEAR as <!--n:n1.coverage_buybacks-->10.8%<!--/n--> of what was issued in the
@@ -139,8 +150,12 @@ that grow faster than the NEAR price. From April to October what the wallets kep
 <!--n:lr.history.2026-04_2026-10.kept_multiple-->×2.9<!--/n-->, but fees counted in NEAR fell (<!--n:lr.history.2026-04_2026-10.fees_near_multiple-->×0.5<!--/n-->): the rise came from the share
 kept (take rate <!--n:lr.history.2026-04_2026-10.take_rate_multiple-->×4.2<!--/n-->), the lever with a ceiling. If HSP-029 starts six months late, covering
 2029 needs <!--n:lr.required_growth.all_fees.B_late.2029-->+26%<!--/n--> a year instead of <!--n:lr.required_growth.all_fees.B.2029-->+19%<!--/n-->. The model's HSP-029 cut over six years,
-<!--n:lr.not_issued_B.6y-->66.35M<!--/n--> NEAR, is within <!--n:lr.not_issued_B_vs_proposal.6y-->+0.4%<!--/n--> of the proposal's own figure. Every year
-and every buybacks-only column: [details](docs/DETAILS.md#issuance-to-2031).
+<!--n:lr.not_issued_B.6y-->66.35M<!--/n--> NEAR, is within <!--n:lr.not_issued_B_vs_proposal.6y-->+0.4%<!--/n--> of the proposal's own figure.
+
+**The base matters.** The table starts from the window's level, October. Starting instead from each month since April,
+the buybacks wallets' 2031 hurdle under HSP-029 runs from <!--n:lr.required_growth.buybacks.B.2031.base_min-->+44%<!--/n--> to <!--n:lr.required_growth.buybacks.B.2031.base_max-->+85%<!--/n--> a year; from the
+April–October average, <!--n:lr.required_growth.buybacks.B.2031.base.2026-04_2026-10-->+62%<!--/n--> (with the front-end fund <!--n:lr.required_growth.with_front_end.B.2031.base.2026-04_2026-10-->+50%<!--/n-->). October sits
+inside that range, and the April–October average asks for more than October does. Every year, month and column: [details](docs/DETAILS.md#issuance-to-2031).
 
 **Valuation, same window.** All NEAR in `total_supply` at the window's mean price
 (<!--n:n2.mean_price_usd-->$4.88<!--/n-->) is worth <!--n:iv.supply_value_usd-->$6.39B<!--/n-->; circulating supply would need an off-chain source.

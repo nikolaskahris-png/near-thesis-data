@@ -98,5 +98,26 @@ class LongRunTest(unittest.TestCase):
                 self.assertTrue(extra["assumptions"], key)
 
 
+    def test_base_sensitivity(self):
+        r = run()
+        bases = {"2026-04": {"buybacks": D("4674.519"), "with_front_end": D("4945.224")},
+                 "2026-09": {"buybacks": D("13478.332"), "with_front_end": D("18806.030")},
+                 "2026-04_2026-09": {"buybacks": D("8000"), "with_front_end": D("10000")}}
+        out = lr.base_sensitivity(r, bases)
+        for p in ("A", "B"):
+            for name in ("buybacks", "with_front_end"):
+                key = f"lr.required_growth.{name}.{p}.2031"
+                years = D(r[key][2]["years"])
+                target = r[f"lr.issuance_per_day.{p}.2031"][0]
+                for base, level in bases.items():
+                    g = out[f"{key}.base.{base}"][0]
+                    self.assertLess(abs(level[name] * ((1 + g).ln() * years).exp() / target - 1), D("1e-25"))
+                # a lower base level needs faster growth; the average is not a month
+                self.assertEqual(out[f"{key}.base_max"][2]["month"], "2026-04")
+                self.assertEqual(out[f"{key}.base_min"][2]["month"], "2026-09")
+        # the window's own level gives the main figure back
+        same = lr.base_sensitivity(r, {"w": dict(KEPT)})
+        self.assertEqual(same["lr.required_growth.buybacks.B.2031.base.w"][0], r["lr.required_growth.buybacks.B.2031"][0])
+
 if __name__ == "__main__":
     unittest.main()

@@ -3612,6 +3612,96 @@
       "note": "yearly growth that turns the window's buybacks per day into the issuance per day of 2031-01-01",
       "status": "final"
     },
+    "lr.required_growth.buybacks.A.2031.base.2026-04": {
+      "value": "1.075278323517446540262552900532942082313",
+      "text": "+108%",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "growth",
+      "note": "as lr.required_growth.buybacks.A.2031, starting from the 2026-04 level (4674.519 NEAR a day) instead of the window's",
+      "years": "4.167008898015058179329226557152635181383",
+      "status": "final"
+    },
+    "lr.required_growth.buybacks.A.2031.base.2026-04_2026-10": {
+      "value": "0.816936824255533745106727183063069710967",
+      "text": "+82%",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "growth",
+      "note": "as lr.required_growth.buybacks.A.2031, starting from the 2026-04_2026-10 level (8134.400 NEAR a day) instead of the window's",
+      "years": "4.167008898015058179329226557152635181383",
+      "status": "final"
+    },
+    "lr.required_growth.buybacks.A.2031.base.2026-05": {
+      "value": "0.861511859254792549928828920184701572512",
+      "text": "+86%",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "growth",
+      "note": "as lr.required_growth.buybacks.A.2031, starting from the 2026-05 level (7352.985 NEAR a day) instead of the window's",
+      "years": "4.167008898015058179329226557152635181383",
+      "status": "final"
+    },
+    "lr.required_growth.buybacks.A.2031.base.2026-06": {
+      "value": "0.854902225081643199094520452952189331620",
+      "text": "+85%",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "growth",
+      "note": "as lr.required_growth.buybacks.A.2031, starting from the 2026-06 level (7462.783 NEAR a day) instead of the window's",
+      "years": "4.167008898015058179329226557152635181383",
+      "status": "final"
+    },
+    "lr.required_growth.buybacks.A.2031.base.2026-07": {
+      "value": "1.000177436983867114914505143846925259082",
+      "text": "+100%",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "growth",
+      "note": "as lr.required_growth.buybacks.A.2031, starting from the 2026-07 level (5450.567 NEAR a day) instead of the window's",
+      "years": "4.167008898015058179329226557152635181383",
+      "status": "final"
+    },
+    "lr.required_growth.buybacks.A.2031.base.2026-08": {
+      "value": "0.774711642393614094421295296004821682569",
+      "text": "+77%",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "growth",
+      "note": "as lr.required_growth.buybacks.A.2031, starting from the 2026-08 level (8971.791 NEAR a day) instead of the window's",
+      "years": "4.167008898015058179329226557152635181383",
+      "status": "final"
+    },
+    "lr.required_growth.buybacks.A.2031.base.2026-09": {
+      "value": "0.609569010950319181524587203319098806833",
+      "text": "+61%",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "growth",
+      "note": "as lr.required_growth.buybacks.A.2031, starting from the 2026-09 level (13478.332 NEAR a day) instead of the window's",
+      "years": "4.167008898015058179329226557152635181383",
+      "status": "final"
+    },
+    "lr.required_growth.buybacks.A.2031.base.2026-10": {
+      "value": "0.746604092491275176491795603357608700474",
+      "text": "+75%",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "growth",
+      "note": "as lr.required_growth.buybacks.A.2031, starting from the 2026-10 level (9588.935 NEAR a day) instead of the window's",
+      "years": "4.167008898015058179329226557152635181383",
+      "status": "final"
+    },
+    "lr.required_growth.buybacks.A.2031.base_max": {
+      "value": "1.075278323517446540262552900532942082313",
+      "text": "+108%",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "growth",
+      "note": "highest over the monthly bases: 2026-04",
+      "month": "2026-04",
+      "status": "final"
+    },
+    "lr.required_growth.buybacks.A.2031.base_min": {
+      "value": "0.609569010950319181524587203319098806833",
+      "text": "+61%",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "growth",
+      "note": "lowest over the monthly bases: 2026-09",
+      "month": "2026-09",
+      "status": "final"
+    },
     "lr.required_growth.buybacks.B.2028": {
       "value": "4.941992901657149554831997602432667418869",
       "text": "+494%",
@@ -3655,6 +3745,96 @@
       ],
       "years": "4.167008898015058179329226557152635181383",
       "note": "yearly growth that turns the window's buybacks per day into the issuance per day of 2031-01-01",
+      "status": "final"
+    },
+    "lr.required_growth.buybacks.B.2031.base.2026-04": {
+      "value": "0.853121520770107431357987428510926139684",
+      "text": "+85%",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "growth",
+      "note": "as lr.required_growth.buybacks.B.2031, starting from the 2026-04 level (4674.519 NEAR a day) instead of the window's",
+      "years": "4.167008898015058179329226557152635181383",
+      "status": "final"
+    },
+    "lr.required_growth.buybacks.B.2031.base.2026-04_2026-10": {
+      "value": "0.622435262177650857483006425456153232200",
+      "text": "+62%",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "growth",
+      "note": "as lr.required_growth.buybacks.B.2031, starting from the 2026-04_2026-10 level (8134.400 NEAR a day) instead of the window's",
+      "years": "4.167008898015058179329226557152635181383",
+      "status": "final"
+    },
+    "lr.required_growth.buybacks.B.2031.base.2026-05": {
+      "value": "0.662238577092154088372195219583150158943",
+      "text": "+66%",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "growth",
+      "note": "as lr.required_growth.buybacks.B.2031, starting from the 2026-05 level (7352.985 NEAR a day) instead of the window's",
+      "years": "4.167008898015058179329226557152635181383",
+      "status": "final"
+    },
+    "lr.required_growth.buybacks.B.2031.base.2026-06": {
+      "value": "0.656336498709761334703433720389911094276",
+      "text": "+66%",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "growth",
+      "note": "as lr.required_growth.buybacks.B.2031, starting from the 2026-06 level (7462.783 NEAR a day) instead of the window's",
+      "years": "4.167008898015058179329226557152635181383",
+      "status": "final"
+    },
+    "lr.required_growth.buybacks.B.2031.base.2026-07": {
+      "value": "0.786060121107625004261259428363216716650",
+      "text": "+79%",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "growth",
+      "note": "as lr.required_growth.buybacks.B.2031, starting from the 2026-07 level (5450.567 NEAR a day) instead of the window's",
+      "years": "4.167008898015058179329226557152635181383",
+      "status": "final"
+    },
+    "lr.required_growth.buybacks.B.2031.base.2026-08": {
+      "value": "0.584730250594371012399771406407142139239",
+      "text": "+58%",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "growth",
+      "note": "as lr.required_growth.buybacks.B.2031, starting from the 2026-08 level (8971.791 NEAR a day) instead of the window's",
+      "years": "4.167008898015058179329226557152635181383",
+      "status": "final"
+    },
+    "lr.required_growth.buybacks.B.2031.base.2026-09": {
+      "value": "0.437265999242543461011860869662936286459",
+      "text": "+44%",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "growth",
+      "note": "as lr.required_growth.buybacks.B.2031, starting from the 2026-09 level (13478.332 NEAR a day) instead of the window's",
+      "years": "4.167008898015058179329226557152635181383",
+      "status": "final"
+    },
+    "lr.required_growth.buybacks.B.2031.base.2026-10": {
+      "value": "0.559631590318355222646506173501285584326",
+      "text": "+56%",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "growth",
+      "note": "as lr.required_growth.buybacks.B.2031, starting from the 2026-10 level (9588.935 NEAR a day) instead of the window's",
+      "years": "4.167008898015058179329226557152635181383",
+      "status": "final"
+    },
+    "lr.required_growth.buybacks.B.2031.base_max": {
+      "value": "0.853121520770107431357987428510926139684",
+      "text": "+85%",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "growth",
+      "note": "highest over the monthly bases: 2026-04",
+      "month": "2026-04",
+      "status": "final"
+    },
+    "lr.required_growth.buybacks.B.2031.base_min": {
+      "value": "0.437265999242543461011860869662936286459",
+      "text": "+44%",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "growth",
+      "note": "lowest over the monthly bases: 2026-09",
+      "month": "2026-09",
       "status": "final"
     },
     "lr.required_growth.buybacks.B_late.2028": {
@@ -3744,6 +3924,96 @@
       "note": "yearly growth that turns the window's with_front_end per day into the issuance per day of 2031-01-01",
       "status": "final"
     },
+    "lr.required_growth.with_front_end.A.2031.base.2026-04": {
+      "value": "1.047429999594790474432607236967313842472",
+      "text": "+105%",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "growth",
+      "note": "as lr.required_growth.with_front_end.A.2031, starting from the 2026-04 level (4945.224 NEAR a day) instead of the window's",
+      "years": "4.167008898015058179329226557152635181383",
+      "status": "final"
+    },
+    "lr.required_growth.with_front_end.A.2031.base.2026-04_2026-10": {
+      "value": "0.676458819843539642382258299472678773828",
+      "text": "+68%",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "growth",
+      "note": "as lr.required_growth.with_front_end.A.2031, starting from the 2026-04_2026-10 level (11374.956 NEAR a day) instead of the window's",
+      "years": "4.167008898015058179329226557152635181383",
+      "status": "final"
+    },
+    "lr.required_growth.with_front_end.A.2031.base.2026-05": {
+      "value": "0.711072453000343941483096381657683553278",
+      "text": "+71%",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "growth",
+      "note": "as lr.required_growth.with_front_end.A.2031, starting from the 2026-05 level (10446.370 NEAR a day) instead of the window's",
+      "years": "4.167008898015058179329226557152635181383",
+      "status": "final"
+    },
+    "lr.required_growth.with_front_end.A.2031.base.2026-06": {
+      "value": "0.739380604668898814870888068385486744489",
+      "text": "+74%",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "growth",
+      "note": "as lr.required_growth.with_front_end.A.2031, starting from the 2026-06 level (9755.968 NEAR a day) instead of the window's",
+      "years": "4.167008898015058179329226557152635181383",
+      "status": "final"
+    },
+    "lr.required_growth.with_front_end.A.2031.base.2026-07": {
+      "value": "0.823657814656144222443653401559516461387",
+      "text": "+82%",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "growth",
+      "note": "as lr.required_growth.with_front_end.A.2031, starting from the 2026-07 level (8010.205 NEAR a day) instead of the window's",
+      "years": "4.167008898015058179329226557152635181383",
+      "status": "final"
+    },
+    "lr.required_growth.with_front_end.A.2031.base.2026-08": {
+      "value": "0.621287988154165810196122364074810876621",
+      "text": "+62%",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "growth",
+      "note": "as lr.required_growth.with_front_end.A.2031, starting from the 2026-08 level (13076.988 NEAR a day) instead of the window's",
+      "years": "4.167008898015058179329226557152635181383",
+      "status": "final"
+    },
+    "lr.required_growth.with_front_end.A.2031.base.2026-09": {
+      "value": "0.485914495640763471618849742981335565296",
+      "text": "+49%",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "growth",
+      "note": "as lr.required_growth.with_front_end.A.2031, starting from the 2026-09 level (18806.030 NEAR a day) instead of the window's",
+      "years": "4.167008898015058179329226557152635181383",
+      "status": "final"
+    },
+    "lr.required_growth.with_front_end.A.2031.base.2026-10": {
+      "value": "0.579922175172415357208605302311419641206",
+      "text": "+58%",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "growth",
+      "note": "as lr.required_growth.with_front_end.A.2031, starting from the 2026-10 level (14563.984 NEAR a day) instead of the window's",
+      "years": "4.167008898015058179329226557152635181383",
+      "status": "final"
+    },
+    "lr.required_growth.with_front_end.A.2031.base_max": {
+      "value": "1.047429999594790474432607236967313842472",
+      "text": "+105%",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "growth",
+      "note": "highest over the monthly bases: 2026-04",
+      "month": "2026-04",
+      "status": "final"
+    },
+    "lr.required_growth.with_front_end.A.2031.base_min": {
+      "value": "0.485914495640763471618849742981335565296",
+      "text": "+49%",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "growth",
+      "note": "lowest over the monthly bases: 2026-09",
+      "month": "2026-09",
+      "status": "final"
+    },
     "lr.required_growth.with_front_end.B.2028": {
       "value": "3.147681653513079362028164794804873417084",
       "text": "+315%",
@@ -3787,6 +4057,96 @@
       ],
       "years": "4.167008898015058179329226557152635181383",
       "note": "yearly growth that turns the window's with_front_end per day into the issuance per day of 2031-01-01",
+      "status": "final"
+    },
+    "lr.required_growth.with_front_end.B.2031.base.2026-04": {
+      "value": "0.828254336550218322097986906214170674048",
+      "text": "+83%",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "growth",
+      "note": "as lr.required_growth.with_front_end.B.2031, starting from the 2026-04 level (4945.224 NEAR a day) instead of the window's",
+      "years": "4.167008898015058179329226557152635181383",
+      "status": "final"
+    },
+    "lr.required_growth.with_front_end.B.2031.base.2026-04_2026-10": {
+      "value": "0.496995310234493638918384469588434538865",
+      "text": "+50%",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "growth",
+      "note": "as lr.required_growth.with_front_end.B.2031, starting from the 2026-04_2026-10 level (11374.956 NEAR a day) instead of the window's",
+      "years": "4.167008898015058179329226557152635181383",
+      "status": "final"
+    },
+    "lr.required_growth.with_front_end.B.2031.base.2026-05": {
+      "value": "0.527903583013152840669139458876923070358",
+      "text": "+53%",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "growth",
+      "note": "as lr.required_growth.with_front_end.B.2031, starting from the 2026-05 level (10446.370 NEAR a day) instead of the window's",
+      "years": "4.167008898015058179329226557152635181383",
+      "status": "final"
+    },
+    "lr.required_growth.with_front_end.B.2031.base.2026-06": {
+      "value": "0.553181370804676627189960848594054429968",
+      "text": "+55%",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "growth",
+      "note": "as lr.required_growth.with_front_end.B.2031, starting from the 2026-06 level (9755.968 NEAR a day) instead of the window's",
+      "years": "4.167008898015058179329226557152635181383",
+      "status": "final"
+    },
+    "lr.required_growth.with_front_end.B.2031.base.2026-07": {
+      "value": "0.628436776196816526125019994984125972918",
+      "text": "+63%",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "growth",
+      "note": "as lr.required_growth.with_front_end.B.2031, starting from the 2026-07 level (8010.205 NEAR a day) instead of the window's",
+      "years": "4.167008898015058179329226557152635181383",
+      "status": "final"
+    },
+    "lr.required_growth.with_front_end.B.2031.base.2026-08": {
+      "value": "0.447730469772479065091253228365577664803",
+      "text": "+45%",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "growth",
+      "note": "as lr.required_growth.with_front_end.B.2031, starting from the 2026-08 level (13076.988 NEAR a day) instead of the window's",
+      "years": "4.167008898015058179329226557152635181383",
+      "status": "final"
+    },
+    "lr.required_growth.with_front_end.B.2031.base.2026-09": {
+      "value": "0.326848596013396299751621221577759434793",
+      "text": "+33%",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "growth",
+      "note": "as lr.required_growth.with_front_end.B.2031, starting from the 2026-09 level (18806.030 NEAR a day) instead of the window's",
+      "years": "4.167008898015058179329226557152635181383",
+      "status": "final"
+    },
+    "lr.required_growth.with_front_end.B.2031.base.2026-10": {
+      "value": "0.410792832352016306760000795469195585858",
+      "text": "+41%",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "growth",
+      "note": "as lr.required_growth.with_front_end.B.2031, starting from the 2026-10 level (14563.984 NEAR a day) instead of the window's",
+      "years": "4.167008898015058179329226557152635181383",
+      "status": "final"
+    },
+    "lr.required_growth.with_front_end.B.2031.base_max": {
+      "value": "0.828254336550218322097986906214170674048",
+      "text": "+83%",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "growth",
+      "note": "highest over the monthly bases: 2026-04",
+      "month": "2026-04",
+      "status": "final"
+    },
+    "lr.required_growth.with_front_end.B.2031.base_min": {
+      "value": "0.326848596013396299751621221577759434793",
+      "text": "+33%",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "growth",
+      "note": "lowest over the monthly bases: 2026-09",
+      "month": "2026-09",
       "status": "final"
     },
     "lr.required_growth.with_front_end.B_late.2028": {

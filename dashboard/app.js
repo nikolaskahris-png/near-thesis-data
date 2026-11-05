@@ -19,6 +19,35 @@ const KEYS = [
   "f6.change1.utc", "f8.quorum_required_venear", "f8.fewest_voters_reaching_quorum",
   "f8.top8_share_of_votes_cast", "n1.coverage_buybacks", "n3.largest_share",
   "n2.max_coverage", "n3.stakers_active",
+  // the 2031 section (chartTo2031)
+  "n1.buybacks_near_per_day", "n1.front_end_near_per_day", "lr.issuance_per_day.A.2028",
+  "lr.issuance_per_day.A.2029", "lr.issuance_per_day.A.2031", "lr.issuance_per_day.B.2028",
+  "lr.issuance_per_day.B.2029", "lr.issuance_per_day.B.2031", "lr.required_growth.buybacks.A.2028",
+  "lr.required_growth.buybacks.A.2029", "lr.required_growth.buybacks.A.2031", "lr.required_growth.buybacks.B.2028",
+  "lr.required_growth.buybacks.B.2029", "lr.required_growth.buybacks.B.2031",
+  "lr.required_growth.buybacks.B_late.2028", "lr.required_growth.buybacks.B_late.2029",
+  "lr.required_growth.buybacks.B_late.2031", "lr.required_growth.with_front_end.A.2028",
+  "lr.required_growth.with_front_end.A.2029", "lr.required_growth.with_front_end.A.2031",
+  "lr.required_growth.with_front_end.B.2028", "lr.required_growth.with_front_end.B.2029",
+  "lr.required_growth.with_front_end.B.2031", "lr.required_growth.with_front_end.B_late.2028",
+  "lr.required_growth.with_front_end.B_late.2029", "lr.required_growth.with_front_end.B_late.2031",
+  "lr.required_growth.all_fees.A.2028", "lr.required_growth.all_fees.A.2029", "lr.required_growth.all_fees.A.2031",
+  "lr.required_growth.all_fees.B.2028", "lr.required_growth.all_fees.B.2029", "lr.required_growth.all_fees.B.2031",
+  "lr.required_growth.all_fees.B_late.2028", "lr.required_growth.all_fees.B_late.2029",
+  "lr.required_growth.all_fees.B_late.2031", "lr.required_multiple.buybacks.A.2028",
+  "lr.required_multiple.buybacks.A.2029", "lr.required_multiple.buybacks.A.2031",
+  "lr.required_multiple.buybacks.B.2028", "lr.required_multiple.buybacks.B.2029",
+  "lr.required_multiple.buybacks.B.2031", "lr.required_multiple.buybacks.B_late.2028",
+  "lr.required_multiple.buybacks.B_late.2029", "lr.required_multiple.buybacks.B_late.2031",
+  "lr.required_multiple.with_front_end.A.2028", "lr.required_multiple.with_front_end.A.2029",
+  "lr.required_multiple.with_front_end.A.2031", "lr.required_multiple.with_front_end.B.2028",
+  "lr.required_multiple.with_front_end.B.2029", "lr.required_multiple.with_front_end.B.2031",
+  "lr.required_multiple.with_front_end.B_late.2028", "lr.required_multiple.with_front_end.B_late.2029",
+  "lr.required_multiple.with_front_end.B_late.2031", "lr.required_multiple.all_fees.A.2028",
+  "lr.required_multiple.all_fees.A.2029", "lr.required_multiple.all_fees.A.2031",
+  "lr.required_multiple.all_fees.B.2028", "lr.required_multiple.all_fees.B.2029",
+  "lr.required_multiple.all_fees.B.2031", "lr.required_multiple.all_fees.B_late.2028",
+  "lr.required_multiple.all_fees.B_late.2029", "lr.required_multiple.all_fees.B_late.2031",
 ];
 
 const QUERIES = {
@@ -44,6 +73,12 @@ const QUERIES = {
       "calculator inputs n2.fees_usd_per_day, n1.new_near_per_day, iv.fees_conversion_price_usd, " +
       "iv.wallets_share_of_fees_with_front_end. HSP-029's target rate is issuance × 16/25.",
     files: "data/numbers.json" },
+  p3c: { sentence: "Issuance follows protocol rules step by step; the bars do not depend on any price.",
+    query: "python scripts/build_numbers.py --verify   # runs scripts/longrun.py\n" +
+      "Rules: today at most 1/40 of supply a year; HSP-029 cap(t) = 2.5% - 0.9% x min(t, 24) / 24, t in months from " +
+      "activation, every epoch. Held at the window's level: actual / maximum issuance (lr.k), epoch length " +
+      "(lr.epoch_days), NEAR kept a day. Cross-check with the proposal: lr.not_issued_B_vs_proposal.*",
+    files: "data/numbers.json keys lr.* · scripts/longrun.py · docs/DETAILS.md#issuance-to-2031" },
   p4: { sentence: "More accounts joined, but one account still holds most of the farm.",
     query: "python scripts/stakers.py --verify\nNearBlocks: receipts of stake to stake.dao (the list of " +
       "accounts); RPC call_function stake.dao get_farm_position for every account at each date's first block",
@@ -382,7 +417,29 @@ function ladder() {
   }).join("") +
     `<p class="end">Dashed line: full coverage. After the last step, fees must still grow ${txt("iv.hsp029_fees_multiple")}, ` +
     `or the NEAR price be at or below ${txt("n2.hsp029_equilibrium_price_usd")}. HSP-029 reaches its target rate after a ` +
-    `24-month ramp, beyond this thesis's 12-month horizon.</p>`;
+    `24-month ramp; year by year to 2031 in the next section.</p>`;
+}
+
+function chartTo2031() {
+  const years = ["2028", "2029", "2031"];
+  const isA = years.map(y => val("lr.issuance_per_day.A." + y)), isB = years.map(y => val("lr.issuance_per_day.B." + y));
+  const kept = val("n1.buybacks_near_per_day");
+  const host = $("#c3c");
+  barChart(host, {
+    cats: years, grouped: true, marks: years.map(() => kept), markName: "kept by the buybacks wallets a day today",
+    stacks: [{ name: "Issued a day, today's rule", cls: "s3", values: isA }, { name: "Issued a day, HSP-029", cls: "s1", values: isB }],
+    unit: "NEAR per day, on the first day of each year",
+    tips: years.map((y, i) => `<b>${y}</b><br>Issued a day: ${txt("lr.issuance_per_day.A." + y)} (today's rule), ` +
+      `${txt("lr.issuance_per_day.B." + y)} (HSP-029)<br>What the buybacks wallets keep must grow ${txt("lr.required_growth.buybacks.B." + y)} ` +
+      `a year (HSP-029), ${txt("lr.required_growth.buybacks.A." + y)} (today's rule); with the front-end fund ` +
+      `${txt("lr.required_growth.with_front_end.B." + y)} / ${txt("lr.required_growth.with_front_end.A." + y)}`),
+  });
+  const g = (c, p, y) => `${txt(`lr.required_growth.${c}.${p}.${y}`)} (${txt(`lr.required_multiple.${c}.${p}.${y}`)})`;
+  tableView(host, ["First day of", "Issued a day: today's rule / HSP-029", "Buybacks wallets must grow a year: today / HSP-029",
+    "With the front-end fund", "All fees in NEAR", "HSP-029 six months late, with the fund"],
+    years.map(y => [y, `${txt("lr.issuance_per_day.A." + y)} / ${txt("lr.issuance_per_day.B." + y)}`,
+      `${g("buybacks", "A", y)} / ${g("buybacks", "B", y)}`, `${g("with_front_end", "A", y)} / ${g("with_front_end", "B", y)}`,
+      `${g("all_fees", "A", y)} / ${g("all_fees", "B", y)}`, g("with_front_end", "B_late", y)]));
 }
 
 function calculator() {
@@ -525,6 +582,7 @@ async function main() {
   chartCeiling(cov);
   ladder();
   calculator();
+  chartTo2031();
   chartFarm();
   chartTreasury(ts);
   chartUpgrade(parseCSV(upTxt));

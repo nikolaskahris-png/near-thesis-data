@@ -169,6 +169,35 @@ def model(s0, new_per_day, max_rate, epoch_days, start, ratified, kept, staking_
     return r
 
 
+def base_sensitivity(r, bases):
+    """The 2031 hurdles again, from other base levels of what the wallets keep.
+
+    `r` is model()'s result; `bases` is {name: {"buybacks": NEAR/day, "with_front_end": NEAR/day}}
+    (a month, or an average of months). Same issuance on 1 January 2031 and same number of years as
+    model(): only the starting level changes. Returns {key: (value, kind, extra)}.
+    """
+    out = {}
+    for p in ("A", "B"):
+        target = r[f"lr.issuance_per_day.{p}.2031"][0]
+        for name in ("buybacks", "with_front_end"):
+            years = D(r[f"lr.required_growth.{name}.{p}.2031"][2]["years"])
+            grown = {}
+            for base, level in bases.items():
+                g = growth(target / level[name], years)
+                grown[base] = g
+                out[f"lr.required_growth.{name}.{p}.2031.base.{base}"] = (g, "growth", {
+                    "note": f"as lr.required_growth.{name}.{p}.2031, starting from the {base} level "
+                            f"({level[name]:.3f} NEAR a day) instead of the window's",
+                    "years": str(years)})
+            months = {b: g for b, g in grown.items() if "_" not in b}
+            lo, hi = min(months, key=months.get), max(months, key=months.get)
+            out[f"lr.required_growth.{name}.{p}.2031.base_min"] = (months[lo], "growth", {
+                "note": f"lowest over the monthly bases: {lo}", "month": lo})
+            out[f"lr.required_growth.{name}.{p}.2031.base_max"] = (months[hi], "growth", {
+                "note": f"highest over the monthly bases: {hi}", "month": hi})
+    return out
+
+
 def check(r):
     """Problems with a model result: calibration, ramp, and the cross-check with the proposal."""
     problems = []
