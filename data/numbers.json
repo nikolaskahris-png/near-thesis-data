@@ -544,6 +544,90 @@
       "blocks": "217984974-222491356",
       "flags": ""
     },
+    "f2.buybacks_kept_usd_per_day.2026-04": {
+      "value": "6270.3997866",
+      "text": "$6,270",
+      "source": "data/fees_2026-10-02_2026-11-01.json",
+      "unit": "USD/day",
+      "derived_from": [
+        "f1.coverage_buybacks.2026-04",
+        "f2.mean_price_usd.2026-04"
+      ],
+      "note": "buybacks wallets' NEAR kept a day in the calendar month x the month's mean price",
+      "status": "final"
+    },
+    "f2.buybacks_kept_usd_per_day.2026-05": {
+      "value": "13156.6960605",
+      "text": "$13,157",
+      "source": "data/fees_2026-10-02_2026-11-01.json",
+      "unit": "USD/day",
+      "derived_from": [
+        "f1.coverage_buybacks.2026-05",
+        "f2.mean_price_usd.2026-05"
+      ],
+      "note": "buybacks wallets' NEAR kept a day in the calendar month x the month's mean price",
+      "status": "final"
+    },
+    "f2.buybacks_kept_usd_per_day.2026-06": {
+      "value": "15891.9963985",
+      "text": "$15,892",
+      "source": "data/fees_2026-10-02_2026-11-01.json",
+      "unit": "USD/day",
+      "derived_from": [
+        "f1.coverage_buybacks.2026-06",
+        "f2.mean_price_usd.2026-06"
+      ],
+      "note": "buybacks wallets' NEAR kept a day in the calendar month x the month's mean price",
+      "status": "final"
+    },
+    "f2.buybacks_kept_usd_per_day.2026-07": {
+      "value": "10285.7649857",
+      "text": "$10,286",
+      "source": "data/fees_2026-10-02_2026-11-01.json",
+      "unit": "USD/day",
+      "derived_from": [
+        "f1.coverage_buybacks.2026-07",
+        "f2.mean_price_usd.2026-07"
+      ],
+      "note": "buybacks wallets' NEAR kept a day in the calendar month x the month's mean price",
+      "status": "final"
+    },
+    "f2.buybacks_kept_usd_per_day.2026-08": {
+      "value": "15598.3558326",
+      "text": "$15,598",
+      "source": "data/fees_2026-10-02_2026-11-01.json",
+      "unit": "USD/day",
+      "derived_from": [
+        "f1.coverage_buybacks.2026-08",
+        "f2.mean_price_usd.2026-08"
+      ],
+      "note": "buybacks wallets' NEAR kept a day in the calendar month x the month's mean price",
+      "status": "final"
+    },
+    "f2.buybacks_kept_usd_per_day.2026-09": {
+      "value": "44173.8852968",
+      "text": "$44,174",
+      "source": "data/fees_2026-10-02_2026-11-01.json",
+      "unit": "USD/day",
+      "derived_from": [
+        "f1.coverage_buybacks.2026-09",
+        "f2.mean_price_usd.2026-09"
+      ],
+      "note": "buybacks wallets' NEAR kept a day in the calendar month x the month's mean price",
+      "status": "final"
+    },
+    "f2.buybacks_kept_usd_per_day.2026-10": {
+      "value": "46857.2897710",
+      "text": "$46,857",
+      "source": "data/fees_2026-10-02_2026-11-01.json",
+      "unit": "USD/day",
+      "derived_from": [
+        "f1.coverage_buybacks.2026-10",
+        "f2.mean_price_usd.2026-10"
+      ],
+      "note": "buybacks wallets' NEAR kept a day in the calendar month x the month's mean price",
+      "status": "final"
+    },
     "f2.change.2026-09_2026-10.mean_price": {
       "value": "0.490998962592298773417953255629462378715",
       "text": "+49%",
@@ -2936,6 +3020,50 @@
       "as_of": "2026-11-01T00:00:00Z",
       "note": "approved actions in the control map's DAOs; dates are submission dates"
     },
+    "iv.buyback_yield_buybacks": {
+      "value": "0.002667244003484852728354382081619161702956",
+      "text": "0.27%",
+      "source": "data/fees_2026-10-02_2026-11-01.json",
+      "unit": "share of value per year",
+      "derived_from": [
+        "n1.coverage_buybacks",
+        "n2.mean_price_usd",
+        "iv.supply_value_usd"
+      ],
+      "note": "what the wallets keep a year, in dollars / iv.supply_value_usd",
+      "status": "final",
+      "window": "2026-10-02 00:00 UTC to 2026-11-01 00:00 UTC",
+      "blocks": "218126921-222491356"
+    },
+    "iv.buyback_yield_with_front_end": {
+      "value": "0.004056552937216961853880589432274176893881",
+      "text": "0.41%",
+      "source": "data/fees_2026-10-02_2026-11-01.json",
+      "unit": "share of value per year",
+      "derived_from": [
+        "n1.coverage_with_front_end",
+        "n2.mean_price_usd",
+        "iv.supply_value_usd"
+      ],
+      "note": "what the wallets keep a year, in dollars / iv.supply_value_usd",
+      "status": "final",
+      "window": "2026-10-02 00:00 UTC to 2026-11-01 00:00 UTC",
+      "blocks": "218126921-222491356"
+    },
+    "iv.buybacks_kept_usd_per_day": {
+      "value": "46691.7672250",
+      "text": "$46,692",
+      "source": "data/fees_2026-10-02_2026-11-01.json",
+      "unit": "USD/day",
+      "derived_from": [
+        "n1.buybacks_near_per_day",
+        "n2.mean_price_usd"
+      ],
+      "note": "n1.buybacks_near_per_day x n2.mean_price_usd",
+      "status": "final",
+      "window": "2026-10-02 00:00 UTC to 2026-11-01 00:00 UTC",
+      "blocks": "218126921-222491356"
+    },
     "iv.buybacks_offset_points_per_year": {
       "value": "0.002667249382443417129134389021328065716404",
       "text": "0.27",
@@ -3066,6 +3194,34 @@
         "n2.mean_price_usd"
       ],
       "note": "n1.new_near_per_day x n2.mean_price_usd x 365.25: what a year of issuance is worth",
+      "status": "final",
+      "window": "2026-10-02 00:00 UTC to 2026-11-01 00:00 UTC",
+      "blocks": "218126921-222491356"
+    },
+    "iv.net_dilution_buybacks": {
+      "value": "0.02196905934887664109822289609071784209701",
+      "text": "2.20%",
+      "source": "data/fees_2026-10-02_2026-11-01.json",
+      "unit": "share of supply per year",
+      "derived_from": [
+        "iv.issuance_rate_per_year",
+        "iv.buyback_yield_buybacks"
+      ],
+      "note": "iv.issuance_rate_per_year - buyback yield: dilution net of what the wallets keep",
+      "status": "final",
+      "window": "2026-10-02 00:00 UTC to 2026-11-01 00:00 UTC",
+      "blocks": "218126921-222491356"
+    },
+    "iv.net_dilution_with_front_end": {
+      "value": "0.02057975041514453197269668874006282690609",
+      "text": "2.06%",
+      "source": "data/fees_2026-10-02_2026-11-01.json",
+      "unit": "share of supply per year",
+      "derived_from": [
+        "iv.issuance_rate_per_year",
+        "iv.buyback_yield_with_front_end"
+      ],
+      "note": "iv.issuance_rate_per_year - buyback yield: dilution net of what the wallets keep",
       "status": "final",
       "window": "2026-10-02 00:00 UTC to 2026-11-01 00:00 UTC",
       "blocks": "218126921-222491356"
@@ -3265,12 +3421,28 @@
       "note": "calibration: equals n1.new_near_per_day",
       "status": "final"
     },
+    "lr.history.2026-04_2026-10.buybacks_kept_usd_multiple": {
+      "value": "7.472775479345861076232258495146077262084",
+      "text": "×7.5",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "multiple",
+      "note": "October / April, measured monthly (buybacks_kept_usd)",
+      "status": "final"
+    },
     "lr.history.2026-04_2026-10.fees_near_multiple": {
       "value": "0.5272046057751791023926882321246832032887",
       "text": "×0.5",
       "source": "data/daily/2026-11-01.json",
       "unit": "multiple",
       "note": "October / April, measured monthly (fees_near)",
+      "status": "final"
+    },
+    "lr.history.2026-04_2026-10.fees_usd_multiple": {
+      "value": "1.927507281224426151963739469619496217935",
+      "text": "×1.9",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "multiple",
+      "note": "October / April, measured monthly (fees_usd)",
       "status": "final"
     },
     "lr.history.2026-04_2026-10.kept_multiple": {
@@ -3289,12 +3461,28 @@
       "note": "October / April, measured monthly (kept_share)",
       "status": "final"
     },
+    "lr.history.2026-04_2026-10.revenue_usd_multiple": {
+      "value": "8.189265212466100152237708805090513608057",
+      "text": "×8.2",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "multiple",
+      "note": "October / April, measured monthly (revenue_usd)",
+      "status": "final"
+    },
     "lr.history.2026-04_2026-10.take_rate_multiple": {
       "value": "4.248645767481065536176911730070779566894",
       "text": "×4.2",
       "source": "data/daily/2026-11-01.json",
       "unit": "multiple",
       "note": "October / April, measured monthly (take_rate)",
+      "status": "final"
+    },
+    "lr.history.2026-04_2026-10.volume_usd_multiple": {
+      "value": "2.034814087554643029199700001978644083860",
+      "text": "×2.0",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "multiple",
+      "note": "October / April, measured monthly (volume_usd)",
       "status": "final"
     },
     "lr.hsp029_proposal.2y": {

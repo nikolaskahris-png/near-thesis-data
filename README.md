@@ -8,14 +8,25 @@
   before commission while supply grows <!--n:iv.issuance_rate_per_year-->2.46%<!--/n-->, so a staked holder's share of all NEAR rises. That
   protects the share, not the dollar value.
 - **Not a Buy:** what holders get from fees covers a small part of issuance, and nothing obliges anyone to keep it.
-- **Upgrade to Buy** when both hold at a yearly check: (a) what the buybacks wallets keep a day has grown at least
-  <!--n:lr.required_growth.buybacks.B.2031-->+56%<!--/n--> a year since this window, the pace that covers issuance on 1 January 2031 under
-  HSP-029, the passed proposal that lowers issuance from 2.5% to 1.6% a year (<!--n:lr.required_growth.with_front_end.B.2031-->+41%<!--/n--> counting the front-end fund, which keeps near-intents.org's own fees; <!--n:lr.required_growth.buybacks.A.2031-->+75%<!--/n--> and
-  <!--n:lr.required_growth.with_front_end.A.2031-->+58%<!--/n--> if HSP-029 is not in force); and (b) keeping it is a published rule. The
-  hurdle depends on the base: from the April–October average it is <!--n:lr.required_growth.buybacks.B.2031.base.2026-04_2026-10-->+62%<!--/n-->; from single months,
+- **Upgrade to Buy** when, at a yearly check, all three hold. (a) **In dollars:** what the buybacks wallets keep a
+  day has grown at least <!--n:lr.required_growth.buybacks.B.2031-->+56%<!--/n--> a year from this window's <!--n:iv.buybacks_kept_usd_per_day-->$46,692<!--/n-->, so a falling price alone
+  cannot meet it. (a′) **In NEAR:** the same growth, so a rising price has not used it up. +56% a year is the pace that
+  covers issuance on 1 January 2031 under HSP-029, the passed proposal that lowers issuance from 2.5% to 1.6% a year
+  (<!--n:lr.required_growth.with_front_end.B.2031-->+41%<!--/n--> counting the front-end fund, which keeps near-intents.org's own fees; <!--n:lr.required_growth.buybacks.A.2031-->+75%<!--/n--> and
+  <!--n:lr.required_growth.with_front_end.A.2031-->+58%<!--/n--> if HSP-029 is not in force). (b) Keeping it is a published rule. The hurdle depends on the
+  base: from the April–October average it is <!--n:lr.required_growth.buybacks.B.2031.base.2026-04_2026-10-->+62%<!--/n-->; from single months,
   <!--n:lr.required_growth.buybacks.B.2031.base_min-->+44%<!--/n--> to <!--n:lr.required_growth.buybacks.B.2031.base_max-->+85%<!--/n-->.
-- **Downgrade to Avoid** if the wallets pay NEAR out (coverage falls while DefiLlama's revenue does not) or monthly
-  coverage falls back to its April level (<!--n:f1.coverage_buybacks.2026-04-->5.3%<!--/n-->).
+- **Downgrade to Avoid** if the wallets pay NEAR out (coverage falls while DefiLlama's revenue does not), or what the
+  buybacks wallets keep in dollars falls back to April's level (<!--n:f2.buybacks_kept_usd_per_day.2026-04-->$6,270<!--/n--> a day). A rising price alone cannot
+  trigger it.
+
+**Why coverage, for a staked holder.** Coverage is the buyback yield divided by the issuance rate: the wallets keep
+<!--n:iv.buyback_yield_buybacks-->0.27%<!--/n--> of NEAR's value a year (<!--n:iv.buyback_yield_with_front_end-->0.41%<!--/n--> with the front-end fund), against <!--n:iv.issuance_rate_per_year-->2.46%<!--/n--> issued.
+Staking moves issuance from unstaked holders to staked ones; buybacks are the only part of the return paid with
+money from outside, so they are what all holders share. Net of buybacks, supply dilutes <!--n:iv.net_dilution_buybacks-->2.20%<!--/n--> a year. Coverage
+falls when the price rises and revenue does not: each dollar buys back a smaller part of a dearer NEAR. In dollars,
+April to October: fees <!--n:lr.history.2026-04_2026-10.fees_usd_multiple-->×1.9<!--/n-->, revenue <!--n:lr.history.2026-04_2026-10.revenue_usd_multiple-->×8.2<!--/n-->, volume <!--n:lr.history.2026-04_2026-10.volume_usd_multiple-->×2.0<!--/n-->, kept by the buybacks wallets
+<!--n:lr.history.2026-04_2026-10.buybacks_kept_usd_multiple-->×7.5<!--/n-->; the NEAR price rose faster than fees, so fees counted in NEAR fell (<!--n:lr.history.2026-04_2026-10.fees_near_multiple-->×0.5<!--/n-->).
 
 If NEAR kept every fee, fees counted in NEAR would need <!--n:lr.required_growth.all_fees.B.2031-->+9%<!--/n--> a year ([the model](#issuance-to-2031)).
 Thresholds are the author's choice; every figure in them is measured.

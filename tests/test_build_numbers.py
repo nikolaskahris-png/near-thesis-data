@@ -267,6 +267,13 @@ class BuildTest(unittest.TestCase):
             self.assertEqual(d(n["iv.value_to_wallets_kept"]["value"]), value / kept)
             self.assertEqual(d(n["iv.issuance_usd_per_year"]["value"]),
                              d("88392.087") * d("4.8977") * d("365.25"))
+            # buyback yield / issuance rate = coverage: the price cancels out
+            rate = d(n["iv.issuance_rate_per_year"]["value"])
+            for name, cov in (("buybacks", "n1.coverage_buybacks"), ("with_front_end", "n1.coverage_with_front_end")):
+                y = d(n[f"iv.buyback_yield_{name}"]["value"])
+                self.assertLess(abs(y / rate - d(n[cov]["value"])), d("0.0000006"))
+                self.assertEqual(d(n[f"iv.net_dilution_{name}"]["value"]), rate - y)
+            self.assertEqual(d(n["iv.buybacks_kept_usd_per_day"]["value"]), d("9569.750") * d("4.8977"))
             for k in ("iv.supply_value_usd", "iv.value_to_revenue", "iv.wallets_share_of_fees_buybacks"):
                 self.assertEqual(n[k]["status"], "provisional")
             # no day rows in the fees file: no sensitivity figure

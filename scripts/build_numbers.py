@@ -860,6 +860,36 @@ def build(data_dir, window_file):
             n.add(mkey, value / per_year, f"{rnd(value / per_year, 0):,.0f}×", vsrc, unit="multiple",
                   derived_from=["iv.supply_value_usd", key],
                   note=f"iv.supply_value_usd / {key}", **prov)
+    # Buyback yield: what the wallets keep a year in dollars / the value of all NEAR. Coverage is
+    # exactly this yield / the issuance rate, so it falls when the price rises and revenue does not.
+    rate = n.items["iv.issuance_rate_per_year"]["value"]
+    for name, near_day, cov_key in (
+            ("buybacks", dec(n.items["n1.buybacks_near_per_day"]["value"]), "n1.coverage_buybacks"),
+            ("with_front_end", kept_day, "n1.coverage_with_front_end")):
+        usd_day = near_day * price
+        y = usd_day * dec("365.25") / value
+        if name == "buybacks":
+            n.add("iv.buybacks_kept_usd_per_day", usd_day, f_usd(usd_day), vsrc, unit="USD/day",
+                  derived_from=["n1.buybacks_near_per_day", "n2.mean_price_usd"],
+                  note="n1.buybacks_near_per_day x n2.mean_price_usd", **prov)
+        n.add(f"iv.buyback_yield_{name}", y, f_pct(y, 2), vsrc, unit="share of value per year",
+              derived_from=[cov_key, "n2.mean_price_usd", "iv.supply_value_usd"],
+              note="what the wallets keep a year, in dollars / iv.supply_value_usd", **prov)
+        n.add(f"iv.net_dilution_{name}", dec(rate) - y, f_pct(dec(rate) - y, 2), vsrc,
+              unit="share of supply per year", derived_from=["iv.issuance_rate_per_year", f"iv.buyback_yield_{name}"],
+              note="iv.issuance_rate_per_year - buyback yield: dilution net of what the wallets keep", **prov)
+        cov_v = dec(n.items[cov_key]["value"])
+        if abs(y / dec(rate) - cov_v) > dec("0.0000006"):
+            problems.append(f"buyback yield / issuance rate != {cov_key}: {y / dec(rate)} vs {cov_v}")
+    # The buybacks wallets' keep in dollars, month by month (balances x the month's mean price)
+    for row_m in json.loads((data_dir / "coverage_monthly.json").read_text(encoding="utf-8"))["rows"]:
+        mk = f"f2.mean_price_usd.{row_m['month']}"
+        if mk in n.items:
+            usd = dec(row_m["buybacks_per_day"]) * dec(n.items[mk]["value"])
+            n.add(f"f2.buybacks_kept_usd_per_day.{row_m['month']}", usd, f_usd(usd), n.items[mk]["source"],
+                  unit="USD/day", derived_from=[f"f1.coverage_buybacks.{row_m['month']}", mk],
+                  note="buybacks wallets' NEAR kept a day in the calendar month x the month's mean price",
+                  status=n.items[mk].get("status"))
     if "c.issuance_total_stake_near" in n.items:
         stake = dec(n.items["c.issuance_total_stake_near"]["value"])
         farm = dec(n.items["n3.farm_total_near"]["value"])
@@ -918,6 +948,8 @@ def build(data_dir, window_file):
                 "all_fees": v("n2.fees_near_per_day")}
         history = {}
         for name, key in (("kept", "f2.wallets_kept_near_per_day"), ("fees_near", "f2.fees_near_per_day"),
+                          ("fees_usd", "f2.fees_usd_per_day"), ("revenue_usd", "f2.revenue_usd_per_day"),
+                          ("volume_usd", "f2.volume_usd_per_day"), ("buybacks_kept_usd", "f2.buybacks_kept_usd_per_day"),
                           ("take_rate", "f2.take_rate"), ("kept_share", "f2.wallets_kept_share_of_revenue")):
             if f"{key}.2026-04" in n.items and f"{key}.2026-10" in n.items:
                 history[name] = (v(f"{key}.2026-04"), v(f"{key}.2026-10"))
