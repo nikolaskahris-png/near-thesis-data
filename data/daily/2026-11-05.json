@@ -1,0 +1,34 @@
+{
+  "date": "2026-11-05",
+  "window_days": 30,
+  "rule": "first block whose header timestamp is at or after 00:00:00 UTC of the date",
+  "source": {
+    "rpc": "https://archival-rpc.mainnet.fastnear.com"
+  },
+  "start": {
+    "date": "2026-10-06",
+    "height": 218714583,
+    "previous_height": 218714582
+  },
+  "end": {
+    "date": "2026-11-05",
+    "height": 223088016,
+    "previous_height": 223088015
+  },
+  "raw_files": {
+    "data/raw/accounts/218714583_1csfundsadmin.sputnik-dao.near.json": "93171c38f1b22f1240b5f3645e581fb8402fde66751fdf7d656bddf8735b58cd",
+    "data/raw/accounts/218714583_buybacks.multisignature.near.json": "69335f856cc7498640d10d39ceb6b66ae10375ae86b9f0ce433421f37a24d567",
+    "data/raw/accounts/218714583_buybacks.multisignature.near_intents_wnear.json": "d01a75fd12c94569a3ec01c6a22ae667db2885b848b419fb4a156719fa5407eb",
+    "data/raw/accounts/218714583_fefundsadmin.sputnik-dao.near.json": "6b4cd0dcde295122ea6fdc682f015aa47f40aacf18d46cc4c6d0dc8e06200052",
+    "data/raw/accounts/218714583_fefundsadmin.sputnik-dao.near_intents_wnear.json": "d01a75fd12c94569a3ec01c6a22ae667db2885b848b419fb4a156719fa5407eb",
+    "data/raw/accounts/223088016_1csfundsadmin.sputnik-dao.near.json": "6924acf9cbd6eb27ad6c755537d9fb9c1fa2a621cddf3dc760ea8905167f158f",
+    "data/raw/accounts/223088016_buybacks.multisignature.near.json": "2c9af1fbc4ff1cf67f0a5093bf4e0adafaacfee0336feea515e180aef142ad98",
+    "data/raw/accounts/223088016_buybacks.multisignature.near_intents_wnear.json": "25545c8c06a70d6a9ed6166f46d6d2da590fcc5ed389dc47c02e827a70794cbd",
+    "data/raw/accounts/223088016_fefundsadmin.sputnik-dao.near.json": "b9596590849fcbe76b11c0514c8c95fb68b44419885b7fe01a655a0817f0fe4e",
+    "data/raw/accounts/223088016_fefundsadmin.sputnik-dao.near_intents_wnear.json": "25545c8c06a70d6a9ed6166f46d6d2da590fcc5ed389dc47c02e827a70794cbd",
+    "data/raw/blocks/block_218714582.json": "727815fc526697f6424eaf10358762da791e6e49edf605421025bb36bc452f39",
+    "data/raw/blocks/block_218714583.json": "6e642e06c37bba0dd2434150bc102be3e1a470083e6d7a8ce8fb6c845b9e84bd",
+    "data/raw/blocks/block_223088015.json": "55ac5e9c1ce1a4516302bbc79de71bef3c26a7f52449c4ad287a77989918db1f",
+    "data/raw/blocks/block_223088016.json": "dcd8d6337f1b3ced91ea207cbc9d8f73a69043e6f504304b878fcca43a3fc218"
+  }
+}
