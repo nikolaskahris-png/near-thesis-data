@@ -24,13 +24,13 @@ in the NEAR AI farm, is a signal, not a lever. If NEAR kept every fee, fees coun
 <!--n:lr.required_growth.all_fees.B.2031-->+9%<!--/n--> a year ([model](docs/DETAILS.md#issuance-to-2031)). At today's
 revenue, front-end fund included, the wallets would cover issuance only at a NEAR price of
 <!--n:iv.revenue_equilibrium_price_usd-->$0.80<!--/n--> or less, against a mean of <!--n:n2.mean_price_usd-->$4.88<!--/n--> in the same window: because revenue is
-earned in dollars and issuance is paid in NEAR, the higher the price, the less the wallets cover. At that price
+earned in dollars and issuance is paid in NEAR, the higher the price, the less the wallets cover. At the mean price
 all NEAR is worth <!--n:iv.supply_value_usd-->$6.39B<!--/n-->, <!--n:iv.value_to_fees-->85×<!--/n--> a year of fees.
 
 A Breakpoint 2025 debate put the case against buybacks as "the promise of future buybacks is worth exactly as
 much as your faith in those founders", and the case for them as on-chain transparency
 ([debate](https://solanacompass.com/learn/breakpoint-25/this-house-believes-that-token-buybacks-are-a-net-negative-value-accrual-mechanism)).
-For NEAR, this repository measures both: the transparency is real, since every link is read on chain, and the
+For NEAR, this repository measures both: the transparency is real, since every link except the fee level is read on chain, and the
 faith is still required, since no link is a rule.
 
 ## Evidence for
@@ -80,13 +80,13 @@ nearcore release that at least <!--n:c.issuance_validators_to_pass_upgrade-->44<
 
 What weakens the claim, as measured by the same scripts:
 
-1. **The discretion has not been used against holders.** From April to October the wallets kept
+1. **No outflow from the wallets has been detected.** From April to October the wallets kept
    <!--n:f2.wallets_kept_share_of_revenue.2026-04_2026-10-->96.9%<!--/n--> of DefiLlama's revenue
    (<!--n:f2.wallets_kept_near.2026-04_2026-10-->2,434,241<!--/n--> of <!--n:f2.revenue_near.2026-04_2026-10-->2,511,525<!--/n--> NEAR); the lowest month was April
    (<!--n:f2.wallets_kept_share_of_revenue.2026-04-->77%<!--/n-->), September and October
    <!--n:f2.wallets_kept_share_of_revenue.2026-09-->98%<!--/n--> and <!--n:f2.wallets_kept_share_of_revenue.2026-10-->100%<!--/n-->. The buybacks wallet's keys have not changed
    since <!--n:h.keys.buybacks.last_change-->2026-03-18<!--/n-->. "Discretionary" describes what can change, not a change that
-   has happened.
+   has happened. The <!--n:f2.revenue_not_kept_near.2026-04_2026-10-->77,285<!--/n--> NEAR not kept are not split between payments out, timing and attribution.
 2. **Capture is rising.** The take rate (revenue ÷ fees) rose from <!--n:f2.take_rate.2026-04-->8.1%<!--/n--> in April to
    <!--n:f2.take_rate.2026-10-->34.3%<!--/n--> in October, and monthly coverage from
    <!--n:f1.coverage_buybacks.2026-04-->5.3%<!--/n--> to <!--n:f1.coverage_buybacks.2026-10-->10.9%<!--/n-->. The discretion has so far

@@ -31,7 +31,8 @@ Its last line is `REBUILD: PASS`. The same checks, one by one:
 Each passing command exits with code 0. Any other last line, or another exit code, is a failure.
 
 `build_numbers.py --verify` prints one `OK` line per script before the verdict. `PUBLIC_FULL` means every
-number was recomputed from files in git. Responses that list people's accounts are not in git (see
+number was recomputed from files in git; for the redacted lists (stakers, voters, validators) that proves
+consistency and totals equal to the raw contract totals, not each entry. Responses that list people's accounts are not in git (see
 [What is not in the repository](#what-is-not-in-the-repository)); offline, the verdict says which scripts have
 such originals and that their match was not checked. Section 2 re-fetches them.
 

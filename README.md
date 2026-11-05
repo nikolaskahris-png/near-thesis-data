@@ -10,7 +10,7 @@
 - **Not a Buy:** what holders get from fees covers a small part of issuance, and nothing obliges anyone to keep it.
 - **Upgrade to Buy** when both hold at a yearly check: (a) what the buybacks wallets keep a day has grown at least
   <!--n:lr.required_growth.buybacks.B.2031-->+56%<!--/n--> a year since this window, the pace that covers issuance on 1 January 2031 under
-  HSP-029 (<!--n:lr.required_growth.with_front_end.B.2031-->+41%<!--/n--> counting the front-end fund; <!--n:lr.required_growth.buybacks.A.2031-->+75%<!--/n--> and
+  HSP-029, the passed proposal that lowers issuance from 2.5% to 1.6% a year (<!--n:lr.required_growth.with_front_end.B.2031-->+41%<!--/n--> counting the front-end fund, which keeps near-intents.org's own fees; <!--n:lr.required_growth.buybacks.A.2031-->+75%<!--/n--> and
   <!--n:lr.required_growth.with_front_end.A.2031-->+58%<!--/n--> if HSP-029 is not in force); and (b) keeping it is a published rule. The
   hurdle depends on the base: from the April–October average it is <!--n:lr.required_growth.buybacks.B.2031.base.2026-04_2026-10-->+62%<!--/n-->; from single months,
   <!--n:lr.required_growth.buybacks.B.2031.base_min-->+44%<!--/n--> to <!--n:lr.required_growth.buybacks.B.2031.base_max-->+85%<!--/n-->.
@@ -44,8 +44,9 @@ lists, for each link, a mechanism NEAR already has.
 its key, and the check fails if one differs. Terms: [details](docs/DETAILS.md#terms).
 
 > **Status: v2, 5 November 2026.** Window 2 October → 1 November 2026 (00:00 UTC), blocks 218,126,921 → 222,491,356.
-> Every number is final for this window: DefiLlama's data were fetched again 24 hours later and no day had
-> changed ([Method](docs/DETAILS.md#method)).
+> Every on-chain and DefiLlama figure is final for this window: DefiLlama's data were fetched again 24 hours later
+> and no day had changed ([Method](docs/DETAILS.md#method)). The dollar value of NEAR AI credits is an off-chain
+> reading, marked as such.
 
 ## Check it in two minutes
 
@@ -65,7 +66,9 @@ python scripts/check_prereg.py --file              # PREREG.md matches the ancho
 ```
 
 The second command ends with `VERIFY: PASS (PUBLIC_FULL)`: every number recomputed with no network and without
-the private originals ([Method](docs/DETAILS.md#method)). The `verify` badge runs these on every push. Five live
+the private originals ([Method](docs/DETAILS.md#method)). For the lists that name accounts (farm stakers, HSP-029
+voters, validators) git holds redacted copies: offline, the check proves they are consistent and that their totals
+equal the totals in the raw contract responses, not that each entry is right. The `verify` badge runs these on every push. Five live
 read-only calls, and a re-measurement of numbers 1 and 3 from the chain: [Verify live](docs/DETAILS.md#verify-live).
 
 ## The numbers: two of value, one signal
@@ -127,7 +130,7 @@ the supply outside their wallets, and only while the NEAR stays there: total sup
 | Step | Coverage | Who moves the lever |
 |---|---|---|
 | Today: the buybacks wallets keep <!--n:iv.wallets_share_of_fees_buybacks-->22.6%<!--/n--> of all fees | <!--n:n1.coverage_buybacks-->10.8%<!--/n--> | a <!--n:c.buybacks_confirmations-->2 of 4<!--/n--> multisig; a choice |
-| + the front-end fund (<!--n:iv.wallets_share_of_fees_with_front_end-->34.4%<!--/n--> of all fees) | <!--n:n1.coverage_with_front_end-->16.5%<!--/n--> | its DAO, transfers <!--n:c.front_end_transfer-->2 of 5<!--/n-->; a choice |
+| + the front-end fund (the three wallets keep <!--n:iv.wallets_share_of_fees_with_front_end-->34.4%<!--/n--> of all fees in NEAR; not the take rate, which is revenue ÷ fees in dollars) | <!--n:n1.coverage_with_front_end-->16.5%<!--/n--> | its DAO, transfers <!--n:c.front_end_transfer-->2 of 5<!--/n-->; a choice |
 | + every fee kept by NEAR | <!--n:n2.max_coverage-->47.9%<!--/n--> | the distribution channels off-chain, or the protocol fee by DAO (<!--n:c.intents_fee_change-->3 of 5<!--/n-->); a choice |
 | + HSP-029 at the end of its 24-month ramp | <!--n:n2.hsp029_max_coverage-->74.8%<!--/n--> | validators with <!--n:c.issuance_upgrade_stake_threshold-->4/5<!--/n--> of stake; a rule once they run it |
 | Full coverage | 100% | fees grow a further <!--n:iv.hsp029_fees_multiple-->×1.3<!--/n-->, or NEAR at or below <!--n:n2.hsp029_equilibrium_price_usd-->$3.64<!--/n--> |
@@ -176,7 +179,7 @@ November 2026 (the predictions), every month from `data/history.csv`, and each N
 ## Path to rules
 
 Each link that decides value can become a rule with a mechanism NEAR already has. Governance has started:
-HSP-027 (remove the developer gas rebate) passed on 3 July 2026 and is protocol version 87, open to validator votes
+HSP-027 (remove the developer gas rebate) passed on 3 July 2026 (House of Stake; the vote is not saved here) and is protocol version 87, open to validator votes
 from 4 November; [HSP-029](https://gov.houseofstake.org/proposals/29) (issuance 2.5% → 1.6% a year over 24 months)
 passed on 2 November and is in timelock until <!--n:f8.timelock_end_utc-->2026-11-16 16:48 UTC<!--/n-->. A vote changes nothing on
 chain by itself: validators with <!--n:c.issuance_upgrade_stake_threshold-->4/5<!--/n--> of stake must run a release that includes it,
@@ -326,8 +329,9 @@ conditions are in the files; `python scripts/check_prereg.py` checks the anchors
 ## Timeline and disclosure
 
 - Research into data sources: 22–31 October 2026, in private notes that are not part of this repository.
-- Code and data: from the first commit, 2026-10-31 13:51:52 UTC. The hackathon counts work from its announcement
-  on 19 October; there is no earlier code.
+- Code and data: from the first commit, 2026-10-31 13:51:52 UTC; there is no earlier code. The
+  [rules](https://nearhackathon.com/HACKATHON.md) (FAQ Q-001) count work from the hackathon's announcement on
+  19 October: "Earlier commits are baseline". Six commits come before 1 November.
 - Sources: NEAR archival RPC, the NearBlocks API, DefiLlama, and one off-chain read of a NEAR AI Cloud setting.
   Raw responses are saved byte for byte; those that list people's accounts are kept private, with their SHA-256.
 - Libraries: none beyond the Python standard library. `docs/sign.html` loads NEAR Wallet Selector 10.1.4 from esm.sh.

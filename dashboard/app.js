@@ -275,7 +275,7 @@ function status(doc) {
   const w = doc.window;
   const prov = (doc.provisional_or_pending || []).length;
   $("#status").textContent = `Window ${w.start} → ${w.end} (00:00 UTC), blocks ${fmtInt(w.start_block)} → ` +
-    `${fmtInt(w.end_block)}. ` + (prov ? `DefiLlama-based figures are provisional (${prov} keys).` : "Every figure is final for this window.");
+    `${fmtInt(w.end_block)}. ` + (prov ? `DefiLlama-based figures are provisional (${prov} keys).` : "Every on-chain and DefiLlama figure is final for this window.");
 }
 
 function chartCoverage(cov) {

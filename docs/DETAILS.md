@@ -171,7 +171,7 @@ yield of <!--n:iv.staking_yield_gross-->5.0%<!--/n-->, a staked NEAR earns as mu
 commission) at a NEAR price of <!--n:iv.farm_breakeven_price_usd-->$4.84<!--/n-->; with the rate before its only change, at
 <!--n:iv.farm_breakeven_price_before_usd-->$2.42<!--/n-->. The mean NEAR price was <!--n:f2.mean_price_usd.2026-08-->$1.74<!--/n--> in August,
 <!--n:f2.mean_price_usd.2026-09-->$3.28<!--/n--> in September and <!--n:f2.mean_price_usd.2026-10-->$4.89<!--/n--> in October: the
-rate does not follow the price, and the one change moved the break-even to about October's price.
+rate does not follow the price. "Only one call" relies on NearBlocks listing every receipt of `stake.dao`.
 
 **NEAR AI Agents subscriptions are a separate product.** They are locks on `stake.dao`: <!--n:f7.locks-->86<!--/n--> locks
 from <!--n:f7.lock_accounts-->83<!--/n--> accounts; NEAR in Active locks is <!--n:f7.active_lock_near_vs_farm-->1.1%<!--/n--> of the farm. Why
@@ -220,7 +220,7 @@ not characterized here.
   is its balance change ÷ the change of `total_supply`. The RPC's `protocol_reward_rate` field reads `0/1` at the
   end block, so it is saved but not used. HSP-029's author measured the same split independently, 10.13% over
   28 days, and reports the same `0/1` (proposal text on `vote.dao`). Against gross issuance (below) the share is
-  <!--n:b.treasury_share_of_minted-->10.0%<!--/n-->: the protocol's 10%. The 10.1% is higher because new supply is net of gas burnt.
+  <!--n:ts.share_of_minted-->10.03%<!--/n--> (just above the protocol's 10%, because validators below full uptime receive less). Of new supply it is <!--n:c.treasury_share_of_new_supply-->10.1%<!--/n-->, higher still because new supply is net of gas burnt.
 - **Issuance is net of gas burnt.** `total_supply(block) = total_supply(previous) + minted − balance_burnt of its
   new chunks` (nearcore 2.14.0, `core/primitives/src/block.rs`), and NEAR is minted only in the first block of an
   epoch. `scripts/burn.py` reads every epoch start in the window (<!--n:b.epochs-->101<!--/n-->): gross issuance
