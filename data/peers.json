@@ -1,150 +1,190 @@
 {
- "measure": "peers on one basis: DefiLlama flows over the window, CoinGecko values at the fetch",
+ "measure": "peers on one basis: DefiLlama flows and value at the mean price, both over the window",
  "window": {
   "start": "2026-10-02",
   "end": "2026-11-01",
   "days": 30
  },
- "fetched_utc": "2026-11-06T12:03:05Z",
+ "fetched_utc": "2026-11-06T20:31:31Z",
  "raw_files": {
   "near_fees": {
-   "path": "data/raw/peers/20261106T120305Z/near_fees.json",
-   "sha256": "b840a7e37d3d8602f1d7409ee2bde4ca5c56c831684514d7547455a1c3343ae0",
+   "path": "data/raw/peers/20261106T203131Z/near_fees.json",
+   "sha256": "9604908ad6cb93104a142f34917398c415044e6b335647d2d0f67285ba05216e",
    "url": "https://api.llama.fi/summary/fees/near-intents?dataType=dailyFees&excludeTotalDataChartBreakdown=true"
   },
   "near_revenue": {
-   "path": "data/raw/peers/20261106T120305Z/near_revenue.json",
-   "sha256": "3e59d9cd69b7d5c4970d34fb3c0e655a65c5725487f9f5d96676b16c979bb8ec",
+   "path": "data/raw/peers/20261106T203131Z/near_revenue.json",
+   "sha256": "ac3a331c1bd2486cefa5a23e200afae8a6a59bf3c697c87e85aed086a447a7c0",
    "url": "https://api.llama.fi/summary/fees/near-intents?dataType=dailyRevenue&excludeTotalDataChartBreakdown=true"
   },
   "near_holders_revenue": {
-   "path": "data/raw/peers/20261106T120305Z/near_holders_revenue.json",
-   "sha256": "6bcaf135b018e4de3c59c4ba2001b0b91b88a35ba0e2eea9cec6b4619716315b",
+   "path": "data/raw/peers/20261106T203131Z/near_holders_revenue.json",
+   "sha256": "52cf3c1b4dcd6782c9ae4bfd6b0cade7d7c7cae629a7c6efe2818bdd447d9f9b",
    "url": "https://api.llama.fi/summary/fees/near-intents?dataType=dailyHoldersRevenue&excludeTotalDataChartBreakdown=true"
   },
   "near_l1_fees": {
-   "path": "data/raw/peers/20261106T120305Z/near_l1_fees.json",
+   "path": "data/raw/peers/20261106T203131Z/near_l1_fees.json",
    "sha256": "b349bf19d8a0a1d9c11fa08036c2af796e866099e1173891c55db28885728f88",
    "url": "https://api.llama.fi/summary/fees/near?dataType=dailyFees&excludeTotalDataChartBreakdown=true"
   },
   "near_l1_revenue": {
-   "path": "data/raw/peers/20261106T120305Z/near_l1_revenue.json",
+   "path": "data/raw/peers/20261106T203131Z/near_l1_revenue.json",
    "sha256": "d2189a6c92930407a215ae7e1c29fc7849524e321e17fe0a050a31268f2c0d20",
    "url": "https://api.llama.fi/summary/fees/near?dataType=dailyRevenue&excludeTotalDataChartBreakdown=true"
   },
   "near_l1_holders_revenue": {
-   "path": "data/raw/peers/20261106T120305Z/near_l1_holders_revenue.json",
+   "path": "data/raw/peers/20261106T203131Z/near_l1_holders_revenue.json",
    "sha256": "0fc94c2b6377f0b9bd0941d39b359318c943efe7e10e5b41b0385378d071b754",
    "url": "https://api.llama.fi/summary/fees/near?dataType=dailyHoldersRevenue&excludeTotalDataChartBreakdown=true"
   },
   "hyperliquid_fees": {
-   "path": "data/raw/peers/20261106T120305Z/hyperliquid_fees.json",
+   "path": "data/raw/peers/20261106T203131Z/hyperliquid_fees.json",
    "sha256": "2222a416195c5426160b6a2b9b927f948953cabb2244f89f84b09d3c32518460",
    "url": "https://api.llama.fi/summary/fees/hyperliquid?dataType=dailyFees&excludeTotalDataChartBreakdown=true"
   },
   "hyperliquid_revenue": {
-   "path": "data/raw/peers/20261106T120305Z/hyperliquid_revenue.json",
+   "path": "data/raw/peers/20261106T203131Z/hyperliquid_revenue.json",
    "sha256": "29a9c66c3f8c142f470caacb63781a6d3f66a5d54a7f44e4b2e626eef922c2d0",
    "url": "https://api.llama.fi/summary/fees/hyperliquid?dataType=dailyRevenue&excludeTotalDataChartBreakdown=true"
   },
   "hyperliquid_holders_revenue": {
-   "path": "data/raw/peers/20261106T120305Z/hyperliquid_holders_revenue.json",
+   "path": "data/raw/peers/20261106T203131Z/hyperliquid_holders_revenue.json",
    "sha256": "29a9c66c3f8c142f470caacb63781a6d3f66a5d54a7f44e4b2e626eef922c2d0",
    "url": "https://api.llama.fi/summary/fees/hyperliquid?dataType=dailyHoldersRevenue&excludeTotalDataChartBreakdown=true"
   },
   "aave_fees": {
-   "path": "data/raw/peers/20261106T120305Z/aave_fees.json",
-   "sha256": "b94a44ac1afa1018d5cf050d4db7882ece85fc486485f63057b80382da1ec8a5",
+   "path": "data/raw/peers/20261106T203131Z/aave_fees.json",
+   "sha256": "69b3b6ad7875eb1537a7b6ba8432a152062fcb7c532283d6824a7fd56132e086",
    "url": "https://api.llama.fi/summary/fees/aave?dataType=dailyFees&excludeTotalDataChartBreakdown=true"
   },
   "aave_revenue": {
-   "path": "data/raw/peers/20261106T120305Z/aave_revenue.json",
-   "sha256": "abd8eac5d7b94d67fa4f8746ee4c29d33adad68eebd6532d9f09e26afe9efea3",
+   "path": "data/raw/peers/20261106T203131Z/aave_revenue.json",
+   "sha256": "bcef8f5d7180f8797ff6b26bb69ee3214f1e9ce94e3bbda0b786143b06c3a737",
    "url": "https://api.llama.fi/summary/fees/aave?dataType=dailyRevenue&excludeTotalDataChartBreakdown=true"
   },
   "aave_holders_revenue": {
-   "path": "data/raw/peers/20261106T120305Z/aave_holders_revenue.json",
+   "path": "data/raw/peers/20261106T203131Z/aave_holders_revenue.json",
    "sha256": "46cb7402fee909cb14fd16f44f99f4a0e22767e0f09a0529b92cc793e5739779",
    "url": "https://api.llama.fi/summary/fees/aave?dataType=dailyHoldersRevenue&excludeTotalDataChartBreakdown=true"
   },
   "jupiter_fees": {
-   "path": "data/raw/peers/20261106T120305Z/jupiter_fees.json",
-   "sha256": "78f5e5b423d1fb5d256fa8de1e53316b10a2f9a662f92c3bd833cfd48e93ca55",
+   "path": "data/raw/peers/20261106T203131Z/jupiter_fees.json",
+   "sha256": "16afd8ea13bf5edd39961f12f0db73260ab558f2da17a8a7fd82996b93fddacb",
    "url": "https://api.llama.fi/summary/fees/jupiter?dataType=dailyFees&excludeTotalDataChartBreakdown=true"
   },
   "jupiter_revenue": {
-   "path": "data/raw/peers/20261106T120305Z/jupiter_revenue.json",
-   "sha256": "9e160b00d23e50a11e5f751c6dcb7e6a220070fed5683e5945d786ddf9703d2a",
+   "path": "data/raw/peers/20261106T203131Z/jupiter_revenue.json",
+   "sha256": "8110a04568c355c13f68eea7c5e10b3db3fed947a83cc4dddbd497b68313e689",
    "url": "https://api.llama.fi/summary/fees/jupiter?dataType=dailyRevenue&excludeTotalDataChartBreakdown=true"
   },
   "jupiter_holders_revenue": {
-   "path": "data/raw/peers/20261106T120305Z/jupiter_holders_revenue.json",
-   "sha256": "98c27446e8def16c645e4ef2a877eed755b02f82e1aa50f72eab0c78f8dbdbf2",
+   "path": "data/raw/peers/20261106T203131Z/jupiter_holders_revenue.json",
+   "sha256": "d8434bcf9c320832590efdbc8a260f9d1fab8fba4dc20c21aebeae3418e2681f",
    "url": "https://api.llama.fi/summary/fees/jupiter?dataType=dailyHoldersRevenue&excludeTotalDataChartBreakdown=true"
   },
   "ethereum_fees": {
-   "path": "data/raw/peers/20261106T120305Z/ethereum_fees.json",
-   "sha256": "a2baa667d7400d2c37d52cc5330921fcb7d2059e0c220d944d28b40f08a4f09d",
+   "path": "data/raw/peers/20261106T203131Z/ethereum_fees.json",
+   "sha256": "5af523903dd0ece1389566c47de51a8a479dd0668915ca568ea2097505dba1f3",
    "url": "https://api.llama.fi/summary/fees/ethereum?dataType=dailyFees&excludeTotalDataChartBreakdown=true"
   },
   "ethereum_revenue": {
-   "path": "data/raw/peers/20261106T120305Z/ethereum_revenue.json",
-   "sha256": "ec17735d6c3507b2071311335a1707afcbf199eb48ca61983061b7f9f8505101",
+   "path": "data/raw/peers/20261106T203131Z/ethereum_revenue.json",
+   "sha256": "343c3a226551a925c4c68e7f18fb675846b7a2d1664e0576c52b7c0601f8962b",
    "url": "https://api.llama.fi/summary/fees/ethereum?dataType=dailyRevenue&excludeTotalDataChartBreakdown=true"
   },
   "ethereum_holders_revenue": {
-   "path": "data/raw/peers/20261106T120305Z/ethereum_holders_revenue.json",
-   "sha256": "ec17735d6c3507b2071311335a1707afcbf199eb48ca61983061b7f9f8505101",
+   "path": "data/raw/peers/20261106T203131Z/ethereum_holders_revenue.json",
+   "sha256": "343c3a226551a925c4c68e7f18fb675846b7a2d1664e0576c52b7c0601f8962b",
    "url": "https://api.llama.fi/summary/fees/ethereum?dataType=dailyHoldersRevenue&excludeTotalDataChartBreakdown=true"
   },
   "solana_fees": {
-   "path": "data/raw/peers/20261106T120305Z/solana_fees.json",
+   "path": "data/raw/peers/20261106T203131Z/solana_fees.json",
    "sha256": "45a03136b6f275938966a6adabb6e8d86e766edaec98b0019e072401eda45413",
    "url": "https://api.llama.fi/summary/fees/solana?dataType=dailyFees&excludeTotalDataChartBreakdown=true"
   },
   "solana_revenue": {
-   "path": "data/raw/peers/20261106T120305Z/solana_revenue.json",
+   "path": "data/raw/peers/20261106T203131Z/solana_revenue.json",
    "sha256": "ead042e7f01464e70ae941033338f75ed288168231b0df7416339b2c742b160d",
    "url": "https://api.llama.fi/summary/fees/solana?dataType=dailyRevenue&excludeTotalDataChartBreakdown=true"
   },
   "solana_holders_revenue": {
-   "path": "data/raw/peers/20261106T120305Z/solana_holders_revenue.json",
+   "path": "data/raw/peers/20261106T203131Z/solana_holders_revenue.json",
    "sha256": "ead042e7f01464e70ae941033338f75ed288168231b0df7416339b2c742b160d",
    "url": "https://api.llama.fi/summary/fees/solana?dataType=dailyHoldersRevenue&excludeTotalDataChartBreakdown=true"
   },
   "sui_fees": {
-   "path": "data/raw/peers/20261106T120305Z/sui_fees.json",
-   "sha256": "5eb2afc9224d384b83bf599c847ecb445837442f7b432057b4ef99bcf2938b8c",
+   "path": "data/raw/peers/20261106T203131Z/sui_fees.json",
+   "sha256": "26b107f22cb25ac419e7a0a7d2c2f35c6760f2ac5ef4ef9eb24ed57c5c8ae45e",
    "url": "https://api.llama.fi/summary/fees/sui?dataType=dailyFees&excludeTotalDataChartBreakdown=true"
   },
   "sui_revenue": {
-   "path": "data/raw/peers/20261106T120305Z/sui_revenue.json",
-   "sha256": "9e8479ca1e7320b8d9b109f819cef4bb2516dd347d131d9fcddf1f777a51a579",
+   "path": "data/raw/peers/20261106T203131Z/sui_revenue.json",
+   "sha256": "4fbf99b2b7bdf3c6744df4e646a863ded42dd20624491d55eb8c03702dabf4b3",
    "url": "https://api.llama.fi/summary/fees/sui?dataType=dailyRevenue&excludeTotalDataChartBreakdown=true"
   },
   "sui_holders_revenue": {
-   "path": "data/raw/peers/20261106T120305Z/sui_holders_revenue.json",
-   "sha256": "9e8479ca1e7320b8d9b109f819cef4bb2516dd347d131d9fcddf1f777a51a579",
+   "path": "data/raw/peers/20261106T203131Z/sui_holders_revenue.json",
+   "sha256": "4fbf99b2b7bdf3c6744df4e646a863ded42dd20624491d55eb8c03702dabf4b3",
    "url": "https://api.llama.fi/summary/fees/sui?dataType=dailyHoldersRevenue&excludeTotalDataChartBreakdown=true"
   },
   "aptos_fees": {
-   "path": "data/raw/peers/20261106T120305Z/aptos_fees.json",
-   "sha256": "b3483e6b62782ec26161fa8e26e46bdc85c82a2910659bfb2bb6a44b3b119256",
+   "path": "data/raw/peers/20261106T203131Z/aptos_fees.json",
+   "sha256": "ca7d344779ee6fe73d2372b8fb6fcea303598fecc41540bdf7808ac976745476",
    "url": "https://api.llama.fi/summary/fees/aptos?dataType=dailyFees&excludeTotalDataChartBreakdown=true"
   },
   "aptos_revenue": {
-   "path": "data/raw/peers/20261106T120305Z/aptos_revenue.json",
-   "sha256": "dbb01b3451ce92545f399288d848e26a7f3369e15efcff3b2bc313e1abd7a5c8",
+   "path": "data/raw/peers/20261106T203131Z/aptos_revenue.json",
+   "sha256": "708115186b4d6393684108bf3a1b56caa318da14cb449ff9e3696104e9e104be",
    "url": "https://api.llama.fi/summary/fees/aptos?dataType=dailyRevenue&excludeTotalDataChartBreakdown=true"
   },
   "aptos_holders_revenue": {
-   "path": "data/raw/peers/20261106T120305Z/aptos_holders_revenue.json",
-   "sha256": "dbb01b3451ce92545f399288d848e26a7f3369e15efcff3b2bc313e1abd7a5c8",
+   "path": "data/raw/peers/20261106T203131Z/aptos_holders_revenue.json",
+   "sha256": "708115186b4d6393684108bf3a1b56caa318da14cb449ff9e3696104e9e104be",
    "url": "https://api.llama.fi/summary/fees/aptos?dataType=dailyHoldersRevenue&excludeTotalDataChartBreakdown=true"
   },
+  "price_aave": {
+   "path": "data/raw/peers/20261106T203131Z/price_aave.json",
+   "sha256": "8ebb5261fb770d073c56b0c0e48665c669c53075651a61b97df5af811f4fbd34",
+   "url": "https://coins.llama.fi/chart/coingecko:aave?start=1790942400&span=30&period=1d"
+  },
+  "price_aptos": {
+   "path": "data/raw/peers/20261106T203131Z/price_aptos.json",
+   "sha256": "8fcc1e3c3dcc7f19f8f4396674627c3f58e66ea50d494fdcd131a0692a9efceb",
+   "url": "https://coins.llama.fi/chart/coingecko:aptos?start=1790942400&span=30&period=1d"
+  },
+  "price_ethereum": {
+   "path": "data/raw/peers/20261106T203131Z/price_ethereum.json",
+   "sha256": "c3563126577fb2551b13164ea394bd60fa2a1da1ead9c3f7d390b8d919ce3a0f",
+   "url": "https://coins.llama.fi/chart/coingecko:ethereum?start=1790942400&span=30&period=1d"
+  },
+  "price_hyperliquid": {
+   "path": "data/raw/peers/20261106T203131Z/price_hyperliquid.json",
+   "sha256": "ba72db22f47528831d875442d120f4909fe941f576d79bc0abf21af01ed65bd5",
+   "url": "https://coins.llama.fi/chart/coingecko:hyperliquid?start=1790942400&span=30&period=1d"
+  },
+  "price_jupiter-exchange-solana": {
+   "path": "data/raw/peers/20261106T203131Z/price_jupiter-exchange-solana.json",
+   "sha256": "2a222f15b06b9c1c4cc43b7d56aefc24909070cf4647fd7640cdbcf302c4f0e4",
+   "url": "https://coins.llama.fi/chart/coingecko:jupiter-exchange-solana?start=1790942400&span=30&period=1d"
+  },
+  "price_near": {
+   "path": "data/raw/peers/20261106T203131Z/price_near.json",
+   "sha256": "1d4396e7d88987584379729e564c1b44eaefadfce56bd3a6db882fd6146931fb",
+   "url": "https://coins.llama.fi/chart/coingecko:near?start=1790942400&span=30&period=1d"
+  },
+  "price_solana": {
+   "path": "data/raw/peers/20261106T203131Z/price_solana.json",
+   "sha256": "beb2683ec616c4506bf446f36669bff1f5167de0429800b6a010c31eb563be6e",
+   "url": "https://coins.llama.fi/chart/coingecko:solana?start=1790942400&span=30&period=1d"
+  },
+  "price_sui": {
+   "path": "data/raw/peers/20261106T203131Z/price_sui.json",
+   "sha256": "a1a34bef5678b8b812d0971d15e92279fb9a4d48717d77f08c1aaeaa28332d82",
+   "url": "https://coins.llama.fi/chart/coingecko:sui?start=1790942400&span=30&period=1d"
+  },
   "coingecko_markets": {
-   "path": "data/raw/peers/20261106T120305Z/coingecko_markets.json",
-   "sha256": "56b688a13dd67054b574d189c6895b7a7d9d78703e3e842545874b6f8be5664b",
+   "path": "data/raw/peers/20261106T203131Z/coingecko_markets.json",
+   "sha256": "de5d5bd74911f5542bbb5df2c89403bdbac1ba4e57f8295c51e6d0b27dfb63be",
    "url": "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=aave,aptos,ethereum,hyperliquid,jupiter-exchange-solana,near,solana,sui&order=market_cap_desc&per_page=50&page=1&sparkline=false"
   }
  },
@@ -157,19 +197,24 @@
    "days": {
     "fees": 30,
     "revenue": 30,
-    "holders_revenue": 30
+    "holders_revenue": 30,
+    "price": 30
    },
    "fees_usd_per_year": "75259518.99999999999999999999",
    "revenue_usd_per_year": "25788269.27500000000000000000",
    "holders_revenue_usd_per_year": "25788269.27500000000000000000",
-   "market_cap_usd": "4892307171",
-   "fdv_usd": "4892307313",
-   "price_usd": "3.73",
-   "mcap_to_revenue": "189.7105664141162105963002823",
-   "fdv_to_revenue": "189.7105719204958162125441821",
-   "mcap_to_fees": "65.00582565509088624390490724",
-   "holders_yield_on_mcap": "0.005271187677638976279234940949",
-   "value_as_of": "2026-11-06T12:02:55.000Z",
+   "market_cap_usd": "6391119943.528024315784008034",
+   "fdv_usd": "6391119996.132468496233724083",
+   "mean_price_usd": "4.879062197736711163333333333",
+   "market_cap_at_fetch_usd": "4859756656",
+   "fdv_at_fetch_usd": "4859756696",
+   "price_usd": "3.71",
+   "mcap_at_fetch_to_revenue": "188.4483446398323681223465897",
+   "mcap_to_revenue": "247.8305106626053064502913616",
+   "fdv_to_revenue": "247.8305127024647332108999813",
+   "mcap_to_fees": "84.92108411599101923284957528",
+   "holders_yield_on_mcap": "0.004035015694098265744117959979",
+   "value_as_of": "2026-11-06T20:39:48.000Z",
    "complete": true,
    "partial": false
   },
@@ -180,19 +225,24 @@
    "days": {
     "fees": 30,
     "revenue": 30,
-    "holders_revenue": 30
+    "holders_revenue": 30,
+    "price": 30
    },
    "fees_usd_per_year": "2231555.750000000000000000000",
    "revenue_usd_per_year": "1562064.675",
    "holders_revenue_usd_per_year": "1562064.675",
-   "market_cap_usd": "4892307171",
-   "fdv_usd": "4892307313",
-   "price_usd": "3.73",
-   "mcap_to_revenue": "3131.949175535897705387902713",
-   "fdv_to_revenue": "3131.949266441224656719159212",
-   "mcap_to_fees": "2192.330248079170775814137738",
-   "holders_yield_on_mcap": "0.0003192899833149090711499807419",
-   "value_as_of": "2026-11-06T12:02:55.000Z",
+   "market_cap_usd": "6391119943.528024315784008034",
+   "fdv_usd": "6391119996.132468496233724083",
+   "mean_price_usd": "4.879062197736711163333333333",
+   "market_cap_at_fetch_usd": "4859756656",
+   "fdv_at_fetch_usd": "4859756696",
+   "price_usd": "3.71",
+   "mcap_at_fetch_to_revenue": "3111.111040264706069228535624",
+   "mcap_to_revenue": "4091.456676419639485019407429",
+   "fdv_to_revenue": "4091.456710095866226687268300",
+   "mcap_to_fees": "2863.975028868548014444186767",
+   "holders_yield_on_mcap": "0.0002444117288992247385957720234",
+   "value_as_of": "2026-11-06T20:39:48.000Z",
    "complete": true,
    "partial": false
   },
@@ -203,19 +253,24 @@
    "days": {
     "fees": 30,
     "revenue": 30,
-    "holders_revenue": 30
+    "holders_revenue": 30,
+    "price": 30
    },
    "fees_usd_per_year": "1041146999.950000000000000000",
    "revenue_usd_per_year": "817565433.8750000000000000001",
    "holders_revenue_usd_per_year": "817565433.8750000000000000001",
-   "market_cap_usd": "18794665750",
-   "fdv_usd": "74700646405",
-   "price_usd": "78.55",
-   "mcap_to_revenue": "22.98857678084464135699452794",
-   "fdv_to_revenue": "91.36962414242821696618295033",
-   "mcap_to_fees": "18.05188484517805289959909854",
-   "holders_yield_on_mcap": "0.04349986558686205951813748005",
-   "value_as_of": "2026-11-06T12:02:55.000Z",
+   "market_cap_usd": "19986800990.44896111587122307",
+   "fdv_usd": "79438867039.34726930168317892",
+   "mean_price_usd": "83.48273324689379866666666667",
+   "market_cap_at_fetch_usd": "18762749286",
+   "fdv_at_fetch_usd": "74573792301",
+   "price_usd": "78.37",
+   "mcap_at_fetch_to_revenue": "22.94953835935863733558949566",
+   "mcap_to_revenue": "24.44672947548416326552614928",
+   "fdv_to_revenue": "97.16514880384841820766633731",
+   "mcap_to_fees": "19.19690590416992644754268071",
+   "holders_yield_on_mcap": "0.04090526714433629459067667932",
+   "value_as_of": "2026-11-06T20:39:48.000Z",
    "complete": true,
    "partial": false
   },
@@ -226,19 +281,24 @@
    "days": {
     "fees": 30,
     "revenue": 30,
-    "holders_revenue": 30
+    "holders_revenue": 30,
+    "price": 30
    },
    "fees_usd_per_year": "467856553.5249999999999999999",
    "revenue_usd_per_year": "61269360.42500000000000000001",
    "holders_revenue_usd_per_year": "0.00",
-   "market_cap_usd": "2002222374",
-   "fdv_usd": "2074806190",
-   "price_usd": "129.71",
-   "mcap_to_revenue": "32.67901541833337980367860188",
-   "fdv_to_revenue": "33.86368285237408694559585815",
-   "mcap_to_fees": "4.279564663387815264225650350",
-   "holders_yield_on_mcap": "0.00",
-   "value_as_of": "2026-11-06T12:02:55.000Z",
+   "market_cap_usd": "2412624719.768338061089350008",
+   "fdv_usd": "2500084073.411468689959079242",
+   "mean_price_usd": "156.2533245882355336666666667",
+   "market_cap_at_fetch_usd": "2017760577",
+   "fdv_at_fetch_usd": "2090905826",
+   "price_usd": "130.68",
+   "mcap_at_fetch_to_revenue": "32.93262020369784201154405962",
+   "mcap_to_revenue": "39.37734461455067589910050881",
+   "fdv_to_revenue": "40.80480122641118119618561763",
+   "mcap_to_fees": "5.156761621891909697364220561",
+   "holders_yield_on_mcap": "0E+16",
+   "value_as_of": "2026-11-06T20:39:48.000Z",
    "complete": true,
    "partial": false
   },
@@ -249,19 +309,24 @@
    "days": {
     "fees": 30,
     "revenue": 30,
-    "holders_revenue": 30
+    "holders_revenue": 30,
+    "price": 30
    },
    "fees_usd_per_year": "175723373.0905000000000000000",
    "revenue_usd_per_year": "43840829.29724999987825000001",
    "holders_revenue_usd_per_year": "21862286.14600000000000000000",
-   "market_cap_usd": "824050977",
-   "fdv_usd": "1703400171",
-   "price_usd": "0.248266",
-   "mcap_to_revenue": "18.79642767276964303201676861",
-   "fdv_to_revenue": "38.85419592431954847903338160",
-   "mcap_to_fees": "4.689478482612567409137785270",
-   "holders_yield_on_mcap": "0.02653025936039876814562650534",
-   "value_as_of": "2026-11-06T12:02:55.000Z",
+   "market_cap_usd": "1040708655.666854789571970456",
+   "fdv_usd": "2151254414.212283331597113003",
+   "mean_price_usd": "0.3135256411466749583333333333",
+   "market_cap_at_fetch_usd": "811716238",
+   "fdv_at_fetch_usd": "1677902966",
+   "price_usd": "0.244539",
+   "mcap_at_fetch_to_revenue": "18.51507489733814086910737922",
+   "mcap_to_revenue": "23.73834328293911257034994797",
+   "fdv_to_revenue": "49.06965604200431700517251615",
+   "mcap_to_fees": "5.922425897953115467497960594",
+   "holders_yield_on_mcap": "0.02100711474528027723284561612",
+   "value_as_of": "2026-11-06T20:39:48.000Z",
    "complete": true,
    "partial": false
   },
@@ -272,19 +337,24 @@
    "days": {
     "fees": 30,
     "revenue": 30,
-    "holders_revenue": 30
+    "holders_revenue": 30,
+    "price": 30
    },
    "fees_usd_per_year": "269220551.925",
    "revenue_usd_per_year": "88778809.44999999999999999999",
    "holders_revenue_usd_per_year": "88778809.44999999999999999999",
-   "market_cap_usd": "273657789589",
-   "fdv_usd": "273657789589",
-   "price_usd": "2239.98",
-   "mcap_to_revenue": "3082.467441097229086574555321",
-   "fdv_to_revenue": "3082.467441097229086574555321",
-   "mcap_to_fees": "1016.481793950248399112815986",
-   "holders_yield_on_mcap": "0.0003244154298817320043452512489",
-   "value_as_of": "2026-11-06T12:02:55.000Z",
+   "market_cap_usd": "301314582237.5940182864812930",
+   "fdv_usd": "301314582237.5940182864812930",
+   "mean_price_usd": "2465.84882595300889",
+   "market_cap_at_fetch_usd": "272644095252",
+   "fdv_at_fetch_usd": "272644095252",
+   "price_usd": "2231.22",
+   "mcap_at_fetch_to_revenue": "3071.049239577294196301029581",
+   "mcap_to_revenue": "3393.992148625214733452153689",
+   "fdv_to_revenue": "3393.992148625214733452153689",
+   "mcap_to_fees": "1119.210922357572602641789540",
+   "holders_yield_on_mcap": "0.0002946382773469480071300760621",
+   "value_as_of": "2026-11-06T20:39:48.000Z",
    "complete": true,
    "partial": false
   },
@@ -295,19 +365,24 @@
    "days": {
     "fees": 30,
     "revenue": 30,
-    "holders_revenue": 30
+    "holders_revenue": 30,
+    "price": 30
    },
    "fees_usd_per_year": "267911958.5750000000000000000",
    "revenue_usd_per_year": "31842008.00000000000000000000",
    "holders_revenue_usd_per_year": "31842008.00000000000000000000",
-   "market_cap_usd": "53308656618",
-   "fdv_usd": "57533278071",
-   "price_usd": "90.34",
-   "mcap_to_revenue": "1674.161272052943394775857100",
-   "fdv_to_revenue": "1806.835739473465366882641321",
-   "mcap_to_fees": "198.9782647312349446512570627",
-   "holders_yield_on_mcap": "0.0005973140202758054052150978929",
-   "value_as_of": "2026-11-06T12:02:55.000Z",
+   "market_cap_usd": "63540190063.46581032711347853",
+   "fdv_usd": "68575817148.55106673611075155",
+   "mean_price_usd": "107.631075597805095",
+   "market_cap_at_fetch_usd": "53072619176",
+   "fdv_at_fetch_usd": "57278680227",
+   "price_usd": "89.9",
+   "mcap_at_fetch_to_revenue": "1666.748503297907594269808613",
+   "mcap_to_revenue": "1995.483138609405861813535080",
+   "fdv_to_revenue": "2153.627282191219433652260610",
+   "mcap_to_fees": "237.1681742070434577543697782",
+   "holders_yield_on_mcap": "0.0005011317713748615805057025989",
+   "value_as_of": "2026-11-06T20:39:48.000Z",
    "complete": true,
    "partial": false
   },
@@ -318,19 +393,24 @@
    "days": {
     "fees": 30,
     "revenue": 30,
-    "holders_revenue": 30
+    "holders_revenue": 30,
+    "price": 30
    },
    "fees_usd_per_year": "1783832.300000000000000000000",
    "revenue_usd_per_year": "253673.4300",
    "holders_revenue_usd_per_year": "253673.4300",
-   "market_cap_usd": "3586109008",
-   "fdv_usd": "8664100702",
-   "price_usd": "0.866748",
-   "mcap_to_revenue": "14136.71509862108932732923586",
-   "fdv_to_revenue": "34154.54547998976479326195101",
-   "mcap_to_fees": "2010.339765683130639578619582",
-   "holders_yield_on_mcap": "0.00007073779113632565850881686305",
-   "value_as_of": "2026-11-06T12:02:55.000Z",
+   "market_cap_usd": "4283074939.537414829459342431",
+   "fdv_usd": "10347982315.46189892567807583",
+   "mean_price_usd": "1.034798125817079586666666667",
+   "market_cap_at_fetch_usd": "3605380472",
+   "fdv_at_fetch_usd": "8710660890",
+   "price_usd": "0.871066",
+   "mcap_at_fetch_to_revenue": "14212.68467888024378430172998",
+   "mcap_to_revenue": "16884.20793434067899605939192",
+   "fdv_to_revenue": "40792.53517194094362061519738",
+   "mcap_to_fees": "2401.052464145544863975914345",
+   "holders_yield_on_mcap": "0.00005922694176053746679363490608",
+   "value_as_of": "2026-11-06T20:39:48.000Z",
    "complete": true,
    "partial": false
   },
@@ -341,19 +421,24 @@
    "days": {
     "fees": 30,
     "revenue": 30,
-    "holders_revenue": 30
+    "holders_revenue": 30,
+    "price": 30
    },
    "fees_usd_per_year": "1603995.375",
    "revenue_usd_per_year": "1603995.375",
    "holders_revenue_usd_per_year": "1603995.375",
-   "market_cap_usd": "541252640",
-   "fdv_usd": "741535613",
-   "price_usd": "0.612184",
-   "mcap_to_revenue": "337.4402747264779363843240508",
-   "fdv_to_revenue": "462.3053311484766594168016226",
-   "mcap_to_fees": "337.4402747264779363843240508",
-   "holders_yield_on_mcap": "0.002963487392874425517813640595",
-   "value_as_of": "2026-11-06T12:02:55.000Z",
+   "market_cap_usd": "684028581.3227906448883602778",
+   "fdv_usd": "937134511.7027602416580214574",
+   "mean_price_usd": "0.7737257765126034733333333333",
+   "market_cap_at_fetch_usd": "540395519",
+   "fdv_at_fetch_usd": "740353992",
+   "price_usd": "0.611258",
+   "mcap_at_fetch_to_revenue": "336.9059084724605268889880683",
+   "mcap_to_revenue": "426.4529636332590079247331232",
+   "fdv_to_revenue": "584.2501333289444439065302526",
+   "mcap_to_fees": "426.4529636332590079247331232",
+   "holders_yield_on_mcap": "0.002344924494087887111750464929",
+   "value_as_of": "2026-11-06T20:39:48.000Z",
    "complete": true,
    "partial": false
   },
@@ -364,19 +449,24 @@
    "days": {
     "fees": 30,
     "revenue": 30,
-    "holders_revenue": 30
+    "holders_revenue": 30,
+    "price": 30
    },
    "fees_usd_per_year": "77491074.74999999999999999999",
    "revenue_usd_per_year": "27350333.95000000000000000000",
    "holders_revenue_usd_per_year": "27350333.95000000000000000000",
-   "market_cap_usd": "4892307171",
-   "fdv_usd": "4892307313",
-   "price_usd": "3.73",
-   "mcap_to_revenue": "178.8755917914486744319990287",
-   "fdv_to_revenue": "178.8755969833414045023022470",
-   "mcap_to_fees": "63.13381491718180099186196925",
-   "holders_yield_on_mcap": "0.005590477660953885350384921691",
-   "value_as_of": "2026-11-06T12:02:55.000Z",
+   "market_cap_usd": "6391119943.528024315784008034",
+   "fdv_usd": "6391119996.132468496233724083",
+   "mean_price_usd": "4.879062197736711163333333333",
+   "market_cap_at_fetch_usd": "4859756656",
+   "fdv_at_fetch_usd": "4859756696",
+   "price_usd": "3.71",
+   "mcap_at_fetch_to_revenue": "177.6854595225152634745068625",
+   "mcap_to_revenue": "233.6761209282427908264720853",
+   "fdv_to_revenue": "233.6761228515993493466548361",
+   "mcap_to_fees": "82.47556204565383597010968073",
+   "holders_yield_on_mcap": "0.004279427422997490482713732002",
+   "value_as_of": "2026-11-06T20:39:48.000Z",
    "complete": true,
    "partial": false
   }

@@ -9,7 +9,7 @@
   wallets keep in dollars grew <!--n:lr.history.2026-04_2026-10.buybacks_kept_usd_multiple-->×7.5<!--/n--> from April, its lowest month.
 - **Small.** Buybacks offset <!--n:n1.coverage_buybacks-->10.8%<!--/n--> of the NEAR issued in the same days (<!--n:n1.coverage_with_front_end-->16.5%<!--/n--> counting
   the front-end fund, which keeps near-intents.org's own fees). If NEAR kept every fee, it would cover <!--n:n2.max_coverage-->47.9%<!--/n-->. NEAR's market cap is
-  <!--n:peer.near_all.mcap_to_revenue-->179×<!--/n--> a year of its revenue, Intents and gas together; <!--n:peer.near_l1.mcap_to_revenue-->3,132×<!--/n--> on L1 gas alone.
+  <!--n:peer.near_all.mcap_to_revenue-->234×<!--/n--> a year of its revenue, Intents and gas together; <!--n:peer.near_l1.mcap_to_revenue-->4,091×<!--/n--> on L1 gas alone.
 - **Discretionary.** No link from the fee a user pays to the NEAR a holder keeps is fixed in code. The fee is set
   off-chain. The <!--n:n1.wallets_held_near-->4,109,089<!--/n--> NEAR in the wallets can be moved by their signers; the buybacks wallet
   needs <!--n:c.buybacks_confirmations-->2 of 4<!--/n--> signatures. Nothing is burned, and no rule makes them keep it;
@@ -30,9 +30,9 @@
 Every condition, with its exact rule: [the rating in full](#the-rating-in-full).
 
 **The bull case, measured.** Intents is what sets NEAR apart from other L1s: part of its fees buys NEAR back.
-Counting them with gas, NEAR's market cap is <!--n:peer.near_all.mcap_to_revenue-->179×<!--/n--> its yearly revenue, the lowest of the L1s here: <!--n:peer.aptos.mcap_to_revenue-->337×<!--/n--> for Aptos, <!--n:peer.solana.mcap_to_revenue-->1,674×<!--/n--> for Solana and <!--n:peer.ethereum.mcap_to_revenue-->3,082×<!--/n--> for Ethereum,
-whose figures are their chains' own revenue, without their apps. On L1 gas alone NEAR is <!--n:peer.near_l1.mcap_to_revenue-->3,132×<!--/n-->, just above Ethereum
-([peers](#peers-on-one-basis)): the lead comes from Intents. Against apps with buybacks it is the other way round (Hyperliquid <!--n:peer.hyperliquid.mcap_to_revenue-->23×<!--/n-->). What
+Counting them with gas, NEAR's market cap is <!--n:peer.near_all.mcap_to_revenue-->234×<!--/n--> its yearly revenue, the lowest of the L1s here: <!--n:peer.aptos.mcap_to_revenue-->426×<!--/n--> for Aptos, <!--n:peer.solana.mcap_to_revenue-->1,995×<!--/n--> for Solana and <!--n:peer.ethereum.mcap_to_revenue-->3,394×<!--/n--> for Ethereum,
+whose figures are their chains' own revenue, without their apps. On L1 gas alone NEAR is <!--n:peer.near_l1.mcap_to_revenue-->4,091×<!--/n-->, above Ethereum
+([peers](#peers-on-one-basis)): the lead comes from Intents. Against apps with buybacks it is the other way round (Hyperliquid <!--n:peer.hyperliquid.mcap_to_revenue-->24×<!--/n-->). What
 the capture has not done is offset issuance, and nothing yet makes it last.
 
 **Check it.** `python scripts/rebuild.py` (Python 3.10+, standard library only, no network) ends with
@@ -225,37 +225,38 @@ differs from this value only by the price.
 ### Peers on one basis
 
 DefiLlama's revenue and holders' revenue (what is paid to token holders: buybacks, or for an L1 the gas that is
-burned) over the same 30 days, a year; CoinGecko's market cap at <!--n:peer.value_as_of-->2026-11-06 12:03 UTC<!--/n-->. Each row is DefiLlama's
+burned) over the window's 30 days, a year, against each token's market cap at its mean price over the same 30 days:
+CoinGecko's supply at <!--n:peer.value_as_of-->2026-11-06 20:31 UTC<!--/n--> × the daily prices NEAR's figures use (coins.llama.fi). Each row is DefiLlama's
 revenue for that token (`scripts/peers.py`). The other L1s' rows are their chains' own revenue, without their apps;
 NEAR's bold row adds Intents, part of whose fees buys NEAR back, so NEAR's L1 gas alone is shown too, like for like.
 
 | Token | Market cap | Revenue a year | Market cap ÷ revenue | Paid to holders a year ÷ market cap |
 |---|---|---|---|---|
 | *Apps* | | | | |
-| NEAR, Intents only | <!--n:peer.near.market_cap_usd-->$4.89B<!--/n--> | <!--n:peer.near.revenue_usd_per_year-->$25.8M<!--/n--> | <!--n:peer.near.mcap_to_revenue-->190×<!--/n--> | <!--n:peer.near.holders_yield_on_mcap-->0.53%<!--/n--> |
-| Hyperliquid (HYPE) | <!--n:peer.hyperliquid.market_cap_usd-->$18.79B<!--/n--> | <!--n:peer.hyperliquid.revenue_usd_per_year-->$817.6M<!--/n--> | <!--n:peer.hyperliquid.mcap_to_revenue-->23×<!--/n--> | <!--n:peer.hyperliquid.holders_yield_on_mcap-->4.35%<!--/n--> |
-| Aave (AAVE) | <!--n:peer.aave.market_cap_usd-->$2.00B<!--/n--> | <!--n:peer.aave.revenue_usd_per_year-->$61.3M<!--/n--> | <!--n:peer.aave.mcap_to_revenue-->33×<!--/n--> | <!--n:peer.aave.holders_yield_on_mcap-->0.00%<!--/n--> |
-| Jupiter (JUP) | <!--n:peer.jupiter.market_cap_usd-->$824.1M<!--/n--> | <!--n:peer.jupiter.revenue_usd_per_year-->$43.8M<!--/n--> | <!--n:peer.jupiter.mcap_to_revenue-->19×<!--/n--> | <!--n:peer.jupiter.holders_yield_on_mcap-->2.65%<!--/n--> |
+| NEAR, Intents only | <!--n:peer.near.market_cap_usd-->$6.39B<!--/n--> | <!--n:peer.near.revenue_usd_per_year-->$25.8M<!--/n--> | <!--n:peer.near.mcap_to_revenue-->248×<!--/n--> | <!--n:peer.near.holders_yield_on_mcap-->0.40%<!--/n--> |
+| Hyperliquid (HYPE) | <!--n:peer.hyperliquid.market_cap_usd-->$19.99B<!--/n--> | <!--n:peer.hyperliquid.revenue_usd_per_year-->$817.6M<!--/n--> | <!--n:peer.hyperliquid.mcap_to_revenue-->24×<!--/n--> | <!--n:peer.hyperliquid.holders_yield_on_mcap-->4.09%<!--/n--> |
+| Aave (AAVE) | <!--n:peer.aave.market_cap_usd-->$2.41B<!--/n--> | <!--n:peer.aave.revenue_usd_per_year-->$61.3M<!--/n--> | <!--n:peer.aave.mcap_to_revenue-->39×<!--/n--> | <!--n:peer.aave.holders_yield_on_mcap-->0.00%<!--/n--> |
+| Jupiter (JUP) | <!--n:peer.jupiter.market_cap_usd-->$1.04B<!--/n--> | <!--n:peer.jupiter.revenue_usd_per_year-->$43.8M<!--/n--> | <!--n:peer.jupiter.mcap_to_revenue-->24×<!--/n--> | <!--n:peer.jupiter.holders_yield_on_mcap-->2.10%<!--/n--> |
 | *L1s* | | | | |
-| **NEAR, Intents and L1 gas** | <!--n:peer.near_all.market_cap_usd-->$4.89B<!--/n--> | <!--n:peer.near_all.revenue_usd_per_year-->$27.4M<!--/n--> | <!--n:peer.near_all.mcap_to_revenue-->179×<!--/n--> | <!--n:peer.near_all.holders_yield_on_mcap-->0.56%<!--/n--> |
-| NEAR, L1 gas only | <!--n:peer.near_l1.market_cap_usd-->$4.89B<!--/n--> | <!--n:peer.near_l1.revenue_usd_per_year-->$1.6M<!--/n--> | <!--n:peer.near_l1.mcap_to_revenue-->3,132×<!--/n--> | <!--n:peer.near_l1.holders_yield_on_mcap-->0.03%<!--/n--> |
-| Aptos (APT) | <!--n:peer.aptos.market_cap_usd-->$541.3M<!--/n--> | <!--n:peer.aptos.revenue_usd_per_year-->$1.6M<!--/n--> | <!--n:peer.aptos.mcap_to_revenue-->337×<!--/n--> | <!--n:peer.aptos.holders_yield_on_mcap-->0.30%<!--/n--> |
-| Solana (SOL) | <!--n:peer.solana.market_cap_usd-->$53.31B<!--/n--> | <!--n:peer.solana.revenue_usd_per_year-->$31.8M<!--/n--> | <!--n:peer.solana.mcap_to_revenue-->1,674×<!--/n--> | <!--n:peer.solana.holders_yield_on_mcap-->0.06%<!--/n--> |
-| Ethereum (ETH) | <!--n:peer.ethereum.market_cap_usd-->$273.66B<!--/n--> | <!--n:peer.ethereum.revenue_usd_per_year-->$88.8M<!--/n--> | <!--n:peer.ethereum.mcap_to_revenue-->3,082×<!--/n--> | <!--n:peer.ethereum.holders_yield_on_mcap-->0.03%<!--/n--> |
-| Sui (SUI) | <!--n:peer.sui.market_cap_usd-->$3.59B<!--/n--> | <!--n:peer.sui.revenue_usd_per_year-->$0.3M<!--/n--> | <!--n:peer.sui.mcap_to_revenue-->14,137×<!--/n--> | <!--n:peer.sui.holders_yield_on_mcap-->0.01%<!--/n--> |
+| **NEAR, Intents and L1 gas** | <!--n:peer.near_all.market_cap_usd-->$6.39B<!--/n--> | <!--n:peer.near_all.revenue_usd_per_year-->$27.4M<!--/n--> | <!--n:peer.near_all.mcap_to_revenue-->234×<!--/n--> | <!--n:peer.near_all.holders_yield_on_mcap-->0.43%<!--/n--> |
+| NEAR, L1 gas only | <!--n:peer.near_l1.market_cap_usd-->$6.39B<!--/n--> | <!--n:peer.near_l1.revenue_usd_per_year-->$1.6M<!--/n--> | <!--n:peer.near_l1.mcap_to_revenue-->4,091×<!--/n--> | <!--n:peer.near_l1.holders_yield_on_mcap-->0.02%<!--/n--> |
+| Aptos (APT) | <!--n:peer.aptos.market_cap_usd-->$684.0M<!--/n--> | <!--n:peer.aptos.revenue_usd_per_year-->$1.6M<!--/n--> | <!--n:peer.aptos.mcap_to_revenue-->426×<!--/n--> | <!--n:peer.aptos.holders_yield_on_mcap-->0.23%<!--/n--> |
+| Solana (SOL) | <!--n:peer.solana.market_cap_usd-->$63.54B<!--/n--> | <!--n:peer.solana.revenue_usd_per_year-->$31.8M<!--/n--> | <!--n:peer.solana.mcap_to_revenue-->1,995×<!--/n--> | <!--n:peer.solana.holders_yield_on_mcap-->0.05%<!--/n--> |
+| Ethereum (ETH) | <!--n:peer.ethereum.market_cap_usd-->$301.31B<!--/n--> | <!--n:peer.ethereum.revenue_usd_per_year-->$88.8M<!--/n--> | <!--n:peer.ethereum.mcap_to_revenue-->3,394×<!--/n--> | <!--n:peer.ethereum.holders_yield_on_mcap-->0.03%<!--/n--> |
+| Sui (SUI) | <!--n:peer.sui.market_cap_usd-->$4.28B<!--/n--> | <!--n:peer.sui.revenue_usd_per_year-->$0.3M<!--/n--> | <!--n:peer.sui.mcap_to_revenue-->16,884×<!--/n--> | <!--n:peer.sui.holders_yield_on_mcap-->0.01%<!--/n--> |
 
 The two groups point opposite ways. Against the apps, NEAR's value is many more years of its revenue and its
 holders receive a fraction of what HYPE and JUP holders do. Against the L1s, NEAR with Intents has the lowest
-market cap ÷ revenue of the five (<!--n:peer.near_l1.mcap_to_revenue-->3,132×<!--/n--> on L1 gas alone, just above Ethereum), and DefiLlama counts the largest share for its holders (held in
+market cap ÷ revenue of the five (<!--n:peer.near_l1.mcap_to_revenue-->4,091×<!--/n--> on L1 gas alone, above Ethereum), and DefiLlama counts the largest share for its holders (held in
 wallets, not paid out). L1 tokens are not priced on
-fees: Ethereum's market cap is <!--n:peer.ethereum.mcap_to_revenue-->3,082×<!--/n--> a year of its revenue. So the table does not say NEAR is mispriced. It says
+fees: Ethereum's market cap is <!--n:peer.ethereum.mcap_to_revenue-->3,394×<!--/n--> a year of its revenue. So the table does not say NEAR is mispriced. It says
 that today's fee capture explains little of NEAR's value, which is the thesis, and that Intents gives NEAR
 more revenue per dollar of value than the other L1s here, which is the bull case. No rating rule uses this table.
 
-The values are of the fetch, when NEAR traded at <!--n:peer.near.price_usd-->$3.73<!--/n--> (the window's mean was <!--n:n2.mean_price_usd-->$4.88<!--/n-->); NEAR's fees and
-revenue here equal the window's to 0.1%, a check of every build. NEAR's paid-to-holders figure is DefiLlama's: it
-counts the front-end fund, nothing is paid out (the NEAR stays in the wallets), and it values the window's dollars
-at the fetch's lower price. Counted in NEAR, the buybacks wallets alone take in <!--n:iv.buyback_yield_buybacks-->0.27%<!--/n--> of all NEAR a year.
+Value and revenue cover the same days, so NEAR's Intents row, <!--n:peer.near.mcap_to_revenue-->248×<!--/n-->, is the value ÷ revenue of the
+[valuation](#investment-view) above (<!--n:iv.value_to_revenue-->248×<!--/n-->). NEAR's fees, revenue and mean price here equal the window's to 0.1%, a check of every build. At the fetch's
+price (NEAR <!--n:peer.near.price_usd-->$3.71<!--/n-->, against a mean of <!--n:n2.mean_price_usd-->$4.88<!--/n-->) NEAR with Intents would be <!--n:peer.near_all.mcap_at_fetch_to_revenue-->178×<!--/n-->. NEAR's paid-to-holders figure is DefiLlama's:
+it counts the front-end fund, and nothing is paid out (the NEAR stays in the wallets). Counted in NEAR, the buybacks wallets alone take in <!--n:iv.buyback_yield_buybacks-->0.27%<!--/n--> of all NEAR a year.
 DefiLlama counts no holders' revenue for Aave, whose buybacks are paid from its treasury. Fees and fully diluted
 values: [details](docs/DETAILS.md#peers).
 

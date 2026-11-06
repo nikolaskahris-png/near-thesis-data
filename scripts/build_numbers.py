@@ -998,7 +998,7 @@ def build(data_dir, window_file):
             val = value.isoformat() if kind == "utc" else value
             n.add(key, val, fmt[kind](value), lsrc, unit=kind, **extra, **lstatus)
 
-    # ---- peers on one basis (peers.py): DefiLlama flows over the window, CoinGecko values at the fetch
+    # ---- peers on one basis (peers.py): DefiLlama flows and value at the mean price, both over the window
     ppath2 = data_dir / "peers.json"
     if ppath2.exists():
         pe = json.loads(ppath2.read_text(encoding="utf-8"))
@@ -1009,16 +1009,21 @@ def build(data_dir, window_file):
         for key, ours in (("fees_usd_per_year", "iv.fees_usd_per_year"), ("revenue_usd_per_year", "iv.revenue_usd_per_year")):
             if abs(Decimal(nr[key]) / Decimal(n.items[ours]["value"]) - 1) > Decimal("0.001"):
                 problems.append(f"peers.json: NEAR {key} differs from {ours} by more than 0.1%")
+        if nr.get("mean_price_usd") and abs(Decimal(nr["mean_price_usd"]) / Decimal(n.items["n2.mean_price_usd"]["value"]) - 1) > Decimal("0.001"):
+            problems.append("peers.json: NEAR's mean price differs from n2.mean_price_usd by more than 0.1%")
         for pid, r in pe["results"].items():
             if r.get("partial"):
                 problems.append(f"peers.json: {pid} lacks some days of the window")
             pc2 = {"label": r["label"], "value_as_of": r["value_as_of"], "window": "2026-10-02_2026-11-01",
-                   "basis": "DefiLlama flows over the window x 365.25; CoinGecko value at the fetch"}
+                   "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the "
+                            "window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"}
             for key, kind in (("fees_usd_per_year", "big"), ("revenue_usd_per_year", "big"),
                               ("holders_revenue_usd_per_year", "big"), ("market_cap_usd", "big"),
                               ("fdv_usd", "big"), ("price_usd", "price"), ("mcap_to_revenue", "x"),
-                              ("fdv_to_revenue", "x"), ("mcap_to_fees", "x"), ("holders_yield_on_mcap", "pct")):
-                v = r[key]
+                              ("fdv_to_revenue", "x"), ("mcap_to_fees", "x"), ("holders_yield_on_mcap", "pct"),
+                              ("mean_price_usd", "price"), ("market_cap_at_fetch_usd", "big"),
+                              ("fdv_at_fetch_usd", "big"), ("mcap_at_fetch_to_revenue", "x")):
+                v = r.get(key)
                 if v is None:
                     n.add(f"peer.{pid}.{key}", None, "not published", pesrc, **pc2)
                     continue

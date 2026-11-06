@@ -21,7 +21,7 @@
     "data/hsp029_voters.json": "1ccc3bf7b0924d4799bc5f9bd08278d78f65ac4341e989b4875c87fb49ad063c",
     "data/offchain/nearai_cloud_farm_config.json": "4fab756a3e94d72a2db918e8f3f47526a5da3a2d41990ba2f479406ac22b4214",
     "data/offchain/nearai_cloud_farm_config_20261101T205837Z.json": "95bb1adc1b3eb738cdc19c7622e5a3641edce4ea9653ced4ba6e32439c5f253d",
-    "data/peers.json": "0760c544fd75be9184cbee9aa3572e25ac2c280925bba74aaec17da0a015d759",
+    "data/peers.json": "48138f8cb3615ecbb1619ab22467c7a46bbee2521481b226b741a911a7b70b1e",
     "data/prereg.json": "2efdcde55626bf946110ccaccb6672581cfe0d96b8231945629a920b653cc250",
     "data/prereg2.json": "e7b959377e2b1bacd3b6ffb788e2caba1b529c0f9af261e875485389c98166c8",
     "data/prereg2_anchor.json": "04d116768228d84f1c3a3e6c7c91cd43af6df1e62a177e95980f757a272c0c77",
@@ -5440,909 +5440,1269 @@
       "block": 222491356,
       "as_of": "2026-11-01 00:00 UTC"
     },
-    "peer.aave.fdv_to_revenue": {
-      "value": "33.86368285237408694559585815",
-      "text": "34×",
+    "peer.aave.fdv_at_fetch_usd": {
+      "value": "2090905826",
+      "text": "$2.09B",
       "source": "data/peers.json",
       "label": "Aave (AAVE)",
-      "value_as_of": "2026-11-06T12:02:55.000Z",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
       "window": "2026-10-02_2026-11-01",
-      "basis": "DefiLlama flows over the window x 365.25; CoinGecko value at the fetch"
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
+    },
+    "peer.aave.fdv_to_revenue": {
+      "value": "40.80480122641118119618561763",
+      "text": "41×",
+      "source": "data/peers.json",
+      "label": "Aave (AAVE)",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
+      "window": "2026-10-02_2026-11-01",
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
     },
     "peer.aave.fdv_usd": {
-      "value": "2074806190",
-      "text": "$2.07B",
+      "value": "2500084073.411468689959079242",
+      "text": "$2.50B",
       "source": "data/peers.json",
       "label": "Aave (AAVE)",
-      "value_as_of": "2026-11-06T12:02:55.000Z",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
       "window": "2026-10-02_2026-11-01",
-      "basis": "DefiLlama flows over the window x 365.25; CoinGecko value at the fetch"
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
     },
     "peer.aave.fees_usd_per_year": {
       "value": "467856553.5249999999999999999",
       "text": "$467.9M",
       "source": "data/peers.json",
       "label": "Aave (AAVE)",
-      "value_as_of": "2026-11-06T12:02:55.000Z",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
       "window": "2026-10-02_2026-11-01",
-      "basis": "DefiLlama flows over the window x 365.25; CoinGecko value at the fetch"
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
     },
     "peer.aave.holders_revenue_usd_per_year": {
       "value": "0.00",
       "text": "$0",
       "source": "data/peers.json",
       "label": "Aave (AAVE)",
-      "value_as_of": "2026-11-06T12:02:55.000Z",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
       "window": "2026-10-02_2026-11-01",
-      "basis": "DefiLlama flows over the window x 365.25; CoinGecko value at the fetch"
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
     },
     "peer.aave.holders_yield_on_mcap": {
-      "value": "0.00",
+      "value": "0E+16",
       "text": "0.00%",
       "source": "data/peers.json",
       "label": "Aave (AAVE)",
-      "value_as_of": "2026-11-06T12:02:55.000Z",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
       "window": "2026-10-02_2026-11-01",
-      "basis": "DefiLlama flows over the window x 365.25; CoinGecko value at the fetch"
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
+    },
+    "peer.aave.market_cap_at_fetch_usd": {
+      "value": "2017760577",
+      "text": "$2.02B",
+      "source": "data/peers.json",
+      "label": "Aave (AAVE)",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
+      "window": "2026-10-02_2026-11-01",
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
     },
     "peer.aave.market_cap_usd": {
-      "value": "2002222374",
-      "text": "$2.00B",
+      "value": "2412624719.768338061089350008",
+      "text": "$2.41B",
       "source": "data/peers.json",
       "label": "Aave (AAVE)",
-      "value_as_of": "2026-11-06T12:02:55.000Z",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
       "window": "2026-10-02_2026-11-01",
-      "basis": "DefiLlama flows over the window x 365.25; CoinGecko value at the fetch"
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
     },
-    "peer.aave.mcap_to_fees": {
-      "value": "4.279564663387815264225650350",
-      "text": "4×",
-      "source": "data/peers.json",
-      "label": "Aave (AAVE)",
-      "value_as_of": "2026-11-06T12:02:55.000Z",
-      "window": "2026-10-02_2026-11-01",
-      "basis": "DefiLlama flows over the window x 365.25; CoinGecko value at the fetch"
-    },
-    "peer.aave.mcap_to_revenue": {
-      "value": "32.67901541833337980367860188",
+    "peer.aave.mcap_at_fetch_to_revenue": {
+      "value": "32.93262020369784201154405962",
       "text": "33×",
       "source": "data/peers.json",
       "label": "Aave (AAVE)",
-      "value_as_of": "2026-11-06T12:02:55.000Z",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
       "window": "2026-10-02_2026-11-01",
-      "basis": "DefiLlama flows over the window x 365.25; CoinGecko value at the fetch"
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
     },
-    "peer.aave.price_usd": {
-      "value": "129.71",
-      "text": "$129.71",
+    "peer.aave.mcap_to_fees": {
+      "value": "5.156761621891909697364220561",
+      "text": "5×",
       "source": "data/peers.json",
       "label": "Aave (AAVE)",
-      "value_as_of": "2026-11-06T12:02:55.000Z",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
       "window": "2026-10-02_2026-11-01",
-      "basis": "DefiLlama flows over the window x 365.25; CoinGecko value at the fetch"
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
+    },
+    "peer.aave.mcap_to_revenue": {
+      "value": "39.37734461455067589910050881",
+      "text": "39×",
+      "source": "data/peers.json",
+      "label": "Aave (AAVE)",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
+      "window": "2026-10-02_2026-11-01",
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
+    },
+    "peer.aave.mean_price_usd": {
+      "value": "156.2533245882355336666666667",
+      "text": "$156.25",
+      "source": "data/peers.json",
+      "label": "Aave (AAVE)",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
+      "window": "2026-10-02_2026-11-01",
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
+    },
+    "peer.aave.price_usd": {
+      "value": "130.68",
+      "text": "$130.68",
+      "source": "data/peers.json",
+      "label": "Aave (AAVE)",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
+      "window": "2026-10-02_2026-11-01",
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
     },
     "peer.aave.revenue_usd_per_year": {
       "value": "61269360.42500000000000000001",
       "text": "$61.3M",
       "source": "data/peers.json",
       "label": "Aave (AAVE)",
-      "value_as_of": "2026-11-06T12:02:55.000Z",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
       "window": "2026-10-02_2026-11-01",
-      "basis": "DefiLlama flows over the window x 365.25; CoinGecko value at the fetch"
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
+    },
+    "peer.aptos.fdv_at_fetch_usd": {
+      "value": "740353992",
+      "text": "$740.4M",
+      "source": "data/peers.json",
+      "label": "Aptos (APT)",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
+      "window": "2026-10-02_2026-11-01",
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
     },
     "peer.aptos.fdv_to_revenue": {
-      "value": "462.3053311484766594168016226",
-      "text": "462×",
+      "value": "584.2501333289444439065302526",
+      "text": "584×",
       "source": "data/peers.json",
       "label": "Aptos (APT)",
-      "value_as_of": "2026-11-06T12:02:55.000Z",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
       "window": "2026-10-02_2026-11-01",
-      "basis": "DefiLlama flows over the window x 365.25; CoinGecko value at the fetch"
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
     },
     "peer.aptos.fdv_usd": {
-      "value": "741535613",
-      "text": "$741.5M",
+      "value": "937134511.7027602416580214574",
+      "text": "$937.1M",
       "source": "data/peers.json",
       "label": "Aptos (APT)",
-      "value_as_of": "2026-11-06T12:02:55.000Z",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
       "window": "2026-10-02_2026-11-01",
-      "basis": "DefiLlama flows over the window x 365.25; CoinGecko value at the fetch"
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
     },
     "peer.aptos.fees_usd_per_year": {
       "value": "1603995.375",
       "text": "$1.6M",
       "source": "data/peers.json",
       "label": "Aptos (APT)",
-      "value_as_of": "2026-11-06T12:02:55.000Z",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
       "window": "2026-10-02_2026-11-01",
-      "basis": "DefiLlama flows over the window x 365.25; CoinGecko value at the fetch"
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
     },
     "peer.aptos.holders_revenue_usd_per_year": {
       "value": "1603995.375",
       "text": "$1.6M",
       "source": "data/peers.json",
       "label": "Aptos (APT)",
-      "value_as_of": "2026-11-06T12:02:55.000Z",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
       "window": "2026-10-02_2026-11-01",
-      "basis": "DefiLlama flows over the window x 365.25; CoinGecko value at the fetch"
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
     },
     "peer.aptos.holders_yield_on_mcap": {
-      "value": "0.002963487392874425517813640595",
-      "text": "0.30%",
+      "value": "0.002344924494087887111750464929",
+      "text": "0.23%",
       "source": "data/peers.json",
       "label": "Aptos (APT)",
-      "value_as_of": "2026-11-06T12:02:55.000Z",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
       "window": "2026-10-02_2026-11-01",
-      "basis": "DefiLlama flows over the window x 365.25; CoinGecko value at the fetch"
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
+    },
+    "peer.aptos.market_cap_at_fetch_usd": {
+      "value": "540395519",
+      "text": "$540.4M",
+      "source": "data/peers.json",
+      "label": "Aptos (APT)",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
+      "window": "2026-10-02_2026-11-01",
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
     },
     "peer.aptos.market_cap_usd": {
-      "value": "541252640",
-      "text": "$541.3M",
+      "value": "684028581.3227906448883602778",
+      "text": "$684.0M",
       "source": "data/peers.json",
       "label": "Aptos (APT)",
-      "value_as_of": "2026-11-06T12:02:55.000Z",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
       "window": "2026-10-02_2026-11-01",
-      "basis": "DefiLlama flows over the window x 365.25; CoinGecko value at the fetch"
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
+    },
+    "peer.aptos.mcap_at_fetch_to_revenue": {
+      "value": "336.9059084724605268889880683",
+      "text": "337×",
+      "source": "data/peers.json",
+      "label": "Aptos (APT)",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
+      "window": "2026-10-02_2026-11-01",
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
     },
     "peer.aptos.mcap_to_fees": {
-      "value": "337.4402747264779363843240508",
-      "text": "337×",
+      "value": "426.4529636332590079247331232",
+      "text": "426×",
       "source": "data/peers.json",
       "label": "Aptos (APT)",
-      "value_as_of": "2026-11-06T12:02:55.000Z",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
       "window": "2026-10-02_2026-11-01",
-      "basis": "DefiLlama flows over the window x 365.25; CoinGecko value at the fetch"
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
     },
     "peer.aptos.mcap_to_revenue": {
-      "value": "337.4402747264779363843240508",
-      "text": "337×",
+      "value": "426.4529636332590079247331232",
+      "text": "426×",
       "source": "data/peers.json",
       "label": "Aptos (APT)",
-      "value_as_of": "2026-11-06T12:02:55.000Z",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
       "window": "2026-10-02_2026-11-01",
-      "basis": "DefiLlama flows over the window x 365.25; CoinGecko value at the fetch"
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
+    },
+    "peer.aptos.mean_price_usd": {
+      "value": "0.7737257765126034733333333333",
+      "text": "$0.77",
+      "source": "data/peers.json",
+      "label": "Aptos (APT)",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
+      "window": "2026-10-02_2026-11-01",
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
     },
     "peer.aptos.price_usd": {
-      "value": "0.612184",
+      "value": "0.611258",
       "text": "$0.61",
       "source": "data/peers.json",
       "label": "Aptos (APT)",
-      "value_as_of": "2026-11-06T12:02:55.000Z",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
       "window": "2026-10-02_2026-11-01",
-      "basis": "DefiLlama flows over the window x 365.25; CoinGecko value at the fetch"
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
     },
     "peer.aptos.revenue_usd_per_year": {
       "value": "1603995.375",
       "text": "$1.6M",
       "source": "data/peers.json",
       "label": "Aptos (APT)",
-      "value_as_of": "2026-11-06T12:02:55.000Z",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
       "window": "2026-10-02_2026-11-01",
-      "basis": "DefiLlama flows over the window x 365.25; CoinGecko value at the fetch"
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
+    },
+    "peer.ethereum.fdv_at_fetch_usd": {
+      "value": "272644095252",
+      "text": "$272.64B",
+      "source": "data/peers.json",
+      "label": "Ethereum (ETH)",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
+      "window": "2026-10-02_2026-11-01",
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
     },
     "peer.ethereum.fdv_to_revenue": {
-      "value": "3082.467441097229086574555321",
-      "text": "3,082×",
+      "value": "3393.992148625214733452153689",
+      "text": "3,394×",
       "source": "data/peers.json",
       "label": "Ethereum (ETH)",
-      "value_as_of": "2026-11-06T12:02:55.000Z",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
       "window": "2026-10-02_2026-11-01",
-      "basis": "DefiLlama flows over the window x 365.25; CoinGecko value at the fetch"
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
     },
     "peer.ethereum.fdv_usd": {
-      "value": "273657789589",
-      "text": "$273.66B",
+      "value": "301314582237.5940182864812930",
+      "text": "$301.31B",
       "source": "data/peers.json",
       "label": "Ethereum (ETH)",
-      "value_as_of": "2026-11-06T12:02:55.000Z",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
       "window": "2026-10-02_2026-11-01",
-      "basis": "DefiLlama flows over the window x 365.25; CoinGecko value at the fetch"
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
     },
     "peer.ethereum.fees_usd_per_year": {
       "value": "269220551.925",
       "text": "$269.2M",
       "source": "data/peers.json",
       "label": "Ethereum (ETH)",
-      "value_as_of": "2026-11-06T12:02:55.000Z",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
       "window": "2026-10-02_2026-11-01",
-      "basis": "DefiLlama flows over the window x 365.25; CoinGecko value at the fetch"
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
     },
     "peer.ethereum.holders_revenue_usd_per_year": {
       "value": "88778809.44999999999999999999",
       "text": "$88.8M",
       "source": "data/peers.json",
       "label": "Ethereum (ETH)",
-      "value_as_of": "2026-11-06T12:02:55.000Z",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
       "window": "2026-10-02_2026-11-01",
-      "basis": "DefiLlama flows over the window x 365.25; CoinGecko value at the fetch"
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
     },
     "peer.ethereum.holders_yield_on_mcap": {
-      "value": "0.0003244154298817320043452512489",
+      "value": "0.0002946382773469480071300760621",
       "text": "0.03%",
       "source": "data/peers.json",
       "label": "Ethereum (ETH)",
-      "value_as_of": "2026-11-06T12:02:55.000Z",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
       "window": "2026-10-02_2026-11-01",
-      "basis": "DefiLlama flows over the window x 365.25; CoinGecko value at the fetch"
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
+    },
+    "peer.ethereum.market_cap_at_fetch_usd": {
+      "value": "272644095252",
+      "text": "$272.64B",
+      "source": "data/peers.json",
+      "label": "Ethereum (ETH)",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
+      "window": "2026-10-02_2026-11-01",
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
     },
     "peer.ethereum.market_cap_usd": {
-      "value": "273657789589",
-      "text": "$273.66B",
+      "value": "301314582237.5940182864812930",
+      "text": "$301.31B",
       "source": "data/peers.json",
       "label": "Ethereum (ETH)",
-      "value_as_of": "2026-11-06T12:02:55.000Z",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
       "window": "2026-10-02_2026-11-01",
-      "basis": "DefiLlama flows over the window x 365.25; CoinGecko value at the fetch"
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
+    },
+    "peer.ethereum.mcap_at_fetch_to_revenue": {
+      "value": "3071.049239577294196301029581",
+      "text": "3,071×",
+      "source": "data/peers.json",
+      "label": "Ethereum (ETH)",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
+      "window": "2026-10-02_2026-11-01",
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
     },
     "peer.ethereum.mcap_to_fees": {
-      "value": "1016.481793950248399112815986",
-      "text": "1,016×",
+      "value": "1119.210922357572602641789540",
+      "text": "1,119×",
       "source": "data/peers.json",
       "label": "Ethereum (ETH)",
-      "value_as_of": "2026-11-06T12:02:55.000Z",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
       "window": "2026-10-02_2026-11-01",
-      "basis": "DefiLlama flows over the window x 365.25; CoinGecko value at the fetch"
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
     },
     "peer.ethereum.mcap_to_revenue": {
-      "value": "3082.467441097229086574555321",
-      "text": "3,082×",
+      "value": "3393.992148625214733452153689",
+      "text": "3,394×",
       "source": "data/peers.json",
       "label": "Ethereum (ETH)",
-      "value_as_of": "2026-11-06T12:02:55.000Z",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
       "window": "2026-10-02_2026-11-01",
-      "basis": "DefiLlama flows over the window x 365.25; CoinGecko value at the fetch"
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
+    },
+    "peer.ethereum.mean_price_usd": {
+      "value": "2465.84882595300889",
+      "text": "$2,465.85",
+      "source": "data/peers.json",
+      "label": "Ethereum (ETH)",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
+      "window": "2026-10-02_2026-11-01",
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
     },
     "peer.ethereum.price_usd": {
-      "value": "2239.98",
-      "text": "$2,239.98",
+      "value": "2231.22",
+      "text": "$2,231.22",
       "source": "data/peers.json",
       "label": "Ethereum (ETH)",
-      "value_as_of": "2026-11-06T12:02:55.000Z",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
       "window": "2026-10-02_2026-11-01",
-      "basis": "DefiLlama flows over the window x 365.25; CoinGecko value at the fetch"
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
     },
     "peer.ethereum.revenue_usd_per_year": {
       "value": "88778809.44999999999999999999",
       "text": "$88.8M",
       "source": "data/peers.json",
       "label": "Ethereum (ETH)",
-      "value_as_of": "2026-11-06T12:02:55.000Z",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
       "window": "2026-10-02_2026-11-01",
-      "basis": "DefiLlama flows over the window x 365.25; CoinGecko value at the fetch"
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
+    },
+    "peer.hyperliquid.fdv_at_fetch_usd": {
+      "value": "74573792301",
+      "text": "$74.57B",
+      "source": "data/peers.json",
+      "label": "Hyperliquid (HYPE)",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
+      "window": "2026-10-02_2026-11-01",
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
     },
     "peer.hyperliquid.fdv_to_revenue": {
-      "value": "91.36962414242821696618295033",
-      "text": "91×",
+      "value": "97.16514880384841820766633731",
+      "text": "97×",
       "source": "data/peers.json",
       "label": "Hyperliquid (HYPE)",
-      "value_as_of": "2026-11-06T12:02:55.000Z",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
       "window": "2026-10-02_2026-11-01",
-      "basis": "DefiLlama flows over the window x 365.25; CoinGecko value at the fetch"
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
     },
     "peer.hyperliquid.fdv_usd": {
-      "value": "74700646405",
-      "text": "$74.70B",
+      "value": "79438867039.34726930168317892",
+      "text": "$79.44B",
       "source": "data/peers.json",
       "label": "Hyperliquid (HYPE)",
-      "value_as_of": "2026-11-06T12:02:55.000Z",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
       "window": "2026-10-02_2026-11-01",
-      "basis": "DefiLlama flows over the window x 365.25; CoinGecko value at the fetch"
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
     },
     "peer.hyperliquid.fees_usd_per_year": {
       "value": "1041146999.950000000000000000",
       "text": "$1.04B",
       "source": "data/peers.json",
       "label": "Hyperliquid (HYPE)",
-      "value_as_of": "2026-11-06T12:02:55.000Z",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
       "window": "2026-10-02_2026-11-01",
-      "basis": "DefiLlama flows over the window x 365.25; CoinGecko value at the fetch"
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
     },
     "peer.hyperliquid.holders_revenue_usd_per_year": {
       "value": "817565433.8750000000000000001",
       "text": "$817.6M",
       "source": "data/peers.json",
       "label": "Hyperliquid (HYPE)",
-      "value_as_of": "2026-11-06T12:02:55.000Z",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
       "window": "2026-10-02_2026-11-01",
-      "basis": "DefiLlama flows over the window x 365.25; CoinGecko value at the fetch"
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
     },
     "peer.hyperliquid.holders_yield_on_mcap": {
-      "value": "0.04349986558686205951813748005",
-      "text": "4.35%",
+      "value": "0.04090526714433629459067667932",
+      "text": "4.09%",
       "source": "data/peers.json",
       "label": "Hyperliquid (HYPE)",
-      "value_as_of": "2026-11-06T12:02:55.000Z",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
       "window": "2026-10-02_2026-11-01",
-      "basis": "DefiLlama flows over the window x 365.25; CoinGecko value at the fetch"
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
+    },
+    "peer.hyperliquid.market_cap_at_fetch_usd": {
+      "value": "18762749286",
+      "text": "$18.76B",
+      "source": "data/peers.json",
+      "label": "Hyperliquid (HYPE)",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
+      "window": "2026-10-02_2026-11-01",
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
     },
     "peer.hyperliquid.market_cap_usd": {
-      "value": "18794665750",
-      "text": "$18.79B",
+      "value": "19986800990.44896111587122307",
+      "text": "$19.99B",
       "source": "data/peers.json",
       "label": "Hyperliquid (HYPE)",
-      "value_as_of": "2026-11-06T12:02:55.000Z",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
       "window": "2026-10-02_2026-11-01",
-      "basis": "DefiLlama flows over the window x 365.25; CoinGecko value at the fetch"
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
     },
-    "peer.hyperliquid.mcap_to_fees": {
-      "value": "18.05188484517805289959909854",
-      "text": "18×",
-      "source": "data/peers.json",
-      "label": "Hyperliquid (HYPE)",
-      "value_as_of": "2026-11-06T12:02:55.000Z",
-      "window": "2026-10-02_2026-11-01",
-      "basis": "DefiLlama flows over the window x 365.25; CoinGecko value at the fetch"
-    },
-    "peer.hyperliquid.mcap_to_revenue": {
-      "value": "22.98857678084464135699452794",
+    "peer.hyperliquid.mcap_at_fetch_to_revenue": {
+      "value": "22.94953835935863733558949566",
       "text": "23×",
       "source": "data/peers.json",
       "label": "Hyperliquid (HYPE)",
-      "value_as_of": "2026-11-06T12:02:55.000Z",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
       "window": "2026-10-02_2026-11-01",
-      "basis": "DefiLlama flows over the window x 365.25; CoinGecko value at the fetch"
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
     },
-    "peer.hyperliquid.price_usd": {
-      "value": "78.55",
-      "text": "$78.55",
+    "peer.hyperliquid.mcap_to_fees": {
+      "value": "19.19690590416992644754268071",
+      "text": "19×",
       "source": "data/peers.json",
       "label": "Hyperliquid (HYPE)",
-      "value_as_of": "2026-11-06T12:02:55.000Z",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
       "window": "2026-10-02_2026-11-01",
-      "basis": "DefiLlama flows over the window x 365.25; CoinGecko value at the fetch"
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
+    },
+    "peer.hyperliquid.mcap_to_revenue": {
+      "value": "24.44672947548416326552614928",
+      "text": "24×",
+      "source": "data/peers.json",
+      "label": "Hyperliquid (HYPE)",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
+      "window": "2026-10-02_2026-11-01",
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
+    },
+    "peer.hyperliquid.mean_price_usd": {
+      "value": "83.48273324689379866666666667",
+      "text": "$83.48",
+      "source": "data/peers.json",
+      "label": "Hyperliquid (HYPE)",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
+      "window": "2026-10-02_2026-11-01",
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
+    },
+    "peer.hyperliquid.price_usd": {
+      "value": "78.37",
+      "text": "$78.37",
+      "source": "data/peers.json",
+      "label": "Hyperliquid (HYPE)",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
+      "window": "2026-10-02_2026-11-01",
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
     },
     "peer.hyperliquid.revenue_usd_per_year": {
       "value": "817565433.8750000000000000001",
       "text": "$817.6M",
       "source": "data/peers.json",
       "label": "Hyperliquid (HYPE)",
-      "value_as_of": "2026-11-06T12:02:55.000Z",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
       "window": "2026-10-02_2026-11-01",
-      "basis": "DefiLlama flows over the window x 365.25; CoinGecko value at the fetch"
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
+    },
+    "peer.jupiter.fdv_at_fetch_usd": {
+      "value": "1677902966",
+      "text": "$1.68B",
+      "source": "data/peers.json",
+      "label": "Jupiter (JUP)",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
+      "window": "2026-10-02_2026-11-01",
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
     },
     "peer.jupiter.fdv_to_revenue": {
-      "value": "38.85419592431954847903338160",
-      "text": "39×",
+      "value": "49.06965604200431700517251615",
+      "text": "49×",
       "source": "data/peers.json",
       "label": "Jupiter (JUP)",
-      "value_as_of": "2026-11-06T12:02:55.000Z",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
       "window": "2026-10-02_2026-11-01",
-      "basis": "DefiLlama flows over the window x 365.25; CoinGecko value at the fetch"
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
     },
     "peer.jupiter.fdv_usd": {
-      "value": "1703400171",
-      "text": "$1.70B",
+      "value": "2151254414.212283331597113003",
+      "text": "$2.15B",
       "source": "data/peers.json",
       "label": "Jupiter (JUP)",
-      "value_as_of": "2026-11-06T12:02:55.000Z",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
       "window": "2026-10-02_2026-11-01",
-      "basis": "DefiLlama flows over the window x 365.25; CoinGecko value at the fetch"
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
     },
     "peer.jupiter.fees_usd_per_year": {
       "value": "175723373.0905000000000000000",
       "text": "$175.7M",
       "source": "data/peers.json",
       "label": "Jupiter (JUP)",
-      "value_as_of": "2026-11-06T12:02:55.000Z",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
       "window": "2026-10-02_2026-11-01",
-      "basis": "DefiLlama flows over the window x 365.25; CoinGecko value at the fetch"
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
     },
     "peer.jupiter.holders_revenue_usd_per_year": {
       "value": "21862286.14600000000000000000",
       "text": "$21.9M",
       "source": "data/peers.json",
       "label": "Jupiter (JUP)",
-      "value_as_of": "2026-11-06T12:02:55.000Z",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
       "window": "2026-10-02_2026-11-01",
-      "basis": "DefiLlama flows over the window x 365.25; CoinGecko value at the fetch"
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
     },
     "peer.jupiter.holders_yield_on_mcap": {
-      "value": "0.02653025936039876814562650534",
-      "text": "2.65%",
+      "value": "0.02100711474528027723284561612",
+      "text": "2.10%",
       "source": "data/peers.json",
       "label": "Jupiter (JUP)",
-      "value_as_of": "2026-11-06T12:02:55.000Z",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
       "window": "2026-10-02_2026-11-01",
-      "basis": "DefiLlama flows over the window x 365.25; CoinGecko value at the fetch"
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
+    },
+    "peer.jupiter.market_cap_at_fetch_usd": {
+      "value": "811716238",
+      "text": "$811.7M",
+      "source": "data/peers.json",
+      "label": "Jupiter (JUP)",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
+      "window": "2026-10-02_2026-11-01",
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
     },
     "peer.jupiter.market_cap_usd": {
-      "value": "824050977",
-      "text": "$824.1M",
+      "value": "1040708655.666854789571970456",
+      "text": "$1.04B",
       "source": "data/peers.json",
       "label": "Jupiter (JUP)",
-      "value_as_of": "2026-11-06T12:02:55.000Z",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
       "window": "2026-10-02_2026-11-01",
-      "basis": "DefiLlama flows over the window x 365.25; CoinGecko value at the fetch"
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
     },
-    "peer.jupiter.mcap_to_fees": {
-      "value": "4.689478482612567409137785270",
-      "text": "5×",
-      "source": "data/peers.json",
-      "label": "Jupiter (JUP)",
-      "value_as_of": "2026-11-06T12:02:55.000Z",
-      "window": "2026-10-02_2026-11-01",
-      "basis": "DefiLlama flows over the window x 365.25; CoinGecko value at the fetch"
-    },
-    "peer.jupiter.mcap_to_revenue": {
-      "value": "18.79642767276964303201676861",
+    "peer.jupiter.mcap_at_fetch_to_revenue": {
+      "value": "18.51507489733814086910737922",
       "text": "19×",
       "source": "data/peers.json",
       "label": "Jupiter (JUP)",
-      "value_as_of": "2026-11-06T12:02:55.000Z",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
       "window": "2026-10-02_2026-11-01",
-      "basis": "DefiLlama flows over the window x 365.25; CoinGecko value at the fetch"
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
     },
-    "peer.jupiter.price_usd": {
-      "value": "0.248266",
-      "text": "$0.25",
+    "peer.jupiter.mcap_to_fees": {
+      "value": "5.922425897953115467497960594",
+      "text": "6×",
       "source": "data/peers.json",
       "label": "Jupiter (JUP)",
-      "value_as_of": "2026-11-06T12:02:55.000Z",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
       "window": "2026-10-02_2026-11-01",
-      "basis": "DefiLlama flows over the window x 365.25; CoinGecko value at the fetch"
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
+    },
+    "peer.jupiter.mcap_to_revenue": {
+      "value": "23.73834328293911257034994797",
+      "text": "24×",
+      "source": "data/peers.json",
+      "label": "Jupiter (JUP)",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
+      "window": "2026-10-02_2026-11-01",
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
+    },
+    "peer.jupiter.mean_price_usd": {
+      "value": "0.3135256411466749583333333333",
+      "text": "$0.31",
+      "source": "data/peers.json",
+      "label": "Jupiter (JUP)",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
+      "window": "2026-10-02_2026-11-01",
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
+    },
+    "peer.jupiter.price_usd": {
+      "value": "0.244539",
+      "text": "$0.24",
+      "source": "data/peers.json",
+      "label": "Jupiter (JUP)",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
+      "window": "2026-10-02_2026-11-01",
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
     },
     "peer.jupiter.revenue_usd_per_year": {
       "value": "43840829.29724999987825000001",
       "text": "$43.8M",
       "source": "data/peers.json",
       "label": "Jupiter (JUP)",
-      "value_as_of": "2026-11-06T12:02:55.000Z",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
       "window": "2026-10-02_2026-11-01",
-      "basis": "DefiLlama flows over the window x 365.25; CoinGecko value at the fetch"
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
+    },
+    "peer.near.fdv_at_fetch_usd": {
+      "value": "4859756696",
+      "text": "$4.86B",
+      "source": "data/peers.json",
+      "label": "NEAR (NEAR Intents)",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
+      "window": "2026-10-02_2026-11-01",
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
     },
     "peer.near.fdv_to_revenue": {
-      "value": "189.7105719204958162125441821",
-      "text": "190×",
+      "value": "247.8305127024647332108999813",
+      "text": "248×",
       "source": "data/peers.json",
       "label": "NEAR (NEAR Intents)",
-      "value_as_of": "2026-11-06T12:02:55.000Z",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
       "window": "2026-10-02_2026-11-01",
-      "basis": "DefiLlama flows over the window x 365.25; CoinGecko value at the fetch"
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
     },
     "peer.near.fdv_usd": {
-      "value": "4892307313",
-      "text": "$4.89B",
+      "value": "6391119996.132468496233724083",
+      "text": "$6.39B",
       "source": "data/peers.json",
       "label": "NEAR (NEAR Intents)",
-      "value_as_of": "2026-11-06T12:02:55.000Z",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
       "window": "2026-10-02_2026-11-01",
-      "basis": "DefiLlama flows over the window x 365.25; CoinGecko value at the fetch"
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
     },
     "peer.near.fees_usd_per_year": {
       "value": "75259518.99999999999999999999",
       "text": "$75.3M",
       "source": "data/peers.json",
       "label": "NEAR (NEAR Intents)",
-      "value_as_of": "2026-11-06T12:02:55.000Z",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
       "window": "2026-10-02_2026-11-01",
-      "basis": "DefiLlama flows over the window x 365.25; CoinGecko value at the fetch"
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
     },
     "peer.near.holders_revenue_usd_per_year": {
       "value": "25788269.27500000000000000000",
       "text": "$25.8M",
       "source": "data/peers.json",
       "label": "NEAR (NEAR Intents)",
-      "value_as_of": "2026-11-06T12:02:55.000Z",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
       "window": "2026-10-02_2026-11-01",
-      "basis": "DefiLlama flows over the window x 365.25; CoinGecko value at the fetch"
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
     },
     "peer.near.holders_yield_on_mcap": {
-      "value": "0.005271187677638976279234940949",
-      "text": "0.53%",
+      "value": "0.004035015694098265744117959979",
+      "text": "0.40%",
       "source": "data/peers.json",
       "label": "NEAR (NEAR Intents)",
-      "value_as_of": "2026-11-06T12:02:55.000Z",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
       "window": "2026-10-02_2026-11-01",
-      "basis": "DefiLlama flows over the window x 365.25; CoinGecko value at the fetch"
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
+    },
+    "peer.near.market_cap_at_fetch_usd": {
+      "value": "4859756656",
+      "text": "$4.86B",
+      "source": "data/peers.json",
+      "label": "NEAR (NEAR Intents)",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
+      "window": "2026-10-02_2026-11-01",
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
     },
     "peer.near.market_cap_usd": {
-      "value": "4892307171",
-      "text": "$4.89B",
+      "value": "6391119943.528024315784008034",
+      "text": "$6.39B",
       "source": "data/peers.json",
       "label": "NEAR (NEAR Intents)",
-      "value_as_of": "2026-11-06T12:02:55.000Z",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
       "window": "2026-10-02_2026-11-01",
-      "basis": "DefiLlama flows over the window x 365.25; CoinGecko value at the fetch"
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
+    },
+    "peer.near.mcap_at_fetch_to_revenue": {
+      "value": "188.4483446398323681223465897",
+      "text": "188×",
+      "source": "data/peers.json",
+      "label": "NEAR (NEAR Intents)",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
+      "window": "2026-10-02_2026-11-01",
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
     },
     "peer.near.mcap_to_fees": {
-      "value": "65.00582565509088624390490724",
-      "text": "65×",
+      "value": "84.92108411599101923284957528",
+      "text": "85×",
       "source": "data/peers.json",
       "label": "NEAR (NEAR Intents)",
-      "value_as_of": "2026-11-06T12:02:55.000Z",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
       "window": "2026-10-02_2026-11-01",
-      "basis": "DefiLlama flows over the window x 365.25; CoinGecko value at the fetch"
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
     },
     "peer.near.mcap_to_revenue": {
-      "value": "189.7105664141162105963002823",
-      "text": "190×",
+      "value": "247.8305106626053064502913616",
+      "text": "248×",
       "source": "data/peers.json",
       "label": "NEAR (NEAR Intents)",
-      "value_as_of": "2026-11-06T12:02:55.000Z",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
       "window": "2026-10-02_2026-11-01",
-      "basis": "DefiLlama flows over the window x 365.25; CoinGecko value at the fetch"
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
+    },
+    "peer.near.mean_price_usd": {
+      "value": "4.879062197736711163333333333",
+      "text": "$4.88",
+      "source": "data/peers.json",
+      "label": "NEAR (NEAR Intents)",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
+      "window": "2026-10-02_2026-11-01",
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
     },
     "peer.near.price_usd": {
-      "value": "3.73",
-      "text": "$3.73",
+      "value": "3.71",
+      "text": "$3.71",
       "source": "data/peers.json",
       "label": "NEAR (NEAR Intents)",
-      "value_as_of": "2026-11-06T12:02:55.000Z",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
       "window": "2026-10-02_2026-11-01",
-      "basis": "DefiLlama flows over the window x 365.25; CoinGecko value at the fetch"
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
     },
     "peer.near.revenue_usd_per_year": {
       "value": "25788269.27500000000000000000",
       "text": "$25.8M",
       "source": "data/peers.json",
       "label": "NEAR (NEAR Intents)",
-      "value_as_of": "2026-11-06T12:02:55.000Z",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
       "window": "2026-10-02_2026-11-01",
-      "basis": "DefiLlama flows over the window x 365.25; CoinGecko value at the fetch"
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
+    },
+    "peer.near_all.fdv_at_fetch_usd": {
+      "value": "4859756696",
+      "text": "$4.86B",
+      "source": "data/peers.json",
+      "label": "NEAR (Intents + L1 gas)",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
+      "window": "2026-10-02_2026-11-01",
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
     },
     "peer.near_all.fdv_to_revenue": {
-      "value": "178.8755969833414045023022470",
-      "text": "179×",
+      "value": "233.6761228515993493466548361",
+      "text": "234×",
       "source": "data/peers.json",
       "label": "NEAR (Intents + L1 gas)",
-      "value_as_of": "2026-11-06T12:02:55.000Z",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
       "window": "2026-10-02_2026-11-01",
-      "basis": "DefiLlama flows over the window x 365.25; CoinGecko value at the fetch"
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
     },
     "peer.near_all.fdv_usd": {
-      "value": "4892307313",
-      "text": "$4.89B",
+      "value": "6391119996.132468496233724083",
+      "text": "$6.39B",
       "source": "data/peers.json",
       "label": "NEAR (Intents + L1 gas)",
-      "value_as_of": "2026-11-06T12:02:55.000Z",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
       "window": "2026-10-02_2026-11-01",
-      "basis": "DefiLlama flows over the window x 365.25; CoinGecko value at the fetch"
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
     },
     "peer.near_all.fees_usd_per_year": {
       "value": "77491074.74999999999999999999",
       "text": "$77.5M",
       "source": "data/peers.json",
       "label": "NEAR (Intents + L1 gas)",
-      "value_as_of": "2026-11-06T12:02:55.000Z",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
       "window": "2026-10-02_2026-11-01",
-      "basis": "DefiLlama flows over the window x 365.25; CoinGecko value at the fetch"
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
     },
     "peer.near_all.holders_revenue_usd_per_year": {
       "value": "27350333.95000000000000000000",
       "text": "$27.4M",
       "source": "data/peers.json",
       "label": "NEAR (Intents + L1 gas)",
-      "value_as_of": "2026-11-06T12:02:55.000Z",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
       "window": "2026-10-02_2026-11-01",
-      "basis": "DefiLlama flows over the window x 365.25; CoinGecko value at the fetch"
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
     },
     "peer.near_all.holders_yield_on_mcap": {
-      "value": "0.005590477660953885350384921691",
-      "text": "0.56%",
+      "value": "0.004279427422997490482713732002",
+      "text": "0.43%",
       "source": "data/peers.json",
       "label": "NEAR (Intents + L1 gas)",
-      "value_as_of": "2026-11-06T12:02:55.000Z",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
       "window": "2026-10-02_2026-11-01",
-      "basis": "DefiLlama flows over the window x 365.25; CoinGecko value at the fetch"
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
+    },
+    "peer.near_all.market_cap_at_fetch_usd": {
+      "value": "4859756656",
+      "text": "$4.86B",
+      "source": "data/peers.json",
+      "label": "NEAR (Intents + L1 gas)",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
+      "window": "2026-10-02_2026-11-01",
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
     },
     "peer.near_all.market_cap_usd": {
-      "value": "4892307171",
-      "text": "$4.89B",
+      "value": "6391119943.528024315784008034",
+      "text": "$6.39B",
       "source": "data/peers.json",
       "label": "NEAR (Intents + L1 gas)",
-      "value_as_of": "2026-11-06T12:02:55.000Z",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
       "window": "2026-10-02_2026-11-01",
-      "basis": "DefiLlama flows over the window x 365.25; CoinGecko value at the fetch"
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
+    },
+    "peer.near_all.mcap_at_fetch_to_revenue": {
+      "value": "177.6854595225152634745068625",
+      "text": "178×",
+      "source": "data/peers.json",
+      "label": "NEAR (Intents + L1 gas)",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
+      "window": "2026-10-02_2026-11-01",
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
     },
     "peer.near_all.mcap_to_fees": {
-      "value": "63.13381491718180099186196925",
-      "text": "63×",
+      "value": "82.47556204565383597010968073",
+      "text": "82×",
       "source": "data/peers.json",
       "label": "NEAR (Intents + L1 gas)",
-      "value_as_of": "2026-11-06T12:02:55.000Z",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
       "window": "2026-10-02_2026-11-01",
-      "basis": "DefiLlama flows over the window x 365.25; CoinGecko value at the fetch"
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
     },
     "peer.near_all.mcap_to_revenue": {
-      "value": "178.8755917914486744319990287",
-      "text": "179×",
+      "value": "233.6761209282427908264720853",
+      "text": "234×",
       "source": "data/peers.json",
       "label": "NEAR (Intents + L1 gas)",
-      "value_as_of": "2026-11-06T12:02:55.000Z",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
       "window": "2026-10-02_2026-11-01",
-      "basis": "DefiLlama flows over the window x 365.25; CoinGecko value at the fetch"
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
+    },
+    "peer.near_all.mean_price_usd": {
+      "value": "4.879062197736711163333333333",
+      "text": "$4.88",
+      "source": "data/peers.json",
+      "label": "NEAR (Intents + L1 gas)",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
+      "window": "2026-10-02_2026-11-01",
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
     },
     "peer.near_all.price_usd": {
-      "value": "3.73",
-      "text": "$3.73",
+      "value": "3.71",
+      "text": "$3.71",
       "source": "data/peers.json",
       "label": "NEAR (Intents + L1 gas)",
-      "value_as_of": "2026-11-06T12:02:55.000Z",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
       "window": "2026-10-02_2026-11-01",
-      "basis": "DefiLlama flows over the window x 365.25; CoinGecko value at the fetch"
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
     },
     "peer.near_all.revenue_usd_per_year": {
       "value": "27350333.95000000000000000000",
       "text": "$27.4M",
       "source": "data/peers.json",
       "label": "NEAR (Intents + L1 gas)",
-      "value_as_of": "2026-11-06T12:02:55.000Z",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
       "window": "2026-10-02_2026-11-01",
-      "basis": "DefiLlama flows over the window x 365.25; CoinGecko value at the fetch"
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
+    },
+    "peer.near_l1.fdv_at_fetch_usd": {
+      "value": "4859756696",
+      "text": "$4.86B",
+      "source": "data/peers.json",
+      "label": "NEAR (L1 gas)",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
+      "window": "2026-10-02_2026-11-01",
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
     },
     "peer.near_l1.fdv_to_revenue": {
-      "value": "3131.949266441224656719159212",
-      "text": "3,132×",
+      "value": "4091.456710095866226687268300",
+      "text": "4,091×",
       "source": "data/peers.json",
       "label": "NEAR (L1 gas)",
-      "value_as_of": "2026-11-06T12:02:55.000Z",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
       "window": "2026-10-02_2026-11-01",
-      "basis": "DefiLlama flows over the window x 365.25; CoinGecko value at the fetch"
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
     },
     "peer.near_l1.fdv_usd": {
-      "value": "4892307313",
-      "text": "$4.89B",
+      "value": "6391119996.132468496233724083",
+      "text": "$6.39B",
       "source": "data/peers.json",
       "label": "NEAR (L1 gas)",
-      "value_as_of": "2026-11-06T12:02:55.000Z",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
       "window": "2026-10-02_2026-11-01",
-      "basis": "DefiLlama flows over the window x 365.25; CoinGecko value at the fetch"
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
     },
     "peer.near_l1.fees_usd_per_year": {
       "value": "2231555.750000000000000000000",
       "text": "$2.2M",
       "source": "data/peers.json",
       "label": "NEAR (L1 gas)",
-      "value_as_of": "2026-11-06T12:02:55.000Z",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
       "window": "2026-10-02_2026-11-01",
-      "basis": "DefiLlama flows over the window x 365.25; CoinGecko value at the fetch"
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
     },
     "peer.near_l1.holders_revenue_usd_per_year": {
       "value": "1562064.675",
       "text": "$1.6M",
       "source": "data/peers.json",
       "label": "NEAR (L1 gas)",
-      "value_as_of": "2026-11-06T12:02:55.000Z",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
       "window": "2026-10-02_2026-11-01",
-      "basis": "DefiLlama flows over the window x 365.25; CoinGecko value at the fetch"
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
     },
     "peer.near_l1.holders_yield_on_mcap": {
-      "value": "0.0003192899833149090711499807419",
-      "text": "0.03%",
+      "value": "0.0002444117288992247385957720234",
+      "text": "0.02%",
       "source": "data/peers.json",
       "label": "NEAR (L1 gas)",
-      "value_as_of": "2026-11-06T12:02:55.000Z",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
       "window": "2026-10-02_2026-11-01",
-      "basis": "DefiLlama flows over the window x 365.25; CoinGecko value at the fetch"
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
+    },
+    "peer.near_l1.market_cap_at_fetch_usd": {
+      "value": "4859756656",
+      "text": "$4.86B",
+      "source": "data/peers.json",
+      "label": "NEAR (L1 gas)",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
+      "window": "2026-10-02_2026-11-01",
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
     },
     "peer.near_l1.market_cap_usd": {
-      "value": "4892307171",
-      "text": "$4.89B",
+      "value": "6391119943.528024315784008034",
+      "text": "$6.39B",
       "source": "data/peers.json",
       "label": "NEAR (L1 gas)",
-      "value_as_of": "2026-11-06T12:02:55.000Z",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
       "window": "2026-10-02_2026-11-01",
-      "basis": "DefiLlama flows over the window x 365.25; CoinGecko value at the fetch"
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
+    },
+    "peer.near_l1.mcap_at_fetch_to_revenue": {
+      "value": "3111.111040264706069228535624",
+      "text": "3,111×",
+      "source": "data/peers.json",
+      "label": "NEAR (L1 gas)",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
+      "window": "2026-10-02_2026-11-01",
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
     },
     "peer.near_l1.mcap_to_fees": {
-      "value": "2192.330248079170775814137738",
-      "text": "2,192×",
+      "value": "2863.975028868548014444186767",
+      "text": "2,864×",
       "source": "data/peers.json",
       "label": "NEAR (L1 gas)",
-      "value_as_of": "2026-11-06T12:02:55.000Z",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
       "window": "2026-10-02_2026-11-01",
-      "basis": "DefiLlama flows over the window x 365.25; CoinGecko value at the fetch"
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
     },
     "peer.near_l1.mcap_to_revenue": {
-      "value": "3131.949175535897705387902713",
-      "text": "3,132×",
+      "value": "4091.456676419639485019407429",
+      "text": "4,091×",
       "source": "data/peers.json",
       "label": "NEAR (L1 gas)",
-      "value_as_of": "2026-11-06T12:02:55.000Z",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
       "window": "2026-10-02_2026-11-01",
-      "basis": "DefiLlama flows over the window x 365.25; CoinGecko value at the fetch"
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
+    },
+    "peer.near_l1.mean_price_usd": {
+      "value": "4.879062197736711163333333333",
+      "text": "$4.88",
+      "source": "data/peers.json",
+      "label": "NEAR (L1 gas)",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
+      "window": "2026-10-02_2026-11-01",
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
     },
     "peer.near_l1.price_usd": {
-      "value": "3.73",
-      "text": "$3.73",
+      "value": "3.71",
+      "text": "$3.71",
       "source": "data/peers.json",
       "label": "NEAR (L1 gas)",
-      "value_as_of": "2026-11-06T12:02:55.000Z",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
       "window": "2026-10-02_2026-11-01",
-      "basis": "DefiLlama flows over the window x 365.25; CoinGecko value at the fetch"
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
     },
     "peer.near_l1.revenue_usd_per_year": {
       "value": "1562064.675",
       "text": "$1.6M",
       "source": "data/peers.json",
       "label": "NEAR (L1 gas)",
-      "value_as_of": "2026-11-06T12:02:55.000Z",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
       "window": "2026-10-02_2026-11-01",
-      "basis": "DefiLlama flows over the window x 365.25; CoinGecko value at the fetch"
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
+    },
+    "peer.solana.fdv_at_fetch_usd": {
+      "value": "57278680227",
+      "text": "$57.28B",
+      "source": "data/peers.json",
+      "label": "Solana (SOL)",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
+      "window": "2026-10-02_2026-11-01",
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
     },
     "peer.solana.fdv_to_revenue": {
-      "value": "1806.835739473465366882641321",
-      "text": "1,807×",
+      "value": "2153.627282191219433652260610",
+      "text": "2,154×",
       "source": "data/peers.json",
       "label": "Solana (SOL)",
-      "value_as_of": "2026-11-06T12:02:55.000Z",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
       "window": "2026-10-02_2026-11-01",
-      "basis": "DefiLlama flows over the window x 365.25; CoinGecko value at the fetch"
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
     },
     "peer.solana.fdv_usd": {
-      "value": "57533278071",
-      "text": "$57.53B",
+      "value": "68575817148.55106673611075155",
+      "text": "$68.58B",
       "source": "data/peers.json",
       "label": "Solana (SOL)",
-      "value_as_of": "2026-11-06T12:02:55.000Z",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
       "window": "2026-10-02_2026-11-01",
-      "basis": "DefiLlama flows over the window x 365.25; CoinGecko value at the fetch"
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
     },
     "peer.solana.fees_usd_per_year": {
       "value": "267911958.5750000000000000000",
       "text": "$267.9M",
       "source": "data/peers.json",
       "label": "Solana (SOL)",
-      "value_as_of": "2026-11-06T12:02:55.000Z",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
       "window": "2026-10-02_2026-11-01",
-      "basis": "DefiLlama flows over the window x 365.25; CoinGecko value at the fetch"
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
     },
     "peer.solana.holders_revenue_usd_per_year": {
       "value": "31842008.00000000000000000000",
       "text": "$31.8M",
       "source": "data/peers.json",
       "label": "Solana (SOL)",
-      "value_as_of": "2026-11-06T12:02:55.000Z",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
       "window": "2026-10-02_2026-11-01",
-      "basis": "DefiLlama flows over the window x 365.25; CoinGecko value at the fetch"
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
     },
     "peer.solana.holders_yield_on_mcap": {
-      "value": "0.0005973140202758054052150978929",
-      "text": "0.06%",
+      "value": "0.0005011317713748615805057025989",
+      "text": "0.05%",
       "source": "data/peers.json",
       "label": "Solana (SOL)",
-      "value_as_of": "2026-11-06T12:02:55.000Z",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
       "window": "2026-10-02_2026-11-01",
-      "basis": "DefiLlama flows over the window x 365.25; CoinGecko value at the fetch"
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
+    },
+    "peer.solana.market_cap_at_fetch_usd": {
+      "value": "53072619176",
+      "text": "$53.07B",
+      "source": "data/peers.json",
+      "label": "Solana (SOL)",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
+      "window": "2026-10-02_2026-11-01",
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
     },
     "peer.solana.market_cap_usd": {
-      "value": "53308656618",
-      "text": "$53.31B",
+      "value": "63540190063.46581032711347853",
+      "text": "$63.54B",
       "source": "data/peers.json",
       "label": "Solana (SOL)",
-      "value_as_of": "2026-11-06T12:02:55.000Z",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
       "window": "2026-10-02_2026-11-01",
-      "basis": "DefiLlama flows over the window x 365.25; CoinGecko value at the fetch"
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
+    },
+    "peer.solana.mcap_at_fetch_to_revenue": {
+      "value": "1666.748503297907594269808613",
+      "text": "1,667×",
+      "source": "data/peers.json",
+      "label": "Solana (SOL)",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
+      "window": "2026-10-02_2026-11-01",
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
     },
     "peer.solana.mcap_to_fees": {
-      "value": "198.9782647312349446512570627",
-      "text": "199×",
+      "value": "237.1681742070434577543697782",
+      "text": "237×",
       "source": "data/peers.json",
       "label": "Solana (SOL)",
-      "value_as_of": "2026-11-06T12:02:55.000Z",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
       "window": "2026-10-02_2026-11-01",
-      "basis": "DefiLlama flows over the window x 365.25; CoinGecko value at the fetch"
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
     },
     "peer.solana.mcap_to_revenue": {
-      "value": "1674.161272052943394775857100",
-      "text": "1,674×",
+      "value": "1995.483138609405861813535080",
+      "text": "1,995×",
       "source": "data/peers.json",
       "label": "Solana (SOL)",
-      "value_as_of": "2026-11-06T12:02:55.000Z",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
       "window": "2026-10-02_2026-11-01",
-      "basis": "DefiLlama flows over the window x 365.25; CoinGecko value at the fetch"
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
+    },
+    "peer.solana.mean_price_usd": {
+      "value": "107.631075597805095",
+      "text": "$107.63",
+      "source": "data/peers.json",
+      "label": "Solana (SOL)",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
+      "window": "2026-10-02_2026-11-01",
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
     },
     "peer.solana.price_usd": {
-      "value": "90.34",
-      "text": "$90.34",
+      "value": "89.9",
+      "text": "$89.90",
       "source": "data/peers.json",
       "label": "Solana (SOL)",
-      "value_as_of": "2026-11-06T12:02:55.000Z",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
       "window": "2026-10-02_2026-11-01",
-      "basis": "DefiLlama flows over the window x 365.25; CoinGecko value at the fetch"
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
     },
     "peer.solana.revenue_usd_per_year": {
       "value": "31842008.00000000000000000000",
       "text": "$31.8M",
       "source": "data/peers.json",
       "label": "Solana (SOL)",
-      "value_as_of": "2026-11-06T12:02:55.000Z",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
       "window": "2026-10-02_2026-11-01",
-      "basis": "DefiLlama flows over the window x 365.25; CoinGecko value at the fetch"
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
+    },
+    "peer.sui.fdv_at_fetch_usd": {
+      "value": "8710660890",
+      "text": "$8.71B",
+      "source": "data/peers.json",
+      "label": "Sui (SUI)",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
+      "window": "2026-10-02_2026-11-01",
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
     },
     "peer.sui.fdv_to_revenue": {
-      "value": "34154.54547998976479326195101",
-      "text": "34,155×",
+      "value": "40792.53517194094362061519738",
+      "text": "40,793×",
       "source": "data/peers.json",
       "label": "Sui (SUI)",
-      "value_as_of": "2026-11-06T12:02:55.000Z",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
       "window": "2026-10-02_2026-11-01",
-      "basis": "DefiLlama flows over the window x 365.25; CoinGecko value at the fetch"
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
     },
     "peer.sui.fdv_usd": {
-      "value": "8664100702",
-      "text": "$8.66B",
+      "value": "10347982315.46189892567807583",
+      "text": "$10.35B",
       "source": "data/peers.json",
       "label": "Sui (SUI)",
-      "value_as_of": "2026-11-06T12:02:55.000Z",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
       "window": "2026-10-02_2026-11-01",
-      "basis": "DefiLlama flows over the window x 365.25; CoinGecko value at the fetch"
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
     },
     "peer.sui.fees_usd_per_year": {
       "value": "1783832.300000000000000000000",
       "text": "$1.8M",
       "source": "data/peers.json",
       "label": "Sui (SUI)",
-      "value_as_of": "2026-11-06T12:02:55.000Z",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
       "window": "2026-10-02_2026-11-01",
-      "basis": "DefiLlama flows over the window x 365.25; CoinGecko value at the fetch"
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
     },
     "peer.sui.holders_revenue_usd_per_year": {
       "value": "253673.4300",
       "text": "$0.3M",
       "source": "data/peers.json",
       "label": "Sui (SUI)",
-      "value_as_of": "2026-11-06T12:02:55.000Z",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
       "window": "2026-10-02_2026-11-01",
-      "basis": "DefiLlama flows over the window x 365.25; CoinGecko value at the fetch"
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
     },
     "peer.sui.holders_yield_on_mcap": {
-      "value": "0.00007073779113632565850881686305",
+      "value": "0.00005922694176053746679363490608",
       "text": "0.01%",
       "source": "data/peers.json",
       "label": "Sui (SUI)",
-      "value_as_of": "2026-11-06T12:02:55.000Z",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
       "window": "2026-10-02_2026-11-01",
-      "basis": "DefiLlama flows over the window x 365.25; CoinGecko value at the fetch"
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
+    },
+    "peer.sui.market_cap_at_fetch_usd": {
+      "value": "3605380472",
+      "text": "$3.61B",
+      "source": "data/peers.json",
+      "label": "Sui (SUI)",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
+      "window": "2026-10-02_2026-11-01",
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
     },
     "peer.sui.market_cap_usd": {
-      "value": "3586109008",
-      "text": "$3.59B",
+      "value": "4283074939.537414829459342431",
+      "text": "$4.28B",
       "source": "data/peers.json",
       "label": "Sui (SUI)",
-      "value_as_of": "2026-11-06T12:02:55.000Z",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
       "window": "2026-10-02_2026-11-01",
-      "basis": "DefiLlama flows over the window x 365.25; CoinGecko value at the fetch"
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
+    },
+    "peer.sui.mcap_at_fetch_to_revenue": {
+      "value": "14212.68467888024378430172998",
+      "text": "14,213×",
+      "source": "data/peers.json",
+      "label": "Sui (SUI)",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
+      "window": "2026-10-02_2026-11-01",
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
     },
     "peer.sui.mcap_to_fees": {
-      "value": "2010.339765683130639578619582",
-      "text": "2,010×",
+      "value": "2401.052464145544863975914345",
+      "text": "2,401×",
       "source": "data/peers.json",
       "label": "Sui (SUI)",
-      "value_as_of": "2026-11-06T12:02:55.000Z",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
       "window": "2026-10-02_2026-11-01",
-      "basis": "DefiLlama flows over the window x 365.25; CoinGecko value at the fetch"
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
     },
     "peer.sui.mcap_to_revenue": {
-      "value": "14136.71509862108932732923586",
-      "text": "14,137×",
+      "value": "16884.20793434067899605939192",
+      "text": "16,884×",
       "source": "data/peers.json",
       "label": "Sui (SUI)",
-      "value_as_of": "2026-11-06T12:02:55.000Z",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
       "window": "2026-10-02_2026-11-01",
-      "basis": "DefiLlama flows over the window x 365.25; CoinGecko value at the fetch"
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
+    },
+    "peer.sui.mean_price_usd": {
+      "value": "1.034798125817079586666666667",
+      "text": "$1.03",
+      "source": "data/peers.json",
+      "label": "Sui (SUI)",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
+      "window": "2026-10-02_2026-11-01",
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
     },
     "peer.sui.price_usd": {
-      "value": "0.866748",
+      "value": "0.871066",
       "text": "$0.87",
       "source": "data/peers.json",
       "label": "Sui (SUI)",
-      "value_as_of": "2026-11-06T12:02:55.000Z",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
       "window": "2026-10-02_2026-11-01",
-      "basis": "DefiLlama flows over the window x 365.25; CoinGecko value at the fetch"
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
     },
     "peer.sui.revenue_usd_per_year": {
       "value": "253673.4300",
       "text": "$0.3M",
       "source": "data/peers.json",
       "label": "Sui (SUI)",
-      "value_as_of": "2026-11-06T12:02:55.000Z",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
       "window": "2026-10-02_2026-11-01",
-      "basis": "DefiLlama flows over the window x 365.25; CoinGecko value at the fetch"
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
     },
     "peer.value_as_of": {
-      "value": "2026-11-06T12:03:05Z",
-      "text": "2026-11-06 12:03 UTC",
+      "value": "2026-11-06T20:31:31Z",
+      "text": "2026-11-06 20:31 UTC",
       "source": "data/peers.json"
     },
     "pr.4.brier": {

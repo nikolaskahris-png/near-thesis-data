@@ -42,7 +42,24 @@ MARKETS = json.dumps([
 ]).encode()
 
 
+FETCH_PRICE = {"ethereum": 3000, "near": 4.9, "hyperliquid": 40, "aave": 200, "jupiter-exchange-solana": 0.5}
+
+
+def prices(gid, skip=()):
+    """Daily 12:00 UTC prices: twice the fetch price on the window's days, 7 outside them."""
+    base = Decimal(str(FETCH_PRICE.get(gid, 1))) * 2
+    out, d = [], DAYS[0] - timedelta(days=2)
+    while d <= DAYS[-1] + timedelta(days=2):
+        if d not in skip:
+            out.append({"timestamp": (d - fz.EPOCH).days * fz.DAY + fz.DAY // 2,
+                        "price": float(base) if d in DAYS else 7})
+        d += timedelta(days=1)
+    return json.dumps({"coins": {f"coingecko:{gid}": {"symbol": "X", "prices": out}}}).encode()
+
+
 def fake_fetch(url):
+    if "coins.llama.fi" in url:
+        return prices(url.split("coingecko:")[1].split("?")[0])
     if "coingecko" in url:
         return MARKETS
     if "near-intents" in url and "HoldersRevenue" in url:
@@ -64,9 +81,13 @@ class PeersTest(unittest.TestCase):
 
     def test_only_the_window_days_count_and_ratios(self):
         r = self.run_fake()["results"]["aave"]
-        self.assertEqual(r["days"], {"fees": 30, "revenue": 30, "holders_revenue": 30})
+        self.assertEqual(r["days"], {"fees": 30, "revenue": 30, "holders_revenue": 30, "price": 30})
         self.assertEqual(Decimal(r["revenue_usd_per_year"]), Decimal(400) * Decimal("365.25"))
-        self.assertEqual(Decimal(r["mcap_to_revenue"]), Decimal(3000000000) / (Decimal(400) * Decimal("365.25")))
+        # value at the window's mean price: the fetch's supply (3e9 / $200) x the mean price ($400)
+        self.assertEqual(Decimal(r["mean_price_usd"]), Decimal(400))
+        self.assertEqual(Decimal(r["market_cap_usd"]), Decimal(6000000000))
+        self.assertEqual(Decimal(r["mcap_to_revenue"]), Decimal(6000000000) / (Decimal(400) * Decimal("365.25")))
+        self.assertEqual(Decimal(r["mcap_at_fetch_to_revenue"]), Decimal(3000000000) / (Decimal(400) * Decimal("365.25")))
         self.assertTrue(r["complete"])
 
     def test_a_series_not_published_is_missing_not_zero(self):
@@ -97,6 +118,10 @@ class PeersTest(unittest.TestCase):
         self.assertIsNone(r["market_cap_usd"])
         self.assertIsNone(r["mcap_to_revenue"])
         self.assertFalse(r["partial"])
+
+    def test_price_days_outside_the_window_do_not_count(self):
+        mean, n = peers.mean_price(prices("aave", skip={DAYS[5]}), "aave")
+        self.assertEqual((mean, n), (Decimal(400), 29))
 
     def test_missing_days_mark_incomplete(self):
         mean, n = peers.flow(chart(1000, skip={DAYS[3]}))

@@ -6,8 +6,10 @@
 Same source and same days for every token, NEAR included:
   - flows: DefiLlama /summary/fees/<slug>, dataType dailyFees, dailyRevenue and dailyHoldersRevenue,
     the days of the project's window (2026-10-02 to 2026-11-01, 00:00 UTC, 30 days), mean per day x 365.25;
-  - value: CoinGecko /coins/markets, market cap and fully diluted valuation in USD, at the time of the fetch.
-Flows are the window's; values are the fetch's. NEAR here is DefiLlama's "NEAR Intents" against NEAR's market
+  - value: the window's mean price (coins.llama.fi, 12:00 UTC each day, the source of NEAR's price elsewhere in
+    the repository) x the supply CoinGecko /coins/markets reports at the fetch (market cap / price, and fully
+    diluted valuation / price). Flows and value cover the same 30 days; the fetch's own values are kept as *_at_fetch.
+NEAR here is DefiLlama's "NEAR Intents" against NEAR's market
 cap, the same basis as the peers, not the on-chain wallet figures of the rest of the repository.
 A series DefiLlama does not publish for a token is reported as missing, never as zero.
 
@@ -43,13 +45,21 @@ PEERS = {   # id: (DefiLlama fees slug, CoinGecko id, label)
 COMBINED = {"near_all": (("near", "near_l1"), "near", "NEAR (Intents + L1 gas)")}
 SERIES = {"fees": "dailyFees", "revenue": "dailyRevenue", "holders_revenue": "dailyHoldersRevenue"}
 LLAMA_URL = "https://api.llama.fi/summary/fees/{slug}?dataType={kind}&excludeTotalDataChartBreakdown=true"
+PRICE_URL = fz.PRICE_URL      # coins.llama.fi chart, one price a day
 GECKO_URL = ("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids={ids}"
              "&order=market_cap_desc&per_page=50&page=1&sparkline=false")
+
+
+def price_url(gid):
+    start = int(datetime(WINDOW[0].year, WINDOW[0].month, WINDOW[0].day, 12, tzinfo=timezone.utc).timestamp())
+    return PRICE_URL.format(coin=f"coingecko:{gid}", start=start, span=len(window_days()))
 
 
 def urls():
     out = {f"{pid}_{name}": LLAMA_URL.format(slug=slug, kind=kind)
            for pid, (slug, _g, _l) in PEERS.items() for name, kind in SERIES.items()}
+    for gid in sorted({g for _s, g, _l in PEERS.values()}):
+        out[f"price_{gid}"] = price_url(gid)
     out["coingecko_markets"] = GECKO_URL.format(ids=",".join(sorted({g for _s, g, _l in PEERS.values()})))
     return out
 
@@ -79,6 +89,22 @@ def flow(raw):
     return sum(days) / len(days), len(days)
 
 
+def mean_price(raw, gid):
+    """Mean of the window's daily prices at 12:00 UTC (within fees.py's tolerance); None if none."""
+    if raw is None:
+        return None, 0
+    doc = json.loads(raw, parse_float=Decimal)
+    prices = doc.get("coins", {}).get(f"coingecko:{gid}", {}).get("prices", [])
+    by_day = {}
+    for p in prices:
+        ts = int(p["timestamp"])
+        d = fz.EPOCH + timedelta(days=ts // fz.DAY)
+        if abs(ts - (ts // fz.DAY * fz.DAY + fz.DAY // 2)) <= fz.PRICE_TOLERANCE_S:
+            by_day[d] = Decimal(str(p["price"]))
+    vals = [by_day[d] for d in window_days() if d in by_day]
+    return (sum(vals) / len(vals), len(vals)) if vals else (None, 0)
+
+
 def markets(raw):
     rows = json.loads(raw, parse_float=Decimal)
     return {r["id"]: {"market_cap": Decimal(str(r["market_cap"])) if r.get("market_cap") else None,
@@ -92,13 +118,19 @@ def ratio(a, b):
     return None if a is None or b in (None, 0) else a / b
 
 
-def row(label, slug, gid, per_year, days, m):
-    mcap, fdv = m.get("market_cap"), m.get("fdv")
+def row(label, slug, gid, per_year, days, m, mean):
+    mcap_f, fdv_f, price = m.get("market_cap"), m.get("fdv"), m.get("price")
+    mp, price_days = mean
+    at_mean = lambda v: None if v is None or not price or mp is None else v / price * mp
+    mcap, fdv = at_mean(mcap_f), at_mean(fdv_f)
+    days = {**days, "price": price_days}
     vals = {
         "fees_usd_per_year": per_year["fees"],
         "revenue_usd_per_year": per_year["revenue"],
         "holders_revenue_usd_per_year": per_year["holders_revenue"],
-        "market_cap_usd": mcap, "fdv_usd": fdv, "price_usd": m.get("price"),
+        "market_cap_usd": mcap, "fdv_usd": fdv, "mean_price_usd": mp,
+        "market_cap_at_fetch_usd": mcap_f, "fdv_at_fetch_usd": fdv_f, "price_usd": price,
+        "mcap_at_fetch_to_revenue": ratio(mcap_f, per_year["revenue"]),
         "mcap_to_revenue": ratio(mcap, per_year["revenue"]),
         "fdv_to_revenue": ratio(fdv, per_year["revenue"]),
         "mcap_to_fees": ratio(mcap, per_year["fees"]),
@@ -108,7 +140,7 @@ def row(label, slug, gid, per_year, days, m):
     r.update({k: None if v is None else str(v) for k, v in vals.items()})
     r["value_as_of"] = m.get("last_updated")
     full = len(window_days())
-    r["complete"] = all(days[k] == full for k in ("fees", "revenue"))
+    r["complete"] = all(days[k] == full for k in ("fees", "revenue", "price"))
     r["partial"] = any(0 < n < full for n in days.values())     # some window days missing: a data problem
     return r
 
@@ -116,6 +148,7 @@ def row(label, slug, gid, per_year, days, m):
 def compute(raws):
     """raws: {name: bytes or None}. Returns the results per token, every value a decimal string or None."""
     mk = markets(raws["coingecko_markets"])
+    means = {g: mean_price(raws.get(f"price_{g}"), g) for _s, g, _l in PEERS.values()}
     out, flows = {}, {}
     for pid, (slug, gid, label) in PEERS.items():
         per_year, days = {}, {}
@@ -124,12 +157,12 @@ def compute(raws):
             days[name] = n
             per_year[name] = None if mean is None else mean * YEAR_DAYS
         flows[pid] = (per_year, days)
-        out[pid] = row(label, slug, gid, per_year, days, mk.get(gid, {}))
+        out[pid] = row(label, slug, gid, per_year, days, mk.get(gid, {}), means[gid])
     for cid, (parts, gid, label) in COMBINED.items():
         per_year = {name: (None if any(flows[p][0][name] is None for p in parts)
                            else sum(flows[p][0][name] for p in parts)) for name in SERIES}
         days = {name: min(flows[p][1][name] for p in parts) for name in SERIES}
-        out[cid] = row(label, "+".join(PEERS[p][0] for p in parts), gid, per_year, days, mk.get(gid, {}))
+        out[cid] = row(label, "+".join(PEERS[p][0] for p in parts), gid, per_year, days, mk.get(gid, {}), means[gid])
     return out
 
 
@@ -155,7 +188,7 @@ def run(data_dir, fetch=fz.fetch, now=None):
         files[name] = {"path": path.relative_to(data_dir.parent).as_posix(), "sha256": lw.sha256(raw),
                        "url": url}
         raws[name] = raw
-    doc = {"measure": "peers on one basis: DefiLlama flows over the window, CoinGecko values at the fetch",
+    doc = {"measure": "peers on one basis: DefiLlama flows and value at the mean price, both over the window",
            "window": {"start": WINDOW[0].isoformat(), "end": WINDOW[1].isoformat(), "days": len(window_days())},
            "fetched_utc": now.strftime("%Y-%m-%dT%H:%M:%SZ"), "raw_files": files, "not_published": missing,
            "results": compute(raws)}
