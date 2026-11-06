@@ -1,0 +1,169 @@
+"""Tests for scripts/rating.py: the rating rules on made-up windows, the real 2026-11-01 window
+against numbers.json, and the offline check (no network).
+
+Run: python -m unittest discover -s tests
+"""
+import csv
+import json
+import shutil
+import sys
+import tempfile
+import unittest
+from datetime import date, datetime, timedelta, timezone
+from fractions import Fraction
+from pathlib import Path
+
+REPO = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(REPO / "scripts"))
+import rating  # noqa: E402
+
+TH = {"avoid_usd_per_day": "6270", "base_usd_per_day": "46692", "base_near_per_day": "9570",
+      "growth_with_hsp029": "0.56", "growth_without_hsp029": "0.75"}
+LATE = datetime(2030, 1, 1, tzinfo=timezone.utc)
+
+
+def series(first, last, revenue=1000, price=4):
+    s = {k: {} for k in rating.SERIES}
+    d = first
+    while d <= last:
+        s["fees"][d], s["revenue"][d], s["volume"][d] = Fraction(3000), Fraction(revenue), Fraction(10 ** 6)
+        s["price"][d] = Fraction(price)
+        d += timedelta(days=1)
+    return s
+
+
+def hist(d, kept=250, fe=0, cov="0.108", new=88000):
+    return {"date": d.isoformat(), "window_start": (d - timedelta(days=30)).isoformat(),
+            "buybacks_per_day": str(kept), "fefunds_per_day": str(fe),
+            "coverage_buybacks": cov, "new_supply_per_day": str(new)}
+
+
+D1, D2 = date(2026, 11, 1), date(2026, 12, 1)
+S = series(date(2026, 9, 1), date(2026, 12, 31))   # revenue 1000 USD at $4 = 250 NEAR a day
+
+
+class Rules(unittest.TestCase):
+    def run_rows(self, rows, s=S, locks=(), fetched=LATE, th=TH):
+        return {r["date"]: r for r in rating.evaluate(rows, s, th, fetched, list(locks))}
+
+    def test_healthy_window_is_hold(self):
+        # kept 250 of 250 NEAR of revenue; 250 NEAR x $4 = $1,000 a day, above a $900 floor
+        r = self.run_rows([hist(D1)], th={**TH, "avoid_usd_per_day": "900"})["2026-11-01"]
+        self.assertEqual((r["kept_share"], r["test_kept_share"], r["test_usd"], r["rating"]),
+                         ("1.000000", "pass", "pass", "Hold"))
+        self.assertEqual(r["earlier_window"], "not in history")
+
+    def test_one_failing_window_is_still_hold(self):
+        r = self.run_rows([hist(D1, kept=100)], th={**TH, "avoid_usd_per_day": "100"})["2026-11-01"]
+        self.assertEqual((r["test_kept_share"], r["rating"]), ("fail", "Hold"))
+        self.assertIn("earlier window", r["note"])
+
+    def test_two_failing_windows_in_a_row_is_avoid(self):
+        rows = self.run_rows([hist(D1, kept=100), hist(D2, kept=100)], th={**TH, "avoid_usd_per_day": "100"})
+        self.assertEqual(rows["2026-12-01"]["earlier_window"], "fail")
+        self.assertEqual(rows["2026-12-01"]["rating"], "Avoid")
+
+    def test_usd_floor_alone_fails_a_window(self):
+        rows = self.run_rows([hist(D1), hist(D2)])          # $1,000 a day <= $6,270
+        self.assertEqual((rows["2026-12-01"]["test_kept_share"], rows["2026-12-01"]["test_usd"]), ("pass", "fail"))
+        self.assertEqual(rows["2026-12-01"]["rating"], "Avoid")
+
+    def test_buy_needs_rule_b(self):
+        th = {**TH, "avoid_usd_per_day": "100"}
+        self.assertEqual(self.run_rows([hist(D1, cov="1.02")], th=th)["2026-11-01"]["rating"], "Hold")
+        r = self.run_rows([hist(D1, cov="1.02")], th=th, locks=["lock.near"])["2026-11-01"]
+        self.assertEqual((r["rule_b"], r["covers_issuance"], r["rating"]), ("yes", "yes", "Buy"))
+
+    def test_avoid_overrides_buy(self):
+        rows = self.run_rows([hist(D1, kept=100, cov="1.02"), hist(D2, kept=100, cov="1.02")],
+                             th={**TH, "avoid_usd_per_day": "100"}, locks=["lock.near"])
+        self.assertEqual(rows["2026-12-01"]["rating"], "Avoid")
+        self.assertIn("Avoid overrides", rows["2026-12-01"]["note"])
+
+    def test_missing_day_is_incomplete_and_not_judged(self):
+        s = series(date(2026, 9, 1), date(2026, 12, 31))
+        del s["price"][date(2026, 10, 15)]
+        rows = self.run_rows([hist(D1, kept=100), hist(D2, kept=100)], s=s, th={**TH, "avoid_usd_per_day": "100"})
+        self.assertEqual((rows["2026-11-01"]["status"], rows["2026-11-01"]["rating"]), ("incomplete", "Hold"))
+        self.assertEqual((rows["2026-12-01"]["earlier_window"], rows["2026-12-01"]["rating"]), ("not judged", "Hold"))
+
+    def test_recent_window_is_provisional(self):
+        r = self.run_rows([hist(D1)], fetched=datetime(2026, 11, 2, 0, 15, tzinfo=timezone.utc))["2026-11-01"]
+        self.assertEqual(r["status"], "provisional")
+
+    def test_yearly_check_a(self):
+        y1 = date(2027, 11, 1)
+        s = series(date(2027, 9, 1), date(2027, 11, 30), revenue=100000, price=5)
+        # without HSP-029 the hurdle is +75% a year: 9,570 -> 16,748 NEAR and 46,692 -> 81,711 USD a day;
+        # 17,000 NEAR at $5 passes both, 16,000 NEAR fails the NEAR leg
+        r = self.run_rows([hist(y1, kept=17000, cov="0.2")], s=s, locks=["lock.near"])["2027-11-01"]
+        self.assertEqual((r["yearly_a"], r["rating"]), ("pass", "Buy"))
+        r = self.run_rows([hist(y1, kept=16000, cov="0.2")], s=s, locks=["lock.near"])["2027-11-01"]
+        self.assertEqual((r["yearly_a"], r["rating"]), ("fail", "Hold"))
+        self.assertEqual(self.run_rows([hist(D1)])["2026-11-01"]["yearly_a"], "")
+
+
+class RealWindow(unittest.TestCase):
+    """The committed 2026-11-01 row must reproduce the README's figures from numbers.json."""
+
+    def test_2026_11_01_matches_numbers_json(self):
+        with open(REPO / "data" / "rating.csv", encoding="utf-8", newline="") as f:
+            row = next(r for r in csv.DictReader(f) if r["date"] == "2026-11-01")
+        n = json.loads((REPO / "data" / "numbers.json").read_text(encoding="utf-8"))
+        n = n.get("numbers", n)
+        self.assertEqual(row["status"], "final")
+        self.assertEqual(row["max_coverage_defillama"], n["n2.max_coverage"]["value"])
+        self.assertLess(abs(Fraction(row["buybacks_kept_usd_per_day"])
+                            - Fraction(n["iv.buybacks_kept_usd_per_day"]["value"])), 1)
+        self.assertEqual(f"${float(Fraction(row['mean_price_usd'])):.2f}", n["n2.mean_price_usd"]["text"])
+        self.assertEqual(row["rating"], "Hold")
+
+    def test_committed_rating_verifies(self):
+        self.assertEqual(rating.verify(REPO / "data"), [])
+
+
+class Verify(unittest.TestCase):
+    def setUp(self):
+        self.tmp = Path(tempfile.mkdtemp())
+        self.data = self.tmp / "data"
+        (self.data / "raw" / "x").mkdir(parents=True)
+        shutil.copy(REPO / "data" / "history.csv", self.data / "history.csv")
+        shutil.copy(REPO / "data" / "numbers.json", self.data / "numbers.json")
+        doc = json.loads((REPO / "data" / "rating.json").read_text(encoding="utf-8"))
+        for name in rating.SERIES:
+            shutil.copy(REPO / doc["raw"][name]["path"], self.data / "raw" / "x" / f"{name}.json")
+        rating.build(self.data, self.data / "raw" / "x", doc["fetched_utc"], {})
+
+    def tearDown(self):
+        shutil.rmtree(self.tmp)
+
+    def test_clean_copy_verifies(self):
+        self.assertEqual(rating.verify(self.data), [])
+
+    def test_edited_csv_fails(self):
+        p = self.data / "rating.csv"
+        p.write_text(p.read_text(encoding="utf-8").replace(",Hold,", ",Buy,", 1), encoding="utf-8", newline="")
+        self.assertTrue(rating.verify(self.data))
+
+    def test_offline_rebuild_after_a_new_history_row(self):
+        h = self.data / "history.csv"
+        lines = h.read_text(encoding="utf-8").splitlines()
+        last = lines[-1].split(",")
+        d = date.fromisoformat(last[0]) + timedelta(days=1)
+        last[0], last[1] = d.isoformat(), (d - timedelta(days=30)).isoformat()
+        h.write_text("\n".join(lines + [",".join(last)]) + "\n", encoding="utf-8", newline="")
+        self.assertTrue(rating.verify(self.data))            # the new row is not in rating.csv yet
+        doc = json.loads((self.data / "rating.json").read_text(encoding="utf-8"))
+        rating.build(self.data, (self.tmp / doc["raw"]["fees"]["path"]).parent, doc["fetched_utc"], {})
+        self.assertEqual(rating.verify(self.data), [])
+        with open(self.data / "rating.csv", encoding="utf-8", newline="") as f:
+            self.assertEqual(list(csv.DictReader(f))[-1]["status"], "incomplete")
+
+    def test_edited_raw_fails(self):
+        p = self.data / "raw" / "x" / "revenue.json"
+        p.write_bytes(p.read_bytes() + b" ")
+        self.assertTrue(any("sha256" in x for x in rating.verify(self.data)))
+
+
+if __name__ == "__main__":
+    unittest.main()

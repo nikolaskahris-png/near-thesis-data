@@ -1,0 +1,7 @@
+date,window_start,status,counted_days,revenue_near_per_day,wallets_kept_near_per_day,kept_share,mean_price_usd,buybacks_kept_usd_per_day,max_coverage_defillama,coverage_buybacks,test_kept_share,test_usd,earlier_window,rule_b,covers_issuance,yearly_a,rating,note
+2026-11-01,2026-10-02,final,30,14577.018,14554.423,0.998450,4.879062,46691.41,0.478915,0.108265,pass,pass,not in history,no,no,,Hold,
+2026-11-02,2026-10-03,final,30,14423.097,14392.895,0.997906,4.863463,46111.92,0.474438,0.107336,pass,pass,not in history,no,no,,Hold,
+2026-11-03,2026-10-04,final,30,14509.028,14503.439,0.999615,4.845408,46490.80,0.480079,0.108664,pass,pass,not in history,no,no,,Hold,
+2026-11-04,2026-10-05,final,30,13879.899,13885.655,1.000415,4.811827,46580.71,0.477996,0.109738,pass,pass,not in history,no,no,,Hold,
+2026-11-05,2026-10-06,provisional,30,13920.093,13958.854,1.002785,4.780745,46434.27,0.486134,0.110095,pass,pass,not in history,no,no,,Hold,DefiLlama may still revise these days
+2026-11-06,2026-10-07,provisional,29,13995.511,14103.139,1.007690,4.764473,47098.94,0.481725,0.111036,pass,pass,not in history,no,no,,Hold,1 day(s) excluded as in fees.py; DefiLlama may still revise these days

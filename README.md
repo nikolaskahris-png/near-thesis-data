@@ -104,6 +104,9 @@ choice; every figure in them is measured.*
   coverage, since the same dollars buy more NEAR, but it cannot meet the test alone: at this window's NEAR kept, coverage
   reaches 100% only at <!--n:iv.buybacks_equilibrium_price_usd-->$0.53<!--/n--> (mean <!--n:n2.mean_price_usd-->$4.88<!--/n-->), and at a price that low what the buybacks wallets keep in dollars
   is already below April's level, Avoid's dollar test; Avoid overrides Buy. (With the front-end fund, <!--n:iv.revenue_equilibrium_price_usd-->$0.80<!--/n-->.)
+- **Applied every day:** `scripts/rating.py` applies these rules to each 30-day window in `data/history.csv` and
+  writes [`data/rating.csv`](data/rating.csv): the rating, both Avoid tests, the earlier window, (b) and coverage. It counts
+  DefiLlama's days exactly as the window's figures do, and `--verify` recomputes it with no network.
 - **Which rule wins:** Avoid overrides Buy. Hold has no upper price: a rising price lowers coverage, which the
   figures show, but the rating judges what NEAR captures and whether it is a rule, not valuation upside.
 
@@ -190,7 +193,7 @@ from April to October revenue grew <!--n:lr.history.2026-04_2026-10.revenue_usd_
 annualized here.
 
 **When to check:** 6, 8 and 16
-November 2026 (the predictions), every month from `data/history.csv`, and each November to 2031 against the [2031 table](#issuance-to-2031).
+November 2026 (the predictions), every day in `data/rating.csv`, and each November to 2031 against the [2031 table](#issuance-to-2031).
 
 **Valuation, same window.** All NEAR in `total_supply` at the window's mean price
 (<!--n:n2.mean_price_usd-->$4.88<!--/n-->) is worth <!--n:iv.supply_value_usd-->$6.39B<!--/n-->. CoinGecko's circulating supply equals total supply ([`data/raw/peers/`](data/raw/peers/)), so NEAR's market cap
@@ -403,6 +406,7 @@ python scripts/check_prereg.py --file              # PREREG.md matches the ancho
 python scripts/judge_prereg2.py --verify           # PREREG-2.md's judged predictions recompute from saved responses
 python scripts/check_prereg.py --anchor 2 --verify # PREREG-2.md = its SocialDB record = the transaction's args
 python scripts/peers.py --verify                   # the peer table recomputes from saved DefiLlama and CoinGecko responses
+python scripts/rating.py --verify                  # the rating of every window recomputes from history.csv and saved responses
 ```
 
 The second command ends with `VERIFY: PASS (PUBLIC_FULL)`: every number recomputed with no network and without

@@ -30,6 +30,7 @@ Its last line is `REBUILD: PASS`. The same checks, one by one:
 | `python scripts/judge_prereg2.py --verify` | `PREREG-2.md`'s judged predictions recompute from the saved RPC responses | `OK: P4 holds (…)` |
 | `python scripts/check_prereg.py --anchor 2 --verify` | `PREREG-2.md` equals its SocialDB record and the anchoring transaction's args | `OK: raw sha256 match, PREREG-2.md = …` |
 | `python scripts/peers.py --verify` | the peer table recomputes from the saved DefiLlama and CoinGecko responses | `OK: NEAR (NEAR Intents): mcap/revenue …` |
+| `python scripts/rating.py --verify` | the rating (Hold / Buy / Avoid) of every window in `data/rating.csv` recomputes from `history.csv` and the saved DefiLlama responses | `OK: rating.csv recomputes from history.csv and the saved responses` |
 
 Each passing command exits with code 0. Any other last line, or another exit code, is a failure.
 

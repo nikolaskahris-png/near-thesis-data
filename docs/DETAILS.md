@@ -339,6 +339,7 @@ python scripts/treasury_flows.py --verify --archival
 | `data/raw/` | every public RPC, NearBlocks and DefiLlama response, byte for byte |
 | `data/raw/redacted/` | redacted copies of the responses that name people, which the numbers are computed from |
 | `data/history.csv` | one row a day from the `daily` workflow (00:15 UTC): number 1 over the last 30 days. `daily.py --verify` recomputes every row from its day file and compares it with this file; it writes nothing. Days after the window are pinned only by the SHA-256 in their own day file: a re-fetch from an archival RPC is what proves them |
+| `data/rating.csv` | one row per row of `history.csv`: the rating (Hold / Buy / Avoid) from the README's rules, with each test, written by `scripts/rating.py` in the `daily` workflow. It also fills `max_coverage_defillama`, which `history.csv` leaves empty. Rows are `provisional` for 48 h after their last day and `incomplete` while DefiLlama lacks a day; `rating.py --verify` recomputes the file from `history.csv` and the responses listed in `data/rating.json` |
 | `data/upgrade_watch.csv` | one row a day: stake signalling the next protocol version |
 | `dashboard/` | static page (`index.html`, `app.js`, `style.css`, no libraries) that reads every figure from `data/`; `tests/test_dashboard.py` fails if it shows a number written by hand |
 | `scripts/` | one script per number or finding; each has `--verify` and a test in `tests/` |

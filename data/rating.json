@@ -1,0 +1,41 @@
+{
+  "measure": "the rating (Hold / Buy / Avoid) for every window in history.csv, from README's rules",
+  "rules": {
+    "kept_share_min": "0.75",
+    "avoid": "this window and the one ending 30 days earlier fail",
+    "buy": "rule (b) declared, and coverage >= 100% or (a) at a yearly check",
+    "precedence": "Avoid overrides Buy",
+    "hsp029_in_force": false
+  },
+  "fetched_utc": "2026-11-06T13:39:04Z",
+  "locks": [],
+  "thresholds": {
+    "avoid_usd_per_day": "6270.3997866",
+    "base_usd_per_day": "46691.7672250",
+    "base_near_per_day": "9569.750",
+    "growth_with_hsp029": "0.560381360582410398451709902128222265887",
+    "growth_without_hsp029": "0.747443747073649803612827564774132054301"
+  },
+  "raw": {
+    "fees": {
+      "path": "data/raw/rating/20261106T133904Z/fees.json",
+      "sha256": "b840a7e37d3d8602f1d7409ee2bde4ca5c56c831684514d7547455a1c3343ae0",
+      "url": "https://api.llama.fi/summary/fees/near-intents?dataType=dailyFees&excludeTotalDataChartBreakdown=true"
+    },
+    "revenue": {
+      "path": "data/raw/rating/20261106T133904Z/revenue.json",
+      "sha256": "3e59d9cd69b7d5c4970d34fb3c0e655a65c5725487f9f5d96676b16c979bb8ec",
+      "url": "https://api.llama.fi/summary/fees/near-intents?dataType=dailyRevenue&excludeTotalDataChartBreakdown=true"
+    },
+    "volume": {
+      "path": "data/raw/rating/20261106T133904Z/volume.json",
+      "sha256": "48ba60b49b1fd362d39d1876658a84b67d51a0fa990547257cdd4a1cd97ac543",
+      "url": "https://api.llama.fi/summary/dexs/near-intents?excludeTotalDataChartBreakdown=true"
+    },
+    "price": {
+      "path": "data/raw/rating/20261106T133904Z/price.json",
+      "sha256": "2a1783f5cbed218e4418703ee498f5d8c3a6c19d6c1e5ebd790bcdc48329dfae",
+      "url": "https://coins.llama.fi/chart/coingecko:near?start=1790942400&span=35&period=1d"
+    }
+  }
+}
