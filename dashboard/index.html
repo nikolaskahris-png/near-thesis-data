@@ -37,6 +37,18 @@
 </header>
 
 <main class="wrap">
+<section id="p0">
+  <h2>Rating today: <span id="rating-now">—</span></h2>
+  <p class="what">The README's rules applied to every monthly window, every day (<code>data/rating.csv</code>). Avoid needs the
+    latest window and the one a month before it to fail one of the two tests; Buy needs a published rule (b) first.
+    <span class="not">A window with missing DefiLlama days is not judged, and one in its first two days may still be revised.</span></p>
+  <div class="ratingbox" id="rating-box"></div>
+  <div class="tablewrap" id="rating-tbl"></div>
+  <p class="src">Peers: market cap at each token's mean price over the same month ÷ DefiLlama's yearly revenue. The other layer-one
+    tokens' rows are their chains' own revenue, without their apps, so NEAR is also shown on gas alone.</p>
+  <div class="tablewrap" id="peers-tbl"></div>
+</section>
+
 <section id="p1">
   <h2>Who can change each link from the fee a user pays to the NEAR a holder keeps</h2>
   <p class="what">Each card is one link: its value at the locked end block, who signs to change it, and how often they have.

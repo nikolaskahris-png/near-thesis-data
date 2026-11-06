@@ -106,6 +106,13 @@ th, td { text-align: left; padding: 5px 8px; border-bottom: 1px solid var(--bord
 td:not(:first-child), th:not(:first-child) { text-align: right; }
 table.plain { max-width: 620px; margin-top: 14px; }
 .tablewrap { overflow-x: auto; }
+.ratingbox { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin: 6px 0 12px; }
+.ratingbox > div { background: var(--surface-1); border: 1px solid var(--border); border-radius: 10px; padding: 12px 14px; }
+.ratingbox .k { display: block; color: var(--text-muted); font-size: 13px; }
+.ratingbox .v { display: block; font-size: 26px; font-weight: 650; font-variant-numeric: tabular-nums; }
+.ratingbox .s { color: var(--text-secondary); font-size: 13px; }
+td.pass { color: var(--good); } td.fail { color: var(--critical); font-weight: 600; }
+tr.us td { background: var(--accent-soft); font-weight: 600; }
 .stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-top: 14px; }
 .stats > div { background: var(--surface-0); border-radius: 8px; padding: 10px 12px; font-variant-numeric: tabular-nums; }
 .stats .k { display: block; color: var(--text-muted); font-size: 12.5px; }
@@ -117,7 +124,7 @@ table.plain { max-width: 620px; margin-top: 14px; }
 #tip { position: fixed; z-index: 10; pointer-events: none; background: var(--text-primary); color: var(--surface-1);
   font-size: 12.5px; padding: 6px 8px; border-radius: 6px; max-width: 260px; line-height: 1.4; }
 @media (max-width: 760px) {
-  .tiles, .map, .pair, .stats { grid-template-columns: minmax(0, 1fr); }
+  .tiles, .map, .pair, .stats, .ratingbox { grid-template-columns: minmax(0, 1fr); }
   section { padding: 18px 14px; }
 }
 @media (forced-colors: active) { svg .s1, svg .s2, svg .s3, svg .sn { fill: CanvasText; } }

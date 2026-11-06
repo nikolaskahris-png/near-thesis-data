@@ -9,6 +9,9 @@ const THOUSAND = 10 ** 3;
 const MILLION = 10 ** 6;
 const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
+// The peers table: numbers.json id -> row label.
+const PEER_LABELS = { near_all: "NEAR, Intents and L1 gas", near: "NEAR, Intents only", near_l1: "NEAR, L1 gas only", aptos: "Aptos",
+  solana: "Solana", ethereum: "Ethereum", sui: "Sui", hyperliquid: "Hyperliquid (app)", aave: "Aave (app)", jupiter: "Jupiter (app)" };
 // Every numbers.json key this script reads (data-n keys in index.html are listed there).
 const KEYS = [
   "n2.fees_usd_per_day", "n1.new_near_per_day", "iv.fees_conversion_price_usd",
@@ -18,7 +21,9 @@ const KEYS = [
   "c.issuance_upgrade_stake_threshold", "c.issuance_validators_to_pass_upgrade", "iv.issuance_rate_per_year",
   "f6.change1.utc", "f8.quorum_required_venear", "f8.fewest_voters_reaching_quorum",
   "f8.top8_share_of_votes_cast", "n1.coverage_buybacks", "n3.largest_share",
-  "n2.max_coverage", "n3.stakers_active",
+  "n2.max_coverage", "n3.stakers_active", "f2.buybacks_kept_usd_per_day.2026-04", "peer.value_as_of",
+  // the peers table (peersPanel)
+  ...Object.keys(PEER_LABELS).flatMap(p => [`peer.${p}.market_cap_usd`, `peer.${p}.revenue_usd_per_year`, `peer.${p}.mcap_to_revenue`]),
   // the 2031 section (chartTo2031)
   "lr.scenario.0.cover_price.buybacks.A.2031", "lr.scenario.0.cover_price.buybacks.B.2031",
   "lr.scenario.0.cover_price.with_front_end.A.2031", "lr.scenario.0.cover_price.with_front_end.B.2031",
@@ -256,6 +261,44 @@ function lineChart(host, { title, xs, ys, top, refs, fmt, tips, unit, height, la
   });
   svgText(svg, x(ys.length - 1), y(ys[ys.length - 1]) - 9, (last || fmt)(ys[ys.length - 1]), { "text-anchor": "end", class: "val" });
   if (unit) { const lg = document.createElement("div"); lg.className = "legend"; lg.textContent = unit; host.appendChild(lg); }
+}
+
+function plainTable(host, head, rows, rowClass = () => "") {
+  const t = document.createElement("table");
+  t.innerHTML = `<thead><tr>${head.map(h => `<th>${h}</th>`).join("")}</tr></thead>` +
+    `<tbody>${rows.map((r, i) => `<tr class="${rowClass(i)}">${r.map(c => c && c.cls ? `<td class="${c.cls}">${c.t}</td>` : `<td>${c}</td>`).join("")}</tr>`).join("")}</tbody>`;
+  host.appendChild(t);
+}
+
+// Rating today: the last row of rating.csv against its two Avoid tests, the last windows, and the peers.
+function ratingPanel(rows, rj) {
+  const floor = txt("f2.buybacks_kept_usd_per_day.2026-04"), share = Number(rj.rules.kept_share_min);
+  const last = rows[rows.length - 1];
+  $("#rating-now").textContent = last.rating;
+  const usd = v => v ? "$" + fmtInt(Number(v)) : "—";
+  const pf = v => v === "pass" ? { cls: "pass", t: "pass" } : v === "fail" ? { cls: "fail", t: "fail" } : v || "—";
+  const ruleB = last.rule_b === "yes" ? "a lock is declared" : "no lock declared yet";
+  $("#rating-box").innerHTML =
+    `<div><span class="k">Kept share, latest window (fails below ${fmtPct(share)})</span><span class="v">${last.kept_share ? fmtPct(Number(last.kept_share), 1) : "—"}</span>` +
+    `<span class="s">NEAR the three wallets kept ÷ DefiLlama's revenue in NEAR</span></div>` +
+    `<div><span class="k">Buybacks wallets keep, a day (fails at or below ${floor})</span><span class="v">${usd(last.buybacks_kept_usd_per_day)}</span>` +
+    `<span class="s">NEAR kept × the window's mean price</span></div>` +
+    `<div><span class="k">Coverage (Buy path: ${fmtPct(1)} with rule (b))</span><span class="v">${fmtPct(Number(last.coverage_buybacks), 1)}</span>` +
+    `<span class="s">Rule (b): ${ruleB}. Avoid overrides Buy.</span></div>`;
+  const recent = rows.slice(-7).reverse();
+  plainTable($("#rating-tbl"), ["Window ends", "Status", "Kept share", "Buybacks keep a day", "Share test", "Dollar test", "Earlier window", "Rating"],
+    recent.map(r => [r.date, r.status, r.kept_share ? fmtPct(Number(r.kept_share), 1) : "—", usd(r.buybacks_kept_usd_per_day),
+      pf(r.test_kept_share), pf(r.test_usd), r.earlier_window, r.rating]));
+}
+
+function peersPanel() {
+  const label = PEER_LABELS, ids = Object.keys(label);
+  plainTable($("#peers-tbl"), ["Token", "Market cap", "Revenue a year", "Market cap ÷ revenue"],
+    ids.map(p => [label[p], txt(`peer.${p}.market_cap_usd`), txt(`peer.${p}.revenue_usd_per_year`), txt(`peer.${p}.mcap_to_revenue`)]),
+    i => ids[i].startsWith("near") ? "us" : "");
+  const n = document.createElement("p"); n.className = "src";
+  n.textContent = "Supply as of " + txt("peer.value_as_of") + ", at the window's mean prices.";
+  $("#peers-tbl").appendChild(n);
 }
 
 function tableView(host, head, rows) {
@@ -598,12 +641,15 @@ async function main() {
   status(doc);
   predictions();
   tooltips();
-  const [cov, histTxt, upTxt, ts, vd, fp, pr] = await Promise.all([
+  const [cov, histTxt, upTxt, ts, vd, fp, pr, ratingTxt, ratingDoc] = await Promise.all([
     getJSON("coverage_monthly.json"), getText(DATA + "history.csv"), getText(DATA + "upgrade_watch.csv"),
     getJSON("treasury_spend.json"), getJSON("hsp029_voters.json"),
-    getJSON(`raw/stakedao/${doc.window.end_block}/farm_pool.json`), getJSON("prereg.json")]);
+    getJSON(`raw/stakedao/${doc.window.end_block}/farm_pool.json`), getJSON("prereg.json"),
+    getText(DATA + "rating.csv"), getJSON("rating.json")]);
   FARM_PRICE = JSON.parse(bytesToText(fp.result.result)).price_id;
   PREREG = pr;
+  ratingPanel(parseCSV(ratingTxt), ratingDoc);
+  peersPanel();
   chartCoverage(cov);
   chartHistory(parseCSV(histTxt));
   chartCeiling(cov);

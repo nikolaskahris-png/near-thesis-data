@@ -57,6 +57,20 @@ class TestDashboard(unittest.TestCase):
         missing = [k for k in keys if k not in self.numbers or self.numbers[k]["text"] is None]
         self.assertEqual(missing, [])
 
+    def test_peer_rows_have_their_numbers(self):
+        ids = re.findall(r"(\w+): \"[^\"]+\"", re.search(r"const PEER_LABELS = \{(.*?)\};", self.js, re.S).group(1))
+        self.assertEqual(len(ids), 10)
+        for pid in ids:
+            for key in ("market_cap_usd", "revenue_usd_per_year", "mcap_to_revenue"):
+                self.assertIn(f"peer.{pid}.{key}", self.numbers)
+
+    def test_rating_files_exist_and_have_the_columns_it_reads(self):
+        head = (REPO / "data" / "rating.csv").read_text(encoding="utf-8").splitlines()[0].split(",")
+        for col in ("date", "status", "kept_share", "buybacks_kept_usd_per_day", "coverage_buybacks", "test_kept_share",
+                    "test_usd", "earlier_window", "rule_b", "rating"):
+            self.assertIn(col, head)
+        self.assertIn("kept_share_min", json.loads((REPO / "data" / "rating.json").read_text(encoding="utf-8"))["rules"])
+
     def test_no_hand_written_numbers_in_the_page(self):
         text = " ".join(self.page.parts)
         for a in ALLOWED:
