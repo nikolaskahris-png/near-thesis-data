@@ -74,6 +74,7 @@ python -m unittest discover -s tests              # every script's logic on fixe
 python scripts/build_numbers.py --verify           # every script's offline check, then numbers.json rebuilds the same
 python scripts/build_numbers.py --check README.md  # every marked number in this file matches numbers.json
 python scripts/check_prereg.py --file              # PREREG.md matches the anchored SHA-256 (saved copy)
+python scripts/judge_prereg2.py --verify           # PREREG-2.md's judged predictions recompute from saved responses
 ```
 
 The second command ends with `VERIFY: PASS (PUBLIC_FULL)`: every number recomputed with no network and without
@@ -204,8 +205,8 @@ November 2026 (the predictions), every month from `data/history.csv`, and each N
 ## Path to rules
 
 Each link that decides value can become a rule with a mechanism NEAR already has. Governance has started:
-HSP-027 (remove the developer gas rebate) passed on 3 July 2026 (House of Stake; the vote is not saved here) and is protocol version 87, open to validator votes
-from 4 November; [HSP-029](https://gov.houseofstake.org/proposals/29) (issuance 2.5% → 1.6% a year over 24 months)
+HSP-027 (remove the developer gas rebate) passed on 3 July 2026 (House of Stake; the vote is not saved here) and is protocol version 87, in effect on mainnet since block <!--n:pr.v87.first_height-->223,012,337<!--/n--> (<!--n:pr.v87.first_utc-->2026-11-04 11:46 UTC<!--/n-->),
+<!--n:pr.v87.days_from_hsp027_passed-->124<!--/n--> days after it passed; [HSP-029](https://gov.houseofstake.org/proposals/29) (issuance 2.5% → 1.6% a year over 24 months)
 passed on 2 November and is in timelock until <!--n:f8.timelock_end_utc-->2026-11-16 16:48 UTC<!--/n-->. A vote changes nothing on
 chain by itself: validators with <!--n:c.issuance_upgrade_stake_threshold-->4/5<!--/n--> of stake must run a release that includes it,
 and `scripts/upgrade_watch.py` measures that every day. HSP-027's effect is small: at most
@@ -320,7 +321,10 @@ Anchored SHA-256: `545cf67530b37c902b2674cb4014818d3f79eb1718fe6bbab896a361e48ce
 | 4 | Protocol version 87 (HSP-027) is in effect on NEAR mainnet | `protocol_version` ≥ 87 | 0.85 | first block at or after 2026-11-06 00:00 UTC |
 | 5 | Protocol version 88 is in effect on NEAR mainnet | `protocol_version` ≥ 88 | 0.75 | first block at or after 2026-11-08 00:00 UTC |
 
-Both are judged before the hackathon's deadline; the results and their Brier scores will be added here.
+**Prediction 4 <!--n:pr.4.result-->holds<!--/n-->:** protocol version <!--n:pr.4.protocol_version-->87<!--/n--> at the judging block <!--n:pr.4.judging_height-->223,237,989<!--/n-->, Brier score
+<!--n:pr.4.brier-->0.0225<!--/n--> (0 is a perfect forecast; 0.25 is what always saying 0.5 scores). The first block with version 87 is <!--n:pr.v87.first_height-->223,012,337<!--/n-->,
+<!--n:pr.v87.first_utc-->2026-11-04 11:46 UTC<!--/n-->. Every response used is in `data/raw/prereg2/`; `python scripts/judge_prereg2.py --verify` recomputes the
+result offline. Prediction 5 is judged on 8 November.
 
 **[`PREREG.md`](PREREG.md): three predictions judged on 16 November 2026.** Transaction
 [`8fZ8VTUy…`](https://nearblocks.io/txns/8fZ8VTUyM1UjnybqPd1QCQi4c3y75dDRGR5TjkNGgnPL), block 222,606,824
@@ -348,7 +352,6 @@ conditions are in the files; `python scripts/check_prereg.py` checks the anchors
 - **The largest farm position.** Who holds it, and where its NEAR came from, is not visible to us on chain.
 - **What `treasury.near`'s payments were for.** Amounts, blocks and receivers are measured (finding 4); the
   purpose is not on chain.
-- **Whether HSP-027 is in force** before validators adopt version 87; until then it is "passed", not "in force".
 - **Peers** are compared from their docs and press, not from their chains.
 
 ## Timeline and disclosure

@@ -21,6 +21,7 @@
     "data/hsp029_voters.json": "1ccc3bf7b0924d4799bc5f9bd08278d78f65ac4341e989b4875c87fb49ad063c",
     "data/offchain/nearai_cloud_farm_config.json": "4fab756a3e94d72a2db918e8f3f47526a5da3a2d41990ba2f479406ac22b4214",
     "data/offchain/nearai_cloud_farm_config_20261101T205837Z.json": "95bb1adc1b3eb738cdc19c7622e5a3641edce4ea9653ced4ba6e32439c5f253d",
+    "data/prereg2.json": "e7b959377e2b1bacd3b6ffb788e2caba1b529c0f9af261e875485389c98166c8",
     "data/raw/redacted/control/1csfundsadmin.sputnik-dao.near_get_policy.json": "4170c345c39f028787bd46da4f3748bce4adc929e2412988e7dbab3a7811177d",
     "data/raw/redacted/control/fefundsadmin.sputnik-dao.near_get_policy.json": "7771c22b179e418ea8225c37977494d2ed0b8eccf774deb3d7301924357a97af",
     "data/raw/redacted/control/hos-root.sputnik-dao.near_get_policy.json": "8188cbd4d97cd7240f51058208e9b6b18a2eab0bb88d32657193b4d78354f815",
@@ -5421,6 +5422,80 @@
       "unit": "share of farm",
       "block": 222491356,
       "as_of": "2026-11-01 00:00 UTC"
+    },
+    "pr.4.brier": {
+      "value": "0.0225",
+      "text": "0.0225",
+      "source": "data/prereg2.json",
+      "unit": "Brier score",
+      "judging_block": 223237989,
+      "as_of": "2026-11-06T00:00:00Z",
+      "rule": "first block whose header timestamp is at or after the time given; protocol_version of EXPERIMENTAL_protocol_config at that height; holds if >= the version",
+      "probability": "0.85"
+    },
+    "pr.4.judging_height": {
+      "value": "223237989",
+      "text": "223,237,989",
+      "source": "data/prereg2.json",
+      "unit": "block",
+      "judging_block": 223237989,
+      "as_of": "2026-11-06T00:00:00Z",
+      "rule": "first block whose header timestamp is at or after the time given; protocol_version of EXPERIMENTAL_protocol_config at that height; holds if >= the version",
+      "probability": "0.85"
+    },
+    "pr.4.protocol_version": {
+      "value": "87",
+      "text": "87",
+      "source": "data/prereg2.json",
+      "judging_block": 223237989,
+      "as_of": "2026-11-06T00:00:00Z",
+      "rule": "first block whose header timestamp is at or after the time given; protocol_version of EXPERIMENTAL_protocol_config at that height; holds if >= the version",
+      "probability": "0.85"
+    },
+    "pr.4.result": {
+      "value": "holds",
+      "text": "holds",
+      "source": "data/prereg2.json",
+      "judging_block": 223237989,
+      "as_of": "2026-11-06T00:00:00Z",
+      "rule": "first block whose header timestamp is at or after the time given; protocol_version of EXPERIMENTAL_protocol_config at that height; holds if >= the version",
+      "probability": "0.85"
+    },
+    "pr.brier_mean": {
+      "value": "0.0225",
+      "text": "0.0225",
+      "source": "data/prereg2.json",
+      "unit": "mean Brier score",
+      "judged": 1
+    },
+    "pr.judged": {
+      "value": "1",
+      "text": "1",
+      "source": "data/prereg2.json",
+      "unit": "predictions"
+    },
+    "pr.v87.days_from_hsp027_passed": {
+      "value": "124.49",
+      "text": "124",
+      "source": "data/prereg2.json",
+      "unit": "days",
+      "block": 223012337,
+      "note": "first block with this protocol version in effect"
+    },
+    "pr.v87.first_height": {
+      "value": "223012337",
+      "text": "223,012,337",
+      "source": "data/prereg2.json",
+      "unit": "block",
+      "block": 223012337,
+      "note": "first block with this protocol version in effect"
+    },
+    "pr.v87.first_utc": {
+      "value": "2026-11-04T11:46:29.014199526Z",
+      "text": "2026-11-04 11:46 UTC",
+      "source": "data/prereg2.json",
+      "block": 223012337,
+      "note": "first block with this protocol version in effect"
     },
     "te.steps": {
       "value": "73",

@@ -27,6 +27,7 @@ Its last line is `REBUILD: PASS`. The same checks, one by one:
 | `python scripts/build_numbers.py --check THESIS.md` | the same for `THESIS.md` (claim, evidence for and against) | `OK: <count> marked numbers in THESIS.md match numbers.json` |
 | `python scripts/upgrade_watch.py --verify` | the validators' vote samples recompute | `OK: <count> day(s) recompute from the saved samples` |
 | `python scripts/check_prereg.py --file` | `PREREG.md` hashes to the SHA-256 anchored on chain (saved copy of the record) | `OK: PREREG.md is the anchored file` |
+| `python scripts/judge_prereg2.py --verify` | `PREREG-2.md`'s judged predictions recompute from the saved RPC responses | `OK: P4 holds (…)` |
 
 Each passing command exits with code 0. Any other last line, or another exit code, is a failure.
 

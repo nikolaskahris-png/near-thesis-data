@@ -104,8 +104,8 @@ What weakens the claim, as measured by the same scripts:
    <!--n:f8.turnout_of_snapshot-->62.3%<!--/n--> turnout. At its target rate the ceiling would be
    <!--n:n2.hsp029_max_coverage-->74.8%<!--/n-->, and full coverage would need fees to grow only
    <!--n:iv.hsp029_fees_multiple-->×1.3<!--/n--> if NEAR kept every fee; to cover issuance on 1 January 2031, fees counted in NEAR would
-   need <!--n:lr.required_growth.all_fees.B.2031-->+9%<!--/n--> a year. HSP-027 also passed, and its protocol version is
-   scheduled for validator votes from 4 November.
+   need <!--n:lr.required_growth.all_fees.B.2031-->+9%<!--/n--> a year. HSP-027 also passed, and its protocol version has been
+   in effect since <!--n:pr.v87.first_utc-->2026-11-04 11:46 UTC<!--/n-->, <!--n:pr.v87.days_from_hsp027_passed-->124<!--/n--> days later: a passed vote did become a rule, on the release's schedule.
 5. **Condition (c) weighs little.** The NEAR AI farm holds <!--n:iv.farm_share_of_stake-->0.23%<!--/n--> of all stake, and stake
    cannot offset issuance, because stakers receive the new NEAR. It stays because it was pre-registered: it tests
    whether the AI narrative brings broad stake, and it is a case where one account sets the economics of a

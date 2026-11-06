@@ -993,6 +993,38 @@ def build(data_dir, window_file):
             val = value.isoformat() if kind == "utc" else value
             n.add(key, val, fmt[kind](value), lsrc, unit=kind, **extra, **lstatus)
 
+    # ---- PREREG-2.md: predictions 4 and 5, judged (judge_prereg2.py)
+    ppath = data_dir / "prereg2.json"
+    if ppath.exists():
+        pd = json.loads(ppath.read_text(encoding="utf-8"))
+        psrc = n.source(ppath)
+        if not all(pd["prereg_checks"].values()):
+            problems.append("prereg2.json: PREREG-2.md check failed")
+        for num, e in sorted(pd["predictions"].items()):
+            r, jb = e["result"], e["result"]["judging_block"]
+            pc = {"judging_block": jb["height"], "as_of": jb["timestamp_utc"][:19] + "Z",
+                  "rule": e["rule"], "probability": e["probability"]}
+            if not all(r["checks"].values()):
+                problems.append(f"prereg2.json: prediction {num} check failed")
+            word = "holds" if r["holds"] else "fails"
+            n.add(f"pr.{num}.result", word, word, psrc, **pc)
+            n.add(f"pr.{num}.protocol_version", r["protocol_version"], str(r["protocol_version"]), psrc, **pc)
+            n.add(f"pr.{num}.brier", r["brier"], r["brier"], psrc, unit="Brier score", **pc)
+            n.add(f"pr.{num}.judging_height", jb["height"], f_int(jb["height"]), psrc, unit="block", **pc)
+        for ver, f in sorted(pd["first_block_with_version"].items()):
+            r, fb = f["result"], f["result"]["first_block"]
+            fc = {"block": fb["height"], "note": "first block with this protocol version in effect"}
+            if not all(r["checks"].values()):
+                problems.append(f"prereg2.json: first block with version {ver} check failed")
+            n.add(f"pr.v{ver}.first_height", fb["height"], f_int(fb["height"]), psrc, unit="block", **fc)
+            n.add(f"pr.v{ver}.first_utc", fb["timestamp_utc"], fb["timestamp_utc"][:16].replace("T", " ") + " UTC",
+                  psrc, **fc)
+            d = Decimal(r["days_from_hsp027_passed"])
+            n.add(f"pr.v{ver}.days_from_hsp027_passed", d, f_num(d, 0), psrc, unit="days", **fc)
+        bm = pd["brier_mean"]
+        n.add("pr.brier_mean", bm["mean"], bm["mean"], psrc, unit="mean Brier score", judged=bm["judged"])
+        n.add("pr.judged", bm["judged"], f_int(bm["judged"]), psrc, unit="predictions")
+
     provisional = sorted(k for k, v in n.items.items() if v.get("status") in ("provisional",
                                                                                   "pending"))
     doc = {
@@ -1027,6 +1059,7 @@ SCRIPT_CHECKS = [
     ("treasury_spend.py", lambda doc: ["--verify"]),
     ("treasury_exits.py", lambda doc: ["--verify"]),
     ("check_prereg.py", lambda doc: ["--verify"]),
+    ("judge_prereg2.py", lambda doc: ["--verify"]),
     ("control_map.py", lambda doc: ["--verify"]),
     ("control_history.py", lambda doc: ["--verify"]),
 ]
@@ -1050,6 +1083,7 @@ def verify(path, run_scripts=True, runner=subprocess.run):
                         "farm_rate.py": "farm_rate.json",
                         "burn.py": "burn.json",
                         "check_prereg.py": "prereg.json",
+                        "judge_prereg2.py": "prereg2.json",
                         "control_map.py": "control_map.json",
                         "control_history.py": "control_history.json"}
             if script in out_file and not (root / "data" / out_file[script]).exists():

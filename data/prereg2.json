@@ -1,0 +1,126 @@
+{
+ "measure": "PREREG-2.md predictions: protocol version in effect at the judging block",
+ "prereg_file": "PREREG-2.md",
+ "anchored_sha256": "545cf67530b37c902b2674cb4014818d3f79eb1718fe6bbab896a361e48ce0d3",
+ "source": {
+  "rpc": "https://archival-rpc.mainnet.fastnear.com",
+  "methods": [
+   "block",
+   "EXPERIMENTAL_protocol_config"
+  ]
+ },
+ "predictions": {
+  "4": {
+   "prediction": 4,
+   "version": 87,
+   "probability": "0.85",
+   "target_utc": "2026-11-06T00:00:00Z",
+   "rule": "first block whose header timestamp is at or after the time given; protocol_version of EXPERIMENTAL_protocol_config at that height; holds if >= the version",
+   "raw_files": {
+    "judging_block": {
+     "path": "data/raw/prereg2/block_223237989.json",
+     "sha256": "2b6301c1ccf2bb86c840715c59c31d63976605b5a76b78ca394dbea13f3ea088"
+    },
+    "previous_block": {
+     "path": "data/raw/prereg2/block_223237988.json",
+     "sha256": "33420d0bb8901d994e7f61c333215a717a9d1151af2e37cea2fcb1d6486af8e9"
+    },
+    "protocol_config": {
+     "path": "data/raw/prereg2/protocol_config_223237989.json",
+     "sha256": "de08f584c9aefce1a5b0649fbebb50b1f037c5b0d5580132e736c9be59940f3f"
+    }
+   },
+   "result": {
+    "judging_block": {
+     "height": 223237989,
+     "hash": "Gs1WxnTimDMkBgDc7QjEo7EpnQtTn7yTnyHEsfQbrK5N",
+     "prev_hash": "uJMShNLgPvXaTwxcwgviafaa8wcXsY1G6YuopdszgtE",
+     "timestamp_ns": "1793923200507223707",
+     "timestamp_utc": "2026-11-06T00:00:00.507223707Z",
+     "total_supply_yocto": "1310935481555351674725737451765240"
+    },
+    "previous_block": {
+     "height": 223237988,
+     "hash": "uJMShNLgPvXaTwxcwgviafaa8wcXsY1G6YuopdszgtE",
+     "prev_hash": "CZYSCJ5X5kwx5fQq3fNKveZ3Z5JQLGjfU7UYvMbWFd6r",
+     "timestamp_ns": "1793923199936609065",
+     "timestamp_utc": "2026-11-05T23:59:59.936609065Z",
+     "total_supply_yocto": "1310935481561497021944500851765240"
+    },
+    "protocol_version": 87,
+    "holds": true,
+    "outcome": 1,
+    "brier": "0.0225",
+    "checks": {
+     "judging_block_at_or_after_target": true,
+     "previous_block_before_target": true,
+     "previous_block_is_parent": true
+    }
+   },
+   "fetched_utc": "2026-11-06T10:49:48.090920600Z"
+  }
+ },
+ "first_block_with_version": {
+  "87": {
+   "version": 87,
+   "searched_between": [
+    222981291,
+    223130502
+   ],
+   "result": {
+    "first_block": {
+     "height": 223012337,
+     "hash": "7pVtLdEPFJzSVYjEUsP9zWDohnY1kTU88Fk3L7MgcyMf",
+     "prev_hash": "DFb7e5JQyEzSLn9yyFrZHvkH9mEKRKyBvS2k45EMaSN5",
+     "timestamp_ns": "1793792789014199526",
+     "timestamp_utc": "2026-11-04T11:46:29.014199526Z",
+     "total_supply_yocto": "1310807801167417321031984114861577"
+    },
+    "block_before": {
+     "height": 223012336,
+     "hash": "DFb7e5JQyEzSLn9yyFrZHvkH9mEKRKyBvS2k45EMaSN5",
+     "prev_hash": "847e4FMoJ8GVsJ3sggeMnXS8ue3NuFM91XEccs6LRyhk",
+     "timestamp_ns": "1793792788387911928",
+     "timestamp_utc": "2026-11-04T11:46:28.387911928Z",
+     "total_supply_yocto": "1310780026575908957219231786400516"
+    },
+    "version_at_first_block": 87,
+    "version_at_block_before": 86,
+    "days_from_hsp027_passed": "124.49",
+    "checks": {
+     "first_block_has_the_version": true,
+     "block_before_does_not": true,
+     "block_before_is_parent": true
+    }
+   },
+   "raw_files": {
+    "first_block": {
+     "path": "data/raw/prereg2/block_223012337.json",
+     "sha256": "41da3e554ab8c70d47b4815fdbf469621dc57260c4eb7c37ae0bf2354fe1a29d"
+    },
+    "block_before": {
+     "path": "data/raw/prereg2/block_223012336.json",
+     "sha256": "80b3419779bfd30d67c329c983182adaf291a9b2c11a122200941f585f3b36aa"
+    },
+    "first_config": {
+     "path": "data/raw/prereg2/protocol_config_223012337.json",
+     "sha256": "de08f584c9aefce1a5b0649fbebb50b1f037c5b0d5580132e736c9be59940f3f"
+    },
+    "before_config": {
+     "path": "data/raw/prereg2/protocol_config_223012336.json",
+     "sha256": "6ccdbafd036788bce8cd97368068e0040e5b83b8594adf5d7596c742f55d7838"
+    }
+   },
+   "fetched_utc": "2026-11-06T10:49:48.090920600Z"
+  }
+ },
+ "prereg_checks": {
+  "file_sha256_is_anchored": true,
+  "table_states_prediction_4": true,
+  "table_states_prediction_5": true
+ },
+ "brier_mean": {
+  "judged": 1,
+  "mean": "0.0225"
+ }
+}

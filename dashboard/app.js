@@ -105,9 +105,9 @@ const QUERIES = {
       "vote.dao get_proposal and the vote events of proposal 29",
     files: "data/upgrade_watch.csv · data/hsp029_voters.json" },
   p7: { sentence: "Each prediction's rule was fixed and anchored before its judging date.",
-    query: "python scripts/check_prereg.py --verify\nRPC call_function social.near get " +
+    query: "python scripts/check_prereg.py --verify\npython scripts/judge_prereg2.py --verify\nRPC call_function social.near get " +
       "{\"keys\":[\"samerice7976.near/thesis/prereg/1/**\"]}; tx; block",
-    files: "PREREG.md · PREREG-2.md · data/prereg.json" },
+    files: "PREREG.md · PREREG-2.md · data/prereg.json · data/prereg2.json" },
 };
 
 const PREDICTIONS = [
@@ -118,7 +118,7 @@ const PREDICTIONS = [
   { n: "3", text: "Fewer than 150 accounts are active in the NEAR AI farm", rule: "count < 150",
     base: "n3.stakers_active", when: "judged 16 November" },
   { n: "4", text: "Protocol version 87 (HSP-027) is in effect on NEAR mainnet", rule: "protocol_version ≥ 87",
-    prob: "0.85", when: "judged 6 November" },
+    prob: "0.85", when: "judged 6 November", result: "4" },
   { n: "5", text: "Protocol version 88 is in effect on NEAR mainnet", rule: "protocol_version ≥ 88",
     prob: "0.75", when: "judged 8 November" },
 ];
@@ -128,6 +128,7 @@ const COMMANDS = [
   "python scripts/build_numbers.py --verify",
   "python scripts/build_numbers.py --check README.md",
   "python scripts/check_prereg.py --file",
+  "python scripts/judge_prereg2.py --verify",
 ];
 
 // ---------------------------------------------------------------- helpers
@@ -510,7 +511,10 @@ function calculator() {
 function predictions() {
   $("#preds").innerHTML = PREDICTIONS.map(p => `<div class="pred"><span class="k">Prediction ${p.n} · ${p.when}</span>` +
     `<div>${p.text}</div><div class="st">Holds if ${p.rule}` +
-    (p.base ? ` · baseline ${txt(p.base)}` : "") + (p.prob ? ` · probability stated ${p.prob}` : "") + `</div></div>`).join("");
+    (p.base ? ` · baseline ${txt(p.base)}` : "") + (p.prob ? ` · probability stated ${p.prob}` : "") + `</div>` +
+    (p.result && N[`pr.${p.result}.result`] ? `<div class="st"><b>Result: ${txt(`pr.${p.result}.result`)}</b> · version ` +
+      `${txt(`pr.${p.result}.protocol_version`)} at block ${txt(`pr.${p.result}.judging_height`)} · Brier ` +
+      `${txt(`pr.${p.result}.brier`)}</div>` : "") + `</div>`).join("");
 }
 
 // ---------------------------------------------------------------- live checks
