@@ -1,6 +1,6 @@
 # Thesis: NEAR's value capture is real, small and discretionary
 
-*Investment Thesis track, NEAR HACKATHON. Dated 5 November 2026; horizon five years, to 1 January 2031, checked every 12 months.
+*Investment Thesis track, NEAR HACKATHON. Dated 6 November 2026; horizon five years, to 1 January 2031, checked every 12 months.
 Measurement window 2 October → 1 November 2026 (00:00 UTC), blocks 218,126,921 → 222,491,356. Every figure here
 is copied from [`data/numbers.json`](data/numbers.json) with a hidden marker of its key, and
 `python scripts/build_numbers.py --check THESIS.md` fails if any differs. Figures from DefiLlama are
@@ -20,8 +20,8 @@ nothing obliges anyone to keep it. It becomes a Buy when, at a yearly check over
 1 November), **(a)** what the buybacks wallets keep a day has grown at least <!--n:lr.required_growth.buybacks.B.2031-->+56%<!--/n--> a year from this window, both in dollars (from <!--n:iv.buybacks_kept_usd_per_day-->$46,692<!--/n-->) and in NEAR, the pace
 that covers issuance on 1 January 2031 under HSP-029 (<!--n:lr.required_growth.with_front_end.B.2031-->+41%<!--/n--> counting the front-end fund;
 <!--n:lr.required_growth.buybacks.A.2031-->+75%<!--/n--> and <!--n:lr.required_growth.with_front_end.A.2031-->+58%<!--/n--> if HSP-029 is not in force), so neither a falling nor a rising price
-alone decides it, and **(b)** keeping it is a published rule. It becomes an Avoid if the wallets pay NEAR out, or
-what the buybacks wallets keep in dollars falls back to April's level (<!--n:f2.buybacks_kept_usd_per_day.2026-04-->$6,270<!--/n--> a day). **(c)**, stake spread
+alone decides it, and **(b)** keeping it is a published rule. It becomes an Avoid if, over 30 days, the wallets keep less than 75% of the revenue DefiLlama attributes to NEAR,
+both in NEAR (April: <!--n:f2.wallets_kept_share_of_revenue.2026-04-->77%<!--/n-->), or what the buybacks wallets keep in dollars falls back to April's level (<!--n:f2.buybacks_kept_usd_per_day.2026-04-->$6,270<!--/n--> a day). **(c)**, stake spread
 in the NEAR AI farm, is a signal, not a lever. If NEAR kept every fee, fees counted in NEAR would need
 <!--n:lr.required_growth.all_fees.B.2031-->+9%<!--/n--> a year ([model](docs/DETAILS.md#issuance-to-2031)). At today's
 revenue, front-end fund included, the wallets would cover issuance only at a NEAR price of
@@ -110,7 +110,11 @@ What weakens the claim, as measured by the same scripts:
    cannot offset issuance, because stakers receive the new NEAR. It stays because it was pre-registered: it tests
    whether the AI narrative brings broad stake, and it is a case where one account sets the economics of a
    product.
-6. **Control is spread, and multisigs and DAOs are a common way to run protocol funds.** The
+6. **Among L1s, NEAR captures the most.** On DefiLlama's figures for the same 30 days, NEAR's market cap is
+   <!--n:peer.near_all.mcap_to_revenue-->179×<!--/n--> a year of its revenue (Intents and gas), against <!--n:peer.aptos.mcap_to_revenue-->337×<!--/n--> for Aptos, <!--n:peer.solana.mcap_to_revenue-->1,674×<!--/n--> for Solana and <!--n:peer.ethereum.mcap_to_revenue-->3,082×<!--/n-->
+   for Ethereum; it pays the largest share to holders of the five ([peers](README.md#peers-on-one-basis)). Against apps
+   with buybacks it is the other way round (Hyperliquid <!--n:peer.hyperliquid.mcap_to_revenue-->23×<!--/n-->).
+7. **Control is spread, and multisigs and DAOs are a common way to run protocol funds.** The
    <!--n:c.dao_count-->5<!--/n--> DAOs that run the links have <!--n:c.dao_member_accounts-->22<!--/n--> member accounts, and the
    number that sit in more than one is <!--n:c.dao_members_in_two_or_more-->0<!--/n-->. That NEAR's links are run this way is not, by
    itself, a sign of misuse; the claim is only about what a holder can rely on today.
@@ -126,10 +130,12 @@ What weakens the claim, as measured by the same scripts:
 | Issuance is the only rule | HSP-029 is still not in a nearcore release adopted by validators on 1 November 2027 | in timelock until <!--n:f8.timelock_end_utc-->2026-11-16 16:48 UTC<!--/n--> | passed, not in force | `scripts/hsp029.py`, `scripts/upgrade_watch.py` |
 | Stake spread | the largest account holds less than half of the NEAR AI farm | <!--n:n3.largest_share-->73.3%<!--/n--> | prediction 1 expects at least 70% on 16 November | `scripts/stakers.py` |
 
-The rating changes from Hold to Buy only when (a) and (b) hold together, and to Avoid if the buybacks wallets pay
-NEAR out (coverage falls while DefiLlama's revenue does not) or what they keep in dollars falls back to April's level.
-Coverage is the buyback yield (<!--n:iv.buyback_yield_buybacks-->0.27%<!--/n--> of NEAR's value a year) divided by the issuance rate, so it also
-measures valuation: it falls when the price rises faster than revenue. Five predictions are anchored on chain before they are judged:
+The rating changes from Hold to Buy only when (a) and (b) hold together, and to Avoid if the wallets keep less than
+75% of DefiLlama's revenue, in NEAR, over 30 days, or what they keep in dollars falls back to April's level. It also
+becomes a Buy on price alone if a 30-day mean price is at or below the price at which revenue covers issuance
+(<!--n:iv.revenue_equilibrium_price_usd-->$0.80<!--/n--> in this window).
+Coverage is the buyback yield (<!--n:iv.buyback_yield_buybacks-->0.27%<!--/n--> of NEAR's value a year) divided by the issuance rate, so it falls
+when the price rises faster than revenue; the Buy on price is where that ratio reaches one. Five predictions are anchored on chain before they are judged:
 [`PREREG.md`](PREREG.md) (16 November) and [`PREREG-2.md`](PREREG-2.md) (6 and 8 November, with stated
 probabilities).
 

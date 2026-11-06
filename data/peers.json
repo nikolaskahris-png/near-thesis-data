@@ -5,72 +5,147 @@
   "end": "2026-11-01",
   "days": 30
  },
- "fetched_utc": "2026-11-06T11:38:49Z",
+ "fetched_utc": "2026-11-06T12:03:05Z",
  "raw_files": {
   "near_fees": {
-   "path": "data/raw/peers/20261106T113849Z/near_fees.json",
+   "path": "data/raw/peers/20261106T120305Z/near_fees.json",
    "sha256": "b840a7e37d3d8602f1d7409ee2bde4ca5c56c831684514d7547455a1c3343ae0",
    "url": "https://api.llama.fi/summary/fees/near-intents?dataType=dailyFees&excludeTotalDataChartBreakdown=true"
   },
   "near_revenue": {
-   "path": "data/raw/peers/20261106T113849Z/near_revenue.json",
+   "path": "data/raw/peers/20261106T120305Z/near_revenue.json",
    "sha256": "3e59d9cd69b7d5c4970d34fb3c0e655a65c5725487f9f5d96676b16c979bb8ec",
    "url": "https://api.llama.fi/summary/fees/near-intents?dataType=dailyRevenue&excludeTotalDataChartBreakdown=true"
   },
   "near_holders_revenue": {
-   "path": "data/raw/peers/20261106T113849Z/near_holders_revenue.json",
+   "path": "data/raw/peers/20261106T120305Z/near_holders_revenue.json",
    "sha256": "6bcaf135b018e4de3c59c4ba2001b0b91b88a35ba0e2eea9cec6b4619716315b",
    "url": "https://api.llama.fi/summary/fees/near-intents?dataType=dailyHoldersRevenue&excludeTotalDataChartBreakdown=true"
   },
+  "near_l1_fees": {
+   "path": "data/raw/peers/20261106T120305Z/near_l1_fees.json",
+   "sha256": "b349bf19d8a0a1d9c11fa08036c2af796e866099e1173891c55db28885728f88",
+   "url": "https://api.llama.fi/summary/fees/near?dataType=dailyFees&excludeTotalDataChartBreakdown=true"
+  },
+  "near_l1_revenue": {
+   "path": "data/raw/peers/20261106T120305Z/near_l1_revenue.json",
+   "sha256": "d2189a6c92930407a215ae7e1c29fc7849524e321e17fe0a050a31268f2c0d20",
+   "url": "https://api.llama.fi/summary/fees/near?dataType=dailyRevenue&excludeTotalDataChartBreakdown=true"
+  },
+  "near_l1_holders_revenue": {
+   "path": "data/raw/peers/20261106T120305Z/near_l1_holders_revenue.json",
+   "sha256": "0fc94c2b6377f0b9bd0941d39b359318c943efe7e10e5b41b0385378d071b754",
+   "url": "https://api.llama.fi/summary/fees/near?dataType=dailyHoldersRevenue&excludeTotalDataChartBreakdown=true"
+  },
   "hyperliquid_fees": {
-   "path": "data/raw/peers/20261106T113849Z/hyperliquid_fees.json",
+   "path": "data/raw/peers/20261106T120305Z/hyperliquid_fees.json",
    "sha256": "2222a416195c5426160b6a2b9b927f948953cabb2244f89f84b09d3c32518460",
    "url": "https://api.llama.fi/summary/fees/hyperliquid?dataType=dailyFees&excludeTotalDataChartBreakdown=true"
   },
   "hyperliquid_revenue": {
-   "path": "data/raw/peers/20261106T113849Z/hyperliquid_revenue.json",
+   "path": "data/raw/peers/20261106T120305Z/hyperliquid_revenue.json",
    "sha256": "29a9c66c3f8c142f470caacb63781a6d3f66a5d54a7f44e4b2e626eef922c2d0",
    "url": "https://api.llama.fi/summary/fees/hyperliquid?dataType=dailyRevenue&excludeTotalDataChartBreakdown=true"
   },
   "hyperliquid_holders_revenue": {
-   "path": "data/raw/peers/20261106T113849Z/hyperliquid_holders_revenue.json",
+   "path": "data/raw/peers/20261106T120305Z/hyperliquid_holders_revenue.json",
    "sha256": "29a9c66c3f8c142f470caacb63781a6d3f66a5d54a7f44e4b2e626eef922c2d0",
    "url": "https://api.llama.fi/summary/fees/hyperliquid?dataType=dailyHoldersRevenue&excludeTotalDataChartBreakdown=true"
   },
   "aave_fees": {
-   "path": "data/raw/peers/20261106T113849Z/aave_fees.json",
+   "path": "data/raw/peers/20261106T120305Z/aave_fees.json",
    "sha256": "b94a44ac1afa1018d5cf050d4db7882ece85fc486485f63057b80382da1ec8a5",
    "url": "https://api.llama.fi/summary/fees/aave?dataType=dailyFees&excludeTotalDataChartBreakdown=true"
   },
   "aave_revenue": {
-   "path": "data/raw/peers/20261106T113849Z/aave_revenue.json",
+   "path": "data/raw/peers/20261106T120305Z/aave_revenue.json",
    "sha256": "abd8eac5d7b94d67fa4f8746ee4c29d33adad68eebd6532d9f09e26afe9efea3",
    "url": "https://api.llama.fi/summary/fees/aave?dataType=dailyRevenue&excludeTotalDataChartBreakdown=true"
   },
   "aave_holders_revenue": {
-   "path": "data/raw/peers/20261106T113849Z/aave_holders_revenue.json",
+   "path": "data/raw/peers/20261106T120305Z/aave_holders_revenue.json",
    "sha256": "46cb7402fee909cb14fd16f44f99f4a0e22767e0f09a0529b92cc793e5739779",
    "url": "https://api.llama.fi/summary/fees/aave?dataType=dailyHoldersRevenue&excludeTotalDataChartBreakdown=true"
   },
   "jupiter_fees": {
-   "path": "data/raw/peers/20261106T113849Z/jupiter_fees.json",
+   "path": "data/raw/peers/20261106T120305Z/jupiter_fees.json",
    "sha256": "78f5e5b423d1fb5d256fa8de1e53316b10a2f9a662f92c3bd833cfd48e93ca55",
    "url": "https://api.llama.fi/summary/fees/jupiter?dataType=dailyFees&excludeTotalDataChartBreakdown=true"
   },
   "jupiter_revenue": {
-   "path": "data/raw/peers/20261106T113849Z/jupiter_revenue.json",
+   "path": "data/raw/peers/20261106T120305Z/jupiter_revenue.json",
    "sha256": "9e160b00d23e50a11e5f751c6dcb7e6a220070fed5683e5945d786ddf9703d2a",
    "url": "https://api.llama.fi/summary/fees/jupiter?dataType=dailyRevenue&excludeTotalDataChartBreakdown=true"
   },
   "jupiter_holders_revenue": {
-   "path": "data/raw/peers/20261106T113849Z/jupiter_holders_revenue.json",
+   "path": "data/raw/peers/20261106T120305Z/jupiter_holders_revenue.json",
    "sha256": "98c27446e8def16c645e4ef2a877eed755b02f82e1aa50f72eab0c78f8dbdbf2",
    "url": "https://api.llama.fi/summary/fees/jupiter?dataType=dailyHoldersRevenue&excludeTotalDataChartBreakdown=true"
   },
+  "ethereum_fees": {
+   "path": "data/raw/peers/20261106T120305Z/ethereum_fees.json",
+   "sha256": "a2baa667d7400d2c37d52cc5330921fcb7d2059e0c220d944d28b40f08a4f09d",
+   "url": "https://api.llama.fi/summary/fees/ethereum?dataType=dailyFees&excludeTotalDataChartBreakdown=true"
+  },
+  "ethereum_revenue": {
+   "path": "data/raw/peers/20261106T120305Z/ethereum_revenue.json",
+   "sha256": "ec17735d6c3507b2071311335a1707afcbf199eb48ca61983061b7f9f8505101",
+   "url": "https://api.llama.fi/summary/fees/ethereum?dataType=dailyRevenue&excludeTotalDataChartBreakdown=true"
+  },
+  "ethereum_holders_revenue": {
+   "path": "data/raw/peers/20261106T120305Z/ethereum_holders_revenue.json",
+   "sha256": "ec17735d6c3507b2071311335a1707afcbf199eb48ca61983061b7f9f8505101",
+   "url": "https://api.llama.fi/summary/fees/ethereum?dataType=dailyHoldersRevenue&excludeTotalDataChartBreakdown=true"
+  },
+  "solana_fees": {
+   "path": "data/raw/peers/20261106T120305Z/solana_fees.json",
+   "sha256": "45a03136b6f275938966a6adabb6e8d86e766edaec98b0019e072401eda45413",
+   "url": "https://api.llama.fi/summary/fees/solana?dataType=dailyFees&excludeTotalDataChartBreakdown=true"
+  },
+  "solana_revenue": {
+   "path": "data/raw/peers/20261106T120305Z/solana_revenue.json",
+   "sha256": "ead042e7f01464e70ae941033338f75ed288168231b0df7416339b2c742b160d",
+   "url": "https://api.llama.fi/summary/fees/solana?dataType=dailyRevenue&excludeTotalDataChartBreakdown=true"
+  },
+  "solana_holders_revenue": {
+   "path": "data/raw/peers/20261106T120305Z/solana_holders_revenue.json",
+   "sha256": "ead042e7f01464e70ae941033338f75ed288168231b0df7416339b2c742b160d",
+   "url": "https://api.llama.fi/summary/fees/solana?dataType=dailyHoldersRevenue&excludeTotalDataChartBreakdown=true"
+  },
+  "sui_fees": {
+   "path": "data/raw/peers/20261106T120305Z/sui_fees.json",
+   "sha256": "5eb2afc9224d384b83bf599c847ecb445837442f7b432057b4ef99bcf2938b8c",
+   "url": "https://api.llama.fi/summary/fees/sui?dataType=dailyFees&excludeTotalDataChartBreakdown=true"
+  },
+  "sui_revenue": {
+   "path": "data/raw/peers/20261106T120305Z/sui_revenue.json",
+   "sha256": "9e8479ca1e7320b8d9b109f819cef4bb2516dd347d131d9fcddf1f777a51a579",
+   "url": "https://api.llama.fi/summary/fees/sui?dataType=dailyRevenue&excludeTotalDataChartBreakdown=true"
+  },
+  "sui_holders_revenue": {
+   "path": "data/raw/peers/20261106T120305Z/sui_holders_revenue.json",
+   "sha256": "9e8479ca1e7320b8d9b109f819cef4bb2516dd347d131d9fcddf1f777a51a579",
+   "url": "https://api.llama.fi/summary/fees/sui?dataType=dailyHoldersRevenue&excludeTotalDataChartBreakdown=true"
+  },
+  "aptos_fees": {
+   "path": "data/raw/peers/20261106T120305Z/aptos_fees.json",
+   "sha256": "b3483e6b62782ec26161fa8e26e46bdc85c82a2910659bfb2bb6a44b3b119256",
+   "url": "https://api.llama.fi/summary/fees/aptos?dataType=dailyFees&excludeTotalDataChartBreakdown=true"
+  },
+  "aptos_revenue": {
+   "path": "data/raw/peers/20261106T120305Z/aptos_revenue.json",
+   "sha256": "dbb01b3451ce92545f399288d848e26a7f3369e15efcff3b2bc313e1abd7a5c8",
+   "url": "https://api.llama.fi/summary/fees/aptos?dataType=dailyRevenue&excludeTotalDataChartBreakdown=true"
+  },
+  "aptos_holders_revenue": {
+   "path": "data/raw/peers/20261106T120305Z/aptos_holders_revenue.json",
+   "sha256": "dbb01b3451ce92545f399288d848e26a7f3369e15efcff3b2bc313e1abd7a5c8",
+   "url": "https://api.llama.fi/summary/fees/aptos?dataType=dailyHoldersRevenue&excludeTotalDataChartBreakdown=true"
+  },
   "coingecko_markets": {
-   "path": "data/raw/peers/20261106T113849Z/coingecko_markets.json",
-   "sha256": "ebf606e5d4b847f7555b7990165dd0ed7a7ed4d0cc7556cd1309a451f33c6d50",
-   "url": "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=near,hyperliquid,aave,jupiter-exchange-solana&order=market_cap_desc&per_page=10&page=1&sparkline=false"
+   "path": "data/raw/peers/20261106T120305Z/coingecko_markets.json",
+   "sha256": "56b688a13dd67054b574d189c6895b7a7d9d78703e3e842545874b6f8be5664b",
+   "url": "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=aave,aptos,ethereum,hyperliquid,jupiter-exchange-solana,near,solana,sui&order=market_cap_desc&per_page=50&page=1&sparkline=false"
   }
  },
  "not_published": {},
@@ -87,15 +162,39 @@
    "fees_usd_per_year": "75259518.99999999999999999999",
    "revenue_usd_per_year": "25788269.27500000000000000000",
    "holders_revenue_usd_per_year": "25788269.27500000000000000000",
-   "market_cap_usd": "4905717425",
-   "fdv_usd": "4905717541",
-   "price_usd": "3.74",
-   "mcap_to_revenue": "190.2305801403960250837732886",
-   "fdv_to_revenue": "190.2305846385652803759161926",
-   "mcap_to_fees": "65.18401247023648928715582145",
-   "holders_yield_on_mcap": "0.005256778375285241791112744330",
-   "value_as_of": "2026-11-06T11:37:52.000Z",
-   "complete": true
+   "market_cap_usd": "4892307171",
+   "fdv_usd": "4892307313",
+   "price_usd": "3.73",
+   "mcap_to_revenue": "189.7105664141162105963002823",
+   "fdv_to_revenue": "189.7105719204958162125441821",
+   "mcap_to_fees": "65.00582565509088624390490724",
+   "holders_yield_on_mcap": "0.005271187677638976279234940949",
+   "value_as_of": "2026-11-06T12:02:55.000Z",
+   "complete": true,
+   "partial": false
+  },
+  "near_l1": {
+   "label": "NEAR (L1 gas)",
+   "defillama_slug": "near",
+   "coingecko_id": "near",
+   "days": {
+    "fees": 30,
+    "revenue": 30,
+    "holders_revenue": 30
+   },
+   "fees_usd_per_year": "2231555.750000000000000000000",
+   "revenue_usd_per_year": "1562064.675",
+   "holders_revenue_usd_per_year": "1562064.675",
+   "market_cap_usd": "4892307171",
+   "fdv_usd": "4892307313",
+   "price_usd": "3.73",
+   "mcap_to_revenue": "3131.949175535897705387902713",
+   "fdv_to_revenue": "3131.949266441224656719159212",
+   "mcap_to_fees": "2192.330248079170775814137738",
+   "holders_yield_on_mcap": "0.0003192899833149090711499807419",
+   "value_as_of": "2026-11-06T12:02:55.000Z",
+   "complete": true,
+   "partial": false
   },
   "hyperliquid": {
    "label": "Hyperliquid (HYPE)",
@@ -109,15 +208,16 @@
    "fees_usd_per_year": "1041146999.950000000000000000",
    "revenue_usd_per_year": "817565433.8750000000000000001",
    "holders_revenue_usd_per_year": "817565433.8750000000000000001",
-   "market_cap_usd": "18775189598",
-   "fdv_usd": "74623237145",
-   "price_usd": "78.42",
-   "mcap_to_revenue": "22.96475464845862640892585522",
-   "fdv_to_revenue": "91.27494149466373805479766314",
-   "mcap_to_fees": "18.03317840698927137123716782",
-   "holders_yield_on_mcap": "0.04354498949837981817220954384",
-   "value_as_of": "2026-11-06T11:37:52.000Z",
-   "complete": true
+   "market_cap_usd": "18794665750",
+   "fdv_usd": "74700646405",
+   "price_usd": "78.55",
+   "mcap_to_revenue": "22.98857678084464135699452794",
+   "fdv_to_revenue": "91.36962414242821696618295033",
+   "mcap_to_fees": "18.05188484517805289959909854",
+   "holders_yield_on_mcap": "0.04349986558686205951813748005",
+   "value_as_of": "2026-11-06T12:02:55.000Z",
+   "complete": true,
+   "partial": false
   },
   "aave": {
    "label": "Aave (AAVE)",
@@ -131,15 +231,16 @@
    "fees_usd_per_year": "467856553.5249999999999999999",
    "revenue_usd_per_year": "61269360.42500000000000000001",
    "holders_revenue_usd_per_year": "0.00",
-   "market_cap_usd": "1999271345",
-   "fdv_usd": "2071748182",
-   "price_usd": "129.48",
-   "mcap_to_revenue": "32.63085057738302643625155811",
-   "fdv_to_revenue": "33.81377196740992420764281219",
-   "mcap_to_fees": "4.273257112541800853894536670",
+   "market_cap_usd": "2002222374",
+   "fdv_usd": "2074806190",
+   "price_usd": "129.71",
+   "mcap_to_revenue": "32.67901541833337980367860188",
+   "fdv_to_revenue": "33.86368285237408694559585815",
+   "mcap_to_fees": "4.279564663387815264225650350",
    "holders_yield_on_mcap": "0.00",
-   "value_as_of": "2026-11-06T11:37:52.000Z",
-   "complete": true
+   "value_as_of": "2026-11-06T12:02:55.000Z",
+   "complete": true,
+   "partial": false
   },
   "jupiter": {
    "label": "Jupiter (JUP)",
@@ -153,15 +254,131 @@
    "fees_usd_per_year": "175723373.0905000000000000000",
    "revenue_usd_per_year": "43840829.29724999987825000001",
    "holders_revenue_usd_per_year": "21862286.14600000000000000000",
-   "market_cap_usd": "826218142",
-   "fdv_usd": "1707879930",
-   "price_usd": "0.248908",
-   "mcap_to_revenue": "18.84586024589243155513683842",
-   "fdv_to_revenue": "38.95637827515115105269244348",
-   "mcap_to_fees": "4.701811304148401914494150000",
-   "holders_yield_on_mcap": "0.02646067065663634386764651798",
-   "value_as_of": "2026-11-06T11:37:52.000Z",
-   "complete": true
+   "market_cap_usd": "824050977",
+   "fdv_usd": "1703400171",
+   "price_usd": "0.248266",
+   "mcap_to_revenue": "18.79642767276964303201676861",
+   "fdv_to_revenue": "38.85419592431954847903338160",
+   "mcap_to_fees": "4.689478482612567409137785270",
+   "holders_yield_on_mcap": "0.02653025936039876814562650534",
+   "value_as_of": "2026-11-06T12:02:55.000Z",
+   "complete": true,
+   "partial": false
+  },
+  "ethereum": {
+   "label": "Ethereum (ETH)",
+   "defillama_slug": "ethereum",
+   "coingecko_id": "ethereum",
+   "days": {
+    "fees": 30,
+    "revenue": 30,
+    "holders_revenue": 30
+   },
+   "fees_usd_per_year": "269220551.925",
+   "revenue_usd_per_year": "88778809.44999999999999999999",
+   "holders_revenue_usd_per_year": "88778809.44999999999999999999",
+   "market_cap_usd": "273657789589",
+   "fdv_usd": "273657789589",
+   "price_usd": "2239.98",
+   "mcap_to_revenue": "3082.467441097229086574555321",
+   "fdv_to_revenue": "3082.467441097229086574555321",
+   "mcap_to_fees": "1016.481793950248399112815986",
+   "holders_yield_on_mcap": "0.0003244154298817320043452512489",
+   "value_as_of": "2026-11-06T12:02:55.000Z",
+   "complete": true,
+   "partial": false
+  },
+  "solana": {
+   "label": "Solana (SOL)",
+   "defillama_slug": "solana",
+   "coingecko_id": "solana",
+   "days": {
+    "fees": 30,
+    "revenue": 30,
+    "holders_revenue": 30
+   },
+   "fees_usd_per_year": "267911958.5750000000000000000",
+   "revenue_usd_per_year": "31842008.00000000000000000000",
+   "holders_revenue_usd_per_year": "31842008.00000000000000000000",
+   "market_cap_usd": "53308656618",
+   "fdv_usd": "57533278071",
+   "price_usd": "90.34",
+   "mcap_to_revenue": "1674.161272052943394775857100",
+   "fdv_to_revenue": "1806.835739473465366882641321",
+   "mcap_to_fees": "198.9782647312349446512570627",
+   "holders_yield_on_mcap": "0.0005973140202758054052150978929",
+   "value_as_of": "2026-11-06T12:02:55.000Z",
+   "complete": true,
+   "partial": false
+  },
+  "sui": {
+   "label": "Sui (SUI)",
+   "defillama_slug": "sui",
+   "coingecko_id": "sui",
+   "days": {
+    "fees": 30,
+    "revenue": 30,
+    "holders_revenue": 30
+   },
+   "fees_usd_per_year": "1783832.300000000000000000000",
+   "revenue_usd_per_year": "253673.4300",
+   "holders_revenue_usd_per_year": "253673.4300",
+   "market_cap_usd": "3586109008",
+   "fdv_usd": "8664100702",
+   "price_usd": "0.866748",
+   "mcap_to_revenue": "14136.71509862108932732923586",
+   "fdv_to_revenue": "34154.54547998976479326195101",
+   "mcap_to_fees": "2010.339765683130639578619582",
+   "holders_yield_on_mcap": "0.00007073779113632565850881686305",
+   "value_as_of": "2026-11-06T12:02:55.000Z",
+   "complete": true,
+   "partial": false
+  },
+  "aptos": {
+   "label": "Aptos (APT)",
+   "defillama_slug": "aptos",
+   "coingecko_id": "aptos",
+   "days": {
+    "fees": 30,
+    "revenue": 30,
+    "holders_revenue": 30
+   },
+   "fees_usd_per_year": "1603995.375",
+   "revenue_usd_per_year": "1603995.375",
+   "holders_revenue_usd_per_year": "1603995.375",
+   "market_cap_usd": "541252640",
+   "fdv_usd": "741535613",
+   "price_usd": "0.612184",
+   "mcap_to_revenue": "337.4402747264779363843240508",
+   "fdv_to_revenue": "462.3053311484766594168016226",
+   "mcap_to_fees": "337.4402747264779363843240508",
+   "holders_yield_on_mcap": "0.002963487392874425517813640595",
+   "value_as_of": "2026-11-06T12:02:55.000Z",
+   "complete": true,
+   "partial": false
+  },
+  "near_all": {
+   "label": "NEAR (Intents + L1 gas)",
+   "defillama_slug": "near-intents+near",
+   "coingecko_id": "near",
+   "days": {
+    "fees": 30,
+    "revenue": 30,
+    "holders_revenue": 30
+   },
+   "fees_usd_per_year": "77491074.74999999999999999999",
+   "revenue_usd_per_year": "27350333.95000000000000000000",
+   "holders_revenue_usd_per_year": "27350333.95000000000000000000",
+   "market_cap_usd": "4892307171",
+   "fdv_usd": "4892307313",
+   "price_usd": "3.73",
+   "mcap_to_revenue": "178.8755917914486744319990287",
+   "fdv_to_revenue": "178.8755969833414045023022470",
+   "mcap_to_fees": "63.13381491718180099186196925",
+   "holders_yield_on_mcap": "0.005590477660953885350384921691",
+   "value_as_of": "2026-11-06T12:02:55.000Z",
+   "complete": true,
+   "partial": false
   }
  }
 }

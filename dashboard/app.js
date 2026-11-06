@@ -485,7 +485,7 @@ function calculator() {
     const kk = Number(k.value), gg = Number(g.value), pp = Number(p.value), ff = f.value === "hsp" ? HSP029_FACTOR : 1;
     $("#kv").textContent = fmtPct(kk, 1) + (Math.abs(kk - k0) < 0.005 ? ` (today, with the front-end fund: ${txt("iv.wallets_share_of_fees_with_front_end")})` : "");
     $("#gv").textContent = "×" + gg.toFixed(1);
-    $("#pv").textContent = "$" + pp.toFixed(2) + (Math.abs(pp - p0) < 0.005 ? ` (each day's fees at that day's price: ${txt("iv.fees_conversion_price_usd")})` : "");
+    $("#pv").textContent = "$" + pp.toFixed(2) + (Math.abs(pp - p0) < 0.005 ? ` (fee-weighted: each day's fees at that day's price; the window's mean price is ${txt("n2.mean_price_usd")})` : "");
     $("#fv").textContent = ff === 1 ? txt("iv.issuance_rate_per_year") + " a year" : "× 16/25";
     const c = coverage(gg, kk, pp, ff);
     $("#cv").textContent = "Coverage " + fmtPct(c, 1);

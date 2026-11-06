@@ -1005,8 +1005,8 @@ def build(data_dir, window_file):
             if abs(Decimal(nr[key]) / Decimal(n.items[ours]["value"]) - 1) > Decimal("0.001"):
                 problems.append(f"peers.json: NEAR {key} differs from {ours} by more than 0.1%")
         for pid, r in pe["results"].items():
-            if not r["complete"]:
-                problems.append(f"peers.json: {pid} lacks days in the window")
+            if r.get("partial"):
+                problems.append(f"peers.json: {pid} lacks some days of the window")
             pc2 = {"label": r["label"], "value_as_of": r["value_as_of"], "window": "2026-10-02_2026-11-01",
                    "basis": "DefiLlama flows over the window x 365.25; CoinGecko value at the fetch"}
             for key, kind in (("fees_usd_per_year", "big"), ("revenue_usd_per_year", "big"),

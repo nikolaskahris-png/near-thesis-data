@@ -29,6 +29,8 @@ def chart(per_day, extra_days=3, skip=()):
 
 
 MARKETS = json.dumps([
+    {"id": "ethereum", "current_price": 3000, "market_cap": 360000000000, "fully_diluted_valuation": 360000000000,
+     "last_updated": "2026-11-06T12:00:00Z"},
     {"id": "near", "current_price": 4.9, "market_cap": 6000000000, "fully_diluted_valuation": 6400000000,
      "last_updated": "2026-11-06T12:00:00Z"},
     {"id": "hyperliquid", "current_price": 40, "market_cap": 13000000000, "fully_diluted_valuation": 40000000000,
@@ -82,6 +84,19 @@ class PeersTest(unittest.TestCase):
         p = self.tmp / doc["raw_files"]["aave_revenue"]["path"]
         p.write_bytes(p.read_bytes().replace(b"400", b"401"))
         self.assertTrue(any("sha256 differs" in x for x in peers.verify(out)[0]))
+
+    def test_near_all_adds_intents_and_gas_against_one_market_cap(self):
+        r = self.run_fake()["results"]
+        self.assertEqual(Decimal(r["near_all"]["fees_usd_per_year"]),
+                         Decimal(r["near"]["fees_usd_per_year"]) + Decimal(r["near_l1"]["fees_usd_per_year"]))
+        self.assertEqual(r["near_all"]["market_cap_usd"], r["near"]["market_cap_usd"])
+        self.assertIsNone(r["near_all"]["holders_revenue_usd_per_year"])  # Intents' holders series is missing here
+
+    def test_a_token_with_no_market_entry_has_no_ratios(self):
+        r = self.run_fake()["results"]["sui"]
+        self.assertIsNone(r["market_cap_usd"])
+        self.assertIsNone(r["mcap_to_revenue"])
+        self.assertFalse(r["partial"])
 
     def test_missing_days_mark_incomplete(self):
         mean, n = peers.flow(chart(1000, skip={DAYS[3]}))

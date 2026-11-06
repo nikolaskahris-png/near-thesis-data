@@ -30,20 +30,27 @@ WINDOW = (date(2026, 10, 2), date(2026, 11, 1))      # [start, end): 30 days, th
 YEAR_DAYS = Decimal("365.25")
 PEERS = {   # id: (DefiLlama fees slug, CoinGecko id, label)
     "near": ("near-intents", "near", "NEAR (NEAR Intents)"),
+    "near_l1": ("near", "near", "NEAR (L1 gas)"),
     "hyperliquid": ("hyperliquid", "hyperliquid", "Hyperliquid (HYPE)"),
     "aave": ("aave", "aave", "Aave (AAVE)"),
     "jupiter": ("jupiter", "jupiter-exchange-solana", "Jupiter (JUP)"),
+    "ethereum": ("ethereum", "ethereum", "Ethereum (ETH)"),
+    "solana": ("solana", "solana", "Solana (SOL)"),
+    "sui": ("sui", "sui", "Sui (SUI)"),
+    "aptos": ("aptos", "aptos", "Aptos (APT)"),
 }
+# NEAR's whole fee capture: NEAR Intents plus the L1's gas, against the same market cap.
+COMBINED = {"near_all": (("near", "near_l1"), "near", "NEAR (Intents + L1 gas)")}
 SERIES = {"fees": "dailyFees", "revenue": "dailyRevenue", "holders_revenue": "dailyHoldersRevenue"}
 LLAMA_URL = "https://api.llama.fi/summary/fees/{slug}?dataType={kind}&excludeTotalDataChartBreakdown=true"
 GECKO_URL = ("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids={ids}"
-             "&order=market_cap_desc&per_page=10&page=1&sparkline=false")
+             "&order=market_cap_desc&per_page=50&page=1&sparkline=false")
 
 
 def urls():
     out = {f"{pid}_{name}": LLAMA_URL.format(slug=slug, kind=kind)
            for pid, (slug, _g, _l) in PEERS.items() for name, kind in SERIES.items()}
-    out["coingecko_markets"] = GECKO_URL.format(ids=",".join(g for _s, g, _l in PEERS.values()))
+    out["coingecko_markets"] = GECKO_URL.format(ids=",".join(sorted({g for _s, g, _l in PEERS.values()})))
     return out
 
 
@@ -85,33 +92,44 @@ def ratio(a, b):
     return None if a is None or b in (None, 0) else a / b
 
 
+def row(label, slug, gid, per_year, days, m):
+    mcap, fdv = m.get("market_cap"), m.get("fdv")
+    vals = {
+        "fees_usd_per_year": per_year["fees"],
+        "revenue_usd_per_year": per_year["revenue"],
+        "holders_revenue_usd_per_year": per_year["holders_revenue"],
+        "market_cap_usd": mcap, "fdv_usd": fdv, "price_usd": m.get("price"),
+        "mcap_to_revenue": ratio(mcap, per_year["revenue"]),
+        "fdv_to_revenue": ratio(fdv, per_year["revenue"]),
+        "mcap_to_fees": ratio(mcap, per_year["fees"]),
+        "holders_yield_on_mcap": ratio(per_year["holders_revenue"], mcap),
+    }
+    r = {"label": label, "defillama_slug": slug, "coingecko_id": gid, "days": days}
+    r.update({k: None if v is None else str(v) for k, v in vals.items()})
+    r["value_as_of"] = m.get("last_updated")
+    full = len(window_days())
+    r["complete"] = all(days[k] == full for k in ("fees", "revenue"))
+    r["partial"] = any(0 < n < full for n in days.values())     # some window days missing: a data problem
+    return r
+
+
 def compute(raws):
     """raws: {name: bytes or None}. Returns the results per token, every value a decimal string or None."""
     mk = markets(raws["coingecko_markets"])
-    out = {}
+    out, flows = {}, {}
     for pid, (slug, gid, label) in PEERS.items():
-        m = mk.get(gid, {})
-        r = {"label": label, "defillama_slug": slug, "coingecko_id": gid, "days": {}}
-        per_year = {}
+        per_year, days = {}, {}
         for name in SERIES:
             mean, n = flow(raws.get(f"{pid}_{name}"))
-            r["days"][name] = n
+            days[name] = n
             per_year[name] = None if mean is None else mean * YEAR_DAYS
-        mcap, fdv = m.get("market_cap"), m.get("fdv")
-        vals = {
-            "fees_usd_per_year": per_year["fees"],
-            "revenue_usd_per_year": per_year["revenue"],
-            "holders_revenue_usd_per_year": per_year["holders_revenue"],
-            "market_cap_usd": mcap, "fdv_usd": fdv, "price_usd": m.get("price"),
-            "mcap_to_revenue": ratio(mcap, per_year["revenue"]),
-            "fdv_to_revenue": ratio(fdv, per_year["revenue"]),
-            "mcap_to_fees": ratio(mcap, per_year["fees"]),
-            "holders_yield_on_mcap": ratio(per_year["holders_revenue"], mcap),
-        }
-        r.update({k: None if v is None else str(v) for k, v in vals.items()})
-        r["value_as_of"] = m.get("last_updated")
-        r["complete"] = all(r["days"][k] == len(window_days()) for k in ("fees", "revenue"))
-        out[pid] = r
+        flows[pid] = (per_year, days)
+        out[pid] = row(label, slug, gid, per_year, days, mk.get(gid, {}))
+    for cid, (parts, gid, label) in COMBINED.items():
+        per_year = {name: (None if any(flows[p][0][name] is None for p in parts)
+                           else sum(flows[p][0][name] for p in parts)) for name in SERIES}
+        days = {name: min(flows[p][1][name] for p in parts) for name in SERIES}
+        out[cid] = row(label, "+".join(PEERS[p][0] for p in parts), gid, per_year, days, mk.get(gid, {}))
     return out
 
 

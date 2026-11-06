@@ -17,9 +17,13 @@
   <!--n:lr.required_growth.with_front_end.A.2031-->+58%<!--/n--> if HSP-029 is not in force). (b) Keeping it is a published rule. The hurdle depends on the
   base: from the April–October average it is <!--n:lr.required_growth.buybacks.B.2031.base.2026-04_2026-10-->+62%<!--/n-->; from single months,
   <!--n:lr.required_growth.buybacks.B.2031.base_min-->+44%<!--/n--> to <!--n:lr.required_growth.buybacks.B.2031.base_max-->+85%<!--/n-->.
-- **Downgrade to Avoid** if the wallets pay NEAR out (coverage falls while DefiLlama's revenue does not), or what the
+- **Downgrade to Avoid** if, over a 30-day window, the wallets keep less than 75% of the revenue DefiLlama attributes
+  to NEAR, both counted in NEAR (lowest month so far: April, <!--n:f2.wallets_kept_share_of_revenue.2026-04-->77%<!--/n-->; October <!--n:f2.wallets_kept_share_of_revenue.2026-10-->100%<!--/n-->), or what the
   buybacks wallets keep in dollars falls back to April's level (<!--n:f2.buybacks_kept_usd_per_day.2026-04-->$6,270<!--/n--> a day). A rising price alone cannot
-  trigger it.
+  trigger either.
+- **Buy on price** when a 30-day window's mean NEAR price is at or below the price at which that window's revenue
+  buys as many NEAR as are issued: <!--n:iv.revenue_equilibrium_price_usd-->$0.80<!--/n--> in this window (front-end fund included). There today's fees offset all new
+  NEAR with no growth at all; until (b) holds, the signers can still stop it.
 
 **Why coverage, for a staked holder.** Coverage is the buyback yield divided by the issuance rate: the wallets keep
 <!--n:iv.buyback_yield_buybacks-->0.27%<!--/n--> of NEAR's value a year (<!--n:iv.buyback_yield_with_front_end-->0.41%<!--/n--> with the front-end fund), against <!--n:iv.issuance_rate_per_year-->2.46%<!--/n--> issued.
@@ -39,7 +43,8 @@ same days (<!--n:n1.coverage_with_front_end-->16.5%<!--/n--> with the front-end 
 a NEAR price of <!--n:iv.revenue_equilibrium_price_usd-->$0.80<!--/n--> or less, against a mean of
 <!--n:n2.mean_price_usd-->$4.88<!--/n--> in the same window. Revenue is in dollars and issuance in NEAR, so the higher the
 price, the less it covers. At that mean price all NEAR is worth <!--n:iv.supply_value_usd-->$6.39B<!--/n-->:
-<!--n:iv.value_to_fees-->85×<!--/n--> a year of fees and <!--n:iv.value_to_revenue-->248×<!--/n--> a year of revenue. A year of issuance is worth
+<!--n:iv.value_to_fees-->85×<!--/n--> a year of fees and <!--n:iv.value_to_revenue-->248×<!--/n--> a year of revenue (<!--n:peer.near.mcap_to_revenue-->190×<!--/n--> at the price of <!--n:peer.value_as_of-->2026-11-06 12:03 UTC<!--/n-->,
+the basis of the [peers](#peers-on-one-basis) table). A year of issuance is worth
 <!--n:iv.issuance_usd_per_year-->$157.5M<!--/n-->; the wallets kept <!--n:iv.wallets_kept_usd_per_year-->$25.9M<!--/n--> a year.
 
 **Who can change each link.** No link from the fee a user pays to the NEAR a holder keeps is fixed in code. The
@@ -52,7 +57,7 @@ April: <!--n:f2.wallets_kept_share_of_revenue.2026-04-->77%<!--/n-->). What is m
 lists, for each link, a mechanism NEAR already has.
 
 **Check it.** `python scripts/rebuild.py` (Python 3.10+, standard library only, no network) ends with
-`REBUILD: PASS`. Every figure here is copied from [`data/numbers.json`](data/numbers.json) with a hidden marker of
+`REBUILD: PASS`. Every measured figure here is copied from [`data/numbers.json`](data/numbers.json) with a hidden marker of
 its key, and the check fails if a marked figure differs. Terms: [details](docs/DETAILS.md#terms).
 
 > **Status: v2.1, 6 November 2026.** Window 2 October → 1 November 2026 (00:00 UTC), blocks 218,126,921 → 222,491,356.
@@ -117,7 +122,7 @@ Full definitions: [details](docs/DETAILS.md#the-three-numbers).
 
 ## Investment view
 
-*Dated 5 November 2026. Horizon five years, to 1 January 2031, checked every 12 months. Thresholds are the author's
+*Dated 6 November 2026. Horizon five years, to 1 January 2031, checked every 12 months. Thresholds are the author's
 choice; every figure in them is measured.*
 
 At the end block <!--n:c.issuance_staked_share-->45.2%<!--/n--> of supply (<!--n:c.issuance_total_stake_near-->592,027,869<!--/n--> NEAR) is
@@ -189,8 +194,13 @@ Against a mean price of <!--n:n2.mean_price_usd-->$4.88<!--/n--> in the window. 
 from April to October revenue grew <!--n:lr.history.2026-04_2026-10.revenue_usd_multiple-->×8.2<!--/n--> and fees <!--n:lr.history.2026-04_2026-10.fees_usd_multiple-->×1.9<!--/n--> in dollars, over six months that are not
 annualized here.
 
+**What would make it worse** (the Avoid test above): the wallets keep less than 75% of DefiLlama's revenue, in NEAR, over
+30 days, or what the buybacks wallets keep in dollars falls back to April's level (<!--n:f2.buybacks_kept_usd_per_day.2026-04-->$6,270<!--/n--> a day). **When to check:** 6, 8 and 16
+November 2026 (the predictions), every month from `data/history.csv`, and each November to 2031 against the [2031 table](#issuance-to-2031).
+
 **Valuation, same window.** All NEAR in `total_supply` at the window's mean price
-(<!--n:n2.mean_price_usd-->$4.88<!--/n-->) is worth <!--n:iv.supply_value_usd-->$6.39B<!--/n-->; circulating supply would need an off-chain source.
+(<!--n:n2.mean_price_usd-->$4.88<!--/n-->) is worth <!--n:iv.supply_value_usd-->$6.39B<!--/n-->. CoinGecko's circulating supply equals total supply ([`data/raw/peers/`](data/raw/peers/)), so NEAR's market cap
+differs from this value only by the price.
 
 | A year of | Dollars | Value ÷ that |
 |---|---|---|
@@ -199,27 +209,39 @@ annualized here.
 | NEAR kept by the three wallets, on chain | <!--n:iv.wallets_kept_usd_per_year-->$25.9M<!--/n--> | <!--n:iv.value_to_wallets_kept-->247×<!--/n--> |
 | Issuance, for comparison | <!--n:iv.issuance_usd_per_year-->$157.5M<!--/n--> | — |
 
-**Peers, on one basis.** DefiLlama's revenue and holders' revenue (what is paid to token holders, mostly as
-buybacks) over the same 30 days, a year; CoinGecko's market cap at <!--n:peer.value_as_of-->2026-11-06 11:38 UTC<!--/n-->. NEAR here is
-DefiLlama's NEAR Intents against all of NEAR, the same basis as the peers (`scripts/peers.py`).
+### Peers on one basis
+
+DefiLlama's revenue and holders' revenue (what is paid to token holders: buybacks, or for an L1 the gas that is
+burned) over the same 30 days, a year; CoinGecko's market cap at <!--n:peer.value_as_of-->2026-11-06 12:03 UTC<!--/n-->. Every token is measured
+the same way, NEAR included (`scripts/peers.py`).
 
 | Token | Market cap | Revenue a year | Market cap ÷ revenue | Paid to holders a year ÷ market cap |
 |---|---|---|---|---|
-| NEAR (NEAR Intents) | <!--n:peer.near.market_cap_usd-->$4.91B<!--/n--> | <!--n:peer.near.revenue_usd_per_year-->$25.8M<!--/n--> | <!--n:peer.near.mcap_to_revenue-->190×<!--/n--> | <!--n:peer.near.holders_yield_on_mcap-->0.53%<!--/n--> |
-| Hyperliquid (HYPE) | <!--n:peer.hyperliquid.market_cap_usd-->$18.78B<!--/n--> | <!--n:peer.hyperliquid.revenue_usd_per_year-->$817.6M<!--/n--> | <!--n:peer.hyperliquid.mcap_to_revenue-->23×<!--/n--> | <!--n:peer.hyperliquid.holders_yield_on_mcap-->4.35%<!--/n--> |
+| *Apps* | | | | |
+| NEAR, Intents only | <!--n:peer.near.market_cap_usd-->$4.89B<!--/n--> | <!--n:peer.near.revenue_usd_per_year-->$25.8M<!--/n--> | <!--n:peer.near.mcap_to_revenue-->190×<!--/n--> | <!--n:peer.near.holders_yield_on_mcap-->0.53%<!--/n--> |
+| Hyperliquid (HYPE) | <!--n:peer.hyperliquid.market_cap_usd-->$18.79B<!--/n--> | <!--n:peer.hyperliquid.revenue_usd_per_year-->$817.6M<!--/n--> | <!--n:peer.hyperliquid.mcap_to_revenue-->23×<!--/n--> | <!--n:peer.hyperliquid.holders_yield_on_mcap-->4.35%<!--/n--> |
 | Aave (AAVE) | <!--n:peer.aave.market_cap_usd-->$2.00B<!--/n--> | <!--n:peer.aave.revenue_usd_per_year-->$61.3M<!--/n--> | <!--n:peer.aave.mcap_to_revenue-->33×<!--/n--> | <!--n:peer.aave.holders_yield_on_mcap-->0.00%<!--/n--> |
-| Jupiter (JUP) | <!--n:peer.jupiter.market_cap_usd-->$826.2M<!--/n--> | <!--n:peer.jupiter.revenue_usd_per_year-->$43.8M<!--/n--> | <!--n:peer.jupiter.mcap_to_revenue-->19×<!--/n--> | <!--n:peer.jupiter.holders_yield_on_mcap-->2.65%<!--/n--> |
+| Jupiter (JUP) | <!--n:peer.jupiter.market_cap_usd-->$824.1M<!--/n--> | <!--n:peer.jupiter.revenue_usd_per_year-->$43.8M<!--/n--> | <!--n:peer.jupiter.mcap_to_revenue-->19×<!--/n--> | <!--n:peer.jupiter.holders_yield_on_mcap-->2.65%<!--/n--> |
+| *L1s* | | | | |
+| **NEAR, Intents and L1 gas** | <!--n:peer.near_all.market_cap_usd-->$4.89B<!--/n--> | <!--n:peer.near_all.revenue_usd_per_year-->$27.4M<!--/n--> | <!--n:peer.near_all.mcap_to_revenue-->179×<!--/n--> | <!--n:peer.near_all.holders_yield_on_mcap-->0.56%<!--/n--> |
+| Aptos (APT) | <!--n:peer.aptos.market_cap_usd-->$541.3M<!--/n--> | <!--n:peer.aptos.revenue_usd_per_year-->$1.6M<!--/n--> | <!--n:peer.aptos.mcap_to_revenue-->337×<!--/n--> | <!--n:peer.aptos.holders_yield_on_mcap-->0.30%<!--/n--> |
+| Solana (SOL) | <!--n:peer.solana.market_cap_usd-->$53.31B<!--/n--> | <!--n:peer.solana.revenue_usd_per_year-->$31.8M<!--/n--> | <!--n:peer.solana.mcap_to_revenue-->1,674×<!--/n--> | <!--n:peer.solana.holders_yield_on_mcap-->0.06%<!--/n--> |
+| Ethereum (ETH) | <!--n:peer.ethereum.market_cap_usd-->$273.66B<!--/n--> | <!--n:peer.ethereum.revenue_usd_per_year-->$88.8M<!--/n--> | <!--n:peer.ethereum.mcap_to_revenue-->3,082×<!--/n--> | <!--n:peer.ethereum.holders_yield_on_mcap-->0.03%<!--/n--> |
+| Sui (SUI) | <!--n:peer.sui.market_cap_usd-->$3.59B<!--/n--> | <!--n:peer.sui.revenue_usd_per_year-->$0.3M<!--/n--> | <!--n:peer.sui.mcap_to_revenue-->14,137×<!--/n--> | <!--n:peer.sui.holders_yield_on_mcap-->0.01%<!--/n--> |
 
-NEAR's value is several times more years of its revenue than the peers' are, and holders receive a fraction of
-what HYPE and JUP holders do. This does not say NEAR is mispriced: its value prices the whole L1, not Intents
-alone. It says how little of that value today's fee capture explains, which is the thesis. The values are of the
-fetch, when NEAR traded at <!--n:peer.near.price_usd-->$3.74<!--/n--> (the window's mean was <!--n:n2.mean_price_usd-->$4.88<!--/n-->); NEAR's fees and revenue here equal the
-window's to 0.1%, a check of every build. DefiLlama counts no holders' revenue for Aave, whose buybacks are paid
-from its treasury ([peers](docs/DETAILS.md#peers)). Fully diluted values: [details](docs/DETAILS.md#peers).
+The two groups point opposite ways. Against the apps, NEAR's value is many more years of its revenue and its
+holders receive a fraction of what HYPE and JUP holders do. Against the L1s, NEAR (Intents and gas together) has
+the lowest market cap ÷ revenue of the five and the largest share paid to holders. L1 tokens are not priced on
+fees: Ethereum's market cap is <!--n:peer.ethereum.mcap_to_revenue-->3,082×<!--/n--> a year of its revenue. So the table does not say NEAR is mispriced. It says
+that today's fee capture explains little of NEAR's value, which is the thesis, and that among L1s NEAR already
+captures the most per dollar of value, which is the bull case and one reason the rating is Hold, not Avoid.
 
-**What would make it worse** (the Avoid test above): the wallets pay NEAR out (number 1 falls while DefiLlama revenue
-does not), or what the buybacks wallets keep in dollars falls back to April's level (<!--n:f2.buybacks_kept_usd_per_day.2026-04-->$6,270<!--/n--> a day). **When to check:** 6, 8 and 16
-November 2026 (the predictions), every month from `data/history.csv`, and each November to 2031 against the table above.
+The values are of the fetch, when NEAR traded at <!--n:peer.near.price_usd-->$3.73<!--/n--> (the window's mean was <!--n:n2.mean_price_usd-->$4.88<!--/n-->); NEAR's fees and
+revenue here equal the window's to 0.1%, a check of every build. NEAR's paid-to-holders figure is DefiLlama's: it
+counts the front-end fund, nothing is paid out (the NEAR stays in the wallets), and it values the window's dollars
+at the fetch's lower price. Counted in NEAR, the buybacks wallets alone take in <!--n:iv.buyback_yield_buybacks-->0.27%<!--/n--> of all NEAR a year.
+DefiLlama counts no holders' revenue for Aave, whose buybacks are paid from its treasury. Fees and fully diluted
+values: [details](docs/DETAILS.md#peers).
 
 ## Path to rules
 
