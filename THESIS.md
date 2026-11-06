@@ -23,9 +23,10 @@ code. Issuance, on the other side of the ledger, is a protocol rule.
   <!--n:iv.buybacks_kept_usd_per_day-->$46,692<!--/n-->) and in NEAR, the pace that covers issuance on 1 January 2031 under HSP-029 (<!--n:lr.required_growth.with_front_end.B.2031-->+41%<!--/n--> counting
   the front-end fund; <!--n:lr.required_growth.buybacks.A.2031-->+75%<!--/n--> and <!--n:lr.required_growth.with_front_end.A.2031-->+58%<!--/n--> if HSP-029 is not in force), so neither a falling nor a rising
   price alone decides it.
-- **Or, with (b), on price:** a 30-day mean price at or below the price at which the dollars the buybacks wallets
-  keep buy as many NEAR as are issued: <!--n:iv.buybacks_equilibrium_price_usd-->$0.53<!--/n--> in this window, against a mean of <!--n:n2.mean_price_usd-->$4.88<!--/n-->. Revenue is earned in
-  dollars and issuance is paid in NEAR, so the higher the price, the less the wallets cover.
+- **Or, with (b), when the buybacks cover issuance:** in a 30-day window the buybacks wallets keep at least as many NEAR
+  as are issued (coverage of 100% or more, against <!--n:n1.coverage_buybacks-->10.8%<!--/n--> in this window). Revenue is earned in dollars and issuance is paid in
+  NEAR, so the higher the price, the less the wallets cover. A lower price alone does not meet the test: at this window's
+  NEAR kept, coverage reaches 100% at <!--n:iv.buybacks_equilibrium_price_usd-->$0.53<!--/n-->, and before that the dollars kept fall below April's level, which is Avoid.
 - **Avoid** if, in two 30-day windows in a row, the wallets keep less than 75% of the revenue DefiLlama attributes to NEAR, both in
   NEAR (April: <!--n:f2.wallets_kept_share_of_revenue.2026-04-->77%<!--/n-->), or what the buybacks wallets keep in dollars falls back to April's level
   (<!--n:f2.buybacks_kept_usd_per_day.2026-04-->$6,270<!--/n--> a day). Avoid overrides Buy. Hold has no upper price: the rating judges what NEAR
@@ -139,12 +140,12 @@ What weakens the claim, as measured by the same scripts:
 | Issuance is the only rule | HSP-029 is still not in a nearcore release adopted by validators on 1 November 2027 | in timelock until <!--n:f8.timelock_end_utc-->2026-11-16 16:48 UTC<!--/n--> | passed, not in force | `scripts/hsp029.py`, `scripts/upgrade_watch.py` |
 | Stake spread | the largest account holds less than half of the NEAR AI farm | <!--n:n3.largest_share-->73.3%<!--/n--> | prediction 1 expects at least 70% on 16 November | `scripts/stakers.py` |
 
-The rating changes from Hold to Buy only when (b) holds, together with (a) or with a 30-day mean price at or below
-<!--n:iv.buybacks_equilibrium_price_usd-->$0.53<!--/n-->; and to Avoid if, in two 30-day windows in a row, the wallets keep less than 75% of DefiLlama's
+The rating changes from Hold to Buy only when (b) holds, together with (a) or with the buybacks covering issuance
+(100% or more in a 30-day window); and to Avoid if, in two 30-day windows in a row, the wallets keep less than 75% of DefiLlama's
 revenue, in NEAR, or what they keep in dollars falls back to April's level. Avoid overrides Buy. NEAR moved to a
 declared lock account counts as kept, so meeting (b) is not an outflow.
 Coverage is the buyback yield (<!--n:iv.buyback_yield_buybacks-->0.27%<!--/n--> of NEAR's value a year) divided by the issuance rate, so it falls
-when the price rises faster than revenue; the price test of Buy is where that ratio reaches one. Five predictions are anchored on chain before they are judged:
+when the price rises faster than revenue; the second way to Buy is where that ratio reaches one. Five predictions are anchored on chain before they are judged:
 [`PREREG.md`](PREREG.md) (16 November) and [`PREREG-2.md`](PREREG-2.md) (6 and 8 November, with stated
 probabilities).
 

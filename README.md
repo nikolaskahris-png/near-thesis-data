@@ -21,8 +21,8 @@
   that protects your share of NEAR, not its dollar value.
 - **Buy** only once (b) keeping it is a published rule, and then when either (a) what the buybacks wallets keep has
   grown at least <!--n:lr.required_growth.buybacks.B.2031-->+56%<!--/n--> a year from <!--n:iv.buybacks_kept_usd_per_day-->$46,692<!--/n--> a day, in dollars and in NEAR, the pace that covers
-  issuance on 1 January 2031, or NEAR's 30-day mean price is at or below <!--n:iv.buybacks_equilibrium_price_usd-->$0.53<!--/n-->, where those dollars already
-  buy as many NEAR as are issued (the window's mean was <!--n:n2.mean_price_usd-->$4.88<!--/n-->).
+  issuance on 1 January 2031, or the buybacks already cover issuance: in a 30-day window they keep at least as many
+  NEAR as are issued (coverage of 100% or more, against <!--n:n1.coverage_buybacks-->10.8%<!--/n--> now).
 - **Avoid** if, in two 30-day windows in a row, the wallets keep less than 75% of DefiLlama's revenue for NEAR, in
   NEAR, or what the buybacks wallets keep in dollars falls back to April's level (<!--n:f2.buybacks_kept_usd_per_day.2026-04-->$6,270<!--/n--> a day). Avoid
   overrides Buy. No price is too high for Hold: the rating judges what NEAR captures, not how far its price can go.
@@ -84,8 +84,8 @@ choice; every figure in them is measured.*
   before commission while supply grows <!--n:iv.issuance_rate_per_year-->2.46%<!--/n-->, so a staked holder's share of all NEAR rises. That
   protects the share, not the dollar value.
 - **Not a Buy:** what holders get from fees covers a small part of issuance, and nothing obliges anyone to keep it.
-- **Upgrade to Buy** when (b) holds and, at a yearly check, (a) and (a′) hold, or (b) holds and the price test below
-  is met. Each check measures the same 30 days of its year
+- **Upgrade to Buy** when (b) holds and, at a yearly check, (a) and (a′) hold, or (b) holds and the buybacks cover
+  issuance (below). Each check measures the same 30 days of its year
   (2 October to 1 November), like this window. (a) **In dollars:** what the buybacks wallets keep a
   day has grown at least <!--n:lr.required_growth.buybacks.B.2031-->+56%<!--/n--> a year from this window's <!--n:iv.buybacks_kept_usd_per_day-->$46,692<!--/n-->, so a falling price alone
   cannot meet it. (a′) **In NEAR:** the same growth, so a rising price has not used it up. +56% a year is the pace that
@@ -99,9 +99,11 @@ choice; every figure in them is measured.*
   buybacks wallets keep in dollars falls back to April's level (<!--n:f2.buybacks_kept_usd_per_day.2026-04-->$6,270<!--/n--> a day). A rising price alone cannot
   trigger either. NEAR moved from the wallets to an account declared as a lock (the published rule of (b)) counts as
   kept, not as an outflow (`LOCKS` in `scripts/daily.py`; none exists yet), so meeting (b) cannot trigger Avoid.
-- **The price test of Buy**, with (b): a 30-day mean NEAR price at or below the price at which the dollars the buybacks
-  wallets keep buy as many NEAR as are issued: <!--n:iv.buybacks_equilibrium_price_usd-->$0.53<!--/n--> in this window, on the same basis as (a). With the front-end fund
-  it would be <!--n:iv.revenue_equilibrium_price_usd-->$0.80<!--/n-->. There today's buybacks offset all new NEAR with no growth at all.
+- **Buybacks cover issuance**, with (b): in a 30-day window the buybacks wallets keep at least as many NEAR as are
+  issued, so coverage is 100% or more (<!--n:n1.coverage_buybacks-->10.8%<!--/n--> in this window), on the same basis as (a). A lower price raises
+  coverage, since the same dollars buy more NEAR, but it cannot meet the test alone: at this window's NEAR kept, coverage
+  reaches 100% only at <!--n:iv.buybacks_equilibrium_price_usd-->$0.53<!--/n--> (mean <!--n:n2.mean_price_usd-->$4.88<!--/n-->), and at a price that low what the buybacks wallets keep in dollars
+  is already below April's level, Avoid's dollar test; Avoid overrides Buy. (With the front-end fund, <!--n:iv.revenue_equilibrium_price_usd-->$0.80<!--/n-->.)
 - **Which rule wins:** Avoid overrides Buy. Hold has no upper price: a rising price lowers coverage, which the
   figures show, but the rating judges what NEAR captures and whether it is a rule, not valuation upside.
 
