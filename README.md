@@ -2,59 +2,36 @@
 
 [![verify](https://github.com/nikolaskahris-png/near-thesis-data/actions/workflows/verify.yml/badge.svg)](https://github.com/nikolaskahris-png/near-thesis-data/actions/workflows/verify.yml)
 
+**In one minute.**
+
+- **Real.** Users pay <!--n:n2.fees_usd_per_day-->$206,049<!--/n--> a day in fees on NEAR Intents (DefiLlama). From April to October the wallets
+  that hold bought-back NEAR kept <!--n:f2.wallets_kept_share_of_revenue.2026-04_2026-10-->96.9%<!--/n--> of the revenue DefiLlama attributes to NEAR, and what the buybacks
+  wallets keep in dollars grew <!--n:lr.history.2026-04_2026-10.buybacks_kept_usd_multiple-->×7.5<!--/n-->.
+- **Small.** Buybacks offset <!--n:n1.coverage_buybacks-->10.8%<!--/n--> of the NEAR issued in the same days (<!--n:n1.coverage_with_front_end-->16.5%<!--/n--> counting
+  the front-end fund, which keeps near-intents.org's own fees). If NEAR kept every fee, it would cover <!--n:n2.max_coverage-->47.9%<!--/n-->. NEAR's market cap is
+  <!--n:peer.near_all.mcap_to_revenue-->179×<!--/n--> a year of its revenue, Intents and gas together.
+- **Discretionary.** No link from the fee a user pays to the NEAR a holder keeps is fixed in code. The fee is set
+  off-chain. The <!--n:n1.wallets_held_near-->4,109,089<!--/n--> NEAR in the wallets can be moved by their signers; the buybacks wallet
+  needs <!--n:c.buybacks_confirmations-->2 of 4<!--/n--> signatures. Nothing is burned, and no rule makes them keep it;
+  [Path to rules](#path-to-rules) lists a mechanism NEAR already has for each link.
+
 **Rating: Hold, not Buy. Five years, to 2031, reviewed every 12 months.**
 
-- **Hold:** keep NEAR you already own, staked with a validator. Staking pays about <!--n:iv.staking_yield_gross-->5.0%<!--/n--> a year
-  before commission while supply grows <!--n:iv.issuance_rate_per_year-->2.46%<!--/n-->, so a staked holder's share of all NEAR rises. That
-  protects the share, not the dollar value.
-- **Not a Buy:** what holders get from fees covers a small part of issuance, and nothing obliges anyone to keep it.
-- **Upgrade to Buy** when, at a yearly check, all three hold. Each check measures the same 30 days of its year
-  (2 October to 1 November), like this window. (a) **In dollars:** what the buybacks wallets keep a
-  day has grown at least <!--n:lr.required_growth.buybacks.B.2031-->+56%<!--/n--> a year from this window's <!--n:iv.buybacks_kept_usd_per_day-->$46,692<!--/n-->, so a falling price alone
-  cannot meet it. (a′) **In NEAR:** the same growth, so a rising price has not used it up. +56% a year is the pace that
-  covers issuance on 1 January 2031 under HSP-029, the passed proposal that lowers issuance from 2.5% to 1.6% a year
-  (<!--n:lr.required_growth.with_front_end.B.2031-->+41%<!--/n--> counting the front-end fund, which keeps near-intents.org's own fees; <!--n:lr.required_growth.buybacks.A.2031-->+75%<!--/n--> and
-  <!--n:lr.required_growth.with_front_end.A.2031-->+58%<!--/n--> if HSP-029 is not in force). (b) Keeping it is a published rule. The hurdle depends on the
-  base: from the April–October average it is <!--n:lr.required_growth.buybacks.B.2031.base.2026-04_2026-10-->+62%<!--/n-->; from single months,
-  <!--n:lr.required_growth.buybacks.B.2031.base_min-->+44%<!--/n--> to <!--n:lr.required_growth.buybacks.B.2031.base_max-->+85%<!--/n-->.
-- **Downgrade to Avoid** if, over a 30-day window, the wallets keep less than 75% of the revenue DefiLlama attributes
-  to NEAR, both counted in NEAR (lowest month so far: April, <!--n:f2.wallets_kept_share_of_revenue.2026-04-->77%<!--/n-->; October <!--n:f2.wallets_kept_share_of_revenue.2026-10-->100%<!--/n-->), or what the
-  buybacks wallets keep in dollars falls back to April's level (<!--n:f2.buybacks_kept_usd_per_day.2026-04-->$6,270<!--/n--> a day). A rising price alone cannot
-  trigger either.
-- **Buy on price** when a 30-day window's mean NEAR price is at or below the price at which that window's revenue
-  buys as many NEAR as are issued: <!--n:iv.revenue_equilibrium_price_usd-->$0.80<!--/n--> in this window (front-end fund included). There today's fees offset all new
-  NEAR with no growth at all; until (b) holds, the signers can still stop it.
+- **Hold:** keep NEAR you own, staked. Staking pays about <!--n:iv.staking_yield_gross-->5.0%<!--/n--> a year while supply grows <!--n:iv.issuance_rate_per_year-->2.46%<!--/n-->:
+  that protects your share of NEAR, not its dollar value.
+- **Buy** when, at a yearly check, (a) what the buybacks wallets keep has grown at least <!--n:lr.required_growth.buybacks.B.2031-->+56%<!--/n--> a year from
+  <!--n:iv.buybacks_kept_usd_per_day-->$46,692<!--/n--> a day, in dollars and in NEAR, the pace that covers issuance on 1 January 2031, and (b) keeping it is a published rule.
+  Or on price: when NEAR falls to where its revenue covers issuance: <!--n:iv.revenue_equilibrium_price_usd-->$0.80<!--/n--> in this window,
+  against a mean price of <!--n:n2.mean_price_usd-->$4.88<!--/n-->.
+- **Avoid** if the wallets keep less than 75% of DefiLlama's revenue for NEAR over 30 days, in NEAR, or what the buybacks wallets keep in
+  dollars falls back to April's level (<!--n:f2.buybacks_kept_usd_per_day.2026-04-->$6,270<!--/n--> a day).
 
-**Why coverage, for a staked holder.** Coverage is the buyback yield divided by the issuance rate: the wallets keep
-<!--n:iv.buyback_yield_buybacks-->0.27%<!--/n--> of NEAR's value a year (<!--n:iv.buyback_yield_with_front_end-->0.41%<!--/n--> with the front-end fund), against <!--n:iv.issuance_rate_per_year-->2.46%<!--/n--> issued.
-Staking moves issuance from unstaked holders to staked ones; buybacks are the only part of the return paid with
-money from outside, so they are what all holders share. Net of buybacks, supply dilutes <!--n:iv.net_dilution_buybacks-->2.20%<!--/n--> a year. Coverage
-falls when the price rises and revenue does not: each dollar buys back a smaller part of a dearer NEAR. In dollars,
-April to October: fees <!--n:lr.history.2026-04_2026-10.fees_usd_multiple-->×1.9<!--/n-->, revenue <!--n:lr.history.2026-04_2026-10.revenue_usd_multiple-->×8.2<!--/n-->, volume <!--n:lr.history.2026-04_2026-10.volume_usd_multiple-->×2.0<!--/n-->, kept by the buybacks wallets
-<!--n:lr.history.2026-04_2026-10.buybacks_kept_usd_multiple-->×7.5<!--/n-->; the NEAR price rose faster than fees, so fees counted in NEAR fell (<!--n:lr.history.2026-04_2026-10.fees_near_multiple-->×0.5<!--/n-->).
+Every condition, with its exact rule: [the rating in full](#the-rating-in-full).
 
-If NEAR kept every fee, fees counted in NEAR would need <!--n:lr.required_growth.all_fees.B.2031-->+9%<!--/n--> a year ([the model](#issuance-to-2031)).
-Thresholds are the author's choice; every figure in them is measured.
-
-Users pay <!--n:n2.fees_usd_per_day-->$206,049<!--/n--> a day in fees on NEAR Intents (DefiLlama). The
-wallets that hold bought-back NEAR took in as much NEAR as <!--n:n1.coverage_buybacks-->10.8%<!--/n--> of what was issued in the
-same days (<!--n:n1.coverage_with_front_end-->16.5%<!--/n--> with the front-end fund); if NEAR kept every fee, the ceiling would be
-<!--n:n2.max_coverage-->47.9%<!--/n-->. At today's revenue, front-end fund included, the wallets would cover issuance only at
-a NEAR price of <!--n:iv.revenue_equilibrium_price_usd-->$0.80<!--/n--> or less, against a mean of
-<!--n:n2.mean_price_usd-->$4.88<!--/n--> in the same window. Revenue is in dollars and issuance in NEAR, so the higher the
-price, the less it covers. At that mean price all NEAR is worth <!--n:iv.supply_value_usd-->$6.39B<!--/n-->:
-<!--n:iv.value_to_fees-->85×<!--/n--> a year of fees and <!--n:iv.value_to_revenue-->248×<!--/n--> a year of revenue (<!--n:peer.near.mcap_to_revenue-->190×<!--/n--> at the price of <!--n:peer.value_as_of-->2026-11-06 12:03 UTC<!--/n-->,
-the basis of the [peers](#peers-on-one-basis) table). A year of issuance is worth
-<!--n:iv.issuance_usd_per_year-->$157.5M<!--/n-->; the wallets kept <!--n:iv.wallets_kept_usd_per_year-->$25.9M<!--/n--> a year.
-
-**Who can change each link.** No link from the fee a user pays to the NEAR a holder keeps is fixed in code. The
-fee level is set off-chain by the distribution channels. At the end block the wallets held
-<!--n:n1.wallets_held_near-->4,109,089<!--/n--> NEAR that can be moved by their signers: the buybacks wallet with
-<!--n:c.buybacks_confirmations-->2 of 4<!--/n--> signatures; in the front-end fund's DAO one Admin can change the rules. Nothing
-is burned. So far the NEAR has stayed: from April to October the wallets kept
-<!--n:f2.wallets_kept_share_of_revenue.2026-04_2026-10-->96.9%<!--/n--> of the revenue DefiLlama attributes to NEAR (lowest month,
-April: <!--n:f2.wallets_kept_share_of_revenue.2026-04-->77%<!--/n-->). What is missing is a rule. [Path to rules](#path-to-rules)
-lists, for each link, a mechanism NEAR already has.
+**The bull case, measured.** NEAR's market cap is <!--n:peer.near_all.mcap_to_revenue-->179×<!--/n--> its yearly revenue, the lowest of the L1s here, so it earns
+the most revenue per dollar of market cap: <!--n:peer.aptos.mcap_to_revenue-->337×<!--/n--> for Aptos, <!--n:peer.solana.mcap_to_revenue-->1,674×<!--/n--> for Solana and <!--n:peer.ethereum.mcap_to_revenue-->3,082×<!--/n--> for Ethereum
+([peers](#peers-on-one-basis)). Against apps with buybacks it is the other way round (Hyperliquid <!--n:peer.hyperliquid.mcap_to_revenue-->23×<!--/n-->). What
+the capture has not done is offset issuance, and nothing yet makes it last.
 
 **Check it.** `python scripts/rebuild.py` (Python 3.10+, standard library only, no network) ends with
 `REBUILD: PASS`. Every measured figure here is copied from [`data/numbers.json`](data/numbers.json) with a hidden marker of
@@ -64,32 +41,6 @@ its key, and the check fails if a marked figure differs. Terms: [details](docs/D
 > Every on-chain and DefiLlama figure is final for this window: DefiLlama's data were fetched again 24 hours later
 > and no day had changed ([Method](docs/DETAILS.md#method)). The dollar value of NEAR AI credits is an off-chain
 > reading, marked as such.
-
-## Check it in two minutes
-
-Python 3.10 or later (`python` below; `python3` on some systems), standard library only, no network, no keys:
-
-```
-python scripts/rebuild.py
-```
-
-The same, step by step:
-
-```
-python -m unittest discover -s tests              # every script's logic on fixed inputs
-python scripts/build_numbers.py --verify           # every script's offline check, then numbers.json rebuilds the same
-python scripts/build_numbers.py --check README.md  # every marked number in this file matches numbers.json
-python scripts/check_prereg.py --file              # PREREG.md matches the anchored SHA-256 (saved copy)
-python scripts/judge_prereg2.py --verify           # PREREG-2.md's judged predictions recompute from saved responses
-python scripts/check_prereg.py --anchor 2 --verify # PREREG-2.md = its SocialDB record = the transaction's args
-python scripts/peers.py --verify                   # the peer table recomputes from saved DefiLlama and CoinGecko responses
-```
-
-The second command ends with `VERIFY: PASS (PUBLIC_FULL)`: every number recomputed with no network and without
-the private originals ([Method](docs/DETAILS.md#method)). For the lists that name accounts (farm stakers, HSP-029
-voters, validators) git holds redacted copies: offline, the check proves they are consistent and that their totals
-equal the totals in the raw contract responses, not that each entry is right. The `verify` badge runs these on every push. Five live
-read-only calls, and a re-measurement of numbers 1 and 3 from the chain: [Verify live](docs/DETAILS.md#verify-live).
 
 ## The numbers: two of value, one signal
 
@@ -124,6 +75,41 @@ Full definitions: [details](docs/DETAILS.md#the-three-numbers).
 
 *Dated 6 November 2026. Horizon five years, to 1 January 2031, checked every 12 months. Thresholds are the author's
 choice; every figure in them is measured.*
+
+### The rating in full
+
+- **Hold:** keep NEAR you already own, staked with a validator. Staking pays about <!--n:iv.staking_yield_gross-->5.0%<!--/n--> a year
+  before commission while supply grows <!--n:iv.issuance_rate_per_year-->2.46%<!--/n-->, so a staked holder's share of all NEAR rises. That
+  protects the share, not the dollar value.
+- **Not a Buy:** what holders get from fees covers a small part of issuance, and nothing obliges anyone to keep it.
+- **Upgrade to Buy** when, at a yearly check, all three hold. Each check measures the same 30 days of its year
+  (2 October to 1 November), like this window. (a) **In dollars:** what the buybacks wallets keep a
+  day has grown at least <!--n:lr.required_growth.buybacks.B.2031-->+56%<!--/n--> a year from this window's <!--n:iv.buybacks_kept_usd_per_day-->$46,692<!--/n-->, so a falling price alone
+  cannot meet it. (a′) **In NEAR:** the same growth, so a rising price has not used it up. +56% a year is the pace that
+  covers issuance on 1 January 2031 under HSP-029, the passed proposal that lowers issuance from 2.5% to 1.6% a year
+  (<!--n:lr.required_growth.with_front_end.B.2031-->+41%<!--/n--> counting the front-end fund, which keeps near-intents.org's own fees; <!--n:lr.required_growth.buybacks.A.2031-->+75%<!--/n--> and
+  <!--n:lr.required_growth.with_front_end.A.2031-->+58%<!--/n--> if HSP-029 is not in force). (b) Keeping it is a published rule. The hurdle depends on the
+  base: from the April–October average it is <!--n:lr.required_growth.buybacks.B.2031.base.2026-04_2026-10-->+62%<!--/n-->; from single months,
+  <!--n:lr.required_growth.buybacks.B.2031.base_min-->+44%<!--/n--> to <!--n:lr.required_growth.buybacks.B.2031.base_max-->+85%<!--/n-->.
+- **Downgrade to Avoid** if, over a 30-day window, the wallets keep less than 75% of the revenue DefiLlama attributes
+  to NEAR, both counted in NEAR (lowest month so far: April, <!--n:f2.wallets_kept_share_of_revenue.2026-04-->77%<!--/n-->; October <!--n:f2.wallets_kept_share_of_revenue.2026-10-->100%<!--/n-->), or what the
+  buybacks wallets keep in dollars falls back to April's level (<!--n:f2.buybacks_kept_usd_per_day.2026-04-->$6,270<!--/n--> a day). A rising price alone cannot
+  trigger either.
+- **Buy on price** when a 30-day window's mean NEAR price is at or below the price at which that window's revenue
+  buys as many NEAR as are issued: <!--n:iv.revenue_equilibrium_price_usd-->$0.80<!--/n--> in this window (front-end fund included). There today's fees offset all new
+  NEAR with no growth at all; until (b) holds, the signers can still stop it.
+
+If NEAR kept every fee, fees counted in NEAR would need <!--n:lr.required_growth.all_fees.B.2031-->+9%<!--/n--> a year ([the model](#issuance-to-2031)).
+
+**Why coverage, for a staked holder.** Coverage is the buyback yield divided by the issuance rate: the wallets keep
+<!--n:iv.buyback_yield_buybacks-->0.27%<!--/n--> of NEAR's value a year (<!--n:iv.buyback_yield_with_front_end-->0.41%<!--/n--> with the front-end fund), against <!--n:iv.issuance_rate_per_year-->2.46%<!--/n--> issued.
+Staking moves issuance from unstaked holders to staked ones; buybacks are the only part of the return paid with
+money from outside, so they are what all holders share. Net of buybacks, supply dilutes <!--n:iv.net_dilution_buybacks-->2.20%<!--/n--> a year. Coverage
+falls when the price rises and revenue does not: each dollar buys back a smaller part of a dearer NEAR. In dollars,
+April to October: fees <!--n:lr.history.2026-04_2026-10.fees_usd_multiple-->×1.9<!--/n-->, revenue <!--n:lr.history.2026-04_2026-10.revenue_usd_multiple-->×8.2<!--/n-->, volume <!--n:lr.history.2026-04_2026-10.volume_usd_multiple-->×2.0<!--/n-->, kept by the buybacks wallets
+<!--n:lr.history.2026-04_2026-10.buybacks_kept_usd_multiple-->×7.5<!--/n-->; the NEAR price rose faster than fees, so fees counted in NEAR fell (<!--n:lr.history.2026-04_2026-10.fees_near_multiple-->×0.5<!--/n-->).
+
+### Who gets what
 
 At the end block <!--n:c.issuance_staked_share-->45.2%<!--/n--> of supply (<!--n:c.issuance_total_stake_near-->592,027,869<!--/n--> NEAR) is
 staked with validators. What each holder gets:
@@ -172,7 +158,8 @@ Keeping every fee instead of today's share can add <!--n:lr.take_rate_ceiling_mu
 that grow faster than the NEAR price. From April to October what the wallets kept rose
 <!--n:lr.history.2026-04_2026-10.kept_multiple-->×2.9<!--/n-->, but fees counted in NEAR fell (<!--n:lr.history.2026-04_2026-10.fees_near_multiple-->×0.5<!--/n-->): the rise came from the share
 kept (take rate <!--n:lr.history.2026-04_2026-10.take_rate_multiple-->×4.2<!--/n-->), the lever with a ceiling. If HSP-029 starts six months late, covering
-2029 needs <!--n:lr.required_growth.all_fees.B_late.2029-->+26%<!--/n--> a year instead of <!--n:lr.required_growth.all_fees.B.2029-->+19%<!--/n-->. The model's HSP-029 cut over six years,
+2029 needs <!--n:lr.required_growth.all_fees.B_late.2029-->+26%<!--/n--> a year instead of <!--n:lr.required_growth.all_fees.B.2029-->+19%<!--/n-->. For scale, HSP-027 took <!--n:pr.v87.days_from_hsp027_passed-->124<!--/n--> days from its vote to effect (finding 3); the model's start for HSP-029 is a
+shorter span from its vote. The model's HSP-029 cut over six years,
 <!--n:lr.not_issued_B.6y-->66.35M<!--/n--> NEAR, is within <!--n:lr.not_issued_B_vs_proposal.6y-->+0.4%<!--/n--> of the proposal's own figure.
 
 **The base matters.** The table starts from the window's level, October. Starting instead from each month since April,
@@ -194,8 +181,7 @@ Against a mean price of <!--n:n2.mean_price_usd-->$4.88<!--/n--> in the window. 
 from April to October revenue grew <!--n:lr.history.2026-04_2026-10.revenue_usd_multiple-->×8.2<!--/n--> and fees <!--n:lr.history.2026-04_2026-10.fees_usd_multiple-->×1.9<!--/n--> in dollars, over six months that are not
 annualized here.
 
-**What would make it worse** (the Avoid test above): the wallets keep less than 75% of DefiLlama's revenue, in NEAR, over
-30 days, or what the buybacks wallets keep in dollars falls back to April's level (<!--n:f2.buybacks_kept_usd_per_day.2026-04-->$6,270<!--/n--> a day). **When to check:** 6, 8 and 16
+**When to check:** 6, 8 and 16
 November 2026 (the predictions), every month from `data/history.csv`, and each November to 2031 against the [2031 table](#issuance-to-2031).
 
 **Valuation, same window.** All NEAR in `total_supply` at the window's mean price
@@ -320,12 +306,14 @@ timing and attribution. The take rate (revenue ÷ fees) rose from <!--n:f2.take_
 <!--n:f2.take_rate.2026-10-->34.3%<!--/n--> while fees stayed at <!--n:f2.fees_bps.2026-08-->13.8<!--/n-->–<!--n:f2.fees_bps.2026-10-->16.0<!--/n--> bps of
 volume from August.
 
-**3. HSP-029 passed with <!--n:f8.against_votes-->1<!--/n--> vote against (<!--n:f8.against_venear-->0<!--/n--> veNEAR, rounded), and
-<!--n:f8.fewest_voters_reaching_quorum-->6<!--/n--> voters held enough veNEAR to reach its quorum.** veNEAR is the voting weight of NEAR
+**3. A passed vote is not yet a rule, and becoming one took months.** HSP-029 passed with <!--n:f8.against_votes-->1<!--/n--> vote against
+(<!--n:f8.against_venear-->0<!--/n--> veNEAR, rounded), and <!--n:f8.fewest_voters_reaching_quorum-->6<!--/n--> voters held enough veNEAR to reach its quorum. veNEAR is the voting weight of NEAR
 locked in House of Stake. At the vote's last block, 222,745,764 (`scripts/hsp029_voters.py`):
 <!--n:f8.voters-->36<!--/n--> voters, <!--n:f8.for_voters-->32<!--/n--> for, <!--n:f8.turnout_of_snapshot-->62.3%<!--/n--> of the snapshot's veNEAR, quorum
 <!--n:f8.quorum_required_venear-->1,846,161<!--/n-->; the 8 largest cast <!--n:f8.top8_share_of_votes_cast-->80.6%<!--/n--> of the votes. It executes nothing on chain:
-issuance falls only when validators run a release that includes it ([Path to rules](#path-to-rules)).
+issuance falls only when validators run a release that includes it ([Path to rules](#path-to-rules)). The vote before it
+shows the wait: HSP-027 passed on 3 July 2026 and took effect at block <!--n:pr.v87.first_height-->223,012,337<!--/n--> (<!--n:pr.v87.first_utc-->2026-11-04 11:46 UTC<!--/n-->),
+<!--n:pr.v87.days_from_hsp027_passed-->124<!--/n--> days later, when validators had run nearcore 2.14.0 (prediction 4, [pre-registration](#pre-registration)).
 
 **4. `treasury.near` receives 10% of the maximum issuance; in 2026 it paid out
 <!--n:ts.year_out_near-->30,171,200<!--/n--> NEAR, all in April and May.** `scripts/treasury_spend.py` reproduces its reward to the yocto at
@@ -385,6 +373,32 @@ Anchored SHA-256: `d3f48ed9172b1785b4dcf290b84e9a06c870b8b9b5481c6d40e51a4605b1d
 These three are easy to check, not hard to pass: `PREREG.md` says how demanding each is. Rules, timing and void
 conditions are in the files; `python scripts/check_prereg.py` checks PREREG.md's anchor live and `--anchor 2` PREREG-2.md's;
 `--verify` checks the saved responses of each offline, and every build runs both.
+
+## Check it in two minutes
+
+Python 3.10 or later (`python` below; `python3` on some systems), standard library only, no network, no keys:
+
+```
+python scripts/rebuild.py
+```
+
+The same, step by step:
+
+```
+python -m unittest discover -s tests              # every script's logic on fixed inputs
+python scripts/build_numbers.py --verify           # every script's offline check, then numbers.json rebuilds the same
+python scripts/build_numbers.py --check README.md  # every marked number in this file matches numbers.json
+python scripts/check_prereg.py --file              # PREREG.md matches the anchored SHA-256 (saved copy)
+python scripts/judge_prereg2.py --verify           # PREREG-2.md's judged predictions recompute from saved responses
+python scripts/check_prereg.py --anchor 2 --verify # PREREG-2.md = its SocialDB record = the transaction's args
+python scripts/peers.py --verify                   # the peer table recomputes from saved DefiLlama and CoinGecko responses
+```
+
+The second command ends with `VERIFY: PASS (PUBLIC_FULL)`: every number recomputed with no network and without
+the private originals ([Method](docs/DETAILS.md#method)). For the lists that name accounts (farm stakers, HSP-029
+voters, validators) git holds redacted copies: offline, the check proves they are consistent and that their totals
+equal the totals in the raw contract responses, not that each entry is right. The `verify` badge runs these on every push. Five live
+read-only calls, and a re-measurement of numbers 1 and 3 from the chain: [Verify live](docs/DETAILS.md#verify-live).
 
 ## What we can't measure
 

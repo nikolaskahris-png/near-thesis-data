@@ -1,9 +1,9 @@
 # Thesis: NEAR's value capture is real, small and discretionary
 
 *Investment Thesis track, NEAR HACKATHON. Dated 6 November 2026; horizon five years, to 1 January 2031, checked every 12 months.
-Measurement window 2 October → 1 November 2026 (00:00 UTC), blocks 218,126,921 → 222,491,356. Every figure here
+Measurement window 2 October → 1 November 2026 (00:00 UTC), blocks 218,126,921 → 222,491,356. Every measured figure here
 is copied from [`data/numbers.json`](data/numbers.json) with a hidden marker of its key, and
-`python scripts/build_numbers.py --check THESIS.md` fails if any differs. Figures from DefiLlama are
+`python scripts/build_numbers.py --check THESIS.md` fails if a marked figure differs. Figures from DefiLlama are
 final for the window: a fetch 24 hours after the previous one changed no day. Thresholds are the author's choice; block heights, dates and protocol
 constants are written as they are. The data, method and findings are in the [README](README.md).*
 
@@ -13,21 +13,28 @@ Users pay real fees on NEAR Intents, but only a small part reaches NEAR holders,
 user pays to the NEAR a holder keeps can be changed by a few signers or by a company off-chain; none is fixed in
 code. Issuance, on the other side of the ledger, is a protocol rule.
 
-**Rating: Hold, not Buy, for five years to 2031, reviewed every 12 months.** Hold means keeping NEAR already
-owned, staked with a validator: staking pays more than supply grows, so the staked holder's share of all NEAR rises,
-though not its dollar value. It is not a Buy, because what holders get from fees covers a small part of issuance and
-nothing obliges anyone to keep it. It becomes a Buy when, at a yearly check over the same 30 days of its year (2 October to
-1 November), **(a)** what the buybacks wallets keep a day has grown at least <!--n:lr.required_growth.buybacks.B.2031-->+56%<!--/n--> a year from this window, both in dollars (from <!--n:iv.buybacks_kept_usd_per_day-->$46,692<!--/n-->) and in NEAR, the pace
-that covers issuance on 1 January 2031 under HSP-029 (<!--n:lr.required_growth.with_front_end.B.2031-->+41%<!--/n--> counting the front-end fund;
-<!--n:lr.required_growth.buybacks.A.2031-->+75%<!--/n--> and <!--n:lr.required_growth.with_front_end.A.2031-->+58%<!--/n--> if HSP-029 is not in force), so neither a falling nor a rising price
-alone decides it, and **(b)** keeping it is a published rule. It becomes an Avoid if, over 30 days, the wallets keep less than 75% of the revenue DefiLlama attributes to NEAR,
-both in NEAR (April: <!--n:f2.wallets_kept_share_of_revenue.2026-04-->77%<!--/n-->), or what the buybacks wallets keep in dollars falls back to April's level (<!--n:f2.buybacks_kept_usd_per_day.2026-04-->$6,270<!--/n--> a day). **(c)**, stake spread
-in the NEAR AI farm, is a signal, not a lever. If NEAR kept every fee, fees counted in NEAR would need
-<!--n:lr.required_growth.all_fees.B.2031-->+9%<!--/n--> a year ([model](docs/DETAILS.md#issuance-to-2031)). At today's
-revenue, front-end fund included, the wallets would cover issuance only at a NEAR price of
-<!--n:iv.revenue_equilibrium_price_usd-->$0.80<!--/n--> or less, against a mean of <!--n:n2.mean_price_usd-->$4.88<!--/n--> in the same window: because revenue is
-earned in dollars and issuance is paid in NEAR, the higher the price, the less the wallets cover. At the mean price
-all NEAR is worth <!--n:iv.supply_value_usd-->$6.39B<!--/n-->, <!--n:iv.value_to_fees-->85×<!--/n--> a year of fees.
+**Rating: Hold, not Buy, for five years to 2031, reviewed every 12 months.**
+
+- **Hold** means keeping NEAR already owned, staked with a validator: staking pays about <!--n:iv.staking_yield_gross-->5.0%<!--/n--> a year while supply
+  grows <!--n:iv.issuance_rate_per_year-->2.46%<!--/n-->, so the staked holder's share of all NEAR rises, though not its dollar value. It is not a Buy,
+  because what holders get from fees covers a small part of issuance and nothing obliges anyone to keep it.
+- **Buy** when, at a yearly check over the same 30 days of its year (2 October to 1 November), **(a)** what the
+  buybacks wallets keep a day has grown at least <!--n:lr.required_growth.buybacks.B.2031-->+56%<!--/n--> a year from this window, both in dollars (from
+  <!--n:iv.buybacks_kept_usd_per_day-->$46,692<!--/n-->) and in NEAR, the pace that covers issuance on 1 January 2031 under HSP-029 (<!--n:lr.required_growth.with_front_end.B.2031-->+41%<!--/n--> counting
+  the front-end fund; <!--n:lr.required_growth.buybacks.A.2031-->+75%<!--/n--> and <!--n:lr.required_growth.with_front_end.A.2031-->+58%<!--/n--> if HSP-029 is not in force), so neither a falling nor a rising
+  price alone decides it, and **(b)** keeping it is a published rule.
+- **Buy on price** when a 30-day mean price is at or below the price at which revenue, front-end fund included,
+  buys as many NEAR as are issued: <!--n:iv.revenue_equilibrium_price_usd-->$0.80<!--/n--> in this window, against a mean of <!--n:n2.mean_price_usd-->$4.88<!--/n-->. Revenue is earned in
+  dollars and issuance is paid in NEAR, so the higher the price, the less the wallets cover.
+- **Avoid** if, over 30 days, the wallets keep less than 75% of the revenue DefiLlama attributes to NEAR, both in
+  NEAR (April: <!--n:f2.wallets_kept_share_of_revenue.2026-04-->77%<!--/n-->), or what the buybacks wallets keep in dollars falls back to April's level
+  (<!--n:f2.buybacks_kept_usd_per_day.2026-04-->$6,270<!--/n--> a day).
+
+**(c)**, stake spread in the NEAR AI farm, is a signal, not a lever. If NEAR kept every fee, fees counted in NEAR
+would need <!--n:lr.required_growth.all_fees.B.2031-->+9%<!--/n--> a year ([model](docs/DETAILS.md#issuance-to-2031)). At the mean price all NEAR is worth
+<!--n:iv.supply_value_usd-->$6.39B<!--/n-->, <!--n:iv.value_to_fees-->85×<!--/n--> a year of fees. Among L1s, NEAR's market cap is the fewest years of its revenue
+(<!--n:peer.near_all.mcap_to_revenue-->179×<!--/n-->, against <!--n:peer.aptos.mcap_to_revenue-->337×<!--/n--> to <!--n:peer.sui.mcap_to_revenue-->14,137×<!--/n-->); against apps with buybacks, the most
+([peers](README.md#peers-on-one-basis)).
 
 A Breakpoint 2025 debate put the case against buybacks as "the promise of future buybacks is worth exactly as
 much as your faith in those founders", and the case for them as on-chain transparency
