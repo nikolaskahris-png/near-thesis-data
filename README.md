@@ -4,9 +4,9 @@
 
 **In one minute.**
 
-- **Real.** Users pay <!--n:n2.fees_usd_per_day-->$206,049<!--/n--> a day in fees on NEAR Intents (DefiLlama). From April to October the wallets
-  that hold bought-back NEAR kept <!--n:f2.wallets_kept_share_of_revenue.2026-04_2026-10-->96.9%<!--/n--> of the revenue DefiLlama attributes to NEAR, and what the buybacks
-  wallets keep in dollars grew <!--n:lr.history.2026-04_2026-10.buybacks_kept_usd_multiple-->×7.5<!--/n-->.
+- **Real.** Users pay <!--n:n2.fees_usd_per_day-->$206,049<!--/n--> a day in fees on NEAR Intents (DefiLlama). From April to October the three
+  wallets (buybacks, 1Click fund, front-end fund) kept <!--n:f2.wallets_kept_share_of_revenue.2026-04_2026-10-->96.9%<!--/n--> of the revenue DefiLlama attributes to NEAR, and what the buybacks
+  wallets keep in dollars grew <!--n:lr.history.2026-04_2026-10.buybacks_kept_usd_multiple-->×7.5<!--/n--> from April, its lowest month.
 - **Small.** Buybacks offset <!--n:n1.coverage_buybacks-->10.8%<!--/n--> of the NEAR issued in the same days (<!--n:n1.coverage_with_front_end-->16.5%<!--/n--> counting
   the front-end fund, which keeps near-intents.org's own fees). If NEAR kept every fee, it would cover <!--n:n2.max_coverage-->47.9%<!--/n-->. NEAR's market cap is
   <!--n:peer.near_all.mcap_to_revenue-->179×<!--/n--> a year of its revenue, Intents and gas together.
@@ -19,12 +19,13 @@
 
 - **Hold:** keep NEAR you own, staked. Staking pays about <!--n:iv.staking_yield_gross-->5.0%<!--/n--> a year while supply grows <!--n:iv.issuance_rate_per_year-->2.46%<!--/n-->:
   that protects your share of NEAR, not its dollar value.
-- **Buy** when, at a yearly check, (a) what the buybacks wallets keep has grown at least <!--n:lr.required_growth.buybacks.B.2031-->+56%<!--/n--> a year from
-  <!--n:iv.buybacks_kept_usd_per_day-->$46,692<!--/n--> a day, in dollars and in NEAR, the pace that covers issuance on 1 January 2031, and (b) keeping it is a published rule.
-  Or on price: when NEAR falls to where its revenue covers issuance: <!--n:iv.revenue_equilibrium_price_usd-->$0.80<!--/n--> in this window,
-  against a mean price of <!--n:n2.mean_price_usd-->$4.88<!--/n-->.
-- **Avoid** if the wallets keep less than 75% of DefiLlama's revenue for NEAR over 30 days, in NEAR, or what the buybacks wallets keep in
-  dollars falls back to April's level (<!--n:f2.buybacks_kept_usd_per_day.2026-04-->$6,270<!--/n--> a day).
+- **Buy** only once (b) keeping it is a published rule, and then when either (a) what the buybacks wallets keep has
+  grown at least <!--n:lr.required_growth.buybacks.B.2031-->+56%<!--/n--> a year from <!--n:iv.buybacks_kept_usd_per_day-->$46,692<!--/n--> a day, in dollars and in NEAR, the pace that covers
+  issuance on 1 January 2031, or NEAR's 30-day mean price is at or below <!--n:iv.buybacks_equilibrium_price_usd-->$0.53<!--/n-->, where those dollars already
+  buy as many NEAR as are issued (the window's mean was <!--n:n2.mean_price_usd-->$4.88<!--/n-->).
+- **Avoid** if, in two 30-day windows in a row, the wallets keep less than 75% of DefiLlama's revenue for NEAR, in
+  NEAR, or what the buybacks wallets keep in dollars falls back to April's level (<!--n:f2.buybacks_kept_usd_per_day.2026-04-->$6,270<!--/n--> a day). Avoid
+  overrides Buy. No price is too high for Hold: the rating judges what NEAR captures, not how far its price can go.
 
 Every condition, with its exact rule: [the rating in full](#the-rating-in-full).
 
@@ -82,7 +83,8 @@ choice; every figure in them is measured.*
   before commission while supply grows <!--n:iv.issuance_rate_per_year-->2.46%<!--/n-->, so a staked holder's share of all NEAR rises. That
   protects the share, not the dollar value.
 - **Not a Buy:** what holders get from fees covers a small part of issuance, and nothing obliges anyone to keep it.
-- **Upgrade to Buy** when, at a yearly check, all three hold. Each check measures the same 30 days of its year
+- **Upgrade to Buy** when (b) holds and, at a yearly check, (a) and (a′) hold, or (b) holds and the price test below
+  is met. Each check measures the same 30 days of its year
   (2 October to 1 November), like this window. (a) **In dollars:** what the buybacks wallets keep a
   day has grown at least <!--n:lr.required_growth.buybacks.B.2031-->+56%<!--/n--> a year from this window's <!--n:iv.buybacks_kept_usd_per_day-->$46,692<!--/n-->, so a falling price alone
   cannot meet it. (a′) **In NEAR:** the same growth, so a rising price has not used it up. +56% a year is the pace that
@@ -91,13 +93,16 @@ choice; every figure in them is measured.*
   <!--n:lr.required_growth.with_front_end.A.2031-->+58%<!--/n--> if HSP-029 is not in force). (b) Keeping it is a published rule. The hurdle depends on the
   base: from the April–October average it is <!--n:lr.required_growth.buybacks.B.2031.base.2026-04_2026-10-->+62%<!--/n-->; from single months,
   <!--n:lr.required_growth.buybacks.B.2031.base_min-->+44%<!--/n--> to <!--n:lr.required_growth.buybacks.B.2031.base_max-->+85%<!--/n-->.
-- **Downgrade to Avoid** if, over a 30-day window, the wallets keep less than 75% of the revenue DefiLlama attributes
-  to NEAR, both counted in NEAR (lowest month so far: April, <!--n:f2.wallets_kept_share_of_revenue.2026-04-->77%<!--/n-->; October <!--n:f2.wallets_kept_share_of_revenue.2026-10-->100%<!--/n-->), or what the
+- **Downgrade to Avoid** if, in two consecutive 30-day windows, the wallets keep less than 75% of the revenue DefiLlama
+  attributes to NEAR, both counted in NEAR (lowest month so far: April, <!--n:f2.wallets_kept_share_of_revenue.2026-04-->77%<!--/n-->; October <!--n:f2.wallets_kept_share_of_revenue.2026-10-->100%<!--/n-->), or what the
   buybacks wallets keep in dollars falls back to April's level (<!--n:f2.buybacks_kept_usd_per_day.2026-04-->$6,270<!--/n--> a day). A rising price alone cannot
-  trigger either.
-- **Buy on price** when a 30-day window's mean NEAR price is at or below the price at which that window's revenue
-  buys as many NEAR as are issued: <!--n:iv.revenue_equilibrium_price_usd-->$0.80<!--/n--> in this window (front-end fund included). There today's fees offset all new
-  NEAR with no growth at all; until (b) holds, the signers can still stop it.
+  trigger either. NEAR moved from the wallets to an account declared as a lock (the published rule of (b)) counts as
+  kept, not as an outflow (`LOCKS` in `scripts/daily.py`; none exists yet), so meeting (b) cannot trigger Avoid.
+- **The price test of Buy**, with (b): a 30-day mean NEAR price at or below the price at which the dollars the buybacks
+  wallets keep buy as many NEAR as are issued: <!--n:iv.buybacks_equilibrium_price_usd-->$0.53<!--/n--> in this window, on the same basis as (a). With the front-end fund
+  it would be <!--n:iv.revenue_equilibrium_price_usd-->$0.80<!--/n-->. There today's buybacks offset all new NEAR with no growth at all.
+- **Which rule wins:** Avoid overrides Buy. Hold has no upper price: a rising price lowers coverage, which the
+  figures show, but the rating judges what NEAR captures and whether it is a rule, not valuation upside.
 
 If NEAR kept every fee, fees counted in NEAR would need <!--n:lr.required_growth.all_fees.B.2031-->+9%<!--/n--> a year ([the model](#issuance-to-2031)).
 
@@ -217,7 +222,8 @@ the same way, NEAR included (`scripts/peers.py`).
 
 The two groups point opposite ways. Against the apps, NEAR's value is many more years of its revenue and its
 holders receive a fraction of what HYPE and JUP holders do. Against the L1s, NEAR (Intents and gas together) has
-the lowest market cap ÷ revenue of the five and the largest share paid to holders. L1 tokens are not priced on
+the lowest market cap ÷ revenue of the five, and DefiLlama counts the largest share for its holders (held in
+wallets, not paid out). L1 tokens are not priced on
 fees: Ethereum's market cap is <!--n:peer.ethereum.mcap_to_revenue-->3,082×<!--/n--> a year of its revenue. So the table does not say NEAR is mispriced. It says
 that today's fee capture explains little of NEAR's value, which is the thesis, and that among L1s NEAR already
 captures the most per dollar of value, which is the bull case and one reason the rating is Hold, not Avoid.

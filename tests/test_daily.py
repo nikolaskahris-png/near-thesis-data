@@ -127,5 +127,48 @@ class DailyTest(unittest.TestCase):
         self.assertEqual(daily.near(999_999_9 * 10 ** 17), "1.000")
 
 
+class LockTest(unittest.TestCase):
+    """Meeting condition (b), moving bought NEAR to a declared lock account, is not an outflow."""
+
+    def test_move_to_a_declared_lock_keeps_coverage(self):
+        d = date(2026, 11, 1)
+        lock = "lock.test"
+
+        class Moves(FakeChainWithState):
+            def _post(self, body):
+                p = body.get("params", {})
+                if p.get("request_type") == "view_account" and p["block_id"] == self.end_h:
+                    acct = p["account_id"]
+                    moved = 500_000 * Y
+                    amount = {daily.BUYBACKS: balance(daily.BUYBACKS, self.end_h) - moved,
+                              lock: moved}.get(acct)
+                    if amount is not None:
+                        self.calls += 1
+                        res = {"amount": str(amount), "locked": "0", "block_height": self.end_h,
+                               "block_hash": f"H{self.end_h}"}
+                        return json.dumps({"jsonrpc": "2.0", "id": "daily", "result": res}).encode()
+                return super()._post(body)
+
+        old = dict(daily.LOCKS)
+        try:
+            with tempfile.TemporaryDirectory() as tmp:
+                plain = FakeChainWithState(final_height_at(lw.midnight_ns(d) + 3600 * lw.NS))
+                doc, rows, _, _ = daily.run(d, Path(tmp) / "data", plain)
+                base, end_h = rows[0]["coverage_buybacks"], doc["end"]["height"]
+            daily.LOCKS.update({lock: d})
+            with tempfile.TemporaryDirectory() as tmp:
+                data = Path(tmp) / "data"
+                chain = Moves(final_height_at(lw.midnight_ns(d) + 3600 * lw.NS))
+                chain.end_h = end_h
+                _, rows, problems, _ = daily.run(d, data, chain)
+                self.assertEqual(problems, [])
+                self.assertEqual(rows[0]["coverage_buybacks"], base)
+                self.assertNotIn("buybacks_balance_fell", rows[0]["flags"])
+                self.assertEqual(daily.verify_history(data)[1], [])
+        finally:
+            daily.LOCKS.clear()
+            daily.LOCKS.update(old)
+
+
 if __name__ == "__main__":
     unittest.main()

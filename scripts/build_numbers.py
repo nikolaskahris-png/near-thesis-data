@@ -872,6 +872,11 @@ def build(data_dir, window_file):
             n.add("iv.buybacks_kept_usd_per_day", usd_day, f_usd(usd_day), vsrc, unit="USD/day",
                   derived_from=["n1.buybacks_near_per_day", "n2.mean_price_usd"],
                   note="n1.buybacks_near_per_day x n2.mean_price_usd", **prov)
+            new_near = dec(n.items["n1.new_near_per_day"]["value"])
+            n.add("iv.buybacks_equilibrium_price_usd", usd_day / new_near, f_usd(usd_day / new_near, 2), vsrc,
+                  unit="USD", derived_from=["iv.buybacks_kept_usd_per_day", "n1.new_near_per_day"],
+                  note="the NEAR price at which the dollars the buybacks wallets keep a day buy as many NEAR "
+                       "as are issued: the Buy-on-price threshold of the rating", **prov)
         n.add(f"iv.buyback_yield_{name}", y, f_pct(y, 2), vsrc, unit="share of value per year",
               derived_from=[cov_key, "n2.mean_price_usd", "iv.supply_value_usd"],
               note="what the wallets keep a year, in dollars / iv.supply_value_usd", **prov)

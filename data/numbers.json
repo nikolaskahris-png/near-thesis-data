@@ -3054,6 +3054,20 @@
       "window": "2026-10-02 00:00 UTC to 2026-11-01 00:00 UTC",
       "blocks": "218126921-222491356"
     },
+    "iv.buybacks_equilibrium_price_usd": {
+      "value": "0.5282346962234300452709075643841286381212",
+      "text": "$0.53",
+      "source": "data/fees_2026-10-02_2026-11-01.json",
+      "unit": "USD",
+      "derived_from": [
+        "iv.buybacks_kept_usd_per_day",
+        "n1.new_near_per_day"
+      ],
+      "note": "the NEAR price at which the dollars the buybacks wallets keep a day buy as many NEAR as are issued: the Buy-on-price threshold of the rating",
+      "status": "final",
+      "window": "2026-10-02 00:00 UTC to 2026-11-01 00:00 UTC",
+      "blocks": "218126921-222491356"
+    },
     "iv.buybacks_kept_usd_per_day": {
       "value": "46691.7672250",
       "text": "$46,692",

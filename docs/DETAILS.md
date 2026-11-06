@@ -311,7 +311,7 @@ python scripts/treasury_flows.py --verify --archival
 | Issuance, new NEAR | the change of `total_supply` between two block headers, per day: NEAR minted minus gas burnt |
 | Coverage | NEAR the wallets kept ÷ new NEAR, over the same window |
 | Dilution | total supply grows by <!--n:n1.new_near_per_day-->88,392<!--/n--> NEAR a day whatever the buybacks do, because bought NEAR is held, not burned; buybacks lower only the supply outside their wallets |
-| Buybacks wallets | `buybacks.multisignature.near` + `1csfundsadmin.sputnik-dao.near`; they hold bought NEAR |
+| Buybacks wallets | `buybacks.multisignature.near` + `1csfundsadmin.sputnik-dao.near`; they hold bought NEAR. An account declared as a lock under a published rule (`LOCKS` in `scripts/daily.py`; none yet) is added, so NEAR moved there stays counted as kept |
 | Front-end fund | `fefundsadmin.sputnik-dao.near`: fees of the near-intents.org front end |
 | Fees, revenue | DefiLlama's figures for NEAR Intents: what users pay, and the part DefiLlama counts as NEAR's |
 | Take rate | revenue ÷ fees |

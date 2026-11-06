@@ -18,17 +18,18 @@ code. Issuance, on the other side of the ledger, is a protocol rule.
 - **Hold** means keeping NEAR already owned, staked with a validator: staking pays about <!--n:iv.staking_yield_gross-->5.0%<!--/n--> a year while supply
   grows <!--n:iv.issuance_rate_per_year-->2.46%<!--/n-->, so the staked holder's share of all NEAR rises, though not its dollar value. It is not a Buy,
   because what holders get from fees covers a small part of issuance and nothing obliges anyone to keep it.
-- **Buy** when, at a yearly check over the same 30 days of its year (2 October to 1 November), **(a)** what the
+- **Buy** only once **(b)** keeping it is a published rule, and then when, at a yearly check over the same 30 days of its year (2 October to 1 November), **(a)** what the
   buybacks wallets keep a day has grown at least <!--n:lr.required_growth.buybacks.B.2031-->+56%<!--/n--> a year from this window, both in dollars (from
   <!--n:iv.buybacks_kept_usd_per_day-->$46,692<!--/n-->) and in NEAR, the pace that covers issuance on 1 January 2031 under HSP-029 (<!--n:lr.required_growth.with_front_end.B.2031-->+41%<!--/n--> counting
   the front-end fund; <!--n:lr.required_growth.buybacks.A.2031-->+75%<!--/n--> and <!--n:lr.required_growth.with_front_end.A.2031-->+58%<!--/n--> if HSP-029 is not in force), so neither a falling nor a rising
-  price alone decides it, and **(b)** keeping it is a published rule.
-- **Buy on price** when a 30-day mean price is at or below the price at which revenue, front-end fund included,
-  buys as many NEAR as are issued: <!--n:iv.revenue_equilibrium_price_usd-->$0.80<!--/n--> in this window, against a mean of <!--n:n2.mean_price_usd-->$4.88<!--/n-->. Revenue is earned in
+  price alone decides it.
+- **Or, with (b), on price:** a 30-day mean price at or below the price at which the dollars the buybacks wallets
+  keep buy as many NEAR as are issued: <!--n:iv.buybacks_equilibrium_price_usd-->$0.53<!--/n--> in this window, against a mean of <!--n:n2.mean_price_usd-->$4.88<!--/n-->. Revenue is earned in
   dollars and issuance is paid in NEAR, so the higher the price, the less the wallets cover.
-- **Avoid** if, over 30 days, the wallets keep less than 75% of the revenue DefiLlama attributes to NEAR, both in
+- **Avoid** if, in two 30-day windows in a row, the wallets keep less than 75% of the revenue DefiLlama attributes to NEAR, both in
   NEAR (April: <!--n:f2.wallets_kept_share_of_revenue.2026-04-->77%<!--/n-->), or what the buybacks wallets keep in dollars falls back to April's level
-  (<!--n:f2.buybacks_kept_usd_per_day.2026-04-->$6,270<!--/n--> a day).
+  (<!--n:f2.buybacks_kept_usd_per_day.2026-04-->$6,270<!--/n--> a day). Avoid overrides Buy. Hold has no upper price: the rating judges what NEAR
+  captures and whether it is a rule, not how far its price can go.
 
 **(c)**, stake spread in the NEAR AI farm, is a signal, not a lever. If NEAR kept every fee, fees counted in NEAR
 would need <!--n:lr.required_growth.all_fees.B.2031-->+9%<!--/n--> a year ([model](docs/DETAILS.md#issuance-to-2031)). At the mean price all NEAR is worth
@@ -119,7 +120,7 @@ What weakens the claim, as measured by the same scripts:
    product.
 6. **Among L1s, NEAR captures the most.** On DefiLlama's figures for the same 30 days, NEAR's market cap is
    <!--n:peer.near_all.mcap_to_revenue-->179×<!--/n--> a year of its revenue (Intents and gas), against <!--n:peer.aptos.mcap_to_revenue-->337×<!--/n--> for Aptos, <!--n:peer.solana.mcap_to_revenue-->1,674×<!--/n--> for Solana and <!--n:peer.ethereum.mcap_to_revenue-->3,082×<!--/n-->
-   for Ethereum; it pays the largest share to holders of the five ([peers](README.md#peers-on-one-basis)). Against apps
+   for Ethereum; DefiLlama counts the largest share for its holders, though the NEAR is held, not paid out ([peers](README.md#peers-on-one-basis)). Against apps
    with buybacks it is the other way round (Hyperliquid <!--n:peer.hyperliquid.mcap_to_revenue-->23×<!--/n-->).
 7. **Control is spread, and multisigs and DAOs are a common way to run protocol funds.** The
    <!--n:c.dao_count-->5<!--/n--> DAOs that run the links have <!--n:c.dao_member_accounts-->22<!--/n--> member accounts, and the
@@ -137,12 +138,12 @@ What weakens the claim, as measured by the same scripts:
 | Issuance is the only rule | HSP-029 is still not in a nearcore release adopted by validators on 1 November 2027 | in timelock until <!--n:f8.timelock_end_utc-->2026-11-16 16:48 UTC<!--/n--> | passed, not in force | `scripts/hsp029.py`, `scripts/upgrade_watch.py` |
 | Stake spread | the largest account holds less than half of the NEAR AI farm | <!--n:n3.largest_share-->73.3%<!--/n--> | prediction 1 expects at least 70% on 16 November | `scripts/stakers.py` |
 
-The rating changes from Hold to Buy only when (a) and (b) hold together, and to Avoid if the wallets keep less than
-75% of DefiLlama's revenue, in NEAR, over 30 days, or what they keep in dollars falls back to April's level. It also
-becomes a Buy on price alone if a 30-day mean price is at or below the price at which revenue covers issuance
-(<!--n:iv.revenue_equilibrium_price_usd-->$0.80<!--/n--> in this window).
+The rating changes from Hold to Buy only when (b) holds, together with (a) or with a 30-day mean price at or below
+<!--n:iv.buybacks_equilibrium_price_usd-->$0.53<!--/n-->; and to Avoid if, in two 30-day windows in a row, the wallets keep less than 75% of DefiLlama's
+revenue, in NEAR, or what they keep in dollars falls back to April's level. Avoid overrides Buy. NEAR moved to a
+declared lock account counts as kept, so meeting (b) is not an outflow.
 Coverage is the buyback yield (<!--n:iv.buyback_yield_buybacks-->0.27%<!--/n--> of NEAR's value a year) divided by the issuance rate, so it falls
-when the price rises faster than revenue; the Buy on price is where that ratio reaches one. Five predictions are anchored on chain before they are judged:
+when the price rises faster than revenue; the price test of Buy is where that ratio reaches one. Five predictions are anchored on chain before they are judged:
 [`PREREG.md`](PREREG.md) (16 November) and [`PREREG-2.md`](PREREG-2.md) (6 and 8 November, with stated
 probabilities).
 

@@ -48,6 +48,10 @@ BUYBACKS = "buybacks.multisignature.near"
 FEFUNDS = "fefundsadmin.sputnik-dao.near"
 ONECLICK = "1csfundsadmin.sputnik-dao.near"  # 1Click fee fund until 23 Apr 2026
 ACCOUNTS = (BUYBACKS, FEFUNDS, ONECLICK)
+# Accounts that hold bought-back NEAR under a published rule (condition (b) of the rating), with the
+# first date they are read. NEAR moved there from the buybacks wallet is still kept, not paid out:
+# it counts in "buybacks", so meeting (b) does not look like an outflow. None exists yet.
+LOCKS = {}
 INTENTS = "intents.near"
 WNEAR = "nep141:wrap.near"
 YOCTO = 10 ** 24
@@ -96,7 +100,7 @@ def snapshot(chain, d, raw_root):
 
     save("blocks", f"block_{h}.json", chain.raw[h])
     save("blocks", f"block_{prev['height']}.json", chain.raw[prev["height"]])
-    for acct in ACCOUNTS:
+    for acct in ACCOUNTS + tuple(a for a, since in LOCKS.items() if d >= since):
         save("accounts", f"{h}_{acct}.json",
              rpc_call(chain, {"request_type": "view_account", "block_id": h, "account_id": acct}))
     for acct in (BUYBACKS, FEFUNDS):
@@ -127,6 +131,11 @@ def read_point(data_root, d, height, previous_height):
         if int(res["locked"]) != 0:
             problems.append(f"{d}: {acct} has staked NEAR, not counted")
         point[acct] = int(res["amount"])
+    for acct, since in LOCKS.items():
+        point[acct] = 0
+        if d >= since:
+            res = json.loads((raw_root / "accounts" / f"{height}_{acct}.json").read_bytes())["result"]
+            point[acct] = int(res["amount"])
     for acct in (BUYBACKS, FEFUNDS):
         res = json.loads((raw_root / "accounts" / f"{height}_{acct}_intents_wnear.json")
                          .read_bytes())["result"]
@@ -165,8 +174,8 @@ def build_row(day_doc, data_root):
     problems += p1 + p2
     days = (date.fromisoformat(e["date"]) - date.fromisoformat(s["date"])).days
     d_supply = b["total_supply"] - a["total_supply"]
-    def buy(p):  # NEAR on the accounts plus wNEAR they hold inside intents.near
-        return p[BUYBACKS] + p[BUYBACKS + "@intents"] + p[ONECLICK]
+    def buy(p):  # NEAR on the accounts plus wNEAR they hold inside intents.near, plus declared locks
+        return p[BUYBACKS] + p[BUYBACKS + "@intents"] + p[ONECLICK] + sum(p[a] for a in LOCKS)
 
     def fe(p):
         return p[FEFUNDS] + p[FEFUNDS + "@intents"]
