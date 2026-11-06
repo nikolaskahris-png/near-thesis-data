@@ -142,7 +142,9 @@ What weakens the claim, as measured by the same scripts:
 
 The rating changes from Hold to Buy only when (b) holds, together with (a) or with the buybacks covering issuance
 (100% or more in a 30-day window); and to Avoid if, in two 30-day windows in a row, the wallets keep less than 75% of DefiLlama's
-revenue, in NEAR, or what they keep in dollars falls back to April's level. Avoid overrides Buy. NEAR moved to a
+revenue, in NEAR, or what the buybacks wallets keep in dollars falls back to April's level. Avoid overrides Buy.
+Every case (which windows, which wallets, leaving Avoid, missing days) is in
+[the rules as code applies them](README.md#the-rating-in-full). NEAR moved to a
 declared lock account counts as kept, so meeting (b) is not an outflow.
 Coverage is the buyback yield (<!--n:iv.buyback_yield_buybacks-->0.27%<!--/n--> of NEAR's value a year) divided by the issuance rate, so it falls
 when the price rises faster than revenue; the second way to Buy is where that ratio reaches one. Five predictions are anchored on chain before they are judged:

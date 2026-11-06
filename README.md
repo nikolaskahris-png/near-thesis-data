@@ -94,7 +94,8 @@ choice; every figure in them is measured.*
   <!--n:lr.required_growth.with_front_end.A.2031-->+58%<!--/n--> if HSP-029 is not in force). (b) Keeping it is a published rule. The hurdle depends on the
   base: from the April–October average it is <!--n:lr.required_growth.buybacks.B.2031.base.2026-04_2026-10-->+62%<!--/n-->; from single months,
   <!--n:lr.required_growth.buybacks.B.2031.base_min-->+44%<!--/n--> to <!--n:lr.required_growth.buybacks.B.2031.base_max-->+85%<!--/n-->.
-- **Downgrade to Avoid** if, in two consecutive 30-day windows, the wallets keep less than 75% of the revenue DefiLlama
+- **Downgrade to Avoid** if two 30-day windows in a row, the latest and the one ending 30 days before it, each fail
+  either test: the wallets keep less than 75% of the revenue DefiLlama
   attributes to NEAR, both counted in NEAR (lowest month so far: April, <!--n:f2.wallets_kept_share_of_revenue.2026-04-->77%<!--/n-->; October <!--n:f2.wallets_kept_share_of_revenue.2026-10-->100%<!--/n-->), or what the
   buybacks wallets keep in dollars falls back to April's level (<!--n:f2.buybacks_kept_usd_per_day.2026-04-->$6,270<!--/n--> a day). A rising price alone cannot
   trigger either. NEAR moved from the wallets to an account declared as a lock (the published rule of (b)) counts as
@@ -109,6 +110,21 @@ choice; every figure in them is measured.*
   DefiLlama's days exactly as the window's figures do, and `--verify` recomputes it with no network.
 - **Which rule wins:** Avoid overrides Buy. Hold has no upper price: a rising price lowers coverage, which the
   figures show, but the rating judges what NEAR captures and whether it is a rule, not valuation upside.
+
+**The rules as `scripts/rating.py` applies them, every day:**
+
+| | Rule |
+|---|---|
+| Window | 30 days ending at 00:00 UTC. One ends every day: each row of `data/history.csv` is one window. |
+| Avoid test 1: kept share | NEAR the three wallets keep (buybacks wallet, 1Click fund, front-end fund) ÷ DefiLlama's revenue for NEAR in NEAR, each day's dollars at that day's price. Fails below 75%, or if DefiLlama's revenue is zero. |
+| Avoid test 2: dollars | NEAR the buybacks wallets keep (buybacks wallet and 1Click fund, not the front-end fund) × the window's mean price. Fails at or below <!--n:f2.buybacks_kept_usd_per_day.2026-04-->$6,270<!--/n--> a day. |
+| A window fails | if either test fails. |
+| Avoid | the latest window fails, and so does the window that ended 30 days before it, whichever test each one failed. |
+| Leaving Avoid | the rating is recomputed every day: once the latest window, or the one 30 days before it, passes, the rating is Hold again (or Buy). |
+| Missing data | a window missing a DefiLlama day is `incomplete` and counts as neither pass nor fail. |
+| Provisional | for 48 hours after its last day a window is judged but marked `provisional`, because DefiLlama revises recent days; every run re-fetches them, so the row settles by itself. |
+| Buy | (b) a lock is declared under a published rule (`LOCKS`), and either a window's coverage is 100% or more, or (a) and (a′) hold at the yearly check, the window ending on 1 November. |
+| Hurdle of (a) | from <!--n:iv.buybacks_kept_usd_per_day-->$46,692<!--/n--> a day: <!--n:lr.required_growth.buybacks.A.2031-->+75%<!--/n--> a year while validators do not run HSP-029, <!--n:lr.required_growth.buybacks.B.2031-->+56%<!--/n--> once they do (`HSP029_IN_FORCE`, set when `scripts/upgrade_watch.py` shows the release adopted). |
 
 If NEAR kept every fee, fees counted in NEAR would need <!--n:lr.required_growth.all_fees.B.2031-->+9%<!--/n--> a year ([the model](#issuance-to-2031)).
 
