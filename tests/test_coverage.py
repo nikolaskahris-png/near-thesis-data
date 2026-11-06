@@ -35,6 +35,12 @@ class CoverageTest(unittest.TestCase):
             self.assertEqual(doc["rows"][1]["date"], "2026-10-01")
             _, p2 = coverage.verify(data)
             self.assertEqual(p2, [])
+            csv_path = data / "coverage_monthly.csv"
+            saved = csv_path.read_text(encoding="utf-8")
+            csv_path.write_text(saved.replace("0.100000", "0.110000", 1), encoding="utf-8")
+            self.assertIn("coverage_monthly.csv differs from the rows of coverage_monthly.json",
+                          coverage.verify(data)[1])
+            csv_path.write_text(saved, encoding="utf-8")
             b = doc["boundaries"][2]["height"]
             f = data / "raw" / "accounts" / f"{b}_{daily.FEFUNDS}.json"
             f.write_bytes(f.read_bytes().replace(b'"amount": "', b'"amount": "7'))

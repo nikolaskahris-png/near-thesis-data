@@ -126,6 +126,20 @@ This compares mechanisms, not quality: Hyperliquid is an L1 with a built-in exch
 Sources: [The Block](https://www.theblock.co/post/383091), [Aave docs](https://aave.com/docs/ecosystem/aave),
 DefiLlama token rights pages for Aave and Jupiter.
 
+**The same numbers, in full.** DefiLlama flows over 2 October to 1 November 2026, a year (×365.25); CoinGecko values at
+<!--n:peer.value_as_of-->2026-11-06 11:38 UTC<!--/n-->. `python scripts/peers.py --verify` recomputes them from `data/raw/peers/`.
+
+| | Fees a year | Revenue a year | Paid to holders a year | Market cap | Fully diluted | Market cap ÷ fees | Fully diluted ÷ revenue |
+|---|---|---|---|---|---|---|---|
+| NEAR (NEAR Intents) | <!--n:peer.near.fees_usd_per_year-->$75.3M<!--/n--> | <!--n:peer.near.revenue_usd_per_year-->$25.8M<!--/n--> | <!--n:peer.near.holders_revenue_usd_per_year-->$25.8M<!--/n--> | <!--n:peer.near.market_cap_usd-->$4.91B<!--/n--> | <!--n:peer.near.fdv_usd-->$4.91B<!--/n--> | <!--n:peer.near.mcap_to_fees-->65×<!--/n--> | <!--n:peer.near.fdv_to_revenue-->190×<!--/n--> |
+| Hyperliquid (HYPE) | <!--n:peer.hyperliquid.fees_usd_per_year-->$1.04B<!--/n--> | <!--n:peer.hyperliquid.revenue_usd_per_year-->$817.6M<!--/n--> | <!--n:peer.hyperliquid.holders_revenue_usd_per_year-->$817.6M<!--/n--> | <!--n:peer.hyperliquid.market_cap_usd-->$18.78B<!--/n--> | <!--n:peer.hyperliquid.fdv_usd-->$74.62B<!--/n--> | <!--n:peer.hyperliquid.mcap_to_fees-->18×<!--/n--> | <!--n:peer.hyperliquid.fdv_to_revenue-->91×<!--/n--> |
+| Aave (AAVE) | <!--n:peer.aave.fees_usd_per_year-->$467.9M<!--/n--> | <!--n:peer.aave.revenue_usd_per_year-->$61.3M<!--/n--> | <!--n:peer.aave.holders_revenue_usd_per_year-->$0<!--/n--> | <!--n:peer.aave.market_cap_usd-->$2.00B<!--/n--> | <!--n:peer.aave.fdv_usd-->$2.07B<!--/n--> | <!--n:peer.aave.mcap_to_fees-->4×<!--/n--> | <!--n:peer.aave.fdv_to_revenue-->34×<!--/n--> |
+| Jupiter (JUP) | <!--n:peer.jupiter.fees_usd_per_year-->$175.7M<!--/n--> | <!--n:peer.jupiter.revenue_usd_per_year-->$43.8M<!--/n--> | <!--n:peer.jupiter.holders_revenue_usd_per_year-->$21.9M<!--/n--> | <!--n:peer.jupiter.market_cap_usd-->$826.2M<!--/n--> | <!--n:peer.jupiter.fdv_usd-->$1.71B<!--/n--> | <!--n:peer.jupiter.mcap_to_fees-->5×<!--/n--> | <!--n:peer.jupiter.fdv_to_revenue-->39×<!--/n--> |
+
+Hyperliquid's fully diluted value is several times its market cap, so on that basis its multiple is closer to NEAR's.
+For NEAR, DefiLlama's holders' revenue is all of its revenue: NEAR Intents' revenue buys NEAR back. On chain, the three
+wallets kept <!--n:iv.wallets_kept_usd_per_year-->$25.9M<!--/n--> a year, the same order.
+
 ## The NEAR AI farm
 
 The NEAR AI farm is a signal, not a lever (README, number 3). The figures behind it:
@@ -318,7 +332,7 @@ python scripts/treasury_flows.py --verify --archival
 | `data/numbers.json` | every number in the README and this file, with its source file and that file's SHA-256 |
 | `data/raw/` | every public RPC, NearBlocks and DefiLlama response, byte for byte |
 | `data/raw/redacted/` | redacted copies of the responses that name people, which the numbers are computed from |
-| `data/history.csv` | one row a day from the `daily` workflow (00:15 UTC): number 1 over the last 30 days |
+| `data/history.csv` | one row a day from the `daily` workflow (00:15 UTC): number 1 over the last 30 days. `daily.py --verify` recomputes every row from its day file and compares it with this file; it writes nothing. Days after the window are pinned only by the SHA-256 in their own day file: a re-fetch from an archival RPC is what proves them |
 | `data/upgrade_watch.csv` | one row a day: stake signalling the next protocol version |
 | `dashboard/` | static page (`index.html`, `app.js`, `style.css`, no libraries) that reads every figure from `data/`; `tests/test_dashboard.py` fails if it shows a number written by hand |
 | `scripts/` | one script per number or finding; each has `--verify` and a test in `tests/` |

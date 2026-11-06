@@ -993,6 +993,51 @@ def build(data_dir, window_file):
             val = value.isoformat() if kind == "utc" else value
             n.add(key, val, fmt[kind](value), lsrc, unit=kind, **extra, **lstatus)
 
+    # ---- peers on one basis (peers.py): DefiLlama flows over the window, CoinGecko values at the fetch
+    ppath2 = data_dir / "peers.json"
+    if ppath2.exists():
+        pe = json.loads(ppath2.read_text(encoding="utf-8"))
+        pesrc = n.source(ppath2)
+        same("peers window", (pe["window"]["start"], pe["window"]["end"]), (str(start_date), str(end_date)))
+        big = lambda x: "$0" if x == 0 else f"${rnd(x / 10 ** 9, 2)}B" if x >= 10 ** 9 else f"${rnd(x / 10 ** 6, 1)}M"
+        nr = pe["results"]["near"]
+        for key, ours in (("fees_usd_per_year", "iv.fees_usd_per_year"), ("revenue_usd_per_year", "iv.revenue_usd_per_year")):
+            if abs(Decimal(nr[key]) / Decimal(n.items[ours]["value"]) - 1) > Decimal("0.001"):
+                problems.append(f"peers.json: NEAR {key} differs from {ours} by more than 0.1%")
+        for pid, r in pe["results"].items():
+            if not r["complete"]:
+                problems.append(f"peers.json: {pid} lacks days in the window")
+            pc2 = {"label": r["label"], "value_as_of": r["value_as_of"], "window": "2026-10-02_2026-11-01",
+                   "basis": "DefiLlama flows over the window x 365.25; CoinGecko value at the fetch"}
+            for key, kind in (("fees_usd_per_year", "big"), ("revenue_usd_per_year", "big"),
+                              ("holders_revenue_usd_per_year", "big"), ("market_cap_usd", "big"),
+                              ("fdv_usd", "big"), ("price_usd", "price"), ("mcap_to_revenue", "x"),
+                              ("fdv_to_revenue", "x"), ("mcap_to_fees", "x"), ("holders_yield_on_mcap", "pct")):
+                v = r[key]
+                if v is None:
+                    n.add(f"peer.{pid}.{key}", None, "not published", pesrc, **pc2)
+                    continue
+                d = Decimal(v)
+                txt = {"big": big, "price": lambda x: f_usd(x, 2), "x": lambda x: f"{rnd(x, 0):,.0f}×",
+                       "pct": lambda x: f_pct(x, 2)}[kind](d)
+                n.add(f"peer.{pid}.{key}", d, txt, pesrc, **pc2)
+        n.add("peer.value_as_of", pe["fetched_utc"], pe["fetched_utc"][:16].replace("T", " ") + " UTC", pesrc)
+
+    # ---- the two pre-registration anchors (check_prereg.py, --anchor 2)
+    for num, name in (("1", "prereg.json"), ("2", "prereg2_anchor.json")):
+        apath = data_dir / name
+        if not apath.exists():
+            continue
+        ad = json.loads(apath.read_text(encoding="utf-8"))
+        asrc = n.source(apath)
+        if not all(ad["checks"].values()):
+            problems.append(f"{name}: a check failed")
+        inc = ad["transaction"]["included_in_block"]
+        ac = {"socialdb_key": ad["key"], "tx": ad["transaction"]["hash"], "file": ad["file"]["name"]}
+        n.add(f"pr.anchor{num}.tx_block", inc["height"], f_int(inc["height"]), asrc, unit="block", **ac)
+        n.add(f"pr.anchor{num}.tx_utc", inc["timestamp_utc"], inc["timestamp_utc"][:19].replace("T", " ") + " UTC",
+              asrc, **ac)
+
     # ---- PREREG-2.md: predictions 4 and 5, judged (judge_prereg2.py)
     ppath = data_dir / "prereg2.json"
     if ppath.exists():
@@ -1059,6 +1104,8 @@ SCRIPT_CHECKS = [
     ("treasury_spend.py", lambda doc: ["--verify"]),
     ("treasury_exits.py", lambda doc: ["--verify"]),
     ("check_prereg.py", lambda doc: ["--verify"]),
+    ("check_prereg.py", lambda doc: ["--anchor", "2", "--verify"], "prereg2_anchor.json"),
+    ("peers.py", lambda doc: ["--verify"], "peers.json"),
     ("judge_prereg2.py", lambda doc: ["--verify"]),
     ("control_map.py", lambda doc: ["--verify"]),
     ("control_history.py", lambda doc: ["--verify"]),
@@ -1078,7 +1125,7 @@ def verify(path, run_scripts=True, runner=subprocess.run):
         elif sha256_file(p) != digest:
             problems.append(f"source changed since the build: {rel}")
     if run_scripts:
-        for script, args in SCRIPT_CHECKS:
+        for script, args, *needs in SCRIPT_CHECKS:
             out_file = {"hsp029.py": "hsp029.json", "hsp029_voters.py": "hsp029_voters.json",
                         "farm_rate.py": "farm_rate.json",
                         "burn.py": "burn.json",
@@ -1086,7 +1133,8 @@ def verify(path, run_scripts=True, runner=subprocess.run):
                         "judge_prereg2.py": "prereg2.json",
                         "control_map.py": "control_map.json",
                         "control_history.py": "control_history.json"}
-            if script in out_file and not (root / "data" / out_file[script]).exists():
+            need = needs[0] if needs else out_file.get(script)
+            if need and not (root / "data" / need).exists():
                 continue
             res = runner([sys.executable, str(root / "scripts" / script)] + args(doc),
                          cwd=root, capture_output=True, text=True)

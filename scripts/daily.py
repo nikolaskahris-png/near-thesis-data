@@ -33,6 +33,7 @@ import argparse
 import base64
 import csv
 import hashlib
+import io
 import json
 import sys
 from datetime import date, datetime, timedelta, timezone
@@ -199,18 +200,45 @@ def build_row(day_doc, data_root):
     return row, problems
 
 
-def write_history(data_root):
+def history_rows(data_root):
     rows, problems = [], []
     for path in sorted((data_root / "daily").glob("*.json")):
         row, p = build_row(json.loads(path.read_text(encoding="utf-8")), data_root)
         problems += p
         if row:
             rows.append(row)
-    out = data_root / "history.csv"
-    with out.open("w", encoding="utf-8", newline="") as f:
-        w = csv.DictWriter(f, fieldnames=COLUMNS, lineterminator="\n")
-        w.writeheader()
-        w.writerows(rows)
+    return rows, problems
+
+
+def history_text(rows):
+    buf = io.StringIO()
+    w = csv.DictWriter(buf, fieldnames=COLUMNS, lineterminator="\n")
+    w.writeheader()
+    w.writerows(rows)
+    return buf.getvalue()
+
+
+def write_history(data_root):
+    rows, problems = history_rows(data_root)
+    (data_root / "history.csv").write_text(history_text(rows), encoding="utf-8", newline="")
+    return rows, problems
+
+
+def verify_history(data_root):
+    """Recompute every row from the day files and raw responses, and compare with the committed
+    history.csv byte for byte. Nothing is written: a row edited by hand is a failure."""
+    rows, problems = history_rows(data_root)
+    path = data_root / "history.csv"
+    if not path.exists():
+        return rows, problems + ["history.csv is missing"]
+    saved = path.read_bytes().decode("utf-8")
+    again = history_text(rows)
+    if saved != again:
+        old, new = saved.splitlines(), again.splitlines()
+        diff = [f"{i + 1}" for i in range(max(len(old), len(new)))
+                if (old[i] if i < len(old) else None) != (new[i] if i < len(new) else None)]
+        problems.append(f"history.csv differs from the rows recomputed from data/daily/ "
+                        f"(line(s) {', '.join(diff[:5])}{'…' if len(diff) > 5 else ''})")
     return rows, problems
 
 
@@ -244,12 +272,12 @@ def main():
     data_root = args.data_dir.resolve()
 
     if args.verify:
-        rows, problems = write_history(data_root)
+        rows, problems = verify_history(data_root)
         if problems:
             print("\n".join(problems))
             print(f"FAILED: {len(problems)} problem(s)")
             return 1
-        print(f"OK: {len(rows)} day(s) recomputed from raw responses, sha256 all match")
+        print(f"OK: {len(rows)} day(s) recomputed from raw responses, sha256 all match, history.csv identical")
         return 0
 
     d = args.date or datetime.now(timezone.utc).date()

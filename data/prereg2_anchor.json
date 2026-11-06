@@ -1,0 +1,76 @@
+{
+  "measure": "pre-registration anchor: PREREG-2.md against its SocialDB record",
+  "key": "samerice7976.near/thesis/prereg/2",
+  "anchored_sha256": "545cf67530b37c902b2674cb4014818d3f79eb1718fe6bbab896a361e48ce0d3",
+  "source": {
+    "rpc": "https://archival-rpc.mainnet.fastnear.com",
+    "methods": [
+      "query call_function get",
+      "tx",
+      "block"
+    ]
+  },
+  "fetched_utc": "20261106T113840Z",
+  "raw_files": {
+    "social_get": {
+      "path": "data/raw/prereg2_anchor/social_get_20261106T113840Z.json",
+      "sha256": "f157549ea9f42e5f8b3d6b4b0be5f1895ac60bf8ddd94f93f33b99541e5fc829"
+    },
+    "tx": {
+      "path": "data/raw/prereg2_anchor/tx_EZ6mexrYfaMFivjLqccSjxGkTgWDEqUBUeiZDoAx9art.json",
+      "sha256": "5a03195986865f7227fe327d2cab6f2e475168cbb888a8cacff417f6cec4f74b"
+    },
+    "tx_block": {
+      "path": "data/raw/prereg2_anchor/tx_block.json",
+      "sha256": "7335fd7c7f079dff5fd755c78c27ea231671c1a71f3fa9ef254e368992c02420"
+    },
+    "execution_block": {
+      "path": "data/raw/prereg2_anchor/execution_block.json",
+      "sha256": "20ef6715ee54f423206df8043a0899d782221d7aacdb324d42ba6833d033ed24"
+    }
+  },
+  "file": {
+    "name": "PREREG-2.md",
+    "sha256": "545cf67530b37c902b2674cb4014818d3f79eb1718fe6bbab896a361e48ce0d3",
+    "bytes": 3159,
+    "matches_anchored_sha256": true
+  },
+  "stored_record": {
+    "file": "PREREG-2.md",
+    "bytes": "3159",
+    "commit": "9d03da48667de4e487a35c1204a7f0ac1b753d21",
+    "sha256": "545cf67530b37c902b2674cb4014818d3f79eb1718fe6bbab896a361e48ce0d3",
+    "project": "near-thesis-data (NEAR HACKATHON 2026, Investment Thesis)"
+  },
+  "stored_record_read_at_block": 223310759,
+  "transaction": {
+    "hash": "EZ6mexrYfaMFivjLqccSjxGkTgWDEqUBUeiZDoAx9art",
+    "signer_id": "samerice7976.near",
+    "receiver_id": "social.near",
+    "method": "set",
+    "deposit_yocto": "50000000000000000000000",
+    "included_in_block": {
+      "height": 222916018,
+      "hash": "96WE9zeA7ajn8esZNFhDcnAhiawj1auKJVXknWY5eWwa",
+      "timestamp_utc": "2026-11-03T19:48:55.833868381Z"
+    },
+    "executed_in_block": {
+      "height": 222916019,
+      "hash": "3HV2mTtufYQ5KPUJZteiVb6HoFBqyJepu9VNcjcRLgo5",
+      "timestamp_utc": "2026-11-03T19:48:56.070396998Z"
+    },
+    "social_receipt_id": "DWd5aQsi7UiTV1kvZR7AVvUz9i2U7MuxkG58HjUxbDqR"
+  },
+  "checks": {
+    "file_sha256_is_anchored_sha256": true,
+    "stored_record_found": true,
+    "stored_sha256_equals_file": true,
+    "stored_bytes_equal_file": true,
+    "tx_args_record_equals_stored": true,
+    "tx_signer_is_project_account": true,
+    "tx_receiver_is_social_near": true,
+    "tx_status_success": true,
+    "no_receipt_failed": true,
+    "execution_block_after_tx_block": true
+  }
+}

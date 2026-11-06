@@ -8,7 +8,8 @@
   before commission while supply grows <!--n:iv.issuance_rate_per_year-->2.46%<!--/n-->, so a staked holder's share of all NEAR rises. That
   protects the share, not the dollar value.
 - **Not a Buy:** what holders get from fees covers a small part of issuance, and nothing obliges anyone to keep it.
-- **Upgrade to Buy** when, at a yearly check, all three hold. (a) **In dollars:** what the buybacks wallets keep a
+- **Upgrade to Buy** when, at a yearly check, all three hold. Each check measures the same 30 days of its year
+  (2 October to 1 November), like this window. (a) **In dollars:** what the buybacks wallets keep a
   day has grown at least <!--n:lr.required_growth.buybacks.B.2031-->+56%<!--/n--> a year from this window's <!--n:iv.buybacks_kept_usd_per_day-->$46,692<!--/n-->, so a falling price alone
   cannot meet it. (a′) **In NEAR:** the same growth, so a rising price has not used it up. +56% a year is the pace that
   covers issuance on 1 January 2031 under HSP-029, the passed proposal that lowers issuance from 2.5% to 1.6% a year
@@ -52,9 +53,9 @@ lists, for each link, a mechanism NEAR already has.
 
 **Check it.** `python scripts/rebuild.py` (Python 3.10+, standard library only, no network) ends with
 `REBUILD: PASS`. Every figure here is copied from [`data/numbers.json`](data/numbers.json) with a hidden marker of
-its key, and the check fails if one differs. Terms: [details](docs/DETAILS.md#terms).
+its key, and the check fails if a marked figure differs. Terms: [details](docs/DETAILS.md#terms).
 
-> **Status: v2, 5 November 2026.** Window 2 October → 1 November 2026 (00:00 UTC), blocks 218,126,921 → 222,491,356.
+> **Status: v2.1, 6 November 2026.** Window 2 October → 1 November 2026 (00:00 UTC), blocks 218,126,921 → 222,491,356.
 > Every on-chain and DefiLlama figure is final for this window: DefiLlama's data were fetched again 24 hours later
 > and no day had changed ([Method](docs/DETAILS.md#method)). The dollar value of NEAR AI credits is an off-chain
 > reading, marked as such.
@@ -75,6 +76,8 @@ python scripts/build_numbers.py --verify           # every script's offline chec
 python scripts/build_numbers.py --check README.md  # every marked number in this file matches numbers.json
 python scripts/check_prereg.py --file              # PREREG.md matches the anchored SHA-256 (saved copy)
 python scripts/judge_prereg2.py --verify           # PREREG-2.md's judged predictions recompute from saved responses
+python scripts/check_prereg.py --anchor 2 --verify # PREREG-2.md = its SocialDB record = the transaction's args
+python scripts/peers.py --verify                   # the peer table recomputes from saved DefiLlama and CoinGecko responses
 ```
 
 The second command ends with `VERIFY: PASS (PUBLIC_FULL)`: every number recomputed with no network and without
@@ -154,11 +157,11 @@ HSP-029 (B: 2.5% → 1.6% over 24 months, from <!--n:lr.activation_utc-->2027-02
 holding the window's ratio of actual to maximum issuance. It forecasts no price, volume or fee: it gives the yearly
 growth that the NEAR kept a day must reach to equal issuance on 1 January of each year.
 
-| Covered on 1 January | Issuance a day, A → B | What the wallets keep must grow, A / B | All fees in NEAR must grow, A / B |
-|---|---|---|---|
-| 2028 | <!--n:lr.issuance_per_day.A.2028-->90,968<!--/n--> → <!--n:lr.issuance_per_day.B.2028-->76,482<!--/n--> | <!--n:lr.required_growth.with_front_end.A.2028-->+381%<!--/n--> / <!--n:lr.required_growth.with_front_end.B.2028-->+315%<!--/n--> a year | <!--n:lr.required_growth.all_fees.A.2028-->+93%<!--/n--> / <!--n:lr.required_growth.all_fees.B.2028-->+66%<!--/n--> |
-| 2029 | <!--n:lr.issuance_per_day.A.2029-->93,242<!--/n--> → <!--n:lr.issuance_per_day.B.2029-->61,230<!--/n--> | <!--n:lr.required_growth.with_front_end.A.2029-->+135%<!--/n--> / <!--n:lr.required_growth.with_front_end.B.2029-->+94%<!--/n--> | <!--n:lr.required_growth.all_fees.A.2029-->+44%<!--/n--> / <!--n:lr.required_growth.all_fees.B.2029-->+19%<!--/n--> |
-| 2031 | <!--n:lr.issuance_per_day.A.2031-->97,948<!--/n--> → <!--n:lr.issuance_per_day.B.2031-->61,108<!--/n--> | <!--n:lr.required_growth.with_front_end.A.2031-->+58%<!--/n--> / <!--n:lr.required_growth.with_front_end.B.2031-->+41%<!--/n--> | <!--n:lr.required_growth.all_fees.A.2031-->+22%<!--/n--> / <!--n:lr.required_growth.all_fees.B.2031-->+9%<!--/n--> |
+| Covered on 1 January | Issuance a day, A → B | Buybacks wallets alone must grow, A / B | With the front-end fund, A / B | All fees in NEAR must grow, A / B |
+|---|---|---|---|---|
+| 2028 | <!--n:lr.issuance_per_day.A.2028-->90,968<!--/n--> → <!--n:lr.issuance_per_day.B.2028-->76,482<!--/n--> | <!--n:lr.required_growth.buybacks.A.2028-->+589%<!--/n--> / <!--n:lr.required_growth.buybacks.B.2028-->+494%<!--/n--> a year | <!--n:lr.required_growth.with_front_end.A.2028-->+381%<!--/n--> / <!--n:lr.required_growth.with_front_end.B.2028-->+315%<!--/n--> | <!--n:lr.required_growth.all_fees.A.2028-->+93%<!--/n--> / <!--n:lr.required_growth.all_fees.B.2028-->+66%<!--/n--> |
+| 2029 | <!--n:lr.issuance_per_day.A.2029-->93,242<!--/n--> → <!--n:lr.issuance_per_day.B.2029-->61,230<!--/n--> | <!--n:lr.required_growth.buybacks.A.2029-->+186%<!--/n--> / <!--n:lr.required_growth.buybacks.B.2029-->+135%<!--/n--> a year | <!--n:lr.required_growth.with_front_end.A.2029-->+135%<!--/n--> / <!--n:lr.required_growth.with_front_end.B.2029-->+94%<!--/n--> | <!--n:lr.required_growth.all_fees.A.2029-->+44%<!--/n--> / <!--n:lr.required_growth.all_fees.B.2029-->+19%<!--/n--> |
+| 2031 | <!--n:lr.issuance_per_day.A.2031-->97,948<!--/n--> → <!--n:lr.issuance_per_day.B.2031-->61,108<!--/n--> | <!--n:lr.required_growth.buybacks.A.2031-->+75%<!--/n--> / <!--n:lr.required_growth.buybacks.B.2031-->+56%<!--/n--> a year | <!--n:lr.required_growth.with_front_end.A.2031-->+58%<!--/n--> / <!--n:lr.required_growth.with_front_end.B.2031-->+41%<!--/n--> | <!--n:lr.required_growth.all_fees.A.2031-->+22%<!--/n--> / <!--n:lr.required_growth.all_fees.B.2031-->+9%<!--/n--> |
 
 Keeping every fee instead of today's share can add <!--n:lr.take_rate_ceiling_multiple-->×2.9<!--/n-->, once; the rest must come from fees
 that grow faster than the NEAR price. From April to October what the wallets kept rose
@@ -196,10 +199,26 @@ annualized here.
 | NEAR kept by the three wallets, on chain | <!--n:iv.wallets_kept_usd_per_year-->$25.9M<!--/n--> | <!--n:iv.value_to_wallets_kept-->247×<!--/n--> |
 | Issuance, for comparison | <!--n:iv.issuance_usd_per_year-->$157.5M<!--/n--> | — |
 
-Peers are not compared here, because their fees are not measured the same way.
+**Peers, on one basis.** DefiLlama's revenue and holders' revenue (what is paid to token holders, mostly as
+buybacks) over the same 30 days, a year; CoinGecko's market cap at <!--n:peer.value_as_of-->2026-11-06 11:38 UTC<!--/n-->. NEAR here is
+DefiLlama's NEAR Intents against all of NEAR, the same basis as the peers (`scripts/peers.py`).
 
-**What would make it worse:** the wallets pay NEAR out (number 1 falls while DefiLlama revenue does not), or
-monthly coverage falls back to its April level (<!--n:f1.coverage_buybacks.2026-04-->5.3%<!--/n-->). **When to check:** 6, 8 and 16
+| Token | Market cap | Revenue a year | Market cap ÷ revenue | Paid to holders a year ÷ market cap |
+|---|---|---|---|---|
+| NEAR (NEAR Intents) | <!--n:peer.near.market_cap_usd-->$4.91B<!--/n--> | <!--n:peer.near.revenue_usd_per_year-->$25.8M<!--/n--> | <!--n:peer.near.mcap_to_revenue-->190×<!--/n--> | <!--n:peer.near.holders_yield_on_mcap-->0.53%<!--/n--> |
+| Hyperliquid (HYPE) | <!--n:peer.hyperliquid.market_cap_usd-->$18.78B<!--/n--> | <!--n:peer.hyperliquid.revenue_usd_per_year-->$817.6M<!--/n--> | <!--n:peer.hyperliquid.mcap_to_revenue-->23×<!--/n--> | <!--n:peer.hyperliquid.holders_yield_on_mcap-->4.35%<!--/n--> |
+| Aave (AAVE) | <!--n:peer.aave.market_cap_usd-->$2.00B<!--/n--> | <!--n:peer.aave.revenue_usd_per_year-->$61.3M<!--/n--> | <!--n:peer.aave.mcap_to_revenue-->33×<!--/n--> | <!--n:peer.aave.holders_yield_on_mcap-->0.00%<!--/n--> |
+| Jupiter (JUP) | <!--n:peer.jupiter.market_cap_usd-->$826.2M<!--/n--> | <!--n:peer.jupiter.revenue_usd_per_year-->$43.8M<!--/n--> | <!--n:peer.jupiter.mcap_to_revenue-->19×<!--/n--> | <!--n:peer.jupiter.holders_yield_on_mcap-->2.65%<!--/n--> |
+
+NEAR's value is several times more years of its revenue than the peers' are, and holders receive a fraction of
+what HYPE and JUP holders do. This does not say NEAR is mispriced: its value prices the whole L1, not Intents
+alone. It says how little of that value today's fee capture explains, which is the thesis. The values are of the
+fetch, when NEAR traded at <!--n:peer.near.price_usd-->$3.74<!--/n--> (the window's mean was <!--n:n2.mean_price_usd-->$4.88<!--/n-->); NEAR's fees and revenue here equal the
+window's to 0.1%, a check of every build. DefiLlama counts no holders' revenue for Aave, whose buybacks are paid
+from its treasury ([peers](docs/DETAILS.md#peers)). Fully diluted values: [details](docs/DETAILS.md#peers).
+
+**What would make it worse** (the Avoid test above): the wallets pay NEAR out (number 1 falls while DefiLlama revenue
+does not), or what the buybacks wallets keep in dollars falls back to April's level (<!--n:f2.buybacks_kept_usd_per_day.2026-04-->$6,270<!--/n--> a day). **When to check:** 6, 8 and 16
 November 2026 (the predictions), every month from `data/history.csv`, and each November to 2031 against the table above.
 
 ## Path to rules
@@ -311,8 +330,8 @@ Five predictions, anchored on NEAR mainnet before they are judged: each file's S
 (`social.near`, key `samerice7976.near/thesis/prereg/<n>`). Results will be published whatever they are.
 
 **[`PREREG-2.md`](PREREG-2.md): when HSP-027 takes effect**, with a probability for each, so the result is scored.
-Transaction [`EZ6mexrY…`](https://nearblocks.io/txns/EZ6mexrYfaMFivjLqccSjxGkTgWDEqUBUeiZDoAx9art), block 222,916,018
-(2026-11-03 19:48:55 UTC), four hours before validators' voting for version 87 opened.
+Transaction [`EZ6mexrY…`](https://nearblocks.io/txns/EZ6mexrYfaMFivjLqccSjxGkTgWDEqUBUeiZDoAx9art), block <!--n:pr.anchor2.tx_block-->222,916,018<!--/n-->
+(<!--n:pr.anchor2.tx_utc-->2026-11-03 19:48:55 UTC<!--/n-->), four hours before validators' voting for version 87 opened.
 
 Anchored SHA-256: `545cf67530b37c902b2674cb4014818d3f79eb1718fe6bbab896a361e48ce0d3`
 
@@ -321,14 +340,16 @@ Anchored SHA-256: `545cf67530b37c902b2674cb4014818d3f79eb1718fe6bbab896a361e48ce
 | 4 | Protocol version 87 (HSP-027) is in effect on NEAR mainnet | `protocol_version` ≥ 87 | 0.85 | first block at or after 2026-11-06 00:00 UTC |
 | 5 | Protocol version 88 is in effect on NEAR mainnet | `protocol_version` ≥ 88 | 0.75 | first block at or after 2026-11-08 00:00 UTC |
 
+Prediction 4 was a calibration check on a scheduled event: nearcore 2.14.0 had set voting for version 87
+from 4 November. It shows that each forecast is scored as stated, not skill at forecasting.
 **Prediction 4 <!--n:pr.4.result-->holds<!--/n-->:** protocol version <!--n:pr.4.protocol_version-->87<!--/n--> at the judging block <!--n:pr.4.judging_height-->223,237,989<!--/n-->, Brier score
 <!--n:pr.4.brier-->0.0225<!--/n--> (0 is a perfect forecast; 0.25 is what always saying 0.5 scores). The first block with version 87 is <!--n:pr.v87.first_height-->223,012,337<!--/n-->,
 <!--n:pr.v87.first_utc-->2026-11-04 11:46 UTC<!--/n-->. Every response used is in `data/raw/prereg2/`; `python scripts/judge_prereg2.py --verify` recomputes the
 result offline. Prediction 5 is judged on 8 November.
 
 **[`PREREG.md`](PREREG.md): three predictions judged on 16 November 2026.** Transaction
-[`8fZ8VTUy…`](https://nearblocks.io/txns/8fZ8VTUyM1UjnybqPd1QCQi4c3y75dDRGR5TjkNGgnPL), block 222,606,824
-(2026-11-01 18:30:38 UTC); the file has not changed since. Prediction 2's window had opened at 00:00 UTC that day;
+[`8fZ8VTUy…`](https://nearblocks.io/txns/8fZ8VTUyM1UjnybqPd1QCQi4c3y75dDRGR5TjkNGgnPL), block <!--n:pr.anchor1.tx_block-->222,606,824<!--/n-->
+(<!--n:pr.anchor1.tx_utc-->2026-11-01 18:30:38 UTC<!--/n-->); the file has not changed since. Prediction 2's window had opened at 00:00 UTC that day;
 `PREREG.md` states what had been read by then.
 
 Anchored SHA-256: `d3f48ed9172b1785b4dcf290b84e9a06c870b8b9b5481c6d40e51a4605b1d494`
@@ -340,7 +361,8 @@ Anchored SHA-256: `d3f48ed9172b1785b4dcf290b84e9a06c870b8b9b5481c6d40e51a4605b1d
 | 3 | Fewer than 150 accounts are active in the NEAR AI farm on 16 Nov | count < 150 | <!--n:n3.stakers_active-->112<!--/n--> |
 
 These three are easy to check, not hard to pass: `PREREG.md` says how demanding each is. Rules, timing and void
-conditions are in the files; `python scripts/check_prereg.py` checks the anchors live, `--verify` offline.
+conditions are in the files; `python scripts/check_prereg.py` checks PREREG.md's anchor live and `--anchor 2` PREREG-2.md's;
+`--verify` checks the saved responses of each offline, and every build runs both.
 
 ## What we can't measure
 
@@ -352,7 +374,7 @@ conditions are in the files; `python scripts/check_prereg.py` checks the anchors
 - **The largest farm position.** Who holds it, and where its NEAR came from, is not visible to us on chain.
 - **What `treasury.near`'s payments were for.** Amounts, blocks and receivers are measured (finding 4); the
   purpose is not on chain.
-- **Peers** are compared from their docs and press, not from their chains.
+- **Peers' mechanisms** are compared from their docs and press, not from their chains; their numbers are DefiLlama's and CoinGecko's.
 
 ## Timeline and disclosure
 

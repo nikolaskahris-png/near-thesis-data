@@ -23,6 +23,7 @@ Usage:
 """
 import argparse
 import csv
+import io
 import json
 import sys
 import time
@@ -62,13 +63,18 @@ def build(doc, data_root):
     return rows, sorted(set(problems))
 
 
+def csv_text(rows):
+    buf = io.StringIO()
+    w = csv.DictWriter(buf, fieldnames=COLUMNS, lineterminator="\n")
+    w.writeheader()
+    w.writerows(rows)
+    return buf.getvalue()
+
+
 def write(doc, data_root):
     out = data_root / "coverage_monthly.json"
     out.write_text(json.dumps(doc, indent=2) + "\n", encoding="utf-8", newline="\n")
-    with (data_root / "coverage_monthly.csv").open("w", encoding="utf-8", newline="") as f:
-        w = csv.DictWriter(f, fieldnames=COLUMNS, lineterminator="\n")
-        w.writeheader()
-        w.writerows(doc["rows"])
+    (data_root / "coverage_monthly.csv").write_text(csv_text(doc["rows"]), encoding="utf-8", newline="")
     return out
 
 
@@ -100,6 +106,9 @@ def verify(data_root):
     rows, problems = build(doc, data_root)
     if not problems and rows != doc["rows"]:
         problems.append("rows recomputed from raw responses differ from the saved rows")
+    csv_path = data_root / "coverage_monthly.csv"
+    if not csv_path.exists() or csv_path.read_bytes().decode("utf-8") != csv_text(doc["rows"]):
+        problems.append("coverage_monthly.csv differs from the rows of coverage_monthly.json")
     return doc, problems
 
 

@@ -1,0 +1,167 @@
+{
+ "measure": "peers on one basis: DefiLlama flows over the window, CoinGecko values at the fetch",
+ "window": {
+  "start": "2026-10-02",
+  "end": "2026-11-01",
+  "days": 30
+ },
+ "fetched_utc": "2026-11-06T11:38:49Z",
+ "raw_files": {
+  "near_fees": {
+   "path": "data/raw/peers/20261106T113849Z/near_fees.json",
+   "sha256": "b840a7e37d3d8602f1d7409ee2bde4ca5c56c831684514d7547455a1c3343ae0",
+   "url": "https://api.llama.fi/summary/fees/near-intents?dataType=dailyFees&excludeTotalDataChartBreakdown=true"
+  },
+  "near_revenue": {
+   "path": "data/raw/peers/20261106T113849Z/near_revenue.json",
+   "sha256": "3e59d9cd69b7d5c4970d34fb3c0e655a65c5725487f9f5d96676b16c979bb8ec",
+   "url": "https://api.llama.fi/summary/fees/near-intents?dataType=dailyRevenue&excludeTotalDataChartBreakdown=true"
+  },
+  "near_holders_revenue": {
+   "path": "data/raw/peers/20261106T113849Z/near_holders_revenue.json",
+   "sha256": "6bcaf135b018e4de3c59c4ba2001b0b91b88a35ba0e2eea9cec6b4619716315b",
+   "url": "https://api.llama.fi/summary/fees/near-intents?dataType=dailyHoldersRevenue&excludeTotalDataChartBreakdown=true"
+  },
+  "hyperliquid_fees": {
+   "path": "data/raw/peers/20261106T113849Z/hyperliquid_fees.json",
+   "sha256": "2222a416195c5426160b6a2b9b927f948953cabb2244f89f84b09d3c32518460",
+   "url": "https://api.llama.fi/summary/fees/hyperliquid?dataType=dailyFees&excludeTotalDataChartBreakdown=true"
+  },
+  "hyperliquid_revenue": {
+   "path": "data/raw/peers/20261106T113849Z/hyperliquid_revenue.json",
+   "sha256": "29a9c66c3f8c142f470caacb63781a6d3f66a5d54a7f44e4b2e626eef922c2d0",
+   "url": "https://api.llama.fi/summary/fees/hyperliquid?dataType=dailyRevenue&excludeTotalDataChartBreakdown=true"
+  },
+  "hyperliquid_holders_revenue": {
+   "path": "data/raw/peers/20261106T113849Z/hyperliquid_holders_revenue.json",
+   "sha256": "29a9c66c3f8c142f470caacb63781a6d3f66a5d54a7f44e4b2e626eef922c2d0",
+   "url": "https://api.llama.fi/summary/fees/hyperliquid?dataType=dailyHoldersRevenue&excludeTotalDataChartBreakdown=true"
+  },
+  "aave_fees": {
+   "path": "data/raw/peers/20261106T113849Z/aave_fees.json",
+   "sha256": "b94a44ac1afa1018d5cf050d4db7882ece85fc486485f63057b80382da1ec8a5",
+   "url": "https://api.llama.fi/summary/fees/aave?dataType=dailyFees&excludeTotalDataChartBreakdown=true"
+  },
+  "aave_revenue": {
+   "path": "data/raw/peers/20261106T113849Z/aave_revenue.json",
+   "sha256": "abd8eac5d7b94d67fa4f8746ee4c29d33adad68eebd6532d9f09e26afe9efea3",
+   "url": "https://api.llama.fi/summary/fees/aave?dataType=dailyRevenue&excludeTotalDataChartBreakdown=true"
+  },
+  "aave_holders_revenue": {
+   "path": "data/raw/peers/20261106T113849Z/aave_holders_revenue.json",
+   "sha256": "46cb7402fee909cb14fd16f44f99f4a0e22767e0f09a0529b92cc793e5739779",
+   "url": "https://api.llama.fi/summary/fees/aave?dataType=dailyHoldersRevenue&excludeTotalDataChartBreakdown=true"
+  },
+  "jupiter_fees": {
+   "path": "data/raw/peers/20261106T113849Z/jupiter_fees.json",
+   "sha256": "78f5e5b423d1fb5d256fa8de1e53316b10a2f9a662f92c3bd833cfd48e93ca55",
+   "url": "https://api.llama.fi/summary/fees/jupiter?dataType=dailyFees&excludeTotalDataChartBreakdown=true"
+  },
+  "jupiter_revenue": {
+   "path": "data/raw/peers/20261106T113849Z/jupiter_revenue.json",
+   "sha256": "9e160b00d23e50a11e5f751c6dcb7e6a220070fed5683e5945d786ddf9703d2a",
+   "url": "https://api.llama.fi/summary/fees/jupiter?dataType=dailyRevenue&excludeTotalDataChartBreakdown=true"
+  },
+  "jupiter_holders_revenue": {
+   "path": "data/raw/peers/20261106T113849Z/jupiter_holders_revenue.json",
+   "sha256": "98c27446e8def16c645e4ef2a877eed755b02f82e1aa50f72eab0c78f8dbdbf2",
+   "url": "https://api.llama.fi/summary/fees/jupiter?dataType=dailyHoldersRevenue&excludeTotalDataChartBreakdown=true"
+  },
+  "coingecko_markets": {
+   "path": "data/raw/peers/20261106T113849Z/coingecko_markets.json",
+   "sha256": "ebf606e5d4b847f7555b7990165dd0ed7a7ed4d0cc7556cd1309a451f33c6d50",
+   "url": "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=near,hyperliquid,aave,jupiter-exchange-solana&order=market_cap_desc&per_page=10&page=1&sparkline=false"
+  }
+ },
+ "not_published": {},
+ "results": {
+  "near": {
+   "label": "NEAR (NEAR Intents)",
+   "defillama_slug": "near-intents",
+   "coingecko_id": "near",
+   "days": {
+    "fees": 30,
+    "revenue": 30,
+    "holders_revenue": 30
+   },
+   "fees_usd_per_year": "75259518.99999999999999999999",
+   "revenue_usd_per_year": "25788269.27500000000000000000",
+   "holders_revenue_usd_per_year": "25788269.27500000000000000000",
+   "market_cap_usd": "4905717425",
+   "fdv_usd": "4905717541",
+   "price_usd": "3.74",
+   "mcap_to_revenue": "190.2305801403960250837732886",
+   "fdv_to_revenue": "190.2305846385652803759161926",
+   "mcap_to_fees": "65.18401247023648928715582145",
+   "holders_yield_on_mcap": "0.005256778375285241791112744330",
+   "value_as_of": "2026-11-06T11:37:52.000Z",
+   "complete": true
+  },
+  "hyperliquid": {
+   "label": "Hyperliquid (HYPE)",
+   "defillama_slug": "hyperliquid",
+   "coingecko_id": "hyperliquid",
+   "days": {
+    "fees": 30,
+    "revenue": 30,
+    "holders_revenue": 30
+   },
+   "fees_usd_per_year": "1041146999.950000000000000000",
+   "revenue_usd_per_year": "817565433.8750000000000000001",
+   "holders_revenue_usd_per_year": "817565433.8750000000000000001",
+   "market_cap_usd": "18775189598",
+   "fdv_usd": "74623237145",
+   "price_usd": "78.42",
+   "mcap_to_revenue": "22.96475464845862640892585522",
+   "fdv_to_revenue": "91.27494149466373805479766314",
+   "mcap_to_fees": "18.03317840698927137123716782",
+   "holders_yield_on_mcap": "0.04354498949837981817220954384",
+   "value_as_of": "2026-11-06T11:37:52.000Z",
+   "complete": true
+  },
+  "aave": {
+   "label": "Aave (AAVE)",
+   "defillama_slug": "aave",
+   "coingecko_id": "aave",
+   "days": {
+    "fees": 30,
+    "revenue": 30,
+    "holders_revenue": 30
+   },
+   "fees_usd_per_year": "467856553.5249999999999999999",
+   "revenue_usd_per_year": "61269360.42500000000000000001",
+   "holders_revenue_usd_per_year": "0.00",
+   "market_cap_usd": "1999271345",
+   "fdv_usd": "2071748182",
+   "price_usd": "129.48",
+   "mcap_to_revenue": "32.63085057738302643625155811",
+   "fdv_to_revenue": "33.81377196740992420764281219",
+   "mcap_to_fees": "4.273257112541800853894536670",
+   "holders_yield_on_mcap": "0.00",
+   "value_as_of": "2026-11-06T11:37:52.000Z",
+   "complete": true
+  },
+  "jupiter": {
+   "label": "Jupiter (JUP)",
+   "defillama_slug": "jupiter",
+   "coingecko_id": "jupiter-exchange-solana",
+   "days": {
+    "fees": 30,
+    "revenue": 30,
+    "holders_revenue": 30
+   },
+   "fees_usd_per_year": "175723373.0905000000000000000",
+   "revenue_usd_per_year": "43840829.29724999987825000001",
+   "holders_revenue_usd_per_year": "21862286.14600000000000000000",
+   "market_cap_usd": "826218142",
+   "fdv_usd": "1707879930",
+   "price_usd": "0.248908",
+   "mcap_to_revenue": "18.84586024589243155513683842",
+   "fdv_to_revenue": "38.95637827515115105269244348",
+   "mcap_to_fees": "4.701811304148401914494150000",
+   "holders_yield_on_mcap": "0.02646067065663634386764651798",
+   "value_as_of": "2026-11-06T11:37:52.000Z",
+   "complete": true
+  }
+ }
+}

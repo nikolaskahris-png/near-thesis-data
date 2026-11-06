@@ -23,7 +23,7 @@ def record(data=TEXT, commit="c0ffee"):
 
 
 def nest(rec):
-    return {"samerice7976.near": {"thesis": {"prereg": {"1": rec}}}}
+    return {"samerice7976.near": {"thesis": {"prereg": {cp.KEY.rsplit("/", 1)[1]: rec}}}}
 
 
 class FakeChain:
@@ -132,6 +132,39 @@ class CheckPreregTest(unittest.TestCase):
         p = self.root / doc["raw_files"]["tx"]["path"]
         p.write_bytes(p.read_bytes() + b" ")
         self.assertEqual(cp.verify(out), [f"sha256 mismatch: {doc['raw_files']['tx']['path']}"])
+
+
+class SecondAnchorTest(unittest.TestCase):
+    """--anchor 2: the same checks for PREREG-2.md, under key .../prereg/2, in its own files."""
+
+    def setUp(self):
+        self.tmp = tempfile.TemporaryDirectory()
+        self.root = Path(self.tmp.name)
+        (self.root / "data").mkdir()
+        cp.use("2")
+
+    def tearDown(self):
+        cp.use("1")
+        self.tmp.cleanup()
+
+    def test_second_anchor_uses_its_own_key_file_and_folder(self):
+        text = b"# Pre-registration 2 (test)\n"
+        (self.root / "PREREG-2.md").write_bytes(text)
+        rec = dict(record(text), file="PREREG-2.md")
+        doc = cp.run(FakeChain(rec, rec), self.root / "data")
+        self.assertEqual(doc["key"], "samerice7976.near/thesis/prereg/2")
+        self.assertEqual(doc["file"]["name"], "PREREG-2.md")
+        self.assertTrue(all(f["path"].startswith("data/raw/prereg2_anchor/") for f in doc["raw_files"].values()))
+        failed = {k for k, ok in doc["checks"].items() if not ok}
+        self.assertEqual(failed, {"file_sha256_is_anchored_sha256"})  # test text, not the real file
+        out = self.root / "data" / cp.OUT_NAME
+        self.assertEqual(out.name, "prereg2_anchor.json")
+        out.write_text(json.dumps(doc), encoding="utf-8")
+        self.assertEqual(cp.verify(out), ["check failed: file_sha256_is_anchored_sha256"])
+
+    def test_real_prereg2_matches_its_anchor(self):
+        real = Path(__file__).resolve().parent.parent
+        self.assertTrue(cp.file_check(real)["matches_anchored_sha256"])
 
 
 if __name__ == "__main__":

@@ -78,6 +78,14 @@ class DailyTest(unittest.TestCase):
             self.assertEqual(list(csv.DictReader(before.splitlines()))[0]["coverage_buybacks"],
                              "0.100000")
 
+            # --verify compares and writes nothing: a row edited by hand is caught.
+            (data / "history.csv").write_text(before.replace("0.100000", "0.250000", 1), encoding="utf-8")
+            _, problems4 = daily.verify_history(data)
+            self.assertTrue(any("history.csv differs" in p for p in problems4))
+            self.assertIn("0.250000", (data / "history.csv").read_text(encoding="utf-8"))
+            (data / "history.csv").write_text(before, encoding="utf-8")
+            self.assertEqual(daily.verify_history(data)[1], [])
+
             # A changed raw balance is caught.
             f = data / "raw" / "accounts" / f"{doc['end']['height']}_{daily.BUYBACKS}.json"
             f.write_bytes(f.read_bytes().replace(b'"amount": "', b'"amount": "9'))

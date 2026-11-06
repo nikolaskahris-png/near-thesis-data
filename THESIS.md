@@ -16,8 +16,8 @@ code. Issuance, on the other side of the ledger, is a protocol rule.
 **Rating: Hold, not Buy, for five years to 2031, reviewed every 12 months.** Hold means keeping NEAR already
 owned, staked with a validator: staking pays more than supply grows, so the staked holder's share of all NEAR rises,
 though not its dollar value. It is not a Buy, because what holders get from fees covers a small part of issuance and
-nothing obliges anyone to keep it. It becomes a Buy when, at a yearly check, **(a)** what the buybacks wallets keep a
-day has grown at least <!--n:lr.required_growth.buybacks.B.2031-->+56%<!--/n--> a year from this window, both in dollars (from <!--n:iv.buybacks_kept_usd_per_day-->$46,692<!--/n-->) and in NEAR, the pace
+nothing obliges anyone to keep it. It becomes a Buy when, at a yearly check over the same 30 days of its year (2 October to
+1 November), **(a)** what the buybacks wallets keep a day has grown at least <!--n:lr.required_growth.buybacks.B.2031-->+56%<!--/n--> a year from this window, both in dollars (from <!--n:iv.buybacks_kept_usd_per_day-->$46,692<!--/n-->) and in NEAR, the pace
 that covers issuance on 1 January 2031 under HSP-029 (<!--n:lr.required_growth.with_front_end.B.2031-->+41%<!--/n--> counting the front-end fund;
 <!--n:lr.required_growth.buybacks.A.2031-->+75%<!--/n--> and <!--n:lr.required_growth.with_front_end.A.2031-->+58%<!--/n--> if HSP-029 is not in force), so neither a falling nor a rising price
 alone decides it, and **(b)** keeping it is a published rule. It becomes an Avoid if the wallets pay NEAR out, or
@@ -146,7 +146,8 @@ probabilities).
 - **Who holds the largest farm position**, and where its NEAR came from.
 - **What `treasury.near`'s payments were for.** Amounts, blocks and receivers are measured; the purpose is not on
   chain.
-- **Peers** are compared from their docs, not from their chains ([peers](docs/DETAILS.md#peers)).
+- **Peers' mechanisms** are compared from their docs, not from their chains; their numbers are DefiLlama's and
+  CoinGecko's ([peers](docs/DETAILS.md#peers)).
 
 ## Reproduce
 

@@ -23,6 +23,9 @@ Usage:
     python scripts/check_prereg.py --file      PREREG.md against the anchored sha256 (no network)
     python scripts/check_prereg.py             read the anchor (4 calls), save, check
     python scripts/check_prereg.py --verify    offline check of data/prereg.json
+
+    --anchor 2 does the same for PREREG-2.md (key .../prereg/2), saved in data/prereg2_anchor.json
+    and data/raw/prereg2_anchor/.
 """
 import argparse
 import base64
@@ -42,6 +45,19 @@ CONTRACT = "social.near"
 KEY = f"{SIGNER}/thesis/prereg/1"
 TX_HASH = "8fZ8VTUyM1UjnybqPd1QCQi4c3y75dDRGR5TjkNGgnPL"
 ANCHORED_SHA256 = "d3f48ed9172b1785b4dcf290b84e9a06c870b8b9b5481c6d40e51a4605b1d494"
+RAW_SUB = "prereg"
+ANCHORS = {
+    "1": {"FILE_NAME": "PREREG.md", "OUT_NAME": "prereg.json", "RAW_SUB": "prereg",
+          "KEY": f"{SIGNER}/thesis/prereg/1", "TX_HASH": TX_HASH, "ANCHORED_SHA256": ANCHORED_SHA256},
+    "2": {"FILE_NAME": "PREREG-2.md", "OUT_NAME": "prereg2_anchor.json", "RAW_SUB": "prereg2_anchor",
+          "KEY": f"{SIGNER}/thesis/prereg/2", "TX_HASH": "EZ6mexrYfaMFivjLqccSjxGkTgWDEqUBUeiZDoAx9art",
+          "ANCHORED_SHA256": "545cf67530b37c902b2674cb4014818d3f79eb1718fe6bbab896a361e48ce0d3"},
+}
+
+
+def use(anchor):
+    """Point every function of this module at one anchor (1: PREREG.md, 2: PREREG-2.md)."""
+    globals().update(ANCHORS[anchor])
 
 
 # ---------- RPC ----------
@@ -160,7 +176,7 @@ def build(root, raw_files):
 
 def run(chain, data_dir):
     raws = fetch(chain)
-    raw_dir = data_dir / "raw" / "prereg"
+    raw_dir = data_dir / "raw" / RAW_SUB
     raw_dir.mkdir(parents=True, exist_ok=True)
     fetched = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
     names = {"social_get": f"social_get_{fetched}.json", "tx": f"tx_{TX_HASH}.json",
@@ -172,7 +188,7 @@ def run(chain, data_dir):
         raw_files[key] = {"path": path.relative_to(data_dir.parent).as_posix(),
                           "sha256": lw.sha256(raw)}
     doc = {
-        "measure": "pre-registration anchor: PREREG.md against its SocialDB record",
+        "measure": f"pre-registration anchor: {FILE_NAME} against its SocialDB record",
         "key": KEY,
         "anchored_sha256": ANCHORED_SHA256,
         "source": {"rpc": chain.url, "methods": ["query call_function get", "tx", "block"]},
@@ -221,26 +237,31 @@ def show(doc):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
+    parser.add_argument("--anchor", choices=sorted(ANCHORS), default="1",
+                        help="1: PREREG.md (default), 2: PREREG-2.md")
     parser.add_argument("--file", action="store_true",
                         help="only compare PREREG.md with the anchored sha256 (no network)")
-    parser.add_argument("--verify", nargs="?", const=str(REPO / "data" / OUT_NAME), metavar="FILE",
-                        help="offline check (default data/prereg.json)")
+    parser.add_argument("--verify", nargs="?", const="", metavar="FILE",
+                        help="offline check (default data/prereg.json, or data/prereg2_anchor.json with --anchor 2)")
     parser.add_argument("--data-dir", type=Path, default=REPO / "data")
     args = parser.parse_args()
+    use(args.anchor)
+    if args.verify == "":
+        args.verify = str(REPO / "data" / OUT_NAME)
     if args.file:
         f = file_check(args.data_dir.parent)
         print(f"{FILE_NAME} sha256 {f['sha256']}\nanchored   sha256 {ANCHORED_SHA256}")
         if not f["matches_anchored_sha256"]:
-            print("FAILED: PREREG.md is not the anchored file")
+            print(f"FAILED: {FILE_NAME} is not the anchored file")
             sys.exit(1)
-        print("OK: PREREG.md is the anchored file")
+        print(f"OK: {FILE_NAME} is the anchored file")
         return
-    if args.verify:
+    if args.verify is not None:
         problems = verify(args.verify)
         if problems:
             print("FAILED:\n  " + "\n  ".join(problems))
             sys.exit(1)
-        print("OK: raw sha256 match, PREREG.md = stored record = transaction args, tx succeeded")
+        print(f"OK: raw sha256 match, {FILE_NAME} = stored record = transaction args, tx succeeded")
         return
     chain = lw.Chain(pause=0.5)
     doc = run(chain, args.data_dir)
