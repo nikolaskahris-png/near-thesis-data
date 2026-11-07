@@ -15,6 +15,7 @@
     "data/control_map.json": "6f557db6c579e595008df0bccd143aae331392135492518fe26071ba7c66758c",
     "data/coverage_monthly.json": "74c24cad7c5a975e989fb70a62b157caef271901f16b9dfe9f708b3e98f8e9e9",
     "data/daily/2026-11-01.json": "175ddea59ee744ae15112e72eee4a4023546ac3b80e85f44de604ef8c7fbd8d8",
+    "data/demand.json": "c62931270dbfc4d80ae5761591f01bb200a654a012d82f7085f42c372f13aa51",
     "data/farm_rate.json": "9506223b29241924653bb78af227f7387a66d00dd4671f86d5e882b0cfb6b002",
     "data/fees_2026-10-02_2026-11-01.json": "ded7a3b53dad62eb1d326912e57404da225f13fb5cf92cc7d66eb168dc5d083e",
     "data/hsp029.json": "04eff7d95bac22ebbcc8204c8d3c57530f15f374767b2ad732df7180226c28ff",
@@ -435,6 +436,64 @@
       "role": "Approver",
       "block": 222491356,
       "as_of": "2026-11-01T00:00:00Z"
+    },
+    "d.as_of": {
+      "value": "2026-11-07T12:16:06Z",
+      "text": "2026-11-07",
+      "source": "data/demand.json"
+    },
+    "d.largest_aggregator.volume_30d_usd": {
+      "value": "1566592991",
+      "text": "$1.57B",
+      "source": "data/demand.json",
+      "name": "LI.FI Bridge Aggregator",
+      "as_of": "2026-11-07T12:16:06Z",
+      "basis": "DefiLlama total30d at the fetch: the 30 days before it, not the project's window"
+    },
+    "d.largest_other.volume_30d_usd": {
+      "value": "2117968062",
+      "text": "$2.12B",
+      "source": "data/demand.json",
+      "name": "Unit",
+      "as_of": "2026-11-07T12:16:06Z",
+      "basis": "DefiLlama total30d at the fetch: the 30 days before it, not the project's window"
+    },
+    "d.ours_30d_usd": {
+      "value": "4024044605",
+      "text": "$4.02B",
+      "source": "data/demand.json",
+      "as_of": "2026-11-07T12:16:06Z",
+      "basis": "DefiLlama total30d at the fetch: the 30 days before it, not the project's window"
+    },
+    "d.ours_over_largest_aggregator": {
+      "value": "2.568659905998519815923266824",
+      "text": "×2.6",
+      "source": "data/demand.json",
+      "name": "LI.FI Bridge Aggregator",
+      "as_of": "2026-11-07T12:16:06Z",
+      "basis": "DefiLlama total30d at the fetch: the 30 days before it, not the project's window"
+    },
+    "d.ours_over_largest_other": {
+      "value": "1.899955281289789345274839182",
+      "text": "×1.9",
+      "source": "data/demand.json",
+      "name": "Unit",
+      "as_of": "2026-11-07T12:16:06Z",
+      "basis": "DefiLlama total30d at the fetch: the 30 days before it, not the project's window"
+    },
+    "d.ours_rank": {
+      "value": "1",
+      "text": "1",
+      "source": "data/demand.json",
+      "as_of": "2026-11-07T12:16:06Z",
+      "basis": "DefiLlama total30d at the fetch: the 30 days before it, not the project's window"
+    },
+    "d.protocols_ranked": {
+      "value": "36",
+      "text": "36",
+      "source": "data/demand.json",
+      "as_of": "2026-11-07T12:16:06Z",
+      "basis": "DefiLlama total30d at the fetch: the 30 days before it, not the project's window"
     },
     "f1.coverage_buybacks.2026-04": {
       "value": "0.053409",
@@ -3082,6 +3141,15 @@
       "window": "2026-10-02 00:00 UTC to 2026-11-01 00:00 UTC",
       "blocks": "218126921-222491356"
     },
+    "iv.buybacks_kept_usd_per_year": {
+      "value": "17054167.978931250",
+      "text": "$17.1M",
+      "source": "data/fees_2026-10-02_2026-11-01.json",
+      "derived_from": [
+        "iv.buybacks_kept_usd_per_day"
+      ],
+      "note": "iv.buybacks_kept_usd_per_day x 365.25"
+    },
     "iv.buybacks_offset_points_per_year": {
       "value": "0.002667249382443417129134389021328065716404",
       "text": "0.27",
@@ -3266,6 +3334,16 @@
       "status": "final",
       "window": "2026-10-02 00:00 UTC to 2026-11-01 00:00 UTC",
       "blocks": "218126921-222491356"
+    },
+    "iv.staked_share_growth": {
+      "value": "0.024365896737054218148183942187492633716",
+      "text": "2.4%",
+      "source": "data/control_map.json",
+      "derived_from": [
+        "iv.staking_yield_gross",
+        "iv.issuance_rate_per_year"
+      ],
+      "note": "before the validator's commission: (1 + staking yield) / (1 + issuance rate) - 1"
     },
     "iv.staking_yield_gross": {
       "value": "0.04960248571288209479318052819307948097195",
@@ -7028,6 +7106,17 @@
       "window": "2026-01-01 00:00 UTC to 2026-11-01 00:00 UTC",
       "blocks": "179199136-222491356",
       "note": "minus other_net: what left treasury.near besides protocol rewards"
+    },
+    "ts.year_out_share_of_supply": {
+      "value": "0.02302313787536015955278851880160468672027",
+      "text": "2.3%",
+      "source": "data/treasury_spend.json",
+      "derived_from": [
+        "ts.year_out_near",
+        "iv.supply_value_usd",
+        "n2.mean_price_usd"
+      ],
+      "note": "what left treasury.near in 2026 / total supply at the window's end block"
     },
     "ts.year_treasury_in_near": {
       "value": "2700598.661",

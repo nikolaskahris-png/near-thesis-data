@@ -1040,6 +1040,39 @@ def build(data_dir, window_file):
                 n.add(f"peer.{pid}.{key}", d, txt, pesrc, **pc2)
         n.add("peer.value_as_of", pe["fetched_utc"], pe["fetched_utc"][:16].replace("T", " ") + " UTC", pesrc)
 
+    # ---- demand (demand.py): NEAR Intents' 30 days of volume against DefiLlama's bridge and aggregator lists
+    dpath = data_dir / "demand.json"
+    if dpath.exists():
+        dm = json.loads(dpath.read_text(encoding="utf-8"))
+        dsrc, dr = n.source(dpath), dm["results"]
+        dc = {"as_of": dm["fetched_utc"], "basis": dm["basis"]}
+        big = lambda x: f"${rnd(x / 10 ** 9, 2)}B"  # noqa: E731
+        n.add("d.ours_30d_usd", dec(dr["ours_30d_usd"]), big(dec(dr["ours_30d_usd"])), dsrc, **dc)
+        n.add("d.ours_rank", dr["ours_rank"], f_int(dr["ours_rank"]), dsrc, **dc)
+        n.add("d.protocols_ranked", dr["protocols_ranked"], f_int(dr["protocols_ranked"]), dsrc, **dc)
+        for key in ("largest_other", "largest_aggregator"):
+            v = dec(dr[key]["volume_30d_usd"])
+            n.add(f"d.{key}.volume_30d_usd", v, big(v), dsrc, name=dr[key]["name"], **dc)
+            m = dec(dr[f"ours_over_{key}"])
+            n.add(f"d.ours_over_{key}", m, f"×{rnd(m, 1)}", dsrc, name=dr[key]["name"], **dc)
+        n.add("d.as_of", dm["fetched_utc"], dm["fetched_utc"][:10], dsrc)
+    # A staked holder's share of all NEAR grows by (1 + staking yield) / (1 + issuance rate) - 1 a year
+    if "iv.staking_yield_gross" in n.items and "iv.issuance_rate_per_year" in n.items:
+        g = (1 + dec(n.items["iv.staking_yield_gross"]["value"])) / (1 + dec(n.items["iv.issuance_rate_per_year"]["value"])) - 1
+        n.add("iv.staked_share_growth", g, f_pct(g, 1), n.items["iv.staking_yield_gross"]["source"],
+              derived_from=["iv.staking_yield_gross", "iv.issuance_rate_per_year"],
+              note="before the validator's commission: (1 + staking yield) / (1 + issuance rate) - 1")
+    if "iv.buybacks_kept_usd_per_day" in n.items:
+        y = dec(n.items["iv.buybacks_kept_usd_per_day"]["value"]) * dec("365.25")
+        n.add("iv.buybacks_kept_usd_per_year", y, f"${rnd(y / 10 ** 6, 1)}M", n.items["iv.buybacks_kept_usd_per_day"]["source"],
+              derived_from=["iv.buybacks_kept_usd_per_day"], note="iv.buybacks_kept_usd_per_day x 365.25")
+    if "ts.year_out_near" in n.items:
+        sup = dec(n.items["iv.supply_value_usd"]["value"]) / dec(n.items["n2.mean_price_usd"]["value"])
+        sh = dec(n.items["ts.year_out_near"]["value"]) / sup
+        n.add("ts.year_out_share_of_supply", sh, f_pct(sh, 1), n.items["ts.year_out_near"]["source"],
+              derived_from=["ts.year_out_near", "iv.supply_value_usd", "n2.mean_price_usd"],
+              note="what left treasury.near in 2026 / total supply at the window's end block")
+
     # ---- the two pre-registration anchors (check_prereg.py, --anchor 2)
     for num, name in (("1", "prereg.json"), ("2", "prereg2_anchor.json")):
         apath = data_dir / name
@@ -1123,6 +1156,7 @@ SCRIPT_CHECKS = [
     ("check_prereg.py", lambda doc: ["--verify"]),
     ("check_prereg.py", lambda doc: ["--anchor", "2", "--verify"], "prereg2_anchor.json"),
     ("peers.py", lambda doc: ["--verify"], "peers.json"),
+    ("demand.py", lambda doc: ["--verify"], "demand.json"),
     ("judge_prereg2.py", lambda doc: ["--verify"]),
     ("control_map.py", lambda doc: ["--verify"]),
     ("control_history.py", lambda doc: ["--verify"]),

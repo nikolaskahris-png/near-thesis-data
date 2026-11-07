@@ -232,6 +232,11 @@ not characterized here.
 
 ## Method
 
+**Status: v2.2, 7 November 2026.** Window 2 October → 1 November 2026 (00:00 UTC), blocks 218,126,921 →
+222,491,356. Every on-chain and DefiLlama figure of the window is final: DefiLlama's data were fetched again 24 hours
+later and no day had changed. The peer table and the demand ranking are single fetches, dated where they appear. The
+dollar value of NEAR AI credits is an off-chain reading, marked as such.
+
 - **One window for every flow.** Issuance, wallets and fees are all measured between the first blocks at or after
   00:00 UTC of 2 October and 1 November 2026 (`scripts/lock_window.py`, `data/window_2026-10-02_2026-11-01.json`:
   each boundary block is saved with the block before it, and `prev_hash` proves nothing lies between them).
@@ -341,6 +346,7 @@ python scripts/treasury_flows.py --verify --archival
 | `data/raw/` | every public RPC, NearBlocks and DefiLlama response, byte for byte |
 | `data/raw/redacted/` | redacted copies of the responses that name people, which the numbers are computed from |
 | `data/history.csv` | one row a day from the `daily` workflow (00:15 UTC): number 1 over the last 30 days. `daily.py --verify` recomputes every row from its day file and compares it with this file; it writes nothing. Days after the window are pinned only by the SHA-256 in their own day file: a re-fetch from an archival RPC is what proves them |
+| `data/demand.json` | NEAR Intents' volume over the 30 days before the fetch, ranked among DefiLlama's "Bridge" volume list and its bridge-aggregator list (`scripts/demand.py`). Aggregators may route orders through NEAR Intents, so their volumes can overlap with it; the ranking compares sizes and adds nothing up. DefiLlama's bridges dataset (Across, Relay, deBridge, Stargate) counts deposits, needs a paid key for detail, and is not compared |
 | `data/rating.csv` | one row per row of `history.csv`: the rating (Hold / Buy / Avoid) from the README's rules, with each test, written by `scripts/rating.py` in the `daily` workflow. It also fills `max_coverage_defillama`, which `history.csv` leaves empty. Rows are `provisional` for 48 h after their last day and `incomplete` while DefiLlama lacks a day; `rating.py --verify` recomputes the file from `history.csv` and the responses listed in `data/rating.json` |
 | `data/upgrade_watch.csv` | one row a day: stake signalling the next protocol version |
 | `dashboard/` | static page (`index.html`, `app.js`, `style.css`, no libraries) that reads every figure from `data/`; `tests/test_dashboard.py` fails if it shows a number written by hand |

@@ -1,0 +1,87 @@
+{
+ "measure": "NEAR Intents' 30-day volume ranked among DefiLlama's bridge and bridge-aggregator volume lists",
+ "basis": "DefiLlama total30d at the fetch: the 30 days before it, not the project's window",
+ "not_compared": "DefiLlama's bridges dataset (deposits, paid detail): Across, Relay, deBridge, Stargate",
+ "fetched_utc": "2026-11-07T12:16:06Z",
+ "raw_files": {
+  "bridge": {
+   "path": "data/raw/demand/20261107T121606Z/bridge.json",
+   "sha256": "af5473cc3d609f30125565b27e1f2e73d9887e372756d85e914d6242b54d30f6",
+   "url": "https://api.llama.fi/overview/dexs?excludeTotalDataChart=true&excludeTotalDataChartBreakdown=true"
+  },
+  "bridge_aggregator": {
+   "path": "data/raw/demand/20261107T121606Z/bridge_aggregator.json",
+   "sha256": "c66526d900bc88661e1173ec4dd32b4518d255773d52a575d759c66283944504",
+   "url": "https://api.llama.fi/overview/bridge-aggregators?excludeTotalDataChart=true&excludeTotalDataChartBreakdown=true"
+  }
+ },
+ "results": {
+  "ours_30d_usd": "4024044605",
+  "ours_rank": 1,
+  "protocols_ranked": 36,
+  "largest_other": {
+   "slug": "unit",
+   "name": "Unit",
+   "volume_30d_usd": "2117968062",
+   "list": "bridge"
+  },
+  "largest_aggregator": {
+   "slug": "li.fi-bridge-aggregator",
+   "name": "LI.FI Bridge Aggregator",
+   "volume_30d_usd": "1566592991",
+   "list": "bridge_aggregator"
+  },
+  "ours_over_largest_other": "1.899955281289789345274839182",
+  "ours_over_largest_aggregator": "2.568659905998519815923266824",
+  "top": [
+   {
+    "slug": "near-intents",
+    "name": "NEAR Intents",
+    "volume_30d_usd": "4024044605",
+    "list": "bridge"
+   },
+   {
+    "slug": "unit",
+    "name": "Unit",
+    "volume_30d_usd": "2117968062",
+    "list": "bridge"
+   },
+   {
+    "slug": "li.fi-bridge-aggregator",
+    "name": "LI.FI Bridge Aggregator",
+    "volume_30d_usd": "1566592991",
+    "list": "bridge_aggregator"
+   },
+   {
+    "slug": "0x-bridge-aggregator",
+    "name": "0x Bridge Aggregator",
+    "volume_30d_usd": "1099580548",
+    "list": "bridge_aggregator"
+   },
+   {
+    "slug": "socket-protocol",
+    "name": "SOCKET Protocol",
+    "volume_30d_usd": "992908654",
+    "list": "bridge_aggregator"
+   },
+   {
+    "slug": "jumper-bridge-aggregator",
+    "name": "Jumper Bridge Aggregator",
+    "volume_30d_usd": "696983170",
+    "list": "bridge_aggregator"
+   },
+   {
+    "slug": "bitget-wallet-x",
+    "name": "Bitget Wallet X",
+    "volume_30d_usd": "546353539",
+    "list": "bridge_aggregator"
+   },
+   {
+    "slug": "silentswap",
+    "name": "Silentswap",
+    "volume_30d_usd": "522054840",
+    "list": "bridge_aggregator"
+   }
+  ]
+ }
+}

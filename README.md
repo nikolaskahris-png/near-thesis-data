@@ -4,46 +4,37 @@
 
 **In one minute.**
 
-- **Real.** Users pay <!--n:n2.fees_usd_per_day-->$206,049<!--/n--> a day in fees on NEAR Intents (DefiLlama). From April to October the three
-  wallets (buybacks, 1Click fund, front-end fund) still held <!--n:f2.wallets_kept_share_of_revenue.2026-04_2026-10-->96.9%<!--/n--> of the revenue DefiLlama attributes to NEAR (little was paid out),
-  and what the buybacks wallets keep grew <!--n:lr.history.2026-04_2026-10.buybacks_kept_usd_multiple-->×7.5<!--/n--> in dollars from April, its lowest month: <!--n:lr.history.2026-04_2026-10.buybacks_kept_near_multiple-->×2.1<!--/n--> as much NEAR a day, at a <!--n:lr.history.2026-04_2026-10.mean_price_multiple-->×3.6<!--/n--> price.
-- **Small.** Buybacks offset <!--n:n1.coverage_buybacks-->10.8%<!--/n--> of the NEAR issued in the same days (<!--n:n1.coverage_with_front_end-->16.5%<!--/n--> counting
-  the front-end fund, which keeps near-intents.org's own fees). If NEAR kept every fee, it would cover <!--n:n2.max_coverage-->47.9%<!--/n-->. NEAR's market cap is
-  <!--n:peer.near_all.mcap_to_revenue-->234×<!--/n--> a year of its revenue, Intents and gas together; <!--n:peer.near_l1.mcap_to_revenue-->4,091×<!--/n--> on L1 gas alone.
-- **Discretionary.** No link from the fee a user pays to the NEAR a holder keeps is fixed in code. The fee is set
-  off-chain. The <!--n:n1.wallets_held_near-->4,109,089<!--/n--> NEAR in the wallets can be moved by their signers; the buybacks wallet
-  needs <!--n:c.buybacks_confirmations-->2 of 4<!--/n--> signatures. Nothing is burned, and no rule makes them keep it;
-  [Path to rules](#path-to-rules) lists a mechanism NEAR already has for each link.
+- **Real.** Users pay <!--n:n2.fees_usd_per_day-->$206,049<!--/n--> a day in fees on NEAR Intents, the busiest of the <!--n:d.protocols_ranked-->36<!--/n--> bridges and
+  bridge aggregators in DefiLlama's volume data (<!--n:d.ours_30d_usd-->$4.02B<!--/n--> in 30 days, <!--n:d.ours_over_largest_other-->×1.9<!--/n--> the next). Part of those fees buys NEAR back.
+- **Small.** The buybacks offset <!--n:n1.coverage_buybacks-->10.8%<!--/n--> of the new NEAR issued in the same days. Even if NEAR kept every fee, the fees would
+  offset <!--n:n2.max_coverage-->47.9%<!--/n-->.
+- **Discretionary.** Nothing in code makes the buybacks happen. The fee is set off-chain, and the <!--n:n1.wallets_held_near-->4,109,089<!--/n--> NEAR
+  bought so far sit in wallets their signers can move: <!--n:c.buybacks_confirmations-->2 of 4<!--/n--> signatures can stop or spend the buybacks. Nothing is burned.
 
-**Rating: Hold, not Buy. Five years, to 2031, reviewed every 12 months.**
+**Rating: Hold, not Buy.** Horizon 2031, reviewed every year.
 
-- **Hold:** keep NEAR you own, staked. Staking pays about <!--n:iv.staking_yield_gross-->5.0%<!--/n--> a year while supply grows <!--n:iv.issuance_rate_per_year-->2.46%<!--/n-->:
-  that protects your share of NEAR, not its dollar value.
-- **Buy** only once (b) keeping it is a published rule, and then when either (a) what the buybacks wallets keep has
-  grown at least <!--n:lr.required_growth.buybacks.A.2031-->+75%<!--/n--> a year from <!--n:iv.buybacks_kept_usd_per_day-->$46,692<!--/n--> a day, in dollars and in NEAR, the pace that covers
-  issuance on 1 January 2031 (<!--n:lr.required_growth.buybacks.B.2031-->+56%<!--/n--> once validators run HSP-029), or the buybacks already cover issuance: in a 30-day window they keep at least as many
-  NEAR as are issued (coverage of 100% or more, against <!--n:n1.coverage_buybacks-->10.8%<!--/n--> now).
-- **Avoid** if, in two 30-day windows in a row, the wallets keep less than 75% of DefiLlama's revenue for NEAR, in
-  NEAR, or what the buybacks wallets keep in dollars falls back to April's level (<!--n:f2.buybacks_kept_usd_per_day.2026-04-->$6,270<!--/n--> a day). Avoid
-  overrides Buy. No price is too high for Hold: the rating judges what NEAR captures, not how far its price can go.
+| | |
+|---|---|
+| **Hold** now | Keep the NEAR you own, staked. Staking pays <!--n:iv.staking_yield_gross-->5.0%<!--/n--> a year and supply grows <!--n:iv.issuance_rate_per_year-->2.46%<!--/n-->, so your share of all NEAR grows. |
+| **Buy** if | the buybacks become a published rule, **and** then either what they keep grows about <!--n:lr.required_growth.buybacks.A.2031-->+75%<!--/n--> a year (in dollars and in NEAR) or they already offset all new NEAR. |
+| **Avoid** if | the wallets stop keeping most of the fees, or the buybacks fall back to April's <!--n:f2.buybacks_kept_usd_per_day.2026-04-->$6,270<!--/n--> a day. |
 
-Every condition, with its exact rule: [the rating in full](#the-rating-in-full).
+Exact rules, windows and edge cases: [the rating in full](#the-rating-in-full). Terms: [details](docs/DETAILS.md#terms).
 
-**The bull case, measured.** On its own chain's gas, NEAR's market cap is <!--n:peer.near_l1.mcap_to_revenue-->4,091×<!--/n--> its yearly revenue, the second
-highest of the L1s here (Sui <!--n:peer.sui.mcap_to_revenue-->16,884×<!--/n-->, Ethereum <!--n:peer.ethereum.mcap_to_revenue-->3,394×<!--/n-->). What sets NEAR apart is Intents, an app part of whose fees
-buys NEAR back; the other L1s' figures leave out their apps, whose revenue goes to the apps' own tokens (Jupiter's
-to JUP, not SOL). Counting Intents, NEAR is <!--n:peer.near_all.mcap_to_revenue-->234×<!--/n-->, the lowest here: <!--n:peer.aptos.mcap_to_revenue-->426×<!--/n--> for Aptos, <!--n:peer.solana.mcap_to_revenue-->1,995×<!--/n--> for Solana, <!--n:peer.ethereum.mcap_to_revenue-->3,394×<!--/n--> for
-Ethereum ([peers](#peers-on-one-basis)). And it is growing: since April, the lowest month, the buybacks wallets keep <!--n:lr.history.2026-04_2026-10.buybacks_kept_near_multiple-->×2.1<!--/n--> as much NEAR a day. Against apps with buybacks it is the other way round (Hyperliquid <!--n:peer.hyperliquid.mcap_to_revenue-->24×<!--/n-->). What
-the capture has not done is offset issuance, and nothing yet makes it last.
+**Why, for a long-term holder.**
 
-**Check it.** `python scripts/rebuild.py` (Python 3.10+, standard library only, no network) ends with
-`REBUILD: PASS`. Every measured figure here is copied from [`data/numbers.json`](data/numbers.json) with a hidden marker of
-its key, and the check fails if a marked figure differs. Terms: [details](docs/DETAILS.md#terms).
+- **Demand has grown.** Intents' volume doubled from April to October (<!--n:lr.history.2026-04_2026-10.volume_usd_multiple-->×2.0<!--/n-->), though October was <!--n:f2.change.2026-09_2026-10.volume_usd-->-20%<!--/n--> on
+  September. (Across, Relay and deBridge are tracked by DefiLlama as deposits, in another dataset, and are not ranked here.)
+- **Little of it reaches holders.** The buybacks keep about <!--n:iv.buybacks_kept_usd_per_year-->$17.1M<!--/n--> of NEAR a year; the new NEAR issued in a year is worth
+  <!--n:iv.issuance_usd_per_year-->$157.5M<!--/n-->. A holder who does not stake loses <!--n:iv.net_dilution_buybacks-->2.20%<!--/n--> of their share a year; one who stakes gains about <!--n:iv.staked_share_growth-->2.4%<!--/n-->.
+- **Where it looks cheap.** Counting Intents, NEAR's market cap is <!--n:peer.near_all.mcap_to_revenue-->234×<!--/n--> a year of its revenue, the lowest of the L1s here
+  (Solana <!--n:peer.solana.mcap_to_revenue-->1,995×<!--/n-->, Ethereum <!--n:peer.ethereum.mcap_to_revenue-->3,394×<!--/n-->). On its own chain's gas alone it is <!--n:peer.near_l1.mcap_to_revenue-->4,091×<!--/n-->: the lead is Intents ([peers](#peers-on-one-basis)).
+- **The main risk.** `treasury.near` paid out <!--n:ts.year_out_near-->30,171,200<!--/n--> NEAR, <!--n:ts.year_out_share_of_supply-->2.3%<!--/n--> of all NEAR, in April and May 2026, for
+  purposes not visible on chain. It is a risk, not a rating test: one past outflow does not say what comes next, and
+  `treasury.near` now holds <!--n:ts.balance_end_near-->1,526,304<!--/n--> NEAR.
 
-> **Status: v2.1, 6 November 2026.** Window 2 October → 1 November 2026 (00:00 UTC), blocks 218,126,921 → 222,491,356.
-> Every on-chain and DefiLlama figure is final for this window: DefiLlama's data were fetched again 24 hours later
-> and no day had changed ([Method](docs/DETAILS.md#method)). The dollar value of NEAR AI credits is an off-chain
-> reading, marked as such.
+**Check it:** `python scripts/rebuild.py` (Python 3.10+, no network) ends with `REBUILD: PASS`; every figure on this page
+is checked against [`data/numbers.json`](data/numbers.json). Window: 2 October → 1 November 2026 ([status and method](docs/DETAILS.md#method)).
 
 ## The numbers: two of value, one signal
 
@@ -61,7 +52,8 @@ its key, and the check fails if a marked figure differs. Terms: [details](docs/D
   1 is given both ways ([fees](https://docs.near-intents.org/resources/fees)).
 - **Outflow check, not a fee check.** DefiLlama's revenue ÷ issuance gives <!--n:n2.defillama_revenue_coverage-->16.5%<!--/n-->,
   as the wallets do. DefiLlama counts inflows to the same wallets and we measure their balances, so the match
-  shows that almost nothing flowed out. It does not check the fees themselves.
+  shows that almost nothing flowed out: from April to October the three wallets kept <!--n:f2.wallets_kept_share_of_revenue.2026-04_2026-10-->96.9%<!--/n--> of that revenue.
+  It does not check the fees themselves.
 - **2.** Each day's fees converted at that day's NEAR price, ÷ new NEAR per day; the equilibrium price is the
   NEAR price at which a day's fees buy as many NEAR as are issued. At HSP-029's target rate (issuance ×16/25) the
   ceiling would be <!--n:n2.hsp029_max_coverage-->74.8%<!--/n-->. The NEAR Intents exploit of 1 October, about $3.8M through the Omni
@@ -426,6 +418,7 @@ python scripts/check_prereg.py --file              # PREREG.md matches the ancho
 python scripts/judge_prereg2.py --verify           # PREREG-2.md's judged predictions recompute from saved responses
 python scripts/check_prereg.py --anchor 2 --verify # PREREG-2.md = its SocialDB record = the transaction's args
 python scripts/peers.py --verify                   # the peer table recomputes from saved DefiLlama and CoinGecko responses
+python scripts/demand.py --verify                  # NEAR Intents' volume ranking recomputes from saved DefiLlama responses
 python scripts/rating.py --verify                  # the rating of every window recomputes from history.csv and saved responses
 ```
 
