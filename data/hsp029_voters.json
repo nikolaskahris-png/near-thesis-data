@@ -7,9 +7,13 @@
   "privacy": "account IDs stay in data/private/ (not committed); public voters are sha256 tags",
   "raw_files": {
     "proposal": {
-      "path": "data/raw/hos/get_proposal_29_at_222745764.json",
+      "path": "data/private/hos/hsp029/get_proposal_29_at_222745764.json",
       "sha256": "e8a5d26c9dfe38e0a593d21d4f355b08108d3d66d1c9f822a22281b1452cbbe3",
-      "private": false,
+      "private": true,
+      "redacted": {
+        "path": "data/raw/redacted/hos/hsp029/get_proposal_29_at_222745764.json",
+        "sha256": "86532e66c5d498a7ccf3d1a1888c15de08df2dbc3e98a25cc648083e3d557d1a"
+      },
       "request": {
         "method": "get_proposal",
         "block_id": 222745764

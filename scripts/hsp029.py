@@ -19,7 +19,11 @@ in a timelock first, and the stored status may only change when someone calls it
 
 Proof stored: raw archival responses (the two blocks, get_proposal at both,
 get_config at the closing block, get_proposal at the latest final block), byte for
-byte in data/raw/hos/, with sha256.
+byte, with sha256. The blocks are public in data/raw/hos/. The proposal and config
+responses name people's accounts and carry the proposal's text, so their originals stay
+in data/private/hos/ (not committed) and the computation reads redacted copies in
+data/raw/redacted/hos/ (privacy.py): accounts replaced by sha256 tags, the description
+left out. --verify checks the copies against the originals when they are present.
 
 Read-only: JSON-RPC "block" and "call_function" calls. No API keys, nothing is
 written on chain.
@@ -41,6 +45,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import lock_window as lw  # noqa: E402
+import privacy  # noqa: E402
 
 CONTRACT = "vote.dao"
 PROPOSAL_ID = 29
@@ -49,6 +54,9 @@ YOCTO = 10 ** 24
 NS = lw.NS
 REPO = lw.REPO
 FIXED_OPTIONS = ["For", "Against", "Abstain"]  # VoteOption index 0, 1, 2
+PRIVATE = ("proposal_at_close", "proposal_before_close", "config_at_close", "proposal_latest")
+PUBLIC_ACCOUNTS = {CONTRACT, "venear.dao", "hos-root.sputnik-dao.near", "hos-deposits.sputnik-dao.near"}
+DROPPED = ("description",)   # free text written by the proposer
 REF_HEIGHT = 217453248  # fixed reference block, only for the first height guess
 RULE_SOURCE = ("houseofstake/house-of-stake-contracts voting-contract/src/proposal.rs "
                "compute_final_status (commit 32611da, 2026-09-21)")
@@ -83,11 +91,25 @@ def view(chain, method, args, height=None):
 
 
 def decode(raw):
-    return json.loads(bytes(json.loads(raw)["result"]["result"]).decode())
+    """The view call's value, from an RPC response or from a redacted copy."""
+    doc = json.loads(raw)
+    if "result" in doc:
+        return json.loads(bytes(doc["result"]["result"]).decode())
+    return doc["value"]
 
 
 def at_height(raw):
-    return json.loads(raw)["result"]["block_height"]
+    doc = json.loads(raw)
+    return doc["result"]["block_height"] if "result" in doc else doc["block_height"]
+
+
+def project(key, raw):
+    """Redacted copy of a private response: the block height and the value, accounts tagged,
+    the proposer's free text left out."""
+    value = decode(raw)
+    if isinstance(value, dict):
+        value = {k: v for k, v in value.items() if k not in DROPPED}
+    return privacy.dumps({"block_height": at_height(raw), "value": privacy.redact(value, PUBLIC_ACCOUNTS)})
 
 
 def header_of(raw):
@@ -209,7 +231,9 @@ def run(chain, data_dir, proposal_id=PROPOSAL_ID):
     raw_cfg = view(chain, "get_config", {}, hdr["height"])
 
     raw_dir = data_dir / "raw" / "hos"
+    priv_dir = data_dir / "private" / "hos" / "hsp029"
     raw_dir.mkdir(parents=True, exist_ok=True)
+    priv_dir.mkdir(parents=True, exist_ok=True)
     fetched = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
     files = {
         "closing_block": (f"block_{hdr['height']}.json", chain.raw[hdr["height"]]),
@@ -221,10 +245,13 @@ def run(chain, data_dir, proposal_id=PROPOSAL_ID):
     }
     raw_files = {}
     for key, (name, raw) in files.items():
-        path = raw_dir / name
+        path = (priv_dir if key in PRIVATE else raw_dir) / name
         path.write_bytes(raw)
         raw_files[key] = {"path": path.relative_to(data_dir.parent).as_posix(),
                           "sha256": lw.sha256(raw)}
+        if key in PRIVATE:
+            raw_files[key]["private"] = True
+    privacy.write_redacted(data_dir.parent, raw_files, project)
     doc = {
         "measure": "finding 8: final on-chain result of HSP-029",
         "contract": CONTRACT,
@@ -240,7 +267,7 @@ def run(chain, data_dir, proposal_id=PROPOSAL_ID):
 def build(root, raw_files):
     """Everything computed from the raw files. Used by run() and by --verify."""
     def load(key):
-        return (root / raw_files[key]["path"]).read_bytes()
+        return privacy.read(root, raw_files[key])
 
     hdr = header_of(load("closing_block"))
     prev = header_of(load("previous_block"))
@@ -280,13 +307,8 @@ def verify(path):
     path = Path(path)
     doc = json.loads(path.read_text(encoding="utf-8"))
     root = path.resolve().parent.parent  # data/hsp029.json -> repo root
-    problems = []
-    for key, f in doc["raw_files"].items():
-        p = root / f["path"]
-        if not p.exists():
-            problems.append(f"missing raw file {f['path']}")
-        elif lw.sha256(p.read_bytes()) != f["sha256"]:
-            problems.append(f"sha256 mismatch: {f['path']}")
+    problems, absent = privacy.check_files(root, doc["raw_files"], project)
+    verify.absent = absent
     if problems:
         return problems
     again = build(root, doc["raw_files"])
@@ -351,7 +373,9 @@ def main():
         if problems:
             print("FAILED:\n  " + "\n  ".join(problems))
             sys.exit(1)
-        print("OK: raw sha256 match, closing block checks pass, result recomputes exactly")
+        print("OK: raw sha256 match, closing block checks pass, result recomputes exactly"
+              + ("" if not getattr(verify, "absent", 0) else
+                 f" (PUBLIC_FULL: {verify.absent} private original(s) not in git; redacted copies checked)"))
         return
     if args.peek:
         peek(lw.Chain(url=lw.RPC), args.proposal)

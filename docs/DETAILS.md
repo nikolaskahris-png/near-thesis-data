@@ -262,7 +262,9 @@ not characterized here.
   hex characters of the SHA-256 of its account ID, so anyone can check a known account by hashing it. Tags are
   pseudonyms, not anonymity: the same accounts are public on chain and on NearBlocks. Until commit `7851eb5`
   (2 November 2026) the raw `stake.dao` responses, with account IDs, were in the repository; they remain in its
-  git history. One exception:
+  git history. The same holds for HSP-029's `get_proposal` and `get_config` responses (proposer, reviewer, council
+  and guardian accounts, and the proposal's text): they were in `data/raw/hos/` until 7 November 2026 and now read
+  from redacted copies in `data/raw/redacted/hos/`. One exception:
   `PREREG.md` names the implicit account of the largest farm position, which prediction 1 needs. DAOs, contracts
   and validator pools are named by their account.
 

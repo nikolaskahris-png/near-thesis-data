@@ -140,7 +140,8 @@ class VotersTest(unittest.TestCase):
         public = (root / "data" / hv.OUT_NAME).read_text()
         for name in ("a.near", "b.near", "c.near"):
             self.assertNotIn(name, public)
-        self.assertTrue(all(f["private"] for k, f in doc["raw_files"].items() if k != "proposal"))
+        self.assertTrue(all(f["private"] for f in doc["raw_files"].values()))   # the proposal too
+        self.assertIn("redacted", doc["raw_files"]["proposal"])
 
     def test_verify_offline_and_tampering(self):
         root, _, doc = self.run_it()

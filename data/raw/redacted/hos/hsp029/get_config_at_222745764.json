@@ -1,0 +1,46 @@
+{
+ "block_height": 222745764,
+ "value": {
+  "approval_threshold_bps": 5000,
+  "base_proposal_fee": "100000000000000000000000",
+  "bond_amount": "100000000000000000000000000",
+  "classic_proposal_expiration_ns": "604800000000000",
+  "classic_voting_duration_ns": "1209600000000000",
+  "council_ids": [
+   "sha256:04a0203b5c6bbd6e",
+   "sha256:4e6c4f9546ae06b6",
+   "sha256:c508a20d5c940e8b",
+   "sha256:16d26232ed82eefd",
+   "sha256:1b960c8e4b6ada2d"
+  ],
+  "fast_track_proposal_expiration_ns": "172800000000000",
+  "fast_track_voting_duration_ns": "432000000000000",
+  "guardians": [
+   "sha256:04a0203b5c6bbd6e",
+   "sha256:4e6c4f9546ae06b6",
+   "sha256:4706d23104afba48",
+   "sha256:34b1e829cd30b226",
+   "sha256:16d26232ed82eefd"
+  ],
+  "max_active_proposals": 3,
+  "owner_account_id": "hos-root.sputnik-dao.near",
+  "proposed_new_owner_account_id": null,
+  "quorum_floor": "1000000000000000000000000000",
+  "quorum_threshold_bps": 3500,
+  "reviewer_ids": [
+   "sha256:2bb0304c262d3d6c",
+   "sha256:a8af0ff478ebe1c6",
+   "sha256:6fd89ba8c135c774",
+   "sha256:a07631e84fd879ba",
+   "sha256:4706d23104afba48"
+  ],
+  "sandbox_duration_ns": "604800000000000",
+  "sandbox_threshold_bps": 3000,
+  "simple_majority_threshold_bps": 5000,
+  "strong_majority_threshold_bps": 6667,
+  "timelock_duration_ns": "1209600000000000",
+  "treasury_account_id": "hos-deposits.sputnik-dao.near",
+  "venear_account_id": "venear.dao",
+  "vote_storage_fee": "1250000000000000000000"
+ }
+}

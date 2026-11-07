@@ -40,6 +40,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import hsp029  # noqa: E402
+import privacy  # noqa: E402
 import lock_window as lw  # noqa: E402
 import stakers  # noqa: E402
 
@@ -245,7 +246,7 @@ def public_list(state):
 def build(root, doc):
     """Everything computed from the files listed in doc. Used by run() and --verify."""
     files = doc["raw_files"]
-    proposal = hsp029.decode((root / files["proposal"]["path"]).read_bytes())
+    proposal = hsp029.decode(privacy.read(root, files["proposal"]))   # redacted copy when private
     out = {}
     voters = doc["voters"]
     stats, problems = concentration(voters, proposal)
@@ -284,7 +285,7 @@ def run(chain, root, height, proposal_raw, trial, get=stakers.http_get, wait=PAG
     private_dir, public_dir, out_path = layout(root, trial)
     store = Store(root, private_dir, public_dir)
     pname = f"get_proposal_{PROPOSAL_ID}_at_{height}.json"
-    store.put(pname, proposal_raw, False, {"method": "get_proposal", "block_id": height})
+    store.put(pname, proposal_raw, not trial, {"method": "get_proposal", "block_id": height})
     proposal = hsp029.decode(proposal_raw)
     created = int(proposal["creation_time_ns"])
     txs, heights = fetch(chain, store, height, created, get=get, wait=wait)
@@ -293,6 +294,8 @@ def run(chain, root, height, proposal_raw, trial, get=stakers.http_get, wait=PAG
     if problems:
         raise SystemExit("Events do not replay cleanly:\n  " + "\n  ".join(problems))
     files = {"proposal": store.files[pname]}
+    if not trial:   # the proposal names accounts and carries its text: private, read from a redacted copy
+        privacy.write_redacted(root, {"proposal": files["proposal"]}, hsp029.project)
     files.update({k: v for k, v in sorted(store.files.items()) if k != pname})
     doc = {
         "measure": "finding 8: veNEAR of every HSP-029 voter, from vote.dao events",
@@ -324,11 +327,16 @@ def verify(path):
     problems = []
     for key, f in doc["raw_files"].items():
         p = root / f["path"]
+        r = f.get("redacted")
+        if r and (not (root / r["path"]).exists() or sha256((root / r["path"]).read_bytes()) != r["sha256"]):
+            problems.append(f"redacted copy missing or changed: {r['path']}")
         if not p.exists():
             if not f["private"]:
                 problems.append(f"missing public file {f['path']}")
         elif sha256(p.read_bytes()) != f["sha256"]:
             problems.append(f"sha256 mismatch: {f['path']}")
+        elif r and hsp029.project(key, p.read_bytes()) != (root / r["path"]).read_bytes():
+            problems.append(f"redacted copy does not match its original: {key}")
     if problems:
         return problems, doc
     again = build(root, doc)

@@ -135,6 +135,34 @@ class RunTest(unittest.TestCase):
             raw.write_bytes(raw.read_bytes().replace(b'"hsp029"', b'"hsp028"'))
             self.assertTrue(any("sha256" in p for p in h.verify(out)))
 
+    def test_private_responses_are_redacted_and_verify_without_originals(self):
+        chain = FakeHosChain(tl.final_height_at(END + 3 * 3600 * NS))
+        with tempfile.TemporaryDirectory() as tmp:
+            data = Path(tmp) / "data"
+            doc = h.run(chain, data)
+            for key in h.PRIVATE:
+                f = doc["raw_files"][key]
+                self.assertTrue(f["path"].startswith("data/private/hos/"), f["path"])
+                self.assertTrue(f["redacted"]["path"].startswith("data/raw/redacted/hos/"))
+            self.assertTrue(doc["raw_files"]["closing_block"]["path"].startswith("data/raw/hos/"))
+            out = data / h.OUT_NAME
+            out.write_text(json.dumps(doc), encoding="utf-8", newline="")
+            # A reader without data/private/ recomputes the same result from the redacted copies.
+            import shutil
+            shutil.rmtree(data / "private")
+            self.assertEqual(h.verify(out), [])
+            self.assertEqual(h.verify.absent, len(h.PRIVATE))
+
+    def test_projection_tags_accounts_and_drops_the_text(self):
+        value = {"proposer_id": "someone.near", "description": "written by someone.near",
+                 "votes": [{"total_venear": "5"}], "title": "T"}
+        raw = json.dumps({"result": {"result": list(json.dumps(value).encode()), "block_height": 7}}).encode()
+        red = json.loads(h.project("proposal_at_close", raw))
+        self.assertEqual(red["block_height"], 7)
+        self.assertNotIn("description", red["value"])
+        self.assertTrue(red["value"]["proposer_id"].startswith("sha256:"))
+        self.assertEqual(h.decode(h.project("proposal_at_close", raw))["votes"], value["votes"])
+
     def test_refuses_before_vote_closed(self):
         chain = FakeHosChain(tl.final_height_at(END + 60 * NS))
         with tempfile.TemporaryDirectory() as tmp:

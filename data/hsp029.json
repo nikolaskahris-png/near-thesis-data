@@ -27,20 +27,40 @@
       "sha256": "fcd1850b23fdbf8f795ea3aefc9ac02c86c64efc60d809b37ea76b25134ec5ce"
     },
     "proposal_at_close": {
-      "path": "data/raw/hos/get_proposal_29_at_222745764.json",
-      "sha256": "e8a5d26c9dfe38e0a593d21d4f355b08108d3d66d1c9f822a22281b1452cbbe3"
+      "path": "data/private/hos/hsp029/get_proposal_29_at_222745764.json",
+      "sha256": "e8a5d26c9dfe38e0a593d21d4f355b08108d3d66d1c9f822a22281b1452cbbe3",
+      "private": true,
+      "redacted": {
+        "path": "data/raw/redacted/hos/hsp029/get_proposal_29_at_222745764.json",
+        "sha256": "86532e66c5d498a7ccf3d1a1888c15de08df2dbc3e98a25cc648083e3d557d1a"
+      }
     },
     "proposal_before_close": {
-      "path": "data/raw/hos/get_proposal_29_at_222745763.json",
-      "sha256": "594aeb0de4136bfb89ae92adc4a3e786dcdaabdb3b42a1b1c9cfce678be07dc6"
+      "path": "data/private/hos/hsp029/get_proposal_29_at_222745763.json",
+      "sha256": "594aeb0de4136bfb89ae92adc4a3e786dcdaabdb3b42a1b1c9cfce678be07dc6",
+      "private": true,
+      "redacted": {
+        "path": "data/raw/redacted/hos/hsp029/get_proposal_29_at_222745763.json",
+        "sha256": "1c7c6d98bba3198461d616d58bda95b06724b264bfaddf1ae9ba8b3f79a3acd6"
+      }
     },
     "config_at_close": {
-      "path": "data/raw/hos/get_config_at_222745764.json",
-      "sha256": "c6819944927a4ed3ab163910a084b94dda3e10ed716b8b8edb5f9932e8adb882"
+      "path": "data/private/hos/hsp029/get_config_at_222745764.json",
+      "sha256": "c6819944927a4ed3ab163910a084b94dda3e10ed716b8b8edb5f9932e8adb882",
+      "private": true,
+      "redacted": {
+        "path": "data/raw/redacted/hos/hsp029/get_config_at_222745764.json",
+        "sha256": "94a1fddc86cbe86890eb235bc574a56b76f4385b4c0f73fa9d2b62ea4189f7e4"
+      }
     },
     "proposal_latest": {
-      "path": "data/raw/hos/get_proposal_29_final_20261102T191754Z.json",
-      "sha256": "d8121782aeaf7aadc28ad6744048eefcd4d5400f0ee53b80333588a80a0ee6fd"
+      "path": "data/private/hos/hsp029/get_proposal_29_final_20261102T191754Z.json",
+      "sha256": "d8121782aeaf7aadc28ad6744048eefcd4d5400f0ee53b80333588a80a0ee6fd",
+      "private": true,
+      "redacted": {
+        "path": "data/raw/redacted/hos/hsp029/get_proposal_29_final_20261102T191754Z.json",
+        "sha256": "530dda8ba364a366c7119bc8236943fd3b3e6c5a068bcca66c22e55b86f567dc"
+      }
     }
   },
   "proposal": {
