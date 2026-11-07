@@ -958,6 +958,13 @@ def build(data_dir, window_file):
                           ("take_rate", "f2.take_rate"), ("kept_share", "f2.wallets_kept_share_of_revenue")):
             if f"{key}.2026-04" in n.items and f"{key}.2026-10" in n.items:
                 history[name] = (v(f"{key}.2026-04"), v(f"{key}.2026-10"))
+        # the dollar multiple split in two: NEAR the buybacks wallets kept a day, and the mean price
+        if "f2.mean_price_usd.2026-04" in n.items and "f2.mean_price_usd.2026-10" in n.items:
+            history["mean_price"] = (v("f2.mean_price_usd.2026-04"), v("f2.mean_price_usd.2026-10"))
+        _bb = {r["month"]: dec(r["buybacks_per_day"]) for r in json.loads(
+            (data_dir / "coverage_monthly.json").read_text(encoding="utf-8"))["rows"]}
+        if "2026-04" in _bb and "2026-10" in _bb:
+            history["buybacks_kept_near"] = (_bb["2026-04"], _bb["2026-10"])
         res = longrun.model(supply_end, new_day, Fraction(n.items["c.issuance_max_inflation_rate"]["value"]),
                             dec(days) / v("b.epochs"),
                             _dt.fromisoformat(f"{end_date}T00:00:00+00:00"), ratified, kept,

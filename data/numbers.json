@@ -3439,6 +3439,14 @@
       "note": "calibration: equals n1.new_near_per_day",
       "status": "final"
     },
+    "lr.history.2026-04_2026-10.buybacks_kept_near_multiple": {
+      "value": "2.051320146522027186112624635818145139639",
+      "text": "×2.1",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "multiple",
+      "note": "October / April, measured monthly (buybacks_kept_near)",
+      "status": "final"
+    },
     "lr.history.2026-04_2026-10.buybacks_kept_usd_multiple": {
       "value": "7.472775479345861076232258495146077262084",
       "text": "×7.5",
@@ -3477,6 +3485,14 @@
       "source": "data/daily/2026-11-01.json",
       "unit": "multiple",
       "note": "October / April, measured monthly (kept_share)",
+      "status": "final"
+    },
+    "lr.history.2026-04_2026-10.mean_price_multiple": {
+      "value": "3.642910392127627851498434471447741165946",
+      "text": "×3.6",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "multiple",
+      "note": "October / April, measured monthly (mean_price)",
       "status": "final"
     },
     "lr.history.2026-04_2026-10.revenue_usd_multiple": {

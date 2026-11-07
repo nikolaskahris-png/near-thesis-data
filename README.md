@@ -5,8 +5,8 @@
 **In one minute.**
 
 - **Real.** Users pay <!--n:n2.fees_usd_per_day-->$206,049<!--/n--> a day in fees on NEAR Intents (DefiLlama). From April to October the three
-  wallets (buybacks, 1Click fund, front-end fund) kept <!--n:f2.wallets_kept_share_of_revenue.2026-04_2026-10-->96.9%<!--/n--> of the revenue DefiLlama attributes to NEAR, and what the buybacks
-  wallets keep in dollars grew <!--n:lr.history.2026-04_2026-10.buybacks_kept_usd_multiple-->×7.5<!--/n--> from April, its lowest month.
+  wallets (buybacks, 1Click fund, front-end fund) still held <!--n:f2.wallets_kept_share_of_revenue.2026-04_2026-10-->96.9%<!--/n--> of the revenue DefiLlama attributes to NEAR (little was paid out),
+  and what the buybacks wallets keep grew <!--n:lr.history.2026-04_2026-10.buybacks_kept_usd_multiple-->×7.5<!--/n--> in dollars from April, its lowest month: <!--n:lr.history.2026-04_2026-10.buybacks_kept_near_multiple-->×2.1<!--/n--> as much NEAR a day, at a <!--n:lr.history.2026-04_2026-10.mean_price_multiple-->×3.6<!--/n--> price.
 - **Small.** Buybacks offset <!--n:n1.coverage_buybacks-->10.8%<!--/n--> of the NEAR issued in the same days (<!--n:n1.coverage_with_front_end-->16.5%<!--/n--> counting
   the front-end fund, which keeps near-intents.org's own fees). If NEAR kept every fee, it would cover <!--n:n2.max_coverage-->47.9%<!--/n-->. NEAR's market cap is
   <!--n:peer.near_all.mcap_to_revenue-->234×<!--/n--> a year of its revenue, Intents and gas together; <!--n:peer.near_l1.mcap_to_revenue-->4,091×<!--/n--> on L1 gas alone.
@@ -29,10 +29,11 @@
 
 Every condition, with its exact rule: [the rating in full](#the-rating-in-full).
 
-**The bull case, measured.** Intents is what sets NEAR apart from other L1s: part of its fees buys NEAR back.
-Counting them with gas, NEAR's market cap is <!--n:peer.near_all.mcap_to_revenue-->234×<!--/n--> its yearly revenue, the lowest of the L1s here: <!--n:peer.aptos.mcap_to_revenue-->426×<!--/n--> for Aptos, <!--n:peer.solana.mcap_to_revenue-->1,995×<!--/n--> for Solana and <!--n:peer.ethereum.mcap_to_revenue-->3,394×<!--/n--> for Ethereum,
-whose figures are their chains' own revenue, without their apps. On L1 gas alone NEAR is <!--n:peer.near_l1.mcap_to_revenue-->4,091×<!--/n-->, above Ethereum
-([peers](#peers-on-one-basis)): the lead comes from Intents. Against apps with buybacks it is the other way round (Hyperliquid <!--n:peer.hyperliquid.mcap_to_revenue-->24×<!--/n-->). What
+**The bull case, measured.** On its own chain's gas, NEAR's market cap is <!--n:peer.near_l1.mcap_to_revenue-->4,091×<!--/n--> its yearly revenue, the second
+highest of the L1s here (Sui <!--n:peer.sui.mcap_to_revenue-->16,884×<!--/n-->, Ethereum <!--n:peer.ethereum.mcap_to_revenue-->3,394×<!--/n-->). What sets NEAR apart is Intents, an app part of whose fees
+buys NEAR back; the other L1s' figures leave out their apps, whose revenue goes to the apps' own tokens (Jupiter's
+to JUP, not SOL). Counting Intents, NEAR is <!--n:peer.near_all.mcap_to_revenue-->234×<!--/n-->, the lowest here: <!--n:peer.aptos.mcap_to_revenue-->426×<!--/n--> for Aptos, <!--n:peer.solana.mcap_to_revenue-->1,995×<!--/n--> for Solana, <!--n:peer.ethereum.mcap_to_revenue-->3,394×<!--/n--> for
+Ethereum ([peers](#peers-on-one-basis)). And it is growing: since April, the lowest month, the buybacks wallets keep <!--n:lr.history.2026-04_2026-10.buybacks_kept_near_multiple-->×2.1<!--/n--> as much NEAR a day. Against apps with buybacks it is the other way round (Hyperliquid <!--n:peer.hyperliquid.mcap_to_revenue-->24×<!--/n-->). What
 the capture has not done is offset issuance, and nothing yet makes it last.
 
 **Check it.** `python scripts/rebuild.py` (Python 3.10+, standard library only, no network) ends with
@@ -136,7 +137,7 @@ Staking moves issuance from unstaked holders to staked ones; buybacks are the on
 money from outside, so they are what all holders share. Net of buybacks, supply dilutes <!--n:iv.net_dilution_buybacks-->2.20%<!--/n--> a year. Coverage
 falls when the price rises and revenue does not: each dollar buys back a smaller part of a dearer NEAR. In dollars,
 April to October: fees <!--n:lr.history.2026-04_2026-10.fees_usd_multiple-->×1.9<!--/n-->, revenue <!--n:lr.history.2026-04_2026-10.revenue_usd_multiple-->×8.2<!--/n-->, volume <!--n:lr.history.2026-04_2026-10.volume_usd_multiple-->×2.0<!--/n-->, kept by the buybacks wallets
-<!--n:lr.history.2026-04_2026-10.buybacks_kept_usd_multiple-->×7.5<!--/n-->; the NEAR price rose faster than fees, so fees counted in NEAR fell (<!--n:lr.history.2026-04_2026-10.fees_near_multiple-->×0.5<!--/n-->).
+<!--n:lr.history.2026-04_2026-10.buybacks_kept_usd_multiple-->×7.5<!--/n--> (<!--n:lr.history.2026-04_2026-10.buybacks_kept_near_multiple-->×2.1<!--/n--> as much NEAR a day, at a <!--n:lr.history.2026-04_2026-10.mean_price_multiple-->×3.6<!--/n--> price); the NEAR price rose faster than fees, so fees counted in NEAR fell (<!--n:lr.history.2026-04_2026-10.fees_near_multiple-->×0.5<!--/n-->).
 
 ### Who gets what
 
