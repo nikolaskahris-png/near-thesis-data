@@ -10,8 +10,9 @@ The rules are the README's "The rating in full". For each history row (the 30 da
   A window fails if kept share < 75%, or buybacks kept in USD <= April's level (numbers.json
   f2.buybacks_kept_usd_per_day.2026-04). Avoid if this window and the one ending 30 days
   earlier both fail. Buy if (b) a lock is declared (LOCKS in daily.py) and either coverage
-  >= 100% or, at a yearly check (1 November), (a) holds: buybacks kept has grown at the required
-  pace from the 2026-11-01 window, in USD and in NEAR. Avoid overrides Buy. Otherwise Hold.
+  >= 100% or (a) held at the latest yearly check (the 1 November window): buybacks kept had grown at
+  the required pace from the 2026-11-01 window, in USD and in NEAR. A pass holds until the next
+  yearly check. Avoid overrides Buy. Otherwise Hold, also when a rule cannot be judged.
 
 DefiLlama days are counted exactly as in fees.py (the same flags, the same mean price), so the
 2026-11-01 row reproduces numbers.json. A row is "incomplete" if a day lacks a series, and
@@ -95,6 +96,7 @@ def evaluate(history, s, th, fetched, locks):
     by_date = {r["date"]: r for r in history}
     rule_b = bool(locks)
     out, fails = [], {}
+    a_since = None          # date of the yearly check whose (a) passed; holds until the next check
     for r in history:
         d = date.fromisoformat(r["date"])
         status, agg = window_values(r, s, fetched)
@@ -141,8 +143,11 @@ def evaluate(history, s, th, fetched, locks):
             ok = (kept_bb * agg["mean_price_usd"] >= Fraction(th["base_usd_per_day"]) * factor
                   and kept_bb >= Fraction(th["base_near_per_day"]) * factor)
             row["yearly_a"] = "pass" if ok else "fail"
+            a_since = d if ok else None
+        elif a_since is not None:
+            row["yearly_a"] = f"pass since {a_since.isoformat()}"
         avoid = fail is True and row["earlier_window"] == "fail"
-        buy = rule_b and (cov >= 1 or row["yearly_a"] == "pass")
+        buy = rule_b and (cov >= 1 or row["yearly_a"].startswith("pass"))
         row["rating"] = "Avoid" if avoid else "Buy" if buy else "Hold"
         if fail and not avoid:
             notes.append("this window fails an Avoid test; Avoid needs the earlier window to fail too")

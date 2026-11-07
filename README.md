@@ -20,8 +20,8 @@
 - **Hold:** keep NEAR you own, staked. Staking pays about <!--n:iv.staking_yield_gross-->5.0%<!--/n--> a year while supply grows <!--n:iv.issuance_rate_per_year-->2.46%<!--/n-->:
   that protects your share of NEAR, not its dollar value.
 - **Buy** only once (b) keeping it is a published rule, and then when either (a) what the buybacks wallets keep has
-  grown at least <!--n:lr.required_growth.buybacks.B.2031-->+56%<!--/n--> a year from <!--n:iv.buybacks_kept_usd_per_day-->$46,692<!--/n--> a day, in dollars and in NEAR, the pace that covers
-  issuance on 1 January 2031, or the buybacks already cover issuance: in a 30-day window they keep at least as many
+  grown at least <!--n:lr.required_growth.buybacks.A.2031-->+75%<!--/n--> a year from <!--n:iv.buybacks_kept_usd_per_day-->$46,692<!--/n--> a day, in dollars and in NEAR, the pace that covers
+  issuance on 1 January 2031 (<!--n:lr.required_growth.buybacks.B.2031-->+56%<!--/n--> once validators run HSP-029), or the buybacks already cover issuance: in a 30-day window they keep at least as many
   NEAR as are issued (coverage of 100% or more, against <!--n:n1.coverage_buybacks-->10.8%<!--/n--> now).
 - **Avoid** if, in two 30-day windows in a row, the wallets keep less than 75% of DefiLlama's revenue for NEAR, in
   NEAR, or what the buybacks wallets keep in dollars falls back to April's level (<!--n:f2.buybacks_kept_usd_per_day.2026-04-->$6,270<!--/n--> a day). Avoid
@@ -87,12 +87,12 @@ choice; every figure in them is measured.*
 - **Upgrade to Buy** when (b) holds and, at a yearly check, (a) and (a′) hold, or (b) holds and the buybacks cover
   issuance (below). Each check measures the same 30 days of its year
   (2 October to 1 November), like this window. (a) **In dollars:** what the buybacks wallets keep a
-  day has grown at least <!--n:lr.required_growth.buybacks.B.2031-->+56%<!--/n--> a year from this window's <!--n:iv.buybacks_kept_usd_per_day-->$46,692<!--/n-->, so a falling price alone
-  cannot meet it. (a′) **In NEAR:** the same growth, so a rising price has not used it up. +56% a year is the pace that
-  covers issuance on 1 January 2031 under HSP-029, the passed proposal that lowers issuance from 2.5% to 1.6% a year
-  (<!--n:lr.required_growth.with_front_end.B.2031-->+41%<!--/n--> counting the front-end fund, which keeps near-intents.org's own fees; <!--n:lr.required_growth.buybacks.A.2031-->+75%<!--/n--> and
-  <!--n:lr.required_growth.with_front_end.A.2031-->+58%<!--/n--> if HSP-029 is not in force). (b) Keeping it is a published rule. The hurdle depends on the
-  base: from the April–October average it is <!--n:lr.required_growth.buybacks.B.2031.base.2026-04_2026-10-->+62%<!--/n-->; from single months,
+  day has grown at least <!--n:lr.required_growth.buybacks.A.2031-->+75%<!--/n--> a year from this window's <!--n:iv.buybacks_kept_usd_per_day-->$46,692<!--/n-->, so a falling price alone
+  cannot meet it. (a′) **In NEAR:** the same growth, so a rising price has not used it up. <!--n:lr.required_growth.buybacks.A.2031-->+75%<!--/n--> a year is the pace that
+  covers issuance on 1 January 2031 at today's issuance rule; once validators run HSP-029, the passed proposal that
+  lowers issuance from 2.5% to 1.6% a year, it is <!--n:lr.required_growth.buybacks.B.2031-->+56%<!--/n--> (<!--n:lr.required_growth.with_front_end.A.2031-->+58%<!--/n--> and <!--n:lr.required_growth.with_front_end.B.2031-->+41%<!--/n--> counting the front-end fund, which
+  keeps near-intents.org's own fees). (b) Keeping it is a published rule. The hurdle depends on the
+  base: with HSP-029 in force, from the April–October average it is <!--n:lr.required_growth.buybacks.B.2031.base.2026-04_2026-10-->+62%<!--/n-->; from single months,
   <!--n:lr.required_growth.buybacks.B.2031.base_min-->+44%<!--/n--> to <!--n:lr.required_growth.buybacks.B.2031.base_max-->+85%<!--/n-->.
 - **Downgrade to Avoid** if two 30-day windows in a row, the latest and the one ending 30 days before it, each fail
   either test: the wallets keep less than 75% of the revenue DefiLlama
@@ -101,10 +101,11 @@ choice; every figure in them is measured.*
   trigger either. NEAR moved from the wallets to an account declared as a lock (the published rule of (b)) counts as
   kept, not as an outflow (`LOCKS` in `scripts/daily.py`; none exists yet), so meeting (b) cannot trigger Avoid.
 - **Buybacks cover issuance**, with (b): in a 30-day window the buybacks wallets keep at least as many NEAR as are
-  issued, so coverage is 100% or more (<!--n:n1.coverage_buybacks-->10.8%<!--/n--> in this window), on the same basis as (a). A lower price raises
-  coverage, since the same dollars buy more NEAR, but it cannot meet the test alone: at this window's NEAR kept, coverage
-  reaches 100% only at <!--n:iv.buybacks_equilibrium_price_usd-->$0.53<!--/n--> (mean <!--n:n2.mean_price_usd-->$4.88<!--/n-->), and at a price that low what the buybacks wallets keep in dollars
-  is already below April's level, Avoid's dollar test; Avoid overrides Buy. (With the front-end fund, <!--n:iv.revenue_equilibrium_price_usd-->$0.80<!--/n-->.)
+  issued, so coverage is 100% or more (<!--n:n1.coverage_buybacks-->10.8%<!--/n--> in this window), on the same basis as (a). Coverage counts NEAR, so a
+  lower price raises it only through the dollars kept: if they hold at <!--n:iv.buybacks_kept_usd_per_day-->$46,692<!--/n--> a day, at <!--n:iv.buybacks_equilibrium_price_usd-->$0.53<!--/n--> (mean <!--n:n2.mean_price_usd-->$4.88<!--/n-->) they buy
+  as many NEAR as are issued, the dollar test still passes, and with (b) the rating is Buy. That is intended: the
+  buybacks then do offset issuance. If instead the NEAR kept stays near today's, a lower price leaves coverage where it
+  is, and at <!--n:iv.buybacks_equilibrium_price_usd-->$0.53<!--/n--> the dollars kept would be below April's <!--n:f2.buybacks_kept_usd_per_day.2026-04-->$6,270<!--/n-->, failing Avoid's dollar test. (With the front-end fund, <!--n:iv.revenue_equilibrium_price_usd-->$0.80<!--/n-->.)
 - **Applied every day:** `scripts/rating.py` applies these rules to each 30-day window in `data/history.csv` and
   writes [`data/rating.csv`](data/rating.csv): the rating, both Avoid tests, the earlier window, (b) and coverage. It counts
   DefiLlama's days exactly as the window's figures do, and `--verify` recomputes it with no network.
@@ -124,7 +125,8 @@ choice; every figure in them is measured.*
 | Missing data | a window missing a DefiLlama day is `incomplete` and counts as neither pass nor fail. |
 | Provisional | for 48 hours after its last day a window is judged but marked `provisional`, because DefiLlama revises recent days; every run re-fetches them, so the row settles by itself. |
 | Buy | (b) a lock is declared under a published rule (`LOCKS`), and either a window's coverage is 100% or more, or (a) and (a′) hold at the yearly check, the window ending on 1 November. |
-| Hurdle of (a) | from <!--n:iv.buybacks_kept_usd_per_day-->$46,692<!--/n--> a day: <!--n:lr.required_growth.buybacks.A.2031-->+75%<!--/n--> a year while validators do not run HSP-029, <!--n:lr.required_growth.buybacks.B.2031-->+56%<!--/n--> once they do (`HSP029_IN_FORCE`, set when `scripts/upgrade_watch.py` shows the release adopted). |
+| Hurdle of (a) | from <!--n:iv.buybacks_kept_usd_per_day-->$46,692<!--/n--> a day: <!--n:lr.required_growth.buybacks.A.2031-->+75%<!--/n--> a year while validators do not run HSP-029, <!--n:lr.required_growth.buybacks.B.2031-->+56%<!--/n--> once they do (`HSP029_IN_FORCE`, set when `scripts/upgrade_watch.py` shows the release adopted). A pass at a yearly check holds until the next one. |
+| Cannot be judged | Hold. Until 1 December 2026 no window has one 30 days before it in `history.csv`, so Avoid cannot fire before then. |
 
 If NEAR kept every fee, fees counted in NEAR would need <!--n:lr.required_growth.all_fees.B.2031-->+9%<!--/n--> a year ([the model](#issuance-to-2031)).
 

@@ -20,13 +20,13 @@
     Avoid if, twice in a row, the wallets keep less than three quarters of DefiLlama's revenue, or what the buybacks wallets keep in
     dollars falls back to April's level. Avoid overrides Buy; Hold has no upper price.</strong></p>
   <div class="tiles">
-    <div class="tile"><span class="tile-k">(a) Coverage today</span>
+    <div class="tile"><span class="tile-k">Coverage today</span>
       <span class="tile-v" data-n="n1.coverage_buybacks"></span>
-      <span class="tile-s">of new NEAR kept by the buybacks wallets · <span data-n="n1.coverage_with_front_end"></span> with the front-end fund, which covers issuance only at NEAR ≤ <span data-n="iv.revenue_equilibrium_price_usd"></span></span></div>
+      <span class="tile-s">of new NEAR kept by the buybacks wallets · <span data-n="n1.coverage_with_front_end"></span> with the front-end fund · Buy can also come from full coverage, with (b)</span></div>
     <div class="tile"><span class="tile-k">(a) Needed to 2031</span>
-      <span class="tile-v" data-n="lr.required_growth.buybacks.B.2031"></span>
-      <span class="tile-s">a year, in dollars and in NEAR: how fast what the buybacks wallets keep must grow to cover issuance by 2031 under HSP-029 ·
-        with the front-end fund <span data-n="lr.required_growth.with_front_end.B.2031"></span> · if HSP-029 is not in force <span data-n="lr.required_growth.buybacks.A.2031"></span></span></div>
+      <span class="tile-v" data-n="lr.required_growth.buybacks.A.2031"></span>
+      <span class="tile-s">a year, in dollars and in NEAR: how fast what the buybacks wallets keep must grow to cover issuance by 2031 at today's issuance rule ·
+        with the front-end fund <span data-n="lr.required_growth.with_front_end.A.2031"></span> · once validators run HSP-029 <span data-n="lr.required_growth.buybacks.B.2031"></span></span></div>
     <div class="tile"><span class="tile-k">(b) A rule? Not yet</span>
       <span class="tile-v" data-n="c.buybacks_confirmations"></span>
       <span class="tile-s">signatures move the buybacks wallet; with the front-end fund the wallets hold
@@ -39,7 +39,7 @@
 <main class="wrap">
 <section id="p0">
   <h2>Rating today: <span id="rating-now">—</span></h2>
-  <p class="what">The README's rules applied to every monthly window, every day (<code>data/rating.csv</code>). Avoid needs the
+  <p class="what">The README's rules applied to a rolling window of thirty days, every day (<code>data/rating.csv</code>). Avoid needs the
     latest window and the one a month before it to fail one of the two tests; Buy needs a published rule (b) first.
     <span class="not">A window with missing DefiLlama days is not judged, and one in its first two days may still be revised.</span></p>
   <div class="ratingbox" id="rating-box"></div>

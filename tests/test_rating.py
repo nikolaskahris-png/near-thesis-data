@@ -87,6 +87,14 @@ class Rules(unittest.TestCase):
         self.assertEqual((rows["2026-11-01"]["status"], rows["2026-11-01"]["rating"]), ("incomplete", "Hold"))
         self.assertEqual((rows["2026-12-01"]["earlier_window"], rows["2026-12-01"]["rating"]), ("not judged", "Hold"))
 
+    def test_price_fall_with_steady_dollars_reaches_buy(self):
+        # Judge #8: at a lower price the same dollars buy more NEAR; coverage >= 100% and the dollar test
+        # passes, so with (b) the rating is Buy. Here $1,000 a day at $0.25 = 4,000 NEAR, all of issuance.
+        s = series(date(2026, 9, 1), date(2026, 12, 31), revenue=1000, price=Fraction(1, 4))
+        r = self.run_rows([hist(D1, kept=4000, cov="1.0")], s=s, locks=["lock.near"],
+                          th={**TH, "avoid_usd_per_day": "900"})["2026-11-01"]
+        self.assertEqual((r["test_usd"], r["test_kept_share"], r["rating"]), ("pass", "pass", "Buy"))
+
     def test_recent_window_is_provisional(self):
         r = self.run_rows([hist(D1)], fetched=datetime(2026, 11, 2, 0, 15, tzinfo=timezone.utc))["2026-11-01"]
         self.assertEqual(r["status"], "provisional")
@@ -98,6 +106,10 @@ class Rules(unittest.TestCase):
         # 17,000 NEAR at $5 passes both, 16,000 NEAR fails the NEAR leg
         r = self.run_rows([hist(y1, kept=17000, cov="0.2")], s=s, locks=["lock.near"])["2027-11-01"]
         self.assertEqual((r["yearly_a"], r["rating"]), ("pass", "Buy"))
+        # a pass holds until the next yearly check, not just on its own day
+        rows = self.run_rows([hist(y1, kept=17000, cov="0.2"), hist(y1 + timedelta(days=1), kept=17000, cov="0.2")],
+                             s=s, locks=["lock.near"])
+        self.assertEqual((rows["2027-11-02"]["yearly_a"], rows["2027-11-02"]["rating"]), ("pass since 2027-11-01", "Buy"))
         r = self.run_rows([hist(y1, kept=16000, cov="0.2")], s=s, locks=["lock.near"])["2027-11-01"]
         self.assertEqual((r["yearly_a"], r["rating"]), ("fail", "Hold"))
         self.assertEqual(self.run_rows([hist(D1)])["2026-11-01"]["yearly_a"], "")

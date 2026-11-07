@@ -19,14 +19,15 @@ code. Issuance, on the other side of the ledger, is a protocol rule.
   grows <!--n:iv.issuance_rate_per_year-->2.46%<!--/n-->, so the staked holder's share of all NEAR rises, though not its dollar value. It is not a Buy,
   because what holders get from fees covers a small part of issuance and nothing obliges anyone to keep it.
 - **Buy** only once **(b)** keeping it is a published rule, and then when, at a yearly check over the same 30 days of its year (2 October to 1 November), **(a)** what the
-  buybacks wallets keep a day has grown at least <!--n:lr.required_growth.buybacks.B.2031-->+56%<!--/n--> a year from this window, both in dollars (from
-  <!--n:iv.buybacks_kept_usd_per_day-->$46,692<!--/n-->) and in NEAR, the pace that covers issuance on 1 January 2031 under HSP-029 (<!--n:lr.required_growth.with_front_end.B.2031-->+41%<!--/n--> counting
-  the front-end fund; <!--n:lr.required_growth.buybacks.A.2031-->+75%<!--/n--> and <!--n:lr.required_growth.with_front_end.A.2031-->+58%<!--/n--> if HSP-029 is not in force), so neither a falling nor a rising
+  buybacks wallets keep a day has grown at least <!--n:lr.required_growth.buybacks.A.2031-->+75%<!--/n--> a year from this window, both in dollars (from
+  <!--n:iv.buybacks_kept_usd_per_day-->$46,692<!--/n-->) and in NEAR, the pace that covers issuance on 1 January 2031 at today's issuance rule (<!--n:lr.required_growth.with_front_end.A.2031-->+58%<!--/n--> counting
+  the front-end fund; <!--n:lr.required_growth.buybacks.B.2031-->+56%<!--/n--> and <!--n:lr.required_growth.with_front_end.B.2031-->+41%<!--/n--> once validators run HSP-029), so neither a falling nor a rising
   price alone decides it.
 - **Or, with (b), when the buybacks cover issuance:** in a 30-day window the buybacks wallets keep at least as many NEAR
   as are issued (coverage of 100% or more, against <!--n:n1.coverage_buybacks-->10.8%<!--/n--> in this window). Revenue is earned in dollars and issuance is paid in
-  NEAR, so the higher the price, the less the wallets cover. A lower price alone does not meet the test: at this window's
-  NEAR kept, coverage reaches 100% at <!--n:iv.buybacks_equilibrium_price_usd-->$0.53<!--/n-->, and before that the dollars kept fall below April's level, which is Avoid.
+  NEAR, so the higher the price, the less the wallets cover. If the dollars kept hold at <!--n:iv.buybacks_kept_usd_per_day-->$46,692<!--/n--> a day, they cover issuance
+  at <!--n:iv.buybacks_equilibrium_price_usd-->$0.53<!--/n-->, and the rating is Buy; if the NEAR kept stays near today's instead, at that price the dollars kept are below
+  April's level, failing Avoid's dollar test.
 - **Avoid** if, in two 30-day windows in a row, the wallets keep less than 75% of the revenue DefiLlama attributes to NEAR, both in
   NEAR (April: <!--n:f2.wallets_kept_share_of_revenue.2026-04-->77%<!--/n-->), or what the buybacks wallets keep in dollars falls back to April's level
   (<!--n:f2.buybacks_kept_usd_per_day.2026-04-->$6,270<!--/n--> a day). Avoid overrides Buy. Hold has no upper price: the rating judges what NEAR
@@ -136,7 +137,7 @@ What weakens the claim, as measured by the same scripts:
 | Small | the buybacks wallets alone keep 25% or more of issuance in three consecutive calendar months | highest month <!--n:f1.coverage_buybacks.2026-09-->15.3%<!--/n--> | today <!--n:n1.coverage_buybacks-->10.8%<!--/n--> of the way to full coverage; what they keep must grow <!--n:iv.wallets_multiple_buybacks-->×9.2<!--/n--> to cover issuance | `scripts/coverage.py`, `data/history.csv` |
 | Discretionary: buybacks | bought NEAR moves by a published rule to an account no one can spend from, or the protocol fee on `intents.near` is raised with `fee_collector` set to the buybacks wallet or a locked account | <!--n:c.buybacks_confirmations-->2 of 4<!--/n--> multisig, nothing burned; fee <!--n:c.intents_fee_pips-->1 pip<!--/n--> | no rule yet | `scripts/control_map.py` |
 | Discretionary: credits | the credits rate follows a formula in the contract, or changes only by a DAO proposal | changed <!--n:f6.rate_changes-->1<!--/n--> time by one account | no rule yet | `scripts/farm_rate.py` |
-| Small, over five years | at a yearly check, what the buybacks wallets keep a day has grown at least <!--n:lr.required_growth.buybacks.B.2031-->+56%<!--/n--> a year from this window, in dollars and in NEAR (<!--n:lr.required_growth.buybacks.A.2031-->+75%<!--/n--> if HSP-029 is not in force): the pace that covers issuance in 2031 | <!--n:iv.buybacks_kept_usd_per_day-->$46,692<!--/n--> a day | must grow <!--n:lr.required_multiple.buybacks.B.2031-->×6.4<!--/n--> by 2031 (<!--n:lr.required_multiple.with_front_end.B.2031-->×4.2<!--/n--> with the front-end fund) | `scripts/longrun.py`, `data/history.csv` |
+| Small, over five years | at a yearly check, what the buybacks wallets keep a day has grown at least <!--n:lr.required_growth.buybacks.A.2031-->+75%<!--/n--> a year from this window, in dollars and in NEAR (<!--n:lr.required_growth.buybacks.B.2031-->+56%<!--/n--> once HSP-029 is in force): the pace that covers issuance in 2031 | <!--n:iv.buybacks_kept_usd_per_day-->$46,692<!--/n--> a day | must grow <!--n:lr.required_multiple.buybacks.B.2031-->×6.4<!--/n--> by 2031 (<!--n:lr.required_multiple.with_front_end.B.2031-->×4.2<!--/n--> with the front-end fund) | `scripts/longrun.py`, `data/history.csv` |
 | Issuance is the only rule | HSP-029 is still not in a nearcore release adopted by validators on 1 November 2027 | in timelock until <!--n:f8.timelock_end_utc-->2026-11-16 16:48 UTC<!--/n--> | passed, not in force | `scripts/hsp029.py`, `scripts/upgrade_watch.py` |
 | Stake spread | the largest account holds less than half of the NEAR AI farm | <!--n:n3.largest_share-->73.3%<!--/n--> | prediction 1 expects at least 70% on 16 November | `scripts/stakers.py` |
 
