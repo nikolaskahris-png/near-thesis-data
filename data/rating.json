@@ -7,7 +7,7 @@
     "precedence": "Avoid overrides Buy",
     "hsp029_in_force": false
   },
-  "fetched_utc": "2026-11-06T13:39:04Z",
+  "fetched_utc": "2026-11-07T06:00:25Z",
   "locks": [],
   "thresholds": {
     "avoid_usd_per_day": "6270.3997866",
@@ -18,24 +18,24 @@
   },
   "raw": {
     "fees": {
-      "path": "data/raw/rating/20261106T133904Z/fees.json",
-      "sha256": "b840a7e37d3d8602f1d7409ee2bde4ca5c56c831684514d7547455a1c3343ae0",
+      "path": "data/raw/rating/20261107T060025Z/fees.json",
+      "sha256": "883792d8e812738321d87bb77fd69741edee69ffaeb6d0096a52500671e71406",
       "url": "https://api.llama.fi/summary/fees/near-intents?dataType=dailyFees&excludeTotalDataChartBreakdown=true"
     },
     "revenue": {
-      "path": "data/raw/rating/20261106T133904Z/revenue.json",
-      "sha256": "3e59d9cd69b7d5c4970d34fb3c0e655a65c5725487f9f5d96676b16c979bb8ec",
+      "path": "data/raw/rating/20261107T060025Z/revenue.json",
+      "sha256": "d785059dfb61725b38c42a65011b4a385ab9305fbd6c39df3021361c2fdb378e",
       "url": "https://api.llama.fi/summary/fees/near-intents?dataType=dailyRevenue&excludeTotalDataChartBreakdown=true"
     },
     "volume": {
-      "path": "data/raw/rating/20261106T133904Z/volume.json",
-      "sha256": "48ba60b49b1fd362d39d1876658a84b67d51a0fa990547257cdd4a1cd97ac543",
+      "path": "data/raw/rating/20261107T060025Z/volume.json",
+      "sha256": "0fa272f637b789c0fb15f1de5b8e25fb8045770f6d22203121d956e0084af31e",
       "url": "https://api.llama.fi/summary/dexs/near-intents?excludeTotalDataChartBreakdown=true"
     },
     "price": {
-      "path": "data/raw/rating/20261106T133904Z/price.json",
-      "sha256": "2a1783f5cbed218e4418703ee498f5d8c3a6c19d6c1e5ebd790bcdc48329dfae",
-      "url": "https://coins.llama.fi/chart/coingecko:near?start=1790942400&span=35&period=1d"
+      "path": "data/raw/rating/20261107T060025Z/price.json",
+      "sha256": "6ec7ccca56cd8856ef6794b7589ad0ea687634a489fdaf3594a76b6e4801b69b",
+      "url": "https://coins.llama.fi/chart/coingecko:near?start=1790942400&span=36&period=1d"
     }
   }
 }
