@@ -24,7 +24,8 @@ code. Issuance, on the other side of the ledger, is a protocol rule.
   the front-end fund; <!--n:lr.required_growth.buybacks.B.2031-->+56%<!--/n--> and <!--n:lr.required_growth.with_front_end.B.2031-->+41%<!--/n--> once validators run HSP-029), so neither a falling nor a rising
   price alone decides it.
 - **Or, with (b), when the buybacks cover issuance:** in a 30-day window the buybacks wallets keep at least as many NEAR
-  as are issued (coverage of 100% or more, against <!--n:n1.coverage_buybacks-->10.8%<!--/n--> in this window). Revenue is earned in dollars and issuance is paid in
+  as are issued (coverage of 100% or more, against <!--n:n1.coverage_buybacks-->10.8%<!--/n--> in this window). Only fees count: what they keep is
+  counted up to DefiLlama's revenue and fees in NEAR, so a transfer from another wallet cannot make Buy. Revenue is earned in dollars and issuance is paid in
   NEAR, so the higher the price, the less the wallets cover. If the dollars kept hold at <!--n:iv.buybacks_kept_usd_per_day-->$46,692<!--/n--> a day, they cover issuance
   at <!--n:iv.buybacks_equilibrium_price_usd-->$0.53<!--/n-->, and the rating is Buy; if the NEAR kept stays near today's instead, at that price the dollars kept are below
   April's level, failing Avoid's dollar test.
@@ -100,7 +101,7 @@ What weakens the claim, as measured by the same scripts:
    since <!--n:h.keys.buybacks.last_change-->2026-03-18<!--/n-->. "Discretionary" describes what can change, not a change that
    has happened. The <!--n:f2.revenue_not_kept_near.2026-04_2026-10-->77,285<!--/n--> NEAR not kept are not split between payments out, timing and attribution.
 2. **Capture is rising, in dollars most of all.** From April to October fees rose <!--n:lr.history.2026-04_2026-10.fees_usd_multiple-->×1.9<!--/n-->, revenue
-   <!--n:lr.history.2026-04_2026-10.revenue_usd_multiple-->×8.2<!--/n--> and what the buybacks wallets keep <!--n:lr.history.2026-04_2026-10.buybacks_kept_usd_multiple-->×7.5<!--/n-->, all in dollars; the last is <!--n:lr.history.2026-04_2026-10.buybacks_kept_near_multiple-->×2.1<!--/n--> as much NEAR a day, at a <!--n:lr.history.2026-04_2026-10.mean_price_multiple-->×3.6<!--/n--> price, from April, the lowest month. The take rate (revenue ÷ fees) rose from <!--n:f2.take_rate.2026-04-->8.1%<!--/n--> in April to
+   <!--n:lr.history.2026-04_2026-10.revenue_usd_multiple-->×8.2<!--/n--> and what the buybacks wallets keep <!--n:lr.history.2026-04_2026-10.buybacks_kept_usd_multiple-->×7.5<!--/n-->, all in dollars; the last is <!--n:lr.history.2026-04_2026-10.buybacks_kept_near_multiple-->×2.1<!--/n--> as much NEAR a day, at a <!--n:lr.history.2026-04_2026-10.mean_price_multiple-->×3.6<!--/n--> price, from April, the lowest month. Not steadily: October kept <!--n:f1.change.2026-09_2026-10.buybacks_kept_near-->-29%<!--/n--> NEAR a day on September (<!--n:f1.buybacks_kept_near_per_day.2026-10-->9,589<!--/n--> against <!--n:f1.buybacks_kept_near_per_day.2026-09-->13,478<!--/n-->). The take rate (revenue ÷ fees) rose from <!--n:f2.take_rate.2026-04-->8.1%<!--/n--> in April to
    <!--n:f2.take_rate.2026-10-->34.3%<!--/n--> in October, and monthly coverage from
    <!--n:f1.coverage_buybacks.2026-04-->5.3%<!--/n--> to <!--n:f1.coverage_buybacks.2026-10-->10.9%<!--/n-->. The discretion has so far
    moved in holders' favour, and "small" may not last.
@@ -137,7 +138,7 @@ What weakens the claim, as measured by the same scripts:
 | Small | the buybacks wallets alone keep 25% or more of issuance in three consecutive calendar months | highest month <!--n:f1.coverage_buybacks.2026-09-->15.3%<!--/n--> | today <!--n:n1.coverage_buybacks-->10.8%<!--/n--> of the way to full coverage; what they keep must grow <!--n:iv.wallets_multiple_buybacks-->×9.2<!--/n--> to cover issuance | `scripts/coverage.py`, `data/history.csv` |
 | Discretionary: buybacks | bought NEAR moves by a published rule to an account no one can spend from, or the protocol fee on `intents.near` is raised with `fee_collector` set to the buybacks wallet or a locked account | <!--n:c.buybacks_confirmations-->2 of 4<!--/n--> multisig, nothing burned; fee <!--n:c.intents_fee_pips-->1 pip<!--/n--> | no rule yet | `scripts/control_map.py` |
 | Discretionary: credits | the credits rate follows a formula in the contract, or changes only by a DAO proposal | changed <!--n:f6.rate_changes-->1<!--/n--> time by one account | no rule yet | `scripts/farm_rate.py` |
-| Small, over five years | at a yearly check, what the buybacks wallets keep a day has grown at least <!--n:lr.required_growth.buybacks.A.2031-->+75%<!--/n--> a year from this window, in dollars and in NEAR (<!--n:lr.required_growth.buybacks.B.2031-->+56%<!--/n--> once HSP-029 is in force): the pace that covers issuance in 2031 | <!--n:iv.buybacks_kept_usd_per_day-->$46,692<!--/n--> a day | must grow <!--n:lr.required_multiple.buybacks.B.2031-->×6.4<!--/n--> by 2031 (<!--n:lr.required_multiple.with_front_end.B.2031-->×4.2<!--/n--> with the front-end fund) | `scripts/longrun.py`, `data/history.csv` |
+| Small, over five years | at a yearly check, what the buybacks wallets keep a day has grown at least <!--n:lr.required_growth.buybacks.A.2031-->+75%<!--/n--> a year from this window, in dollars and in NEAR (<!--n:lr.required_growth.buybacks.B.2031-->+56%<!--/n--> once HSP-029 is in force): the pace that covers issuance in 2031 | <!--n:iv.buybacks_kept_usd_per_day-->$46,692<!--/n--> a day | must grow <!--n:lr.required_multiple.buybacks.A.2031-->×10.2<!--/n--> by 2031 (<!--n:lr.required_multiple.with_front_end.A.2031-->×6.7<!--/n--> with the front-end fund); <!--n:lr.required_multiple.buybacks.B.2031-->×6.4<!--/n--> (<!--n:lr.required_multiple.with_front_end.B.2031-->×4.2<!--/n-->) with HSP-029 | `scripts/longrun.py`, `data/history.csv` |
 | Issuance is the only rule | HSP-029 is still not in a nearcore release adopted by validators on 1 November 2027 | in timelock until <!--n:f8.timelock_end_utc-->2026-11-16 16:48 UTC<!--/n--> | passed, not in force | `scripts/hsp029.py`, `scripts/upgrade_watch.py` |
 | Stake spread | the largest account holds less than half of the NEAR AI farm | <!--n:n3.largest_share-->73.3%<!--/n--> | prediction 1 expects at least 70% on 16 November | `scripts/stakers.py` |
 
@@ -145,8 +146,9 @@ The rating changes from Hold to Buy only when (b) holds, together with (a) or wi
 (100% or more in a 30-day window); and to Avoid if, in two 30-day windows in a row, the wallets keep less than 75% of DefiLlama's
 revenue, in NEAR, or what the buybacks wallets keep in dollars falls back to April's level. Avoid overrides Buy.
 Every case (which windows, which wallets, leaving Avoid, missing days) is in
-[the rules as code applies them](README.md#the-rating-in-full). NEAR moved to a
-declared lock account counts as kept, so meeting (b) is not an outflow.
+[the rules as code applies them](README.md#the-rating-in-full). (b) is read from the
+chain every day: a declared lock with no contract and no access keys. NEAR moved to it after the declaration counts as
+kept, so meeting (b) is not an outflow; what it held when declared does not count.
 Coverage is the buyback yield (<!--n:iv.buyback_yield_buybacks-->0.27%<!--/n--> of NEAR's value a year) divided by the issuance rate, so it falls
 when the price rises faster than revenue; the second way to Buy is where that ratio reaches one. Five predictions are anchored on chain before they are judged:
 [`PREREG.md`](PREREG.md) (16 November) and [`PREREG-2.md`](PREREG-2.md) (6 and 8 November, with stated

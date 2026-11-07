@@ -48,10 +48,15 @@ BUYBACKS = "buybacks.multisignature.near"
 FEFUNDS = "fefundsadmin.sputnik-dao.near"
 ONECLICK = "1csfundsadmin.sputnik-dao.near"  # 1Click fee fund until 23 Apr 2026
 ACCOUNTS = (BUYBACKS, FEFUNDS, ONECLICK)
-# Accounts that hold bought-back NEAR under a published rule (condition (b) of the rating), with the
-# first date they are read. NEAR moved there from the buybacks wallet is still kept, not paid out:
-# it counts in "buybacks", so meeting (b) does not look like an outflow. None exists yet.
+# Accounts declared to hold bought-back NEAR under a published rule (condition (b) of the rating), with
+# the date of the declaration. NEAR moved there from the buybacks wallet after that date is still
+# kept, not paid out: it counts in "buybacks", so meeting (b) does not look like an outflow. What a
+# lock already holds on that date is its baseline and never counts as kept (judge #9, finding 1).
+# Declaring is not enough for (b): sealed() reads from the chain whether anyone can still spend from it.
 LOCKS = {}
+# A lock is sealed at a block when the account has no contract (code_hash of an empty account) and no
+# access keys: then no transaction can move its NEAR. That is (b), read from the chain (judge #9, finding 2).
+EMPTY_CODE_HASH = "11111111111111111111111111111111"
 INTENTS = "intents.near"
 WNEAR = "nep141:wrap.near"
 YOCTO = 10 ** 24
@@ -103,6 +108,9 @@ def snapshot(chain, d, raw_root):
     for acct in ACCOUNTS + tuple(a for a, since in LOCKS.items() if d >= since):
         save("accounts", f"{h}_{acct}.json",
              rpc_call(chain, {"request_type": "view_account", "block_id": h, "account_id": acct}))
+    for acct in (a for a, since in LOCKS.items() if d >= since):
+        save("accounts", f"{h}_{acct}_keys.json",
+             rpc_call(chain, {"request_type": "view_access_key_list", "block_id": h, "account_id": acct}))
     for acct in (BUYBACKS, FEFUNDS):
         args = base64.b64encode(json.dumps({"account_id": acct, "token_id": WNEAR}).encode()).decode()
         save("accounts", f"{h}_{acct}_intents_wnear.json",
@@ -132,10 +140,14 @@ def read_point(data_root, d, height, previous_height):
             problems.append(f"{d}: {acct} has staked NEAR, not counted")
         point[acct] = int(res["amount"])
     for acct, since in LOCKS.items():
-        point[acct] = 0
+        point[acct] = None              # not read before the declaration
         if d >= since:
             res = json.loads((raw_root / "accounts" / f"{height}_{acct}.json").read_bytes())["result"]
+            keys = json.loads((raw_root / "accounts" / f"{height}_{acct}_keys.json").read_bytes())["result"]
+            if res["block_height"] != height or keys["block_height"] != height:
+                problems.append(f"{d}: lock {acct} not read at block {height}")
             point[acct] = int(res["amount"])
+            point[acct + "@sealed"] = res["code_hash"] == EMPTY_CODE_HASH and not keys["keys"]
     for acct in (BUYBACKS, FEFUNDS):
         res = json.loads((raw_root / "accounts" / f"{height}_{acct}_intents_wnear.json")
                          .read_bytes())["result"]
@@ -174,8 +186,22 @@ def build_row(day_doc, data_root):
     problems += p1 + p2
     days = (date.fromisoformat(e["date"]) - date.fromisoformat(s["date"])).days
     d_supply = b["total_supply"] - a["total_supply"]
+    # A declared lock counts by its change only. If the window starts before the declaration, the lock's
+    # balance on the declaration date stands in for its start: NEAR it held then is a baseline, not kept.
+    for acct, since in LOCKS.items():
+        if a[acct] is None and b[acct] is not None:
+            day = data_root / "daily" / f"{since.isoformat()}.json"
+            if not day.exists():
+                problems.append(f"{e['date']}: lock {acct} declared {since}, but data/daily/{since}.json is missing")
+                a[acct] = b[acct]
+            else:
+                end = json.loads(day.read_text(encoding="utf-8"))["end"]
+                at_since, p3 = read_point(data_root, since, end["height"], end["previous_height"])
+                problems += p3
+                a[acct] = at_since[acct]
+
     def buy(p):  # NEAR on the accounts plus wNEAR they hold inside intents.near, plus declared locks
-        return p[BUYBACKS] + p[BUYBACKS + "@intents"] + p[ONECLICK] + sum(p[a] for a in LOCKS)
+        return p[BUYBACKS] + p[BUYBACKS + "@intents"] + p[ONECLICK] + sum(p[a] or 0 for a in LOCKS)
 
     def fe(p):
         return p[FEFUNDS] + p[FEFUNDS + "@intents"]
@@ -207,6 +233,22 @@ def build_row(day_doc, data_root):
         "flags": ";".join(flags),
     }
     return row, problems
+
+
+def sealed(data_root):
+    """{date: [lock accounts sealed at that day's end block]} from the day files: condition (b) per window,
+    read from the chain, and never before the block where it became true."""
+    out = {}
+    for path in sorted((data_root / "daily").glob("*.json")):
+        doc = json.loads(path.read_text(encoding="utf-8"))
+        e = doc["end"]
+        d = date.fromisoformat(e["date"])
+        if not any(d >= since for since in LOCKS.values()):
+            out[doc["date"]] = []
+            continue
+        point, _ = read_point(data_root, d, e["height"], e["previous_height"])
+        out[doc["date"]] = sorted(a for a in LOCKS if point.get(a + "@sealed"))
+    return out
 
 
 def history_rows(data_root):

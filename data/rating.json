@@ -3,7 +3,7 @@
   "rules": {
     "kept_share_min": "0.75",
     "avoid": "this window and the one ending 30 days earlier fail",
-    "buy": "rule (b) declared, and coverage >= 100% or (a) at a yearly check",
+    "buy": "rule (b) read from the chain (a declared lock with no contract and no keys), and coverage counted (kept, at most DefiLlama's revenue and fees) >= 100% or (a) at a yearly check",
     "precedence": "Avoid overrides Buy",
     "hsp029_in_force": false
   },

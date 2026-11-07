@@ -277,14 +277,14 @@ function ratingPanel(rows, rj) {
   $("#rating-now").textContent = last.rating;
   const usd = v => v ? "$" + fmtInt(Number(v)) : "—";
   const pf = v => v === "pass" ? { cls: "pass", t: "pass" } : v === "fail" ? { cls: "fail", t: "fail" } : v || "—";
-  const ruleB = last.rule_b === "yes" ? "a lock is declared" : "no lock declared yet";
+  const ruleB = last.rule_b === "yes" ? "a declared lock has no contract and no keys on chain" : "no such lock on chain yet";
   $("#rating-box").innerHTML =
     `<div><span class="k">Kept share, latest window (fails below ${fmtPct(share)})</span><span class="v">${last.kept_share ? fmtPct(Number(last.kept_share), 1) : "—"}</span>` +
     `<span class="s">NEAR the three wallets kept ÷ DefiLlama's revenue in NEAR</span></div>` +
     `<div><span class="k">Buybacks wallets keep, a day (fails at or below ${floor})</span><span class="v">${usd(last.buybacks_kept_usd_per_day)}</span>` +
     `<span class="s">NEAR kept × the window's mean price</span></div>` +
-    `<div><span class="k">Coverage (Buy path: ${fmtPct(1)} with rule (b))</span><span class="v">${fmtPct(Number(last.coverage_buybacks), 1)}</span>` +
-    `<span class="s">Rule (b): ${ruleB}. Avoid overrides Buy.</span></div>`;
+    `<div><span class="k">Coverage counted (Buy path: ${fmtPct(1)} with rule (b))</span><span class="v">${last.coverage_counted ? fmtPct(Number(last.coverage_counted), 1) : "—"}</span>` +
+    `<span class="s">NEAR kept, at most DefiLlama's revenue and fees, ÷ NEAR issued. Rule (b): ${ruleB}. Avoid overrides Buy.</span></div>`;
   const recent = rows.slice(-7).reverse();
   plainTable($("#rating-tbl"), ["Window ends", "Status", "Kept share", "Buybacks keep a day", "Share test", "Dollar test", "Earlier window", "Rating"],
     recent.map(r => [r.date, r.status, r.kept_share ? fmtPct(Number(r.kept_share), 1) : "—", usd(r.buybacks_kept_usd_per_day),

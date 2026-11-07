@@ -43,8 +43,10 @@ S = series(date(2026, 9, 1), date(2026, 12, 31))   # revenue 1000 USD at $4 = 25
 
 
 class Rules(unittest.TestCase):
-    def run_rows(self, rows, s=S, locks=(), fetched=LATE, th=TH):
-        return {r["date"]: r for r in rating.evaluate(rows, s, th, fetched, list(locks))}
+    def run_rows(self, rows, s=S, locks=(), fetched=LATE, th=TH, sealed=None):
+        if sealed is None:      # by default a lock given here is sealed in every window
+            sealed = {r["date"]: list(locks) for r in rows}
+        return {r["date"]: r for r in rating.evaluate(rows, s, th, fetched, sealed)}
 
     def test_healthy_window_is_hold(self):
         # kept 250 of 250 NEAR of revenue; 250 NEAR x $4 = $1,000 a day, above a $900 floor
@@ -69,13 +71,39 @@ class Rules(unittest.TestCase):
         self.assertEqual(rows["2026-12-01"]["rating"], "Avoid")
 
     def test_buy_needs_rule_b(self):
+        # 250 NEAR kept a day, all of DefiLlama's revenue (250) and under its fees (750), 245 issued
         th = {**TH, "avoid_usd_per_day": "100"}
-        self.assertEqual(self.run_rows([hist(D1, cov="1.02")], th=th)["2026-11-01"]["rating"], "Hold")
-        r = self.run_rows([hist(D1, cov="1.02")], th=th, locks=["lock.near"])["2026-11-01"]
+        self.assertEqual(self.run_rows([hist(D1, cov="1.02", new=245)], th=th)["2026-11-01"]["rating"], "Hold")
+        r = self.run_rows([hist(D1, cov="1.02", new=245)], th=th, locks=["lock.near"])["2026-11-01"]
         self.assertEqual((r["rule_b"], r["covers_issuance"], r["rating"]), ("yes", "yes", "Buy"))
 
+    def test_rule_b_counts_only_from_the_window_where_the_chain_shows_it(self):
+        # Judge #9, finding 2: (b) is read per window from the chain, so it never flips past rows
+        th = {**TH, "avoid_usd_per_day": "100"}
+        rows = self.run_rows([hist(D1, cov="1.02", new=245), hist(D2, cov="1.02", new=245)], th=th,
+                             sealed={"2026-11-01": [], "2026-12-01": ["lock.near"]})
+        self.assertEqual((rows["2026-11-01"]["rule_b"], rows["2026-11-01"]["rating"]), ("no", "Hold"))
+        self.assertEqual((rows["2026-12-01"]["rule_b"], rows["2026-12-01"]["rating"]), ("yes", "Buy"))
+
+    def test_inflows_that_are_not_fees_cannot_make_buy(self):
+        # Judge #9, finding 1: a transfer of 2.4M NEAR from another wallet lifts the balance change above
+        # issuance (coverage 1.14), but coverage counted is capped by DefiLlama's revenue: 250 / 88,000
+        th = {**TH, "avoid_usd_per_day": "100"}
+        r = self.run_rows([hist(D1, kept=100000, cov="1.14")], th=th, locks=["lock.near"])["2026-11-01"]
+        self.assertEqual((r["coverage_counted"], r["covers_issuance"], r["rating"]), ("0.002841", "no", "Hold"))
+        # and by the fees: revenue above fees (not seen so far) still cannot lift it past them
+        s = series(date(2026, 9, 1), date(2026, 12, 31), revenue=10 ** 6)
+        r = self.run_rows([hist(D1, kept=100000, cov="1.14")], s=s, th=th, locks=["lock.near"])["2026-11-01"]
+        self.assertEqual((r["coverage_counted"], r["rating"]), ("0.008523", "Hold"))
+
+    def test_incomplete_window_does_not_judge_coverage(self):
+        s = series(date(2026, 9, 1), date(2026, 12, 31))
+        del s["fees"][date(2026, 10, 15)]
+        r = self.run_rows([hist(D1, cov="1.02", new=245)], s=s, locks=["lock.near"])["2026-11-01"]
+        self.assertEqual((r["covers_issuance"], r["rating"]), ("not judged", "Hold"))
+
     def test_avoid_overrides_buy(self):
-        rows = self.run_rows([hist(D1, kept=100, cov="1.02"), hist(D2, kept=100, cov="1.02")],
+        rows = self.run_rows([hist(D1, kept=100, cov="1.02", new=98), hist(D2, kept=100, cov="1.02", new=98)],
                              th={**TH, "avoid_usd_per_day": "100"}, locks=["lock.near"])
         self.assertEqual(rows["2026-12-01"]["rating"], "Avoid")
         self.assertIn("Avoid overrides", rows["2026-12-01"]["note"])
@@ -91,7 +119,7 @@ class Rules(unittest.TestCase):
         # Judge #8: at a lower price the same dollars buy more NEAR; coverage >= 100% and the dollar test
         # passes, so with (b) the rating is Buy. Here $1,000 a day at $0.25 = 4,000 NEAR, all of issuance.
         s = series(date(2026, 9, 1), date(2026, 12, 31), revenue=1000, price=Fraction(1, 4))
-        r = self.run_rows([hist(D1, kept=4000, cov="1.0")], s=s, locks=["lock.near"],
+        r = self.run_rows([hist(D1, kept=4000, cov="1.0", new=4000)], s=s, locks=["lock.near"],
                           th={**TH, "avoid_usd_per_day": "900"})["2026-11-01"]
         self.assertEqual((r["test_usd"], r["test_kept_share"], r["rating"]), ("pass", "pass", "Buy"))
 

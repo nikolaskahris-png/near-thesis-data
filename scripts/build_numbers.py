@@ -440,6 +440,17 @@ def build(data_dir, window_file):
               csrc, **extra)
         n.add(f"f1.coverage_with_front_end.{m}", r["coverage_with_fe"],
               f_pct(r["coverage_with_fe"]), csrc, **extra)
+        n.add(f"f1.buybacks_kept_near_per_day.{m}", r["buybacks_per_day"], f_int(r["buybacks_per_day"]),
+              csrc, unit="NEAR/day", blocks=extra["blocks"], flags=extra["flags"],
+              note="buybacks wallet + 1Click fund, net change in the calendar month / days")
+    # the latest month against the one before: the series is not monotone (judge #9, finding 3)
+    if len(cov["rows"]) >= 2:
+        r0, r1 = cov["rows"][-2], cov["rows"][-1]
+        ch = dec(r1["buybacks_per_day"]) / dec(r0["buybacks_per_day"]) - 1
+        n.add(f"f1.change.{r0['month']}_{r1['month']}.buybacks_kept_near", ch,
+              ("+" if ch > 0 else "") + f_pct(ch, 0), csrc, unit="relative change",
+              derived_from=[f"f1.buybacks_kept_near_per_day.{r0['month']}",
+                            f"f1.buybacks_kept_near_per_day.{r1['month']}"])
 
     # ---- finding 2: monthly fees, take rate, price and NEAR bought (fees.py + coverage.py)
     kept_by_month = {r["month"]: dec(r["buybacks_per_day"]) + dec(r["fefunds_per_day"])

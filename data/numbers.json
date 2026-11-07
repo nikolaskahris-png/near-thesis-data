@@ -495,6 +495,79 @@
       "as_of": "2026-11-07T12:16:06Z",
       "basis": "DefiLlama total30d at the fetch: the 30 days before it, not the project's window"
     },
+    "f1.buybacks_kept_near_per_day.2026-04": {
+      "value": "4674.519",
+      "text": "4,675",
+      "source": "data/coverage_monthly.json",
+      "unit": "NEAR/day",
+      "blocks": "192013995-196336954",
+      "flags": "1cs_balance_changed",
+      "note": "buybacks wallet + 1Click fund, net change in the calendar month / days"
+    },
+    "f1.buybacks_kept_near_per_day.2026-05": {
+      "value": "7352.985",
+      "text": "7,353",
+      "source": "data/coverage_monthly.json",
+      "unit": "NEAR/day",
+      "blocks": "196336954-200773914",
+      "flags": "",
+      "note": "buybacks wallet + 1Click fund, net change in the calendar month / days"
+    },
+    "f1.buybacks_kept_near_per_day.2026-06": {
+      "value": "7462.783",
+      "text": "7,463",
+      "source": "data/coverage_monthly.json",
+      "unit": "NEAR/day",
+      "blocks": "200773914-205022619",
+      "flags": "",
+      "note": "buybacks wallet + 1Click fund, net change in the calendar month / days"
+    },
+    "f1.buybacks_kept_near_per_day.2026-07": {
+      "value": "5450.567",
+      "text": "5,451",
+      "source": "data/coverage_monthly.json",
+      "unit": "NEAR/day",
+      "blocks": "205022619-209393356",
+      "flags": "1cs_balance_changed",
+      "note": "buybacks wallet + 1Click fund, net change in the calendar month / days"
+    },
+    "f1.buybacks_kept_near_per_day.2026-08": {
+      "value": "8971.791",
+      "text": "8,972",
+      "source": "data/coverage_monthly.json",
+      "unit": "NEAR/day",
+      "blocks": "209393356-213761242",
+      "flags": "1cs_balance_changed",
+      "note": "buybacks wallet + 1Click fund, net change in the calendar month / days"
+    },
+    "f1.buybacks_kept_near_per_day.2026-09": {
+      "value": "13478.332",
+      "text": "13,478",
+      "source": "data/coverage_monthly.json",
+      "unit": "NEAR/day",
+      "blocks": "213761242-217984974",
+      "flags": "1cs_balance_changed",
+      "note": "buybacks wallet + 1Click fund, net change in the calendar month / days"
+    },
+    "f1.buybacks_kept_near_per_day.2026-10": {
+      "value": "9588.935",
+      "text": "9,589",
+      "source": "data/coverage_monthly.json",
+      "unit": "NEAR/day",
+      "blocks": "217984974-222491356",
+      "flags": "",
+      "note": "buybacks wallet + 1Click fund, net change in the calendar month / days"
+    },
+    "f1.change.2026-09_2026-10.buybacks_kept_near": {
+      "value": "-0.2885666416289493388351021476544723783329",
+      "text": "-29%",
+      "source": "data/coverage_monthly.json",
+      "unit": "relative change",
+      "derived_from": [
+        "f1.buybacks_kept_near_per_day.2026-09",
+        "f1.buybacks_kept_near_per_day.2026-10"
+      ]
+    },
     "f1.coverage_buybacks.2026-04": {
       "value": "0.053409",
       "text": "5.3%",

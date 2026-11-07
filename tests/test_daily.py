@@ -128,46 +128,97 @@ class DailyTest(unittest.TestCase):
 
 
 class LockTest(unittest.TestCase):
-    """Meeting condition (b), moving bought NEAR to a declared lock account, is not an outflow."""
+    """Condition (b): NEAR moved to a declared lock after the declaration stays kept; what the lock held
+    when declared is a baseline, never kept (judge #9, finding 1); sealed() reads (b) from the chain
+    (no contract, no keys), per window (judge #9, finding 2)."""
 
-    def test_move_to_a_declared_lock_keeps_coverage(self):
-        d = date(2026, 11, 1)
-        lock = "lock.test"
+    LOCK = "lock.test"
+    MOVED = 500_000 * Y
+    HELD = 1_000_000 * Y     # what the lock already holds when it is declared
 
-        class Moves(FakeChainWithState):
+    def chain(self, d, end_h=None, moved=0, keys=(), code_hash=daily.EMPTY_CODE_HASH):
+        lock, held = self.LOCK, self.HELD
+
+        class Lock(FakeChainWithState):
             def _post(self, body):
                 p = body.get("params", {})
-                if p.get("request_type") == "view_account" and p["block_id"] == self.end_h:
-                    acct = p["account_id"]
-                    moved = 500_000 * Y
-                    amount = {daily.BUYBACKS: balance(daily.BUYBACKS, self.end_h) - moved,
-                              lock: moved}.get(acct)
-                    if amount is not None:
-                        self.calls += 1
-                        res = {"amount": str(amount), "locked": "0", "block_height": self.end_h,
-                               "block_hash": f"H{self.end_h}"}
-                        return json.dumps({"jsonrpc": "2.0", "id": "daily", "result": res}).encode()
+                if body["method"] == "query" and p.get("account_id") in (lock, daily.BUYBACKS) \
+                        and p.get("request_type") in ("view_account", "view_access_key_list"):
+                    h, acct = p["block_id"], p["account_id"]
+                    at_end = end_h is not None and h == end_h
+                    self.calls += 1
+                    if p["request_type"] == "view_access_key_list":
+                        res = {"keys": [{"public_key": k, "access_key": {"nonce": 0, "permission": "FullAccess"}}
+                                        for k in keys], "block_height": h, "block_hash": f"H{h}"}
+                    else:
+                        amount = (held + (moved if at_end else 0)) if acct == lock else \
+                            balance(acct, h) - (moved if at_end else 0)
+                        res = {"amount": str(amount), "locked": "0", "code_hash": code_hash,
+                               "block_height": h, "block_hash": f"H{h}"}
+                    return json.dumps({"jsonrpc": "2.0", "id": "daily", "result": res}).encode()
                 return super()._post(body)
+        return Lock(final_height_at(lw.midnight_ns(d) + 3600 * lw.NS))
 
+    def with_lock(self, since, fn):
         old = dict(daily.LOCKS)
+        daily.LOCKS.clear()
+        daily.LOCKS.update({self.LOCK: since})
         try:
-            with tempfile.TemporaryDirectory() as tmp:
-                plain = FakeChainWithState(final_height_at(lw.midnight_ns(d) + 3600 * lw.NS))
-                doc, rows, _, _ = daily.run(d, Path(tmp) / "data", plain)
-                base, end_h = rows[0]["coverage_buybacks"], doc["end"]["height"]
-            daily.LOCKS.update({lock: d})
+            return fn()
+        finally:
+            daily.LOCKS.clear()
+            daily.LOCKS.update(old)
+
+    def base(self, d):
+        with tempfile.TemporaryDirectory() as tmp:
+            doc, rows, _, _ = daily.run(d, Path(tmp) / "data", FakeChainWithState(
+                final_height_at(lw.midnight_ns(d) + 3600 * lw.NS)))
+            return rows[0]["coverage_buybacks"], doc["end"]["height"]
+
+    def test_move_after_the_declaration_keeps_coverage(self):
+        d = date(2026, 11, 1)
+        base, end_h = self.base(d)
+
+        def go():
             with tempfile.TemporaryDirectory() as tmp:
                 data = Path(tmp) / "data"
-                chain = Moves(final_height_at(lw.midnight_ns(d) + 3600 * lw.NS))
-                chain.end_h = end_h
-                _, rows, problems, _ = daily.run(d, data, chain)
+                _, rows, problems, _ = daily.run(d, data, self.chain(d, end_h, moved=self.MOVED))
                 self.assertEqual(problems, [])
                 self.assertEqual(rows[0]["coverage_buybacks"], base)
                 self.assertNotIn("buybacks_balance_fell", rows[0]["flags"])
                 self.assertEqual(daily.verify_history(data)[1], [])
-        finally:
-            daily.LOCKS.clear()
-            daily.LOCKS.update(old)
+                self.assertEqual(daily.sealed(data), {"2026-11-01": [self.LOCK]})
+        self.with_lock(date(2026, 10, 2), go)          # declared on the window's first day
+
+    def test_what_a_lock_holds_when_declared_is_not_kept(self):
+        d = date(2026, 11, 1)
+        base, _ = self.base(d)
+
+        def go():
+            with tempfile.TemporaryDirectory() as tmp:
+                data = Path(tmp) / "data"
+                # declared on the window's last day, already holding 1,000,000 NEAR: no phantom inflow
+                _, rows, problems, _ = daily.run(d, data, self.chain(d))
+                self.assertEqual(problems, [])
+                self.assertEqual(rows[0]["coverage_buybacks"], base)
+        self.with_lock(d, go)
+
+    def test_a_lock_with_a_key_or_a_contract_is_not_sealed(self):
+        d = date(2026, 11, 1)
+        for kw in ({"keys": ["ed25519:K"]}, {"code_hash": "E8jZ1giWcVrps8PcV75ATauu6gFRkcwjNtKp7NKmipZG"}):
+            def go():
+                with tempfile.TemporaryDirectory() as tmp:
+                    data = Path(tmp) / "data"
+                    daily.run(d, data, self.chain(d, **kw))
+                    self.assertEqual(daily.sealed(data), {"2026-11-01": []})
+            self.with_lock(date(2026, 10, 2), go)
+
+    def test_no_lock_declared_means_no_rule_b(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            data = Path(tmp) / "data"
+            d = date(2026, 11, 1)
+            daily.run(d, data, FakeChainWithState(final_height_at(lw.midnight_ns(d) + 3600 * lw.NS)))
+            self.assertEqual(daily.sealed(data), {"2026-11-01": []})
 
 
 if __name__ == "__main__":
