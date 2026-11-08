@@ -1,6 +1,6 @@
 # Thesis: NEAR's value capture is real, small and discretionary
 
-*Investment Thesis track, NEAR HACKATHON. Dated 6 November 2026; horizon five years, to 1 January 2031, checked every 12 months.
+*Investment Thesis track, NEAR HACKATHON. Dated 6 November 2026; horizon to 1 January 2031 (about four years from the window), checked every 12 months.
 Measurement window 2 October → 1 November 2026 (00:00 UTC), blocks 218,126,921 → 222,491,356. Every measured figure here
 is copied from [`data/numbers.json`](data/numbers.json) with a hidden marker of its key, and
 `python scripts/build_numbers.py --check THESIS.md` fails if a marked figure differs. Figures from DefiLlama are
@@ -13,7 +13,7 @@ Users pay real fees on NEAR Intents, but only a small part reaches NEAR holders,
 user pays to the NEAR a holder keeps can be changed by a few signers or by a company off-chain; none is fixed in
 code. Issuance, on the other side of the ledger, is a protocol rule.
 
-**Rating: Hold, not Buy, for five years to 2031, reviewed every 12 months.**
+**Rating: Hold, not Buy, to 1 January 2031, reviewed every 12 months.**
 
 - **Hold** means keeping NEAR already owned, staked with a validator: staking pays about <!--n:iv.staking_yield_gross-->5.0%<!--/n--> a year while supply
   grows <!--n:iv.issuance_rate_per_year-->2.46%<!--/n-->, so the staked holder's share of all NEAR rises, though not its dollar value. It is not a Buy,
@@ -111,7 +111,7 @@ What weakens the claim, as measured by the same scripts:
 | Small | the buybacks wallets alone keep 25% or more of issuance in three consecutive calendar months | highest month <!--n:f1.coverage_buybacks.2026-09-->15.3%<!--/n--> | today <!--n:n1.coverage_buybacks-->10.8%<!--/n--> of the way to full coverage; what they keep must grow <!--n:iv.wallets_multiple_buybacks-->×9.2<!--/n--> to cover issuance | `scripts/coverage.py`, `data/history.csv` |
 | Discretionary: buybacks | bought NEAR moves by a published rule to an account no one can spend from, or the protocol fee on `intents.near` is raised with `fee_collector` set to the buybacks wallet or a locked account | <!--n:c.buybacks_confirmations-->2 of 4<!--/n--> multisig, nothing burned; fee <!--n:c.intents_fee_pips-->1 pip<!--/n--> | no rule yet | `scripts/control_map.py` |
 | Discretionary: credits | the credits rate follows a formula in the contract, or changes only by a DAO proposal | changed <!--n:f6.rate_changes-->1<!--/n--> time by one account | no rule yet | `scripts/farm_rate.py` |
-| Small, over five years | at a yearly check, what the buybacks wallets keep a day has grown at least <!--n:lr.required_growth.buybacks.A.2031-->+75%<!--/n--> a year from this window, in dollars and in NEAR (<!--n:lr.required_growth.buybacks.B.2031-->+56%<!--/n--> once HSP-029 is in force): the pace that covers issuance in 2031 | <!--n:iv.buybacks_kept_usd_per_day-->$46,692<!--/n--> a day | must grow <!--n:lr.required_multiple.buybacks.A.2031-->×10.2<!--/n--> by 2031 (<!--n:lr.required_multiple.with_front_end.A.2031-->×6.7<!--/n--> with the front-end fund); <!--n:lr.required_multiple.buybacks.B.2031-->×6.4<!--/n--> (<!--n:lr.required_multiple.with_front_end.B.2031-->×4.2<!--/n-->) with HSP-029 | `scripts/longrun.py`, `data/history.csv` |
+| Small, to 2031 | at a yearly check, what the buybacks wallets keep a day has grown at least <!--n:lr.required_growth.buybacks.A.2031-->+75%<!--/n--> a year from this window, in dollars and in NEAR (<!--n:lr.required_growth.buybacks.B.2031-->+56%<!--/n--> once HSP-029 is in force): the pace that covers issuance in 2031 | <!--n:iv.buybacks_kept_usd_per_day-->$46,692<!--/n--> a day | must grow <!--n:lr.required_multiple.buybacks.A.2031-->×10.2<!--/n--> by 2031 (<!--n:lr.required_multiple.with_front_end.A.2031-->×6.7<!--/n--> with the front-end fund); <!--n:lr.required_multiple.buybacks.B.2031-->×6.4<!--/n--> (<!--n:lr.required_multiple.with_front_end.B.2031-->×4.2<!--/n-->) with HSP-029 | `scripts/longrun.py`, `data/history.csv` |
 | Issuance is the only rule | HSP-029 is still not in a nearcore release adopted by validators on 1 November 2027 | in timelock until <!--n:f8.timelock_end_utc-->2026-11-16 16:48 UTC<!--/n--> | passed, not in force | `scripts/hsp029.py`, `scripts/upgrade_watch.py` |
 | Stake spread | the largest account holds less than half of the NEAR AI farm | <!--n:n3.largest_share-->73.3%<!--/n--> | prediction 1 expects at least 70% on 16 November | `scripts/stakers.py` |
 

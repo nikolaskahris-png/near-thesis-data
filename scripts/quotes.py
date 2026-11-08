@@ -46,7 +46,8 @@ SOURCES = {
          "Exceptions and custom agreements exist"]),
     "near_intents_confidential": (
         "https://docs.near-intents.org/integration/market-makers/confidential-intents.md",
-        ["settles entirely on FAR via a `token_diff` intent, invisible to public indexers"]),
+        ["settles entirely on FAR via a `token_diff` intent, invisible to public indexers",
+         "a permissioned instance of the NEAR protocol operated by a small validator set with no public networking"]),
     "one_click_terms": (
         "https://docs.near-intents.org/near-intents/integration/distribution-channels/1click-terms-of-service",
         ["at any time on a prospective basis"]),

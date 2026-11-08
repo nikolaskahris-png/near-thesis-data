@@ -35,7 +35,7 @@ Full definitions: [the three numbers](#the-three-numbers).
 
 ## Investment view (the long version)
 
-*Dated 6 November 2026. Horizon five years, to 1 January 2031, checked every 12 months. Thresholds are the author's
+*Dated 6 November 2026. Horizon to 1 January 2031 (about four years from the window), checked every 12 months. Thresholds are the author's
 choice; every figure in them is measured.*
 
 ### The rating in full
