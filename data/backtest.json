@@ -1,0 +1,53 @@
+{
+ "measure": "the rating rules (rating.evaluate) on each calendar month April-October 2026",
+ "differences_from_rating_py": [
+  "one window per calendar month; Avoid compares with the previous month",
+  "treasury.near quiet not read for past months (counts as not quiet, as in rating.py)",
+  "(b) from daily.LOCKS: no lock declared, so (b) is no in every month",
+  "Avoid test 2's threshold is April's level (numbers.json f2), so April fails it by construction",
+  "a_pace is a sensitivity: the (a) growth applied from the first to the last month; (a) itself is judged only at a yearly check from the 2026-11-01 base"
+ ],
+ "inputs_sha256": {
+  "data/coverage_monthly.json": "74c24cad7c5a975e989fb70a62b157caef271901f16b9dfe9f708b3e98f8e9e9",
+  "data/fees_2026-10-02_2026-11-01.json": "ded7a3b53dad62eb1d326912e57404da225f13fb5cf92cc7d66eb168dc5d083e",
+  "data/raw/defillama/20261104T150225Z/fees.json": "153519c7c11343c8bb091bcf30be9d227149d381fb8ee86edaa4c8a41cfa317e",
+  "data/raw/defillama/20261104T150225Z/revenue.json": "67907a3e8b642fad41816cd9a5d63cc5081bb7ca03984d9cc4c57ec66de39a65",
+  "data/raw/defillama/20261104T150225Z/volume.json": "333321451a37da49c3e22a13bdd2a803057177ef6500300e78449e3007efefa6",
+  "data/raw/defillama/20261104T150225Z/price.json": "8e6418d38f270746abd694556308a65a796238acbc1878e466742a11a0b3cfeb"
+ },
+ "thresholds": {
+  "avoid_usd_per_day": "6270.3997866",
+  "base_usd_per_day": "46691.7672250",
+  "base_near_per_day": "9569.750",
+  "growth_with_hsp029": "0.560381360582410398451709902128222265887",
+  "growth_without_hsp029": "0.747443747073649803612827564774132054301"
+ },
+ "summary": {
+  "months": 7,
+  "first_month": "2026-04",
+  "last_month": "2026-10",
+  "ratings": {
+   "Hold": 7,
+   "Buy": 0,
+   "Avoid": 0
+  },
+  "months_failing_an_avoid_test": [
+   "2026-04"
+  ],
+  "lowest_kept_share": "0.766504",
+  "lowest_kept_share_month": "2026-04",
+  "highest_coverage_counted": "0.152552",
+  "highest_coverage_counted_month": "2026-09",
+  "rule_b_months": 0,
+  "a_pace": {
+   "from_month": "2026-04",
+   "to_month": "2026-10",
+   "days": 184,
+   "required_growth_a_year": "0.747443747073649803612827564774132054301",
+   "required_multiple": "1.324690",
+   "usd_multiple": "7.472965",
+   "near_multiple": "2.051320",
+   "met_in_usd_and_near": true
+  }
+ }
+}

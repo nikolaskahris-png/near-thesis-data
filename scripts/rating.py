@@ -109,9 +109,11 @@ def window_values(row, s, fetched):
     return status, agg
 
 
-def evaluate(history, s, th, fetched, sealed, quiet=None):
+def evaluate(history, s, th, fetched, sealed, quiet=None, earlier_of=None):
     """sealed: {date: [lock accounts sealed at that window's end block]}, from daily.sealed();
-    quiet: {date: "yes" | "no" | "not read"}, from daily.treasury_quiet()."""
+    quiet: {date: "yes" | "no" | "not read"}, from daily.treasury_quiet();
+    earlier_of: date -> the end date of the earlier window Avoid compares with (default: 30 days
+    before; backtest.py passes the previous calendar month)."""
     quiet = quiet or {}
     by_date = {r["date"]: r for r in history}
     out, fails = [], {}
@@ -163,7 +165,7 @@ def evaluate(history, s, th, fetched, sealed, quiet=None):
             if agg["excluded"]:
                 notes.append(f"{len(agg['excluded'])} day(s) excluded as in fees.py")
         fails[r["date"]] = fail
-        earlier = (d - timedelta(days=daily.WINDOW_DAYS)).isoformat()
+        earlier = (earlier_of(d) if earlier_of else d - timedelta(days=daily.WINDOW_DAYS)).isoformat()
         if earlier not in by_date:
             row["earlier_window"] = "not in history"
         else:

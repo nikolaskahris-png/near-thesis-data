@@ -1,0 +1,8 @@
+month,date,window_start,status,counted_days,revenue_near_per_day,wallets_kept_near_per_day,kept_share,mean_price_usd,buybacks_kept_usd_per_day,max_coverage_defillama,coverage_buybacks,coverage_counted,test_kept_share,test_usd,earlier_window,rule_b,treasury_quiet,covers_issuance,yearly_a,rating,note
+2026-04,2026-05-01,2026-04-01,final,30,6451.664,4945.224,0.766504,1.341373,6270.27,0.916068,0.053409,0.053409,pass,fail,not in history,no,not read,no,,Hold,this window fails an Avoid test; Avoid needs the earlier window to fail too
+2026-05,2026-06-01,2026-05-01,final,31,10579.977,10446.370,0.987372,1.789346,13157.03,0.656806,0.083565,0.083565,pass,pass,fail,no,not read,no,,Hold,
+2026-06,2026-07-01,2026-06-01,final,30,9618.049,9755.968,1.014340,2.129457,15891.68,0.559996,0.085320,0.085320,pass,pass,pass,no,not read,no,,Hold,
+2026-07,2026-08-01,2026-07-01,final,31,8615.188,8010.205,0.929777,1.887120,10285.88,0.634501,0.062101,0.062101,pass,pass,pass,no,not read,no,,Hold,
+2026-08,2026-09-01,2026-08-01,final,31,13200.997,13076.988,0.990606,1.738562,15598.01,0.789520,0.101807,0.101807,pass,pass,pass,no,not read,no,,Hold,
+2026-09,2026-10-01,2026-09-01,final,30,19129.358,18806.030,0.983098,3.277433,44174.33,0.871333,0.152552,0.152552,pass,pass,pass,no,not read,no,,Hold,
+2026-10,2026-11-01,2026-10-01,final,31,14557.142,14563.984,1.000470,4.886623,46857.51,0.479842,0.108852,0.108852,pass,pass,pass,no,not read,no,,Hold,

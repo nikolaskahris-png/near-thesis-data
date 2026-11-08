@@ -10,6 +10,7 @@
   "complete": true,
   "provisional_or_pending": [],
   "sources": {
+    "data/backtest.json": "6adb64d92339f05d80446bca3758b62a4d0b4d21837562218910acb2f24587d0",
     "data/burn.json": "d301a278701801757b4c9582f61b4f9546327f0dd1dfaed0a3a143b0c407f0fd",
     "data/confidential_treasury.json": "e1f49bf6f70a7a9e808c58bbcfef4dea187278480ba7603fd41459a55887a6e1",
     "data/control_history.json": "7cab767c832b77a597a18d90dc1d0b5b2113e76b050624456522585a9fcc9190",
@@ -118,6 +119,86 @@
       "unit": "share",
       "window": "2026-10-02 00:00 UTC to 2026-11-01 00:00 UTC",
       "blocks": "218126921-222491356"
+    },
+    "bt.a_pace.near_multiple": {
+      "value": "2.051320",
+      "text": "×2.1",
+      "source": "data/backtest.json",
+      "from_month": "2026-04",
+      "to_month": "2026-10",
+      "days": 184,
+      "note": "sensitivity, not a rule: the (a) growth (+75% a year) applied from the first to the last month"
+    },
+    "bt.a_pace.required_multiple": {
+      "value": "1.324690",
+      "text": "×1.32",
+      "source": "data/backtest.json",
+      "from_month": "2026-04",
+      "to_month": "2026-10",
+      "days": 184,
+      "note": "sensitivity, not a rule: the (a) growth (+75% a year) applied from the first to the last month"
+    },
+    "bt.a_pace.usd_multiple": {
+      "value": "7.472965",
+      "text": "×7.5",
+      "source": "data/backtest.json",
+      "from_month": "2026-04",
+      "to_month": "2026-10",
+      "days": 184,
+      "note": "sensitivity, not a rule: the (a) growth (+75% a year) applied from the first to the last month"
+    },
+    "bt.avoid": {
+      "value": "0",
+      "text": "0",
+      "source": "data/backtest.json",
+      "note": "rating.evaluate on calendar months; see differences_from_rating_py in backtest.json"
+    },
+    "bt.buy": {
+      "value": "0",
+      "text": "0",
+      "source": "data/backtest.json",
+      "note": "rating.evaluate on calendar months; see differences_from_rating_py in backtest.json"
+    },
+    "bt.highest_coverage_counted": {
+      "value": "0.152552",
+      "text": "15.3%",
+      "source": "data/backtest.json",
+      "month": "2026-09",
+      "note": "rating.evaluate on calendar months; see differences_from_rating_py in backtest.json"
+    },
+    "bt.hold": {
+      "value": "7",
+      "text": "7",
+      "source": "data/backtest.json",
+      "note": "rating.evaluate on calendar months; see differences_from_rating_py in backtest.json"
+    },
+    "bt.lowest_kept_share": {
+      "value": "0.766504",
+      "text": "77%",
+      "source": "data/backtest.json",
+      "month": "2026-04",
+      "note": "rating.evaluate on calendar months; see differences_from_rating_py in backtest.json"
+    },
+    "bt.months": {
+      "value": "7",
+      "text": "7",
+      "source": "data/backtest.json",
+      "note": "rating.evaluate on calendar months; see differences_from_rating_py in backtest.json"
+    },
+    "bt.months_failing": {
+      "value": "1",
+      "text": "1",
+      "source": "data/backtest.json",
+      "months": [
+        "2026-04"
+      ],
+      "note": "rating.evaluate on calendar months; see differences_from_rating_py in backtest.json"
+    },
+    "bt.rule_b_months": {
+      "value": "0",
+      "text": "0",
+      "source": "data/backtest.json",
+      "note": "rating.evaluate on calendar months; see differences_from_rating_py in backtest.json"
     },
     "c.buybacks_confirmations": {
       "value": "2 of 4",

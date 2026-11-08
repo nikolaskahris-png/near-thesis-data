@@ -1065,6 +1065,30 @@ def build(data_dir, window_file):
                 n.add(f"peer.{pid}.{key}", d, txt, pesrc, **pc2)
         n.add("peer.value_as_of", pe["fetched_utc"], pe["fetched_utc"][:16].replace("T", " ") + " UTC", pesrc)
 
+    # ---- backtest (backtest.py): the rating rules on each calendar month April-October 2026
+    btpath = data_dir / "backtest.json"
+    if btpath.exists():
+        bt = json.loads(btpath.read_text(encoding="utf-8"))
+        btsrc, bs = n.source(btpath), bt["summary"]
+        bc = {"note": "rating.evaluate on calendar months; see differences_from_rating_py in backtest.json"}
+        n.add("bt.months", bs["months"], f_int(bs["months"]), btsrc, **bc)
+        for k in ("Hold", "Buy", "Avoid"):
+            n.add(f"bt.{k.lower()}", bs["ratings"][k], f_int(bs["ratings"][k]), btsrc, **bc)
+        n.add("bt.rule_b_months", bs["rule_b_months"], f_int(bs["rule_b_months"]), btsrc, **bc)
+        n.add("bt.months_failing", len(bs["months_failing_an_avoid_test"]),
+              f_int(len(bs["months_failing_an_avoid_test"])), btsrc,
+              months=bs["months_failing_an_avoid_test"], **bc)
+        n.add("bt.lowest_kept_share", dec(bs["lowest_kept_share"]), f_pct(dec(bs["lowest_kept_share"]), 0), btsrc,
+              month=bs["lowest_kept_share_month"], **bc)
+        n.add("bt.highest_coverage_counted", dec(bs["highest_coverage_counted"]),
+              f_pct(dec(bs["highest_coverage_counted"]), 1), btsrc, month=bs["highest_coverage_counted_month"], **bc)
+        ap = bs["a_pace"]
+        for k, places in (("usd_multiple", 1), ("near_multiple", 1), ("required_multiple", 2)):
+            n.add(f"bt.a_pace.{k}", dec(ap[k]), "×" + f_num(dec(ap[k]), places), btsrc,
+                  from_month=ap["from_month"], to_month=ap["to_month"], days=ap["days"],
+                  note="sensitivity, not a rule: the (a) growth (+" + f_pct(dec(ap["required_growth_a_year"]), 0)
+                       + " a year) applied from the first to the last month")
+
     # ---- demand (demand.py): NEAR Intents' 30 days of volume against DefiLlama's bridge and aggregator lists
     dpath = data_dir / "demand.json"
     if dpath.exists():
@@ -1286,6 +1310,7 @@ SCRIPT_CHECKS = [
     ("base_rates.py", lambda doc: ["--verify"], "base_rates.json"),
     ("peers.py", lambda doc: ["--verify"], "peers.json"),
     ("demand.py", lambda doc: ["--verify"], "demand.json"),
+    ("backtest.py", lambda doc: ["--verify"], "backtest.json"),
     ("judge_prereg2.py", lambda doc: ["--verify"]),
     ("control_map.py", lambda doc: ["--verify"]),
     ("control_history.py", lambda doc: ["--verify"]),
