@@ -58,6 +58,55 @@
     }
    },
    "fetched_utc": "2026-11-06T10:49:48.090920600Z"
+  },
+  "5": {
+   "prediction": 5,
+   "version": 88,
+   "probability": "0.75",
+   "target_utc": "2026-11-08T00:00:00Z",
+   "rule": "first block whose header timestamp is at or after the time given; protocol_version of EXPERIMENTAL_protocol_config at that height; holds if >= the version",
+   "raw_files": {
+    "judging_block": {
+     "path": "data/raw/prereg2/block_223537267.json",
+     "sha256": "1309ff1efde9d3b9af7c8ea5227f15b21db31a308616381461937a2534ddff9b"
+    },
+    "previous_block": {
+     "path": "data/raw/prereg2/block_223537266.json",
+     "sha256": "90369d9f571d088968c825a7745890f3c4996f69b78395427291ef6cb2a69c08"
+    },
+    "protocol_config": {
+     "path": "data/raw/prereg2/protocol_config_223537267.json",
+     "sha256": "79d06b8579d90b6e2773ab245dafbb92dab7c301ff30eb7d4d21154310e02917"
+    }
+   },
+   "result": {
+    "judging_block": {
+     "height": 223537267,
+     "hash": "8mdTCajfHAvgCSKae4g2MAUg6zxuxfhvU6H5URUUzMAv",
+     "prev_hash": "7Jzbv8euYGe8i7ioMHxAVMiLi5hjge9JNK2Kn1FLiacv",
+     "timestamp_ns": "1794096000499262088",
+     "timestamp_utc": "2026-11-08T00:00:00.499262088Z",
+     "total_supply_yocto": "1311114816689343495381124462029673"
+    },
+    "previous_block": {
+     "height": 223537266,
+     "hash": "7Jzbv8euYGe8i7ioMHxAVMiLi5hjge9JNK2Kn1FLiacv",
+     "prev_hash": "GjR81N8VXf4y8hM9p6zvJ99b2C6JwmG7MtNK22Q7Ahpz",
+     "timestamp_ns": "1794095999825677736",
+     "timestamp_utc": "2026-11-07T23:59:59.825677736Z",
+     "total_supply_yocto": "1311114816689782003450850962029673"
+    },
+    "protocol_version": 88,
+    "holds": true,
+    "outcome": 1,
+    "brier": "0.0625",
+    "checks": {
+     "judging_block_at_or_after_target": true,
+     "previous_block_before_target": true,
+     "previous_block_is_parent": true
+    }
+   },
+   "fetched_utc": "2026-11-08T01:13:46.498256200Z"
   }
  },
  "first_block_with_version": {
@@ -112,6 +161,58 @@
     }
    },
    "fetched_utc": "2026-11-06T10:49:48.090920600Z"
+  },
+  "88": {
+   "version": 88,
+   "searched_between": [
+    223280916,
+    223425668
+   ],
+   "result": {
+    "first_block": {
+     "height": 223314737,
+     "hash": "J1L2R2sAkRa36wPR8fDX6ZdFxFULJ3BgtrJmH3KLtFjc",
+     "prev_hash": "76qo5kt5C19RL61dGYqBz1dwQNrdSVbbfeGPvxPJdqZ9",
+     "timestamp_ns": "1793967462225408565",
+     "timestamp_utc": "2026-11-06T12:17:42.225408565Z",
+     "total_supply_yocto": "1310986727693193247537505058797407"
+    },
+    "block_before": {
+     "height": 223314736,
+     "hash": "76qo5kt5C19RL61dGYqBz1dwQNrdSVbbfeGPvxPJdqZ9",
+     "prev_hash": "3oPZYoPL6souaucpBuMnRHKZWJ7sSPuYUzcTFHKrvBXj",
+     "timestamp_ns": "1793967461701764472",
+     "timestamp_utc": "2026-11-06T12:17:41.701764472Z",
+     "total_supply_yocto": "1310960784414420557547474809488214"
+    },
+    "version_at_first_block": 88,
+    "version_at_block_before": 87,
+    "days_from_hsp027_passed": "126.51",
+    "checks": {
+     "first_block_has_the_version": true,
+     "block_before_does_not": true,
+     "block_before_is_parent": true
+    }
+   },
+   "raw_files": {
+    "first_block": {
+     "path": "data/raw/prereg2/block_223314737.json",
+     "sha256": "dc877e32c4c8fa5e968fa4a9b792b9d2e0be532edca720d10c2f58f2be42bac3"
+    },
+    "block_before": {
+     "path": "data/raw/prereg2/block_223314736.json",
+     "sha256": "b8a23ed341e3e745e8bf487b513a315a0f4e4d3c2e98a857a79b7173980c92b4"
+    },
+    "first_config": {
+     "path": "data/raw/prereg2/protocol_config_223314737.json",
+     "sha256": "79d06b8579d90b6e2773ab245dafbb92dab7c301ff30eb7d4d21154310e02917"
+    },
+    "before_config": {
+     "path": "data/raw/prereg2/protocol_config_223314736.json",
+     "sha256": "de08f584c9aefce1a5b0649fbebb50b1f037c5b0d5580132e736c9be59940f3f"
+    }
+   },
+   "fetched_utc": "2026-11-08T01:13:46.498256200Z"
   }
  },
  "prereg_checks": {
@@ -120,7 +221,7 @@
   "table_states_prediction_5": true
  },
  "brier_mean": {
-  "judged": 1,
-  "mean": "0.0225"
+  "judged": 2,
+  "mean": "0.0425"
  }
 }

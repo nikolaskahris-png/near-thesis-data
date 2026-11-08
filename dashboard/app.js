@@ -125,7 +125,7 @@ const PREDICTIONS = [
   { n: "4", text: "Protocol version 87 (HSP-027) is in effect on NEAR mainnet", rule: "protocol_version ≥ 87",
     prob: "0.85", when: "judged 6 November", result: "4" },
   { n: "5", text: "Protocol version 88 is in effect on NEAR mainnet", rule: "protocol_version ≥ 88",
-    prob: "0.75", when: "judged 8 November" },
+    prob: "0.75", when: "judged 8 November", result: "5" },
 ];
 
 const COMMANDS = [

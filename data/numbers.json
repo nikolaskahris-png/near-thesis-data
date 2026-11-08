@@ -24,7 +24,7 @@
     "data/offchain/nearai_cloud_farm_config_20261101T205837Z.json": "95bb1adc1b3eb738cdc19c7622e5a3641edce4ea9653ced4ba6e32439c5f253d",
     "data/peers.json": "48138f8cb3615ecbb1619ab22467c7a46bbee2521481b226b741a911a7b70b1e",
     "data/prereg.json": "2efdcde55626bf946110ccaccb6672581cfe0d96b8231945629a920b653cc250",
-    "data/prereg2.json": "e7b959377e2b1bacd3b6ffb788e2caba1b529c0f9af261e875485389c98166c8",
+    "data/prereg2.json": "4cab2101e8c89e0412a78c50e0123286b103ecee2de8918dcaea69dc944980e7",
     "data/prereg2_anchor.json": "04d116768228d84f1c3a3e6c7c91cd43af6df1e62a177e95980f757a272c0c77",
     "data/raw/redacted/control/1csfundsadmin.sputnik-dao.near_get_policy.json": "4170c345c39f028787bd46da4f3748bce4adc929e2412988e7dbab3a7811177d",
     "data/raw/redacted/control/fefundsadmin.sputnik-dao.near_get_policy.json": "7771c22b179e418ea8225c37977494d2ed0b8eccf774deb3d7301924357a97af",
@@ -6910,6 +6910,44 @@
       "rule": "first block whose header timestamp is at or after the time given; protocol_version of EXPERIMENTAL_protocol_config at that height; holds if >= the version",
       "probability": "0.85"
     },
+    "pr.5.brier": {
+      "value": "0.0625",
+      "text": "0.0625",
+      "source": "data/prereg2.json",
+      "unit": "Brier score",
+      "judging_block": 223537267,
+      "as_of": "2026-11-08T00:00:00Z",
+      "rule": "first block whose header timestamp is at or after the time given; protocol_version of EXPERIMENTAL_protocol_config at that height; holds if >= the version",
+      "probability": "0.75"
+    },
+    "pr.5.judging_height": {
+      "value": "223537267",
+      "text": "223,537,267",
+      "source": "data/prereg2.json",
+      "unit": "block",
+      "judging_block": 223537267,
+      "as_of": "2026-11-08T00:00:00Z",
+      "rule": "first block whose header timestamp is at or after the time given; protocol_version of EXPERIMENTAL_protocol_config at that height; holds if >= the version",
+      "probability": "0.75"
+    },
+    "pr.5.protocol_version": {
+      "value": "88",
+      "text": "88",
+      "source": "data/prereg2.json",
+      "judging_block": 223537267,
+      "as_of": "2026-11-08T00:00:00Z",
+      "rule": "first block whose header timestamp is at or after the time given; protocol_version of EXPERIMENTAL_protocol_config at that height; holds if >= the version",
+      "probability": "0.75"
+    },
+    "pr.5.result": {
+      "value": "holds",
+      "text": "holds",
+      "source": "data/prereg2.json",
+      "judging_block": 223537267,
+      "as_of": "2026-11-08T00:00:00Z",
+      "rule": "first block whose header timestamp is at or after the time given; protocol_version of EXPERIMENTAL_protocol_config at that height; holds if >= the version",
+      "probability": "0.75"
+    },
     "pr.anchor1.tx_block": {
       "value": "222606824",
       "text": "222,606,824",
@@ -6945,15 +6983,15 @@
       "file": "PREREG-2.md"
     },
     "pr.brier_mean": {
-      "value": "0.0225",
-      "text": "0.0225",
+      "value": "0.0425",
+      "text": "0.0425",
       "source": "data/prereg2.json",
       "unit": "mean Brier score",
-      "judged": 1
+      "judged": 2
     },
     "pr.judged": {
-      "value": "1",
-      "text": "1",
+      "value": "2",
+      "text": "2",
       "source": "data/prereg2.json",
       "unit": "predictions"
     },
@@ -6978,6 +7016,29 @@
       "text": "2026-11-04 11:46 UTC",
       "source": "data/prereg2.json",
       "block": 223012337,
+      "note": "first block with this protocol version in effect"
+    },
+    "pr.v88.days_from_hsp027_passed": {
+      "value": "126.51",
+      "text": "127",
+      "source": "data/prereg2.json",
+      "unit": "days",
+      "block": 223314737,
+      "note": "first block with this protocol version in effect"
+    },
+    "pr.v88.first_height": {
+      "value": "223314737",
+      "text": "223,314,737",
+      "source": "data/prereg2.json",
+      "unit": "block",
+      "block": 223314737,
+      "note": "first block with this protocol version in effect"
+    },
+    "pr.v88.first_utc": {
+      "value": "2026-11-06T12:17:42.225408565Z",
+      "text": "2026-11-06 12:17 UTC",
+      "source": "data/prereg2.json",
+      "block": 223314737,
       "note": "first block with this protocol version in effect"
     },
     "te.steps": {
