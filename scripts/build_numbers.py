@@ -1165,6 +1165,7 @@ SCRIPT_CHECKS = [
     ("treasury_spend.py", lambda doc: ["--verify"]),
     ("treasury_exits.py", lambda doc: ["--verify"]),
     ("treasury_trace.py", lambda doc: ["--verify"], "treasury_trace.json"),
+    ("confidential_treasury.py", lambda doc: ["--verify"], "confidential_treasury.json"),
     ("check_prereg.py", lambda doc: ["--verify"]),
     ("check_prereg.py", lambda doc: ["--anchor", "2", "--verify"], "prereg2_anchor.json"),
     ("check_prereg.py", lambda doc: ["--anchor", "3", "--verify"], "prereg3_anchor.json"),
