@@ -1,0 +1,17 @@
+{
+ "block_hash": "7qeaSTPjbwSCVChTBxfnREhUwG4HtcfAMsMuFwhmb5XZ",
+ "causes": [
+  {
+   "tx_hash": "EGPoXc3Y9EE56Ci9avpyQjuzeGVo4DLXGptXUBGptZXv",
+   "type": "transaction_processing"
+  },
+  {
+   "receipt_hash": "ECSikmJssDUDUN9kj64bHym9JfvvFXCWQcVBD6P6epSg",
+   "type": "receipt_processing"
+  },
+  {
+   "receipt_hash": "ECSikmJssDUDUN9kj64bHym9JfvvFXCWQcVBD6P6epSg",
+   "type": "action_receipt_gas_reward"
+  }
+ ]
+}

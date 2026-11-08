@@ -1,0 +1,667 @@
+{
+ "measure": "where the NEAR that left treasury.near in April and May 2026 went next",
+ "rules": "Where the 30,171,200 NEAR that left treasury.near in April and May 2026 went next.\n\ntreasury_exits.py found the transfers out of treasury.near and their receivers. This script follows\nthe NEAR one step at a time from those receivers, on the chain: for each account on the path it\nbisects the account's balance (view_account amount) between two blocks down to single blocks where\nit changed by at least 1,000 NEAR, asks the node for the cause of each change (EXPERIMENTAL_changes,\naccount_changes), and reads the cause: for a transaction, the transfers the account sent\n(EXPERIMENTAL_tx_status); for a receipt, who sent it (EXPERIMENTAL_receipt). It also reads every\naccount's balance on 1 August, 2 October and 1 November 2026.\n\nEach step must be explained by its cause to within 1 NEAR (gas). Two hops start a few blocks after\nthe NEAR arrived, so an arrival and a departure in the same interval cannot hide each other; the\nscript checks that the balance at that start holds what arrived.\n\nIt stops where an account has many flows and the NEAR mix with others: tracing further would\nattribute to treasury.near what is not its. Nothing here says who holds an account or why it moved:\nonly blocks, amounts and transactions.",
+ "min_step_near": "1000",
+ "hops": [
+  {
+   "path": 1,
+   "account": "ecotreasury4.multisignature.near",
+   "lo": 196336954,
+   "hi": 200773914,
+   "steps": [
+    {
+     "height": 198177199,
+     "previous": 198177198,
+     "causes": [
+      "changes:198177199:ecotreasury4.multisignature.near",
+      "tx:BfJ2cfZETpoGjMGS2ibjj6s51BYwrotu6CAPYz3U7ua8"
+     ]
+    }
+   ]
+  },
+  {
+   "path": 1,
+   "account": "ecotreasury5.multisignature.near",
+   "lo": 196336954,
+   "hi": 200773914,
+   "steps": [
+    {
+     "height": 198177385,
+     "previous": 198177384,
+     "causes": [
+      "changes:198177385:ecotreasury5.multisignature.near",
+      "tx:EGPoXc3Y9EE56Ci9avpyQjuzeGVo4DLXGptXUBGptZXv"
+     ]
+    }
+   ]
+  },
+  {
+   "path": 1,
+   "account": "sha256:a74fdc75ed527683",
+   "lo": 200773914,
+   "hi": 222491356,
+   "steps": [
+    {
+     "height": 218494269,
+     "previous": 218494268,
+     "causes": [
+      "changes:218494269:sha256_a74fdc75ed527683",
+      "receipt:3gEAQNFkn1p4Uzh3CyL7Zi9fA7mpSbAJL7AS3gwW3Ews",
+      "receipt:bWgtBp9622KUD8PxstBXTt1JAAASShrVVB4b5gxmzeB"
+     ]
+    },
+    {
+     "height": 218555125,
+     "previous": 218555124,
+     "causes": [
+      "changes:218555125:sha256_a74fdc75ed527683",
+      "tx:EGyx1Ln5QWAHDa7851h15LsUBtD1xv8oBi3XhU2DzXt8"
+     ]
+    }
+   ]
+  },
+  {
+   "path": 1,
+   "account": "sha256:80a50388377db2df",
+   "lo": 218555135,
+   "hi": 222491356,
+   "steps": [
+    {
+     "height": 218805689,
+     "previous": 218805688,
+     "causes": [
+      "changes:218805689:sha256_80a50388377db2df",
+      "tx:BJXqUjdPirnVdYw4Djv4noAXztPa4971m9VCRVrnPB3K"
+     ]
+    }
+   ]
+  },
+  {
+   "path": 2,
+   "account": "sha256:e630d735067c39fe",
+   "lo": 200773914,
+   "hi": 209393356,
+   "steps": [
+    {
+     "height": 208608675,
+     "previous": 208608674,
+     "causes": [
+      "changes:208608675:sha256_e630d735067c39fe",
+      "tx:2JfVUgdfS7BDv5bFktszo9PjZpZCJfqTE5m2TRkrxuwy"
+     ]
+    }
+   ]
+  },
+  {
+   "path": 2,
+   "account": "sha256:b0da523c6bac87ab",
+   "lo": 208608685,
+   "hi": 209393356,
+   "steps": [
+    {
+     "height": 208784276,
+     "previous": 208784275,
+     "causes": [
+      "changes:208784276:sha256_b0da523c6bac87ab",
+      "tx:EmpCWshbzHQR4XWAjH518aCrStn8nXANqVMju7Z6dEPY"
+     ]
+    }
+   ]
+  }
+ ],
+ "balances_at": {
+  "ecotreasury4.multisignature.near": {
+   "2026-08-01": 209393356,
+   "2026-10-02": 218126921,
+   "2026-11-01": 222491356
+  },
+  "ecotreasury5.multisignature.near": {
+   "2026-08-01": 209393356,
+   "2026-10-02": 218126921,
+   "2026-11-01": 222491356
+  },
+  "sha256:a74fdc75ed527683": {
+   "2026-08-01": 209393356,
+   "2026-10-02": 218126921,
+   "2026-11-01": 222491356
+  },
+  "sha256:80a50388377db2df": {
+   "2026-08-01": 209393356,
+   "2026-10-02": 218126921,
+   "2026-11-01": 222491356
+  },
+  "sha256:e630d735067c39fe": {
+   "2026-08-01": 209393356,
+   "2026-10-02": 218126921,
+   "2026-11-01": 222491356
+  },
+  "sha256:b0da523c6bac87ab": {
+   "2026-08-01": 209393356,
+   "2026-10-02": 218126921,
+   "2026-11-01": 222491356
+  },
+  "sha256:75182394f913e43d": {
+   "2026-08-01": 209393356,
+   "2026-10-02": 218126921,
+   "2026-11-01": 222491356
+  },
+  "sha256:1ede949dd7052bf2": {
+   "2026-08-01": 209393356,
+   "2026-10-02": 218126921,
+   "2026-11-01": 222491356
+  }
+ },
+ "raw_files": {
+  "data/raw/treasury_trace/accounts/196336954_ecotreasury4.multisignature.near.json": "af17676bf77d27c536727df1cbf0a0857f852b0654a8758927b8c8865fa629f4",
+  "data/raw/treasury_trace/accounts/196336954_ecotreasury5.multisignature.near.json": "41363e1bedff645f39450690224dc9ea6c8c50b9864f1e5470248eadb3a5f9e5",
+  "data/raw/treasury_trace/accounts/197446194_ecotreasury4.multisignature.near.json": "76e9c52542d0cb4cef762463217e1aa0d49b3fd6ba13d5d9cbef2a17ee83f948",
+  "data/raw/treasury_trace/accounts/197446194_ecotreasury5.multisignature.near.json": "edfa70ec7ab5f4232c8178942d0dade1037beddcc9e25a4ed313dacf5a23130e",
+  "data/raw/treasury_trace/accounts/198000814_ecotreasury4.multisignature.near.json": "025be7d6a8c5994f242ab8894701a4970c63cf083c613d6754c53ec6216adb3e",
+  "data/raw/treasury_trace/accounts/198000814_ecotreasury5.multisignature.near.json": "7e8594c3f2e0145acd62ff8f42dbf94d8656eb9bbe3489294e87ec737d509cc8",
+  "data/raw/treasury_trace/accounts/198139469_ecotreasury4.multisignature.near.json": "8e0e8b352e09ca85938274fab47af9560b14b2847c4455028b2a7187cdb9ec29",
+  "data/raw/treasury_trace/accounts/198139469_ecotreasury5.multisignature.near.json": "61e0f5251e3cf5de5fd0aee22507c0f0b77ee60cba18a5eb8d5c20e927293d78",
+  "data/raw/treasury_trace/accounts/198174132_ecotreasury4.multisignature.near.json": "2d4df15fd213c858f6de3c117c77ffe482b840cc937707697a855914213d304e",
+  "data/raw/treasury_trace/accounts/198174132_ecotreasury5.multisignature.near.json": "fbe08fab5bd083e22e41d39f135a67897d6559fb461757b8c1a754e8b80bf6f4",
+  "data/raw/treasury_trace/accounts/198176298_ecotreasury4.multisignature.near.json": "fcfbf94b47cc8c6a061e4d85a4675480c0f02f7407ff43b2dc2f3f444a7422bf",
+  "data/raw/treasury_trace/accounts/198176298_ecotreasury5.multisignature.near.json": "13f272d25255edfb49076ab2874e29efd674d2585ce62a0eb5a8faf56ec8fffe",
+  "data/raw/treasury_trace/accounts/198176839_ecotreasury4.multisignature.near.json": "df32785acafd6890baec1dd502f770b7b8b458c666ce1cad230d6df2cdf12085",
+  "data/raw/treasury_trace/accounts/198177110_ecotreasury4.multisignature.near.json": "361c4f16af6d32def58be3d877341091c2bf0326ea5af259b042e09a60818f07",
+  "data/raw/treasury_trace/accounts/198177177_ecotreasury4.multisignature.near.json": "f5ec45df8801b723f7f3fef9055c5e5a525e9fa12e3052e43553560bcc7e59a9",
+  "data/raw/treasury_trace/accounts/198177194_ecotreasury4.multisignature.near.json": "7ed0993e099d4a5c655c605b7fad0b80061b5cdf77596471e9ce783258c1d6fc",
+  "data/raw/treasury_trace/accounts/198177198_ecotreasury4.multisignature.near.json": "d36de7ecb6a6e9a59fbc5d0f2abefcf46c75ab0dddc291d812b32c925b1d9e78",
+  "data/raw/treasury_trace/accounts/198177199_ecotreasury4.multisignature.near.json": "ca2d54f9b95aca48b09c2d4a7c5e15ad3f89f3cdd80627e945c3d41e8cbf12c6",
+  "data/raw/treasury_trace/accounts/198177200_ecotreasury4.multisignature.near.json": "f7306669dafc653c2838cf7a51a708959f23c45d822a8bb40b1a98f96b0f1eae",
+  "data/raw/treasury_trace/accounts/198177202_ecotreasury4.multisignature.near.json": "58f4f4dc599385369b79feb0ac77d97a5f54a33ce83ee8eba0fce3bfeb9670d3",
+  "data/raw/treasury_trace/accounts/198177211_ecotreasury4.multisignature.near.json": "0034e6588b22abe5c96b46432457da539acb67029c5f876698193a50600562f9",
+  "data/raw/treasury_trace/accounts/198177245_ecotreasury4.multisignature.near.json": "21b2cf219ffa0766875932d06d6542550441ebc655585f2b98fe7ada90159204",
+  "data/raw/treasury_trace/accounts/198177381_ecotreasury4.multisignature.near.json": "bd22cab6c8dba7db82c4a4499bf3192a86e3527f67b5e88d12803079520a1787",
+  "data/raw/treasury_trace/accounts/198177381_ecotreasury5.multisignature.near.json": "cbfdf5004f62414a5bc85481ee43cd0055325013d547fd3cbfdcdb127350f7e5",
+  "data/raw/treasury_trace/accounts/198177383_ecotreasury5.multisignature.near.json": "f980eedffb9fcefc99837050cdb1cc761bc95ec9b0aea96546dde18f3482f68b",
+  "data/raw/treasury_trace/accounts/198177384_ecotreasury5.multisignature.near.json": "525446ae98feb77ceb0e8fcdd04921ad82241062ef9579cdfcb754992e8184fe",
+  "data/raw/treasury_trace/accounts/198177385_ecotreasury5.multisignature.near.json": "68a049cb3295352379f3a15fe50a11a87de6466edbde14c297838b1c46b733da",
+  "data/raw/treasury_trace/accounts/198177389_ecotreasury5.multisignature.near.json": "1f0d2c7627603e1c93b752d0c3c7118da725b33e7f474ed55c1b0308de4117a0",
+  "data/raw/treasury_trace/accounts/198177397_ecotreasury5.multisignature.near.json": "41451d77b1e59e984b24ae7cd699f23c06495eb68ce9b3af9a2beb7ef00a9d35",
+  "data/raw/treasury_trace/accounts/198177414_ecotreasury5.multisignature.near.json": "817a92a79d1a2818d05870aec5303444ee46b14bab4f13a90e7ca4784f0dc025",
+  "data/raw/treasury_trace/accounts/198177448_ecotreasury5.multisignature.near.json": "56bab43147795ab4a4f95cf137a3c777c4f0564265b971337cb9814c334c1b83",
+  "data/raw/treasury_trace/accounts/198177516_ecotreasury5.multisignature.near.json": "8ccec8aa83f72b01bbad02291c127cebe183c4ba2d9212ce5d8927e0287d23bf",
+  "data/raw/treasury_trace/accounts/198177652_ecotreasury5.multisignature.near.json": "5b0950e8bb36ee25316a4341919658e0d3145a05c0df9823adf399a02f1caca4",
+  "data/raw/treasury_trace/accounts/198177923_ecotreasury5.multisignature.near.json": "9d829872f78e02b4617db7f36cf647544e85afec069d76bd370657c057df4d92",
+  "data/raw/treasury_trace/accounts/198178465_ecotreasury4.multisignature.near.json": "b7650abdaaea543c785d8395aaeec77c2fcb11eb819775bfb828258aa5149fb1",
+  "data/raw/treasury_trace/accounts/198178465_ecotreasury5.multisignature.near.json": "23a3afb4819ea829f8bb74ec48c4ee98f26abef23dad952378f901175df2a7b5",
+  "data/raw/treasury_trace/accounts/198182798_ecotreasury4.multisignature.near.json": "b21ee734c98939f56a06292e68399f48a1a2dde802e90918ab8de21648c7c5c3",
+  "data/raw/treasury_trace/accounts/198182798_ecotreasury5.multisignature.near.json": "2c7f974c71ae8e438c9f23a5010d379b42549c3f7311e98585d33a0bd9dfecd2",
+  "data/raw/treasury_trace/accounts/198191464_ecotreasury4.multisignature.near.json": "0d5c3aa7cf8341acbfb550d11599b152143d1bb2c9c3bb05ef0daf047a510c9c",
+  "data/raw/treasury_trace/accounts/198191464_ecotreasury5.multisignature.near.json": "cdf7bbc92badaba8e8d511223feccc54c02028168e2e428dd4d12dcdc8bb1ce1",
+  "data/raw/treasury_trace/accounts/198208796_ecotreasury4.multisignature.near.json": "79d492f27ca580adb376cfbd8e07d2899ca96f793cff687c94674dd389527183",
+  "data/raw/treasury_trace/accounts/198208796_ecotreasury5.multisignature.near.json": "c344565e55a6e7dfda36d19e29e637820da83a629fd0425c2492d2c85b915299",
+  "data/raw/treasury_trace/accounts/198278124_ecotreasury4.multisignature.near.json": "0f30f0ed87eef29f1b4c35589c68a37f4c6fbbf3610c58ceed6341f3acd4b5f9",
+  "data/raw/treasury_trace/accounts/198278124_ecotreasury5.multisignature.near.json": "1238fed42814981e75dd3f09e139e686fa80934c08dd938b80ec6633711c0749",
+  "data/raw/treasury_trace/accounts/198555434_ecotreasury4.multisignature.near.json": "04b6aaf67c7af75563b49373000b2e192db1002a1a5dbb103276b8879df85487",
+  "data/raw/treasury_trace/accounts/198555434_ecotreasury5.multisignature.near.json": "f0b0e9df458712809da6f12220c82966624cf6e87c542d421b37f5d70634a850",
+  "data/raw/treasury_trace/accounts/200773914_ecotreasury4.multisignature.near.json": "1f4dda673a98e22a41f024656bac7b160052bf268455ca40ed03fa0e8a1d30bc",
+  "data/raw/treasury_trace/accounts/200773914_ecotreasury5.multisignature.near.json": "cb300ce5b547ddd8ae39afb223360a3e74c9dfebedf5c41ff5d577183c257f8e",
+  "data/raw/treasury_trace/accounts/200773914_sha256_a74fdc75ed527683.json": "7e3502730d9119251ec7347fb4dc301d6bbf2bff32784e98a247587073ba357c",
+  "data/raw/treasury_trace/accounts/200773914_sha256_e630d735067c39fe.json": "b1491ed744cc0a88f4e9d5a8d5ad5673dc495677ac571f032c9a1aed1143f91f",
+  "data/raw/treasury_trace/accounts/205083635_sha256_e630d735067c39fe.json": "6a83f7b0908e726114164db66bd0d0df44da0ed912879bee4f622b2307c48878",
+  "data/raw/treasury_trace/accounts/207238495_sha256_e630d735067c39fe.json": "337e946e9d771236b69e3cceed6ddc32d6775625b4db4040e044720ac3ad2246",
+  "data/raw/treasury_trace/accounts/208315925_sha256_e630d735067c39fe.json": "39db7e596e903e534c331e1756677812dc998d7c2319c94d43886b36193fb94e",
+  "data/raw/treasury_trace/accounts/208585282_sha256_e630d735067c39fe.json": "7f4b5fc0ca1aeddc21d5e3dc15ad26db1c2124e77a13947185e452d5e06f2bf0",
+  "data/raw/treasury_trace/accounts/208602116_sha256_e630d735067c39fe.json": "b7671e26f08c8eb14a0bd24f6b2152b938860787aa1210a6183b0b0a00327d1c",
+  "data/raw/treasury_trace/accounts/208606324_sha256_e630d735067c39fe.json": "1a28b70f35c37a88a866dfbb1f88cd9c111b94c397419f3e267c1c8b3455c763",
+  "data/raw/treasury_trace/accounts/208608428_sha256_e630d735067c39fe.json": "ebdf9489deb37fca2fcb2a1d6b3826b1ac91f53f587a5abad5fb472714bb4d62",
+  "data/raw/treasury_trace/accounts/208608559_sha256_e630d735067c39fe.json": "8f9df2e958569d3122d6a883d719bfc48ad1fe0d6d93477acb7df27eb3bc4ae6",
+  "data/raw/treasury_trace/accounts/208608625_sha256_e630d735067c39fe.json": "2cec4100af48f9c3a74765a42f8c923867051be7fabdb6c7122015dac0effc75",
+  "data/raw/treasury_trace/accounts/208608658_sha256_e630d735067c39fe.json": "a2b4671643dc4d9ac23a5d28b5bac97bd3441cf94554643d8bf8e6221d8f2d9d",
+  "data/raw/treasury_trace/accounts/208608674_sha256_e630d735067c39fe.json": "00533ed416e8d02dffa10a62b2faa0c7bd81f95ace7ed083e7672e9a0c299801",
+  "data/raw/treasury_trace/accounts/208608675_sha256_e630d735067c39fe.json": "14e42695769ca930d6a54da9e2aa00eb329be7d9aec5aed02e526b7b313b8fb6",
+  "data/raw/treasury_trace/accounts/208608676_sha256_e630d735067c39fe.json": "c86b4b138473625acc497b56a2ff2043c8e727beca88d0a892ebec0962e16b30",
+  "data/raw/treasury_trace/accounts/208608678_sha256_e630d735067c39fe.json": "ac51131d1811c32750303403c4f5cadee8c5367319a96c746cc5431e95bcea72",
+  "data/raw/treasury_trace/accounts/208608682_sha256_e630d735067c39fe.json": "562f6d98f37ee98c6e2bf5713ee557457ec16972649ab82639b4957f33ba6688",
+  "data/raw/treasury_trace/accounts/208608685_sha256_b0da523c6bac87ab.json": "9ece5f366295c15bf97d436b2312533cf3127c98cc4a540250a3e6cb0ab50c52",
+  "data/raw/treasury_trace/accounts/208608691_sha256_e630d735067c39fe.json": "ad64c69983884158095be05470d1afe04ae7c8257d21c395c8fdf97cc3cfbcaa",
+  "data/raw/treasury_trace/accounts/208608954_sha256_e630d735067c39fe.json": "e1cd095959b4811c4356a4565d3093006f80c49bbac88ba2b1f11a12e9c1d401",
+  "data/raw/treasury_trace/accounts/208609480_sha256_e630d735067c39fe.json": "bf9d93c939c5636cd0806e81ed7bd441eb985635474b48b3f659a5ff0357a5bb",
+  "data/raw/treasury_trace/accounts/208610533_sha256_e630d735067c39fe.json": "8daca4107564e531071e250318e82c6ceac5c2e28ba8322b513189d36ae1d768",
+  "data/raw/treasury_trace/accounts/208618951_sha256_e630d735067c39fe.json": "27440630511235229b33b57df972aa484deac96ae5b3391c3a0415ed6ff7db03",
+  "data/raw/treasury_trace/accounts/208652621_sha256_e630d735067c39fe.json": "71be365122b3b21233f76ae3e240269d9f1780de35dafef73c8ebd02c003a8cd",
+  "data/raw/treasury_trace/accounts/208706768_sha256_b0da523c6bac87ab.json": "6b7bc611d0b5e4c0d5063988058233e0c403bdc2a2170b1b9e5a380d7b1cd258",
+  "data/raw/treasury_trace/accounts/208719961_sha256_e630d735067c39fe.json": "aa4c509e621bfffadab8dad339a465fad021b5b4a2441c3f9be31e66d8d67d74",
+  "data/raw/treasury_trace/accounts/208755810_sha256_b0da523c6bac87ab.json": "74f2922b911e48e32ce11e6290877e9d34fda7ffde33d4e5b921aa6f25236e52",
+  "data/raw/treasury_trace/accounts/208780331_sha256_b0da523c6bac87ab.json": "09b9b7bb02256549cfeae8536da4670d5f84f0d35642bc3fa2c205ac34257cda",
+  "data/raw/treasury_trace/accounts/208783396_sha256_b0da523c6bac87ab.json": "4653929e53a8048b9d05841fd756664b1b7a0f98d8fe25baa2e7ee503d393b05",
+  "data/raw/treasury_trace/accounts/208784162_sha256_b0da523c6bac87ab.json": "57cafa262a7126ce8bf101991e638b3eb84ea51c14a99e5801b266b6031b3f9a",
+  "data/raw/treasury_trace/accounts/208784257_sha256_b0da523c6bac87ab.json": "5cbb859098a295b6b71853b19d5644afd9884ce3bcff79d6b13df5ef08a582c8",
+  "data/raw/treasury_trace/accounts/208784269_sha256_b0da523c6bac87ab.json": "dc8f2e82aa180b9b81971a7bb6a7e459763abdd12137e899cf8ab639ff8df744",
+  "data/raw/treasury_trace/accounts/208784275_sha256_b0da523c6bac87ab.json": "fb11d1498e6b35df977863e03d84b9b3192a1af8591277cac7af5ad9ea4b7db5",
+  "data/raw/treasury_trace/accounts/208784276_sha256_b0da523c6bac87ab.json": "53ea6a43c228c9a08b25bec4789a821210e11b2e5c8383620ccc56b3031262c9",
+  "data/raw/treasury_trace/accounts/208784278_sha256_b0da523c6bac87ab.json": "7f42502f4286d87c759fc57a5e5094f6fbb95e36ac00a4fb673733c95a841232",
+  "data/raw/treasury_trace/accounts/208784281_sha256_b0da523c6bac87ab.json": "077d27a801bb9cbd06f02090515bfea61a541625a30a1229c328fde5ab7460ce",
+  "data/raw/treasury_trace/accounts/208784305_sha256_b0da523c6bac87ab.json": "4ef020e7c45ca20dbed31215fa90d060f89225f9498bc35e67196f50c71493ae",
+  "data/raw/treasury_trace/accounts/208784353_sha256_b0da523c6bac87ab.json": "9d24299c8d259c1518261d87d05f47f9c071f4eaceeb78b232566a4f4a212c7a",
+  "data/raw/treasury_trace/accounts/208784545_sha256_b0da523c6bac87ab.json": "926344038adff1b42497db549cb45a8840c2bdd5d2d1e90e8ae640f4be120764",
+  "data/raw/treasury_trace/accounts/208784928_sha256_b0da523c6bac87ab.json": "a853fd68f9c788b615d4960de45505b2eceb781a70495b4522ee4b351d888f2e",
+  "data/raw/treasury_trace/accounts/208786461_sha256_b0da523c6bac87ab.json": "8786bad4d55cc21604249de5b502904d8fb92a26f93c8c8158eadcd3b1cdc280",
+  "data/raw/treasury_trace/accounts/208792591_sha256_b0da523c6bac87ab.json": "4ed1c1e416bd4bc0ebc7d1e16b4ca6a132fd46ee2e0198612e8a826c770272b5",
+  "data/raw/treasury_trace/accounts/208804852_sha256_b0da523c6bac87ab.json": "6ff8ba2c62a220b193430e6a9bc169d3a3e2f509c242b3709a3ce3bcdfdad72e",
+  "data/raw/treasury_trace/accounts/208854640_sha256_e630d735067c39fe.json": "3e65fbb71892430afe3014932b4b45c91e0623d271e3aab364e06ee35210e873",
+  "data/raw/treasury_trace/accounts/209001020_sha256_b0da523c6bac87ab.json": "f2766cc218d87b7a1d5b0c6c56c72faae86a5cf5a873e06bf3e564055ed05551",
+  "data/raw/treasury_trace/accounts/209393356_ecotreasury4.multisignature.near.json": "3be141a3dad935aa82e93812b7b57dc0e5c7e74483e364294f85e46691c57d94",
+  "data/raw/treasury_trace/accounts/209393356_ecotreasury5.multisignature.near.json": "b43de21c257755577285cd5c17e9d35795f6a67b9ac2e45dba788a5bcb8da903",
+  "data/raw/treasury_trace/accounts/209393356_sha256_1ede949dd7052bf2.json": "d43d06e0ae44ea40093b6722e4091f7a05af3e624d112b46bfc89e7bd1730b29",
+  "data/raw/treasury_trace/accounts/209393356_sha256_75182394f913e43d.json": "da7424159481e9061f458bfd1cfb27d5d251dbf24d0c935bfb20a9a3278ae053",
+  "data/raw/treasury_trace/accounts/209393356_sha256_80a50388377db2df.json": "a60bc1e043874a23f0e9c951792c0a6ad8cb9eedab0d1fe1b1b60e3505102d6b",
+  "data/raw/treasury_trace/accounts/209393356_sha256_a74fdc75ed527683.json": "4d467834e4bfa3430bc5036c5df065029c47cdb6f888e7d9842759d0ce077910",
+  "data/raw/treasury_trace/accounts/209393356_sha256_b0da523c6bac87ab.json": "d753070b7ea9cb6fdd8ab47f053a53b393761dffd3f1f50e694e57118f939e96",
+  "data/raw/treasury_trace/accounts/209393356_sha256_e630d735067c39fe.json": "18293ff3e0995e61b52fa674ef8743bc23fd5e2ddc57ac6cbb106c5901a6f905",
+  "data/raw/treasury_trace/accounts/211632635_sha256_a74fdc75ed527683.json": "6fdd4d31682280f351fb291704ee3460967db26edaa6fdb3848d3d7735b5e81c",
+  "data/raw/treasury_trace/accounts/217061995_sha256_a74fdc75ed527683.json": "11513b49629c51ced25051354e284123fff90d3a6e3f93e30439d7385eb3ffb7",
+  "data/raw/treasury_trace/accounts/218126921_ecotreasury4.multisignature.near.json": "5c1b81f4550472d033bf545f8fb2a48b35eee593820dd92f0e4c43c01ecda93e",
+  "data/raw/treasury_trace/accounts/218126921_ecotreasury5.multisignature.near.json": "c916e18510e39db6b8cc43e089a1ebafa961cb7cd2021b2968910224307b4038",
+  "data/raw/treasury_trace/accounts/218126921_sha256_1ede949dd7052bf2.json": "e08f5363a1994c897fb41571f42ff26eae1c208ef0f0ae5131ff479c8a1ba827",
+  "data/raw/treasury_trace/accounts/218126921_sha256_75182394f913e43d.json": "7b28c96ea9ba90f86f02c6682a10e7d49e5e464bbd517d9a83ba9f01bc69fd59",
+  "data/raw/treasury_trace/accounts/218126921_sha256_80a50388377db2df.json": "7ba1bb8089b94ddbf0e088c68f15cb3914b46d40473330cc1d7d2cf8fad013b2",
+  "data/raw/treasury_trace/accounts/218126921_sha256_a74fdc75ed527683.json": "f6df9f21197bc4d4855e4c1598271c0d9d2a9c669a530203789f92aac272977f",
+  "data/raw/treasury_trace/accounts/218126921_sha256_b0da523c6bac87ab.json": "5863df05ed43d1b4860694871b47eb4f6e84f94b0f5bbaa6eacfd7b5e8e82647",
+  "data/raw/treasury_trace/accounts/218126921_sha256_e630d735067c39fe.json": "93f7fb1122605d328046c33c101f8f0e4f4e6c6b7cfba006a34fd4135b7d2a30",
+  "data/raw/treasury_trace/accounts/218419335_sha256_a74fdc75ed527683.json": "e8f16491b9d69d8ba5843d2e2f03ffe1b1e231cd7b7006914eb724ee979905bb",
+  "data/raw/treasury_trace/accounts/218461751_sha256_a74fdc75ed527683.json": "d81a40f2569b12341bb04eaede5fb0a71093bdf4389a742ff5791f6aa634f6ac",
+  "data/raw/treasury_trace/accounts/218482959_sha256_a74fdc75ed527683.json": "eeb808a37e7bdc873b3d6b17e3b5ed051ba427f01791d52490bc0e3594483306",
+  "data/raw/treasury_trace/accounts/218493563_sha256_a74fdc75ed527683.json": "fcea38ab3982d7b90f1a003232c2662a92710873333930da44665a32119c637e",
+  "data/raw/treasury_trace/accounts/218494225_sha256_a74fdc75ed527683.json": "22199a47fed288bb31de3ae657c775073a25be09ec8fc0d978854f158e0ec86d",
+  "data/raw/treasury_trace/accounts/218494266_sha256_a74fdc75ed527683.json": "9522d6d9e984f2cd249c3033e3f6c4cc446e7147004a0d43e1cba137cf0f3929",
+  "data/raw/treasury_trace/accounts/218494268_sha256_a74fdc75ed527683.json": "f83b1fcf6ff4e3963204721b509a6f58b76ba60d5ff7f62fd2a44d088299c36b",
+  "data/raw/treasury_trace/accounts/218494269_sha256_a74fdc75ed527683.json": "82f8a4356083629272f6ae19b9bb0486937ecd0cdff196942f70361cb2ef73dc",
+  "data/raw/treasury_trace/accounts/218494271_sha256_a74fdc75ed527683.json": "8401eb3a46dace211f450d889dc2b7765abfc10c1efdb5d3d1fb85edc39a425b",
+  "data/raw/treasury_trace/accounts/218494276_sha256_a74fdc75ed527683.json": "4e6752d9169c6c039777eb50c4e30621bd6d8a43f784ed374166fae10e77d9d6",
+  "data/raw/treasury_trace/accounts/218494286_sha256_a74fdc75ed527683.json": "ad306fc58f6295ef21747ed9214eaeb17d94b4e5e9d801737bc465ef36b161c3",
+  "data/raw/treasury_trace/accounts/218494307_sha256_a74fdc75ed527683.json": "189495315bde4e582cf260d7a0ce2a56db79a68e6458ffefa6814f57dbd9d508",
+  "data/raw/treasury_trace/accounts/218494390_sha256_a74fdc75ed527683.json": "ffc1627aee14906c99b78058b56a32d834b3c32073b80a4db7e742655f4f7ac0",
+  "data/raw/treasury_trace/accounts/218494556_sha256_a74fdc75ed527683.json": "7dff181b107b894026ad5104004a40da927486a6e96236cd3970aad6a8869937",
+  "data/raw/treasury_trace/accounts/218494888_sha256_a74fdc75ed527683.json": "274b3ff2840bb65bb7859877d5325e858a8f455d758309a5d16ebe3a145431da",
+  "data/raw/treasury_trace/accounts/218496214_sha256_a74fdc75ed527683.json": "f9b7e5f0724ebd3141bfba7635b7b4b7622bafebb477fc1f0a23ac23369f380b",
+  "data/raw/treasury_trace/accounts/218498865_sha256_a74fdc75ed527683.json": "09108210f1673ad24429c31485b04bea2e0ec10dbd5183b9c84b3c1e037b12ac",
+  "data/raw/treasury_trace/accounts/218504168_sha256_a74fdc75ed527683.json": "3a7d248be053c0bb867c84756112ced78bc8d668f4a3e1e0e8ed465cc6921389",
+  "data/raw/treasury_trace/accounts/218546585_sha256_a74fdc75ed527683.json": "620b3299c3bda72bd22d221d6b9e57d9a634a3255e10f2f552660320601532e2",
+  "data/raw/treasury_trace/accounts/218551887_sha256_a74fdc75ed527683.json": "142fc4f43690baf59d139284337498c09cbaa532f2906308a28623048973ab5d",
+  "data/raw/treasury_trace/accounts/218554538_sha256_a74fdc75ed527683.json": "a540107f82b80c12ec786c2e2456f1ab1ddf40a04a150ec412e7ef1c91a42469",
+  "data/raw/treasury_trace/accounts/218554869_sha256_a74fdc75ed527683.json": "14b104d273742a3b05c75d31c3c5b05487e5841d03e9891be299e9a9840a07cf",
+  "data/raw/treasury_trace/accounts/218555034_sha256_a74fdc75ed527683.json": "f0913ff433f305a1bbc5d051d9782d2665c37998ec2a9dab5d5aea498746c891",
+  "data/raw/treasury_trace/accounts/218555117_sha256_a74fdc75ed527683.json": "6b5d0293c3162d9d372d7609113534d37d96cc75404db8cdcd3b9bc5caaee263",
+  "data/raw/treasury_trace/accounts/218555122_sha256_a74fdc75ed527683.json": "5adaf7d3b2c9b0b291171f0a958bd5b9c3af0ff35cec360357e3da749adc2a59",
+  "data/raw/treasury_trace/accounts/218555124_sha256_a74fdc75ed527683.json": "f3ae5db72765bad8303af9bb815a602a6119f427f4327dbc45a562b42377a56b",
+  "data/raw/treasury_trace/accounts/218555125_sha256_a74fdc75ed527683.json": "763b0aff771f2c8e87526daeb165ab5afe07ccfd324a67d1fee15d3a568d0875",
+  "data/raw/treasury_trace/accounts/218555127_sha256_a74fdc75ed527683.json": "d20e96dade24e0d0b36f2c704a18a8260f07a5d3a7acaba0b19a6f3b532cf6c0",
+  "data/raw/treasury_trace/accounts/218555135_sha256_80a50388377db2df.json": "9cc9da41b07c5d49a1d43ed6e570acdd1a28eb25aaabef9c8467beae48facdd8",
+  "data/raw/treasury_trace/accounts/218555137_sha256_a74fdc75ed527683.json": "63e74b1fca422f177101c18ecc4d6945abfd346ff06fc67bfe67c1802b4ce6ea",
+  "data/raw/treasury_trace/accounts/218555158_sha256_a74fdc75ed527683.json": "13f17589251acf49a0de2da58c7d2b8e646245f27a68cd07b435685572b8436b",
+  "data/raw/treasury_trace/accounts/218555200_sha256_a74fdc75ed527683.json": "8d03ddfc97fdbb2b0dd5273d8601f0b728d0c274f761424124e0e27ef8180ff6",
+  "data/raw/treasury_trace/accounts/218555863_sha256_a74fdc75ed527683.json": "1eb6ab527911626790ed3432773d0c747b53763c0bf3e9b95bec6a874f4627a6",
+  "data/raw/treasury_trace/accounts/218557189_sha256_a74fdc75ed527683.json": "ac89ab3d4ef090652fcc857dd2ef04cadf4b597d8132173feb565becf960ccd2",
+  "data/raw/treasury_trace/accounts/218567793_sha256_a74fdc75ed527683.json": "4553f329fcd413ee967b5ede1114eac8e0ec453dc05d14d025fca3f81233d6ae",
+  "data/raw/treasury_trace/accounts/218589002_sha256_a74fdc75ed527683.json": "2eebfa1a69ec78d93c4782ffcce11fec5079e7cf26cf15dddbe5740a30585e5e",
+  "data/raw/treasury_trace/accounts/218758670_sha256_a74fdc75ed527683.json": "8e33a06d8268a7766bffe824cc5c3504cd9f46e089790f95cac44d03d86f2ab6",
+  "data/raw/treasury_trace/accounts/218801148_sha256_80a50388377db2df.json": "edb24bfd94f0eb765c7d98581c5f96940f6adea86fa0e2eb2e72f93ae4d0d717",
+  "data/raw/treasury_trace/accounts/218804991_sha256_80a50388377db2df.json": "5f76f4230bb2300fb126bb6aab5c0a96633618c5ad2d94024a2ae3fd720a1de3",
+  "data/raw/treasury_trace/accounts/218805471_sha256_80a50388377db2df.json": "80c2eb42a56f14ecc40e5baaa7e90fd2acd6ac5d881a33ec864648134215d95d",
+  "data/raw/treasury_trace/accounts/218805591_sha256_80a50388377db2df.json": "483de4f336870c29f30b74e233760c40ff98c543c479ea9b444d1cd81627e92c",
+  "data/raw/treasury_trace/accounts/218805651_sha256_80a50388377db2df.json": "3ff3444f03467d0d16e8fe0a4062a375378e61bd7c9f9044194a93f765bf0046",
+  "data/raw/treasury_trace/accounts/218805681_sha256_80a50388377db2df.json": "ad28b8e28ffa4691492dcf8035fe8fa5a66b67436d9edca372b71d8f6f042f30",
+  "data/raw/treasury_trace/accounts/218805688_sha256_80a50388377db2df.json": "d6541b94407f6a4fc60f8a14948dd20c9f71f27bde5a8a2ec2d93076f836a42c",
+  "data/raw/treasury_trace/accounts/218805689_sha256_80a50388377db2df.json": "cced69a6222c470ac8c98c001b7e60b2f3915db1d2948bbe66019d672861099f",
+  "data/raw/treasury_trace/accounts/218805690_sha256_80a50388377db2df.json": "df4b7c4eeff0e66d0cd6ac809cdb6d84ef9e239ba45fb35a998988885b24e9b1",
+  "data/raw/treasury_trace/accounts/218805692_sha256_80a50388377db2df.json": "6fc00a017df8c57a9bf802059677e9ef012a8522b3fc0d2a8d9967b8a347f28b",
+  "data/raw/treasury_trace/accounts/218805696_sha256_80a50388377db2df.json": "5e4eca010cf2d457fda118e8493877d668538f8c3e95f357225584b1fa2c4106",
+  "data/raw/treasury_trace/accounts/218805711_sha256_80a50388377db2df.json": "b3212c34cc3270788b9793c07219fac81948a118d9a44c132aadd9fe0c323058",
+  "data/raw/treasury_trace/accounts/218805952_sha256_80a50388377db2df.json": "f30379e126aa5173b4632715e4b8cd8cd489d2c45a238c91a99e3bac348b680a",
+  "data/raw/treasury_trace/accounts/218806913_sha256_80a50388377db2df.json": "195aba2592761581bab8f6c82a031e0a52f4c3f0317938da767b5d856d79a434",
+  "data/raw/treasury_trace/accounts/218808835_sha256_80a50388377db2df.json": "2a848d5b16dd2a04daedf195dc2e26158e33e789cea33827fa8f1fa9b80f0ef0",
+  "data/raw/treasury_trace/accounts/218816523_sha256_80a50388377db2df.json": "8697e4e9ca451dfc4587cbff0c7c5471def3b093d60c17307cfe542fe2e5d4ec",
+  "data/raw/treasury_trace/accounts/218831899_sha256_80a50388377db2df.json": "24fe65c7553d1d3d4643345b9af7b3ce21f97a6fc914faa76f01ee73150bb333",
+  "data/raw/treasury_trace/accounts/218862651_sha256_80a50388377db2df.json": "aaafd86b610dfb0f32ecd7b76d9bae1f89a2837d21bb3763b999192fe2033098",
+  "data/raw/treasury_trace/accounts/218924155_sha256_80a50388377db2df.json": "2e921029a800bfddf0ce0489870164e50c3f96ffc0ea73b8d4a821f593d546a4",
+  "data/raw/treasury_trace/accounts/219047162_sha256_80a50388377db2df.json": "6213bc3b4206bbff648d927a347143c1726ef61c8d2ebef85dd0e375201c8e55",
+  "data/raw/treasury_trace/accounts/219098005_sha256_a74fdc75ed527683.json": "f30ea8885197fc4dcd030b60815aa9ece00288a5e8a8ff4cd685234cc093aec2",
+  "data/raw/treasury_trace/accounts/219539190_sha256_80a50388377db2df.json": "7daf372a6d7f22a3706c2d0762c459a774afb7d48686317dc835d91f29da397e",
+  "data/raw/treasury_trace/accounts/219776675_sha256_a74fdc75ed527683.json": "95857ee25727430836274f225ebb2ffe6bf86bda6dc0de5ce3744e02e09a1a5c",
+  "data/raw/treasury_trace/accounts/220523245_sha256_80a50388377db2df.json": "5d92ef417c54801ff7ffe96e4260d7d555e8df086f7bdb0396b26866c6ea79ab",
+  "data/raw/treasury_trace/accounts/222491356_ecotreasury4.multisignature.near.json": "1fcdcca92b5634ac120193c8e3ccd2c6747f85ea38f59b9ec5395dcdb82796da",
+  "data/raw/treasury_trace/accounts/222491356_ecotreasury5.multisignature.near.json": "4cdbca7e0e7d579a7371c6c3f16a1daf2ce1d33bae931cdf7235cac4b4cd9fbc",
+  "data/raw/treasury_trace/accounts/222491356_sha256_1ede949dd7052bf2.json": "e83bdffb4b40f36b9b8d15ebb4ab6017b5ba6da41dae2f90006934794b61ae19",
+  "data/raw/treasury_trace/accounts/222491356_sha256_75182394f913e43d.json": "50d84da462a450997defc7109bbba308f485d9c1c5ceb10dbe8c64518ad71aa7",
+  "data/raw/treasury_trace/accounts/222491356_sha256_80a50388377db2df.json": "b26d35577c3d138851d6a9ba7ed232ab4953c8ce4f90903f216c201c05fbe692",
+  "data/raw/treasury_trace/accounts/222491356_sha256_a74fdc75ed527683.json": "34101c73a0aa8a695f03043e64f33671d8ebe9b7a7a454b591c4d283964a35bd",
+  "data/raw/treasury_trace/accounts/222491356_sha256_b0da523c6bac87ab.json": "270d5d6ff376a7ebef9056361b3f00b782fdad8c9bc5e36a51f49698161336d7",
+  "data/raw/treasury_trace/accounts/222491356_sha256_e630d735067c39fe.json": "fe99af7a0c460e7b2023e8627637f287425386f256a6af563f839cca2220813f"
+ },
+ "private_files": {
+  "changes:198177199:ecotreasury4.multisignature.near": {
+   "path": "data/private/treasury_trace/changes/198177199_ecotreasury4.multisignature.near.json",
+   "sha256": "21325766265f8613e9f0c18accf36eed122c170de382f59a704dd5ace9a3a5a3",
+   "private": true,
+   "redacted": {
+    "path": "data/raw/redacted/treasury_trace/changes/198177199_ecotreasury4.multisignature.near.json",
+    "sha256": "0afb412bfa717fbddd8ea7cc8f163a378707e9d2d1e1dbbc3f93d91a8867da2e"
+   }
+  },
+  "changes:198177385:ecotreasury5.multisignature.near": {
+   "path": "data/private/treasury_trace/changes/198177385_ecotreasury5.multisignature.near.json",
+   "sha256": "6eb93d2978343d5d1db298ec55207a51d42bd9ca58cd717074c3fc900de879ed",
+   "private": true,
+   "redacted": {
+    "path": "data/raw/redacted/treasury_trace/changes/198177385_ecotreasury5.multisignature.near.json",
+    "sha256": "19b1f23d44de15cbe74aa5927dbf561e21455404f3770154f389bdfec87031c7"
+   }
+  },
+  "changes:208608675:sha256_e630d735067c39fe": {
+   "path": "data/private/treasury_trace/changes/208608675_sha256_e630d735067c39fe.json",
+   "sha256": "401c234dc71d75b4978680479c289035921ac1cf7a4b683a0cc2db8d85c40afd",
+   "private": true,
+   "redacted": {
+    "path": "data/raw/redacted/treasury_trace/changes/208608675_sha256_e630d735067c39fe.json",
+    "sha256": "66ea1eccbbe289fbdc71f2756127a779833abd519186de6b356cd0a03276e5d6"
+   }
+  },
+  "changes:208784276:sha256_b0da523c6bac87ab": {
+   "path": "data/private/treasury_trace/changes/208784276_sha256_b0da523c6bac87ab.json",
+   "sha256": "4017acca3f03736365505588b2ac0d8dfdb834fe949fb327f5b6cdbc38626bfc",
+   "private": true,
+   "redacted": {
+    "path": "data/raw/redacted/treasury_trace/changes/208784276_sha256_b0da523c6bac87ab.json",
+    "sha256": "d65a8390761033aeb399487d2fbcd5200c9d351439188207cc77fceb6cf931fc"
+   }
+  },
+  "changes:218494269:sha256_a74fdc75ed527683": {
+   "path": "data/private/treasury_trace/changes/218494269_sha256_a74fdc75ed527683.json",
+   "sha256": "a5c0cc9e1c376605030e1ed0b6029905ca6fab86a43a2e54a941140cab6aa59a",
+   "private": true,
+   "redacted": {
+    "path": "data/raw/redacted/treasury_trace/changes/218494269_sha256_a74fdc75ed527683.json",
+    "sha256": "0201bf11f5760018d417f46f8ad9d5338c9eac32f74345fa8cd1b0bb904bc8d7"
+   }
+  },
+  "changes:218555125:sha256_a74fdc75ed527683": {
+   "path": "data/private/treasury_trace/changes/218555125_sha256_a74fdc75ed527683.json",
+   "sha256": "68578c132eb7fb771994b1aa770d86166932d1e76e4889d76deca4c2697fb81d",
+   "private": true,
+   "redacted": {
+    "path": "data/raw/redacted/treasury_trace/changes/218555125_sha256_a74fdc75ed527683.json",
+    "sha256": "11d627d4f83c676583baf748f60444d7af3779e3f719877b66dd2947a4e09a7b"
+   }
+  },
+  "changes:218805689:sha256_80a50388377db2df": {
+   "path": "data/private/treasury_trace/changes/218805689_sha256_80a50388377db2df.json",
+   "sha256": "1250edff098589c2294bdb66759e3b54cf2277d500f2588ceabb30b3e36174ad",
+   "private": true,
+   "redacted": {
+    "path": "data/raw/redacted/treasury_trace/changes/218805689_sha256_80a50388377db2df.json",
+    "sha256": "ca979c58165c5ed31004726adb87821e3718727d793a82117405d85fd05a869d"
+   }
+  },
+  "receipt:3gEAQNFkn1p4Uzh3CyL7Zi9fA7mpSbAJL7AS3gwW3Ews": {
+   "path": "data/private/treasury_trace/receipts/3gEAQNFkn1p4Uzh3CyL7Zi9fA7mpSbAJL7AS3gwW3Ews.json",
+   "sha256": "280a2efb745640bbc91f4e38a24fc8432000f29adb62aba781a5eb3c1c430ae4",
+   "private": true,
+   "redacted": {
+    "path": "data/raw/redacted/treasury_trace/receipts/3gEAQNFkn1p4Uzh3CyL7Zi9fA7mpSbAJL7AS3gwW3Ews.json",
+    "sha256": "94803a9fa56f03675fd22abf94d00c71818f77257b3cdf4ae135e714b111db29"
+   }
+  },
+  "receipt:bWgtBp9622KUD8PxstBXTt1JAAASShrVVB4b5gxmzeB": {
+   "path": "data/private/treasury_trace/receipts/bWgtBp9622KUD8PxstBXTt1JAAASShrVVB4b5gxmzeB.json",
+   "sha256": "054a93252367a72becfbee8d0ae0af2c1ac9dfb20b55c4d85521497ec6012b88",
+   "private": true,
+   "redacted": {
+    "path": "data/raw/redacted/treasury_trace/receipts/bWgtBp9622KUD8PxstBXTt1JAAASShrVVB4b5gxmzeB.json",
+    "sha256": "98b0c31e1d1af09eddfd8aca7206028708de4a128af86b3e1efef969bb167e84"
+   }
+  },
+  "tx:2JfVUgdfS7BDv5bFktszo9PjZpZCJfqTE5m2TRkrxuwy": {
+   "path": "data/private/treasury_trace/tx/2JfVUgdfS7BDv5bFktszo9PjZpZCJfqTE5m2TRkrxuwy.json",
+   "sha256": "317230df7bf5036832f537895f6e5eb40cec5a0fe26a8bf5e99fcdf118119450",
+   "private": true,
+   "redacted": {
+    "path": "data/raw/redacted/treasury_trace/tx/2JfVUgdfS7BDv5bFktszo9PjZpZCJfqTE5m2TRkrxuwy.json",
+    "sha256": "0a0b3a2287fbd738df57306e98b934b505b8bdd40b8815a5a38631d029b6d542"
+   }
+  },
+  "tx:BJXqUjdPirnVdYw4Djv4noAXztPa4971m9VCRVrnPB3K": {
+   "path": "data/private/treasury_trace/tx/BJXqUjdPirnVdYw4Djv4noAXztPa4971m9VCRVrnPB3K.json",
+   "sha256": "8a7edcdcef4a9421428d1826fb7c186060a168858b3bd17e6941d5e0fd6a48ae",
+   "private": true,
+   "redacted": {
+    "path": "data/raw/redacted/treasury_trace/tx/BJXqUjdPirnVdYw4Djv4noAXztPa4971m9VCRVrnPB3K.json",
+    "sha256": "40e60f52af65395578f8193cec15f2f4754aa4dfa2d32e266c76a8ef4f504acd"
+   }
+  },
+  "tx:BfJ2cfZETpoGjMGS2ibjj6s51BYwrotu6CAPYz3U7ua8": {
+   "path": "data/private/treasury_trace/tx/BfJ2cfZETpoGjMGS2ibjj6s51BYwrotu6CAPYz3U7ua8.json",
+   "sha256": "806dc4f4439075145c7d2d6a3b80c8b887bbe925452ebad743bd98b54cd4cac1",
+   "private": true,
+   "redacted": {
+    "path": "data/raw/redacted/treasury_trace/tx/BfJ2cfZETpoGjMGS2ibjj6s51BYwrotu6CAPYz3U7ua8.json",
+    "sha256": "e82236cc1210f036e4ce5558c9d10027bd1e1843693ef0799a52da16ea30e0d0"
+   }
+  },
+  "tx:EGPoXc3Y9EE56Ci9avpyQjuzeGVo4DLXGptXUBGptZXv": {
+   "path": "data/private/treasury_trace/tx/EGPoXc3Y9EE56Ci9avpyQjuzeGVo4DLXGptXUBGptZXv.json",
+   "sha256": "4c9e4de1030723e3d169b3d033a506e84ffa0634f72088cf2a0adcfcb1f8c498",
+   "private": true,
+   "redacted": {
+    "path": "data/raw/redacted/treasury_trace/tx/EGPoXc3Y9EE56Ci9avpyQjuzeGVo4DLXGptXUBGptZXv.json",
+    "sha256": "398d4b490698c7b6ca7a77e386ead077dfdbc70c733ce5c851b75371bb6bcf7e"
+   }
+  },
+  "tx:EGyx1Ln5QWAHDa7851h15LsUBtD1xv8oBi3XhU2DzXt8": {
+   "path": "data/private/treasury_trace/tx/EGyx1Ln5QWAHDa7851h15LsUBtD1xv8oBi3XhU2DzXt8.json",
+   "sha256": "855c35507bd233f840ce94add794c4fbf3aab4a5a6d24fdcf996ccdee41c2550",
+   "private": true,
+   "redacted": {
+    "path": "data/raw/redacted/treasury_trace/tx/EGyx1Ln5QWAHDa7851h15LsUBtD1xv8oBi3XhU2DzXt8.json",
+    "sha256": "2a609ae72e8d9fe88df92e1e80a6f476c4cc033c8b014f5d54705ab53ff18851"
+   }
+  },
+  "tx:EmpCWshbzHQR4XWAjH518aCrStn8nXANqVMju7Z6dEPY": {
+   "path": "data/private/treasury_trace/tx/EmpCWshbzHQR4XWAjH518aCrStn8nXANqVMju7Z6dEPY.json",
+   "sha256": "53f13237f7d5eae0be6913662ad05410d6a21b91e58c630320e68913b44084bc",
+   "private": true,
+   "redacted": {
+    "path": "data/raw/redacted/treasury_trace/tx/EmpCWshbzHQR4XWAjH518aCrStn8nXANqVMju7Z6dEPY.json",
+    "sha256": "c9e2a87f5fcbf0534b137892e0a66f407a32aeacf2c6d48d3a66681858dec636"
+   }
+  }
+ },
+ "results": {
+  "steps_and_hops": [
+   {
+    "path": 1,
+    "account": "ecotreasury4.multisignature.near",
+    "height": 198177199,
+    "change_near": "-4899860.030",
+    "tx": "BfJ2cfZETpoGjMGS2ibjj6s51BYwrotu6CAPYz3U7ua8",
+    "to": [
+     {
+      "account": "sha256:a74fdc75ed527683",
+      "near": "4899860.000"
+     }
+    ]
+   },
+   {
+    "path": 1,
+    "account": "ecotreasury4.multisignature.near",
+    "lo": 196336954,
+    "hi": 200773914,
+    "balance_lo_near": "4900014.999",
+    "balance_hi_near": "144.996",
+    "not_followed_near": "-9.973"
+   },
+   {
+    "path": 1,
+    "account": "ecotreasury5.multisignature.near",
+    "height": 198177385,
+    "change_near": "-4899950.030",
+    "tx": "EGPoXc3Y9EE56Ci9avpyQjuzeGVo4DLXGptXUBGptZXv",
+    "to": [
+     {
+      "account": "sha256:a74fdc75ed527683",
+      "near": "4899950.000"
+     }
+    ]
+   },
+   {
+    "path": 1,
+    "account": "ecotreasury5.multisignature.near",
+    "lo": 196336954,
+    "hi": 200773914,
+    "balance_lo_near": "4900014.999",
+    "balance_hi_near": "54.995",
+    "not_followed_near": "-9.974"
+   },
+   {
+    "path": 1,
+    "account": "sha256:a74fdc75ed527683",
+    "height": 218494269,
+    "change_near": "5908110.293",
+    "from": [
+     {
+      "account": "sofarsonear.poolv1.near",
+      "near": "5908110.174"
+     },
+     {
+      "account": "system",
+      "near": "0.118"
+     }
+    ]
+   },
+   {
+    "path": 1,
+    "account": "sha256:a74fdc75ed527683",
+    "height": 218555125,
+    "change_near": "-15707942.619",
+    "tx": "EGyx1Ln5QWAHDa7851h15LsUBtD1xv8oBi3XhU2DzXt8",
+    "to": [
+     {
+      "account": "sha256:80a50388377db2df",
+      "near": "15707942.619"
+     }
+    ]
+   },
+   {
+    "path": 1,
+    "account": "sha256:a74fdc75ed527683",
+    "lo": 200773914,
+    "hi": 222491356,
+    "balance_lo_near": "9799832.498",
+    "balance_hi_near": "0.052",
+    "not_followed_near": "-0.119"
+   },
+   {
+    "path": 1,
+    "account": "sha256:80a50388377db2df",
+    "height": 218805689,
+    "change_near": "-21433900.301",
+    "tx": "BJXqUjdPirnVdYw4Djv4noAXztPa4971m9VCRVrnPB3K",
+    "to": [
+     {
+      "account": "sha256:75182394f913e43d",
+      "near": "21433900.000"
+     }
+    ]
+   },
+   {
+    "path": 1,
+    "account": "sha256:80a50388377db2df",
+    "lo": 218555135,
+    "hi": 222491356,
+    "balance_lo_near": "21433978.528",
+    "balance_hi_near": "78.527",
+    "not_followed_near": "0.300"
+   },
+   {
+    "path": 2,
+    "account": "sha256:e630d735067c39fe",
+    "height": 208608675,
+    "change_near": "-20371000.456",
+    "tx": "2JfVUgdfS7BDv5bFktszo9PjZpZCJfqTE5m2TRkrxuwy",
+    "to": [
+     {
+      "account": "sha256:b0da523c6bac87ab",
+      "near": "20371000.448"
+     }
+    ]
+   },
+   {
+    "path": 2,
+    "account": "sha256:e630d735067c39fe",
+    "lo": 200773914,
+    "hi": 209393356,
+    "balance_lo_near": "20371202.500",
+    "balance_hi_near": "102.044",
+    "not_followed_near": "-100.000"
+   },
+   {
+    "path": 2,
+    "account": "sha256:b0da523c6bac87ab",
+    "height": 208784276,
+    "change_near": "-20371000.448",
+    "tx": "EmpCWshbzHQR4XWAjH518aCrStn8nXANqVMju7Z6dEPY",
+    "to": [
+     {
+      "account": "sha256:1ede949dd7052bf2",
+      "near": "20371000.440"
+     }
+    ]
+   },
+   {
+    "path": 2,
+    "account": "sha256:b0da523c6bac87ab",
+    "lo": 208608685,
+    "hi": 209393356,
+    "balance_lo_near": "20371000.458",
+    "balance_hi_near": "0.017",
+    "not_followed_near": "0.007"
+   }
+  ],
+  "balances": {
+   "ecotreasury4.multisignature.near": {
+    "2026-08-01": "144.996",
+    "2026-10-02": "144.996",
+    "2026-11-01": "144.996"
+   },
+   "ecotreasury5.multisignature.near": {
+    "2026-08-01": "54.995",
+    "2026-10-02": "54.995",
+    "2026-11-01": "54.995"
+   },
+   "sha256:a74fdc75ed527683": {
+    "2026-08-01": "9799832.498",
+    "2026-10-02": "9799832.498",
+    "2026-11-01": "0.052"
+   },
+   "sha256:80a50388377db2df": {
+    "2026-08-01": "53.730",
+    "2026-10-02": "53.730",
+    "2026-11-01": "78.527"
+   },
+   "sha256:e630d735067c39fe": {
+    "2026-08-01": "102.044",
+    "2026-10-02": "102.044",
+    "2026-11-01": "102.044"
+   },
+   "sha256:b0da523c6bac87ab": {
+    "2026-08-01": "0.017",
+    "2026-10-02": "1.515",
+    "2026-11-01": "1.522"
+   },
+   "sha256:75182394f913e43d": {
+    "2026-08-01": "249425.323",
+    "2026-10-02": "3454494.508",
+    "2026-11-01": "1012173.707"
+   },
+   "sha256:1ede949dd7052bf2": {
+    "2026-08-01": "564443.169",
+    "2026-10-02": "5094278.534",
+    "2026-11-01": "11363215.210"
+   }
+  }
+ }
+}
