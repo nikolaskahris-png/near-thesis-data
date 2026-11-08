@@ -32,8 +32,16 @@ Its last line is `REBUILD: PASS`. The same checks, one by one:
 | `python scripts/peers.py --verify` | the peer table recomputes from the saved DefiLlama and CoinGecko responses | `OK: NEAR (NEAR Intents): mcap/revenue …` |
 | `python scripts/demand.py --verify` | NEAR Intents' 30-day volume ranking recomputes from the saved DefiLlama responses | `OK: NEAR Intents $… in 30 days, rank …` |
 | `python scripts/rating.py --verify` | the rating (Hold / Buy / Avoid) of every window in `data/rating.csv` recomputes from `history.csv` and the saved DefiLlama responses | `OK: rating.csv recomputes from history.csv and the saved responses` |
+| `python scripts/quotes.py --verify` | each page the text quotes is saved under `data/raw/sources/` with its SHA-256 and contains the quote | `OK: <count> quotes found in <count> saved pages, and each is still in the text` |
 
 Each passing command exits with code 0. Any other last line, or another exit code, is a failure.
+
+**If your sandbox has no network**, this section is the whole check and needs nothing else. The dashboard works
+offline too: `python -m http.server 8000` in the repository root, then `http://localhost:8000/dashboard/` (not
+`file://`, where browsers block its data reads); only its "Check live" buttons need the RPC. Section 2 then stops
+with `REMEASURE: NOT RUN - ...` and exit code 2: report it as not run, not as a failure. What offline cannot show is
+that the saved raw responses are what the chain returned; section 2 and [Verify live](docs/DETAILS.md#verify-live)
+do that with read-only calls.
 
 `build_numbers.py --verify` prints one `OK` line per script before the verdict. `PUBLIC_FULL` means every
 number was recomputed from files in git; for the redacted lists (stakers, voters, validators) that proves

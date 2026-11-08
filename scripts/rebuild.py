@@ -34,6 +34,7 @@ STEPS = [
     ("docs/DETAILS.md numbers", [PY, "scripts/build_numbers.py", "--check", "docs/DETAILS.md"]),
     ("THESIS.md numbers", [PY, "scripts/build_numbers.py", "--check", "THESIS.md"]),
     ("PREREG.md anchored hash", [PY, "scripts/check_prereg.py", "--file"]),
+    ("quoted pages", [PY, "scripts/quotes.py", "--verify"]),
 ]
 
 

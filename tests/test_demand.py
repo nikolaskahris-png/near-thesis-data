@@ -44,6 +44,10 @@ class DemandTest(unittest.TestCase):
         self.assertEqual(r["largest_aggregator"]["slug"], "lifi")
         self.assertEqual(Decimal(r["ours_over_largest_aggregator"]), Decimal(4000) / Decimal(1500))
 
+    def test_rank_in_the_whole_volume_list(self):
+        r = self.doc["results"]
+        self.assertEqual((r["all_rank"], r["all_protocols_with_volume"], r["all_categories_above"]), (2, 3, ["Dexs"]))
+
     def test_verify_offline_and_tamper(self):
         out = self.tmp / "data" / demand.OUT_NAME
         self.assertEqual(demand.verify(out)[0], [])

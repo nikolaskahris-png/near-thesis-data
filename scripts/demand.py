@@ -7,7 +7,7 @@ DefiLlama's volume dataset (the same adapters that give NEAR Intents' volume els
 has two lists a cross-chain swap can sit in: /overview/dexs with category "Bridge" (where NEAR Intents is)
 and /overview/bridge-aggregators (LI.FI, 0x, Socket and others). Both report each protocol's volume over
 the 30 days before the fetch (total30d). This script saves both lists and ranks NEAR Intents among every
-protocol in them.
+protocol in them, and also against every protocol with volume in /overview/dexs, whatever its category.
 
 Not compared: DefiLlama's separate bridges dataset (Across, Relay, deBridge, Stargate), which counts
 deposits rather than swaps and whose detail needs a paid key. Aggregators may route some orders through
@@ -61,7 +61,16 @@ def compute(raws):
     ours = next((r for r in rows if r["slug"] == OURS), None)
     others = [r for r in rows if r["slug"] != OURS]
     agg = [r for r in others if r["list"] == "bridge_aggregator"]
+    # The same 30 days against every protocol in the volume list, whatever its category (DEXs, launchpads,
+    # prediction markets...): where NEAR Intents stands without choosing the peer group.
+    full = [r for r in json.loads(raws["bridge"], parse_float=Decimal)["protocols"]
+            if r.get("total30d") is not None and Decimal(str(r["total30d"])) > 0]
+    full.sort(key=lambda r: (-Decimal(str(r["total30d"])), r.get("slug") or r.get("module") or ""))
+    pos = next((i for i, r in enumerate(full) if (r.get("slug") or r.get("module")) == OURS), None)
     return {
+        "all_rank": None if pos is None else pos + 1,
+        "all_protocols_with_volume": len(full),
+        "all_categories_above": [] if pos is None else sorted({r.get("category") or "none" for r in full[:pos]}),
         "ours_30d_usd": None if ours is None else str(ours["volume_30d_usd"]),
         "ours_rank": None if ours is None else 1 + rows.index(ours),
         "protocols_ranked": len(rows),
@@ -123,7 +132,8 @@ def describe(doc):
     return (f"NEAR Intents ${Decimal(r['ours_30d_usd']) / 10 ** 9:.2f}B in 30 days, rank {r['ours_rank']} of "
             f"{r['protocols_ranked']}; largest other {r['largest_other']['name']} "
             f"${Decimal(r['largest_other']['volume_30d_usd']) / 10 ** 9:.2f}B; largest aggregator "
-            f"{r['largest_aggregator']['name']} ${Decimal(r['largest_aggregator']['volume_30d_usd']) / 10 ** 9:.2f}B")
+            f"{r['largest_aggregator']['name']} ${Decimal(r['largest_aggregator']['volume_30d_usd']) / 10 ** 9:.2f}B; "
+            f"rank {r['all_rank']} of {r['all_protocols_with_volume']} in the whole volume list")
 
 
 def main():

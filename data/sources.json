@@ -1,0 +1,106 @@
+{
+ "about": "Copies of the web pages the text quotes; scripts/quotes.py --verify checks each quote offline",
+ "sources": {
+  "hackathon_rules": {
+   "url": "https://nearhackathon.com/HACKATHON.md",
+   "path": "data/raw/sources/hackathon_rules.md",
+   "sha256": "903794f4b656b456eaee087941517d024a33633641d167b90c3f060d381d9aed",
+   "bytes": 22199,
+   "saved_utc": "2026-11-08T18:14:51Z",
+   "how": "fetched",
+   "quotes": [
+    "Earlier commits are baseline"
+   ]
+  },
+  "near_ai_staking": {
+   "url": "https://docs.near.ai/cloud/staking-for-inference/overview",
+   "path": "data/raw/sources/near_ai_staking.html",
+   "sha256": "bdb86978b182882bafb7c0ae6f01efa19f203acaa5abfc21ad4d15f7d0d3d0b8",
+   "bytes": 151314,
+   "saved_utc": "2026-11-08T18:14:51Z",
+   "how": "fetched",
+   "quotes": [
+    "network-wide, not a fixed setting"
+   ]
+  },
+  "near_blog_q2_2026": {
+   "url": "https://www.near.org/blog/the-state-of-near-q-2-2026",
+   "path": "data/raw/sources/near_blog_q2_2026.html",
+   "sha256": "5adfecd818da47ec8bba82cf65d7b83fc299b64e361a86be8ba291eb22b5b361",
+   "bytes": 1121816,
+   "saved_utc": "2026-11-08T18:14:51Z",
+   "how": "fetched",
+   "quotes": [
+    "owned front-end captures 100% of its fees and routes them to NEAR buybacks"
+   ]
+  },
+  "near_blog_tokenomics": {
+   "url": "https://near.org/blog/evolving-near-tokenomics",
+   "path": "data/raw/sources/near_blog_tokenomics.html",
+   "sha256": "dbb799565a7e61879ca8aac5e9a8912c0b1a8041fefbe2eb7fac53af5fa2cc83",
+   "bytes": 840691,
+   "saved_utc": "2026-11-08T18:14:51Z",
+   "how": "fetched",
+   "quotes": [
+    "No specific mechanism is guaranteed or committed to"
+   ]
+  },
+  "near_intents_confidential": {
+   "url": "https://docs.near-intents.org/integration/market-makers/confidential-intents.md",
+   "path": "data/raw/sources/near_intents_confidential.md",
+   "sha256": "ffbe491b3f39158c2006b6d97ba8959904a61748cf8be74f6690755e270d7df7",
+   "bytes": 8619,
+   "saved_utc": "2026-11-08T18:14:51Z",
+   "how": "fetched",
+   "quotes": [
+    "settles entirely on FAR via a `token_diff` intent, invisible to public indexers"
+   ]
+  },
+  "near_intents_fees": {
+   "url": "https://docs.near-intents.org/resources/fees",
+   "path": "data/raw/sources/near_intents_fees.html",
+   "sha256": "549e97d4347da641e4c80d332a0c95600dadc06d2154ac7891d48cb9d5f4b0d2",
+   "bytes": 186498,
+   "saved_utc": "2026-11-08T18:14:51Z",
+   "how": "fetched",
+   "quotes": [
+    "Authenticated partners on the generic policy get a 50/50 revenue share by default",
+    "Exceptions and custom agreements exist"
+   ]
+  },
+  "one_click_terms": {
+   "url": "https://docs.near-intents.org/near-intents/integration/distribution-channels/1click-terms-of-service",
+   "path": "data/raw/sources/one_click_terms.html",
+   "sha256": "08ed45bf7f0c6219775cd53bc9f5c34505bfbbdda45a95fb83c45b0b6ab4321d",
+   "bytes": 437699,
+   "saved_utc": "2026-11-08T18:14:51Z",
+   "how": "fetched",
+   "quotes": [
+    "at any time on a prospective basis"
+   ]
+  },
+  "sec_bitwise_424b3": {
+   "url": "https://www.sec.gov/Archives/edgar/data/0002067111/000121390026103106/ea0306486-424b3_bitwise.htm",
+   "path": "data/raw/sources/sec_bitwise_424b3.html",
+   "sha256": "298ca45b1945353cc24213020c9dccf5a468a58c878d775c8ca2f7357197f0a1",
+   "bytes": 1176238,
+   "saved_utc": "2026-11-08T18:31:41Z",
+   "how": "saved from a browser",
+   "quotes": [
+    "is given to the NEAR Protocol treasury, which is currently managed by the NEAR Foundation",
+    "70% of the transaction fee is burned"
+   ]
+  },
+  "sec_svrn_6k": {
+   "url": "https://www.sec.gov/Archives/edgar/data/0001869467/000091957426005810/p15060228_ex99-1.htm",
+   "path": "data/raw/sources/sec_svrn_6k.html",
+   "sha256": "711289430191588951e568ec63dd160c11690789379433d4039abcccd6203b7d",
+   "bytes": 13947,
+   "saved_utc": "2026-11-08T18:25:35Z",
+   "how": "saved from a browser",
+   "quotes": [
+    "more than 55.5 million"
+   ]
+  }
+ }
+}

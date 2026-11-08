@@ -16,7 +16,7 @@ way: `python scripts/build_numbers.py --check docs/DETAILS.md`.
   `total_supply` between the two block headers. The front-end fund, `fefundsadmin.sputnik-dao.near`
   (<!--n:n1.front_end_near_per_day-->4,985<!--/n--> NEAR a day), holds near-intents.org's own fees, not bought-back NEAR, but DefiLlama
   counts it as buybacks: it is <!--n:f9.front_end_share_of_wallets-->34.2%<!--/n--> of what the three wallets kept, which is why number
-  1 is given both ways ([fees]](https://docs.near-intents.org/resources/fees)).
+  1 is given both ways ([fees](https://docs.near-intents.org/resources/fees)).
 - **Outflow check, not a fee check.** DefiLlama's revenue ÷ issuance gives <!--n:n2.defillama_revenue_coverage-->16.5%<!--/n-->,
   as the wallets do. DefiLlama counts inflows to the same wallets and we measure their balances, so the match
   shows that almost nothing flowed out: from April to October the three wallets kept <!--n:f2.wallets_kept_share_of_revenue.2026-04_2026-10-->96.9%<!--/n--> of that revenue.
@@ -24,14 +24,14 @@ way: `python scripts/build_numbers.py --check docs/DETAILS.md`.
 - **2.** Each day's fees converted at that day's NEAR price, ÷ new NEAR per day; the equilibrium price is the
   NEAR price at which a day's fees buy as many NEAR as are issued. At HSP-029's target rate (issuance ×16/25) the
   ceiling would be <!--n:n2.hsp029_max_coverage-->74.8%<!--/n-->. The NEAR Intents exploit of 1 October, about $3.8M through the Omni
-  deposit and withdrawal system ([report]](https://crypto-economy.com/near-intents-halts-after-3-8m-exploit-vows-full-compensation-amid-hack-wave/)),
+  deposit and withdrawal system ([report](https://crypto-economy.com/near-intents-halts-after-3-8m-exploit-vows-full-compensation-amid-hack-wave/)),
   came a day before the window; the `intents.near` DAO paused features and installed new code from 1 to 7 October
   (`data/control_history.json`). Without 2–7 October the ceiling is <!--n:n2.max_coverage_without_2026-10-02_to_07-->47.9%<!--/n-->.
 - **3.** A signal, not a lever: the farm is <!--n:iv.farm_share_of_stake-->0.23%<!--/n--> of all stake (finding 5). Every account
   that ever staked through `stake.dao`, read at the block: <!--n:n3.stakers_ever-->188<!--/n--> entered, <!--n:n3.stakers_left-->76<!--/n--> have left,
   and the active positions add up exactly to the farm's total (<!--n:n3.farm_total_near-->1,364,348<!--/n--> NEAR).
 
-Full definitions: [the three numbers]](#the-three-numbers).
+Full definitions: [the three numbers](#the-three-numbers).
 
 ## Investment view (the long version)
 
@@ -68,7 +68,7 @@ choice; every figure in them is measured.*
   lower price raises it only through the dollars kept: if they hold at <!--n:iv.buybacks_kept_usd_per_day-->$46,692<!--/n--> a day, at <!--n:iv.buybacks_equilibrium_price_usd-->$0.53<!--/n--> (mean <!--n:n2.mean_price_usd-->$4.88<!--/n-->) they buy
   as many NEAR as are issued, the dollar test still passes, and with (b) the rating is Buy. That is intended: the
   buybacks then do offset issuance. If instead the NEAR kept stays near today's, a lower price leaves coverage where it
-  is, and at <!--n:iv.buybacks_equilibrium_price_usd-->$0.53<!--/n--> the dollars kept would be below April's <!--n:f2.buybacks_kept_usd_per_day.2026-04-->$6,270<!--/n-->, failing Avoid's dollar test. (With the front-end fund, <!--n:iv.revenue_equilibrium_price_usd-->$0.80<!--/n-->.)
+  is, and at <!--n:iv.buybacks_equilibrium_price_usd-->$0.53<!--/n--> the dollars kept would be below April's <!--n:f2.buybacks_kept_usd_per_day.2026-04-->$6,270<!--/n-->, failing Avoid's dollar test. (On DefiLlama's revenue instead, <!--n:iv.revenue_equilibrium_price_usd-->$0.80<!--/n-->.)
 - **Applied every day:** `scripts/rating.py` applies these rules to each 30-day window in `data/history.csv` and
   writes [`data/rating.csv`](../data/rating.csv): the rating, both Avoid tests, the earlier window, (b) and coverage. It counts
   DefiLlama's days exactly as the window's figures do, and `--verify` recomputes it with no network.
@@ -94,11 +94,11 @@ choice; every figure in them is measured.*
 | Hurdle of (a) | from <!--n:iv.buybacks_kept_usd_per_day-->$46,692<!--/n--> a day: <!--n:lr.required_growth.buybacks.A.2031-->+75%<!--/n--> a year while validators do not run HSP-029, <!--n:lr.required_growth.buybacks.B.2031-->+56%<!--/n--> once they do (`HSP029_IN_FORCE`, set when `scripts/upgrade_watch.py` shows the release adopted). A pass at a yearly check holds until the next one. |
 | Cannot be judged | Hold. Until 1 December 2026 no window has one 30 days before it in `history.csv`, so Avoid cannot fire before then. |
 
-If NEAR kept every fee, fees counted in NEAR would need <!--n:lr.required_growth.all_fees.B.2031-->+9%<!--/n--> a year ([the model]](#issuance-to-2031)).
+If NEAR kept every fee, fees counted in NEAR would need <!--n:lr.required_growth.all_fees.B.2031-->+9%<!--/n--> a year ([the model](#issuance-to-2031)).
 
 **Why coverage, for a staked holder.** Coverage is the buyback yield divided by the issuance rate: the wallets keep <!--n:iv.buyback_yield_buybacks-->0.27%<!--/n--> of NEAR's value a year (<!--n:iv.buyback_yield_with_front_end-->0.41%<!--/n--> with the front-end fund), against <!--n:iv.issuance_rate_per_year-->2.46%<!--/n--> issued.
 Staking moves issuance from unstaked holders to staked ones; buybacks are the only part of the return paid with
-money from outside, so they are what all holders share. Net of buybacks, supply dilutes <!--n:iv.net_dilution_buybacks-->2.20%<!--/n--> a year. Coverage
+money from outside, so they are what all holders share. They burn nothing, so total supply grows by the full <!--n:iv.issuance_rate_per_year-->2.46%<!--/n--> and an unstaked holder's share of all NEAR changes <!--n:iv.unstaked_share_change-->-2.40%<!--/n--> a year whatever they do; while the wallets never sell, the NEAR outside them grows about <!--n:iv.net_dilution_buybacks-->2.20%<!--/n--> a year. Coverage
 falls when the price rises and revenue does not: each dollar buys back a smaller part of a dearer NEAR. In dollars,
 April to October: fees <!--n:lr.history.2026-04_2026-10.fees_usd_multiple-->×1.9<!--/n-->, revenue <!--n:lr.history.2026-04_2026-10.revenue_usd_multiple-->×8.2<!--/n-->, volume <!--n:lr.history.2026-04_2026-10.volume_usd_multiple-->×2.0<!--/n-->, kept by the buybacks wallets <!--n:lr.history.2026-04_2026-10.buybacks_kept_usd_multiple-->×7.5<!--/n--> (<!--n:lr.history.2026-04_2026-10.buybacks_kept_near_multiple-->×2.1<!--/n--> as much NEAR a day, at a <!--n:lr.history.2026-04_2026-10.mean_price_multiple-->×3.6<!--/n--> price); the NEAR price rose faster than fees, so fees counted in NEAR fell (<!--n:lr.history.2026-04_2026-10.fees_near_multiple-->×0.5<!--/n-->). The NEAR kept did not rise steadily: a day, month by month from April, <!--n:f1.buybacks_kept_near_per_day.2026-04-->4,675<!--/n-->, <!--n:f1.buybacks_kept_near_per_day.2026-05-->7,353<!--/n-->, <!--n:f1.buybacks_kept_near_per_day.2026-06-->7,463<!--/n-->, <!--n:f1.buybacks_kept_near_per_day.2026-07-->5,451<!--/n-->, <!--n:f1.buybacks_kept_near_per_day.2026-08-->8,972<!--/n-->, <!--n:f1.buybacks_kept_near_per_day.2026-09-->13,478<!--/n--> and <!--n:f1.buybacks_kept_near_per_day.2026-10-->9,589<!--/n--> NEAR, October <!--n:f1.change.2026-09_2026-10.buybacks_kept_near-->-29%<!--/n--> on September.
 
@@ -124,7 +124,7 @@ the new NEAR. Buybacks pay for NEAR with money from outside, the fees users pay,
 the supply outside their wallets, and only while the NEAR stays there: total supply grows either way.
 
 **The lever model.** Coverage if each lever were pulled in turn; only the last step is a rule. The
-[dashboard]](https://nikolaskahris-png.github.io/near-thesis-data/dashboard/#p3b) re-runs it with your own assumptions.
+[dashboard](https://nikolaskahris-png.github.io/near-thesis-data/dashboard/#p3b) re-runs it with your own assumptions.
 
 | Step | Coverage | Who moves the lever |
 |---|---|---|
@@ -173,7 +173,7 @@ from April to October revenue grew <!--n:lr.history.2026-04_2026-10.revenue_usd_
 annualized here.
 
 **When to check:** 6, 8 and 16
-November 2026 (the predictions), every day in `data/rating.csv`, and each November to 2031 against the [2031 table]](#issuance-to-2031).
+November 2026 (the predictions), every day in `data/rating.csv`, and each November to 2031 against the [2031 table](#issuance-to-2031).
 
 **Valuation, same window.** All NEAR in `total_supply` at the window's mean price
 (<!--n:n2.mean_price_usd-->$4.88<!--/n-->) is worth <!--n:iv.supply_value_usd-->$6.39B<!--/n-->. CoinGecko's circulating supply equals total supply ([`data/raw/peers/`](../data/raw/peers/)), so NEAR's market cap
@@ -218,7 +218,7 @@ that today's fee capture explains little of NEAR's value, which is the thesis, a
 more revenue per dollar of value than the other L1s here, which is the bull case. No rating rule uses this table.
 
 Value and revenue cover the same days, so NEAR's Intents row, <!--n:peer.near.mcap_to_revenue-->248×<!--/n-->, is the value ÷ revenue of the
-[valuation]](#investment-view-the-long-version) above (<!--n:iv.value_to_revenue-->248×<!--/n-->). NEAR's fees, revenue and mean price here equal the window's to 0.1%, a check of every build. At the fetch's
+[valuation](#investment-view-the-long-version) above (<!--n:iv.value_to_revenue-->248×<!--/n-->). NEAR's fees, revenue and mean price here equal the window's to 0.1%, a check of every build. At the fetch's
 price (NEAR <!--n:peer.near.price_usd-->$3.71<!--/n-->, against a mean of <!--n:n2.mean_price_usd-->$4.88<!--/n-->) NEAR with Intents would be <!--n:peer.near_all.mcap_at_fetch_to_revenue-->178×<!--/n-->. NEAR's paid-to-holders figure is DefiLlama's:
 it counts the front-end fund, and nothing is paid out (the NEAR stays in the wallets). Counted in NEAR, the buybacks wallets alone take in <!--n:iv.buyback_yield_buybacks-->0.27%<!--/n--> of all NEAR a year.
 DefiLlama counts no holders' revenue for Aave, whose buybacks are paid from its treasury. Fees and fully diluted
@@ -227,7 +227,7 @@ values: [details](#peers).
 ## Path to rules
 
 Each link that decides value can become a rule with a mechanism NEAR already has. Governance has started:
-HSP-027 (remove the developer gas rebate) passed on 3 July 2026 (House of Stake; the vote is not saved here) and is protocol version 87, in effect on mainnet since block <!--n:pr.v87.first_height-->223,012,337<!--/n--> (<!--n:pr.v87.first_utc-->2026-11-04 11:46 UTC<!--/n-->), <!--n:pr.v87.days_from_hsp027_passed-->124<!--/n--> days after it passed; [HSP-029]](https://gov.houseofstake.org/proposals/29) (issuance 2.5% → 1.6% a year over 24 months)
+HSP-027 (remove the developer gas rebate) passed on 3 July 2026 (House of Stake; the vote is not saved here) and is protocol version 87, in effect on mainnet since block <!--n:pr.v87.first_height-->223,012,337<!--/n--> (<!--n:pr.v87.first_utc-->2026-11-04 11:46 UTC<!--/n-->), <!--n:pr.v87.days_from_hsp027_passed-->124<!--/n--> days after it passed; [HSP-029](https://gov.houseofstake.org/proposals/29) (issuance 2.5% → 1.6% a year over 24 months)
 passed on 2 November and is in timelock until <!--n:f8.timelock_end_utc-->2026-11-16 16:48 UTC<!--/n-->. A vote changes nothing on
 chain by itself: validators with <!--n:c.issuance_upgrade_stake_threshold-->4/5<!--/n--> of stake must run a release that includes it,
 and `scripts/upgrade_watch.py` measures that every day. HSP-027's effect is small: at most <!--n:b.hsp027_extra_burn_max_near_per_day-->417<!--/n--> more NEAR burned a day, against <!--n:n1.buybacks_near_per_day-->9,570<!--/n--> kept by the buybacks wallets.
@@ -267,11 +267,11 @@ flowchart TD
 
 | Link | Today | Who can change it | Signatures | Used |
 |---|---|---|---|---|
-| Fees users pay | <!--n:n2.fees_bps-->16.0<!--/n--> bps of volume (DefiLlama) | The distribution channels, off-chain. The 1Click terms let its operator change fees "at any time on a prospective basis" ([terms]](https://docs.near-intents.org/near-intents/integration/distribution-channels/1click-terms-of-service)) | not on chain | not visible on chain |
+| Fees users pay | <!--n:n2.fees_bps-->16.0<!--/n--> bps of volume (DefiLlama) | The distribution channels, off-chain. The 1Click terms let its operator change fees "at any time on a prospective basis" ([terms](https://docs.near-intents.org/near-intents/integration/distribution-channels/1click-terms-of-service)) | not on chain | not visible on chain |
 | Protocol fee (`intents.near` `fee`) | <!--n:c.intents_fee_pips-->1 pip<!--/n--> = <!--n:c.intents_fee_percent-->0.0001%<!--/n--> | `intents.sputnik-dao.near` (role DAO); FeesManager role: <!--n:c.intents_fees_manager_accounts-->0<!--/n--> accounts | <!--n:c.intents_fee_change-->3 of 5<!--/n--> | `set_fee` <!--n:h.set_fee-->3<!--/n-->, `set_fee_collector` <!--n:h.set_fee_collector-->3<!--/n--> (<!--n:h.fee.first-->2024-11-07<!--/n--> → <!--n:h.fee.last-->2025-10-02<!--/n-->) |
 | Buybacks wallet (`buybacks.multisignature.near`) | holds the bought NEAR; nothing is burned | its multisig members (<!--n:c.buybacks_full_access_keys-->0<!--/n--> full-access keys) | <!--n:c.buybacks_confirmations-->2 of 4<!--/n--> | keys unchanged since <!--n:h.keys.buybacks.last_change-->2026-03-18<!--/n--> |
 | Front-end fund (`fefundsadmin.sputnik-dao.near`) | <!--n:f9.front_end_share_of_wallets-->34.2%<!--/n--> of what the three wallets kept | DAO: transfers / its own rules, upgrades and members. One Admin (a DAO role) can change the rules alone, so one key can also move the funds, in two steps | <!--n:c.front_end_transfer-->2 of 5<!--/n--> / <!--n:c.front_end_rules-->1 of 5<!--/n--> | — |
-| Issuance (`max_inflation_rate`) | <!--n:c.issuance_max_inflation_rate-->1/40<!--/n--> a year | a new nearcore release, run by validators with <!--n:c.issuance_upgrade_stake_threshold-->4/5<!--/n--> of stake | at least <!--n:c.issuance_validators_to_pass_upgrade-->44<!--/n--> of <!--n:c.issuance_validators-->381<!--/n--> validators (the largest); the <!--n:c.issuance_validators_to_block_upgrade-->5<!--/n--> largest can block; largest holds <!--n:c.issuance_largest_validator_share-->5.6%<!--/n--> | see [Path to rules]](#path-to-rules) |
+| Issuance (`max_inflation_rate`) | <!--n:c.issuance_max_inflation_rate-->1/40<!--/n--> a year | a new nearcore release, run by validators with <!--n:c.issuance_upgrade_stake_threshold-->4/5<!--/n--> of stake | at least <!--n:c.issuance_validators_to_pass_upgrade-->44<!--/n--> of <!--n:c.issuance_validators-->381<!--/n--> validators (the largest); the <!--n:c.issuance_validators_to_block_upgrade-->5<!--/n--> largest can block; largest holds <!--n:c.issuance_largest_validator_share-->5.6%<!--/n--> | see [Path to rules](#path-to-rules) |
 | Protocol treasury (`treasury.near`) | its balance grew by <!--n:c.treasury_share_of_new_supply-->10.1%<!--/n--> of new supply (<!--n:c.treasury_near_received-->268,973<!--/n--> NEAR in the window) | its multisig members | <!--n:c.treasury_confirmations-->2 of 4<!--/n--> | keys last changed <!--n:h.keys.treasury.last_change-->2025-09-05<!--/n-->; paid out <!--n:ts.year_out_near-->30,171,200<!--/n--> NEAR in 2026 (finding 4) |
 
 The same DAOs can upgrade, pause and move users' funds on `intents.near`: [admin scope](#contract-level-admin-scope).
@@ -299,8 +299,8 @@ volume from August.
 **3. A passed vote is not yet a rule, and becoming one took months.** HSP-029 passed with <!--n:f8.against_votes-->1<!--/n--> vote against
 (<!--n:f8.against_venear-->0<!--/n--> veNEAR, rounded), and <!--n:f8.fewest_voters_reaching_quorum-->6<!--/n--> voters held enough veNEAR to reach its quorum. veNEAR is the voting weight of NEAR
 locked in House of Stake. At the vote's last block, 222,745,764 (`scripts/hsp029_voters.py`): <!--n:f8.voters-->36<!--/n--> voters, <!--n:f8.for_voters-->32<!--/n--> for, <!--n:f8.turnout_of_snapshot-->62.3%<!--/n--> of the snapshot's veNEAR, quorum <!--n:f8.quorum_required_venear-->1,846,161<!--/n-->; the 8 largest cast <!--n:f8.top8_share_of_votes_cast-->80.6%<!--/n--> of the votes. It executes nothing on chain:
-issuance falls only when validators run a release that includes it ([Path to rules]](#path-to-rules)). The vote before it
-shows the wait: HSP-027 passed on 3 July 2026 and took effect at block <!--n:pr.v87.first_height-->223,012,337<!--/n--> (<!--n:pr.v87.first_utc-->2026-11-04 11:46 UTC<!--/n-->), <!--n:pr.v87.days_from_hsp027_passed-->124<!--/n--> days later, when validators had run nearcore 2.14.0 (prediction 4, [pre-registration]](#pre-registration)).
+issuance falls only when validators run a release that includes it ([Path to rules](#path-to-rules)). The vote before it
+shows the wait: HSP-027 passed on 3 July 2026 and took effect at block <!--n:pr.v87.first_height-->223,012,337<!--/n--> (<!--n:pr.v87.first_utc-->2026-11-04 11:46 UTC<!--/n-->), <!--n:pr.v87.days_from_hsp027_passed-->124<!--/n--> days later, when validators had run nearcore 2.14.0 (prediction 4, [pre-registration](#pre-registration)).
 
 **4. `treasury.near` receives 10% of the maximum issuance; in 2026 it paid out <!--n:ts.year_out_near-->30,171,200<!--/n--> NEAR, all in April and May.** `scripts/treasury_spend.py` reproduces its reward to the yocto at <!--n:ts.rule_exact-->101<!--/n--> of the <!--n:ts.rule_epochs-->101<!--/n--> epoch starts in the window (<!--n:ts.share_of_minted-->10.03%<!--/n--> of what is
 minted, as validators below full uptime receive less). In 2026 it received <!--n:ts.year_treasury_in_near-->2,700,599<!--/n--> NEAR; <!--n:ts.out_near.2026-04-->9,800,000<!--/n--> left in April and <!--n:ts.out_near.2026-05-->20,371,200<!--/n--> in May, none in the window of number 1.
@@ -320,7 +320,7 @@ Eight predictions in three files, each anchored on NEAR mainnet before it is jud
 (`social.near`, key `samerice7976.near/thesis/prereg/<n>`). Results will be published whatever they are.
 
 **[`PREREG-2.md`](../PREREG-2.md): when HSP-027 takes effect**, with a probability for each, so the result is scored.
-Transaction [`EZ6mexrY…`]](https://nearblocks.io/txns/EZ6mexrYfaMFivjLqccSjxGkTgWDEqUBUeiZDoAx9art), block <!--n:pr.anchor2.tx_block-->222,916,018<!--/n-->
+Transaction [`EZ6mexrY…`](https://nearblocks.io/txns/EZ6mexrYfaMFivjLqccSjxGkTgWDEqUBUeiZDoAx9art), block <!--n:pr.anchor2.tx_block-->222,916,018<!--/n-->
 (<!--n:pr.anchor2.tx_utc-->2026-11-03 19:48:55 UTC<!--/n-->), four hours before validators' voting for version 87 opened.
 
 Anchored SHA-256: `545cf67530b37c902b2674cb4014818d3f79eb1718fe6bbab896a361e48ce0d3`
@@ -336,10 +336,10 @@ from 4 November. It shows that each forecast is scored as stated, not skill at f
 result offline.
 **Prediction 5 <!--n:pr.5.result-->holds<!--/n-->:** protocol version <!--n:pr.5.protocol_version-->88<!--/n--> at the judging block <!--n:pr.5.judging_height-->223,537,267<!--/n-->, Brier score <!--n:pr.5.brier-->0.0625<!--/n-->. The first block with version 88 is <!--n:pr.v88.first_height-->223,314,737<!--/n-->, <!--n:pr.v88.first_utc-->2026-11-06 12:17 UTC<!--/n-->. Mean Brier score over the <!--n:pr.judged-->2<!--/n--> predictions judged so far: <!--n:pr.brier_mean-->0.0425<!--/n-->.
 
-**[`PREREG-3.md`](../PREREG-3.md): do the buybacks keep coming in the 30 days from 9 November?** Three predictions, judged after the hackathon (9 and 11 December), each with a probability measured from history, not judged (`scripts/base_rates.py`): the buybacks wallets keep at least half of the 2 October window's $46,691.40 a day (0.90), at least all of it (0.75), and DefiLlama has every day of the window (0.90). Transaction [`7JtbuonT…`]](https://nearblocks.io/txns/7JtbuonTNMuegxfH3XTDUNwLczKEfpFzXjRFKzHprcgU), block <!--n:pr.anchor3.tx_block-->223,613,293<!--/n--> (<!--n:pr.anchor3.tx_utc-->2026-11-08 12:00:10 UTC<!--/n-->), before the window opened. Anchored SHA-256: `69e6d96deb9af52e7555470c9595396c3bbaa3fc6858311e4402e6b806ad58f3`.
+**[`PREREG-3.md`](../PREREG-3.md): do the buybacks keep coming in the 30 days from 9 November?** Three predictions, judged after the hackathon (9 and 11 December), each with a probability measured from history, not judged (`scripts/base_rates.py`): the buybacks wallets keep at least half of the 2 October window's $46,691.40 a day (0.90), at least all of it (0.75), and DefiLlama has every day of the window (0.90). Transaction [`7JtbuonT…`](https://nearblocks.io/txns/7JtbuonTNMuegxfH3XTDUNwLczKEfpFzXjRFKzHprcgU), block <!--n:pr.anchor3.tx_block-->223,613,293<!--/n--> (<!--n:pr.anchor3.tx_utc-->2026-11-08 12:00:10 UTC<!--/n-->), before the window opened. Anchored SHA-256: `69e6d96deb9af52e7555470c9595396c3bbaa3fc6858311e4402e6b806ad58f3`.
 
 **[`PREREG.md`](../PREREG.md): three predictions judged on 16 November 2026.** Transaction
-[`8fZ8VTUy…`]](https://nearblocks.io/txns/8fZ8VTUyM1UjnybqPd1QCQi4c3y75dDRGR5TjkNGgnPL), block <!--n:pr.anchor1.tx_block-->222,606,824<!--/n-->
+[`8fZ8VTUy…`](https://nearblocks.io/txns/8fZ8VTUyM1UjnybqPd1QCQi4c3y75dDRGR5TjkNGgnPL), block <!--n:pr.anchor1.tx_block-->222,606,824<!--/n-->
 (<!--n:pr.anchor1.tx_utc-->2026-11-01 18:30:38 UTC<!--/n-->); the file has not changed since. Prediction 2's window had opened at 00:00 UTC that day;
 `PREREG.md` states what had been read by then.
 
@@ -510,7 +510,7 @@ wallets kept <!--n:iv.wallets_kept_usd_per_year-->$25.9M<!--/n--> a year, the sa
 
 ## The NEAR AI farm
 
-The NEAR AI farm is a signal, not a lever (README, number 3). The figures behind it:
+The NEAR AI farm is a signal, not a lever ([number 3](#the-numbers-two-of-value-one-signal)). The figures behind it:
 
 **Since the farm opened, the NEAR held by the NEAR AI pool's owner changed by <!--n:f4.since_stake_dao.owner_near_change-->-401,848<!--/n--> NEAR.**
 From the creation of `stake.dao` (<!--n:f4.stake_dao_start_utc-->2026-07-28<!--/n-->; first `stake` call <!--n:f4.first_stake_utc-->2026-07-30<!--/n-->) to
@@ -635,7 +635,7 @@ q social.near get eyJrZXlzIjpbInNhbWVyaWNlNzk3Ni5uZWFyL3RoZXNpcy9wcmVyZWcvMS8qKi
 
 At block 222,491,356 the saved answers (`data/raw/control/`) to the first three were `1`, `2` and
 `{"numerator":100,"denominator":100}`; the fourth matches `data/raw/stakedao/`, and the fifth must contain the
-SHA-256 in the README's [Pre-registration](#pre-registration). The base64 arguments are `{}`, `{"price_id":"price_QzmSvxbZqdbV0XbG6VD6KkbB"}` and
+SHA-256 in [Pre-registration](#pre-registration) above. The base64 arguments are `{}`, `{"price_id":"price_QzmSvxbZqdbV0XbG6VD6KkbB"}` and
 `{"keys":["samerice7976.near/thesis/prereg/1/**"]}`. Live answers can differ from the
 locked block; that difference is the point of checking.
 
@@ -688,9 +688,10 @@ python scripts/treasury_flows.py --verify --archival
 |---|---|
 | `data/numbers.json` | every number in the README and this file, with its source file and that file's SHA-256 |
 | `data/raw/` | every public RPC, NearBlocks and DefiLlama response, byte for byte |
+| `data/raw/sources/`, `data/sources.json` | the web pages the text quotes, saved byte for byte with their SHA-256; `scripts/quotes.py --verify` finds each quote in its page offline |
 | `data/raw/redacted/` | redacted copies of the responses that name people, which the numbers are computed from |
 | `data/history.csv` | one row a day from the `daily` workflow (00:15 UTC): number 1 over the last 30 days. `daily.py --verify` recomputes every row from its day file and compares it with this file; it writes nothing. Days after the window are pinned only by the SHA-256 in their own day file: a re-fetch from an archival RPC is what proves them |
-| `data/demand.json` | NEAR Intents' volume over the 30 days before the fetch, ranked among DefiLlama's "Bridge" volume list and its bridge-aggregator list (`scripts/demand.py`). Aggregators may route orders through NEAR Intents, so their volumes can overlap with it; the ranking compares sizes and adds nothing up. DefiLlama's bridges dataset (Across, Relay, deBridge, Stargate) counts deposits, needs a paid key for detail, and is not compared |
+| `data/demand.json` | NEAR Intents' volume over the 30 days before the fetch, ranked among DefiLlama's "Bridge" volume list and its bridge-aggregator list, and against every protocol in the volume list (`scripts/demand.py`). Aggregators may route orders through NEAR Intents, so their volumes can overlap with it; the ranking compares sizes and adds nothing up. DefiLlama's bridges dataset (Across, Relay, deBridge, Stargate) counts deposits, needs a paid key for detail, and is not compared |
 | `data/rating.csv` | one row per row of `history.csv`: the rating (Hold / Buy / Avoid) from the README's rules, with each test, written by `scripts/rating.py` in the `daily` workflow. It also fills `max_coverage_defillama`, which `history.csv` leaves empty. Rows are `provisional` for 48 h after their last day and `incomplete` while DefiLlama lacks a day; `rating.py --verify` recomputes the file from `history.csv` and the responses listed in `data/rating.json` |
 | `data/upgrade_watch.csv` | one row a day: stake signalling the next protocol version |
 | `dashboard/` | static page (`index.html`, `app.js`, `style.css`, no libraries) that reads every figure from `data/`; `tests/test_dashboard.py` fails if it shows a number written by hand |
@@ -698,7 +699,9 @@ python scripts/treasury_flows.py --verify --archival
 | `docs/DETAILS.md` | this file: method, live checks, terms, layout |
 | `PREREG.md` | the three predictions, anchored on chain |
 | `PREREG-2.md` | predictions 4 and 5 (protocol versions 87 and 88), anchored on chain on 3 November |
-| `docs/sign.html`, `docs/sign-2.html` | the pages used once each to sign the two anchoring transactions |
+| `PREREG-3.md` | predictions 6 to 8 (what the buybacks keep, 9 November to 9 December; DefiLlama's days), anchored on chain on 8 November |
+| `THESIS.md` | the thesis on one page: claim, evidence for and against, what would change it |
+| `docs/sign.html`, `docs/sign-2.html`, `docs/sign-3.html` | the pages used once each to sign the three anchoring transactions |
 | `AGENTS.md`, `CLAUDE.md` | the checking steps for automated reviewers (identical files) |
 
 Data sources: FastNEAR RPC and archival RPC, NearBlocks API, DefiLlama (`api.llama.fi`, `coins.llama.fi`), and one

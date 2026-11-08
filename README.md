@@ -1,12 +1,12 @@
-# NEAR to 2031: real demand, discretionary capture
+# NEAR to 2031: value capture is real, small and discretionary
 
 [![verify](https://github.com/nikolaskahris-png/near-thesis-data/actions/workflows/verify.yml/badge.svg)](https://github.com/nikolaskahris-png/near-thesis-data/actions/workflows/verify.yml)
 
 **Rating: Hold.** Keep NEAR staked; do not add. Horizon 1 January 2031, checked every year.
 
-- **Demand is real.** NEAR Intents moved <!--n:d.ours_30d_usd-->$4.02B<!--/n--> in 30 days, the most of the <!--n:d.protocols_ranked-->36<!--/n--> bridges and bridge aggregators in DefiLlama's volume data.
-- **What reaches holders is a policy, not a rule.** Buybacks offset <!--n:n1.coverage_buybacks-->10.8%<!--/n--> of the new NEAR issued. No code requires them, <!--n:c.buybacks_confirmations-->2 of 4<!--/n--> signers can stop them, and the protocol treasury is "currently managed by the NEAR Foundation" ([SEC filing](https://www.sec.gov/Archives/edgar/data/0002067111/000121390026103106/ea0306486-424b3_bitwise.htm)).
-- **Staking is what pays.** Staked, your share of all NEAR grows about <!--n:iv.staked_share_growth-->2.4%<!--/n--> a year; unstaked, it shrinks <!--n:iv.net_dilution_buybacks-->2.20%<!--/n-->.
+- **Demand is large, on DefiLlama's data.** NEAR Intents moved <!--n:d.ours_30d_usd-->$4.02B<!--/n--> in the 30 days to <!--n:d.window_end-->7 November<!--/n-->: <!--n:d.all_rank-->18th<!--/n--> of the <!--n:d.all_protocols_with_volume-->1,104<!--/n--> protocols with volume in DefiLlama's volume data, and the largest of the <!--n:d.protocols_ranked-->36<!--/n--> bridges and bridge aggregators in it. The chain confirms what reaches the buybacks wallets, not the fees.
+- **What reaches holders is a policy, not a rule.** The buybacks wallets keep NEAR equal to <!--n:n1.coverage_buybacks-->10.8%<!--/n--> of the new NEAR issued, and burn none of it. No code requires them, <!--n:c.buybacks_confirmations-->2 of 4<!--/n--> signers can stop them, and the protocol treasury is "currently managed by the NEAR Foundation" ([SEC filing](https://www.sec.gov/Archives/edgar/data/0002067111/000121390026103106/ea0306486-424b3_bitwise.htm)).
+- **Staking is what pays.** Your share of all NEAR, a year: staked +<!--n:iv.staked_share_growth-->2.4%<!--/n-->, unstaked <!--n:iv.unstaked_share_change-->-2.40%<!--/n-->. Buybacks change neither, because they hold what they buy.
 
 **Buy** when the buybacks become a published rule *and* fees alone cover issuance, or what they keep grows <!--n:lr.required_growth.buybacks.A.2031-->+75%<!--/n--> a year. **Avoid** when the wallets stop keeping the fees.
 
@@ -16,9 +16,9 @@
 
 Each claim gives its number, the source, what argues against it, and the command that recomputes it with no network.
 
-### A. Demand is real
+### A. Demand is large, on DefiLlama's data
 
-NEAR Intents moved <!--n:d.ours_30d_usd-->$4.02B<!--/n--> in 30 days, <!--n:d.ours_over_largest_other-->×1.9<!--/n--> the next protocol and <!--n:d.ours_over_largest_aggregator-->×2.6<!--/n--> the largest aggregator in DefiLlama's data. Volume a day by month:
+NEAR Intents moved <!--n:d.ours_30d_usd-->$4.02B<!--/n--> in the 30 days to <!--n:d.window_end-->7 November<!--/n-->, <!--n:d.ours_over_largest_other-->×1.9<!--/n--> the next bridge and <!--n:d.ours_over_largest_aggregator-->×2.6<!--/n--> the largest bridge aggregator in DefiLlama's volume data. Against every protocol in that data, whatever its category, it is <!--n:d.all_rank-->18th<!--/n--> of <!--n:d.all_protocols_with_volume-->1,104<!--/n--> with volume; those above it are DEXs, a launchpad and a prediction market. Volume a day by month:
 
 | Apr | May | Jun | Jul | Aug | Sep | Oct |
 |---|---|---|---|---|---|---|
@@ -26,7 +26,7 @@ NEAR Intents moved <!--n:d.ours_30d_usd-->$4.02B<!--/n--> in 30 days, <!--n:d.ou
 
 Users paid <!--n:n2.fees_usd_per_day-->$206,049<!--/n--> a day in fees in the window. The protocol fee on `intents.near` is <!--n:c.intents_fee_pips-->1 pip<!--/n-->; what users pay, <!--n:n2.fees_bps-->16.0<!--/n--> bps of volume, is set off-chain, by NEAR Intents' terms and by the apps that route swaps to it.
 
-**Against.** The rise is not a line: October was <!--n:f2.change.2026-09_2026-10.volume_usd-->-20%<!--/n--> on September. Bridges that DefiLlama tracks in its separate bridge dataset (Across, Relay, deBridge) are not ranked here.
+**Against.** Volume and fees are DefiLlama's, from NEAR's datasets on Dune; this repository does not rebuild them from the chain. What the chain shows is the NEAR that reaches the wallets (claim C). DefiLlama's revenue is, by its adapter, those same inflows, so the two agreeing (<!--n:n2.defillama_revenue_coverage-->16.5%<!--/n--> and <!--n:n1.coverage_with_front_end-->16.5%<!--/n--> of issuance) shows that the wallets sent almost nothing out, not that the inflows were fees. The rise is not a line: October was <!--n:f2.change.2026-09_2026-10.volume_usd-->-20%<!--/n--> on September. DefiLlama's separate bridge dataset (Across, Relay, deBridge), which counts deposits rather than swaps, is not compared.
 
 **Check.** `python scripts/demand.py --verify` → `OK`.
 
@@ -69,14 +69,14 @@ A year of buybacks is about <!--n:iv.buybacks_kept_near_per_year-->3.50M<!--/n--
 
 ## What a holder earns to 2031
 
-Change in your share of all NEAR a year, before validator commission. "With HSP-029" scales issuance and the staking yield by 16/25 and holds everything else.
+Change in your share of all NEAR, before validator commission. The buybacks wallets hold the NEAR they buy and burn none, so total supply grows by the full issuance and buybacks change neither row. "With HSP-029" is the rate once its cut is fully phased in: issuance and the staking yield × 16/25, everything else held. Nothing here forecasts price, fees or volume.
 
-| | Today | With HSP-029 |
-|---|---|---|
-| Staked with a validator | +<!--n:iv.staked_share_growth-->2.4%<!--/n--> | +<!--n:iv.hsp029.staked_share_growth-->1.6%<!--/n--> |
-| Not staked (net of buybacks) | -<!--n:iv.net_dilution_buybacks-->2.20%<!--/n--> | -<!--n:iv.hsp029.net_dilution_buybacks-->1.31%<!--/n--> |
+| | A year, today | To 1 Jan 2031, at today's rates | A year, with HSP-029 |
+|---|---|---|---|
+| Staked with a validator | +<!--n:iv.staked_share_growth-->2.4%<!--/n--> | +<!--n:iv.to2031.staked_share_change-->10.6%<!--/n--> | +<!--n:iv.hsp029.staked_share_growth-->1.6%<!--/n--> |
+| Not staked | <!--n:iv.unstaked_share_change-->-2.40%<!--/n--> | <!--n:iv.to2031.unstaked_share_change-->-9.6%<!--/n--> | <!--n:iv.hsp029.unstaked_share_change-->-1.55%<!--/n--> |
 
-Hold protects your share, not its dollar value. Buybacks move each row by only <!--n:iv.buyback_yield_buybacks-->0.27%<!--/n--> a year.
+Hold protects your share, not its dollar value. What the buybacks add is money from outside: they keep <!--n:iv.buybacks_kept_usd_per_year-->$17.1M<!--/n--> a year against <!--n:iv.issuance_usd_per_year-->$157.5M<!--/n--> of NEAR issued. While they never sell, the NEAR outside their wallets grows about <!--n:iv.net_dilution_buybacks-->2.20%<!--/n--> a year instead of <!--n:iv.issuance_rate_per_year-->2.46%<!--/n-->.
 
 **What Buy would need.** For buybacks to cover issuance on 1 January 2031, what they keep must grow <!--n:lr.required_growth.buybacks.A.2031-->+75%<!--/n--> a year at today's issuance, or <!--n:lr.required_growth.buybacks.B.2031-->+56%<!--/n--> with HSP-029. If NEAR kept every fee, fees would need <!--n:lr.required_growth.all_fees.B.2031-->+9%<!--/n--> a year with HSP-029. The gap between +9% and +56% is the policy, not demand ([model](docs/DETAILS.md#issuance-to-2031)).
 
@@ -94,6 +94,8 @@ Hold protects your share, not its dollar value. Buybacks move each row by only <
 
 Avoid overrides Buy. Every rule, edge case and threshold: [the rating in full](docs/DETAILS.md#the-rating-in-full).
 
+**Why the Buy test is coverage, not price.** The rating answers one question: does a rule, rather than a choice, pay holders for the NEAR issued? Coverage measures the payment in NEAR, and (b) the rule. It sets no price target: L1 tokens are not priced on fees (Ethereum is valued at <!--n:peer.ethereum.mcap_to_revenue-->3,394×<!--/n--> a year of its revenue), so a target drawn from fees would be conviction, not evidence. The valuation line above is context; no rule uses it. Avoid's test 1 is an outflow test: DefiLlama's revenue is the wallets' inflows, so the wallets keep less than 75% of it only if they send a quarter of what came in back out. Test 2 is set at April's level, when NEAR kept <!--n:f2.take_rate.2026-04-->8.1%<!--/n--> of fees (<!--n:f2.take_rate.2026-10-->34.3%<!--/n--> in October), so it fires on a return to that, not on a weak month.
+
 ## Why the chain, not the dashboards
 
 DefiLlama's fees for NEAR Intents come from two NEAR datasets on Dune; its revenue counts every inflow of NEAR into the three wallets from outside them ([adapter](https://github.com/DefiLlama/dimension-adapters/blob/master/fees/near-intents/index.ts)). A match with the wallets' balances shows that little flowed out, not that the inflows were fees. The only measure here that depends on no one's dataset is the wallets' balances on mainnet, read at block headers.
@@ -104,12 +106,12 @@ It matters more now. NEAR Intents' docs say a confidential swap "settles entirel
 
 | File | Prediction | Probability | Result |
 |---|---|---|---|
-| [PREREG-2](PREREG-2.md) #4 | HSP-027 in effect by 6 Nov | 0.85 | <!--n:pr.4.result-->holds<!--/n-->, Brier <!--n:pr.4.brier-->0.0225<!--/n--> |
-| [PREREG-2](PREREG-2.md) #5 | protocol version 88 by 8 Nov | 0.75 | <!--n:pr.5.result-->holds<!--/n-->, Brier <!--n:pr.5.brier-->0.0625<!--/n--> |
+| [PREREG-2](PREREG-2.md) #4 | process check: HSP-027 in effect by 6 Nov | 0.85 | <!--n:pr.4.result-->holds<!--/n-->, Brier <!--n:pr.4.brier-->0.0225<!--/n--> |
+| [PREREG-2](PREREG-2.md) #5 | process check: protocol version 88 by 8 Nov | 0.75 | <!--n:pr.5.result-->holds<!--/n-->, Brier <!--n:pr.5.brier-->0.0625<!--/n--> |
 | [PREREG](PREREG.md) #1–3 | the NEAR AI farm; buybacks inflows 1–15 Nov | — | judged 16 Nov |
 | [PREREG-3](PREREG-3.md) #6–8 | the buybacks keep at least half / all of the 2 October window's dollars, 9 Nov – 9 Dec; DefiLlama has every day | 0.90 / 0.75 / 0.90, measured from history | judged 9 and 11 Dec |
 
-Mean Brier score so far: <!--n:pr.brier_mean-->0.0425<!--/n--> (0 is perfect; 0.25 is always saying 0.5). PREREG-3 was anchored at block <!--n:pr.anchor3.tx_block-->223,613,293<!--/n-->, before its window opened.
+#4 and #5 asked whether a passed vote would reach the chain by a date. Both held; that shows the pipeline works, not skill at forecasting (Brier: 0 is perfect, 0.25 is always saying 0.5). The predictions that test the thesis, #1–3 and #6–8, are judged on 16 November and 9–11 December, after the submission deadline, and their results go into this repository whatever they are. PREREG-3's probabilities are base rates from overlapping 30-day windows since March, which its own [limits](PREREG-3.md) count as about 5 independent ones. PREREG-3 was anchored at block <!--n:pr.anchor3.tx_block-->223,613,293<!--/n-->, before its window opened.
 
 ## What would change our mind
 
@@ -123,7 +125,7 @@ Mean Brier score so far: <!--n:pr.brier_mean-->0.0425<!--/n--> (0 is perfect; 0.
 
 ## Check it in two minutes
 
-Python 3.10 or later, standard library only, no network, no keys:
+Python 3.10 or later (`python3` on some systems, `py` on Windows), standard library only, no network, no keys. From the repository root:
 
 ```
 python scripts/rebuild.py
@@ -137,9 +139,21 @@ python scripts/build_numbers.py --verify           # every script's offline chec
 python scripts/build_numbers.py --check README.md  # every marked number in this file matches numbers.json
 python scripts/check_prereg.py --anchor 3 --verify # PREREG-3.md = its SocialDB record = the transaction's args
 python scripts/rating.py --verify                  # the rating of every window recomputes
+python scripts/quotes.py --verify                  # every quoted line is in its saved page
 ```
 
-For lists that name accounts, git holds redacted copies: offline, the check proves they are consistent and that their totals match the raw contract responses, not that each entry is right. Live read-only calls and re-measuring from the chain: [Verify live](docs/DETAILS.md#verify-live).
+For lists that name accounts, git holds redacted copies: offline, the check proves they are consistent and that their totals match the raw contract responses, not that each entry is right.
+
+**No network is needed for anything above.** What does need it, and what to do offline instead:
+
+| Needs the network | Offline |
+|---|---|
+| The [live dashboard](https://nikolaskahris-png.github.io/near-thesis-data/dashboard/) | `python -m http.server 8000` in the repository root, then open `http://localhost:8000/dashboard/` (opening the file directly does not work: browsers block its data reads from `file://`). Every figure is read from `data/numbers.json`; only the "Check live" buttons say they cannot reach the RPC. |
+| Re-measuring from the chain | `python scripts/remeasure.py --only 1` stops at once with `REMEASURE: NOT RUN - ...` and exit code 2. That is the expected result offline, not a failure of the repository. |
+| Reading the SocialDB anchors | `python scripts/check_prereg.py --anchor 3 --verify` checks the saved record and transaction offline. |
+| The pages the text quotes (SEC filings, NEAR's docs and blog, the hackathon rules) | each is saved in `data/raw/sources/` with its SHA-256; `python scripts/quotes.py --verify` checks that every quote is in its saved page (`rebuild.py` runs it). |
+
+Offline, the one thing that cannot be proven is that the saved responses are what the chain returned. That takes one read-only call per number, listed with the expected answers in [Verify live](docs/DETAILS.md#verify-live).
 
 ## What we can't measure
 

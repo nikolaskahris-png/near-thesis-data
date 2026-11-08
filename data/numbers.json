@@ -16,7 +16,7 @@
     "data/control_map.json": "6f557db6c579e595008df0bccd143aae331392135492518fe26071ba7c66758c",
     "data/coverage_monthly.json": "74c24cad7c5a975e989fb70a62b157caef271901f16b9dfe9f708b3e98f8e9e9",
     "data/daily/2026-11-01.json": "bc1d0a30291588a93c85093be6be18e38145088855deaf0dc2216a4db63877d0",
-    "data/demand.json": "c62931270dbfc4d80ae5761591f01bb200a654a012d82f7085f42c372f13aa51",
+    "data/demand.json": "29378f886980003baa037df112df0e540cd8d0d1ac22a543b26abac09b9f8dae",
     "data/farm_rate.json": "9506223b29241924653bb78af227f7387a66d00dd4671f86d5e882b0cfb6b002",
     "data/fees_2026-10-02_2026-11-01.json": "ded7a3b53dad62eb1d326912e57404da225f13fb5cf92cc7d66eb168dc5d083e",
     "data/hsp029.json": "04eff7d95bac22ebbcc8204c8d3c57530f15f374767b2ad732df7180226c28ff",
@@ -639,6 +639,21 @@
       "block": 223537267,
       "as_of": "2026-11-08"
     },
+    "d.all_protocols_with_volume": {
+      "value": "1104",
+      "text": "1,104",
+      "source": "data/demand.json",
+      "as_of": "2026-11-07T12:16:06Z",
+      "basis": "DefiLlama total30d at the fetch: the 30 days before it, not the project's window"
+    },
+    "d.all_rank": {
+      "value": "18",
+      "text": "18th",
+      "source": "data/demand.json",
+      "note": "rank among every protocol with 30-day volume in DefiLlama's /overview/dexs, any category; above it: Dexs, Launchpad, Prediction Market",
+      "as_of": "2026-11-07T12:16:06Z",
+      "basis": "DefiLlama total30d at the fetch: the 30 days before it, not the project's window"
+    },
     "d.as_of": {
       "value": "2026-11-07T12:16:06Z",
       "text": "2026-11-07",
@@ -696,6 +711,12 @@
       "source": "data/demand.json",
       "as_of": "2026-11-07T12:16:06Z",
       "basis": "DefiLlama total30d at the fetch: the 30 days before it, not the project's window"
+    },
+    "d.window_end": {
+      "value": "2026-11-07T12:16:06Z",
+      "text": "7 November",
+      "source": "data/demand.json",
+      "note": "DefiLlama's total30d: the 30 days end at the fetch, not at the project's window"
     },
     "f1.buybacks_kept_near_per_day.2026-04": {
       "value": "4674.519",
@@ -3539,6 +3560,15 @@
       ],
       "note": "HSP-029: (1 + staking yield x 16/25) / (1 + issuance rate x 16/25) - 1, before commission"
     },
+    "iv.hsp029.unstaked_share_change": {
+      "value": "-0.0155224874513452339325118261487121157590",
+      "text": "-1.55%",
+      "source": "data/daily/2026-11-01.json",
+      "derived_from": [
+        "iv.issuance_rate_per_year"
+      ],
+      "note": "HSP-029, issuance x 16/25: 1 / (1 + issuance rate) - 1, share of all NEAR a year; no buyback term, because bought NEAR is held, not burned"
+    },
     "iv.hsp029_fees_multiple": {
       "value": "1.336353492225763558976620495653510266536",
       "text": "×1.3",
@@ -3598,7 +3628,7 @@
         "iv.issuance_rate_per_year",
         "iv.buyback_yield_buybacks"
       ],
-      "note": "iv.issuance_rate_per_year - buyback yield: dilution net of what the wallets keep",
+      "note": "iv.issuance_rate_per_year - buyback yield: about how fast NEAR outside the wallets grows, while the wallets keep what they buy; total supply grows by the full issuance rate",
       "status": "final",
       "window": "2026-10-02 00:00 UTC to 2026-11-01 00:00 UTC",
       "blocks": "218126921-222491356"
@@ -3612,7 +3642,7 @@
         "iv.issuance_rate_per_year",
         "iv.buyback_yield_with_front_end"
       ],
-      "note": "iv.issuance_rate_per_year - buyback yield: dilution net of what the wallets keep",
+      "note": "iv.issuance_rate_per_year - buyback yield: about how fast NEAR outside the wallets grows, while the wallets keep what they buy; total supply grows by the full issuance rate",
       "status": "final",
       "window": "2026-10-02 00:00 UTC to 2026-11-01 00:00 UTC",
       "blocks": "218126921-222491356"
@@ -3675,6 +3705,33 @@
       "status": "final",
       "window": "2026-10-02 00:00 UTC to 2026-11-01 00:00 UTC",
       "blocks": "218126921-222491356"
+    },
+    "iv.to2031.staked_share_change": {
+      "value": "0.105519844008083039160541525982298547342",
+      "text": "10.6%",
+      "source": "data/daily/2026-11-01.json",
+      "derived_from": [
+        "iv.staked_share_growth"
+      ],
+      "note": "staked: (1 + iv.staked_share_growth) ^ (1522 / 365.25) - 1, 1 Nov 2026 to 1 Jan 2031 at today's rates; no forecast of price, fees or HSP-029"
+    },
+    "iv.to2031.unstaked_share_change": {
+      "value": "-0.0964424831314720195978711228822682836649",
+      "text": "-9.6%",
+      "source": "data/daily/2026-11-01.json",
+      "derived_from": [
+        "iv.unstaked_share_change"
+      ],
+      "note": "unstaked: (1 + iv.unstaked_share_change) ^ (1522 / 365.25) - 1, 1 Nov 2026 to 1 Jan 2031 at today's rates; no forecast of price, fees or HSP-029"
+    },
+    "iv.unstaked_share_change": {
+      "value": "-0.0240439493230500265864744100353009757201",
+      "text": "-2.40%",
+      "source": "data/daily/2026-11-01.json",
+      "derived_from": [
+        "iv.issuance_rate_per_year"
+      ],
+      "note": "today's issuance: 1 / (1 + issuance rate) - 1, share of all NEAR a year; no buyback term, because bought NEAR is held, not burned"
     },
     "iv.value_to_fees": {
       "value": "84.95840641257898632996999027304824846989",

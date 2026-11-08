@@ -5,7 +5,7 @@ Measurement window 2 October → 1 November 2026 (00:00 UTC), blocks 218,126,921
 is copied from [`data/numbers.json`](data/numbers.json) with a hidden marker of its key, and
 `python scripts/build_numbers.py --check THESIS.md` fails if a marked figure differs. Figures from DefiLlama are
 final for the window: a fetch 24 hours after the previous one changed no day. Thresholds are the author's choice; block heights, dates and protocol
-constants are written as they are. The data, method and findings are in the [README](README.md).*
+constants are written as they are. The four claims and how to check them are in the [README](README.md); data, method and findings in [docs/DETAILS.md](docs/DETAILS.md).*
 
 ## Claim
 

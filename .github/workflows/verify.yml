@@ -15,11 +15,14 @@ jobs:
   verify:
     runs-on: ubuntu-latest
     timeout-minutes: 20
+    strategy:
+      matrix:
+        python: ["3.10", "3.12"]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
-          python-version: "3.12"
+          python-version: ${{ matrix.python }}
       - name: One command rebuilds and checks everything (tests, numbers, texts, PREREG)
         run: |
           set -o pipefail

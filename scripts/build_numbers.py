@@ -49,6 +49,7 @@ def dec(x):
 
 
 HSP029_SCALE = Decimal(16) / Decimal(25)   # HSP-029: issuance 2.5% -> 1.6% of the maximum
+HORIZON_DAYS = 1522   # 1 November 2026 (window end) to 1 January 2031, the thesis horizon
 
 
 def rnd(x, places):
@@ -66,6 +67,16 @@ def f_num(x, places):
 
 def f_pct(share, places=1):
     return f"{rnd(dec(share) * 100, places):.{places}f}%"
+
+
+def ordinal(k):
+    return f"{k}{'th' if 10 <= k % 100 <= 20 else {1: 'st', 2: 'nd', 3: 'rd'}.get(k % 10, 'th')}"
+
+
+def day_month(iso):
+    months = ("January", "February", "March", "April", "May", "June", "July", "August", "September", "October",
+              "November", "December")
+    return f"{int(iso[8:10])} {months[int(iso[5:7]) - 1]}"
 
 
 def f_usd(x, places=0):
@@ -896,7 +907,7 @@ def build(data_dir, window_file):
               note="what the wallets keep a year, in dollars / iv.supply_value_usd", **prov)
         n.add(f"iv.net_dilution_{name}", dec(rate) - y, f_pct(dec(rate) - y, 2), vsrc,
               unit="share of supply per year", derived_from=["iv.issuance_rate_per_year", f"iv.buyback_yield_{name}"],
-              note="iv.issuance_rate_per_year - buyback yield: dilution net of what the wallets keep", **prov)
+              note="iv.issuance_rate_per_year - buyback yield: about how fast NEAR outside the wallets grows, while the wallets keep what they buy; total supply grows by the full issuance rate", **prov)
         cov_v = dec(n.items[cov_key]["value"])
         if abs(y / dec(rate) - cov_v) > dec("0.0000006"):
             problems.append(f"buyback yield / issuance rate != {cov_key}: {y / dec(rate)} vs {cov_v}")
@@ -1064,6 +1075,13 @@ def build(data_dir, window_file):
         n.add("d.ours_30d_usd", dec(dr["ours_30d_usd"]), big(dec(dr["ours_30d_usd"])), dsrc, **dc)
         n.add("d.ours_rank", dr["ours_rank"], f_int(dr["ours_rank"]), dsrc, **dc)
         n.add("d.protocols_ranked", dr["protocols_ranked"], f_int(dr["protocols_ranked"]), dsrc, **dc)
+        n.add("d.all_rank", dr["all_rank"], ordinal(dr["all_rank"]), dsrc,
+              note="rank among every protocol with 30-day volume in DefiLlama's /overview/dexs, any category; "
+                   "above it: " + ", ".join(dr["all_categories_above"]), **dc)
+        n.add("d.all_protocols_with_volume", dr["all_protocols_with_volume"], f_int(dr["all_protocols_with_volume"]),
+              dsrc, **dc)
+        n.add("d.window_end", dm["fetched_utc"], day_month(dm["fetched_utc"]), dsrc,
+              note="DefiLlama's total30d: the 30 days end at the fetch, not at the project's window")
         for key in ("largest_other", "largest_aggregator"):
             v = dec(dr[key]["volume_30d_usd"])
             n.add(f"d.{key}.volume_30d_usd", v, big(v), dsrc, name=dr[key]["name"], **dc)
@@ -1076,6 +1094,26 @@ def build(data_dir, window_file):
         n.add("iv.staked_share_growth", g, f_pct(g, 1), n.items["iv.staking_yield_gross"]["source"],
               derived_from=["iv.staking_yield_gross", "iv.issuance_rate_per_year"],
               note="before the validator's commission: (1 + staking yield) / (1 + issuance rate) - 1")
+    # An unstaked holder's share of all NEAR changes by 1 / (1 + issuance rate) - 1 a year. The buybacks wallets
+    # hold what they buy and burn nothing, so total supply, and this share, do not depend on them.
+    if "iv.issuance_rate_per_year" in n.items:
+        g0 = dec(n.items["iv.issuance_rate_per_year"]["value"])
+        isrc = n.items["iv.issuance_rate_per_year"]["source"]
+        for key, rate, what in (("iv.unstaked_share_change", g0, "today's issuance"),
+                                ("iv.hsp029.unstaked_share_change", g0 * HSP029_SCALE, "HSP-029, issuance x 16/25")):
+            u = 1 / (1 + rate) - 1
+            n.add(key, u, f_pct(u, 2), isrc, derived_from=["iv.issuance_rate_per_year"],
+                  note=f"{what}: 1 / (1 + issuance rate) - 1, share of all NEAR a year; no buyback term, "
+                       "because bought NEAR is held, not burned")
+        # The same two rows over the horizon, 1 November 2026 to 1 January 2031, at today's rates held constant
+        years = Decimal(HORIZON_DAYS) / Decimal("365.25")
+        if "iv.staked_share_growth" in n.items:
+            for key, base, label in (("iv.to2031.staked_share_change", "iv.staked_share_growth", "staked"),
+                                     ("iv.to2031.unstaked_share_change", "iv.unstaked_share_change", "unstaked")):
+                c = (1 + dec(n.items[base]["value"])) ** years - 1
+                n.add(key, c, f_pct(c, 1), isrc, derived_from=[base],
+                      note=f"{label}: (1 + {base}) ^ ({HORIZON_DAYS} / 365.25) - 1, 1 Nov 2026 to 1 Jan 2031 at "
+                           "today's rates; no forecast of price, fees or HSP-029")
     # The same with HSP-029: issuance and staking yield both x 16/25, buyback yield unchanged
     if all(k in n.items for k in ("iv.staking_yield_gross", "iv.issuance_rate_per_year", "iv.buyback_yield_buybacks")):
         f = HSP029_SCALE
@@ -1318,7 +1356,7 @@ REQUIRED_IN_README = [
     "ct.priced_usd.2026-11-08",
     "ct.stablecoins_usd.2026-11-08",
     "iv.staked_share_growth",
-    "iv.net_dilution_buybacks",
+    "iv.unstaked_share_change",
     "lr.required_growth.buybacks.A.2031",
 ]
 # Headline numbers that moved to docs/DETAILS.md with README v3 (8 Nov): still required, there.
