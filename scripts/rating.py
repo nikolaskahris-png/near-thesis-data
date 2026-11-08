@@ -8,19 +8,25 @@ The rules are the README's "The rating in full". For each history row (the 30 da
   coverage            = coverage_buybacks from history.csv (NEAR kept / NEAR issued)
   coverage counted    = the Buy path's coverage: NEAR the buybacks wallets kept a day, but at most
                         DefiLlama's revenue and at most its fees for the window, both in NEAR a day,
-                        / NEAR issued. A balance can also grow by transfers that are not fees (the
-                        front-end fund, treasury.near, any donor); capped this way, they cannot make
-                        Buy: coverage counted reaches 100% only if the fees themselves cover issuance.
+                        / NEAR issued. The revenue cap stops moves between the three wallets (DefiLlama
+                        leaves them out); only the fee cap limits a transfer from outside, which
+                        DefiLlama counts as revenue. So the Buy path also needs treasury_quiet.
+  treasury quiet      = treasury.near sent nothing in the window: the same multisig request nonce at
+                        both boundary blocks and no full-access key (daily.treasury_quiet). The protocol
+                        treasury could otherwise fund the wallets and pass as fees. "not read" counts
+                        as not quiet.
   (b)                 = on the window's end block, a lock declared in daily.LOCKS has no contract and
                         no access keys, so no one can spend from it (daily.sealed); read per window, so
                         it is never true before the block where it became true.
 
   A window fails if kept share < 75%, or buybacks kept in USD <= April's level (numbers.json
-  f2.buybacks_kept_usd_per_day.2026-04). Avoid if this window and the one ending 30 days
-  earlier both fail. Buy if (b) holds and either coverage counted
-  >= 100% or (a) held at the latest yearly check (the 1 November window): buybacks kept had grown at
-  the required pace from the 2026-11-01 window, in USD and in NEAR. A pass holds until the next
-  yearly check. Avoid overrides Buy. Otherwise Hold, also when a rule cannot be judged.
+  f2.buybacks_kept_usd_per_day.2026-04). Test 1 needs DefiLlama: if its revenue is zero or a day is
+  missing, test 1 is not judged and test 2, read from the chain with the window's mean price, decides
+  alone (judged if every day has a price). Avoid if this window and the one ending 30 days
+  earlier both fail. Buy if (b) holds, treasury.near was quiet in the window, and either coverage
+  counted >= 100% or (a) held at the latest yearly check (the 1 November window): buybacks kept had
+  grown at the required pace from the 2026-11-01 window, in USD and in NEAR. A pass holds until the
+  next yearly check. Avoid overrides Buy. Otherwise Hold, also when a rule cannot be judged.
 
 DefiLlama days are counted exactly as in fees.py (the same flags, the same mean price), so the
 2026-11-01 row reproduces numbers.json. A row is "incomplete" if a day lacks a series, and
@@ -67,7 +73,7 @@ COLUMNS = [
     "revenue_near_per_day", "wallets_kept_near_per_day", "kept_share",
     "mean_price_usd", "buybacks_kept_usd_per_day", "max_coverage_defillama", "coverage_buybacks",
     "coverage_counted",
-    "test_kept_share", "test_usd", "earlier_window", "rule_b", "covers_issuance", "yearly_a",
+    "test_kept_share", "test_usd", "earlier_window", "rule_b", "treasury_quiet", "covers_issuance", "yearly_a",
     "rating", "note",
 ]
 
@@ -94,15 +100,19 @@ def window_values(row, s, fetched):
     days = [start + timedelta(days=i) for i in range((end - start).days)]
     missing = [d for d in days if any(d not in s[k] for k in SERIES)]
     if missing:
-        return "incomplete", {"note": f"no DefiLlama data for {len(missing)} day(s), from {missing[0]}"}
+        priced = all(d in s["price"] for d in days)
+        return "incomplete", {"note": f"no DefiLlama data for {len(missing)} day(s), from {missing[0]}",
+                              "mean_price_usd": sum(s["price"][d] for d in days) / len(days) if priced else None}
     agg, _ = fees.aggregate(days, s)
     hours = (fetched - datetime(end.year, end.month, end.day, tzinfo=timezone.utc)).total_seconds() / 3600
     status = "final" if hours >= fees.FINAL_AFTER_H else "provisional"
     return status, agg
 
 
-def evaluate(history, s, th, fetched, sealed):
-    """sealed: {date: [lock accounts sealed at that window's end block]}, from daily.sealed()."""
+def evaluate(history, s, th, fetched, sealed, quiet=None):
+    """sealed: {date: [lock accounts sealed at that window's end block]}, from daily.sealed();
+    quiet: {date: "yes" | "no" | "not read"}, from daily.treasury_quiet()."""
+    quiet = quiet or {}
     by_date = {r["date"]: r for r in history}
     out, fails = [], {}
     a_since = None          # date of the yearly check whose (a) passed; holds until the next check
@@ -112,22 +122,33 @@ def evaluate(history, s, th, fetched, sealed):
         kept_bb = Fraction(r["buybacks_per_day"])
         kept_all = kept_bb + Fraction(r["fefunds_per_day"])
         rule_b = bool(sealed.get(r["date"]))
+        q = quiet.get(r["date"], "not read")
         cov = None          # coverage counted: judged only when DefiLlama's days are all there
         row = {c: "" for c in COLUMNS}
         row.update(date=r["date"], window_start=r["window_start"], status=status,
                    wallets_kept_near_per_day=fees.fmt(kept_all, 3), coverage_buybacks=r["coverage_buybacks"],
-                   rule_b="yes" if rule_b else "no", covers_issuance="not judged")
+                   rule_b="yes" if rule_b else "no", treasury_quiet=q, covers_issuance="not judged")
         notes = []
         fail = None
         if status == "incomplete":
             notes.append(agg["note"])
+            row.update(test_kept_share="not judged")
+            if agg["mean_price_usd"] is not None:   # test 2 is read from the chain: it decides alone
+                usd = kept_bb * agg["mean_price_usd"]
+                t_usd = "fail" if usd <= Fraction(th["avoid_usd_per_day"]) else "pass"
+                fail = t_usd == "fail"
+                row.update(mean_price_usd=fees.fmt(agg["mean_price_usd"], 6),
+                           buybacks_kept_usd_per_day=fees.fmt(usd, 2), test_usd=t_usd)
+                notes.append("Avoid test 1 not judged; test 2 decides alone")
+            else:
+                notes.append("no price for every day: neither Avoid test judged")
         else:
             rev = agg["revenue_near_per_day"]
             share = kept_all / rev if rev > 0 else None
             usd = kept_bb * agg["mean_price_usd"]
             new = Fraction(r["new_supply_per_day"])
             cov = min(kept_bb, rev, agg["fees_near_per_day"]) / new
-            t_share = "fail" if share is None or share < KEPT_SHARE_MIN else "pass"
+            t_share = "not judged" if share is None else "fail" if share < KEPT_SHARE_MIN else "pass"
             t_usd = "fail" if usd <= Fraction(th["avoid_usd_per_day"]) else "pass"
             fail = "fail" in (t_share, t_usd)
             row.update(counted_days=agg["counted_days"], revenue_near_per_day=fees.fmt(rev, 3),
@@ -138,7 +159,7 @@ def evaluate(history, s, th, fetched, sealed):
                        coverage_counted=pct(cov), covers_issuance="yes" if cov >= 1 else "no",
                        test_kept_share=t_share, test_usd=t_usd)
             if share is None:
-                notes.append("DefiLlama revenue is zero")
+                notes.append("DefiLlama revenue is zero: Avoid test 1 not judged; test 2 decides alone")
             if agg["excluded"]:
                 notes.append(f"{len(agg['excluded'])} day(s) excluded as in fees.py")
         fails[r["date"]] = fail
@@ -152,14 +173,15 @@ def evaluate(history, s, th, fetched, sealed):
         if d.month == BASE_DATE.month and d.day == BASE_DATE.day and d > BASE_DATE and status != "incomplete":
             g = Fraction(th["growth_with_hsp029" if HSP029_IN_FORCE else "growth_without_hsp029"])
             factor = Fraction((1 + float(g)) ** ((d - BASE_DATE).days / 365.25))
-            ok = (kept_bb * agg["mean_price_usd"] >= Fraction(th["base_usd_per_day"]) * factor
+            ok = (q == "yes"
+                  and kept_bb * agg["mean_price_usd"] >= Fraction(th["base_usd_per_day"]) * factor
                   and kept_bb >= Fraction(th["base_near_per_day"]) * factor)
             row["yearly_a"] = "pass" if ok else "fail"
             a_since = d if ok else None
         elif a_since is not None:
             row["yearly_a"] = f"pass since {a_since.isoformat()}"
         avoid = fail is True and row["earlier_window"] == "fail"
-        buy = rule_b and ((cov is not None and cov >= 1) or row["yearly_a"].startswith("pass"))
+        buy = rule_b and ((q == "yes" and cov is not None and cov >= 1) or row["yearly_a"].startswith("pass"))
         row["rating"] = "Avoid" if avoid else "Buy" if buy else "Hold"
         if fail and not avoid:
             notes.append("this window fails an Avoid test; Avoid needs the earlier window to fail too")
@@ -202,7 +224,8 @@ def compute(doc, data_root):
     if problems:
         return None, problems
     fetched = datetime.strptime(doc["fetched_utc"], "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=timezone.utc)
-    rows = evaluate(load_history(data_root), parse(raws), doc["thresholds"], fetched, daily.sealed(data_root))
+    rows = evaluate(load_history(data_root), parse(raws), doc["thresholds"], fetched, daily.sealed(data_root),
+                    daily.treasury_quiet(data_root))
     return rows, problems
 
 
@@ -211,8 +234,12 @@ def build(data_root, raw_dir, fetched_utc, urls):
     doc = {
         "measure": "the rating (Hold / Buy / Avoid) for every window in history.csv, from README's rules",
         "rules": {"kept_share_min": "0.75", "avoid": "this window and the one ending 30 days earlier fail",
-                  "buy": "rule (b) read from the chain (a declared lock with no contract and no keys), and "
-                         "coverage counted (kept, at most DefiLlama's revenue and fees) >= 100% or (a) at a yearly check",
+                  "buy": "rule (b) read from the chain (a declared lock with no contract and no keys), "
+                         "treasury.near quiet in the window (same multisig request nonce at both ends, no "
+                         "full-access key), and coverage counted (kept, at most DefiLlama's revenue and fees) "
+                         ">= 100% or (a) at a yearly check",
+                  "avoid_test_1": "not judged if DefiLlama's revenue is zero or a day is missing; test 2 "
+                                  "(read from the chain, with the window's mean price) then decides alone",
                   "precedence": "Avoid overrides Buy", "hsp029_in_force": HSP029_IN_FORCE},
         "fetched_utc": fetched_utc,
         "locks": sorted(daily.LOCKS),

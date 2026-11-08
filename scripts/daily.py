@@ -22,12 +22,18 @@ Every input is an archival RPC response saved byte for byte under data/raw/,
 listed with its sha256 in data/daily/D.json. data/history.csv is rebuilt from
 those files, and --verify recomputes everything from them without network.
 
-Read-only: JSON-RPC "block", "view_account" and one view call. No keys.
+treasury.near (the protocol treasury) is read too, for the rating only: its multisig request
+nonce (get_request_nonce) and its access keys. It has no full-access key, so every transfer out of
+it needs a multisig request, and the nonce counts every request ever made. Same nonce at both ends
+of a window, and no full-access key, means it sent nothing in that window (treasury_quiet).
+
+Read-only: JSON-RPC "block", "view_account", "view_access_key_list" and two view calls. No keys.
 
 Usage:
     python scripts/daily.py                    # today (UTC)
     python scripts/daily.py --date 2026-11-01  # a given date
     python scripts/daily.py --verify           # offline check of every saved day
+    python scripts/daily.py --backfill-treasury  # read treasury.near at the boundaries of saved days
 """
 import argparse
 import base64
@@ -58,6 +64,7 @@ LOCKS = {}
 # access keys: then no transaction can move its NEAR. That is (b), read from the chain (judge #9, finding 2).
 EMPTY_CODE_HASH = "11111111111111111111111111111111"
 INTENTS = "intents.near"
+TREASURY = "treasury.near"     # protocol treasury: a multisig with no full-access key (control_map.py)
 WNEAR = "nep141:wrap.near"
 YOCTO = 10 ** 24
 REPO = Path(__file__).resolve().parent.parent
@@ -117,7 +124,76 @@ def snapshot(chain, d, raw_root):
              rpc_call(chain, {"request_type": "call_function", "block_id": h,
                               "account_id": INTENTS, "method_name": "mt_balance_of",
                               "args_base64": args}))
+    files.update(save_treasury(chain, h, raw_root))
     return {"date": d.isoformat(), "height": h, "previous_height": prev["height"]}, files
+
+
+def save_treasury(chain, h, raw_root):
+    """treasury.near's request nonce and access keys at block h, saved; returns {path: sha256}."""
+    files = {}
+    for name, params in (
+            (f"{h}_{TREASURY}_nonce.json", {"request_type": "call_function", "block_id": h, "account_id": TREASURY,
+                                             "method_name": "get_request_nonce", "args_base64": "e30="}),
+            (f"{h}_{TREASURY}_keys.json", {"request_type": "view_access_key_list", "block_id": h,
+                                            "account_id": TREASURY})):
+        path = raw_root / "accounts" / name
+        path.parent.mkdir(parents=True, exist_ok=True)
+        raw = rpc_call(chain, params)
+        path.write_bytes(raw)
+        files[path.relative_to(raw_root.parent.parent).as_posix()] = sha256(raw)
+    return files
+
+
+def treasury_point(raw_root, height):
+    """(request nonce, number of full-access keys) of treasury.near at a block, or None if not read."""
+    acc = raw_root / "accounts"
+    n, k = acc / f"{height}_{TREASURY}_nonce.json", acc / f"{height}_{TREASURY}_keys.json"
+    if not (n.exists() and k.exists()):
+        return None
+    rn, rk = json.loads(n.read_bytes())["result"], json.loads(k.read_bytes())["result"]
+    if rn["block_height"] != height or rk["block_height"] != height:
+        return None
+    nonce = int(json.loads(bytes(rn["result"]).decode()))
+    full = sum(1 for key in rk["keys"] if key["access_key"]["permission"] == "FullAccess")
+    return nonce, full
+
+
+def treasury_quiet(data_root):
+    """{date: "yes" | "no" | "not read"} per saved day: did treasury.near send nothing in the window?
+    yes = the same request nonce at both boundary blocks and no full-access key at either."""
+    out = {}
+    for path in sorted((data_root / "daily").glob("*.json")):
+        doc = json.loads(path.read_text(encoding="utf-8"))
+        a = treasury_point(data_root / "raw", doc["start"]["height"])
+        b = treasury_point(data_root / "raw", doc["end"]["height"])
+        if a is None or b is None:
+            out[doc["date"]] = "not read"
+        else:
+            out[doc["date"]] = "yes" if a[0] == b[0] and a[1] == 0 and b[1] == 0 else "no"
+    return out
+
+
+def backfill_treasury(data_root, chain=None):
+    """Read treasury.near at the boundary blocks of every saved day that lacks it; list the new raw
+    files, with sha256, in that day's file. Returns the number of blocks read."""
+    chain = chain or lw.Chain()
+    raw_root = data_root / "raw"
+    done = 0
+    for path in sorted((data_root / "daily").glob("*.json")):
+        doc = json.loads(path.read_text(encoding="utf-8"))
+        changed = False
+        for side in ("start", "end"):
+            h = doc[side]["height"]
+            names = [f"data/raw/accounts/{h}_{TREASURY}_{x}.json" for x in ("nonce", "keys")]
+            if all(n in doc["raw_files"] for n in names):
+                continue
+            files = save_treasury(chain, h, raw_root)
+            doc["raw_files"] = dict(sorted({**doc["raw_files"], **files}.items()))
+            changed = True
+            done += 1
+        if changed:
+            path.write_text(json.dumps(doc, indent=2) + "\n", encoding="utf-8", newline="\n")
+    return done
 
 
 def read_point(data_root, d, height, previous_height):
@@ -319,8 +395,23 @@ def main():
                         help="YYYY-MM-DD (default: today in UTC)")
     parser.add_argument("--data-dir", type=Path, default=REPO / "data")
     parser.add_argument("--verify", action="store_true", help="offline check of every saved day")
+    parser.add_argument("--backfill-treasury", action="store_true",
+                        help="read treasury.near at the boundaries of saved days that lack it")
     args = parser.parse_args()
     data_root = args.data_dir.resolve()
+
+    if args.backfill_treasury:
+        n = backfill_treasury(data_root)
+        rows, problems = verify_history(data_root)
+        print(f"treasury.near read at {n} boundary block(s)")
+        for d, q in treasury_quiet(data_root).items():
+            print(f"  {d}: treasury quiet {q}")
+        if problems:
+            print("\n".join(problems))
+            print("FAILED")
+            return 1
+        print("OK")
+        return 0
 
     if args.verify:
         rows, problems = verify_history(data_root)

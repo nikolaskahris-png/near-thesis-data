@@ -43,10 +43,12 @@ S = series(date(2026, 9, 1), date(2026, 12, 31))   # revenue 1000 USD at $4 = 25
 
 
 class Rules(unittest.TestCase):
-    def run_rows(self, rows, s=S, locks=(), fetched=LATE, th=TH, sealed=None):
+    def run_rows(self, rows, s=S, locks=(), fetched=LATE, th=TH, sealed=None, quiet=None):
         if sealed is None:      # by default a lock given here is sealed in every window
             sealed = {r["date"]: list(locks) for r in rows}
-        return {r["date"]: r for r in rating.evaluate(rows, s, th, fetched, sealed)}
+        if quiet is None:       # by default treasury.near sent nothing in any window
+            quiet = {r["date"]: "yes" for r in rows}
+        return {r["date"]: r for r in rating.evaluate(rows, s, th, fetched, sealed, quiet)}
 
     def test_healthy_window_is_hold(self):
         # kept 250 of 250 NEAR of revenue; 250 NEAR x $4 = $1,000 a day, above a $900 floor
@@ -95,6 +97,42 @@ class Rules(unittest.TestCase):
         s = series(date(2026, 9, 1), date(2026, 12, 31), revenue=10 ** 6)
         r = self.run_rows([hist(D1, kept=100000, cov="1.14")], s=s, th=th, locks=["lock.near"])["2026-11-01"]
         self.assertEqual((r["coverage_counted"], r["rating"]), ("0.008523", "Hold"))
+
+    def test_treasury_transfer_cannot_make_buy(self):
+        # Research 7/11, risk A: DefiLlama counts a transfer from treasury.near as revenue, so only the fee
+        # cap would limit it. A window where treasury.near's request nonce moved, or that was not read,
+        # cannot reach Buy, by coverage or by (a).
+        th = {**TH, "avoid_usd_per_day": "100"}
+        for q in ("no", "not read"):
+            r = self.run_rows([hist(D1, cov="1.02", new=245)], th=th, locks=["lock.near"],
+                              quiet={"2026-11-01": q})["2026-11-01"]
+            self.assertEqual((r["treasury_quiet"], r["covers_issuance"], r["rating"]), (q, "yes", "Hold"))
+        y1 = date(2027, 11, 1)
+        s = series(date(2027, 9, 1), date(2027, 11, 30), revenue=100000, price=5)
+        r = self.run_rows([hist(y1, kept=17000, cov="0.2")], s=s, locks=["lock.near"],
+                          quiet={"2027-11-01": "no"})["2027-11-01"]
+        self.assertEqual((r["yearly_a"], r["rating"]), ("fail", "Hold"))
+
+    def test_zero_revenue_leaves_test_2_alone(self):
+        # Research 7/11, risk B: if the fees leave DefiLlama's view, test 1 is not judged; the on-chain
+        # dollar test decides. Here it passes, so no window fails.
+        s = series(date(2026, 9, 1), date(2026, 12, 31), revenue=0)
+        rows = self.run_rows([hist(D1), hist(D2)], s=s, th={**TH, "avoid_usd_per_day": "100"})
+        r = rows["2026-12-01"]
+        self.assertEqual((r["test_kept_share"], r["test_usd"], r["earlier_window"], r["rating"]),
+                         ("not judged", "pass", "pass", "Hold"))
+        # and if the dollars fall to the floor in both windows, Avoid fires on test 2 alone
+        rows = self.run_rows([hist(D1), hist(D2)], s=s)
+        self.assertEqual((rows["2026-12-01"]["test_usd"], rows["2026-12-01"]["rating"]), ("fail", "Avoid"))
+
+    def test_missing_defillama_day_leaves_test_2_alone(self):
+        s = series(date(2026, 9, 1), date(2026, 12, 31))
+        for d in (date(2026, 10, 15), date(2026, 11, 15)):
+            del s["revenue"][d]
+        rows = self.run_rows([hist(D1), hist(D2)], s=s)      # $1,000 a day <= $6,270 in both
+        r = rows["2026-12-01"]
+        self.assertEqual((r["status"], r["test_kept_share"], r["test_usd"], r["rating"]),
+                         ("incomplete", "not judged", "fail", "Avoid"))
 
     def test_incomplete_window_does_not_judge_coverage(self):
         s = series(date(2026, 9, 1), date(2026, 12, 31))

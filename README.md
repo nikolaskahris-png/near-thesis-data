@@ -97,8 +97,9 @@ choice; every figure in them is measured.*
   trigger Avoid. What a lock already holds when it is declared counts as neither.
 - **Buybacks cover issuance**, with (b): in a 30-day window the buybacks wallets keep at least as many NEAR as are
   issued, so coverage is 100% or more (<!--n:n1.coverage_buybacks-->10.8%<!--/n--> in this window), on the same basis as (a). Only fees count toward it: the NEAR kept is counted up to DefiLlama's revenue
-  and fees for the window, in NEAR (`coverage_counted`), so a transfer from another wallet (the front-end fund,
-  `treasury.near`, a donor) cannot make Buy. Coverage counts NEAR, so a
+  and fees for the window, in NEAR (`coverage_counted`). The revenue cap stops a move from the front-end fund, which
+  DefiLlama leaves out; a transfer from outside counts as revenue, so only the fee cap limits it, and a window in which
+  the protocol treasury (`treasury.near`) sent anything cannot reach Buy at all. Coverage counts NEAR, so a
   lower price raises it only through the dollars kept: if they hold at <!--n:iv.buybacks_kept_usd_per_day-->$46,692<!--/n--> a day, at <!--n:iv.buybacks_equilibrium_price_usd-->$0.53<!--/n--> (mean <!--n:n2.mean_price_usd-->$4.88<!--/n-->) they buy
   as many NEAR as are issued, the dollar test still passes, and with (b) the rating is Buy. That is intended: the
   buybacks then do offset issuance. If instead the NEAR kept stays near today's, a lower price leaves coverage where it
@@ -114,16 +115,17 @@ choice; every figure in them is measured.*
 | | Rule |
 |---|---|
 | Window | 30 days ending at 00:00 UTC. One ends every day: each row of `data/history.csv` is one window. |
-| Avoid test 1: kept share | NEAR the three wallets keep (buybacks wallet, 1Click fund, front-end fund) ÷ DefiLlama's revenue for NEAR in NEAR, each day's dollars at that day's price. Fails below 75%, or if DefiLlama's revenue is zero. |
+| Avoid test 1: kept share | NEAR the three wallets keep (buybacks wallet, 1Click fund, front-end fund) ÷ DefiLlama's revenue for NEAR in NEAR, each day's dollars at that day's price. Fails below 75%. Not judged if DefiLlama's revenue is zero or a day is missing: test 2 then decides alone, so the rule still works if the fees leave DefiLlama's view. |
 | Avoid test 2: dollars | NEAR the buybacks wallets keep (buybacks wallet and 1Click fund, not the front-end fund) × the window's mean price. Fails at or below <!--n:f2.buybacks_kept_usd_per_day.2026-04-->$6,270<!--/n--> a day. |
 | A window fails | if either test fails. |
 | Avoid | the latest window fails, and so does the window that ended 30 days before it, whichever test each one failed. |
 | Leaving Avoid | the rating is recomputed every day: once the latest window, or the one 30 days before it, passes, the rating is Hold again (or Buy). |
-| Missing data | a window missing a DefiLlama day is `incomplete` and counts as neither pass nor fail. |
+| Missing data | a window missing a DefiLlama day is `incomplete`: test 1 and coverage are not judged; test 2, read from the chain at the window's mean price, still is if every day has a price. With no price either, the window counts as neither pass nor fail. |
 | Provisional | for 48 hours after its last day a window is judged but marked `provisional`, because DefiLlama revises recent days; every run re-fetches them, so the row settles by itself. |
 | (b), read from the chain | a lock declared under a published rule (`LOCKS`) has, on the window's end block, no contract and no access keys, so no one can spend from it. Read for each window, so it is never true before the block where it became true. |
-| Coverage counted | NEAR the buybacks wallets keep a day, at most DefiLlama's revenue and at most its fees for the window (both in NEAR), ÷ NEAR issued. A transfer into the wallets that is not a fee cannot raise it. A window missing a DefiLlama day is not judged. |
-| Buy | (b), and either a window's coverage counted is 100% or more, or (a) and (a′) hold at the yearly check, the window ending on 1 November. |
+| Coverage counted | NEAR the buybacks wallets keep a day, at most DefiLlama's revenue and at most its fees for the window (both in NEAR), ÷ NEAR issued. The revenue cap stops moves between the three wallets, which DefiLlama leaves out; a transfer from outside counts as DefiLlama revenue, so only the fee cap limits it. A window missing a DefiLlama day is not judged. |
+| `treasury.near` quiet | the protocol treasury sent nothing in the window: its multisig request nonce (`get_request_nonce`) is the same at both boundary blocks and it has no full-access key, read from the chain each day (`treasury_quiet` in `data/rating.csv`). With no full-access key, every transfer out of it needs a request, and the nonce counts every request ever made. A window not quiet, or not read, cannot reach Buy. |
+| Buy | (b), `treasury.near` quiet in the window, and either its coverage counted is 100% or more, or (a) and (a′) hold at the yearly check, the window ending on 1 November. |
 | Hurdle of (a) | from <!--n:iv.buybacks_kept_usd_per_day-->$46,692<!--/n--> a day: <!--n:lr.required_growth.buybacks.A.2031-->+75%<!--/n--> a year while validators do not run HSP-029, <!--n:lr.required_growth.buybacks.B.2031-->+56%<!--/n--> once they do (`HSP029_IN_FORCE`, set when `scripts/upgrade_watch.py` shows the release adopted). A pass at a yearly check holds until the next one. |
 | Cannot be judged | Hold. Until 1 December 2026 no window has one 30 days before it in `history.csv`, so Avoid cannot fire before then. |
 

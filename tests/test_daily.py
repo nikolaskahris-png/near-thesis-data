@@ -44,6 +44,12 @@ class FakeChainWithState(FakeChain):
         if p["request_type"] == "view_account":
             res = {"amount": str(balance(p["account_id"], h)), "locked": "0",
                    "block_height": h, "block_hash": f"H{h}"}
+        elif p["request_type"] == "view_access_key_list":   # treasury.near: function-call keys only
+            res = {"keys": [{"public_key": "ed25519:x", "access_key": {"nonce": 1, "permission": {
+                "FunctionCall": {"allowance": None, "receiver_id": p["account_id"],
+                                 "method_names": ["add_request", "confirm"]}}}}], "block_height": h}
+        elif p["method_name"] == "get_request_nonce":
+            res = {"result": list(b"25"), "logs": [], "block_height": h}
         else:
             args = json.loads(base64.b64decode(p["args_base64"]))
             assert p["method_name"] == "mt_balance_of" and args["token_id"] == daily.WNEAR
@@ -98,7 +104,8 @@ class DailyTest(unittest.TestCase):
         class WithWnear(FakeChainWithState):
             def _post(self, body):
                 p = body.get("params", {})
-                if p.get("request_type") == "call_function" and p["block_id"] == self.end_h:
+                if (p.get("request_type") == "call_function" and p["block_id"] == self.end_h
+                        and p["method_name"] == "mt_balance_of"):
                     args = json.loads(base64.b64decode(p["args_base64"]))
                     if args["account_id"] == daily.BUYBACKS:
                         self.calls += 1

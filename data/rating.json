@@ -3,7 +3,8 @@
   "rules": {
     "kept_share_min": "0.75",
     "avoid": "this window and the one ending 30 days earlier fail",
-    "buy": "rule (b) read from the chain (a declared lock with no contract and no keys), and coverage counted (kept, at most DefiLlama's revenue and fees) >= 100% or (a) at a yearly check",
+    "buy": "rule (b) read from the chain (a declared lock with no contract and no keys), treasury.near quiet in the window (same multisig request nonce at both ends, no full-access key), and coverage counted (kept, at most DefiLlama's revenue and fees) >= 100% or (a) at a yearly check",
+    "avoid_test_1": "not judged if DefiLlama's revenue is zero or a day is missing; test 2 (read from the chain, with the window's mean price) then decides alone",
     "precedence": "Avoid overrides Buy",
     "hsp029_in_force": false
   },

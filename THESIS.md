@@ -24,7 +24,7 @@ code. Issuance, on the other side of the ledger, is a protocol rule.
   price alone decides it.
 - **Or, with (b), when the buybacks cover issuance:** in a 30-day window the buybacks wallets keep at least as many NEAR
   as are issued (coverage of 100% or more, against <!--n:n1.coverage_buybacks-->10.8%<!--/n--> in this window). Only fees count: what they keep is
-  counted up to DefiLlama's revenue and fees in NEAR, so a transfer from another wallet cannot make Buy. Revenue is earned in dollars and issuance is paid in
+  counted up to DefiLlama's revenue and fees in NEAR, and a window in which the protocol treasury (`treasury.near`) sent anything cannot reach Buy. Revenue is earned in dollars and issuance is paid in
   NEAR, so the higher the price, the less the wallets cover. If the dollars kept hold at <!--n:iv.buybacks_kept_usd_per_day-->$46,692<!--/n--> a day, they cover issuance
   at <!--n:iv.buybacks_equilibrium_price_usd-->$0.53<!--/n-->, and the rating is Buy; if the NEAR kept stays near today's instead, at that price the dollars kept are below
   April's level, failing Avoid's dollar test.
