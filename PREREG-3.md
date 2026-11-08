@@ -41,11 +41,33 @@ figures for NEAR Intents, still has them for every day.
 
 | # | Prediction | Holds if | Probability stated now | Judged at |
 |---|---|---|---|---|
-| 6 | The buybacks wallets keep at least half of what they kept in the 2 October → 1 November window, in USD | kept ≥ $23,345.70 a day | 0.70 | window end, 2026-12-09 00:00 UTC |
-| 7 | They keep at least as much as in the 2 October → 1 November window, in USD | kept ≥ $46,691.40 a day | 0.35 | window end, 2026-12-09 00:00 UTC |
-| 8 | DefiLlama has fees and revenue for NEAR Intents for every day of the window | 30 of 30 days counted | 0.65 | fetched at or after 2026-12-11 00:00 UTC |
+| 6 | The buybacks wallets keep at least half of what they kept in the 2 October → 1 November window, in USD | kept ≥ $23,345.70 a day | 0.90 | window end, 2026-12-09 00:00 UTC |
+| 7 | They keep at least as much as in the 2 October → 1 November window, in USD | kept ≥ $46,691.40 a day | 0.75 | window end, 2026-12-09 00:00 UTC |
+| 8 | DefiLlama has fees and revenue for NEAR Intents for every day of the window | 30 of 30 days counted | 0.90 | fetched at or after 2026-12-11 00:00 UTC |
 
 Numbering continues from `PREREG-2.md` (predictions 4–5). Prediction 7 can hold only if 6 holds.
+
+## How the probabilities were set
+
+Each probability is how often the same event happened before, measured, rounded to two decimals; none is a
+judgement. `scripts/base_rates.py` computes them and saves every response it used; `data/base_rates.json`
+(SHA-256 `fac182b15a19075816cff1fd826c54828b3fbd798b3d12a66c6b407472b69874`) holds the result, and
+`python scripts/base_rates.py --verify` recomputes it with no network.
+
+- **6 and 7:** the buybacks wallets' balances, read at the first block of every day from 2026-04-01 to 2026-11-08
+  (222 boundaries; `buybacks.multisignature.near` did not exist on 1 March), give the kept USD a day of every
+  30-day window, by the rules below without the `treasury.near` exclusion. Of the 154 pairs of windows whose starts
+  are 38 days apart, as 2 October and 9 November are, the later window kept at least half of the earlier one in
+  **139 (0.903)** and at least as much in **115 (0.747)**. The same computation gives $46,691.40 a day for the
+  2 October window, the baseline above.
+- **8:** of the 221 windows of 30 days from 2026-03-01 in DefiLlama's data fetched on 2026-11-08 05:30 UTC,
+  **200 (0.905)** have all 30 days counted by the rule below. Two days, 2026-03-17 and 2026-08-15, account for every
+  window that does not. DefiLlama fills recent days late; in each of the five earlier fetches saved in the repository,
+  the latest window at least 48 hours old was complete (5 of 5).
+- **Limits.** Pairs one day apart share 29 of 30 days, so the 154 pairs hold about 5 independent ones. The history
+  covers months of fast growth (the share of fees NEAR keeps rose from 8.1% in April to 34.3% in October,
+  `f2.take_rate`), and no change like
+  the one described above for 9 November. The rates say what happened, not what will.
 
 ## Exact rules
 

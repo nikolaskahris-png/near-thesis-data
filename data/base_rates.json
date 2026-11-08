@@ -1,0 +1,114 @@
+{
+ "measure": "base rates for PREREG-3.md predictions 6-8",
+ "rules": "Measured base rates for the probabilities of PREREG-3.md.\n\nThe probabilities in PREREG-3.md are not guesses: each is how often the same event happened in the\nhistory of the measure itself: the wallets from 1 April 2026 (buybacks.multisignature.near did not\nexist on 1 March), DefiLlama from 1 March 2026 (the first full month after the fee switch of 23 February).\n\n  P6 / P7  For every pair of 30-day windows whose starts are 38 days apart (as 2 October -> 9 November):\n           how often the later window's buybacks kept, in USD a day, was at least half (P6) / at least\n           all (P7) of the earlier one's. \"Kept\" is PREREG-3.md's measure without the treasury.near\n           exclusion (no such transfer is known): the change in native NEAR of\n           buybacks.multisignature.near and 1csfundsadmin.sputnik-dao.near, plus the wNEAR\n           buybacks.multisignature.near holds inside intents.near, between the first blocks at or after\n           00:00 UTC of the window's first day and of the day after its last, / 30, x the mean\n           coingecko:near price at 12:00 UTC (coins.llama.fi) over the window's days.\n  P8       For every 30-day window: how often all 30 days are counted by fees.py's rule and revenue is\n           above zero each day, in DefiLlama's data as fetched now; and the same for the latest window\n           that was at least 48 hours old in each earlier fetch saved in data/raw/defillama/ and\n           data/raw/rating/.\n\nWindows overlap: pairs one day apart share 29 of 30 days, so ~N pairs hold about N/30 independent ones.\nHistory holds no change like the one PREREG-3.md describes for 9 November; the rates say what\nhappened, not what will.\n\nEvery response is saved byte for byte with its SHA-256 in data/raw/base_rates/; --verify recomputes\ndata/base_rates.json from them with no network.\n\nRead-only: JSON-RPC \"block\" and \"query\", DefiLlama and coins.llama.fi. No keys, nothing written on chain.",
+ "first_day": "2026-03-01",
+ "last_boundary": "2026-11-08",
+ "offset_days": 38,
+ "boundaries_read": 222,
+ "check_2026_10_02_window_usd_per_day": "46691.404487",
+ "p6_p7": {
+  "thresholds": {
+   "1/2": {
+    "held": 139,
+    "pairs": 154,
+    "rate": "0.902597"
+   },
+   "1": {
+    "held": 115,
+    "pairs": 154,
+    "rate": "0.746753"
+   }
+  },
+  "by_baseline_month": {
+   "2026-04": {
+    "pairs": 30,
+    "half": 30,
+    "all": 28
+   },
+   "2026-05": {
+    "pairs": 31,
+    "half": 16,
+    "all": 0
+   },
+   "2026-06": {
+    "pairs": 30,
+    "half": 30,
+    "all": 24
+   },
+   "2026-07": {
+    "pairs": 31,
+    "half": 31,
+    "all": 31
+   },
+   "2026-08": {
+    "pairs": 31,
+    "half": 31,
+    "all": 31
+   },
+   "2026-09": {
+    "pairs": 1,
+    "half": 1,
+    "all": 1
+   }
+  },
+  "pairs_with_baseline_not_above_zero": 0,
+  "independent_pairs_about": 5.1
+ },
+ "p8": {
+  "defillama_fetched_utc": "20261108T053001Z",
+  "windows": 221,
+  "complete": 200,
+  "rate": "0.904977",
+  "bad_days": [
+   "2026-03-17",
+   "2026-08-15"
+  ],
+  "at_48h_in_earlier_fetches": [
+   {
+    "fetch": "raw/defillama/20261101T130217Z",
+    "window": [
+     "2026-09-30",
+     "2026-10-29"
+    ],
+    "complete": true,
+    "bad_days": []
+   },
+   {
+    "fetch": "raw/defillama/20261103T143956Z",
+    "window": [
+     "2026-10-02",
+     "2026-10-31"
+    ],
+    "complete": true,
+    "bad_days": []
+   },
+   {
+    "fetch": "raw/defillama/20261104T150225Z",
+    "window": [
+     "2026-10-03",
+     "2026-11-01"
+    ],
+    "complete": true,
+    "bad_days": []
+   },
+   {
+    "fetch": "raw/rating/20261106T133904Z",
+    "window": [
+     "2026-10-05",
+     "2026-11-03"
+    ],
+    "complete": true,
+    "bad_days": []
+   },
+   {
+    "fetch": "raw/rating/20261107T060025Z",
+    "window": [
+     "2026-10-06",
+     "2026-11-04"
+    ],
+    "complete": true,
+    "bad_days": []
+   }
+  ]
+ }
+}

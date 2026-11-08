@@ -1,0 +1,25 @@
+{
+ "fetched_utc": "20261108T053001Z",
+ "files": {
+  "fees": {
+   "path": "raw/base_rates/llama/20261108T053001Z/fees.json",
+   "sha256": "5e8871f9e1a5f144e8eb80be489534ffb596ea22e27dfe08e289a40fab8f86e4",
+   "url": "https://api.llama.fi/summary/fees/near-intents?dataType=dailyFees&excludeTotalDataChartBreakdown=true"
+  },
+  "revenue": {
+   "path": "raw/base_rates/llama/20261108T053001Z/revenue.json",
+   "sha256": "3a74c9d93e71ac5f55f31ea75b26f1661b1ad636e14edc963290d74decb5ccc6",
+   "url": "https://api.llama.fi/summary/fees/near-intents?dataType=dailyRevenue&excludeTotalDataChartBreakdown=true"
+  },
+  "volume": {
+   "path": "raw/base_rates/llama/20261108T053001Z/volume.json",
+   "sha256": "f08d69a07d91ace57637ba5c4783e3897ace19b460b91db01a7fe2072ee64734",
+   "url": "https://api.llama.fi/summary/dexs/near-intents?excludeTotalDataChartBreakdown=true"
+  },
+  "price": {
+   "path": "raw/base_rates/llama/20261108T053001Z/price.json",
+   "sha256": "8698109d4935496c2e7ae2aa98caadbe80f3e9bf78a6c2500a06d595e5ade9de",
+   "url": "https://coins.llama.fi/chart/coingecko:near?start=1772366400&span=252&period=1d"
+  }
+ }
+}
