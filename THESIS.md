@@ -4,7 +4,7 @@
 Measurement window 2 October → 1 November 2026 (00:00 UTC), blocks 218,126,921 → 222,491,356. Every measured figure here
 is copied from [`data/numbers.json`](data/numbers.json) with a hidden marker of its key, and
 `python scripts/build_numbers.py --check THESIS.md` fails if a marked figure differs. Figures from DefiLlama are
-final for the window: a fetch 24 hours after the previous one changed no day. Thresholds are the author's choice; block heights, dates and protocol
+those of the window's last fetch: no day changed between two fetches 24 hours apart, which shows they had settled, not that DefiLlama cannot revise them. Thresholds are the author's choice; block heights, dates and protocol
 constants are written as they are. The four claims and how to check them are in the [README](README.md); data, method and findings in [docs/DETAILS.md](docs/DETAILS.md).*
 
 ## Claim
@@ -30,7 +30,9 @@ code. Issuance, on the other side of the ledger, is a protocol rule.
   April's level, failing Avoid's dollar test.
 - **Avoid** if this 30-day window and the one ending 30 days before it each fail a test: the wallets keep less than 75% of the revenue DefiLlama attributes to NEAR, both in
   NEAR (April: <!--n:f2.wallets_kept_share_of_revenue.2026-04-->77%<!--/n-->), or what the buybacks wallets keep in dollars is April's level or less
-  (<!--n:f2.buybacks_kept_usd_per_day.2026-04-->$6,270<!--/n--> a day). Avoid overrides Buy. Hold has no upper price: the rating judges what NEAR
+  (<!--n:f2.buybacks_kept_usd_per_day.2026-04-->$6,270<!--/n--> a day; at this window's NEAR kept, a price of <!--n:iv.avoid_test2_price_usd-->$0.655<!--/n--> or less). The dollar test is not judged when
+  DefiLlama's fees fell too and the Confidential Intents Treasury account grew, so capture that moved to the private
+  path is not rated as capture that stopped. Avoid overrides Buy. Hold has no upper price: the rating judges what NEAR
   captures and whether it is a rule, not how far its price can go.
 
 **(c)**, stake spread in the NEAR AI farm, is a signal, not a lever. If NEAR kept every fee, fees counted in NEAR
@@ -92,9 +94,8 @@ What weakens the claim, as measured by the same scripts:
    need <!--n:lr.required_growth.all_fees.B.2031-->+9%<!--/n--> a year. HSP-027 (remove the developer gas rebate) also passed, and its protocol version has been
    in effect since <!--n:pr.v87.first_utc-->2026-11-04 11:46 UTC<!--/n-->, <!--n:pr.v87.days_from_hsp027_passed-->124<!--/n--> days later: a passed vote did become a rule, on the release's schedule.
 5. **Condition (c) weighs little.** The NEAR AI farm holds <!--n:iv.farm_share_of_stake-->0.23%<!--/n--> of all stake, and stake
-   cannot offset issuance, because stakers receive the new NEAR. It stays because it was pre-registered: it tests
-   whether the AI narrative brings broad stake, and it is a case where one account sets the economics of a
-   product.
+   cannot offset issuance, because stakers receive the new NEAR. It stays because it was pre-registered, and because it
+   is a case where one account sets the economics of a product.
 6. **With Intents, NEAR has more revenue per dollar than the other L1s here; on gas alone, less than Ethereum and Solana.** On DefiLlama's figures for the same 30 days, NEAR's market cap is <!--n:peer.near_all.mcap_to_revenue-->234×<!--/n--> a year of its revenue (Intents and gas), against <!--n:peer.aptos.mcap_to_revenue-->426×<!--/n--> for Aptos, <!--n:peer.solana.mcap_to_revenue-->1,995×<!--/n--> for Solana and <!--n:peer.ethereum.mcap_to_revenue-->3,394×<!--/n-->
    for Ethereum, whose figures are their chains' own revenue, without their apps. On L1 gas alone NEAR is <!--n:peer.near_l1.mcap_to_revenue-->4,091×<!--/n-->, so the
    lead comes from Intents. DefiLlama counts the largest share for its holders, though the NEAR is held, not paid out ([peers](docs/DETAILS.md#peers-on-one-basis)). Against apps
@@ -116,7 +117,10 @@ What weakens the claim, as measured by the same scripts:
 
 The rating changes from Hold to Buy only when (b) holds, together with (a) or with the buybacks covering issuance
 (100% or more in a 30-day window); and to Avoid if this 30-day window and the one ending 30 days before it each fail a test: the wallets
-keep less than 75% of DefiLlama's revenue, in NEAR, or what the buybacks wallets keep in dollars is April's level or less. Avoid overrides Buy.
+keep less than 75% of DefiLlama's revenue, in NEAR, or what the buybacks wallets keep in dollars is April's level or less (not judged if
+DefiLlama's fees fell too and the Confidential Intents Treasury account grew). Avoid overrides Buy. The table above can show the claim
+wrong while the rating stays Hold: a "Small" that is wrong with no published rule changes the thesis, not the rating, because Buy also needs (b).
+Until 1 December 2026 the rating cannot be anything but Hold: Avoid needs an earlier window and the daily history starts on 1 November.
 Every case (which windows, which wallets, leaving Avoid, missing days) is in
 [the rules as code applies them](docs/DETAILS.md#the-rating-in-full). (b) is read from the
 chain every day: a declared lock with no contract and no access keys. NEAR moved to it after the declaration counts as

@@ -7,7 +7,10 @@ DefiLlama's volume dataset (the same adapters that give NEAR Intents' volume els
 has two lists a cross-chain swap can sit in: /overview/dexs with category "Bridge" (where NEAR Intents is)
 and /overview/bridge-aggregators (LI.FI, 0x, Socket and others). Both report each protocol's volume over
 the 30 days before the fetch (total30d). This script saves both lists and ranks NEAR Intents among every
-protocol in them, and also against every protocol with volume in /overview/dexs, whatever its category.
+protocol in them, and also against every protocol with volume in /overview/dexs, whatever its category,
+both as DefiLlama lists them (each version of a protocol separately) and with versions added up under
+their parent protocol. /overview/dexs is DefiLlama's DEX-volume overview; NEAR Intents sits in it as a
+"Bridge".
 
 Not compared: DefiLlama's separate bridges dataset (Across, Relay, deBridge, Stargate), which counts
 deposits rather than swaps and whose detail needs a paid key. Aggregators may route some orders through
@@ -67,7 +70,21 @@ def compute(raws):
             if r.get("total30d") is not None and Decimal(str(r["total30d"])) > 0]
     full.sort(key=lambda r: (-Decimal(str(r["total30d"])), r.get("slug") or r.get("module") or ""))
     pos = next((i for i, r in enumerate(full) if (r.get("slug") or r.get("module")) == OURS), None)
+    # The same list with every protocol's versions added up under its parent (Uniswap V3 + V4 + ... as one),
+    # since DefiLlama lists versions separately; a protocol with no parent stands alone.
+    groups = {}
+    for r in full:
+        g = r.get("parentProtocol") or f"id#{r.get('defillamaId') or r.get('id') or r.get('slug')}"
+        groups[g] = groups.get(g, Decimal(0)) + Decimal(str(r["total30d"]))
+    ours_group = None if pos is None else (full[pos].get("parentProtocol")
+                                           or f"id#{full[pos].get('defillamaId') or full[pos].get('id') or OURS}")
+    ranked = sorted(groups.items(), key=lambda kv: (-kv[1], kv[0]))
+    gpos = None if ours_group is None else [k for k, _ in ranked].index(ours_group)
     return {
+        "parent_rank": None if gpos is None else gpos + 1,
+        "parent_groups_with_volume": len(ranked),
+        "ours_group": ours_group,
+        "ours_group_30d_usd": None if gpos is None else str(ranked[gpos][1]),
         "all_rank": None if pos is None else pos + 1,
         "all_protocols_with_volume": len(full),
         "all_categories_above": [] if pos is None else sorted({r.get("category") or "none" for r in full[:pos]}),

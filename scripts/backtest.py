@@ -12,7 +12,8 @@ The rules are rating.py's, called as they are (rating.evaluate), on one window p
 Differences from rating.py, all stated in the output: windows are calendar months, not 30 days ending
 each day, and Avoid compares each month with the month before; treasury.near "quiet" was not read for
 past months (counts as not quiet, as in rating.py); (b) is read from daily.LOCKS, and no lock has been
-declared, so (b) is "no" in every month.
+declared, so (b) is "no" in every month. The private-path rule reads confidential_treasury.json at the
+first of each month, as rating.py does at each window's ends.
 
 The (a) pace check is a sensitivity, not a rule: (a) is judged only at a yearly check from the
 2026-11-01 base. Here the same required growth is applied from the April window to the October window,
@@ -73,7 +74,10 @@ def compute(data_root):
     sealed = {r["date"]: [] for r in hist} if not daily.LOCKS else None
     if sealed is None:
         return None, ["daily.LOCKS is not empty: read (b) for past months before running the backtest"]
-    rows = rating.evaluate(hist, rating.parse(raws), th, fetched, sealed, {}, earlier_of=previous_month)
+    ct = data_root / rating.CT_FILE
+    files[fees.rel(ct, data_root.parent)] = fees.sha256(ct.read_bytes())
+    rows = rating.evaluate(hist, rating.parse(raws), th, fetched, sealed, {}, earlier_of=previous_month,
+                           stables=rating.treasury_stablecoins(data_root))
     for r in rows:
         r["month"] = months[r["date"]]
     first, last = rows[0], rows[-1]
@@ -104,7 +108,8 @@ def compute(data_root):
                "one window per calendar month; Avoid compares with the previous month",
                "treasury.near quiet not read for past months (counts as not quiet, as in rating.py)",
                "(b) from daily.LOCKS: no lock declared, so (b) is no in every month",
-               "Avoid test 2's threshold is April's level (numbers.json f2), so April fails it by construction",
+               "Avoid test 2's threshold is April's level (numbers.json f2), so April is at it by construction; "
+               "with no March window to compare DefiLlama's fees with, the private-path rule applies to it",
                "a_pace is a sensitivity: the (a) growth applied from the first to the last month; "
                "(a) itself is judged only at a yearly check from the 2026-11-01 base"],
            "inputs_sha256": files, "thresholds": th, "summary": summary}

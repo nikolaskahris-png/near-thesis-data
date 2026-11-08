@@ -10,14 +10,14 @@
   "complete": true,
   "provisional_or_pending": [],
   "sources": {
-    "data/backtest.json": "6adb64d92339f05d80446bca3758b62a4d0b4d21837562218910acb2f24587d0",
+    "data/backtest.json": "917fa7700606458e850bb7346700257564f9fc591e1555b907a11ee2848a6495",
     "data/burn.json": "d301a278701801757b4c9582f61b4f9546327f0dd1dfaed0a3a143b0c407f0fd",
     "data/confidential_treasury.json": "e1f49bf6f70a7a9e808c58bbcfef4dea187278480ba7603fd41459a55887a6e1",
     "data/control_history.json": "7cab767c832b77a597a18d90dc1d0b5b2113e76b050624456522585a9fcc9190",
     "data/control_map.json": "6f557db6c579e595008df0bccd143aae331392135492518fe26071ba7c66758c",
     "data/coverage_monthly.json": "74c24cad7c5a975e989fb70a62b157caef271901f16b9dfe9f708b3e98f8e9e9",
     "data/daily/2026-11-01.json": "bc1d0a30291588a93c85093be6be18e38145088855deaf0dc2216a4db63877d0",
-    "data/demand.json": "dee8b83d8255bc670373bbc29bc696e44021358bdbf8b12dbc9ae7aa5d1bad1d",
+    "data/demand.json": "70dcad96ffbc9a21a3aaa7caed9c756278655f97770d2c12d4d6d8eb26a88641",
     "data/farm_rate.json": "9506223b29241924653bb78af227f7387a66d00dd4671f86d5e882b0cfb6b002",
     "data/fees_2026-10-02_2026-11-01.json": "ded7a3b53dad62eb1d326912e57404da225f13fb5cf92cc7d66eb168dc5d083e",
     "data/hsp029.json": "04eff7d95bac22ebbcc8204c8d3c57530f15f374767b2ad732df7180226c28ff",
@@ -186,12 +186,10 @@
       "note": "rating.evaluate on calendar months; see differences_from_rating_py in backtest.json"
     },
     "bt.months_failing": {
-      "value": "1",
-      "text": "1",
+      "value": "0",
+      "text": "0",
       "source": "data/backtest.json",
-      "months": [
-        "2026-04"
-      ],
+      "months": [],
       "note": "rating.evaluate on calendar months; see differences_from_rating_py in backtest.json"
     },
     "bt.rule_b_months": {
@@ -791,6 +789,21 @@
       "value": "1",
       "text": "1",
       "source": "data/demand.json",
+      "as_of": "2026-11-07T12:16:06Z",
+      "basis": "DefiLlama total30d at the fetch: the 30 days before it, not the project's window"
+    },
+    "d.parent_groups_with_volume": {
+      "value": "885",
+      "text": "885",
+      "source": "data/demand.json",
+      "as_of": "2026-11-07T12:16:06Z",
+      "basis": "DefiLlama total30d at the fetch: the 30 days before it, not the project's window"
+    },
+    "d.parent_rank": {
+      "value": "15",
+      "text": "15th",
+      "source": "data/demand.json",
+      "note": "rank in DefiLlama's /overview/dexs (its DEX-volume overview) with each protocol's versions added up under its parent; NEAR Intents' parent group is parent#near-protocol",
       "as_of": "2026-11-07T12:16:06Z",
       "basis": "DefiLlama total30d at the fetch: the 30 days before it, not the project's window"
     },
@@ -3467,6 +3480,27 @@
       "block": 222491356,
       "as_of": "2026-11-01T00:00:00Z",
       "note": "approved actions in the control map's DAOs; dates are submission dates"
+    },
+    "iv.avoid_test2_price_change": {
+      "value": "-0.8657065225999271437942451962954160812447",
+      "text": "-86.6%",
+      "source": "data/daily/2026-11-01.json",
+      "derived_from": [
+        "iv.avoid_test2_price_usd",
+        "n2.mean_price_usd"
+      ],
+      "note": "iv.avoid_test2_price_usd / n2.mean_price_usd - 1"
+    },
+    "iv.avoid_test2_price_usd": {
+      "value": "0.6552313055826954727134982627550353979989",
+      "text": "$0.655",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "USD",
+      "derived_from": [
+        "f2.buybacks_kept_usd_per_day.2026-04",
+        "n1.buybacks_near_per_day"
+      ],
+      "note": "the NEAR price at which this window's NEAR kept a day is worth April's dollars: Avoid's test 2 fails at or below it, whatever the take rate"
     },
     "iv.buyback_yield_buybacks": {
       "value": "0.002667244003484852728354382081619161702956",
@@ -7455,6 +7489,323 @@
       "source": "data/prereg2.json",
       "block": 223314737,
       "note": "first block with this protocol version in effect"
+    },
+    "sc.base.staked_usd_change": {
+      "value": "0.105519844008083039160541525982298547342",
+      "text": "11%",
+      "source": "data/peers.json",
+      "derived_from": [
+        "iv.to2031.staked_share_change",
+        "sc.base.value_change"
+      ],
+      "note": "(1 + iv.to2031.staked_share_change) x (1 + sc.base.value_change) - 1: a staked holder's dollars, window to 1 Jan 2031, on this path"
+    },
+    "sc.base.staked_usd_change.at_fetch": {
+      "value": "0.105519844008083039160541525982298547342",
+      "text": "11%",
+      "source": "data/peers.json",
+      "derived_from": [
+        "iv.to2031.staked_share_change",
+        "sc.base.value_change.at_fetch"
+      ],
+      "note": "(1 + iv.to2031.staked_share_change) x (1 + sc.base.value_change.at_fetch) - 1: a staked holder's dollars, window to 1 Jan 2031, on this path"
+    },
+    "sc.base.unstaked_usd_change": {
+      "value": "-0.0964424831314720195978711228822682836649",
+      "text": "-10%",
+      "source": "data/peers.json",
+      "derived_from": [
+        "iv.to2031.unstaked_share_change",
+        "sc.base.value_change"
+      ],
+      "note": "(1 + iv.to2031.unstaked_share_change) x (1 + sc.base.value_change) - 1: a unstaked holder's dollars, window to 1 Jan 2031, on this path"
+    },
+    "sc.base.unstaked_usd_change.at_fetch": {
+      "value": "-0.0964424831314720195978711228822682836649",
+      "text": "-10%",
+      "source": "data/peers.json",
+      "derived_from": [
+        "iv.to2031.unstaked_share_change",
+        "sc.base.value_change.at_fetch"
+      ],
+      "note": "(1 + iv.to2031.unstaked_share_change) x (1 + sc.base.value_change.at_fetch) - 1: a unstaked holder's dollars, window to 1 Jan 2031, on this path"
+    },
+    "sc.base.value_change": {
+      "value": "0",
+      "text": "0%",
+      "source": "data/peers.json",
+      "derived_from": [
+        "sc.base.value_usd",
+        "peer.near_all.market_cap_usd"
+      ],
+      "note": "sc.base.value_usd / peer.near_all.market_cap_usd - 1"
+    },
+    "sc.base.value_change.at_fetch": {
+      "value": "0",
+      "text": "0%",
+      "source": "data/peers.json",
+      "derived_from": [
+        "sc.base.value_usd.at_fetch",
+        "peer.near_all.market_cap_at_fetch_usd"
+      ],
+      "note": "sc.base.value_usd.at_fetch / peer.near_all.market_cap_at_fetch_usd - 1"
+    },
+    "sc.base.value_usd": {
+      "value": "6391119943.528024315784008034",
+      "text": "$6.39B",
+      "source": "data/peers.json",
+      "unit": "USD",
+      "derived_from": [
+        "peer.near_l1.revenue_usd_per_year",
+        "peer.near_all.revenue_usd_per_year",
+        "peer.near_all.market_cap_usd",
+        "peer.near_all.market_cap_at_fetch_usd",
+        "peer.near_all.mcap_to_revenue",
+        "lr.required_growth.buybacks.A.2031",
+        "iv.to2031.staked_share_change",
+        "iv.to2031.unstaked_share_change",
+        "sc.l1_peer_median_multiple",
+        "sc.bull.capture_multiple"
+      ],
+      "note": "value of all NEAR on 1 Jan 2031, from peer.near_all.market_cap_usd, if the value of all NEAR stays where it is, in dollars; a stated path, not a forecast"
+    },
+    "sc.base.value_usd.at_fetch": {
+      "value": "4859756656",
+      "text": "$4.86B",
+      "source": "data/peers.json",
+      "unit": "USD",
+      "derived_from": [
+        "peer.near_l1.revenue_usd_per_year",
+        "peer.near_all.revenue_usd_per_year",
+        "peer.near_all.market_cap_usd",
+        "peer.near_all.market_cap_at_fetch_usd",
+        "peer.near_all.mcap_to_revenue",
+        "lr.required_growth.buybacks.A.2031",
+        "iv.to2031.staked_share_change",
+        "iv.to2031.unstaked_share_change",
+        "sc.l1_peer_median_multiple",
+        "sc.bull.capture_multiple"
+      ],
+      "note": "value of all NEAR on 1 Jan 2031, from peer.near_all.market_cap_at_fetch_usd, if the value of all NEAR stays where it is, in dollars; a stated path, not a forecast"
+    },
+    "sc.bear.staked_usd_change": {
+      "value": "-0.2718764550083265365636762715880989542802",
+      "text": "-27%",
+      "source": "data/peers.json",
+      "derived_from": [
+        "iv.to2031.staked_share_change",
+        "sc.bear.value_change"
+      ],
+      "note": "(1 + iv.to2031.staked_share_change) x (1 + sc.bear.value_change) - 1: a staked holder's dollars, window to 1 Jan 2031, on this path"
+    },
+    "sc.bear.staked_usd_change.at_fetch": {
+      "value": "-0.0424366405253586471424702830819907347447",
+      "text": "-4%",
+      "source": "data/peers.json",
+      "derived_from": [
+        "iv.to2031.staked_share_change",
+        "sc.bear.value_change.at_fetch"
+      ],
+      "note": "(1 + iv.to2031.staked_share_change) x (1 + sc.bear.value_change.at_fetch) - 1: a staked holder's dollars, window to 1 Jan 2031, on this path"
+    },
+    "sc.bear.unstaked_usd_change": {
+      "value": "-0.4048939909563702755708064637807319185080",
+      "text": "-40%",
+      "source": "data/peers.json",
+      "derived_from": [
+        "iv.to2031.unstaked_share_change",
+        "sc.bear.value_change"
+      ],
+      "note": "(1 + iv.to2031.unstaked_share_change) x (1 + sc.bear.value_change) - 1: a unstaked holder's dollars, window to 1 Jan 2031, on this path"
+    },
+    "sc.bear.unstaked_usd_change.at_fetch": {
+      "value": "-0.2173694791453544063727236586010443441584",
+      "text": "-22%",
+      "source": "data/peers.json",
+      "derived_from": [
+        "iv.to2031.unstaked_share_change",
+        "sc.bear.value_change.at_fetch"
+      ],
+      "note": "(1 + iv.to2031.unstaked_share_change) x (1 + sc.bear.value_change.at_fetch) - 1: a unstaked holder's dollars, window to 1 Jan 2031, on this path"
+    },
+    "sc.bear.value_change": {
+      "value": "-0.3413745135936702662773996712727882535980",
+      "text": "-34%",
+      "source": "data/peers.json",
+      "derived_from": [
+        "sc.bear.value_usd",
+        "peer.near_all.market_cap_usd"
+      ],
+      "note": "sc.bear.value_usd / peer.near_all.market_cap_usd - 1"
+    },
+    "sc.bear.value_change.at_fetch": {
+      "value": "-0.1338343091129171068424784245411880685945",
+      "text": "-13%",
+      "source": "data/peers.json",
+      "derived_from": [
+        "sc.bear.value_usd.at_fetch",
+        "peer.near_all.market_cap_at_fetch_usd"
+      ],
+      "note": "sc.bear.value_usd.at_fetch / peer.near_all.market_cap_at_fetch_usd - 1"
+    },
+    "sc.bear.value_usd": {
+      "value": "4209354481.487339634446002332799567537500",
+      "text": "$4.21B",
+      "source": "data/peers.json",
+      "unit": "USD",
+      "derived_from": [
+        "peer.near_l1.revenue_usd_per_year",
+        "peer.near_all.revenue_usd_per_year",
+        "peer.near_all.market_cap_usd",
+        "peer.near_all.market_cap_at_fetch_usd",
+        "peer.near_all.mcap_to_revenue",
+        "lr.required_growth.buybacks.A.2031",
+        "iv.to2031.staked_share_change",
+        "iv.to2031.unstaked_share_change",
+        "sc.l1_peer_median_multiple",
+        "sc.bull.capture_multiple"
+      ],
+      "note": "value of all NEAR on 1 Jan 2031, from peer.near_all.market_cap_usd, if the buybacks stop and all NEAR is valued on its L1 gas alone at sc.l1_peer_median_multiple, gas revenue held at the window's; a stated path, not a forecast"
+    },
+    "sc.bear.value_usd.at_fetch": {
+      "value": "4209354481.487339634446002332799567537500",
+      "text": "$4.21B",
+      "source": "data/peers.json",
+      "unit": "USD",
+      "derived_from": [
+        "peer.near_l1.revenue_usd_per_year",
+        "peer.near_all.revenue_usd_per_year",
+        "peer.near_all.market_cap_usd",
+        "peer.near_all.market_cap_at_fetch_usd",
+        "peer.near_all.mcap_to_revenue",
+        "lr.required_growth.buybacks.A.2031",
+        "iv.to2031.staked_share_change",
+        "iv.to2031.unstaked_share_change",
+        "sc.l1_peer_median_multiple",
+        "sc.bull.capture_multiple"
+      ],
+      "note": "value of all NEAR on 1 Jan 2031, from peer.near_all.market_cap_at_fetch_usd, if the buybacks stop and all NEAR is valued on its L1 gas alone at sc.l1_peer_median_multiple, gas revenue held at the window's; a stated path, not a forecast"
+    },
+    "sc.bull.capture_multiple": {
+      "value": "10.23519940431116589044424132283282123088",
+      "text": "×10.2",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "multiple",
+      "derived_from": [
+        "lr.required_growth.buybacks.A.2031"
+      ],
+      "note": "(1 + lr.required_growth.buybacks.A.2031) ^ (1522 / 365.25): Buy's (a) pace kept to 2031"
+    },
+    "sc.bull.staked_usd_change": {
+      "value": "9.73210778357867615934897906427200426611",
+      "text": "973%",
+      "source": "data/peers.json",
+      "derived_from": [
+        "iv.to2031.staked_share_change",
+        "sc.bull.value_change"
+      ],
+      "note": "(1 + iv.to2031.staked_share_change) x (1 + sc.bull.value_change) - 1: a staked holder's dollars, window to 1 Jan 2031, on this path"
+    },
+    "sc.bull.staked_usd_change.at_fetch": {
+      "value": "9.73210778357867615934897906427200426611",
+      "text": "973%",
+      "source": "data/peers.json",
+      "derived_from": [
+        "iv.to2031.staked_share_change",
+        "sc.bull.value_change.at_fetch"
+      ],
+      "note": "(1 + iv.to2031.staked_share_change) x (1 + sc.bull.value_change.at_fetch) - 1: a staked holder's dollars, window to 1 Jan 2031, on this path"
+    },
+    "sc.bull.unstaked_usd_change": {
+      "value": "7.771508455731392256668204101938675971885",
+      "text": "777%",
+      "source": "data/peers.json",
+      "derived_from": [
+        "iv.to2031.unstaked_share_change",
+        "sc.bull.value_change"
+      ],
+      "note": "(1 + iv.to2031.unstaked_share_change) x (1 + sc.bull.value_change) - 1: a unstaked holder's dollars, window to 1 Jan 2031, on this path"
+    },
+    "sc.bull.unstaked_usd_change.at_fetch": {
+      "value": "7.771508455731392256668204101938675971885",
+      "text": "777%",
+      "source": "data/peers.json",
+      "derived_from": [
+        "iv.to2031.unstaked_share_change",
+        "sc.bull.value_change.at_fetch"
+      ],
+      "note": "(1 + iv.to2031.unstaked_share_change) x (1 + sc.bull.value_change.at_fetch) - 1: a unstaked holder's dollars, window to 1 Jan 2031, on this path"
+    },
+    "sc.bull.value_change": {
+      "value": "8.707747754820227409763354812941689865907",
+      "text": "871%",
+      "source": "data/peers.json",
+      "derived_from": [
+        "sc.bull.value_usd",
+        "peer.near_all.market_cap_usd"
+      ],
+      "note": "sc.bull.value_usd / peer.near_all.market_cap_usd - 1"
+    },
+    "sc.bull.value_change.at_fetch": {
+      "value": "8.707747754820227409763354812941689865907",
+      "text": "871%",
+      "source": "data/peers.json",
+      "derived_from": [
+        "sc.bull.value_usd.at_fetch",
+        "peer.near_all.market_cap_at_fetch_usd"
+      ],
+      "note": "sc.bull.value_usd.at_fetch / peer.near_all.market_cap_at_fetch_usd - 1"
+    },
+    "sc.bull.value_usd": {
+      "value": "62043380282.57095664437650061358570885029",
+      "text": "$62.04B",
+      "source": "data/peers.json",
+      "unit": "USD",
+      "derived_from": [
+        "peer.near_l1.revenue_usd_per_year",
+        "peer.near_all.revenue_usd_per_year",
+        "peer.near_all.market_cap_usd",
+        "peer.near_all.market_cap_at_fetch_usd",
+        "peer.near_all.mcap_to_revenue",
+        "lr.required_growth.buybacks.A.2031",
+        "iv.to2031.staked_share_change",
+        "iv.to2031.unstaked_share_change",
+        "sc.l1_peer_median_multiple",
+        "sc.bull.capture_multiple"
+      ],
+      "note": "value of all NEAR on 1 Jan 2031, from peer.near_all.market_cap_usd, if Intents' revenue grows at Buy's (a) pace to 2031 (sc.bull.capture_multiple), gas revenue held, and all NEAR keeps today's multiple of revenue; a stated path, not a forecast"
+    },
+    "sc.bull.value_usd.at_fetch": {
+      "value": "47177291766.25665623803110293708301226573",
+      "text": "$47.18B",
+      "source": "data/peers.json",
+      "unit": "USD",
+      "derived_from": [
+        "peer.near_l1.revenue_usd_per_year",
+        "peer.near_all.revenue_usd_per_year",
+        "peer.near_all.market_cap_usd",
+        "peer.near_all.market_cap_at_fetch_usd",
+        "peer.near_all.mcap_to_revenue",
+        "lr.required_growth.buybacks.A.2031",
+        "iv.to2031.staked_share_change",
+        "iv.to2031.unstaked_share_change",
+        "sc.l1_peer_median_multiple",
+        "sc.bull.capture_multiple"
+      ],
+      "note": "value of all NEAR on 1 Jan 2031, from peer.near_all.market_cap_at_fetch_usd, if Intents' revenue grows at Buy's (a) pace to 2031 (sc.bull.capture_multiple), gas revenue held, and all NEAR keeps today's multiple of revenue; a stated path, not a forecast"
+    },
+    "sc.l1_peer_median_multiple": {
+      "value": "2694.7376436173102976328443845",
+      "text": "2,695×",
+      "source": "data/peers.json",
+      "unit": "multiple",
+      "derived_from": [
+        "peer.aptos.mcap_to_revenue",
+        "peer.solana.mcap_to_revenue",
+        "peer.ethereum.mcap_to_revenue",
+        "peer.sui.mcap_to_revenue"
+      ],
+      "note": "median of the market cap / holders' revenue of the four L1s in the peers table (Aptos, Solana, Ethereum, Sui), at their window mean prices"
     },
     "te.steps": {
       "value": "73",

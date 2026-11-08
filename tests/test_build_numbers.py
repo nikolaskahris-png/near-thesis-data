@@ -535,3 +535,36 @@ class MarkerTest(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class PathsTest(unittest.TestCase):
+    """The three stated paths to 2031 (sc.*) and Avoid's test-2 price, recomputed from numbers.json's own inputs."""
+
+    def setUp(self):
+        path = Path(__file__).resolve().parent.parent / "data" / "numbers.json"
+        self.n = {k: v["value"] for k, v in json.loads(path.read_text(encoding="utf-8"))["numbers"].items()}
+
+    def v(self, k):
+        return float(self.n[k])
+
+    def test_paths(self):
+        mult = sorted(self.v(f"peer.{p}.mcap_to_revenue") for p in ("aptos", "solana", "ethereum", "sui"))
+        median = (mult[1] + mult[2]) / 2
+        self.assertAlmostEqual(self.v("sc.l1_peer_median_multiple"), median, places=6)
+        l1, allr = self.v("peer.near_l1.revenue_usd_per_year"), self.v("peer.near_all.revenue_usd_per_year")
+        grow = (1 + self.v("lr.required_growth.buybacks.A.2031")) ** (1522 / 365.25)
+        ratios = {"bear": median * l1 / self.v("peer.near_all.market_cap_usd"), "base": 1.0,
+                  "bull": (l1 + (allr - l1) * grow) / allr}
+        for name, ratio in ratios.items():
+            self.assertAlmostEqual(self.v(f"sc.{name}.value_change"), ratio - 1, places=9)
+            for who in ("staked", "unstaked"):
+                want = (1 + self.v(f"iv.to2031.{who}_share_change")) * ratio - 1
+                self.assertAlmostEqual(self.v(f"sc.{name}.{who}_usd_change"), want, places=9)
+        bear_fetch = median * l1 / self.v("peer.near_all.market_cap_at_fetch_usd")
+        self.assertAlmostEqual(self.v("sc.bear.value_change.at_fetch"), bear_fetch - 1, places=9)
+        self.assertLess(self.v("sc.bear.value_change"), 0)
+        self.assertGreater(self.v("sc.bull.value_change"), 0)
+
+    def test_avoid_test2_price(self):
+        p = self.v("f2.buybacks_kept_usd_per_day.2026-04") / self.v("n1.buybacks_near_per_day")
+        self.assertAlmostEqual(self.v("iv.avoid_test2_price_usd"), p, places=9)

@@ -4,7 +4,7 @@
   "one window per calendar month; Avoid compares with the previous month",
   "treasury.near quiet not read for past months (counts as not quiet, as in rating.py)",
   "(b) from daily.LOCKS: no lock declared, so (b) is no in every month",
-  "Avoid test 2's threshold is April's level (numbers.json f2), so April fails it by construction",
+  "Avoid test 2's threshold is April's level (numbers.json f2), so April is at it by construction; with no March window to compare DefiLlama's fees with, the private-path rule applies to it",
   "a_pace is a sensitivity: the (a) growth applied from the first to the last month; (a) itself is judged only at a yearly check from the 2026-11-01 base"
  ],
  "inputs_sha256": {
@@ -13,7 +13,8 @@
   "data/raw/defillama/20261104T150225Z/fees.json": "153519c7c11343c8bb091bcf30be9d227149d381fb8ee86edaa4c8a41cfa317e",
   "data/raw/defillama/20261104T150225Z/revenue.json": "67907a3e8b642fad41816cd9a5d63cc5081bb7ca03984d9cc4c57ec66de39a65",
   "data/raw/defillama/20261104T150225Z/volume.json": "333321451a37da49c3e22a13bdd2a803057177ef6500300e78449e3007efefa6",
-  "data/raw/defillama/20261104T150225Z/price.json": "8e6418d38f270746abd694556308a65a796238acbc1878e466742a11a0b3cfeb"
+  "data/raw/defillama/20261104T150225Z/price.json": "8e6418d38f270746abd694556308a65a796238acbc1878e466742a11a0b3cfeb",
+  "data/confidential_treasury.json": "e1f49bf6f70a7a9e808c58bbcfef4dea187278480ba7603fd41459a55887a6e1"
  },
  "thresholds": {
   "avoid_usd_per_day": "6270.3997866",
@@ -31,9 +32,7 @@
    "Buy": 0,
    "Avoid": 0
   },
-  "months_failing_an_avoid_test": [
-   "2026-04"
-  ],
+  "months_failing_an_avoid_test": [],
   "lowest_kept_share": "0.766504",
   "lowest_kept_share_month": "2026-04",
   "highest_coverage_counted": "0.152552",

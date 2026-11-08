@@ -12,7 +12,8 @@
 <header class="wrap top">
   <p class="eyebrow">Investment Thesis · NEAR HACKATHON</p>
   <h1>NEAR's value capture is real, small and discretionary.</h1>
-  <p class="verdict"><strong>Rating: Hold.</strong> Keep NEAR you own, staked; do not add. Horizon 2031, checked every year.</p>
+  <p class="verdict"><strong>Rating: Hold.</strong> Keep NEAR you own, staked; do not add. Horizon 2031, checked every year.
+    Until the daily history has two windows a month apart the rules cannot give anything else; read them as a monitor.</p>
   <p class="lede">Users pay real fees on NEAR Intents, but only a small part reaches NEAR holders, and every link from
     the fee a user pays to the NEAR a holder keeps can be changed by a few signers or by a company off-chain; none is
     fixed in code.</p>
@@ -30,17 +31,21 @@
         <span data-n="n1.wallets_held_near"></span> NEAR, and nothing is burned</span></div>
   </div>
   <ul class="triggers">
-    <li><b>Buy</b> only when <b>(b)</b> keeping the buybacks is a published rule (a lock no one can spend from), and either
-      they cover all new NEAR or <b>(a)</b> what they keep grows <span data-n="lr.required_growth.buybacks.A.2031"></span> a year, in dollars and in NEAR.</li>
+    <li><b>Buy</b> only when <b>(b)</b> keeping the buybacks is a published rule (a lock no one can spend from) and
+      <code>treasury.near</code> sent nothing in the window, and either the NEAR they keep, counted up to DefiLlama's revenue and fees,
+      covers all new NEAR, or <b>(a)</b> it grows <span data-n="lr.required_growth.buybacks.A.2031"></span> a year, in dollars and in NEAR.</li>
     <li><b>Avoid</b> when this thirty-day window and the one ending thirty days before it each fail a test: the wallets keep
       less than three quarters of DefiLlama's revenue, or the buybacks wallets keep April's
-      <span data-n="f2.buybacks_kept_usd_per_day.2026-04"></span> a day or less. Avoid overrides Buy; Hold has no upper price.</li>
+      <span data-n="f2.buybacks_kept_usd_per_day.2026-04"></span> a day or less (at this window's NEAR kept, a price of
+      <span data-n="iv.avoid_test2_price_usd"></span> or less), unless DefiLlama's fees fell too and the Confidential Intents
+      Treasury account grew. Avoid overrides Buy; Hold has no upper price.</li>
   </ul>
   <p class="also">Also measured: NEAR Intents moved <span data-n="d.ours_30d_usd"></span> in DefiLlama's thirty days to
     <span data-n="d.window_end"></span> (not the window) · a staked holder's share of all NEAR grows
     <span data-n="iv.staked_share_growth"></span> a year before the validator's commission, an unstaked holder's changes
-    <span data-n="iv.unstaked_share_change"></span> · in the backtest Avoid did not fire in any of <span data-n="bt.months"></span>
-    months · the Confidential Intents Treasury account held <span data-n="ct.priced_usd.2026-11-08"></span> at the latest read.</p>
+    <span data-n="iv.unstaked_share_change"></span> · to 2031, a staked holder's dollars
+    <span data-n="sc.bear.staked_usd_change"></span> / +<span data-n="sc.base.staked_usd_change"></span> /
+    +<span data-n="sc.bull.staked_usd_change"></span> on three stated paths (README) · the Confidential Intents Treasury account held <span data-n="ct.priced_usd.2026-11-08"></span> at the latest read.</p>
   <p class="status" id="status"></p>
   <nav class="links"><a href="../README.md">README</a><a href="../THESIS.md">THESIS</a><a href="../PREREG.md">PREREG</a><a href="https://github.com/nikolaskahris-png/near-thesis-data">Repository</a></nav>
 </header>

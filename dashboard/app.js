@@ -398,7 +398,7 @@ function chartFarm() {
   });
   lineChart($("#c4b"), {
     title: "Largest account's share of the farm", xs: dates.map(dayLabel), ys: share, top: 1,
-    refs: [{ v: 0.5, name: "half: condition (c)" }], fmt: v => fmtPct(v, 0), last: v => fmtPct(v, 1), height: 260,
+    refs: [{ v: 0.5, name: "half: condition (c), stake spread" }], fmt: v => fmtPct(v, 0), last: v => fmtPct(v, 1), height: 260,
     tips: dates.map((d, i) => `<b>${d}</b><br>Largest account ${txt("f5.largest_share." + d)}` +
       (d > "2026-09-15" && d <= "2026-10-01" ? `<br>Credits rate ${txt("f6.change1.ratio")} on ${txt("f6.change1.utc")}` : "")),
   });

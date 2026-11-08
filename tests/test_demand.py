@@ -37,6 +37,18 @@ class DemandTest(unittest.TestCase):
     def tearDown(self):
         shutil.rmtree(self.tmp)
 
+    def test_versions_add_up_under_their_parent(self):
+        dexs = json.dumps({"protocols": [
+            {"slug": "near-intents", "category": "Bridge", "total30d": 4000, "parentProtocol": "parent#near"},
+            {"slug": "uni-v3", "category": "Dexs", "total30d": 3000, "parentProtocol": "parent#uni"},
+            {"slug": "uni-v4", "category": "Dexs", "total30d": 2000, "parentProtocol": "parent#uni"},
+            {"slug": "solo", "category": "Dexs", "total30d": 3500, "defillamaId": "9"},
+        ]}).encode()
+        r = demand.compute({"bridge": dexs, "bridge_aggregator": AGG})
+        # as listed: 4000 is 1st of 4; with versions added, Uni (5000) is above it: 2nd of 3
+        self.assertEqual((r["all_rank"], r["parent_rank"], r["parent_groups_with_volume"]), (1, 2, 3))
+        self.assertEqual(r["ours_group_30d_usd"], "4000")
+
     def test_rank_among_both_lists_without_dexs_or_zero_volume(self):
         r = self.doc["results"]
         self.assertEqual((r["ours_rank"], r["protocols_ranked"], r["bridges_with_volume"]), (1, 4, 2))

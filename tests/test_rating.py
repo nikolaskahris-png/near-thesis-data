@@ -125,6 +125,34 @@ class Rules(unittest.TestCase):
         rows = self.run_rows([hist(D1), hist(D2)], s=s)
         self.assertEqual((rows["2026-12-01"]["test_usd"], rows["2026-12-01"]["rating"]), ("fail", "Avoid"))
 
+    def test_private_path_growth_leaves_test_2_unjudged(self):
+        # Judge #13, finding 7: the buybacks' dollars fall to the floor while DefiLlama's fees fall too and
+        # the Confidential Intents Treasury account grows: capture may have moved to FAR, so no fail.
+        s = series(date(2026, 9, 1), date(2026, 12, 31))
+        for d in s["fees"]:
+            if d >= date(2026, 11, 1):
+                s["fees"][d] = Fraction(1000)          # fees fall in the second window
+        grow = {"2026-10-02": Fraction(10), "2026-11-01": Fraction(20), "2026-12-01": Fraction(30)}
+        flat = {"2026-10-02": Fraction(10), "2026-11-01": Fraction(10), "2026-12-01": Fraction(10)}
+        def run(stables):
+            return {r["date"]: r for r in rating.evaluate([hist(D1), hist(D2)], s, TH, LATE,
+                                                            {}, {}, stables=stables)}
+        r = run(grow)
+        # D1 has no earlier window to compare fees with, and the account grew: not judged either
+        self.assertEqual((r["2026-11-01"]["test_usd"], r["2026-12-01"]["test_usd"], r["2026-12-01"]["rating"]),
+                         ("not judged", "not judged", "Hold"))
+        self.assertIn("private path", r["2026-12-01"]["note"])
+        r = run(flat)                                   # the account did not grow: capture stopped
+        self.assertEqual((r["2026-12-01"]["test_usd"], r["2026-12-01"]["rating"]), ("fail", "Avoid"))
+        r = run({})                                     # not read: evidence is needed, so still a fail
+        self.assertEqual((r["2026-12-01"]["test_usd"], r["2026-12-01"]["rating"]), ("fail", "Avoid"))
+
+    def test_steady_fees_keep_test_2_a_fail_whatever_far_holds(self):
+        grow = {"2026-10-02": Fraction(10), "2026-11-01": Fraction(20), "2026-12-01": Fraction(30)}
+        rows = {r["date"]: r for r in rating.evaluate([hist(D1), hist(D2)], S, TH, LATE, {}, {}, stables=grow)}
+        self.assertEqual((rows["2026-12-01"]["test_usd"], rows["2026-12-01"]["rating"]), ("fail", "Hold"))
+        self.assertEqual(rows["2026-11-01"]["test_usd"], "not judged")   # no earlier window: fees not comparable
+
     def test_missing_defillama_day_leaves_test_2_alone(self):
         s = series(date(2026, 9, 1), date(2026, 12, 31))
         for d in (date(2026, 10, 15), date(2026, 11, 15)):
@@ -207,6 +235,7 @@ class Verify(unittest.TestCase):
         (self.data / "raw" / "x").mkdir(parents=True)
         shutil.copy(REPO / "data" / "history.csv", self.data / "history.csv")
         shutil.copy(REPO / "data" / "numbers.json", self.data / "numbers.json")
+        shutil.copy(REPO / "data" / rating.CT_FILE, self.data / rating.CT_FILE)
         doc = json.loads((REPO / "data" / "rating.json").read_text(encoding="utf-8"))
         for name in rating.SERIES:
             shutil.copy(REPO / doc["raw"][name]["path"], self.data / "raw" / "x" / f"{name}.json")
@@ -217,6 +246,11 @@ class Verify(unittest.TestCase):
 
     def test_clean_copy_verifies(self):
         self.assertEqual(rating.verify(self.data), [])
+
+    def test_edited_treasury_file_fails(self):
+        p = self.data / rating.CT_FILE
+        p.write_bytes(p.read_bytes() + b" ")
+        self.assertTrue(any("sha256 differs" in x for x in rating.verify(self.data)))
 
     def test_edited_csv_fails(self):
         p = self.data / "rating.csv"

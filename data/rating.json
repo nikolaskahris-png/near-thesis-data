@@ -5,6 +5,7 @@
     "avoid": "this window and the one ending 30 days earlier fail",
     "buy": "rule (b) read from the chain (a declared lock with no contract and no keys), treasury.near quiet in the window (same multisig request nonce at both ends, no full-access key), and coverage counted (kept, at most DefiLlama's revenue and fees) >= 100% or (a) at a yearly check",
     "avoid_test_1": "not judged if DefiLlama's revenue is zero or a day is missing; test 2 (read from the chain, with the window's mean price) then decides alone",
+    "avoid_test_2_private_path": "not judged if DefiLlama's fees fell too (or are missing) and the Confidential Intents Treasury account's stablecoins grew over the window; not read counts as not grown",
     "precedence": "Avoid overrides Buy",
     "hsp029_in_force": false
   },
@@ -16,6 +17,10 @@
     "base_near_per_day": "9569.750",
     "growth_with_hsp029": "0.560381360582410398451709902128222265887",
     "growth_without_hsp029": "0.747443747073649803612827564774132054301"
+  },
+  "private_path": {
+    "path": "data/confidential_treasury.json",
+    "sha256": "e1f49bf6f70a7a9e808c58bbcfef4dea187278480ba7603fd41459a55887a6e1"
   },
   "raw": {
     "fees": {

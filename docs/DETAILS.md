@@ -57,7 +57,9 @@ choice; every figure in them is measured.*
   either test: the wallets keep less than 75% of the revenue DefiLlama
   attributes to NEAR, both counted in NEAR (lowest month so far: April, <!--n:f2.wallets_kept_share_of_revenue.2026-04-->77%<!--/n-->; October <!--n:f2.wallets_kept_share_of_revenue.2026-10-->100%<!--/n-->), or what the
   buybacks wallets keep in dollars falls back to April's level (<!--n:f2.buybacks_kept_usd_per_day.2026-04-->$6,270<!--/n--> a day). A rising price alone cannot
-  trigger either. NEAR moved from the wallets to an account declared as a lock (the published rule of (b)), after the
+  trigger either; a falling one can trigger the second: at this window's NEAR kept a day, it fails at a price of
+  <!--n:iv.avoid_test2_price_usd-->$0.655<!--/n--> or less (<!--n:iv.avoid_test2_price_change-->-86.6%<!--/n--> from the window's mean), whatever the take rate. The second test is not judged when
+  DefiLlama's fees fell too and the Confidential Intents Treasury account grew (the private path, below). NEAR moved from the wallets to an account declared as a lock (the published rule of (b)), after the
   declaration, counts as kept, not as an outflow (`LOCKS` in `scripts/daily.py`; none exists yet), so meeting (b) cannot
   trigger Avoid. What a lock already holds when it is declared counts as neither.
 - **Buybacks cover issuance**, with (b): in a 30-day window the buybacks wallets keep at least as many NEAR as are
@@ -81,11 +83,12 @@ choice; every figure in them is measured.*
 |---|---|
 | Window | 30 days ending at 00:00 UTC. One ends every day: each row of `data/history.csv` is one window. |
 | Avoid test 1: kept share | NEAR the three wallets keep (buybacks wallet, 1Click fund, front-end fund) ÷ DefiLlama's revenue for NEAR in NEAR, each day's dollars at that day's price. Fails below 75%. Not judged if DefiLlama's revenue is zero or a day is missing: test 2 then decides alone, so the rule still works if the fees leave DefiLlama's view. |
-| Avoid test 2: dollars | NEAR the buybacks wallets keep (buybacks wallet and 1Click fund, not the front-end fund) × the window's mean price. Fails at or below <!--n:f2.buybacks_kept_usd_per_day.2026-04-->$6,270<!--/n--> a day. |
+| Avoid test 2: dollars | NEAR the buybacks wallets keep (buybacks wallet and 1Click fund, not the front-end fund) × the window's mean price. Fails at or below <!--n:f2.buybacks_kept_usd_per_day.2026-04-->$6,270<!--/n--> a day, so at this window's NEAR kept it fails at a price of <!--n:iv.avoid_test2_price_usd-->$0.655<!--/n--> or less. Not judged on the private path (below). |
 | A window fails | if either test fails. |
 | Avoid | the latest window fails, and so does the window that ended 30 days before it, whichever test each one failed. |
 | Leaving Avoid | the rating is recomputed every day: once the latest window, or the one 30 days before it, passes, the rating is Hold again (or Buy). |
 | Missing data | a window missing a DefiLlama day is `incomplete`: test 1 and coverage are not judged; test 2, read from the chain at the window's mean price, still is if every day has a price. With no price either, the window counts as neither pass nor fail. |
+| Private path | test 2 below its floor is `not judged` instead of `fail` when DefiLlama's fees in dollars a day are below the earlier window's (or the earlier window has none, or a day is missing) **and** the stablecoins of the Confidential Intents Treasury account (`data/confidential_treasury.json`, the account that backs balances on FAR) are higher at the window's end than at its start. Capture that moved to FAR and capture that stopped look the same on mainnet; this keeps the first from being rated as the second. It needs evidence: a window whose ends were not read stays a fail. The account is read every day from 2 October to 8 November 2026. If DefiLlama's fees held, a fall in what the buybacks keep fails whatever FAR holds. |
 | Provisional | for 48 hours after its last day a window is judged but marked `provisional`, because DefiLlama revises recent days; every run re-fetches them, so the row settles by itself. |
 | (b), read from the chain | a lock declared under a published rule (`LOCKS`) has, on the window's end block, no contract and no access keys, so no one can spend from it. Read for each window, so it is never true before the block where it became true. |
 | Coverage counted | NEAR the buybacks wallets keep a day, at most DefiLlama's revenue and at most its fees for the window (both in NEAR), ÷ NEAR issued. The revenue cap stops moves between the three wallets, which DefiLlama leaves out; a transfer from outside counts as DefiLlama revenue, so only the fee cap limits it. A window missing a DefiLlama day is not judged. |
@@ -115,11 +118,11 @@ staked with validators. What each holder gets:
 
 | Condition | Today | Met when | Measured by |
 |---|---|---|---|
-| **(a)** Coverage | <!--n:n1.coverage_buybacks-->10.8%<!--/n--> (<!--n:n1.coverage_with_front_end-->16.5%<!--/n--> with the front-end fund) | the wallets keep as much NEAR as is issued: what they keep grows <!--n:iv.wallets_multiple_buybacks-->×9.2<!--/n--> (<!--n:iv.wallets_multiple_with_front_end-->×6.1<!--/n-->), or, with every fee kept, fees <!--n:iv.fees_multiple-->×2.1<!--/n--> | `data/history.csv`, daily |
+| Coverage | <!--n:n1.coverage_buybacks-->10.8%<!--/n--> (<!--n:n1.coverage_with_front_end-->16.5%<!--/n--> with the front-end fund) | the wallets keep as much NEAR as is issued: what they keep grows <!--n:iv.wallets_multiple_buybacks-->×9.2<!--/n--> (<!--n:iv.wallets_multiple_with_front_end-->×6.1<!--/n-->), or, with every fee kept, fees <!--n:iv.fees_multiple-->×2.1<!--/n--> | `data/history.csv`, daily |
 | **(b)** A rule, not a choice | a <!--n:c.buybacks_confirmations-->2 of 4<!--/n--> multisig, nothing burned | bought NEAR moves by a published rule to an account no one can spend from | `scripts/daily.py` (`sealed`: the lock's code and keys, every window) |
 | (c) Signal: stake spread | largest account <!--n:n3.largest_share-->73.3%<!--/n--> of the farm | the largest holds less than half | `scripts/stakers.py` |
 
-(a) and (b) decide value; (c) does not, because stake cannot offset issuance: stakers are the ones who receive
+Coverage, the growth test (a) and the rule (b) decide the rating; (c) does not, because stake cannot offset issuance: stakers are the ones who receive
 the new NEAR. Buybacks pay for NEAR with money from outside, the fees users pay, but they offset issuance only in
 the supply outside their wallets, and only while the NEAR stays there: total supply grows either way.
 
@@ -186,11 +189,29 @@ differs from this value only by the price.
 | NEAR kept by the three wallets, on chain | <!--n:iv.wallets_kept_usd_per_year-->$25.9M<!--/n--> | <!--n:iv.value_to_wallets_kept-->247×<!--/n--> |
 | Issuance, for comparison | <!--n:iv.issuance_usd_per_year-->$157.5M<!--/n--> | — |
 
+### Three paths to 2031
+
+What a holder's dollars do from the window to 1 January 2031 is (1 + the change in their share of all NEAR) × (the
+value of all NEAR in 2031 ÷ its value now) − 1. The share change is measured (+<!--n:iv.to2031.staked_share_change-->10.6%<!--/n--> staked, <!--n:iv.to2031.unstaked_share_change-->-9.6%<!--/n--> not
+staked, at today's rates). The value is not, so the README sets out three paths, each built only from figures here
+(`sc.*` in `numbers.json`, `scripts/build_numbers.py`). They are stated, not forecast, and carry no probability.
+
+| Path | How the value of all NEAR in 2031 is set | Value | Change | Staked, $ | Not staked, $ |
+|---|---|---|---|---|---|
+| Bear | the buybacks stop; NEAR is valued on its L1 gas revenue alone (<!--n:peer.near_l1.revenue_usd_per_year-->$1.6M<!--/n--> a year, held) at <!--n:sc.l1_peer_median_multiple-->2,695×<!--/n-->, the median market cap ÷ revenue of Aptos, Solana, Ethereum and Sui in the table below | <!--n:sc.bear.value_usd-->$4.21B<!--/n--> | <!--n:sc.bear.value_change-->-34%<!--/n--> | <!--n:sc.bear.staked_usd_change-->-27%<!--/n--> | <!--n:sc.bear.unstaked_usd_change-->-40%<!--/n--> |
+| Base | unchanged in dollars | <!--n:sc.base.value_usd-->$6.39B<!--/n--> | <!--n:sc.base.value_change-->0%<!--/n--> | +<!--n:sc.base.staked_usd_change-->11%<!--/n--> | <!--n:sc.base.unstaked_usd_change-->-10%<!--/n--> |
+| Bull | Intents' revenue grows at Buy's (a) pace, <!--n:lr.required_growth.buybacks.A.2031-->+75%<!--/n--> a year (<!--n:sc.bull.capture_multiple-->×10.2<!--/n--> by 2031), gas revenue held, and the value stays at <!--n:peer.near_all.mcap_to_revenue-->234×<!--/n--> a year of revenue | <!--n:sc.bull.value_usd-->$62.04B<!--/n--> | +<!--n:sc.bull.value_change-->871%<!--/n--> | +<!--n:sc.bull.staked_usd_change-->973%<!--/n--> | +<!--n:sc.bull.unstaked_usd_change-->777%<!--/n--> |
+
+"Now" is the window's mean price (<!--n:peer.near_all.market_cap_usd-->$6.39B<!--/n-->). At the price of the peers fetch (<!--n:peer.near_all.market_cap_at_fetch_usd-->$4.86B<!--/n-->) the bear path is
+<!--n:sc.bear.value_change.at_fetch-->-13%<!--/n--> (<!--n:sc.bear.staked_usd_change.at_fetch-->-4%<!--/n--> staked, <!--n:sc.bear.unstaked_usd_change.at_fetch-->-22%<!--/n--> not staked); base and bull are ratios to "now" and do not change. Limits: the bear
+path holds gas revenue and the peers' multiples at the window's; the bull path holds NEAR's multiple, which
+counts Intents; neither includes HSP-029 or a price for the NEAR the wallets hold.
+
 ### Peers on one basis
 
 DefiLlama's revenue and holders' revenue (what is paid to token holders: buybacks, or for an L1 the gas that is
 burned) over the window's 30 days, a year, against each token's market cap at its mean price over the same 30 days:
-CoinGecko's supply at <!--n:peer.value_as_of-->2026-11-06 20:31 UTC<!--/n--> × the daily prices NEAR's figures use (coins.llama.fi). Each row is DefiLlama's
+CoinGecko's supply at <!--n:peer.value_as_of-->2026-11-06 20:31 UTC<!--/n--> (its market cap ÷ its price at that fetch) × the daily prices NEAR's figures use (coins.llama.fi). Each row is DefiLlama's
 revenue for that token (`scripts/peers.py`). The other L1s' rows are their chains' own revenue, without their apps;
 NEAR's bold row adds Intents, part of whose fees buys NEAR back, so NEAR's L1 gas alone is shown too, like for like.
 
@@ -489,7 +510,7 @@ Sources: [The Block](https://www.theblock.co/post/383091), [Aave docs](https://a
 DefiLlama token rights pages for Aave and Jupiter.
 
 **The same numbers, in full.** DefiLlama flows over 2 October to 1 November 2026, a year (×365.25); values at each token's mean price over the
-same days (CoinGecko's supply at <!--n:peer.value_as_of-->2026-11-06 20:31 UTC<!--/n--> × coins.llama.fi's daily prices; the values at the fetch are kept as `*_at_fetch`). `python scripts/peers.py --verify` recomputes them from `data/raw/peers/`.
+same days (CoinGecko's supply at <!--n:peer.value_as_of-->2026-11-06 20:31 UTC<!--/n-->, taken as its market cap ÷ its price at that fetch, × coins.llama.fi's daily prices; with CoinGecko's price rounded, this can differ from its stated circulating supply by about 0.1%; the values at the fetch are kept as `*_at_fetch`). `python scripts/peers.py --verify` recomputes them from `data/raw/peers/`.
 
 | | Fees a year | Revenue a year | Paid to holders a year | Market cap | Fully diluted | Market cap ÷ fees | Fully diluted ÷ revenue |
 |---|---|---|---|---|---|---|---|
@@ -580,8 +601,8 @@ not characterized here.
 ## Method
 
 **Status: v2.3, 8 November 2026.** Window 2 October → 1 November 2026 (00:00 UTC), blocks 218,126,921 →
-222,491,356. Every on-chain and DefiLlama figure of the window is final: DefiLlama's data were fetched again 24 hours
-later and no day had changed. The peer table and the demand ranking are single fetches, dated where they appear. The
+222,491,356. The on-chain figures of the window are final. DefiLlama's were unchanged on every day between two fetches 24
+hours apart; that shows they had settled, not that DefiLlama cannot revise them later. The peer table and the demand ranking are single fetches, dated where they appear. The
 dollar value of NEAR AI credits is an off-chain reading, marked as such.
 
 - **One window for every flow.** Issuance, wallets and fees are all measured between the first blocks at or after

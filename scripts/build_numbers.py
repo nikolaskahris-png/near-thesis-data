@@ -1106,6 +1106,14 @@ def build(data_dir, window_file):
                    "above it: " + ", ".join(dr["all_categories_above"]), **dc)
         n.add("d.all_protocols_with_volume", dr["all_protocols_with_volume"], f_int(dr["all_protocols_with_volume"]),
               dsrc, **dc)
+        if dr.get("parent_rank") is not None:
+            n.add("d.parent_rank", dr["parent_rank"], ordinal(dr["parent_rank"]), dsrc,
+                  note="rank in DefiLlama's /overview/dexs (its DEX-volume overview) with each protocol's versions "
+                       "added up under its parent; NEAR Intents' parent group is " + dr["ours_group"], **dc)
+            n.add("d.parent_groups_with_volume", dr["parent_groups_with_volume"],
+                  f_int(dr["parent_groups_with_volume"]), dsrc, **dc)
+            if dr["ours_group_30d_usd"] != dr["ours_30d_usd"]:
+                problems.append("demand: NEAR Intents' parent group has volume other than NEAR Intents' own")
         n.add("d.window_end", dm["fetched_utc"], day_month(dm["fetched_utc"]), dsrc,
               note="DefiLlama's total30d: the 30 days end at the fetch, not at the project's window")
         for key in ("largest_other", "largest_aggregator"):
@@ -1182,6 +1190,67 @@ def build(data_dir, window_file):
         n.add("ts.year_out_share_of_supply", sh, f_pct(sh, 1), n.items["ts.year_out_near"]["source"],
               derived_from=["ts.year_out_near", "iv.supply_value_usd", "n2.mean_price_usd"],
               note="what left treasury.near in 2026 / total supply at the window's end block")
+    # Avoid's test 2 is in dollars: at this window's NEAR kept a day it fails at this price, whatever the take rate
+    if all(k in n.items for k in ("f2.buybacks_kept_usd_per_day.2026-04", "n1.buybacks_near_per_day", "n2.mean_price_usd")):
+        floor_usd = dec(n.items["f2.buybacks_kept_usd_per_day.2026-04"]["value"])
+        p_fire = floor_usd / dec(n.items["n1.buybacks_near_per_day"]["value"])
+        n.add("iv.avoid_test2_price_usd", p_fire, f_usd(p_fire, 3), n.items["n1.buybacks_near_per_day"]["source"],
+              unit="USD", derived_from=["f2.buybacks_kept_usd_per_day.2026-04", "n1.buybacks_near_per_day"],
+              note="the NEAR price at which this window's NEAR kept a day is worth April's dollars: Avoid's test 2 "
+                   "fails at or below it, whatever the take rate")
+        drop = p_fire / dec(n.items["n2.mean_price_usd"]["value"]) - 1
+        n.add("iv.avoid_test2_price_change", drop, f_pct(drop, 1), n.items["n1.buybacks_near_per_day"]["source"],
+              derived_from=["iv.avoid_test2_price_usd", "n2.mean_price_usd"],
+              note="iv.avoid_test2_price_usd / n2.mean_price_usd - 1")
+    # Three stated paths for the value of all NEAR on 1 January 2031: not forecasts, no probability. A holder's
+    # dollars change by (1 + share change to 2031) x (value 2031 / value now) - 1, staked or not.
+    need = ("peer.near_l1.revenue_usd_per_year", "peer.near_all.revenue_usd_per_year", "peer.near_all.market_cap_usd",
+            "peer.near_all.market_cap_at_fetch_usd", "peer.near_all.mcap_to_revenue",
+            "lr.required_growth.buybacks.A.2031", "iv.to2031.staked_share_change", "iv.to2031.unstaked_share_change")
+    if all(k in n.items for k in need):
+        v = lambda k: dec(n.items[k]["value"])  # noqa: E731
+        psrc = n.items["peer.near_all.market_cap_usd"]["source"]
+        l1_peers = ("aptos", "solana", "ethereum", "sui")
+        mult = sorted(v(f"peer.{p}.mcap_to_revenue") for p in l1_peers)
+        median = (mult[1] + mult[2]) / 2
+        n.add("sc.l1_peer_median_multiple", median, f"{f_int(median)}×", psrc, unit="multiple",
+              derived_from=[f"peer.{p}.mcap_to_revenue" for p in l1_peers],
+              note="median of the market cap / holders' revenue of the four L1s in the peers table (Aptos, "
+                   "Solana, Ethereum, Sui), at their window mean prices")
+        years = Decimal(HORIZON_DAYS) / Decimal("365.25")
+        g = v("lr.required_growth.buybacks.A.2031")
+        grow = (1 + g) ** years
+        n.add("sc.bull.capture_multiple", grow, f"×{rnd(grow, 1)}", n.items["lr.required_growth.buybacks.A.2031"]["source"],
+              unit="multiple", derived_from=["lr.required_growth.buybacks.A.2031"],
+              note=f"(1 + lr.required_growth.buybacks.A.2031) ^ ({HORIZON_DAYS} / 365.25): Buy's (a) pace kept to 2031")
+        l1 = v("peer.near_l1.revenue_usd_per_year")
+        intents = v("peer.near_all.revenue_usd_per_year") - l1
+        rev_ratio = (l1 + intents * grow) / (l1 + intents)
+        # value 2031 / value now, for each basis of "now": the window's mean price, and the price at the peers fetch
+        paths = {
+            "bear": (lambda now: median * l1 / now,
+                     "the buybacks stop and all NEAR is valued on its L1 gas alone at sc.l1_peer_median_multiple, "
+                     "gas revenue held at the window's"),
+            "base": (lambda now: Decimal(1), "the value of all NEAR stays where it is, in dollars"),
+            "bull": (lambda now: rev_ratio,
+                     "Intents' revenue grows at Buy's (a) pace to 2031 (sc.bull.capture_multiple), gas revenue held, "
+                     "and all NEAR keeps today's multiple of revenue"),
+        }
+        for name, (ratio_of, how) in paths.items():
+            for basis, now_key in (("", "peer.near_all.market_cap_usd"), (".at_fetch", "peer.near_all.market_cap_at_fetch_usd")):
+                now = v(now_key)
+                ratio = ratio_of(now)
+                n.add(f"sc.{name}.value_usd{basis}", now * ratio, f"${rnd(now * ratio / 10 ** 9, 2)}B", psrc, unit="USD",
+                      derived_from=list(need) + ["sc.l1_peer_median_multiple", "sc.bull.capture_multiple"],
+                      note=f"value of all NEAR on 1 Jan 2031, from {now_key}, if {how}; a stated path, not a forecast")
+                n.add(f"sc.{name}.value_change{basis}", ratio - 1, f_pct(ratio - 1, 0), psrc,
+                      derived_from=[f"sc.{name}.value_usd{basis}", now_key], note=f"sc.{name}.value_usd{basis} / {now_key} - 1")
+                for who in ("staked", "unstaked"):
+                    c = (1 + v(f"iv.to2031.{who}_share_change")) * ratio - 1
+                    n.add(f"sc.{name}.{who}_usd_change{basis}", c, f_pct(c, 0), psrc,
+                          derived_from=[f"iv.to2031.{who}_share_change", f"sc.{name}.value_change{basis}"],
+                          note=f"(1 + iv.to2031.{who}_share_change) x (1 + sc.{name}.value_change{basis}) - 1: a "
+                               f"{who} holder's dollars, window to 1 Jan 2031, on this path")
 
     # ---- where treasury.near's April-May payments went next (treasury_trace.py)
     tpath = data_dir / "treasury_trace.json"

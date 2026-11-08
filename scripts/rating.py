@@ -22,7 +22,14 @@ The rules are the README's "The rating in full". For each history row (the 30 da
   A window fails if kept share < 75%, or buybacks kept in USD <= April's level (numbers.json
   f2.buybacks_kept_usd_per_day.2026-04). Test 1 needs DefiLlama: if its revenue is zero or a day is
   missing, test 1 is not judged and test 2, read from the chain with the window's mean price, decides
-  alone (judged if every day has a price). Avoid if this window and the one ending 30 days
+  alone (judged if every day has a price).
+  Private path: test 2 below the floor is "not judged" instead of "fail" when DefiLlama's fees fell too
+  (fees in USD a day below the earlier window's, or the earlier window has none, or a day is missing)
+  and the Confidential Intents Treasury account's stablecoins (confidential_treasury.json) were higher
+  at the window's end than at its start. Capture that moved to FAR and capture that stopped look the
+  same on mainnet; this keeps the first from being rated as the second. It needs evidence: if the
+  account was not read on both days, test 2 stays a fail.
+  If DefiLlama's fees did not fall, a fall in what the buybacks keep is a fail whatever FAR holds. Avoid if this window and the one ending 30 days
   earlier both fail. Buy if (b) holds, treasury.near was quiet in the window, and either coverage
   counted >= 100% or (a) held at the latest yearly check (the 1 November window): buybacks kept had
   grown at the required pace from the 2026-11-01 window, in USD and in NEAR. A pass holds until the
@@ -61,6 +68,7 @@ BASE_DATE = date(2026, 11, 1)          # the window the rating was set on
 KEPT_SHARE_MIN = Fraction(3, 4)        # Avoid test 1: the wallets keep at least 75% of revenue
 HSP029_IN_FORCE = False                # set True once validators run a release with HSP-029 (upgrade_watch.py)
 SERIES = ("fees", "revenue", "volume", "price")
+CT_FILE = "confidential_treasury.json"
 THRESHOLD_KEYS = {
     "avoid_usd_per_day": "f2.buybacks_kept_usd_per_day.2026-04",
     "base_usd_per_day": "iv.buybacks_kept_usd_per_day",
@@ -94,6 +102,23 @@ def pct(x):
     return fees.fmt(x, 6)
 
 
+def treasury_stablecoins(data_root):
+    """{date: stablecoins in USD} held by the Confidential Intents Treasury account, from CT_FILE."""
+    path = Path(data_root) / CT_FILE
+    if not path.exists():
+        return {}
+    doc = json.loads(path.read_text(encoding="utf-8"))
+    return {r["date"]: Fraction(r["by_group_usd"]["stablecoins"]) for r in doc["series"]}
+
+
+def private_grew(stables, start, end):
+    """"yes" / "no" / "not read": the Treasury account's stablecoins higher at end than at start."""
+    a, b = stables.get(start), stables.get(end)
+    if a is None or b is None:
+        return "not read"
+    return "yes" if b > a else "no"
+
+
 def window_values(row, s, fetched):
     """The DefiLlama side of one history row, or (status, None) if it cannot be judged."""
     start, end = date.fromisoformat(row["window_start"]), date.fromisoformat(row["date"])
@@ -109,14 +134,16 @@ def window_values(row, s, fetched):
     return status, agg
 
 
-def evaluate(history, s, th, fetched, sealed, quiet=None, earlier_of=None):
+def evaluate(history, s, th, fetched, sealed, quiet=None, earlier_of=None, stables=None):
     """sealed: {date: [lock accounts sealed at that window's end block]}, from daily.sealed();
     quiet: {date: "yes" | "no" | "not read"}, from daily.treasury_quiet();
+    stables: {date: USD}, the Confidential Intents Treasury account's stablecoins (treasury_stablecoins);
     earlier_of: date -> the end date of the earlier window Avoid compares with (default: 30 days
     before; backtest.py passes the previous calendar month)."""
     quiet = quiet or {}
+    stables = stables or {}
     by_date = {r["date"]: r for r in history}
-    out, fails = [], {}
+    out, fails, fees_usd = [], {}, {}
     a_since = None          # date of the yearly check whose (a) passed; holds until the next check
     for r in history:
         d = date.fromisoformat(r["date"])
@@ -138,6 +165,8 @@ def evaluate(history, s, th, fetched, sealed, quiet=None, earlier_of=None):
             if agg["mean_price_usd"] is not None:   # test 2 is read from the chain: it decides alone
                 usd = kept_bb * agg["mean_price_usd"]
                 t_usd = "fail" if usd <= Fraction(th["avoid_usd_per_day"]) else "pass"
+                if t_usd == "fail":   # DefiLlama is missing a day: its fees cannot show demand held
+                    t_usd = private_check(r, stables, notes)
                 fail = t_usd == "fail"
                 row.update(mean_price_usd=fees.fmt(agg["mean_price_usd"], 6),
                            buybacks_kept_usd_per_day=fees.fmt(usd, 2), test_usd=t_usd)
@@ -152,6 +181,11 @@ def evaluate(history, s, th, fetched, sealed, quiet=None, earlier_of=None):
             cov = min(kept_bb, rev, agg["fees_near_per_day"]) / new
             t_share = "not judged" if share is None else "fail" if share < KEPT_SHARE_MIN else "pass"
             t_usd = "fail" if usd <= Fraction(th["avoid_usd_per_day"]) else "pass"
+            fees_usd[r["date"]] = agg["fees_usd_per_day"]
+            if t_usd == "fail":
+                e_fees = fees_usd.get(earlier_date(d, earlier_of))
+                if e_fees is None or agg["fees_usd_per_day"] < e_fees:
+                    t_usd = private_check(r, stables, notes)
             fail = "fail" in (t_share, t_usd)
             row.update(counted_days=agg["counted_days"], revenue_near_per_day=fees.fmt(rev, 3),
                        kept_share="" if share is None else pct(share),
@@ -165,7 +199,7 @@ def evaluate(history, s, th, fetched, sealed, quiet=None, earlier_of=None):
             if agg["excluded"]:
                 notes.append(f"{len(agg['excluded'])} day(s) excluded as in fees.py")
         fails[r["date"]] = fail
-        earlier = (earlier_of(d) if earlier_of else d - timedelta(days=daily.WINDOW_DAYS)).isoformat()
+        earlier = earlier_date(d, earlier_of)
         if earlier not in by_date:
             row["earlier_window"] = "not in history"
         else:
@@ -196,6 +230,21 @@ def evaluate(history, s, th, fetched, sealed, quiet=None, earlier_of=None):
     return out
 
 
+def earlier_date(d, earlier_of=None):
+    return (earlier_of(d) if earlier_of else d - timedelta(days=daily.WINDOW_DAYS)).isoformat()
+
+
+def private_check(r, stables, notes):
+    """Test 2 failed and DefiLlama cannot show that demand held: "not judged" if the Treasury account
+    of Confidential Intents grew over the window, else "fail" (also when it was not read)."""
+    grew = private_grew(stables, r["window_start"], r["date"])
+    if grew != "yes":
+        return "fail"
+    notes.append("Avoid test 2 not judged: DefiLlama's fees fell or cannot be compared with the earlier window, "
+                 "and the Confidential Intents Treasury account grew (capture may have moved to the private path)")
+    return "not judged"
+
+
 def text(rows):
     buf = io.StringIO()
     w = csv.DictWriter(buf, fieldnames=COLUMNS, lineterminator="\n")
@@ -223,11 +272,16 @@ def compute(doc, data_root):
         problems.append("thresholds in rating.json differ from numbers.json")
     if doc["locks"] != sorted(daily.LOCKS):
         problems.append("locks in rating.json differ from LOCKS in daily.py")
+    ct = data_root / CT_FILE
+    if "private_path" not in doc:
+        problems.append("rating.json lacks private_path: run rating.py --offline")
+    elif ct.exists() and fees.sha256(ct.read_bytes()) != doc["private_path"]["sha256"]:
+        problems.append(f"sha256 differs for {doc['private_path']['path']}")
     if problems:
         return None, problems
     fetched = datetime.strptime(doc["fetched_utc"], "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=timezone.utc)
     rows = evaluate(load_history(data_root), parse(raws), doc["thresholds"], fetched, daily.sealed(data_root),
-                    daily.treasury_quiet(data_root))
+                    daily.treasury_quiet(data_root), stables=treasury_stablecoins(data_root))
     return rows, problems
 
 
@@ -242,10 +296,15 @@ def build(data_root, raw_dir, fetched_utc, urls):
                          ">= 100% or (a) at a yearly check",
                   "avoid_test_1": "not judged if DefiLlama's revenue is zero or a day is missing; test 2 "
                                   "(read from the chain, with the window's mean price) then decides alone",
+                  "avoid_test_2_private_path": "not judged if DefiLlama's fees fell too (or are missing) and the "
+                                               "Confidential Intents Treasury account's stablecoins grew over "
+                                               "the window; not read counts as not grown",
                   "precedence": "Avoid overrides Buy", "hsp029_in_force": HSP029_IN_FORCE},
         "fetched_utc": fetched_utc,
         "locks": sorted(daily.LOCKS),
         "thresholds": thresholds(data_root / "numbers.json"),
+        "private_path": {"path": fees.rel(data_root / CT_FILE, base),
+                         "sha256": fees.sha256((data_root / CT_FILE).read_bytes())},
         "raw": {name: {"path": fees.rel(raw_dir / f"{name}.json", base),
                        "sha256": fees.sha256((raw_dir / f"{name}.json").read_bytes()),
                        "url": urls.get(name, "")} for name in SERIES},
