@@ -1075,6 +1075,8 @@ def build(data_dir, window_file):
         n.add("d.ours_30d_usd", dec(dr["ours_30d_usd"]), big(dec(dr["ours_30d_usd"])), dsrc, **dc)
         n.add("d.ours_rank", dr["ours_rank"], f_int(dr["ours_rank"]), dsrc, **dc)
         n.add("d.protocols_ranked", dr["protocols_ranked"], f_int(dr["protocols_ranked"]), dsrc, **dc)
+        n.add("d.bridges_with_volume", dr["bridges_with_volume"], f_int(dr["bridges_with_volume"]), dsrc,
+              note="protocols with 30-day volume in DefiLlama's 'Bridge' category, NEAR Intents included", **dc)
         n.add("d.all_rank", dr["all_rank"], ordinal(dr["all_rank"]), dsrc,
               note="rank among every protocol with 30-day volume in DefiLlama's /overview/dexs, any category; "
                    "above it: " + ", ".join(dr["all_categories_above"]), **dc)

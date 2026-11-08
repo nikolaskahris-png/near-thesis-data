@@ -4,8 +4,8 @@
 
 **Rating: Hold.** Keep NEAR staked; do not add. Horizon 1 January 2031, checked every year.
 
-- **Demand is large, on DefiLlama's data.** NEAR Intents moved <!--n:d.ours_30d_usd-->$4.02B<!--/n--> in the 30 days to <!--n:d.window_end-->7 November<!--/n-->: <!--n:d.all_rank-->18th<!--/n--> of the <!--n:d.all_protocols_with_volume-->1,104<!--/n--> protocols with volume in DefiLlama's volume data, and the largest of the <!--n:d.protocols_ranked-->36<!--/n--> bridges and bridge aggregators in it. The chain confirms what reaches the buybacks wallets, not the fees.
-- **What reaches holders is a policy, not a rule.** The buybacks wallets keep NEAR equal to <!--n:n1.coverage_buybacks-->10.8%<!--/n--> of the new NEAR issued, and burn none of it. No code requires them, <!--n:c.buybacks_confirmations-->2 of 4<!--/n--> signers can stop them, and the protocol treasury is "currently managed by the NEAR Foundation" ([SEC filing](https://www.sec.gov/Archives/edgar/data/0002067111/000121390026103106/ea0306486-424b3_bitwise.htm)).
+- **Demand is large, on DefiLlama's data.** NEAR Intents moved <!--n:d.ours_30d_usd-->$4.02B<!--/n--> in the 30 days to <!--n:d.window_end-->7 November<!--/n-->: <!--n:d.all_rank-->18th<!--/n--> of the <!--n:d.all_protocols_with_volume-->1,104<!--/n--> protocols with volume in DefiLlama's volume data. Across, Relay, deBridge and Stargate are not in that data, so it is not compared with them. The chain confirms what reaches the buybacks wallets, not the fees.
+- **What reaches holders is a policy, not a rule.** The buybacks wallets keep NEAR equal to <!--n:n1.coverage_buybacks-->10.8%<!--/n--> of the new NEAR issued, and burn none of it. No code requires them, <!--n:c.buybacks_confirmations-->2 of 4<!--/n--> signers can move the NEAR they hold, and the protocol treasury is "currently managed by the NEAR Foundation" ([SEC filing](https://www.sec.gov/Archives/edgar/data/0002067111/000121390026103106/ea0306486-424b3_bitwise.htm)).
 - **Staking is what pays.** Your share of all NEAR, a year: staked +<!--n:iv.staked_share_growth-->2.4%<!--/n-->, unstaked <!--n:iv.unstaked_share_change-->-2.40%<!--/n-->. Buybacks change neither, because they hold what they buy.
 
 **Buy** when the buybacks become a published rule *and* fees alone cover issuance, or what they keep grows <!--n:lr.required_growth.buybacks.A.2031-->+75%<!--/n--> a year. **Avoid** when the wallets stop keeping the fees.
@@ -18,7 +18,7 @@ Each claim gives its number, the source, what argues against it, and the command
 
 ### A. Demand is large, on DefiLlama's data
 
-NEAR Intents moved <!--n:d.ours_30d_usd-->$4.02B<!--/n--> in the 30 days to <!--n:d.window_end-->7 November<!--/n-->, <!--n:d.ours_over_largest_other-->×1.9<!--/n--> the next bridge and <!--n:d.ours_over_largest_aggregator-->×2.6<!--/n--> the largest bridge aggregator in DefiLlama's volume data. Against every protocol in that data, whatever its category, it is <!--n:d.all_rank-->18th<!--/n--> of <!--n:d.all_protocols_with_volume-->1,104<!--/n--> with volume; those above it are DEXs, a launchpad and a prediction market. Volume a day by month:
+NEAR Intents moved <!--n:d.ours_30d_usd-->$4.02B<!--/n--> in the 30 days to <!--n:d.window_end-->7 November<!--/n-->, <!--n:d.ours_over_largest_other-->×1.9<!--/n--> the next of the <!--n:d.bridges_with_volume-->4<!--/n--> bridges and <!--n:d.ours_over_largest_aggregator-->×2.6<!--/n--> the largest bridge aggregator in DefiLlama's volume data. The large bridges (Across, Relay, deBridge, Stargate) are not in that data; see Against. Against every protocol in that data, whatever its category, it is <!--n:d.all_rank-->18th<!--/n--> of <!--n:d.all_protocols_with_volume-->1,104<!--/n--> with volume; those above it are DEXs, a launchpad and a prediction market. Volume a day by month:
 
 | Apr | May | Jun | Jul | Aug | Sep | Oct |
 |---|---|---|---|---|---|---|
@@ -45,9 +45,9 @@ The claim the rest depends on. Six records point the same way.
 
 **Check.** `python scripts/control_map.py --verify` and `python scripts/control_history.py --verify` (the 5 DAOs and their 390 proposals); `python scripts/farm_rate.py --verify` and `python scripts/stakers.py --verify` (the rate change and the farm); `python scripts/treasury_trace.py --verify` (point 6). Each ends with `OK`.
 
-### C. It is small, and everyone agrees
+### C. It is small
 
-The buybacks keep <!--n:n1.buybacks_near_per_day-->9,570<!--/n--> NEAR a day against <!--n:n1.new_near_per_day-->88,392<!--/n--> issued: coverage <!--n:n1.coverage_buybacks-->10.8%<!--/n-->, or <!--n:n1.coverage_with_front_end-->16.5%<!--/n--> counting the front-end fund. If NEAR kept every fee, <!--n:n2.max_coverage-->47.9%<!--/n-->; fees alone would cover issuance at a NEAR price of <!--n:n2.equilibrium_price_usd-->$2.33<!--/n-->. Other submissions reach 10–20% by other methods. The number is common; how it is measured is not ([below](#why-the-chain-not-the-dashboards)).
+The buybacks keep <!--n:n1.buybacks_near_per_day-->9,570<!--/n--> NEAR a day against <!--n:n1.new_near_per_day-->88,392<!--/n--> issued: coverage <!--n:n1.coverage_buybacks-->10.8%<!--/n-->, or <!--n:n1.coverage_with_front_end-->16.5%<!--/n--> counting the front-end fund. If NEAR kept every fee, <!--n:n2.max_coverage-->47.9%<!--/n-->; fees alone would cover issuance at a NEAR price of <!--n:n2.equilibrium_price_usd-->$2.33<!--/n-->. How it is measured: [below](#why-the-chain-not-the-dashboards).
 
 **Why two numbers.** NEAR's blog says its "owned front-end captures 100% of its fees and routes them to NEAR buybacks" ([Q2 2026](https://www.near.org/blog/the-state-of-near-q-2-2026)). Those fees reach `fefundsadmin.sputnik-dao.near`, a different DAO with other signers (<!--n:c.front_end_rules-->1 of 5<!--/n--> can change its rules), so we count it separately.
 

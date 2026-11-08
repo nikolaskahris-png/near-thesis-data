@@ -74,6 +74,7 @@ def compute(raws):
         "ours_30d_usd": None if ours is None else str(ours["volume_30d_usd"]),
         "ours_rank": None if ours is None else 1 + rows.index(ours),
         "protocols_ranked": len(rows),
+        "bridges_with_volume": sum(1 for r in rows if r["list"] == "bridge"),
         "largest_other": None if not others else {k: str(v) if isinstance(v, Decimal) else v
                                                   for k, v in others[0].items()},
         "largest_aggregator": None if not agg else {k: str(v) if isinstance(v, Decimal) else v

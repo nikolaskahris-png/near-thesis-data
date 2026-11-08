@@ -39,7 +39,7 @@ class DemandTest(unittest.TestCase):
 
     def test_rank_among_both_lists_without_dexs_or_zero_volume(self):
         r = self.doc["results"]
-        self.assertEqual((r["ours_rank"], r["protocols_ranked"]), (1, 4))
+        self.assertEqual((r["ours_rank"], r["protocols_ranked"], r["bridges_with_volume"]), (1, 4, 2))
         self.assertEqual(r["largest_other"]["slug"], "unit")
         self.assertEqual(r["largest_aggregator"]["slug"], "lifi")
         self.assertEqual(Decimal(r["ours_over_largest_aggregator"]), Decimal(4000) / Decimal(1500))
