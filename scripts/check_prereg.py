@@ -25,7 +25,8 @@ Usage:
     python scripts/check_prereg.py --verify    offline check of data/prereg.json
 
     --anchor 2 does the same for PREREG-2.md (key .../prereg/2), saved in data/prereg2_anchor.json
-    and data/raw/prereg2_anchor/.
+    and data/raw/prereg2_anchor/; --anchor 3 for PREREG-3.md (key .../prereg/3), in
+    data/prereg3_anchor.json and data/raw/prereg3_anchor/.
 """
 import argparse
 import base64
@@ -52,11 +53,14 @@ ANCHORS = {
     "2": {"FILE_NAME": "PREREG-2.md", "OUT_NAME": "prereg2_anchor.json", "RAW_SUB": "prereg2_anchor",
           "KEY": f"{SIGNER}/thesis/prereg/2", "TX_HASH": "EZ6mexrYfaMFivjLqccSjxGkTgWDEqUBUeiZDoAx9art",
           "ANCHORED_SHA256": "545cf67530b37c902b2674cb4014818d3f79eb1718fe6bbab896a361e48ce0d3"},
+    "3": {"FILE_NAME": "PREREG-3.md", "OUT_NAME": "prereg3_anchor.json", "RAW_SUB": "prereg3_anchor",
+          "KEY": f"{SIGNER}/thesis/prereg/3", "TX_HASH": "7JtbuonTNMuegxfH3XTDUNwLczKEfpFzXjRFKzHprcgU",
+          "ANCHORED_SHA256": "69e6d96deb9af52e7555470c9595396c3bbaa3fc6858311e4402e6b806ad58f3"},
 }
 
 
 def use(anchor):
-    """Point every function of this module at one anchor (1: PREREG.md, 2: PREREG-2.md)."""
+    """Point every function of this module at one anchor (1: PREREG.md, 2: PREREG-2.md, 3: PREREG-3.md)."""
     globals().update(ANCHORS[anchor])
 
 
@@ -238,11 +242,11 @@ def show(doc):
 def main():
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     parser.add_argument("--anchor", choices=sorted(ANCHORS), default="1",
-                        help="1: PREREG.md (default), 2: PREREG-2.md")
+                        help="1: PREREG.md (default), 2: PREREG-2.md, 3: PREREG-3.md")
     parser.add_argument("--file", action="store_true",
                         help="only compare PREREG.md with the anchored sha256 (no network)")
     parser.add_argument("--verify", nargs="?", const="", metavar="FILE",
-                        help="offline check (default data/prereg.json, or data/prereg2_anchor.json with --anchor 2)")
+                        help="offline check (default data/prereg.json, data/prereg2_anchor.json with --anchor 2, data/prereg3_anchor.json with --anchor 3)")
     parser.add_argument("--data-dir", type=Path, default=REPO / "data")
     args = parser.parse_args()
     use(args.anchor)

@@ -234,6 +234,8 @@ def compute(data_root):
     for sub in ("raw/defillama", "raw/rating"):
         root = data_root / sub
         for v in sorted(p for p in root.iterdir() if p.is_dir()) if root.exists() else []:
+            if v.name >= fetched:   # only fetches made before this measurement: later ones never change it
+                continue
             try:
                 sv = {k: fees.daily_series((v / f"{k}.json").read_bytes(), k) for k in ("fees", "revenue", "volume")}
             except FileNotFoundError:

@@ -26,6 +26,7 @@
     "data/prereg.json": "2efdcde55626bf946110ccaccb6672581cfe0d96b8231945629a920b653cc250",
     "data/prereg2.json": "4cab2101e8c89e0412a78c50e0123286b103ecee2de8918dcaea69dc944980e7",
     "data/prereg2_anchor.json": "04d116768228d84f1c3a3e6c7c91cd43af6df1e62a177e95980f757a272c0c77",
+    "data/prereg3_anchor.json": "d916894a3b6a0d4e899200cc4830a04dc8ee32a758ee083542f6b6cc35efd5c8",
     "data/raw/redacted/control/1csfundsadmin.sputnik-dao.near_get_policy.json": "4170c345c39f028787bd46da4f3748bce4adc929e2412988e7dbab3a7811177d",
     "data/raw/redacted/control/fefundsadmin.sputnik-dao.near_get_policy.json": "7771c22b179e418ea8225c37977494d2ed0b8eccf774deb3d7301924357a97af",
     "data/raw/redacted/control/hos-root.sputnik-dao.near_get_policy.json": "8188cbd4d97cd7240f51058208e9b6b18a2eab0bb88d32657193b4d78354f815",
@@ -6981,6 +6982,23 @@
       "socialdb_key": "samerice7976.near/thesis/prereg/2",
       "tx": "EZ6mexrYfaMFivjLqccSjxGkTgWDEqUBUeiZDoAx9art",
       "file": "PREREG-2.md"
+    },
+    "pr.anchor3.tx_block": {
+      "value": "223613293",
+      "text": "223,613,293",
+      "source": "data/prereg3_anchor.json",
+      "unit": "block",
+      "socialdb_key": "samerice7976.near/thesis/prereg/3",
+      "tx": "7JtbuonTNMuegxfH3XTDUNwLczKEfpFzXjRFKzHprcgU",
+      "file": "PREREG-3.md"
+    },
+    "pr.anchor3.tx_utc": {
+      "value": "2026-11-08T12:00:10.330653697Z",
+      "text": "2026-11-08 12:00:10 UTC",
+      "source": "data/prereg3_anchor.json",
+      "socialdb_key": "samerice7976.near/thesis/prereg/3",
+      "tx": "7JtbuonTNMuegxfH3XTDUNwLczKEfpFzXjRFKzHprcgU",
+      "file": "PREREG-3.md"
     },
     "pr.brier_mean": {
       "value": "0.0425",

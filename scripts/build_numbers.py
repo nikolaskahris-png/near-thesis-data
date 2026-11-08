@@ -1084,8 +1084,8 @@ def build(data_dir, window_file):
               derived_from=["ts.year_out_near", "iv.supply_value_usd", "n2.mean_price_usd"],
               note="what left treasury.near in 2026 / total supply at the window's end block")
 
-    # ---- the two pre-registration anchors (check_prereg.py, --anchor 2)
-    for num, name in (("1", "prereg.json"), ("2", "prereg2_anchor.json")):
+    # ---- the pre-registration anchors (check_prereg.py, --anchor 2 and 3)
+    for num, name in (("1", "prereg.json"), ("2", "prereg2_anchor.json"), ("3", "prereg3_anchor.json")):
         apath = data_dir / name
         if not apath.exists():
             continue
@@ -1166,6 +1166,8 @@ SCRIPT_CHECKS = [
     ("treasury_exits.py", lambda doc: ["--verify"]),
     ("check_prereg.py", lambda doc: ["--verify"]),
     ("check_prereg.py", lambda doc: ["--anchor", "2", "--verify"], "prereg2_anchor.json"),
+    ("check_prereg.py", lambda doc: ["--anchor", "3", "--verify"], "prereg3_anchor.json"),
+    ("base_rates.py", lambda doc: ["--verify"], "base_rates.json"),
     ("peers.py", lambda doc: ["--verify"], "peers.json"),
     ("demand.py", lambda doc: ["--verify"], "demand.json"),
     ("judge_prereg2.py", lambda doc: ["--verify"]),

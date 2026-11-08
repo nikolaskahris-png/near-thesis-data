@@ -123,9 +123,10 @@ Every case (which windows, which wallets, leaving Avoid, missing days) is in
 chain every day: a declared lock with no contract and no access keys. NEAR moved to it after the declaration counts as
 kept, so meeting (b) is not an outflow; what it held when declared does not count.
 Coverage is the buyback yield (<!--n:iv.buyback_yield_buybacks-->0.27%<!--/n--> of NEAR's value a year) divided by the issuance rate, so it falls
-when the price rises faster than revenue; the second way to Buy is where that ratio reaches one. Five predictions are anchored on chain before they are judged:
-[`PREREG.md`](PREREG.md) (16 November) and [`PREREG-2.md`](PREREG-2.md) (6 and 8 November, with stated
-probabilities).
+when the price rises faster than revenue; the second way to Buy is where that ratio reaches one. Eight predictions are anchored on chain before they are judged:
+[`PREREG.md`](PREREG.md) (16 November), [`PREREG-2.md`](PREREG-2.md) (6 and 8 November, with stated
+probabilities) and [`PREREG-3.md`](PREREG-3.md) (9 and 11 December: do the buybacks keep coming, with
+probabilities measured from history).
 
 ## Metrics we cannot compute
 

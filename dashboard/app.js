@@ -112,7 +112,7 @@ const QUERIES = {
   p7: { sentence: "Each prediction's rule was fixed and anchored before its judging date.",
     query: "python scripts/check_prereg.py --verify\npython scripts/judge_prereg2.py --verify\nRPC call_function social.near get " +
       "{\"keys\":[\"samerice7976.near/thesis/prereg/1/**\"]}; tx; block",
-    files: "PREREG.md · PREREG-2.md · data/prereg.json · data/prereg2.json" },
+    files: "PREREG.md · PREREG-2.md · PREREG-3.md · data/prereg.json · data/prereg2.json · data/base_rates.json" },
 };
 
 const PREDICTIONS = [
@@ -126,6 +126,12 @@ const PREDICTIONS = [
     prob: "0.85", when: "judged 6 November", result: "4" },
   { n: "5", text: "Protocol version 88 is in effect on NEAR mainnet", rule: "protocol_version ≥ 88",
     prob: "0.75", when: "judged 8 November", result: "5" },
+  { n: "6", text: "The buybacks wallets keep at least half of the 2 October window, in USD (9 Nov – 9 Dec)",
+    rule: "kept ≥ $23,345.70 a day", prob: "0.90", when: "judged 9 December" },
+  { n: "7", text: "They keep at least as much as in the 2 October window, in USD (9 Nov – 9 Dec)",
+    rule: "kept ≥ $46,691.40 a day", prob: "0.75", when: "judged 9 December" },
+  { n: "8", text: "DefiLlama has fees and revenue for NEAR Intents for every day, 9 Nov – 9 Dec",
+    rule: "30 of 30 days counted", prob: "0.90", when: "judged 11 December" },
 ];
 
 const COMMANDS = [
