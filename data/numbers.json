@@ -11,6 +11,7 @@
   "provisional_or_pending": [],
   "sources": {
     "data/burn.json": "d301a278701801757b4c9582f61b4f9546327f0dd1dfaed0a3a143b0c407f0fd",
+    "data/confidential_treasury.json": "e1f49bf6f70a7a9e808c58bbcfef4dea187278480ba7603fd41459a55887a6e1",
     "data/control_history.json": "7cab767c832b77a597a18d90dc1d0b5b2113e76b050624456522585a9fcc9190",
     "data/control_map.json": "6f557db6c579e595008df0bccd143aae331392135492518fe26071ba7c66758c",
     "data/coverage_monthly.json": "74c24cad7c5a975e989fb70a62b157caef271901f16b9dfe9f708b3e98f8e9e9",
@@ -42,6 +43,7 @@
     "data/treasury_exits.json": "d587bfba8747e2022435bfd93253180ccb50bf4bfe819710c7fbae5e4b00e1fe",
     "data/treasury_flows.json": "0d1a8c74b15fbc3c3e794f2ef3f3e8152faeeada13c7962e973fa97348099c50",
     "data/treasury_spend.json": "e196c8e8c703e0cd830aabedc32a1b271f46332b742dfb186473de37f6c7f1f2",
+    "data/treasury_trace.json": "3f615034351ede0fcba8db75dc296c992c2e0fea70f71ed7cf33c587a7ae191f",
     "data/window_2026-10-02_2026-11-01.json": "b77a705e870e9df42e3d11ec6f7c7f5266f7ba692600cda716b1874ca40baaf9"
   },
   "numbers": {
@@ -437,6 +439,205 @@
       "role": "Approver",
       "block": 222491356,
       "as_of": "2026-11-01T00:00:00Z"
+    },
+    "ct.near_usd.2026-04-01": {
+      "value": "0",
+      "text": "$0.0M",
+      "source": "data/confidential_treasury.json",
+      "unit": "USD",
+      "block": 192013995,
+      "as_of": "2026-04-01"
+    },
+    "ct.near_usd.2026-09-01": {
+      "value": "12630233",
+      "text": "$12.6M",
+      "source": "data/confidential_treasury.json",
+      "unit": "USD",
+      "block": 213761242,
+      "as_of": "2026-09-01"
+    },
+    "ct.near_usd.2026-10-01": {
+      "value": "85862073",
+      "text": "$85.9M",
+      "source": "data/confidential_treasury.json",
+      "unit": "USD",
+      "block": 217984974,
+      "as_of": "2026-10-01"
+    },
+    "ct.near_usd.2026-11-01": {
+      "value": "53641645",
+      "text": "$53.6M",
+      "source": "data/confidential_treasury.json",
+      "unit": "USD",
+      "block": 222491356,
+      "as_of": "2026-11-01"
+    },
+    "ct.near_usd.2026-11-08": {
+      "value": "46276267",
+      "text": "$46.3M",
+      "source": "data/confidential_treasury.json",
+      "unit": "USD",
+      "block": 223537267,
+      "as_of": "2026-11-08"
+    },
+    "ct.priced_usd.2026-04-01": {
+      "value": "2929099",
+      "text": "$2.9M",
+      "source": "data/confidential_treasury.json",
+      "unit": "USD",
+      "block": 192013995,
+      "as_of": "2026-04-01"
+    },
+    "ct.priced_usd.2026-09-01": {
+      "value": "45258414",
+      "text": "$45.3M",
+      "source": "data/confidential_treasury.json",
+      "unit": "USD",
+      "block": 213761242,
+      "as_of": "2026-09-01"
+    },
+    "ct.priced_usd.2026-10-01": {
+      "value": "150164583",
+      "text": "$150.2M",
+      "source": "data/confidential_treasury.json",
+      "unit": "USD",
+      "block": 217984974,
+      "as_of": "2026-10-01"
+    },
+    "ct.priced_usd.2026-11-01": {
+      "value": "124557422",
+      "text": "$124.6M",
+      "source": "data/confidential_treasury.json",
+      "unit": "USD",
+      "block": 222491356,
+      "as_of": "2026-11-01"
+    },
+    "ct.priced_usd.2026-11-08": {
+      "value": "123478115",
+      "text": "$123.5M",
+      "source": "data/confidential_treasury.json",
+      "unit": "USD",
+      "block": 223537267,
+      "as_of": "2026-11-08"
+    },
+    "ct.stablecoins_change.2026-10-01_2026-11-08": {
+      "value": "0.602378050888159375557223833175702657246",
+      "text": "+60%",
+      "source": "data/confidential_treasury.json",
+      "derived_from": [
+        "ct.stablecoins_usd.2026-10-01",
+        "ct.stablecoins_usd.2026-11-08"
+      ]
+    },
+    "ct.stablecoins_usd.2026-04-01": {
+      "value": "2048061",
+      "text": "$2.0M",
+      "source": "data/confidential_treasury.json",
+      "unit": "USD",
+      "block": 192013995,
+      "as_of": "2026-04-01"
+    },
+    "ct.stablecoins_usd.2026-09-01": {
+      "value": "11788346",
+      "text": "$11.8M",
+      "source": "data/confidential_treasury.json",
+      "unit": "USD",
+      "block": 213761242,
+      "as_of": "2026-09-01"
+    },
+    "ct.stablecoins_usd.2026-10-01": {
+      "value": "23346767",
+      "text": "$23.3M",
+      "source": "data/confidential_treasury.json",
+      "unit": "USD",
+      "block": 217984974,
+      "as_of": "2026-10-01"
+    },
+    "ct.stablecoins_usd.2026-11-01": {
+      "value": "31050894",
+      "text": "$31.1M",
+      "source": "data/confidential_treasury.json",
+      "unit": "USD",
+      "block": 222491356,
+      "as_of": "2026-11-01"
+    },
+    "ct.stablecoins_usd.2026-11-08": {
+      "value": "37410347",
+      "text": "$37.4M",
+      "source": "data/confidential_treasury.json",
+      "unit": "USD",
+      "block": 223537267,
+      "as_of": "2026-11-08"
+    },
+    "ct.tokens_held.2026-04-01": {
+      "value": "59",
+      "text": "59",
+      "source": "data/confidential_treasury.json",
+      "block": 192013995,
+      "as_of": "2026-04-01"
+    },
+    "ct.tokens_held.2026-09-01": {
+      "value": "139",
+      "text": "139",
+      "source": "data/confidential_treasury.json",
+      "block": 213761242,
+      "as_of": "2026-09-01"
+    },
+    "ct.tokens_held.2026-10-01": {
+      "value": "172",
+      "text": "172",
+      "source": "data/confidential_treasury.json",
+      "block": 217984974,
+      "as_of": "2026-10-01"
+    },
+    "ct.tokens_held.2026-11-01": {
+      "value": "185",
+      "text": "185",
+      "source": "data/confidential_treasury.json",
+      "block": 222491356,
+      "as_of": "2026-11-01"
+    },
+    "ct.tokens_held.2026-11-08": {
+      "value": "193",
+      "text": "193",
+      "source": "data/confidential_treasury.json",
+      "block": 223537267,
+      "as_of": "2026-11-08"
+    },
+    "ct.unpriced_tokens.2026-04-01": {
+      "value": "9",
+      "text": "9",
+      "source": "data/confidential_treasury.json",
+      "block": 192013995,
+      "as_of": "2026-04-01"
+    },
+    "ct.unpriced_tokens.2026-09-01": {
+      "value": "29",
+      "text": "29",
+      "source": "data/confidential_treasury.json",
+      "block": 213761242,
+      "as_of": "2026-09-01"
+    },
+    "ct.unpriced_tokens.2026-10-01": {
+      "value": "48",
+      "text": "48",
+      "source": "data/confidential_treasury.json",
+      "block": 217984974,
+      "as_of": "2026-10-01"
+    },
+    "ct.unpriced_tokens.2026-11-01": {
+      "value": "57",
+      "text": "57",
+      "source": "data/confidential_treasury.json",
+      "block": 222491356,
+      "as_of": "2026-11-01"
+    },
+    "ct.unpriced_tokens.2026-11-08": {
+      "value": "58",
+      "text": "58",
+      "source": "data/confidential_treasury.json",
+      "block": 223537267,
+      "as_of": "2026-11-08"
     },
     "d.as_of": {
       "value": "2026-11-07T12:16:06Z",
@@ -3201,6 +3402,16 @@
       "window": "2026-10-02 00:00 UTC to 2026-11-01 00:00 UTC",
       "blocks": "218126921-222491356"
     },
+    "iv.buybacks_kept_near_per_year": {
+      "value": "3495351.18750",
+      "text": "3.50M",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "NEAR/year",
+      "derived_from": [
+        "n1.buybacks_near_per_day"
+      ],
+      "note": "n1.buybacks_near_per_day x 365.25"
+    },
     "iv.buybacks_kept_usd_per_day": {
       "value": "46691.7672250",
       "text": "$46,692",
@@ -3307,6 +3518,26 @@
       "status": "final",
       "window": "2026-10-02 00:00 UTC to 2026-11-01 00:00 UTC",
       "blocks": "218126921-222491356"
+    },
+    "iv.hsp029.net_dilution_buybacks": {
+      "value": "0.01309999014202650332065507594867652072902",
+      "text": "1.31%",
+      "source": "data/control_map.json",
+      "derived_from": [
+        "iv.issuance_rate_per_year",
+        "iv.buyback_yield_buybacks"
+      ],
+      "note": "HSP-029: issuance rate x 16/25 - buyback yield (held at today's)"
+    },
+    "iv.hsp029.staked_share_growth": {
+      "value": "0.015730332869197710852451867320701026254",
+      "text": "1.6%",
+      "source": "data/control_map.json",
+      "derived_from": [
+        "iv.staking_yield_gross",
+        "iv.issuance_rate_per_year"
+      ],
+      "note": "HSP-029: (1 + staking yield x 16/25) / (1 + issuance rate x 16/25) - 1, before commission"
     },
     "iv.hsp029_fees_multiple": {
       "value": "1.336353492225763558976620495653510266536",
@@ -7270,6 +7501,17 @@
       ],
       "note": "what left treasury.near in 2026 / total supply at the window's end block"
     },
+    "ts.year_out_years_of_buybacks": {
+      "value": "8.631807905568287049268064426788016418736",
+      "text": "8.6",
+      "source": "data/treasury_spend.json",
+      "unit": "years",
+      "derived_from": [
+        "ts.year_out_near",
+        "iv.buybacks_kept_near_per_year"
+      ],
+      "note": "what left treasury.near in April-May 2026 / a year of buybacks at this window's pace"
+    },
     "ts.year_treasury_in_near": {
       "value": "2700598.661",
       "text": "2,700,599",
@@ -7277,6 +7519,47 @@
       "unit": "NEAR",
       "window": "2026-01-01 00:00 UTC to 2026-11-01 00:00 UTC",
       "blocks": "179199136-222491356"
+    },
+    "tt.accounts_followed": {
+      "value": "6",
+      "text": "6",
+      "source": "data/treasury_trace.json",
+      "unit": "accounts"
+    },
+    "tt.first_receivers_held_near": {
+      "value": "302.035",
+      "text": "302",
+      "source": "data/treasury_trace.json",
+      "unit": "NEAR",
+      "block": 222491356,
+      "note": "the three accounts treasury.near paid in April and May 2026"
+    },
+    "tt.path1.largest_transfer_near": {
+      "value": "21433900.301",
+      "text": "21,433,900",
+      "source": "data/treasury_trace.json",
+      "unit": "NEAR",
+      "note": "largest single transfer on path 1, mixed with other NEAR (early October 2026)"
+    },
+    "tt.path1.multisigs_sent_near": {
+      "value": "9799810.060",
+      "text": "9,799,810",
+      "source": "data/treasury_trace.json",
+      "unit": "NEAR",
+      "note": "ecotreasury4 and 5 to one account, mid-May 2026"
+    },
+    "tt.path2.moved_near": {
+      "value": "20371000.448",
+      "text": "20,371,000",
+      "source": "data/treasury_trace.json",
+      "unit": "NEAR",
+      "note": "the 13 May receiver's NEAR, two accounts later (late July 2026)"
+    },
+    "tt.transfers_followed": {
+      "value": "7",
+      "text": "7",
+      "source": "data/treasury_trace.json",
+      "unit": "balance steps of 1,000 NEAR or more"
     }
   }
 }

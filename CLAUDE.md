@@ -92,6 +92,9 @@ SHA-256. In the README and `docs/DETAILS.md` each figure is wrapped as `<!--n:KE
 | `te.` | `treasury.near`: each outflow's block and receiver | `treasury_exits.py` | `data/treasury_exits.json` |
 | `c.` | Control map | `control_map.py` | `data/control_map.json` |
 | `h.` | Control history | `control_history.py` | `data/control_history.json` |
+| `tt.` | Where `treasury.near`'s April-May payout went next | `treasury_trace.py` | `data/treasury_trace.json` |
+| `ct.` | What the Confidential Intents Treasury account holds | `confidential_treasury.py` | `data/confidential_treasury.json` |
+| `pr.` | Pre-registrations: anchors and judged predictions | `check_prereg.py`, `judge_prereg2.py` | `data/prereg*.json` |
 
 All flows use one window: `data/window_2026-10-02_2026-11-01.json` (`lock_window.py`), blocks 218,126,921 →
 222,491,356. Public raw responses are under `data/raw/`, byte for byte.

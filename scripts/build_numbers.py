@@ -48,6 +48,9 @@ def dec(x):
     return Decimal(str(x))
 
 
+HSP029_SCALE = Decimal(16) / Decimal(25)   # HSP-029: issuance 2.5% -> 1.6% of the maximum
+
+
 def rnd(x, places):
     q = Decimal(1).scaleb(-places)
     return dec(x).quantize(q, rounding=ROUND_HALF_UP)
@@ -1073,6 +1076,29 @@ def build(data_dir, window_file):
         n.add("iv.staked_share_growth", g, f_pct(g, 1), n.items["iv.staking_yield_gross"]["source"],
               derived_from=["iv.staking_yield_gross", "iv.issuance_rate_per_year"],
               note="before the validator's commission: (1 + staking yield) / (1 + issuance rate) - 1")
+    # The same with HSP-029: issuance and staking yield both x 16/25, buyback yield unchanged
+    if all(k in n.items for k in ("iv.staking_yield_gross", "iv.issuance_rate_per_year", "iv.buyback_yield_buybacks")):
+        f = HSP029_SCALE
+        r2 = dec(n.items["iv.staking_yield_gross"]["value"]) * f
+        g2 = dec(n.items["iv.issuance_rate_per_year"]["value"]) * f
+        s2 = (1 + r2) / (1 + g2) - 1
+        src = n.items["iv.staking_yield_gross"]["source"]
+        n.add("iv.hsp029.staked_share_growth", s2, f_pct(s2, 1), src,
+              derived_from=["iv.staking_yield_gross", "iv.issuance_rate_per_year"],
+              note="HSP-029: (1 + staking yield x 16/25) / (1 + issuance rate x 16/25) - 1, before commission")
+        d2 = g2 - dec(n.items["iv.buyback_yield_buybacks"]["value"])
+        n.add("iv.hsp029.net_dilution_buybacks", d2, f_pct(d2, 2), src,
+              derived_from=["iv.issuance_rate_per_year", "iv.buyback_yield_buybacks"],
+              note="HSP-029: issuance rate x 16/25 - buyback yield (held at today's)")
+    if "n1.buybacks_near_per_day" in n.items:
+        y = dec(n.items["n1.buybacks_near_per_day"]["value"]) * dec("365.25")
+        n.add("iv.buybacks_kept_near_per_year", y, f"{rnd(y / 10 ** 6, 2)}M", n.items["n1.buybacks_near_per_day"]["source"],
+              unit="NEAR/year", derived_from=["n1.buybacks_near_per_day"], note="n1.buybacks_near_per_day x 365.25")
+        if "ts.year_out_near" in n.items:
+            yrs = dec(n.items["ts.year_out_near"]["value"]) / y
+            n.add("ts.year_out_years_of_buybacks", yrs, f_num(yrs, 1), n.items["ts.year_out_near"]["source"],
+                  unit="years", derived_from=["ts.year_out_near", "iv.buybacks_kept_near_per_year"],
+                  note="what left treasury.near in April-May 2026 / a year of buybacks at this window's pace")
     if "iv.buybacks_kept_usd_per_day" in n.items:
         y = dec(n.items["iv.buybacks_kept_usd_per_day"]["value"]) * dec("365.25")
         n.add("iv.buybacks_kept_usd_per_year", y, f"${rnd(y / 10 ** 6, 1)}M", n.items["iv.buybacks_kept_usd_per_day"]["source"],
@@ -1083,6 +1109,54 @@ def build(data_dir, window_file):
         n.add("ts.year_out_share_of_supply", sh, f_pct(sh, 1), n.items["ts.year_out_near"]["source"],
               derived_from=["ts.year_out_near", "iv.supply_value_usd", "n2.mean_price_usd"],
               note="what left treasury.near in 2026 / total supply at the window's end block")
+
+    # ---- where treasury.near's April-May payments went next (treasury_trace.py)
+    tpath = data_dir / "treasury_trace.json"
+    if tpath.exists():
+        td = json.loads(tpath.read_text(encoding="utf-8"))
+        tsrc = n.source(tpath)
+        steps = [r for r in td["results"]["steps_and_hops"] if "change_near" in r]
+        bal = td["results"]["balances"]
+        firsts = ["ecotreasury4.multisignature.near", "ecotreasury5.multisignature.near"] + \
+                 [h["account"] for h in td["hops"] if h["path"] == 2][:1]
+        held = sum(dec(bal[a]["2026-11-01"]) for a in firsts)
+        tc = {"block": 222491356, "note": "the three accounts treasury.near paid in April and May 2026"}
+        n.add("tt.first_receivers_held_near", held, f_int(held), tsrc, unit="NEAR", **tc)
+        n.add("tt.accounts_followed", len(td["hops"]), f_int(len(td["hops"])), tsrc, unit="accounts")
+        n.add("tt.transfers_followed", len(steps), f_int(len(steps)), tsrc, unit="balance steps of 1,000 NEAR or more")
+        p1 = sum(-dec(r["change_near"]) for r in steps if r["account"].startswith("ecotreasury"))
+        n.add("tt.path1.multisigs_sent_near", p1, f_int(p1), tsrc, unit="NEAR",
+              note="ecotreasury4 and 5 to one account, mid-May 2026")
+        p2 = [r for r in steps if r["path"] == 2]
+        if p2:
+            n.add("tt.path2.moved_near", -dec(p2[-1]["change_near"]), f_int(-dec(p2[-1]["change_near"])), tsrc,
+                  unit="NEAR", note="the 13 May receiver's NEAR, two accounts later (late July 2026)")
+        biggest = max((-dec(r["change_near"]) for r in steps if r["path"] == 1), default=0)
+        n.add("tt.path1.largest_transfer_near", biggest, f_int(biggest), tsrc, unit="NEAR",
+              note="largest single transfer on path 1, mixed with other NEAR (early October 2026)")
+
+    # ---- the Confidential Intents Treasury account (confidential_treasury.py)
+    cpath = data_dir / "confidential_treasury.json"
+    if cpath.exists():
+        cd = json.loads(cpath.read_text(encoding="utf-8"))
+        csrc = n.source(cpath)
+        by = {r["date"]: r for r in cd["series"]}
+        for d in ("2026-04-01", "2026-09-01", "2026-10-01", "2026-11-01", "2026-11-08"):
+            if d in by:
+                r = by[d]
+                cc = {"block": r["block"], "as_of": d}
+                n.add(f"ct.priced_usd.{d}", r["priced_usd"], f"${dec(r['priced_usd']) / 10 ** 6:,.1f}M", csrc,
+                      unit="USD", **cc)
+                st = r["by_group_usd"]["stablecoins"]
+                n.add(f"ct.stablecoins_usd.{d}", st, f"${dec(st) / 10 ** 6:,.1f}M", csrc, unit="USD", **cc)
+                n.add(f"ct.near_usd.{d}", r["by_group_usd"]["NEAR"],
+                      f"${dec(r['by_group_usd']['NEAR']) / 10 ** 6:,.1f}M", csrc, unit="USD", **cc)
+                n.add(f"ct.unpriced_tokens.{d}", r["unpriced_tokens"], f_int(r["unpriced_tokens"]), csrc, **cc)
+                n.add(f"ct.tokens_held.{d}", r["tokens_held"], f_int(r["tokens_held"]), csrc, **cc)
+        if "2026-10-01" in by and "2026-11-08" in by:
+            g = dec(by["2026-11-08"]["by_group_usd"]["stablecoins"]) / dec(by["2026-10-01"]["by_group_usd"]["stablecoins"]) - 1
+            n.add("ct.stablecoins_change.2026-10-01_2026-11-08", g, f"+{rnd(g * 100, 0):.0f}%", csrc,
+                  derived_from=["ct.stablecoins_usd.2026-10-01", "ct.stablecoins_usd.2026-11-08"])
 
     # ---- the pre-registration anchors (check_prereg.py, --anchor 2 and 3)
     for num, name in (("1", "prereg.json"), ("2", "prereg2_anchor.json"), ("3", "prereg3_anchor.json")):
@@ -1225,14 +1299,42 @@ def verify(path, run_scripts=True, runner=subprocess.run):
 # Headline numbers that must appear, marked, in the README: a figure typed by hand instead
 # of marked would otherwise go unchecked.
 REQUIRED_IN_README = [
-    "n1.coverage_buybacks", "n1.coverage_with_front_end", "n1.new_near_per_day",
-    "n1.buybacks_near_per_day", "n2.fees_usd_per_day", "n2.max_coverage",
-    "n2.equilibrium_price_usd", "n2.hsp029_max_coverage", "n3.stakers_active",
-    "n3.largest_share", "n3.top10_share", "n3.outside_top10_median_near",
-    "iv.wallets_multiple_buybacks", "iv.wallets_multiple_with_front_end", "iv.fees_multiple",
-    "c.buybacks_confirmations", "c.treasury_share_of_new_supply", "c.nearai_pool_reward_fee",
-    "f6.change1.ratio", "f9.front_end_share_of_wallets",
-    "iv.issuance_rate_per_year", "iv.staking_yield_gross", "c.issuance_staked_share",
+    "n2.fees_usd_per_day",
+    "n1.coverage_buybacks",
+    "n1.coverage_with_front_end",
+    "n1.new_near_per_day",
+    "n1.buybacks_near_per_day",
+    "n2.max_coverage",
+    "n2.equilibrium_price_usd",
+    "c.buybacks_confirmations",
+    "c.nearai_pool_reward_fee",
+    "f6.change1.ratio",
+    "iv.issuance_rate_per_year",
+    "d.ours_30d_usd",
+    "pr.4.brier",
+    "pr.5.brier",
+    "pr.anchor3.tx_block",
+    "tt.first_receivers_held_near",
+    "ct.priced_usd.2026-11-08",
+    "ct.stablecoins_usd.2026-11-08",
+    "iv.staked_share_growth",
+    "iv.net_dilution_buybacks",
+    "lr.required_growth.buybacks.A.2031",
+]
+# Headline numbers that moved to docs/DETAILS.md with README v3 (8 Nov): still required, there.
+REQUIRED_IN_DETAILS = [
+    "n2.hsp029_max_coverage",
+    "n3.stakers_active",
+    "n3.largest_share",
+    "n3.top10_share",
+    "n3.outside_top10_median_near",
+    "iv.wallets_multiple_buybacks",
+    "iv.wallets_multiple_with_front_end",
+    "iv.fees_multiple",
+    "c.treasury_share_of_new_supply",
+    "f9.front_end_share_of_wallets",
+    "iv.staking_yield_gross",
+    "c.issuance_staked_share",
     "iv.revenue_equilibrium_price_usd",
 ]
 
@@ -1296,7 +1398,8 @@ def main():
         if args.render:
             target.write_text(render_text(text, numbers), encoding="utf-8", newline="\n")
             text = target.read_text(encoding="utf-8")
-        required = REQUIRED_IN_README if target.name == "README.md" else ()
+        required = (REQUIRED_IN_README if target.name == "README.md" else
+                    REQUIRED_IN_DETAILS if target.name == "DETAILS.md" else ())
         problems = check_text(text, numbers, required)
         if problems:
             print("FAILED:\n  " + "\n  ".join(problems))

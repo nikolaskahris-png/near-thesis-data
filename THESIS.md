@@ -36,7 +36,7 @@ code. Issuance, on the other side of the ledger, is a protocol rule.
 **(c)**, stake spread in the NEAR AI farm, is a signal, not a lever. If NEAR kept every fee, fees counted in NEAR
 would need <!--n:lr.required_growth.all_fees.B.2031-->+9%<!--/n--> a year ([model](docs/DETAILS.md#issuance-to-2031)). At the mean price all NEAR is worth <!--n:iv.supply_value_usd-->$6.39B<!--/n-->, <!--n:iv.value_to_fees-->85×<!--/n--> a year of fees. Counting Intents, NEAR's market cap is the fewest years of its revenue among the L1s here
 (<!--n:peer.near_all.mcap_to_revenue-->234×<!--/n-->, against <!--n:peer.aptos.mcap_to_revenue-->426×<!--/n--> to <!--n:peer.sui.mcap_to_revenue-->16,884×<!--/n-->); on L1 gas alone, like the others, <!--n:peer.near_l1.mcap_to_revenue-->4,091×<!--/n-->; against apps with buybacks, the most
-([peers](README.md#peers-on-one-basis)).
+([peers](docs/DETAILS.md#peers-on-one-basis)).
 
 A Breakpoint 2025 debate put the case against buybacks as "the promise of future buybacks is worth exactly as
 much as your faith in those founders", and the case for them as on-chain transparency
@@ -70,7 +70,7 @@ buybacks offset <!--n:iv.buybacks_offset_points_per_year-->0.27<!--/n--> of thos
   vote executes nothing on chain (`actions: null`) and stays in `vote.dao`'s timelock until <!--n:f8.timelock_end_utc-->2026-11-16 16:48 UTC<!--/n-->; it becomes a rule only when validators with <!--n:c.issuance_upgrade_stake_threshold-->4/5<!--/n--> of stake run a release that includes it.
 
 Pulled in turn, the levers take coverage from <!--n:n1.coverage_buybacks-->10.8%<!--/n--> to <!--n:n1.coverage_with_front_end-->16.5%<!--/n--> (the front-end fund), <!--n:n2.max_coverage-->47.9%<!--/n--> (every fee kept) and <!--n:n2.hsp029_max_coverage-->74.8%<!--/n--> (HSP-029 at the end of its ramp); only the last is a rule
-([lever model](README.md#investment-view), re-runnable in the
+([lever model](docs/DETAILS.md#investment-view-the-long-version), re-runnable in the
 [dashboard](https://nikolaskahris-png.github.io/near-thesis-data/dashboard/#p3b)).
 
 Issuance, by contrast, is code: at most <!--n:c.issuance_max_inflation_rate-->1/40<!--/n--> a year, changed only by a
@@ -98,7 +98,7 @@ What weakens the claim, as measured by the same scripts:
    product.
 6. **Intents gives NEAR more revenue per dollar than the other L1s here.** On DefiLlama's figures for the same 30 days, NEAR's market cap is <!--n:peer.near_all.mcap_to_revenue-->234×<!--/n--> a year of its revenue (Intents and gas), against <!--n:peer.aptos.mcap_to_revenue-->426×<!--/n--> for Aptos, <!--n:peer.solana.mcap_to_revenue-->1,995×<!--/n--> for Solana and <!--n:peer.ethereum.mcap_to_revenue-->3,394×<!--/n-->
    for Ethereum, whose figures are their chains' own revenue, without their apps. On L1 gas alone NEAR is <!--n:peer.near_l1.mcap_to_revenue-->4,091×<!--/n-->, so the
-   lead comes from Intents. DefiLlama counts the largest share for its holders, though the NEAR is held, not paid out ([peers](README.md#peers-on-one-basis)). Against apps
+   lead comes from Intents. DefiLlama counts the largest share for its holders, though the NEAR is held, not paid out ([peers](docs/DETAILS.md#peers-on-one-basis)). Against apps
    with buybacks it is the other way round (Hyperliquid <!--n:peer.hyperliquid.mcap_to_revenue-->24×<!--/n-->).
 7. **Control is spread, and multisigs and DAOs are a common way to run protocol funds.** The <!--n:c.dao_count-->5<!--/n--> DAOs that run the links have <!--n:c.dao_member_accounts-->22<!--/n--> member accounts, and the
    number that sit in more than one is <!--n:c.dao_members_in_two_or_more-->0<!--/n-->. That NEAR's links are run this way is not, by
@@ -119,7 +119,7 @@ The rating changes from Hold to Buy only when (b) holds, together with (a) or wi
 (100% or more in a 30-day window); and to Avoid if, in two 30-day windows in a row, the wallets keep less than 75% of DefiLlama's
 revenue, in NEAR, or what the buybacks wallets keep in dollars falls back to April's level. Avoid overrides Buy.
 Every case (which windows, which wallets, leaving Avoid, missing days) is in
-[the rules as code applies them](README.md#the-rating-in-full). (b) is read from the
+[the rules as code applies them](docs/DETAILS.md#the-rating-in-full). (b) is read from the
 chain every day: a declared lock with no contract and no access keys. NEAR moved to it after the declaration counts as
 kept, so meeting (b) is not an outflow; what it held when declared does not count.
 Coverage is the buyback yield (<!--n:iv.buyback_yield_buybacks-->0.27%<!--/n--> of NEAR's value a year) divided by the issuance rate, so it falls
