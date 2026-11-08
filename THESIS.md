@@ -34,8 +34,8 @@ code. Issuance, on the other side of the ledger, is a protocol rule.
   captures and whether it is a rule, not how far its price can go.
 
 **(c)**, stake spread in the NEAR AI farm, is a signal, not a lever. If NEAR kept every fee, fees counted in NEAR
-would need <!--n:lr.required_growth.all_fees.B.2031-->+9%<!--/n--> a year ([model](docs/DETAILS.md#issuance-to-2031)). At the mean price all NEAR is worth <!--n:iv.supply_value_usd-->$6.39B<!--/n-->, <!--n:iv.value_to_fees-->85×<!--/n--> a year of fees. Counting Intents, NEAR's market cap is the fewest years of its revenue among the L1s here
-(<!--n:peer.near_all.mcap_to_revenue-->234×<!--/n-->, against <!--n:peer.aptos.mcap_to_revenue-->426×<!--/n--> to <!--n:peer.sui.mcap_to_revenue-->16,884×<!--/n-->); on L1 gas alone, like the others, <!--n:peer.near_l1.mcap_to_revenue-->4,091×<!--/n-->; against apps with buybacks, the most
+would need <!--n:lr.required_growth.all_fees.B.2031-->+9%<!--/n--> a year ([model](docs/DETAILS.md#issuance-to-2031)). At the mean price all NEAR is worth <!--n:iv.supply_value_usd-->$6.39B<!--/n-->, <!--n:iv.value_to_fees-->85×<!--/n--> a year of fees. Like for like, on L1 gas alone, NEAR's market cap is <!--n:peer.near_l1.mcap_to_revenue-->4,091×<!--/n--> a year of its revenue, more than Ethereum (<!--n:peer.ethereum.mcap_to_revenue-->3,394×<!--/n-->) and Solana (<!--n:peer.solana.mcap_to_revenue-->1,995×<!--/n-->); only counting Intents is it the lowest here
+(<!--n:peer.near_all.mcap_to_revenue-->234×<!--/n-->, against <!--n:peer.aptos.mcap_to_revenue-->426×<!--/n--> to <!--n:peer.sui.mcap_to_revenue-->16,884×<!--/n-->); against apps with buybacks, the most
 ([peers](docs/DETAILS.md#peers-on-one-basis)).
 
 A Breakpoint 2025 debate put the case against buybacks as "the promise of future buybacks is worth exactly as
@@ -96,7 +96,7 @@ What weakens the claim, as measured by the same scripts:
    cannot offset issuance, because stakers receive the new NEAR. It stays because it was pre-registered: it tests
    whether the AI narrative brings broad stake, and it is a case where one account sets the economics of a
    product.
-6. **Intents gives NEAR more revenue per dollar than the other L1s here.** On DefiLlama's figures for the same 30 days, NEAR's market cap is <!--n:peer.near_all.mcap_to_revenue-->234×<!--/n--> a year of its revenue (Intents and gas), against <!--n:peer.aptos.mcap_to_revenue-->426×<!--/n--> for Aptos, <!--n:peer.solana.mcap_to_revenue-->1,995×<!--/n--> for Solana and <!--n:peer.ethereum.mcap_to_revenue-->3,394×<!--/n-->
+6. **With Intents, NEAR has more revenue per dollar than the other L1s here; on gas alone, less than Ethereum and Solana.** On DefiLlama's figures for the same 30 days, NEAR's market cap is <!--n:peer.near_all.mcap_to_revenue-->234×<!--/n--> a year of its revenue (Intents and gas), against <!--n:peer.aptos.mcap_to_revenue-->426×<!--/n--> for Aptos, <!--n:peer.solana.mcap_to_revenue-->1,995×<!--/n--> for Solana and <!--n:peer.ethereum.mcap_to_revenue-->3,394×<!--/n-->
    for Ethereum, whose figures are their chains' own revenue, without their apps. On L1 gas alone NEAR is <!--n:peer.near_l1.mcap_to_revenue-->4,091×<!--/n-->, so the
    lead comes from Intents. DefiLlama counts the largest share for its holders, though the NEAR is held, not paid out ([peers](docs/DETAILS.md#peers-on-one-basis)). Against apps
    with buybacks it is the other way round (Hyperliquid <!--n:peer.hyperliquid.mcap_to_revenue-->24×<!--/n-->).
