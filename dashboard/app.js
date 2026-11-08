@@ -123,15 +123,17 @@ const PREDICTIONS = [
   { n: "3", text: "Fewer than 150 accounts are active in the NEAR AI farm", rule: "count < 150",
     base: "n3.stakers_active", when: "judged 16 November" },
   { n: "4", text: "Protocol version 87 (HSP-027) is in effect on NEAR mainnet", rule: "protocol_version ≥ 87",
-    prob: "0.85", when: "judged 6 November", result: "4" },
+    prob: () => P2.predictions["4"].probability, when: "judged 6 November", result: "4" },
   { n: "5", text: "Protocol version 88 is in effect on NEAR mainnet", rule: "protocol_version ≥ 88",
-    prob: "0.75", when: "judged 8 November", result: "5" },
+    prob: () => P2.predictions["5"].probability, when: "judged 8 November", result: "5" },
   { n: "6", text: "The buybacks wallets keep at least half of the 2 October window, in USD (9 Nov – 9 Dec)",
-    rule: "kept ≥ $23,345.70 a day", prob: "0.90", when: "judged 9 December" },
+    rule: () => `kept ≥ ${usd2(BR.check_2026_10_02_window_usd_per_day / 2)} a day`,
+    prob: () => p2(BR.p6_p7.thresholds["1/2"].rate), when: "judged 9 December" },
   { n: "7", text: "They keep at least as much as in the 2 October window, in USD (9 Nov – 9 Dec)",
-    rule: "kept ≥ $46,691.40 a day", prob: "0.75", when: "judged 9 December" },
+    rule: () => `kept ≥ ${usd2(BR.check_2026_10_02_window_usd_per_day)} a day`,
+    prob: () => p2(BR.p6_p7.thresholds["1"].rate), when: "judged 9 December" },
   { n: "8", text: "DefiLlama has fees and revenue for NEAR Intents for every day, 9 Nov – 9 Dec",
-    rule: "30 of 30 days counted", prob: "0.90", when: "judged 11 December" },
+    rule: "every day of the thirty counted", prob: () => p2(BR.p8.rate), when: "judged 11 December" },
 ];
 
 const COMMANDS = [
@@ -281,6 +283,9 @@ function ratingPanel(rows, rj) {
   const floor = txt("f2.buybacks_kept_usd_per_day.2026-04"), share = Number(rj.rules.kept_share_min);
   const last = rows[rows.length - 1];
   $("#rating-now").textContent = last.rating;
+  $("#rating-box").insertAdjacentHTML("beforebegin", `<p class="src">Latest window: ${last.window_start} → ${last.date}, ` +
+    `${last.status}${last.status === "final" ? "" : " (DefiLlama may still revise these days)"}. The figures at the top are the ` +
+    `locked window's.</p>`);
   const usd = v => v ? "$" + fmtInt(Number(v)) : "—";
   const pf = v => v === "pass" ? { cls: "pass", t: "pass" } : v === "fail" ? { cls: "fail", t: "fail" } : v || "—";
   const ruleB = last.rule_b === "yes" ? "a declared lock has no contract and no keys on chain" : "no such lock on chain yet";
@@ -337,7 +342,8 @@ function status(doc) {
   const w = doc.window;
   const prov = (doc.provisional_or_pending || []).length;
   $("#status").textContent = `Window ${w.start} → ${w.end} (00:00 UTC), blocks ${fmtInt(w.start_block)} → ` +
-    `${fmtInt(w.end_block)}. ` + (prov ? `DefiLlama-based figures are provisional (${prov} keys).` : "Every on-chain and DefiLlama figure is final for this window.");
+    `${fmtInt(w.end_block)}. ` + (prov ? `DefiLlama-based figures are provisional (${prov} keys).` : "The tiles' figures are final for this window; figures from other dates say so.") +
+    " The rating below reads later windows too; the newest may be provisional.";
 }
 
 function chartCoverage(cov) {
@@ -557,10 +563,15 @@ function calculator() {
     (ok ? ": the same as numbers.json." : "; numbers.json says " + checks.map(c => c[1]).join(", ") + ".");
 }
 
+// PREREG-3's thresholds and probabilities come from data/base_rates.json, PREREG-2's from data/prereg2.json
+let BR = null, P2 = null;
+const usd2 = x => "$" + Number(x).toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+const p2 = x => Number(x).toFixed(2);
+const resolve = x => typeof x === "function" ? x() : x;
 function predictions() {
   $("#preds").innerHTML = PREDICTIONS.map(p => `<div class="pred"><span class="k">Prediction ${p.n} · ${p.when}</span>` +
-    `<div>${p.text}</div><div class="st">Holds if ${p.rule}` +
-    (p.base ? ` · baseline ${txt(p.base)}` : "") + (p.prob ? ` · probability stated ${p.prob}` : "") + `</div>` +
+    `<div>${p.text}</div><div class="st">Holds if ${resolve(p.rule)}` +
+    (p.base ? ` · baseline ${txt(p.base)}` : "") + (p.prob ? ` · probability stated ${resolve(p.prob)}` : "") + `</div>` +
     (p.result && N[`pr.${p.result}.result`] ? `<div class="st"><b>Result: ${txt(`pr.${p.result}.result`)}</b> · version ` +
       `${txt(`pr.${p.result}.protocol_version`)} at block ${txt(`pr.${p.result}.judging_height`)} · Brier ` +
       `${txt(`pr.${p.result}.brier`)}</div>` : "") + `</div>`).join("");
@@ -645,13 +656,14 @@ async function main() {
   fillNumbers();
   fillMeta();
   status(doc);
-  predictions();
   tooltips();
-  const [cov, histTxt, upTxt, ts, vd, fp, pr, ratingTxt, ratingDoc] = await Promise.all([
+  const [cov, histTxt, upTxt, ts, vd, fp, pr, ratingTxt, ratingDoc, br, p2doc] = await Promise.all([
     getJSON("coverage_monthly.json"), getText(DATA + "history.csv"), getText(DATA + "upgrade_watch.csv"),
     getJSON("treasury_spend.json"), getJSON("hsp029_voters.json"),
     getJSON(`raw/stakedao/${doc.window.end_block}/farm_pool.json`), getJSON("prereg.json"),
-    getText(DATA + "rating.csv"), getJSON("rating.json")]);
+    getText(DATA + "rating.csv"), getJSON("rating.json"), getJSON("base_rates.json"), getJSON("prereg2.json")]);
+  BR = br; P2 = p2doc;
+  predictions();
   FARM_PRICE = JSON.parse(bytesToText(fp.result.result)).price_id;
   PREREG = pr;
   ratingPanel(parseCSV(ratingTxt), ratingDoc);

@@ -111,7 +111,7 @@ def status_line(what, absent):
     """One line for --verify. Exit code stays 0 when everything that exists checks out."""
     if absent:
         return (f"OK: {what} recomputes offline from public files and redacted copies "
-                f"(PUBLIC_FULL); {absent} private original(s) not in git for privacy, so their "
+                f"(PUBLIC_REDACTED); {absent} private original(s) not in git for privacy, so their "
                 f"match with the redacted copies was not checked here (--archival re-fetches them)")
     return (f"OK: {what} recomputes offline from public files and redacted copies, and the "
             f"private originals give the same redacted copies")

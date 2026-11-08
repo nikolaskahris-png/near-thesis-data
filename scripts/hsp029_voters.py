@@ -351,10 +351,10 @@ def verify(path):
 
 
 def verify_line(absent):
-    """The --verify verdict. Same PUBLIC_FULL wording as the other scripts."""
+    """The --verify verdict. Same PUBLIC_REDACTED wording as the other scripts."""
     if absent:
         return (f"OK: the voters add up to the contract's totals and every statistic recomputes "
-                f"offline from the public voter list (PUBLIC_FULL); {absent} private original(s) "
+                f"offline from the public voter list (PUBLIC_REDACTED); {absent} private original(s) "
                 f"not in git for privacy, so their match with the public list was not checked here")
     return ("OK: the voters add up to the contract's totals and every statistic recomputes "
             "offline, and the private originals give the same voter list")

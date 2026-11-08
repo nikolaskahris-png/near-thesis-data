@@ -530,7 +530,7 @@ def main():
         absent = sum(st["private_check"] != "recomputed" for st in results)
         if absent:
             print(f"OK: {len(results)} snapshot(s) recompute offline from the public lists "
-                  f"(PUBLIC_FULL); private originals of {absent} not in git for privacy, so "
+                  f"(PUBLIC_REDACTED); private originals of {absent} not in git for privacy, so "
                   f"their match with the public lists was not checked here")
         else:
             print(f"OK: {len(results)} snapshot(s) recompute offline from the public lists, and "

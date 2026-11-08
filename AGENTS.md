@@ -21,7 +21,7 @@ Its last line is `REBUILD: PASS`. The same checks, one by one:
 | Command | What it checks | Last line when it passes |
 |---|---|---|
 | `python -m unittest discover -s tests` | every script's logic on simulated chains and APIs | `OK` |
-| `python scripts/build_numbers.py --verify` | every script's own offline check, then `numbers.json` rebuilds byte for byte | starts with `VERIFY: PASS (PUBLIC_FULL)` |
+| `python scripts/build_numbers.py --verify` | every script's own offline check, then `numbers.json` rebuilds byte for byte | starts with `VERIFY: PASS (PUBLIC_REDACTED)` |
 | `python scripts/build_numbers.py --check README.md` | every marked number in the README equals `numbers.json` | `OK: <count> marked numbers in README.md match numbers.json` |
 | `python scripts/build_numbers.py --check docs/DETAILS.md` | the same for `docs/DETAILS.md` (method, live checks, terms) | `OK: <count> marked numbers in DETAILS.md match numbers.json` |
 | `python scripts/build_numbers.py --check THESIS.md` | the same for `THESIS.md` (claim, evidence for and against) | `OK: <count> marked numbers in THESIS.md match numbers.json` |
@@ -44,8 +44,9 @@ with `REMEASURE: NOT RUN - ...` and exit code 2: report it as not run, not as a 
 that the saved raw responses are what the chain returned; section 2 and [Verify live](docs/DETAILS.md#verify-live)
 do that with read-only calls.
 
-`build_numbers.py --verify` prints one `OK` line per script before the verdict. `PUBLIC_FULL` means every
-number was recomputed from files in git; for the redacted lists (stakers, voters, validators) that proves
+`build_numbers.py --verify` prints one `OK` line per script before the verdict. `PUBLIC_REDACTED` means every
+number was recomputed from files in git, some of them redacted copies (on a machine with the private originals it says
+`FULL`); for the redacted lists (stakers, voters, validators) that proves
 consistency and totals equal to the raw contract totals, not each entry. Responses that list people's accounts are not in git (see
 [What is not in the repository](#what-is-not-in-the-repository)); offline, the verdict says which scripts have
 such originals and that their match was not checked. Section 2 re-fetches them.

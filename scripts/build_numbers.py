@@ -1117,9 +1117,18 @@ def build(data_dir, window_file):
     # A staked holder's share of all NEAR grows by (1 + staking yield) / (1 + issuance rate) - 1 a year
     if "iv.staking_yield_gross" in n.items and "iv.issuance_rate_per_year" in n.items:
         g = (1 + dec(n.items["iv.staking_yield_gross"]["value"])) / (1 + dec(n.items["iv.issuance_rate_per_year"]["value"])) - 1
-        n.add("iv.staked_share_growth", g, f_pct(g, 1), n.items["iv.staking_yield_gross"]["source"],
+        n.add("iv.staked_share_growth", g, f_pct(g, 2), n.items["iv.staking_yield_gross"]["source"],
               derived_from=["iv.staking_yield_gross", "iv.issuance_rate_per_year"],
               note="before the validator's commission: (1 + staking yield) / (1 + issuance rate) - 1")
+        # The same after a validator commission c, which each validator sets and this repository does not read:
+        # an illustrative range, not a measurement
+        for c in (5, 10):
+            gc = ((1 + dec(n.items["iv.staking_yield_gross"]["value"]) * (1 - Decimal(c) / 100))
+                  / (1 + dec(n.items["iv.issuance_rate_per_year"]["value"])) - 1)
+            n.add(f"iv.staked_share_growth.commission_{c}", gc, f_pct(gc, 2), n.items["iv.staking_yield_gross"]["source"],
+                  derived_from=["iv.staking_yield_gross", "iv.issuance_rate_per_year"],
+                  note=f"after an assumed {c}% validator commission (not read from the chain): "
+                       f"(1 + staking yield x (1 - {c}/100)) / (1 + issuance rate) - 1")
     # An unstaked holder's share of all NEAR changes by 1 / (1 + issuance rate) - 1 a year. The buybacks wallets
     # hold what they buy and burn nothing, so total supply, and this share, do not depend on them.
     if "iv.issuance_rate_per_year" in n.items:
@@ -1147,7 +1156,7 @@ def build(data_dir, window_file):
         g2 = dec(n.items["iv.issuance_rate_per_year"]["value"]) * f
         s2 = (1 + r2) / (1 + g2) - 1
         src = n.items["iv.staking_yield_gross"]["source"]
-        n.add("iv.hsp029.staked_share_growth", s2, f_pct(s2, 1), src,
+        n.add("iv.hsp029.staked_share_growth", s2, f_pct(s2, 2), src,
               derived_from=["iv.staking_yield_gross", "iv.issuance_rate_per_year"],
               note="HSP-029: (1 + staking yield x 16/25) / (1 + issuance rate x 16/25) - 1, before commission")
         d2 = g2 - dec(n.items["iv.buyback_yield_buybacks"]["value"])
@@ -1347,7 +1356,7 @@ def verify(path, run_scripts=True, runner=subprocess.run):
             print(f"  {script:<18} {'OK' if res.returncode == 0 else 'FAILED'}  {line[:110]}")
             if res.returncode != 0:
                 problems.append(f"{script} --verify failed")
-            elif "PUBLIC_FULL" in line:
+            elif "PUBLIC_REDACTED" in line:
                 public_only.append(script)
     if not problems:
         again, p = build(root / "data", root / doc["window_file"])
@@ -1451,7 +1460,7 @@ def main():
               f"({len(doc['numbers'])} numbers; provisional or pending: "
               f"{len(doc['provisional_or_pending'])})")
         po = getattr(verify, "public_only", [])
-        print("VERIFY: PASS (PUBLIC_FULL) - every number recomputed offline from public files "
+        print(f"VERIFY: PASS ({'PUBLIC_REDACTED' if po else 'FULL'}) - every number recomputed offline from public files "
               "and redacted copies." + (f" Private originals are not in git for privacy "
               f"({', '.join(po)}): their SHA-256 are recorded, and --archival re-fetches them."
                                         if po else " Private originals present and matching."))

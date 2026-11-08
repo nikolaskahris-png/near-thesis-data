@@ -3641,7 +3641,7 @@
     },
     "iv.hsp029.staked_share_growth": {
       "value": "0.015730332869197710852451867320701026254",
-      "text": "1.6%",
+      "text": "1.57%",
       "source": "data/control_map.json",
       "derived_from": [
         "iv.staking_yield_gross",
@@ -3761,13 +3761,33 @@
     },
     "iv.staked_share_growth": {
       "value": "0.024365896737054218148183942187492633716",
-      "text": "2.4%",
+      "text": "2.44%",
       "source": "data/control_map.json",
       "derived_from": [
         "iv.staking_yield_gross",
         "iv.issuance_rate_per_year"
       ],
       "note": "before the validator's commission: (1 + staking yield) / (1 + issuance rate) - 1"
+    },
+    "iv.staked_share_growth.commission_10": {
+      "value": "0.019524912131043793674718106965213272772",
+      "text": "1.95%",
+      "source": "data/control_map.json",
+      "derived_from": [
+        "iv.staking_yield_gross",
+        "iv.issuance_rate_per_year"
+      ],
+      "note": "after an assumed 10% validator commission (not read from the chain): (1 + staking yield x (1 - 10/100)) / (1 + issuance rate) - 1"
+    },
+    "iv.staked_share_growth.commission_5": {
+      "value": "0.021945404434049005911451024576352953244",
+      "text": "2.19%",
+      "source": "data/control_map.json",
+      "derived_from": [
+        "iv.staking_yield_gross",
+        "iv.issuance_rate_per_year"
+      ],
+      "note": "after an assumed 5% validator commission (not read from the chain): (1 + staking yield x (1 - 5/100)) / (1 + issuance rate) - 1"
     },
     "iv.staking_yield_gross": {
       "value": "0.04960248571288209479318052819307948097195",

@@ -375,7 +375,7 @@ def main():
             sys.exit(1)
         print("OK: raw sha256 match, closing block checks pass, result recomputes exactly"
               + ("" if not getattr(verify, "absent", 0) else
-                 f" (PUBLIC_FULL: {verify.absent} private original(s) not in git; redacted copies checked)"))
+                 f" (PUBLIC_REDACTED: {verify.absent} private original(s) not in git; redacted copies checked)"))
         return
     if args.peek:
         peek(lw.Chain(url=lw.RPC), args.proposal)
