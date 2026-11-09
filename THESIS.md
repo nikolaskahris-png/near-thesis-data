@@ -1,6 +1,6 @@
 # Thesis: NEAR's value capture is real, small and discretionary
 
-*Investment Thesis track, NEAR HACKATHON. Dated 8 November 2026; horizon to 1 January 2031 (about four years from the window), checked every 12 months.
+*Investment Thesis track, NEAR HACKATHON. Dated 9 November 2026; horizon to 1 January 2031 (about four years from the window), checked every 12 months.
 Measurement window 2 October → 1 November 2026 (00:00 UTC), blocks 218,126,921 → 222,491,356. Every measured figure here
 is copied from [`data/numbers.json`](data/numbers.json) with a hidden marker of its key, and
 `python scripts/build_numbers.py --check THESIS.md` fails if a marked figure differs. Figures from DefiLlama are
