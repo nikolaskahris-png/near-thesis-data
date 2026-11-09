@@ -85,7 +85,7 @@ locked block for comparison. Live answers can differ from the locked block.
 ## Where each number comes from
 
 Each entry of `data/numbers.json` has `value`, `text` (the README form), `source` (a file) and that file's
-SHA-256. In the README and `docs/DETAILS.md` each figure is wrapped as `<!--n:KEY-->text<!--/n-->`, where `KEY` is the entry.
+SHA-256. In the README, `THESIS.md` and `docs/DETAILS.md` each figure is wrapped as `<!--n:KEY-->text<!--/n-->`, where `KEY` is the entry.
 
 | Key prefix | What | Script | Source file |
 |---|---|---|---|
@@ -106,6 +106,12 @@ SHA-256. In the README and `docs/DETAILS.md` each figure is wrapped as `<!--n:KE
 | `tt.` | Where `treasury.near`'s April-May payout went next | `treasury_trace.py` | `data/treasury_trace.json` |
 | `ct.` | What the Confidential Intents Treasury account holds | `confidential_treasury.py` | `data/confidential_treasury.json` |
 | `pr.` | Pre-registrations: anchors and judged predictions | `check_prereg.py`, `judge_prereg2.py` | `data/prereg*.json` |
+| `d.` | NEAR Intents' 30-day volume and its rank in DefiLlama's lists | `demand.py` | `data/demand.json` |
+| `lr.` | Issuance to 2031: growth needed, and April-October history | `longrun.py` (through `build_numbers.py`) | window, fees and coverage files |
+| `peer.` | Market value against revenue, NEAR and peers | `peers.py` | `data/peers.json` |
+| `bt.` | The rating rules on April to October 2026 | `backtest.py` | `data/backtest.json` |
+| `ps.` | What the buybacks kept before and after 27 October (the private path) | `private_shift.py` | `data/private_shift.json` |
+| `sc.` | Three stated paths for a holder's dollars to 2031 (derived, no probability) | `build_numbers.py` | `peer.`, `lr.`, `iv.` entries |
 
 All flows use one window: `data/window_2026-10-02_2026-11-01.json` (`lock_window.py`), blocks 218,126,921 →
 222,491,356. Public raw responses are under `data/raw/`, byte for byte.
