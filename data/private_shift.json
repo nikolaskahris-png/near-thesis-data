@@ -1,0 +1,278 @@
+{
+ "measure": "what the buybacks wallets kept a day on mainnet, before and after the date from which another repository reports private settlement growing",
+ "rules": "Did the buybacks keep coming once NEAR Intents moved to the private path? Offline, from saved files.\n\nAnother public repository on NEAR Intents, Tideline (github.com/ervhint/tideline-thesis), reads the\ntransfers of the Confidential Intents Treasury account from intents.near's logs and reports that \"since\n27 Oct 2026, a growing share of Intents swaps settles privately\", and that over 2 to 8 November the\nTreasury account carried 85% of the USD it counts on chain. We do not re-read those transactions. We\ntake its date as given, fixed before looking at our own series, and ask what the buybacks wallets kept\non mainnet before and after it:\n\n  before   2 October to 26 October 2026 (the window's start to the day before Tideline's date)\n  after    27 October to 8 November 2026 (Tideline's date to the last day of its 85% week)\n\nFor each day D:\n  kept NEAR   change in native NEAR of buybacks.multisignature.near and 1csfundsadmin.sputnik-dao.near,\n              plus the wNEAR buybacks.multisignature.near holds inside intents.near, between the first\n              blocks at or after 00:00 UTC of D and of D+1. Boundaries and balances: the files\n              base_rates.py saved (data/raw/base_rates/days/), and for days after its last boundary the\n              end block that daily.py locked for that day (data/daily/, data/raw/accounts/).\n  kept USD    kept NEAR x coingecko:near at 12:00 UTC of D (coins.llama.fi);\n  revenue     DefiLlama's revenue for NEAR Intents on D, in USD, as context only: days near the end of a\n              fetch can still be revised, and how DefiLlama counts private swaps is not known.\nDefiLlama and prices come from one fetch saved by rating.py, pinned below (FETCH), so the result\ndoes not move when new fetches are saved.\n\nJudged against noise, not by a test: daily inflows are lumpy, so the after-mean is set against every\nmean of the same number of consecutive days inside \"before\" (its lowest and highest). The Treasury\naccount's stablecoins at both ends come from confidential_treasury(.json, _daily.json).",
+ "external_source": "Tideline, github.com/ervhint/tideline-thesis, README and THESIS.md as of 9 Nov 2026: private settlement grows from 27 Oct 2026; the Confidential Intents Treasury carried 85% of the USD counted on chain, 2-8 Nov 2026",
+ "periods": {
+  "before": {
+   "first": "2026-10-02",
+   "last": "2026-10-26",
+   "days": 25,
+   "kept_near_per_day": "9153.509639",
+   "kept_usd_per_day": "45242.323008",
+   "revenue_usd_per_day": "70677.080000",
+   "days_with_no_inflow": 0
+  },
+  "after": {
+   "first": "2026-10-27",
+   "last": "2026-11-08",
+   "days": 13,
+   "kept_near_per_day": "10071.275177",
+   "kept_usd_per_day": "41781.204527",
+   "revenue_usd_per_day": "56006.846154",
+   "days_with_no_inflow": 0
+  }
+ },
+ "after_over_before": {
+  "kept_near_per_day": "1.100264",
+  "kept_usd_per_day": "0.923498"
+ },
+ "before_runs_of_after_length": {
+  "days": 13,
+  "count": 13,
+  "lowest_kept_near_per_day": "8596.045585",
+  "highest_kept_near_per_day": "10460.512162",
+  "after_inside": true
+ },
+ "treasury_stablecoins_usd": {
+  "before_start": "22949419",
+  "after_start": "31148112",
+  "after_end": "38685500"
+ },
+ "days": [
+  {
+   "date": "2026-10-02",
+   "kept_near": "7874.504906",
+   "kept_usd": "38154.432032",
+   "revenue_usd": "54327.000000"
+  },
+  {
+   "date": "2026-10-03",
+   "kept_near": "3742.589818",
+   "kept_usd": "17472.761320",
+   "revenue_usd": "25842.000000"
+  },
+  {
+   "date": "2026-10-04",
+   "kept_near": "4971.243501",
+   "kept_usd": "24226.936929",
+   "revenue_usd": "146154.000000"
+  },
+  {
+   "date": "2026-10-05",
+   "kept_near": "8263.189538",
+   "kept_usd": "41437.711881",
+   "revenue_usd": "53207.000000"
+  },
+  {
+   "date": "2026-10-06",
+   "kept_near": "7344.463269",
+   "kept_usd": "38577.779491",
+   "revenue_usd": "61629.000000"
+  },
+  {
+   "date": "2026-10-07",
+   "kept_near": "7651.225166",
+   "kept_usd": "38498.219811",
+   "revenue_usd": "63423.000000"
+  },
+  {
+   "date": "2026-10-08",
+   "kept_near": "16238.330714",
+   "kept_usd": "82499.074880",
+   "revenue_usd": "118720.000000"
+  },
+  {
+   "date": "2026-10-09",
+   "kept_near": "16897.283871",
+   "kept_usd": "82294.277390",
+   "revenue_usd": "113449.000000"
+  },
+  {
+   "date": "2026-10-10",
+   "kept_near": "10674.437778",
+   "kept_usd": "56646.812980",
+   "revenue_usd": "78515.000000"
+  },
+  {
+   "date": "2026-10-11",
+   "kept_near": "10364.797810",
+   "kept_usd": "54793.658093",
+   "revenue_usd": "81286.000000"
+  },
+  {
+   "date": "2026-10-12",
+   "kept_near": "8212.099086",
+   "kept_usd": "46435.360969",
+   "revenue_usd": "62759.000000"
+  },
+  {
+   "date": "2026-10-13",
+   "kept_near": "7055.229137",
+   "kept_usd": "35460.910801",
+   "revenue_usd": "56520.000000"
+  },
+  {
+   "date": "2026-10-14",
+   "kept_near": "10688.464715",
+   "kept_usd": "54374.292434",
+   "revenue_usd": "82736.000000"
+  },
+  {
+   "date": "2026-10-15",
+   "kept_near": "19930.326627",
+   "kept_usd": "91578.087152",
+   "revenue_usd": "162768.000000"
+  },
+  {
+   "date": "2026-10-16",
+   "kept_near": "5932.766986",
+   "kept_usd": "31480.894986",
+   "revenue_usd": "46209.000000"
+  },
+  {
+   "date": "2026-10-17",
+   "kept_near": "4728.322811",
+   "kept_usd": "24182.589184",
+   "revenue_usd": "32347.000000"
+  },
+  {
+   "date": "2026-10-18",
+   "kept_near": "6073.035708",
+   "kept_usd": "29883.355291",
+   "revenue_usd": "46284.000000"
+  },
+  {
+   "date": "2026-10-19",
+   "kept_near": "7653.620617",
+   "kept_usd": "37852.308089",
+   "revenue_usd": "53083.000000"
+  },
+  {
+   "date": "2026-10-20",
+   "kept_near": "11537.942244",
+   "kept_usd": "53872.772938",
+   "revenue_usd": "78180.000000"
+  },
+  {
+   "date": "2026-10-21",
+   "kept_near": "7997.519013",
+   "kept_usd": "41351.970760",
+   "revenue_usd": "63787.000000"
+  },
+  {
+   "date": "2026-10-22",
+   "kept_near": "8221.425978",
+   "kept_usd": "40870.223896",
+   "revenue_usd": "58819.000000"
+  },
+  {
+   "date": "2026-10-23",
+   "kept_near": "6507.878260",
+   "kept_usd": "32072.021012",
+   "revenue_usd": "38629.000000"
+  },
+  {
+   "date": "2026-10-24",
+   "kept_near": "7209.961419",
+   "kept_usd": "32408.370271",
+   "revenue_usd": "47262.000000"
+  },
+  {
+   "date": "2026-10-25",
+   "kept_near": "10001.794080",
+   "kept_usd": "44814.272160",
+   "revenue_usd": "61742.000000"
+  },
+  {
+   "date": "2026-10-26",
+   "kept_near": "13065.287920",
+   "kept_usd": "59818.980449",
+   "revenue_usd": "79250.000000"
+  },
+  {
+   "date": "2026-10-27",
+   "kept_near": "11701.384131",
+   "kept_usd": "52376.988121",
+   "revenue_usd": "76747.000000"
+  },
+  {
+   "date": "2026-10-28",
+   "kept_near": "9733.147229",
+   "kept_usd": "45358.052661",
+   "revenue_usd": "57359.000000"
+  },
+  {
+   "date": "2026-10-29",
+   "kept_near": "15945.782570",
+   "kept_usd": "70412.602527",
+   "revenue_usd": "94993.000000"
+  },
+  {
+   "date": "2026-10-30",
+   "kept_near": "12997.326396",
+   "kept_usd": "56001.287377",
+   "revenue_usd": "75590.000000"
+  },
+  {
+   "date": "2026-10-31",
+   "kept_near": "7877.112679",
+   "kept_usd": "34168.517421",
+   "revenue_usd": "46517.000000"
+  },
+  {
+   "date": "2026-11-01",
+   "kept_near": "5220.826339",
+   "kept_usd": "22853.330445",
+   "revenue_usd": "28867.000000"
+  },
+  {
+   "date": "2026-11-02",
+   "kept_near": "7148.267343",
+   "kept_usd": "29500.790396",
+   "revenue_usd": "33483.000000"
+  },
+  {
+   "date": "2026-11-03",
+   "kept_near": "7540.619859",
+   "kept_usd": "29151.929630",
+   "revenue_usd": "42975.000000"
+  },
+  {
+   "date": "2026-11-04",
+   "kept_near": "9232.341489",
+   "kept_usd": "37689.005808",
+   "revenue_usd": "49088.000000"
+  },
+  {
+   "date": "2026-11-05",
+   "kept_near": "12524.785861",
+   "kept_usd": "50263.685500",
+   "revenue_usd": "60331.000000"
+  },
+  {
+   "date": "2026-11-06",
+   "kept_near": "15624.318777",
+   "kept_usd": "58331.105325",
+   "revenue_usd": "87700.000000"
+  },
+  {
+   "date": "2026-11-07",
+   "kept_near": "8100.727975",
+   "kept_usd": "29994.123232",
+   "revenue_usd": "43013.000000"
+  },
+  {
+   "date": "2026-11-08",
+   "kept_near": "7279.936655",
+   "kept_usd": "27054.240412",
+   "revenue_usd": "31426.000000"
+  }
+ ],
+ "files_sha256": {
+  "data/raw/accounts/223688383_1csfundsadmin.sputnik-dao.near.json": "10a23c3e6461e1930a00a24421eec5be1c6f562a11d1a9054f5e2ddecf2966dd",
+  "data/raw/accounts/223688383_buybacks.multisignature.near.json": "f370e3cfaa52abb9b1c26cae4778ed1fd2ca8e43f6ae9bf80abb789423f384e1",
+  "data/raw/accounts/223688383_buybacks.multisignature.near_intents_wnear.json": "7f3b6ec1476651d4b9b8f1597057d203d745cae432026ffe2bc1bfddcaf3ab70",
+  "data/raw/rating/20261109T063446Z/price.json": "9044f5e9e62a2f444e12cf8f475e3ebbb73763e6648815919429aaffa1753c6d",
+  "data/raw/rating/20261109T063446Z/revenue.json": "60fe1ddbf2da5d62f45ad6f4927629c3e670f5287f5d2b1d7c7a0effa175e37b"
+ }
+}

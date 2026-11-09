@@ -1300,6 +1300,43 @@ def build(data_dir, window_file):
             n.add("ct.stablecoins_change.2026-10-01_2026-11-08", g, f"+{rnd(g * 100, 0):.0f}%", csrc,
                   derived_from=["ct.stablecoins_usd.2026-10-01", "ct.stablecoins_usd.2026-11-08"])
 
+    # ---- did the buybacks keep coming once the private path took over (private_shift.py)
+    spath = data_dir / "private_shift.json"
+    if spath.exists():
+        sd = json.loads(spath.read_text(encoding="utf-8"))
+        ssrc = n.source(spath)
+        for name, per in sd["periods"].items():
+            pc = {"first": per["first"], "last": per["last"], "days": per["days"]}
+            n.add(f"ps.{name}.kept_near_per_day", dec(per["kept_near_per_day"]), f_int(dec(per["kept_near_per_day"])),
+                  ssrc, unit="NEAR/day", **pc)
+            n.add(f"ps.{name}.kept_usd_per_day", dec(per["kept_usd_per_day"]), f_usd(dec(per["kept_usd_per_day"])),
+                  ssrc, unit="USD/day", **pc)
+            if per["revenue_usd_per_day"] is not None:
+                n.add(f"ps.{name}.revenue_usd_per_day", dec(per["revenue_usd_per_day"]),
+                      f_usd(dec(per["revenue_usd_per_day"])), ssrc, unit="USD/day",
+                      note="DefiLlama, context only; recent days may still be revised", **pc)
+            n.add(f"ps.{name}.days", per["days"], f_int(per["days"]), ssrc, **pc)
+        for k in ("kept_near_per_day", "kept_usd_per_day"):
+            r = dec(sd["after_over_before"][k]) - 1
+            n.add(f"ps.change.{k}", r, ("+" if r > 0 else "") + f_pct(r, 0), ssrc,
+                  derived_from=[f"ps.before.{k}", f"ps.after.{k}"])
+        if all(sd["periods"][x]["revenue_usd_per_day"] is not None for x in ("before", "after")):
+            r = dec(sd["periods"]["after"]["revenue_usd_per_day"]) / dec(sd["periods"]["before"]["revenue_usd_per_day"]) - 1
+            n.add("ps.change.revenue_usd_per_day", r, ("+" if r > 0 else "") + f_pct(r, 0), ssrc,
+                  derived_from=["ps.before.revenue_usd_per_day", "ps.after.revenue_usd_per_day"])
+        ru = sd["before_runs_of_after_length"]
+        for k in ("lowest", "highest"):
+            v = dec(ru[f"{k}_kept_near_per_day"])
+            n.add(f"ps.before_runs.{k}_kept_near_per_day", v, f_int(v), ssrc, unit="NEAR/day",
+                  note=f"{k} mean of {ru['days']} consecutive days inside the before period ({ru['count']} runs)")
+        if not ru["after_inside"]:
+            n.add("ps.after_outside_before_runs", True, "yes", ssrc)
+        ts = sd["treasury_stablecoins_usd"]
+        if ts["after_start"] and ts["after_end"]:
+            g = dec(ts["after_end"]) / dec(ts["after_start"]) - 1
+            n.add("ps.treasury_stablecoins_change_after", g, ("+" if g > 0 else "") + f_pct(g, 0), ssrc,
+                  note="Confidential Intents Treasury account, stablecoins, 27 Oct to 9 Nov (first blocks)")
+
     # ---- the pre-registration anchors (check_prereg.py, --anchor 2 and 3)
     for num, name in (("1", "prereg.json"), ("2", "prereg2_anchor.json"), ("3", "prereg3_anchor.json")):
         apath = data_dir / name
@@ -1382,6 +1419,7 @@ SCRIPT_CHECKS = [
     ("treasury_exits.py", lambda doc: ["--verify"]),
     ("treasury_trace.py", lambda doc: ["--verify"], "treasury_trace.json"),
     ("confidential_treasury.py", lambda doc: ["--verify"], "confidential_treasury.json"),
+    ("private_shift.py", lambda doc: ["--verify"], "private_shift.json"),
     ("check_prereg.py", lambda doc: ["--verify"]),
     ("check_prereg.py", lambda doc: ["--anchor", "2", "--verify"], "prereg2_anchor.json"),
     ("check_prereg.py", lambda doc: ["--anchor", "3", "--verify"], "prereg3_anchor.json"),

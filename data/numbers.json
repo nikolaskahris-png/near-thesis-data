@@ -29,6 +29,7 @@
     "data/prereg2.json": "4cab2101e8c89e0412a78c50e0123286b103ecee2de8918dcaea69dc944980e7",
     "data/prereg2_anchor.json": "04d116768228d84f1c3a3e6c7c91cd43af6df1e62a177e95980f757a272c0c77",
     "data/prereg3_anchor.json": "d916894a3b6a0d4e899200cc4830a04dc8ee32a758ee083542f6b6cc35efd5c8",
+    "data/private_shift.json": "4d3b7eac8ea10579aea339049af27d06c22e4cfcfbdcee401e92ff7bd1780376",
     "data/raw/redacted/control/1csfundsadmin.sputnik-dao.near_get_policy.json": "4170c345c39f028787bd46da4f3748bce4adc929e2412988e7dbab3a7811177d",
     "data/raw/redacted/control/fefundsadmin.sputnik-dao.near_get_policy.json": "7771c22b179e418ea8225c37977494d2ed0b8eccf774deb3d7301924357a97af",
     "data/raw/redacted/control/hos-root.sputnik-dao.near_get_policy.json": "8188cbd4d97cd7240f51058208e9b6b18a2eab0bb88d32657193b4d78354f815",
@@ -7489,6 +7490,125 @@
       "source": "data/prereg2.json",
       "block": 223314737,
       "note": "first block with this protocol version in effect"
+    },
+    "ps.after.days": {
+      "value": "13",
+      "text": "13",
+      "source": "data/private_shift.json",
+      "first": "2026-10-27",
+      "last": "2026-11-08",
+      "days": 13
+    },
+    "ps.after.kept_near_per_day": {
+      "value": "10071.275177",
+      "text": "10,071",
+      "source": "data/private_shift.json",
+      "unit": "NEAR/day",
+      "first": "2026-10-27",
+      "last": "2026-11-08",
+      "days": 13
+    },
+    "ps.after.kept_usd_per_day": {
+      "value": "41781.204527",
+      "text": "$41,781",
+      "source": "data/private_shift.json",
+      "unit": "USD/day",
+      "first": "2026-10-27",
+      "last": "2026-11-08",
+      "days": 13
+    },
+    "ps.after.revenue_usd_per_day": {
+      "value": "56006.846154",
+      "text": "$56,007",
+      "source": "data/private_shift.json",
+      "unit": "USD/day",
+      "note": "DefiLlama, context only; recent days may still be revised",
+      "first": "2026-10-27",
+      "last": "2026-11-08",
+      "days": 13
+    },
+    "ps.before.days": {
+      "value": "25",
+      "text": "25",
+      "source": "data/private_shift.json",
+      "first": "2026-10-02",
+      "last": "2026-10-26",
+      "days": 25
+    },
+    "ps.before.kept_near_per_day": {
+      "value": "9153.509639",
+      "text": "9,154",
+      "source": "data/private_shift.json",
+      "unit": "NEAR/day",
+      "first": "2026-10-02",
+      "last": "2026-10-26",
+      "days": 25
+    },
+    "ps.before.kept_usd_per_day": {
+      "value": "45242.323008",
+      "text": "$45,242",
+      "source": "data/private_shift.json",
+      "unit": "USD/day",
+      "first": "2026-10-02",
+      "last": "2026-10-26",
+      "days": 25
+    },
+    "ps.before.revenue_usd_per_day": {
+      "value": "70677.080000",
+      "text": "$70,677",
+      "source": "data/private_shift.json",
+      "unit": "USD/day",
+      "note": "DefiLlama, context only; recent days may still be revised",
+      "first": "2026-10-02",
+      "last": "2026-10-26",
+      "days": 25
+    },
+    "ps.before_runs.highest_kept_near_per_day": {
+      "value": "10460.512162",
+      "text": "10,461",
+      "source": "data/private_shift.json",
+      "unit": "NEAR/day",
+      "note": "highest mean of 13 consecutive days inside the before period (13 runs)"
+    },
+    "ps.before_runs.lowest_kept_near_per_day": {
+      "value": "8596.045585",
+      "text": "8,596",
+      "source": "data/private_shift.json",
+      "unit": "NEAR/day",
+      "note": "lowest mean of 13 consecutive days inside the before period (13 runs)"
+    },
+    "ps.change.kept_near_per_day": {
+      "value": "0.100264",
+      "text": "+10%",
+      "source": "data/private_shift.json",
+      "derived_from": [
+        "ps.before.kept_near_per_day",
+        "ps.after.kept_near_per_day"
+      ]
+    },
+    "ps.change.kept_usd_per_day": {
+      "value": "-0.076502",
+      "text": "-8%",
+      "source": "data/private_shift.json",
+      "derived_from": [
+        "ps.before.kept_usd_per_day",
+        "ps.after.kept_usd_per_day"
+      ]
+    },
+    "ps.change.revenue_usd_per_day": {
+      "value": "-0.2075670619952041029425663878586947847874",
+      "text": "-21%",
+      "source": "data/private_shift.json",
+      "derived_from": [
+        "ps.before.revenue_usd_per_day",
+        "ps.after.revenue_usd_per_day"
+      ]
+    },
+    "ps.treasury_stablecoins_change_after": {
+      "value": "0.241985389034173242988210649814024041008",
+      "text": "+24%",
+      "source": "data/private_shift.json",
+      "note": "Confidential Intents Treasury account, stablecoins, 27 Oct to 9 Nov (first blocks)"
     },
     "sc.base.staked_usd_change": {
       "value": "0.105519844008083039160541525982298547342",

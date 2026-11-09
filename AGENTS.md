@@ -31,6 +31,7 @@ Its last line is `REBUILD: PASS`. The same checks, one by one:
 | `python scripts/check_prereg.py --anchor 2 --verify` | `PREREG-2.md` equals its SocialDB record and the anchoring transaction's args | `OK: raw sha256 match, PREREG-2.md = …` |
 | `python scripts/peers.py --verify` | the peer table recomputes from the saved DefiLlama and CoinGecko responses | `OK: NEAR (NEAR Intents): mcap/revenue …` |
 | `python scripts/demand.py --verify` | NEAR Intents' 30-day volume ranking recomputes from the saved DefiLlama responses | `OK: NEAR Intents $… in 30 days, rank …` |
+| `python scripts/private_shift.py --verify` | what the buybacks kept a day before and after 27 October (the private path) recomputes from the saved balances and one pinned DefiLlama fetch | `OK` |
 | `python scripts/rating.py --verify` | the rating (Hold / Buy / Avoid) of every window in `data/rating.csv` recomputes from `history.csv` and the saved DefiLlama responses | `OK: rating.csv recomputes from history.csv and the saved responses` |
 | `python scripts/backtest.py --verify` | the rating rules on each month April–October 2026 in `data/backtest.csv` recompute from `coverage_monthly.json` and the saved DefiLlama responses | `OK: backtest.csv recomputes from coverage_monthly.json and the saved DefiLlama responses` |
 | `python scripts/quotes.py --verify` | each page the text quotes is saved under `data/raw/sources/` with its SHA-256 and contains the quote | `OK: <count> quotes found in <count> saved pages, and each is still in the text` |

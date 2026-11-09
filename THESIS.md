@@ -52,6 +52,12 @@ on FAR are not), and the trust is still required, since no link is a rule.
 revenue ÷ issuance gives <!--n:n2.defillama_revenue_coverage-->16.5%<!--/n--> and the wallets' own balances give <!--n:n1.coverage_with_front_end-->16.5%<!--/n-->. DefiLlama counts inflows to the same wallets and we read their balances, so this is an
 outflow check: almost none flows out. It does not check the fees themselves.
 
+**It held when the flow went private.** Another repository, Tideline, reports private settlement growing from 27 October
+(the Confidential Intents Treasury account carried 85% of the USD it counts on chain, 2 to 8 November). Read on mainnet, the
+buybacks wallets kept <!--n:ps.after.kept_near_per_day-->10,071<!--/n--> NEAR a day from 27 October to 8 November against <!--n:ps.before.kept_near_per_day-->9,154<!--/n--> from 2 to 26 October
+(<!--n:ps.change.kept_near_per_day-->+10%<!--/n-->, inside the range of any 13 days before), while DefiLlama's revenue fell <!--n:ps.change.revenue_usd_per_day-->-21%<!--/n-->: capture did not leave with the
+flow, and public datasets alone would have shown a fall (`scripts/private_shift.py`).
+
 **Small.** The buybacks wallets keep <!--n:n1.buybacks_near_per_day-->9,570<!--/n--> of the <!--n:n1.new_near_per_day-->88,392<!--/n--> NEAR issued a day: coverage <!--n:n1.coverage_buybacks-->10.8%<!--/n-->, <!--n:n1.coverage_with_front_end-->16.5%<!--/n--> with the front-end fund. It has been below a quarter of issuance in every
 month since April (highest: <!--n:f1.coverage_buybacks.2026-09-->15.3%<!--/n-->, September). If NEAR kept every fee, coverage
 would be <!--n:n2.max_coverage-->47.9%<!--/n-->. Supply grows <!--n:iv.issuance_rate_per_year-->2.46%<!--/n--> a year and the
