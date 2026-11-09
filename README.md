@@ -4,6 +4,8 @@
 
 **NEAR Intents has real demand, but only a small part of what users pay reaches NEAR holders, and how much is decided by a few signers, not by code.** So the rating is **Hold**: keep the NEAR you own, staked, and do not add until the buybacks become a published rule. Horizon 1 January 2031, checked every year.
 
+**The problem.** Investment cases for NEAR quote the demand on NEAR Intents, but not how much of it reaches a holder or whether anything guarantees it. This repository measures both from the chain, and every number in it rebuilds offline in two minutes.
+
 **[Live dashboard](https://nikolaskahris-png.github.io/near-thesis-data/dashboard/)** · [Check it in two minutes](#check-it-in-two-minutes) · [One-page thesis](THESIS.md) · [Every detail](docs/DETAILS.md) · [Terms](#terms) · Window: 2 October → 1 November 2026 · As of 9 November 2026; figures from other dates say so where they appear
 
 ## In sixty seconds

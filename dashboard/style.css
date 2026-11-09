@@ -99,6 +99,7 @@ svg .hit { fill: transparent; }
 svg .s1 { fill: var(--series-1); } svg .s2 { fill: var(--series-2); } svg .s3 { fill: var(--series-3); }
 svg .sn { fill: var(--neutral-mark); }
 svg .l1 { stroke: var(--series-1); stroke-width: 2; fill: none; }
+svg .mean { stroke: var(--text-primary); stroke-width: 2.5; fill: none; }
 svg .d1 { fill: var(--series-1); stroke: var(--surface-1); stroke-width: 2; }
 .meta { margin-top: 12px; display: flex; flex-direction: column; gap: 6px; }
 details { border-top: 1px solid var(--border); padding-top: 6px; }

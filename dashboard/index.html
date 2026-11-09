@@ -65,6 +65,17 @@
   <div class="tablewrap" id="peers-tbl"></div>
 </section>
 
+<section id="p0b">
+  <h2>The flow went private; the buybacks kept coming</h2>
+  <p class="what">NEAR the buybacks wallets kept each day on mainnet. The dashed line marks the day from which Tideline, another
+    public repository, reports private settlement growing on NEAR Intents; the flat lines are the mean before
+    (<span data-n="ps.before.kept_near_per_day"></span> NEAR a day) and after (<span data-n="ps.after.kept_near_per_day"></span>).
+    Over the same days DefiLlama's revenue changed <span data-n="ps.change.revenue_usd_per_day"></span>.
+    <span class="not">It does not show which fees paid for what the wallets received.</span></p>
+  <div class="chart" id="c0b"></div>
+  <p class="src"><code>python scripts/private_shift.py --verify</code> recomputes every bar from the saved balances.</p>
+</section>
+
 <section id="p1">
   <h2>Who can change each link from the fee a user pays to the NEAR a holder keeps</h2>
   <p class="what">Each card is one link: its value at the locked end block, who signs to change it, and how often they have.

@@ -362,6 +362,41 @@ function chartCoverage(cov) {
     rows.map((r, i) => [r.month, fmtInt(bb[i]), fmtInt(fe[i]), fmtInt(iss[i]), txt("f1.coverage_buybacks." + r.month), txt("f1.coverage_with_front_end." + r.month)]));
 }
 
+// Daily bars of NEAR kept, a dashed marker at the first "after" day, and the two period means.
+function chartPrivate(ps) {
+  const host = $("#c0b");
+  const days = ps.days, after0 = ps.periods.after.first;
+  const vals = days.map(r => Number(r.kept_near));
+  const W = width(host), H = 240, L = 52, R = 10, T = 22, B = 30;
+  const top = niceMax(Math.max(...vals) * 1.08);
+  const y = v => T + (H - T - B) * (1 - v / top);
+  const band = (W - L - R) / days.length, bw = Math.max(2, band * 0.7);
+  const svg = el("svg", { viewBox: `0 0 ${W} ${H}`, role: "img", "aria-label": "NEAR kept a day by the buybacks wallets" }, host);
+  for (let k = 0; k <= 4; k++) {
+    const v = top * k / 4, yy = y(v);
+    el("line", { x1: L, x2: W - R, y1: yy, y2: yy, class: k ? "gridl" : "axis" }, svg);
+    svgText(svg, L - 6, yy + 4, fmtAxis(v), { "text-anchor": "end" });
+  }
+  const iAfter = days.findIndex(r => r.date === after0);
+  days.forEach((r, i) => {
+    const x0 = L + band * i + (band - bw) / 2, v = Math.max(0, vals[i]);
+    el("rect", { x: x0, y: y(v), width: bw, height: Math.max(0, y(0) - y(v)), class: i < iAfter ? "s1" : "s3" }, svg);
+    if (i % 7 === 0 || i === days.length - 1) svgText(svg, L + band * (i + 0.5), H - 10, dayLabel(r.date), { "text-anchor": "middle" });
+    const hit = el("rect", { x: L + band * i, y: T, width: band, height: H - T - B, class: "hit" }, svg);
+    tip(hit, `<b>${r.date}</b><br>${fmtInt(vals[i])} NEAR kept<br>$${fmtInt(Number(r.kept_usd))} at that day's price`);
+  });
+  const xm = L + band * iAfter;
+  el("line", { x1: xm, x2: xm, y1: T, y2: H - B, class: "ref" }, svg);
+  svgText(svg, xm + 4, T + 10, "private settlement grows", { class: "val" });
+  [["before", 0, iAfter], ["after", iAfter, days.length]].forEach(([k, a, b]) => {
+    const m = Number(ps.periods[k].kept_near_per_day);
+    el("line", { x1: L + band * a, x2: L + band * b, y1: y(m), y2: y(m), class: "mean" }, svg);
+  });
+  const lg = document.createElement("div"); lg.className = "legend";
+  lg.innerHTML = `<span><i style="background:var(--series-1)"></i>before</span><span><i style="background:var(--series-3)"></i>after</span><span>NEAR a day; lines: period means</span>`;
+  host.appendChild(lg);
+}
+
 function chartHistory(hist) {
   const host = $("#c2");
   const d = document.createElement("div"); d.className = "chart"; d.style.marginTop = "18px"; host.appendChild(d);
@@ -657,17 +692,18 @@ async function main() {
   fillMeta();
   status(doc);
   tooltips();
-  const [cov, histTxt, upTxt, ts, vd, fp, pr, ratingTxt, ratingDoc, br, p2doc] = await Promise.all([
+  const [cov, histTxt, upTxt, ts, vd, fp, pr, ratingTxt, ratingDoc, br, p2doc, psDoc] = await Promise.all([
     getJSON("coverage_monthly.json"), getText(DATA + "history.csv"), getText(DATA + "upgrade_watch.csv"),
     getJSON("treasury_spend.json"), getJSON("hsp029_voters.json"),
     getJSON(`raw/stakedao/${doc.window.end_block}/farm_pool.json`), getJSON("prereg.json"),
-    getText(DATA + "rating.csv"), getJSON("rating.json"), getJSON("base_rates.json"), getJSON("prereg2.json")]);
+    getText(DATA + "rating.csv"), getJSON("rating.json"), getJSON("base_rates.json"), getJSON("prereg2.json"), getJSON("private_shift.json")]);
   BR = br; P2 = p2doc;
   predictions();
   FARM_PRICE = JSON.parse(bytesToText(fp.result.result)).price_id;
   PREREG = pr;
   ratingPanel(parseCSV(ratingTxt), ratingDoc);
   peersPanel();
+  chartPrivate(psDoc);
   chartCoverage(cov);
   chartHistory(parseCSV(histTxt));
   chartCeiling(cov);
