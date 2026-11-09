@@ -131,7 +131,7 @@ The after-mean sits inside the range of every <!--n:ps.after.days-->13<!--/n--> 
 - **Fees, volume, the ceiling** (<!--n:n2.max_coverage-->47.9%<!--/n-->) and the <!--n:n2.equilibrium_price_usd-->$2.33<!--/n--> price come from NEAR's public datasets on Dune. Swaps settled on FAR would leave them, so they would understate demand; if DefiLlama's revenue goes to zero, Avoid's test 1 is not judged and test 2 decides alone.
 - **PREREG-3 tests both from 9 November:** P6 and P7 what the wallets keep, P8 whether DefiLlama still has every day.
 
-**Pre-registered, so the method can fail in public.** Each file's SHA-256 is anchored in SocialDB (`social.near`) before its predictions are judged; results are published whatever they are ([details](docs/DETAILS.md#pre-registration)).
+**Pre-registered, so the method can fail in public.** Each file's SHA-256 is anchored on NEAR mainnet, in SocialDB (`social.near`), before its predictions are judged, and no file has been amended since: `python scripts/check_prereg.py --file` (with `--anchor 2` or `--anchor 3` for the others) compares each file as it is now with its anchored hash, with no network. Results are published whatever they are ([details](docs/DETAILS.md#pre-registration)).
 
 | File | Prediction | Probability | Result |
 |---|---|---|---|
