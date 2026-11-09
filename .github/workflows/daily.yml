@@ -46,6 +46,16 @@ jobs:
           echo '```' >> "$GITHUB_STEP_SUMMARY"
           cut -d, -f1,4,8,11,15,16,20 data/history.csv | tail -n 15 >> "$GITHUB_STEP_SUMMARY"
           echo '```' >> "$GITHUB_STEP_SUMMARY"
+      - name: Confidential Intents Treasury account, the new day (Avoid's private-path rule)
+        id: ct
+        continue-on-error: true
+        run: |
+          if python scripts/confidential_treasury.py --daily && python scripts/confidential_treasury.py --verify-daily; then exit 0; fi
+          # not verified: put the files back as they were, so the rating reads the new day as not read
+          git checkout -- data/confidential_treasury_daily.json 2>/dev/null || rm -f data/confidential_treasury_daily.json
+          git checkout -- data/raw/confidential_treasury 2>/dev/null || true
+          git clean -fdq -- data/raw/confidential_treasury
+          exit 1
       - name: Rating (Hold / Buy / Avoid) of every window
         id: rating
         continue-on-error: true
@@ -69,6 +79,7 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add data/daily data/raw data/history.csv
           git add data/upgrade_watch data/upgrade_watch.csv 2>/dev/null || true
+          git add data/confidential_treasury_daily.json 2>/dev/null || true
           # a failed rating is not committed: the data day is, and the job then fails (step below)
           if [ "${{ steps.rating.outcome }}" = "success" ]; then
             git add data/rating.csv data/rating.json data/raw/rating 2>/dev/null || true

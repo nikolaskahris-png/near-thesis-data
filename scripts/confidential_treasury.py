@@ -24,8 +24,15 @@ Every response is saved byte for byte with its SHA-256 in data/raw/confidential_
 --verify recomputes data/confidential_treasury.json with no network.
 
 Usage:
-    python scripts/confidential_treasury.py            # fetch, compute, save
-    python scripts/confidential_treasury.py --verify   # offline
+    python scripts/confidential_treasury.py                  # fetch, compute, save (to LAST)
+    python scripts/confidential_treasury.py --verify         # offline
+    python scripts/confidential_treasury.py --daily          # every day after LAST with a data/daily file
+    python scripts/confidential_treasury.py --verify-daily   # offline
+
+data/confidential_treasury.json stops at LAST (8 November 2026) and is what numbers.json uses, so it
+never changes. The days after LAST go to data/confidential_treasury_daily.json (--daily, run by the daily workflow), with the
+same rules, at the block data/daily/D.json locks for day D (the same first-block-of-the-day rule).
+rating.py reads both, for Avoid's private-path rule.
 """
 import argparse
 import base64
@@ -46,6 +53,7 @@ TREASURY = "51e8f94d77b5e90dc9852ca6113771e11e8382ce69473a75e313e41665de7cbe"
 INTENTS = "intents.near"
 RAW = "raw/confidential_treasury"
 OUT = "confidential_treasury.json"
+OUT_DAILY = "confidential_treasury_daily.json"
 MONTHLY = [date(2026, m, 1) for m in range(4, 11)]
 DAILY_FROM = date(2026, 10, 2)
 LAST = date(2026, 11, 8)
@@ -89,6 +97,24 @@ def height_of(data_root, d):
     return doc["height"]
 
 
+def daily_dates(data_root):
+    """Every day after LAST that has a locked day file, data/daily/D.json."""
+    out = []
+    for p in sorted((data_root / "daily").glob("*.json")):
+        try:
+            d = date.fromisoformat(p.stem)
+        except ValueError:
+            continue
+        if d > LAST:
+            out.append(d)
+    return out
+
+
+def daily_height(data_root, d):
+    doc = json.loads((data_root / "daily" / f"{d.isoformat()}.json").read_text(encoding="utf-8"))
+    return doc["end"]["height"]
+
+
 def view(chain, account, method, args, block):
     params = {"request_type": "call_function", "account_id": account, "method_name": method,
               "args_base64": base64.b64encode(json.dumps(args).encode()).decode()}
@@ -104,7 +130,8 @@ def result(raw):
 
 
 # ---------------------------------------------------------------- fetch
-def fetch(data_root):
+def fetch(data_root, ds=None, height=height_of):
+    ds = dates() if ds is None else ds
     chain = lw.Chain()
     root = data_root / RAW
     files = {}
@@ -121,8 +148,8 @@ def fetch(data_root):
         return save(rel, p.read_bytes() if p.exists() else get())
 
     contracts = set()
-    for d in dates():
-        h = height_of(data_root, d)
+    for d in ds:
+        h = height(data_root, d)
         tokens, i = [], 0
         while True:
             raw = cached(f"{h}/tokens_{i}.json", lambda: view(chain, INTENTS, "mt_tokens_for_owner",
@@ -147,7 +174,7 @@ def fetch(data_root):
     keys = sorted({f"near:{c}" for c in contracts} |
                   {f"coingecko:{SYMBOL_PRICE[m['symbol']]}" for c, m in meta.items()
                    if m and c.endswith(BRIDGED) and m.get("symbol") in SYMBOL_PRICE})
-    for d in dates():
+    for d in ds:
         day = d - timedelta(1)
         ts = int(datetime(day.year, day.month, day.day, 12, tzinfo=timezone.utc).timestamp())
         for k in range(0, len(keys), PRICE_BATCH):
@@ -160,7 +187,8 @@ def fetch(data_root):
 
 
 # ---------------------------------------------------------------- compute (offline)
-def compute(data_root, fetched):
+def compute(data_root, fetched, ds=None, height=height_of):
+    ds = dates() if ds is None else ds
     base = data_root.parent
     problems = []
     for rel, d in fetched["files"].items():
@@ -179,8 +207,8 @@ def compute(data_root, fetched):
                 prices.setdefault(key, {})[day] = Fraction(v["price"])
     meta = {p.stem: result(p.read_bytes()) for p in (root / "metadata").glob("*.json")}
     series = []
-    for d in dates():
-        h = height_of(data_root, d)
+    for d in ds:
+        h = height(data_root, d)
         tokens, bals = [], []
         for p in sorted((root / str(h)).glob("tokens_*.json"), key=lambda x: int(x.stem.split("_")[1])):
             tokens += [t["token_id"] for t in result(p.read_bytes())]
@@ -224,17 +252,30 @@ def compute(data_root, fetched):
 def main():
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument("--verify", action="store_true")
+    ap.add_argument("--daily", action="store_true")
+    ap.add_argument("--verify-daily", action="store_true")
+    ap.add_argument("--data", default=str(REPO / "data"))
     a = ap.parse_args()
-    data_root = REPO / "data"
-    path = data_root / OUT
-    if a.verify:
+    data_root = Path(a.data).resolve()
+    daily_mode = a.daily or a.verify_daily
+    path = data_root / (OUT_DAILY if daily_mode else OUT)
+    height = daily_height if daily_mode else height_of
+    if a.verify or a.verify_daily:
+        if not path.exists():
+            print(f"{path.name} is missing")
+            sys.exit(1)
         doc = json.loads(path.read_text(encoding="utf-8"))
-        res, problems = compute(data_root, doc["fetched"])
+        ds = [date.fromisoformat(r["date"]) for r in doc["series"]] if daily_mode else None
+        res, problems = compute(data_root, doc["fetched"], ds, height)
         if res is not None and {k: v for k, v in doc.items() if k != "fetched"} != res:
-            problems.append(f"{OUT} differs from the recomputation")
+            problems.append(f"{path.name} differs from the recomputation")
     else:
-        fetched = fetch(data_root)
-        res, problems = compute(data_root, fetched)
+        ds = daily_dates(data_root) if daily_mode else None
+        if daily_mode and not ds:
+            print(f"no day after {LAST} has a data/daily file yet")
+            return 0
+        fetched = fetch(data_root, ds, height)
+        res, problems = compute(data_root, fetched, ds, height)
         if res is not None:
             res["fetched"] = fetched
             path.write_text(json.dumps(res, indent=1) + "\n", encoding="utf-8", newline="\n")
@@ -246,7 +287,7 @@ def main():
     if problems:
         print("FAILED:\n  " + "\n  ".join(problems[:20]))
         sys.exit(1)
-    print("OK" if a.verify else f"OK: saved data/{OUT}")
+    print("OK" if (a.verify or a.verify_daily) else f"OK: saved data/{path.name}")
 
 
 if __name__ == "__main__":

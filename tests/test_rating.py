@@ -250,7 +250,14 @@ class Verify(unittest.TestCase):
     def test_edited_treasury_file_fails(self):
         p = self.data / rating.CT_FILE
         p.write_bytes(p.read_bytes() + b" ")
-        self.assertTrue(any("sha256 differs" in x for x in rating.verify(self.data)))
+        self.assertTrue(any("private_path" in x for x in rating.verify(self.data)))
+
+    def test_daily_treasury_file_extends_the_series(self):
+        doc = {"series": [{"date": "2026-11-09", "by_group_usd": {"stablecoins": "1"}}]}
+        (self.data / rating.CT_DAILY).write_text(json.dumps(doc), encoding="utf-8")
+        self.assertTrue(any("private_path" in x for x in rating.verify(self.data)))   # a new file must be recorded
+        st = rating.treasury_stablecoins(self.data)
+        self.assertEqual((st["2026-11-09"], "2026-11-08" in st), (Fraction(1), True))
 
     def test_edited_csv_fails(self):
         p = self.data / "rating.csv"

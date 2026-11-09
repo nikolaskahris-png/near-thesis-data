@@ -68,7 +68,9 @@ BASE_DATE = date(2026, 11, 1)          # the window the rating was set on
 KEPT_SHARE_MIN = Fraction(3, 4)        # Avoid test 1: the wallets keep at least 75% of revenue
 HSP029_IN_FORCE = False                # set True once validators run a release with HSP-029 (upgrade_watch.py)
 SERIES = ("fees", "revenue", "volume", "price")
-CT_FILE = "confidential_treasury.json"
+CT_FILE = "confidential_treasury.json"              # to 8 Nov 2026, fixed (numbers.json uses it)
+CT_DAILY = "confidential_treasury_daily.json"       # every day after, from the daily workflow
+CT_FILES = (CT_FILE, CT_DAILY)
 THRESHOLD_KEYS = {
     "avoid_usd_per_day": "f2.buybacks_kept_usd_per_day.2026-04",
     "base_usd_per_day": "iv.buybacks_kept_usd_per_day",
@@ -103,12 +105,14 @@ def pct(x):
 
 
 def treasury_stablecoins(data_root):
-    """{date: stablecoins in USD} held by the Confidential Intents Treasury account, from CT_FILE."""
-    path = Path(data_root) / CT_FILE
-    if not path.exists():
-        return {}
-    doc = json.loads(path.read_text(encoding="utf-8"))
-    return {r["date"]: Fraction(r["by_group_usd"]["stablecoins"]) for r in doc["series"]}
+    """{date: stablecoins in USD} held by the Confidential Intents Treasury account, from CT_FILES."""
+    out = {}
+    for name in CT_FILES:
+        path = Path(data_root) / name
+        if path.exists():
+            doc = json.loads(path.read_text(encoding="utf-8"))
+            out.update({r["date"]: Fraction(r["by_group_usd"]["stablecoins"]) for r in doc["series"]})
+    return out
 
 
 def private_grew(stables, start, end):
@@ -117,6 +121,13 @@ def private_grew(stables, start, end):
     if a is None or b is None:
         return "not read"
     return "yes" if b > a else "no"
+
+
+def private_path_files(data_root):
+    """{path: sha256} of the Confidential Intents Treasury files that exist."""
+    base = Path(data_root).parent
+    return {fees.rel(Path(data_root) / n, base): fees.sha256((Path(data_root) / n).read_bytes())
+            for n in CT_FILES if (Path(data_root) / n).exists()}
 
 
 def window_values(row, s, fetched):
@@ -272,11 +283,11 @@ def compute(doc, data_root):
         problems.append("thresholds in rating.json differ from numbers.json")
     if doc["locks"] != sorted(daily.LOCKS):
         problems.append("locks in rating.json differ from LOCKS in daily.py")
-    ct = data_root / CT_FILE
     if "private_path" not in doc:
         problems.append("rating.json lacks private_path: run rating.py --offline")
-    elif ct.exists() and fees.sha256(ct.read_bytes()) != doc["private_path"]["sha256"]:
-        problems.append(f"sha256 differs for {doc['private_path']['path']}")
+    elif doc["private_path"] != private_path_files(data_root):
+        problems.append("the Confidential Intents Treasury files differ from rating.json's private_path "
+                        "(added, removed or changed): run rating.py --offline")
     if problems:
         return None, problems
     fetched = datetime.strptime(doc["fetched_utc"], "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=timezone.utc)
@@ -303,8 +314,7 @@ def build(data_root, raw_dir, fetched_utc, urls):
         "fetched_utc": fetched_utc,
         "locks": sorted(daily.LOCKS),
         "thresholds": thresholds(data_root / "numbers.json"),
-        "private_path": {"path": fees.rel(data_root / CT_FILE, base),
-                         "sha256": fees.sha256((data_root / CT_FILE).read_bytes())},
+        "private_path": private_path_files(data_root),
         "raw": {name: {"path": fees.rel(raw_dir / f"{name}.json", base),
                        "sha256": fees.sha256((raw_dir / f"{name}.json").read_bytes()),
                        "url": urls.get(name, "")} for name in SERIES},
