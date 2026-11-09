@@ -31,6 +31,7 @@ Its last line is `REBUILD: PASS`. The same checks, one by one:
 | `python scripts/check_prereg.py --anchor 2 --verify` | `PREREG-2.md` equals its SocialDB record and the anchoring transaction's args | `OK: raw sha256 match, PREREG-2.md = …` |
 | `python scripts/peers.py --verify` | the peer table recomputes from the saved DefiLlama and CoinGecko responses | `OK: NEAR (NEAR Intents): mcap/revenue …` |
 | `python scripts/demand.py --verify` | NEAR Intents' 30-day volume ranking recomputes from the saved DefiLlama responses | `OK: NEAR Intents $… in 30 days, rank …` |
+| `python scripts/sensitivity.py --verify` | the rating rules under 54 combinations of thresholds recompute; every month is Hold | `OK` |
 | `python scripts/private_shift.py --verify` | what the buybacks kept a day before and after 27 October (the private path) recomputes from the saved balances and one pinned DefiLlama fetch | `OK` |
 | `python scripts/rating.py --verify` | the rating (Hold / Buy / Avoid) of every window in `data/rating.csv` recomputes from `history.csv` and the saved DefiLlama responses | `OK: rating.csv recomputes from history.csv and the saved responses` |
 | `python scripts/backtest.py --verify` | the rating rules on each month April–October 2026 in `data/backtest.csv` recompute from `coverage_monthly.json` and the saved DefiLlama responses | `OK: backtest.csv recomputes from coverage_monthly.json and the saved DefiLlama responses` |
@@ -112,6 +113,7 @@ SHA-256. In the README, `THESIS.md` and `docs/DETAILS.md` each figure is wrapped
 | `bt.` | The rating rules on April to October 2026 | `backtest.py` | `data/backtest.json` |
 | `ps.` | What the buybacks kept before and after 27 October (the private path) | `private_shift.py` | `data/private_shift.json` |
 | `sc.` | Three stated paths for a holder's dollars to 2031 (derived, no probability) | `build_numbers.py` | `peer.`, `lr.`, `iv.` entries |
+| `sens.` | The rating under other thresholds, April-October 2026 | `sensitivity.py` | `data/sensitivity.json` |
 
 All flows use one window: `data/window_2026-10-02_2026-11-01.json` (`lock_window.py`), blocks 218,126,921 →
 222,491,356. Public raw responses are under `data/raw/`, byte for byte.

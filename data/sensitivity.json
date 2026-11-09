@@ -1,0 +1,922 @@
+{
+ "measure": "the rating rules on April-October 2026 under other thresholds",
+ "rules": "Does the rating depend on the thresholds the author chose? The same rules with other thresholds, offline.",
+ "inputs_sha256": {
+  "data/coverage_monthly.json": "74c24cad7c5a975e989fb70a62b157caef271901f16b9dfe9f708b3e98f8e9e9",
+  "data/fees_2026-10-02_2026-11-01.json": "ded7a3b53dad62eb1d326912e57404da225f13fb5cf92cc7d66eb168dc5d083e",
+  "data/raw/defillama/20261104T150225Z/fees.json": "153519c7c11343c8bb091bcf30be9d227149d381fb8ee86edaa4c8a41cfa317e",
+  "data/raw/defillama/20261104T150225Z/revenue.json": "67907a3e8b642fad41816cd9a5d63cc5081bb7ca03984d9cc4c57ec66de39a65",
+  "data/raw/defillama/20261104T150225Z/volume.json": "333321451a37da49c3e22a13bdd2a803057177ef6500300e78449e3007efefa6",
+  "data/raw/defillama/20261104T150225Z/price.json": "8e6418d38f270746abd694556308a65a796238acbc1878e466742a11a0b3cfeb"
+ },
+ "combinations": 54,
+ "month_ratings": {
+  "Hold": 378,
+  "Buy": 0,
+  "Avoid": 0
+ },
+ "every_month_hold": true,
+ "highest_coverage_counted": "0.152552",
+ "runs": [
+  {
+   "kept_share_floor": "0.50",
+   "usd_floor_x_april": "0.5",
+   "growth_a": "0.50",
+   "rule_b": "as on chain",
+   "ratings": {
+    "2026-04": "Hold",
+    "2026-05": "Hold",
+    "2026-06": "Hold",
+    "2026-07": "Hold",
+    "2026-08": "Hold",
+    "2026-09": "Hold",
+    "2026-10": "Hold"
+   },
+   "months_failing_a_test": []
+  },
+  {
+   "kept_share_floor": "0.50",
+   "usd_floor_x_april": "0.5",
+   "growth_a": "0.50",
+   "rule_b": "assumed met",
+   "ratings": {
+    "2026-04": "Hold",
+    "2026-05": "Hold",
+    "2026-06": "Hold",
+    "2026-07": "Hold",
+    "2026-08": "Hold",
+    "2026-09": "Hold",
+    "2026-10": "Hold"
+   },
+   "months_failing_a_test": []
+  },
+  {
+   "kept_share_floor": "0.50",
+   "usd_floor_x_april": "0.5",
+   "growth_a": "0.747443747073649803612827564774132054301",
+   "rule_b": "as on chain",
+   "ratings": {
+    "2026-04": "Hold",
+    "2026-05": "Hold",
+    "2026-06": "Hold",
+    "2026-07": "Hold",
+    "2026-08": "Hold",
+    "2026-09": "Hold",
+    "2026-10": "Hold"
+   },
+   "months_failing_a_test": []
+  },
+  {
+   "kept_share_floor": "0.50",
+   "usd_floor_x_april": "0.5",
+   "growth_a": "0.747443747073649803612827564774132054301",
+   "rule_b": "assumed met",
+   "ratings": {
+    "2026-04": "Hold",
+    "2026-05": "Hold",
+    "2026-06": "Hold",
+    "2026-07": "Hold",
+    "2026-08": "Hold",
+    "2026-09": "Hold",
+    "2026-10": "Hold"
+   },
+   "months_failing_a_test": []
+  },
+  {
+   "kept_share_floor": "0.50",
+   "usd_floor_x_april": "0.5",
+   "growth_a": "1.00",
+   "rule_b": "as on chain",
+   "ratings": {
+    "2026-04": "Hold",
+    "2026-05": "Hold",
+    "2026-06": "Hold",
+    "2026-07": "Hold",
+    "2026-08": "Hold",
+    "2026-09": "Hold",
+    "2026-10": "Hold"
+   },
+   "months_failing_a_test": []
+  },
+  {
+   "kept_share_floor": "0.50",
+   "usd_floor_x_april": "0.5",
+   "growth_a": "1.00",
+   "rule_b": "assumed met",
+   "ratings": {
+    "2026-04": "Hold",
+    "2026-05": "Hold",
+    "2026-06": "Hold",
+    "2026-07": "Hold",
+    "2026-08": "Hold",
+    "2026-09": "Hold",
+    "2026-10": "Hold"
+   },
+   "months_failing_a_test": []
+  },
+  {
+   "kept_share_floor": "0.50",
+   "usd_floor_x_april": "1",
+   "growth_a": "0.50",
+   "rule_b": "as on chain",
+   "ratings": {
+    "2026-04": "Hold",
+    "2026-05": "Hold",
+    "2026-06": "Hold",
+    "2026-07": "Hold",
+    "2026-08": "Hold",
+    "2026-09": "Hold",
+    "2026-10": "Hold"
+   },
+   "months_failing_a_test": []
+  },
+  {
+   "kept_share_floor": "0.50",
+   "usd_floor_x_april": "1",
+   "growth_a": "0.50",
+   "rule_b": "assumed met",
+   "ratings": {
+    "2026-04": "Hold",
+    "2026-05": "Hold",
+    "2026-06": "Hold",
+    "2026-07": "Hold",
+    "2026-08": "Hold",
+    "2026-09": "Hold",
+    "2026-10": "Hold"
+   },
+   "months_failing_a_test": []
+  },
+  {
+   "kept_share_floor": "0.50",
+   "usd_floor_x_april": "1",
+   "growth_a": "0.747443747073649803612827564774132054301",
+   "rule_b": "as on chain",
+   "ratings": {
+    "2026-04": "Hold",
+    "2026-05": "Hold",
+    "2026-06": "Hold",
+    "2026-07": "Hold",
+    "2026-08": "Hold",
+    "2026-09": "Hold",
+    "2026-10": "Hold"
+   },
+   "months_failing_a_test": []
+  },
+  {
+   "kept_share_floor": "0.50",
+   "usd_floor_x_april": "1",
+   "growth_a": "0.747443747073649803612827564774132054301",
+   "rule_b": "assumed met",
+   "ratings": {
+    "2026-04": "Hold",
+    "2026-05": "Hold",
+    "2026-06": "Hold",
+    "2026-07": "Hold",
+    "2026-08": "Hold",
+    "2026-09": "Hold",
+    "2026-10": "Hold"
+   },
+   "months_failing_a_test": []
+  },
+  {
+   "kept_share_floor": "0.50",
+   "usd_floor_x_april": "1",
+   "growth_a": "1.00",
+   "rule_b": "as on chain",
+   "ratings": {
+    "2026-04": "Hold",
+    "2026-05": "Hold",
+    "2026-06": "Hold",
+    "2026-07": "Hold",
+    "2026-08": "Hold",
+    "2026-09": "Hold",
+    "2026-10": "Hold"
+   },
+   "months_failing_a_test": []
+  },
+  {
+   "kept_share_floor": "0.50",
+   "usd_floor_x_april": "1",
+   "growth_a": "1.00",
+   "rule_b": "assumed met",
+   "ratings": {
+    "2026-04": "Hold",
+    "2026-05": "Hold",
+    "2026-06": "Hold",
+    "2026-07": "Hold",
+    "2026-08": "Hold",
+    "2026-09": "Hold",
+    "2026-10": "Hold"
+   },
+   "months_failing_a_test": []
+  },
+  {
+   "kept_share_floor": "0.50",
+   "usd_floor_x_april": "1.5",
+   "growth_a": "0.50",
+   "rule_b": "as on chain",
+   "ratings": {
+    "2026-04": "Hold",
+    "2026-05": "Hold",
+    "2026-06": "Hold",
+    "2026-07": "Hold",
+    "2026-08": "Hold",
+    "2026-09": "Hold",
+    "2026-10": "Hold"
+   },
+   "months_failing_a_test": []
+  },
+  {
+   "kept_share_floor": "0.50",
+   "usd_floor_x_april": "1.5",
+   "growth_a": "0.50",
+   "rule_b": "assumed met",
+   "ratings": {
+    "2026-04": "Hold",
+    "2026-05": "Hold",
+    "2026-06": "Hold",
+    "2026-07": "Hold",
+    "2026-08": "Hold",
+    "2026-09": "Hold",
+    "2026-10": "Hold"
+   },
+   "months_failing_a_test": []
+  },
+  {
+   "kept_share_floor": "0.50",
+   "usd_floor_x_april": "1.5",
+   "growth_a": "0.747443747073649803612827564774132054301",
+   "rule_b": "as on chain",
+   "ratings": {
+    "2026-04": "Hold",
+    "2026-05": "Hold",
+    "2026-06": "Hold",
+    "2026-07": "Hold",
+    "2026-08": "Hold",
+    "2026-09": "Hold",
+    "2026-10": "Hold"
+   },
+   "months_failing_a_test": []
+  },
+  {
+   "kept_share_floor": "0.50",
+   "usd_floor_x_april": "1.5",
+   "growth_a": "0.747443747073649803612827564774132054301",
+   "rule_b": "assumed met",
+   "ratings": {
+    "2026-04": "Hold",
+    "2026-05": "Hold",
+    "2026-06": "Hold",
+    "2026-07": "Hold",
+    "2026-08": "Hold",
+    "2026-09": "Hold",
+    "2026-10": "Hold"
+   },
+   "months_failing_a_test": []
+  },
+  {
+   "kept_share_floor": "0.50",
+   "usd_floor_x_april": "1.5",
+   "growth_a": "1.00",
+   "rule_b": "as on chain",
+   "ratings": {
+    "2026-04": "Hold",
+    "2026-05": "Hold",
+    "2026-06": "Hold",
+    "2026-07": "Hold",
+    "2026-08": "Hold",
+    "2026-09": "Hold",
+    "2026-10": "Hold"
+   },
+   "months_failing_a_test": []
+  },
+  {
+   "kept_share_floor": "0.50",
+   "usd_floor_x_april": "1.5",
+   "growth_a": "1.00",
+   "rule_b": "assumed met",
+   "ratings": {
+    "2026-04": "Hold",
+    "2026-05": "Hold",
+    "2026-06": "Hold",
+    "2026-07": "Hold",
+    "2026-08": "Hold",
+    "2026-09": "Hold",
+    "2026-10": "Hold"
+   },
+   "months_failing_a_test": []
+  },
+  {
+   "kept_share_floor": "0.75",
+   "usd_floor_x_april": "0.5",
+   "growth_a": "0.50",
+   "rule_b": "as on chain",
+   "ratings": {
+    "2026-04": "Hold",
+    "2026-05": "Hold",
+    "2026-06": "Hold",
+    "2026-07": "Hold",
+    "2026-08": "Hold",
+    "2026-09": "Hold",
+    "2026-10": "Hold"
+   },
+   "months_failing_a_test": []
+  },
+  {
+   "kept_share_floor": "0.75",
+   "usd_floor_x_april": "0.5",
+   "growth_a": "0.50",
+   "rule_b": "assumed met",
+   "ratings": {
+    "2026-04": "Hold",
+    "2026-05": "Hold",
+    "2026-06": "Hold",
+    "2026-07": "Hold",
+    "2026-08": "Hold",
+    "2026-09": "Hold",
+    "2026-10": "Hold"
+   },
+   "months_failing_a_test": []
+  },
+  {
+   "kept_share_floor": "0.75",
+   "usd_floor_x_april": "0.5",
+   "growth_a": "0.747443747073649803612827564774132054301",
+   "rule_b": "as on chain",
+   "ratings": {
+    "2026-04": "Hold",
+    "2026-05": "Hold",
+    "2026-06": "Hold",
+    "2026-07": "Hold",
+    "2026-08": "Hold",
+    "2026-09": "Hold",
+    "2026-10": "Hold"
+   },
+   "months_failing_a_test": []
+  },
+  {
+   "kept_share_floor": "0.75",
+   "usd_floor_x_april": "0.5",
+   "growth_a": "0.747443747073649803612827564774132054301",
+   "rule_b": "assumed met",
+   "ratings": {
+    "2026-04": "Hold",
+    "2026-05": "Hold",
+    "2026-06": "Hold",
+    "2026-07": "Hold",
+    "2026-08": "Hold",
+    "2026-09": "Hold",
+    "2026-10": "Hold"
+   },
+   "months_failing_a_test": []
+  },
+  {
+   "kept_share_floor": "0.75",
+   "usd_floor_x_april": "0.5",
+   "growth_a": "1.00",
+   "rule_b": "as on chain",
+   "ratings": {
+    "2026-04": "Hold",
+    "2026-05": "Hold",
+    "2026-06": "Hold",
+    "2026-07": "Hold",
+    "2026-08": "Hold",
+    "2026-09": "Hold",
+    "2026-10": "Hold"
+   },
+   "months_failing_a_test": []
+  },
+  {
+   "kept_share_floor": "0.75",
+   "usd_floor_x_april": "0.5",
+   "growth_a": "1.00",
+   "rule_b": "assumed met",
+   "ratings": {
+    "2026-04": "Hold",
+    "2026-05": "Hold",
+    "2026-06": "Hold",
+    "2026-07": "Hold",
+    "2026-08": "Hold",
+    "2026-09": "Hold",
+    "2026-10": "Hold"
+   },
+   "months_failing_a_test": []
+  },
+  {
+   "kept_share_floor": "0.75",
+   "usd_floor_x_april": "1",
+   "growth_a": "0.50",
+   "rule_b": "as on chain",
+   "ratings": {
+    "2026-04": "Hold",
+    "2026-05": "Hold",
+    "2026-06": "Hold",
+    "2026-07": "Hold",
+    "2026-08": "Hold",
+    "2026-09": "Hold",
+    "2026-10": "Hold"
+   },
+   "months_failing_a_test": []
+  },
+  {
+   "kept_share_floor": "0.75",
+   "usd_floor_x_april": "1",
+   "growth_a": "0.50",
+   "rule_b": "assumed met",
+   "ratings": {
+    "2026-04": "Hold",
+    "2026-05": "Hold",
+    "2026-06": "Hold",
+    "2026-07": "Hold",
+    "2026-08": "Hold",
+    "2026-09": "Hold",
+    "2026-10": "Hold"
+   },
+   "months_failing_a_test": []
+  },
+  {
+   "kept_share_floor": "0.75",
+   "usd_floor_x_april": "1",
+   "growth_a": "0.747443747073649803612827564774132054301",
+   "rule_b": "as on chain",
+   "ratings": {
+    "2026-04": "Hold",
+    "2026-05": "Hold",
+    "2026-06": "Hold",
+    "2026-07": "Hold",
+    "2026-08": "Hold",
+    "2026-09": "Hold",
+    "2026-10": "Hold"
+   },
+   "months_failing_a_test": []
+  },
+  {
+   "kept_share_floor": "0.75",
+   "usd_floor_x_april": "1",
+   "growth_a": "0.747443747073649803612827564774132054301",
+   "rule_b": "assumed met",
+   "ratings": {
+    "2026-04": "Hold",
+    "2026-05": "Hold",
+    "2026-06": "Hold",
+    "2026-07": "Hold",
+    "2026-08": "Hold",
+    "2026-09": "Hold",
+    "2026-10": "Hold"
+   },
+   "months_failing_a_test": []
+  },
+  {
+   "kept_share_floor": "0.75",
+   "usd_floor_x_april": "1",
+   "growth_a": "1.00",
+   "rule_b": "as on chain",
+   "ratings": {
+    "2026-04": "Hold",
+    "2026-05": "Hold",
+    "2026-06": "Hold",
+    "2026-07": "Hold",
+    "2026-08": "Hold",
+    "2026-09": "Hold",
+    "2026-10": "Hold"
+   },
+   "months_failing_a_test": []
+  },
+  {
+   "kept_share_floor": "0.75",
+   "usd_floor_x_april": "1",
+   "growth_a": "1.00",
+   "rule_b": "assumed met",
+   "ratings": {
+    "2026-04": "Hold",
+    "2026-05": "Hold",
+    "2026-06": "Hold",
+    "2026-07": "Hold",
+    "2026-08": "Hold",
+    "2026-09": "Hold",
+    "2026-10": "Hold"
+   },
+   "months_failing_a_test": []
+  },
+  {
+   "kept_share_floor": "0.75",
+   "usd_floor_x_april": "1.5",
+   "growth_a": "0.50",
+   "rule_b": "as on chain",
+   "ratings": {
+    "2026-04": "Hold",
+    "2026-05": "Hold",
+    "2026-06": "Hold",
+    "2026-07": "Hold",
+    "2026-08": "Hold",
+    "2026-09": "Hold",
+    "2026-10": "Hold"
+   },
+   "months_failing_a_test": []
+  },
+  {
+   "kept_share_floor": "0.75",
+   "usd_floor_x_april": "1.5",
+   "growth_a": "0.50",
+   "rule_b": "assumed met",
+   "ratings": {
+    "2026-04": "Hold",
+    "2026-05": "Hold",
+    "2026-06": "Hold",
+    "2026-07": "Hold",
+    "2026-08": "Hold",
+    "2026-09": "Hold",
+    "2026-10": "Hold"
+   },
+   "months_failing_a_test": []
+  },
+  {
+   "kept_share_floor": "0.75",
+   "usd_floor_x_april": "1.5",
+   "growth_a": "0.747443747073649803612827564774132054301",
+   "rule_b": "as on chain",
+   "ratings": {
+    "2026-04": "Hold",
+    "2026-05": "Hold",
+    "2026-06": "Hold",
+    "2026-07": "Hold",
+    "2026-08": "Hold",
+    "2026-09": "Hold",
+    "2026-10": "Hold"
+   },
+   "months_failing_a_test": []
+  },
+  {
+   "kept_share_floor": "0.75",
+   "usd_floor_x_april": "1.5",
+   "growth_a": "0.747443747073649803612827564774132054301",
+   "rule_b": "assumed met",
+   "ratings": {
+    "2026-04": "Hold",
+    "2026-05": "Hold",
+    "2026-06": "Hold",
+    "2026-07": "Hold",
+    "2026-08": "Hold",
+    "2026-09": "Hold",
+    "2026-10": "Hold"
+   },
+   "months_failing_a_test": []
+  },
+  {
+   "kept_share_floor": "0.75",
+   "usd_floor_x_april": "1.5",
+   "growth_a": "1.00",
+   "rule_b": "as on chain",
+   "ratings": {
+    "2026-04": "Hold",
+    "2026-05": "Hold",
+    "2026-06": "Hold",
+    "2026-07": "Hold",
+    "2026-08": "Hold",
+    "2026-09": "Hold",
+    "2026-10": "Hold"
+   },
+   "months_failing_a_test": []
+  },
+  {
+   "kept_share_floor": "0.75",
+   "usd_floor_x_april": "1.5",
+   "growth_a": "1.00",
+   "rule_b": "assumed met",
+   "ratings": {
+    "2026-04": "Hold",
+    "2026-05": "Hold",
+    "2026-06": "Hold",
+    "2026-07": "Hold",
+    "2026-08": "Hold",
+    "2026-09": "Hold",
+    "2026-10": "Hold"
+   },
+   "months_failing_a_test": []
+  },
+  {
+   "kept_share_floor": "0.90",
+   "usd_floor_x_april": "0.5",
+   "growth_a": "0.50",
+   "rule_b": "as on chain",
+   "ratings": {
+    "2026-04": "Hold",
+    "2026-05": "Hold",
+    "2026-06": "Hold",
+    "2026-07": "Hold",
+    "2026-08": "Hold",
+    "2026-09": "Hold",
+    "2026-10": "Hold"
+   },
+   "months_failing_a_test": [
+    "2026-04"
+   ]
+  },
+  {
+   "kept_share_floor": "0.90",
+   "usd_floor_x_april": "0.5",
+   "growth_a": "0.50",
+   "rule_b": "assumed met",
+   "ratings": {
+    "2026-04": "Hold",
+    "2026-05": "Hold",
+    "2026-06": "Hold",
+    "2026-07": "Hold",
+    "2026-08": "Hold",
+    "2026-09": "Hold",
+    "2026-10": "Hold"
+   },
+   "months_failing_a_test": [
+    "2026-04"
+   ]
+  },
+  {
+   "kept_share_floor": "0.90",
+   "usd_floor_x_april": "0.5",
+   "growth_a": "0.747443747073649803612827564774132054301",
+   "rule_b": "as on chain",
+   "ratings": {
+    "2026-04": "Hold",
+    "2026-05": "Hold",
+    "2026-06": "Hold",
+    "2026-07": "Hold",
+    "2026-08": "Hold",
+    "2026-09": "Hold",
+    "2026-10": "Hold"
+   },
+   "months_failing_a_test": [
+    "2026-04"
+   ]
+  },
+  {
+   "kept_share_floor": "0.90",
+   "usd_floor_x_april": "0.5",
+   "growth_a": "0.747443747073649803612827564774132054301",
+   "rule_b": "assumed met",
+   "ratings": {
+    "2026-04": "Hold",
+    "2026-05": "Hold",
+    "2026-06": "Hold",
+    "2026-07": "Hold",
+    "2026-08": "Hold",
+    "2026-09": "Hold",
+    "2026-10": "Hold"
+   },
+   "months_failing_a_test": [
+    "2026-04"
+   ]
+  },
+  {
+   "kept_share_floor": "0.90",
+   "usd_floor_x_april": "0.5",
+   "growth_a": "1.00",
+   "rule_b": "as on chain",
+   "ratings": {
+    "2026-04": "Hold",
+    "2026-05": "Hold",
+    "2026-06": "Hold",
+    "2026-07": "Hold",
+    "2026-08": "Hold",
+    "2026-09": "Hold",
+    "2026-10": "Hold"
+   },
+   "months_failing_a_test": [
+    "2026-04"
+   ]
+  },
+  {
+   "kept_share_floor": "0.90",
+   "usd_floor_x_april": "0.5",
+   "growth_a": "1.00",
+   "rule_b": "assumed met",
+   "ratings": {
+    "2026-04": "Hold",
+    "2026-05": "Hold",
+    "2026-06": "Hold",
+    "2026-07": "Hold",
+    "2026-08": "Hold",
+    "2026-09": "Hold",
+    "2026-10": "Hold"
+   },
+   "months_failing_a_test": [
+    "2026-04"
+   ]
+  },
+  {
+   "kept_share_floor": "0.90",
+   "usd_floor_x_april": "1",
+   "growth_a": "0.50",
+   "rule_b": "as on chain",
+   "ratings": {
+    "2026-04": "Hold",
+    "2026-05": "Hold",
+    "2026-06": "Hold",
+    "2026-07": "Hold",
+    "2026-08": "Hold",
+    "2026-09": "Hold",
+    "2026-10": "Hold"
+   },
+   "months_failing_a_test": [
+    "2026-04"
+   ]
+  },
+  {
+   "kept_share_floor": "0.90",
+   "usd_floor_x_april": "1",
+   "growth_a": "0.50",
+   "rule_b": "assumed met",
+   "ratings": {
+    "2026-04": "Hold",
+    "2026-05": "Hold",
+    "2026-06": "Hold",
+    "2026-07": "Hold",
+    "2026-08": "Hold",
+    "2026-09": "Hold",
+    "2026-10": "Hold"
+   },
+   "months_failing_a_test": [
+    "2026-04"
+   ]
+  },
+  {
+   "kept_share_floor": "0.90",
+   "usd_floor_x_april": "1",
+   "growth_a": "0.747443747073649803612827564774132054301",
+   "rule_b": "as on chain",
+   "ratings": {
+    "2026-04": "Hold",
+    "2026-05": "Hold",
+    "2026-06": "Hold",
+    "2026-07": "Hold",
+    "2026-08": "Hold",
+    "2026-09": "Hold",
+    "2026-10": "Hold"
+   },
+   "months_failing_a_test": [
+    "2026-04"
+   ]
+  },
+  {
+   "kept_share_floor": "0.90",
+   "usd_floor_x_april": "1",
+   "growth_a": "0.747443747073649803612827564774132054301",
+   "rule_b": "assumed met",
+   "ratings": {
+    "2026-04": "Hold",
+    "2026-05": "Hold",
+    "2026-06": "Hold",
+    "2026-07": "Hold",
+    "2026-08": "Hold",
+    "2026-09": "Hold",
+    "2026-10": "Hold"
+   },
+   "months_failing_a_test": [
+    "2026-04"
+   ]
+  },
+  {
+   "kept_share_floor": "0.90",
+   "usd_floor_x_april": "1",
+   "growth_a": "1.00",
+   "rule_b": "as on chain",
+   "ratings": {
+    "2026-04": "Hold",
+    "2026-05": "Hold",
+    "2026-06": "Hold",
+    "2026-07": "Hold",
+    "2026-08": "Hold",
+    "2026-09": "Hold",
+    "2026-10": "Hold"
+   },
+   "months_failing_a_test": [
+    "2026-04"
+   ]
+  },
+  {
+   "kept_share_floor": "0.90",
+   "usd_floor_x_april": "1",
+   "growth_a": "1.00",
+   "rule_b": "assumed met",
+   "ratings": {
+    "2026-04": "Hold",
+    "2026-05": "Hold",
+    "2026-06": "Hold",
+    "2026-07": "Hold",
+    "2026-08": "Hold",
+    "2026-09": "Hold",
+    "2026-10": "Hold"
+   },
+   "months_failing_a_test": [
+    "2026-04"
+   ]
+  },
+  {
+   "kept_share_floor": "0.90",
+   "usd_floor_x_april": "1.5",
+   "growth_a": "0.50",
+   "rule_b": "as on chain",
+   "ratings": {
+    "2026-04": "Hold",
+    "2026-05": "Hold",
+    "2026-06": "Hold",
+    "2026-07": "Hold",
+    "2026-08": "Hold",
+    "2026-09": "Hold",
+    "2026-10": "Hold"
+   },
+   "months_failing_a_test": [
+    "2026-04"
+   ]
+  },
+  {
+   "kept_share_floor": "0.90",
+   "usd_floor_x_april": "1.5",
+   "growth_a": "0.50",
+   "rule_b": "assumed met",
+   "ratings": {
+    "2026-04": "Hold",
+    "2026-05": "Hold",
+    "2026-06": "Hold",
+    "2026-07": "Hold",
+    "2026-08": "Hold",
+    "2026-09": "Hold",
+    "2026-10": "Hold"
+   },
+   "months_failing_a_test": [
+    "2026-04"
+   ]
+  },
+  {
+   "kept_share_floor": "0.90",
+   "usd_floor_x_april": "1.5",
+   "growth_a": "0.747443747073649803612827564774132054301",
+   "rule_b": "as on chain",
+   "ratings": {
+    "2026-04": "Hold",
+    "2026-05": "Hold",
+    "2026-06": "Hold",
+    "2026-07": "Hold",
+    "2026-08": "Hold",
+    "2026-09": "Hold",
+    "2026-10": "Hold"
+   },
+   "months_failing_a_test": [
+    "2026-04"
+   ]
+  },
+  {
+   "kept_share_floor": "0.90",
+   "usd_floor_x_april": "1.5",
+   "growth_a": "0.747443747073649803612827564774132054301",
+   "rule_b": "assumed met",
+   "ratings": {
+    "2026-04": "Hold",
+    "2026-05": "Hold",
+    "2026-06": "Hold",
+    "2026-07": "Hold",
+    "2026-08": "Hold",
+    "2026-09": "Hold",
+    "2026-10": "Hold"
+   },
+   "months_failing_a_test": [
+    "2026-04"
+   ]
+  },
+  {
+   "kept_share_floor": "0.90",
+   "usd_floor_x_april": "1.5",
+   "growth_a": "1.00",
+   "rule_b": "as on chain",
+   "ratings": {
+    "2026-04": "Hold",
+    "2026-05": "Hold",
+    "2026-06": "Hold",
+    "2026-07": "Hold",
+    "2026-08": "Hold",
+    "2026-09": "Hold",
+    "2026-10": "Hold"
+   },
+   "months_failing_a_test": [
+    "2026-04"
+   ]
+  },
+  {
+   "kept_share_floor": "0.90",
+   "usd_floor_x_april": "1.5",
+   "growth_a": "1.00",
+   "rule_b": "assumed met",
+   "ratings": {
+    "2026-04": "Hold",
+    "2026-05": "Hold",
+    "2026-06": "Hold",
+    "2026-07": "Hold",
+    "2026-08": "Hold",
+    "2026-09": "Hold",
+    "2026-10": "Hold"
+   },
+   "months_failing_a_test": [
+    "2026-04"
+   ]
+  }
+ ]
+}

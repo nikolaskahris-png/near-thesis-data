@@ -1300,6 +1300,19 @@ def build(data_dir, window_file):
             n.add("ct.stablecoins_change.2026-10-01_2026-11-08", g, f"+{rnd(g * 100, 0):.0f}%", csrc,
                   derived_from=["ct.stablecoins_usd.2026-10-01", "ct.stablecoins_usd.2026-11-08"])
 
+    # ---- the rating under other thresholds (sensitivity.py)
+    sepath = data_dir / "sensitivity.json"
+    if sepath.exists():
+        se = json.loads(sepath.read_text(encoding="utf-8"))
+        sesrc = n.source(sepath)
+        total = sum(se["month_ratings"].values())
+        n.add("sens.combinations", se["combinations"], f_int(se["combinations"]), sesrc,
+              note="Avoid floors 50/75/90% and 0.5/1/1.5x April's dollars, growth (a) +50%/rule/+100%, (b) as on chain or assumed met")
+        n.add("sens.month_ratings", total, f_int(total), sesrc, note="combinations x months (April-October 2026)")
+        n.add("sens.hold", se["month_ratings"]["Hold"], f_int(se["month_ratings"]["Hold"]), sesrc)
+        if not se["every_month_hold"]:
+            problems.append("sensitivity: some combination rates a month other than Hold; the README says every one is Hold")
+
     # ---- did the buybacks keep coming once the private path took over (private_shift.py)
     spath = data_dir / "private_shift.json"
     if spath.exists():
@@ -1420,6 +1433,7 @@ SCRIPT_CHECKS = [
     ("treasury_trace.py", lambda doc: ["--verify"], "treasury_trace.json"),
     ("confidential_treasury.py", lambda doc: ["--verify"], "confidential_treasury.json"),
     ("private_shift.py", lambda doc: ["--verify"], "private_shift.json"),
+    ("sensitivity.py", lambda doc: ["--verify"], "sensitivity.json"),
     ("check_prereg.py", lambda doc: ["--verify"]),
     ("check_prereg.py", lambda doc: ["--anchor", "2", "--verify"], "prereg2_anchor.json"),
     ("check_prereg.py", lambda doc: ["--anchor", "3", "--verify"], "prereg3_anchor.json"),

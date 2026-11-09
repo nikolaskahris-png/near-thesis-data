@@ -46,7 +46,7 @@ Issuance, by contrast, is code: at most <!--n:c.issuance_max_inflation_rate-->1/
 | Held when private | the buybacks stop receiving NEAR on mainnet while the private path grows | <!--n:ps.after.kept_near_per_day-->10,071<!--/n--> NEAR a day since 27 October | `scripts/private_shift.py`, PREREG-3 |
 | Issuance is the only rule | HSP-029 is still not in force on 1 November 2027 | in timelock until <!--n:f8.timelock_end_utc-->2026-11-16 16:48 UTC<!--/n--> | `scripts/upgrade_watch.py` |
 
-A row can prove the claim wrong while the rating stays Hold: Buy also needs a published rule. Until 1 December 2026 the rating cannot be anything but Hold, because Avoid needs a window 30 days earlier and the daily history starts on 1 November. Eight predictions are anchored on NEAR mainnet before they are judged, and none has been amended ([`PREREG.md`](PREREG.md), [`PREREG-2.md`](PREREG-2.md), [`PREREG-3.md`](PREREG-3.md)).
+A row can prove the claim wrong while the rating stays Hold: Buy also needs a published rule. The thresholds are the author's; with other floors and growth rates, and even with a published rule assumed, all <!--n:sens.month_ratings-->378<!--/n--> monthly ratings from April to October are Hold (`scripts/sensitivity.py`). Until 1 December 2026 the rating cannot be anything but Hold, because Avoid needs a window 30 days earlier and the daily history starts on 1 November. Eight predictions are anchored on NEAR mainnet before they are judged, and none has been amended ([`PREREG.md`](PREREG.md), [`PREREG-2.md`](PREREG-2.md), [`PREREG-3.md`](PREREG-3.md)).
 
 ## Metrics we cannot compute
 
