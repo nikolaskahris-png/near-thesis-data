@@ -4,7 +4,7 @@
 
 **NEAR Intents' buybacks keep NEAR equal to <!--n:n1.coverage_buybacks-->10.8%<!--/n--> of new issuance, burn none of it, and <!--n:c.buybacks_confirmations-->2 of 4<!--/n--> signers, not code, can move it.** Growth is not what is missing (<!--n:bt.a_pace.near_multiple-->×2.1<!--/n--> in NEAR and <!--n:bt.a_pace.usd_multiple-->×7.5<!--/n--> in dollars from April to October, against the <!--n:bt.a_pace.required_multiple-->×1.32<!--/n--> that Buy's growth test asks); a published rule is. So the rating is **Hold**: keep the NEAR you own, staked, and do not add until that rule exists. Horizon 1 January 2031, checked every year.
 
-**The problem.** Investment cases for NEAR quote the demand on NEAR Intents, but not how much of it reaches a holder or whether anything guarantees it. This repository measures both from the chain, and every number in it rebuilds offline in two minutes.
+**The problem.** Investment cases for NEAR quote the demand on NEAR Intents, but not how much of it reaches a holder or whether anything guarantees it. This repository measures both from the chain, and every marked number in it rebuilds offline in two minutes.
 
 **[Live dashboard](https://nikolaskahris-png.github.io/near-thesis-data/dashboard/)** · [Check it in two minutes](#check-it-in-two-minutes) · [One-page thesis](THESIS.md) · [Every detail](docs/DETAILS.md) · [Terms](#terms) · Window: 2 October → 1 November 2026 · As of 9 November 2026; figures from other dates say so where they appear
 
@@ -19,7 +19,7 @@
 
 ## The thesis in four claims
 
-Each claim gives what we found, what argues against it, and the command that recomputes it with no network. Every figure in this file comes from [`data/numbers.json`](data/numbers.json), and a check fails if one differs.
+Each claim gives what we found, what argues against it, and the command that recomputes it with no network. Every marked figure in this file comes from [`data/numbers.json`](data/numbers.json), and a check fails if one differs; figures quoted from other repositories, and the thresholds the author chose, are not measured here and say where they come from.
 
 ### A. The demand is real
 
@@ -43,8 +43,8 @@ Nothing in code burns, locks or requires the buybacks, and every link can be cha
 
 1. **The bought NEAR can move.** The <!--n:n1.wallets_held_near-->4,109,089<!--/n--> NEAR the wallets hold can be moved by their signers: <!--n:c.buybacks_confirmations-->2 of 4<!--/n--> for the buybacks wallet, <!--n:c.front_end_transfer-->2 of 5<!--/n--> for the front-end fund.
 2. **The treasury is managed, not coded.** The protocol treasury, `treasury.near`, is "currently managed by the NEAR Foundation" ([SEC filing](https://www.sec.gov/Archives/edgar/data/0002067111/000121390026103106/ea0306486-424b3_bitwise.htm)). It paid out <!--n:ts.year_out_near-->30,171,200<!--/n--> NEAR in April and May 2026; on 1 November the three accounts that received it held <!--n:tt.first_receivers_held_near-->302<!--/n--> NEAR. We stop where it mixes with other NEAR; another repository follows it further and reports that "20.95M NEAR of it reached the p2p-org and figment staking pools within five hops" ([soldanoandrea/near-thesis](https://github.com/soldanoandrea/near-thesis/blob/13b580f37e97d04fa0403f5c1a785f962886bddd/README.md); [where it went](docs/DETAILS.md#where-the-treasury-payout-went)). Either way, people decided where it went, not code.
-3. **One account set a rate.** One account changed the NEAR AI credits rate <!--n:f6.change1.ratio-->×2.0<!--/n--> on <!--n:f6.change1.utc-->2026-09-29 14:21 UTC<!--/n-->, with no DAO proposal, and the pool keeps <!--n:c.nearai_pool_reward_fee-->100%<!--/n--> of staking rewards ([details](docs/DETAILS.md#the-near-ai-farm)).
-4. **A vote is not a rule.** HSP-027 passed on 3 July 2026 and reached the chain <!--n:pr.v87.days_from_hsp027_passed-->124<!--/n--> days later, when validators ran the release. HSP-029, the issuance cut, passed on 2 November and waits for the same step.
+3. **Next to the buybacks, the same holds.** It is not a buybacks link, but it shows how settings are made here: one account changed the NEAR AI credits rate <!--n:f6.change1.ratio-->×2.0<!--/n--> on <!--n:f6.change1.utc-->2026-09-29 14:21 UTC<!--/n-->, with no DAO proposal, and the pool keeps <!--n:c.nearai_pool_reward_fee-->100%<!--/n--> of staking rewards ([details](docs/DETAILS.md#the-near-ai-farm)).
+4. **A vote takes effect through a release.** HSP-027 passed on 3 July 2026 and reached the chain <!--n:pr.v87.days_from_hsp027_passed-->124<!--/n--> days later, when validators ran the release. That step is what protects issuance from change, and it is not a flaw; it also means a passed vote is not yet a rule. HSP-029, the issuance cut, passed on 2 November and waits for the same step.
 
 **Against.** The policy has been kept: from April to October the wallets held on to <!--n:f2.wallets_kept_share_of_revenue.2026-04_2026-10-->96.9%<!--/n--> of what flowed in. Seven months is not years. A policy kept long enough is worth almost as much as a rule, so this thesis prices the difference as the gap between Hold and Buy, not as a reason to sell.
 
@@ -139,7 +139,7 @@ Python 3.10 or later (`python3` on some systems, `py` on Windows), standard libr
 python scripts/rebuild.py
 ```
 
-It ends with `REBUILD: PASS`: every test passes, every number recomputes from the saved raw responses, and every number on this page matches [`data/numbers.json`](data/numbers.json). The same, step by step:
+It ends with `REBUILD: PASS`: every test passes, every number recomputes from the saved raw responses, and every marked number on this page matches [`data/numbers.json`](data/numbers.json). The same, step by step:
 
 ```
 python -m unittest discover -s tests              # every script's logic on fixed inputs
@@ -176,7 +176,7 @@ Offline, the one thing that cannot be proven is that the saved responses are wha
 - **Buybacks wallets:** `buybacks.multisignature.near` and `1csfundsadmin.sputnik-dao.near`, where NEAR bought with NEAR Intents' fees is kept.
 - **Front-end fund:** `fefundsadmin.sputnik-dao.near`, a separate DAO that holds near-intents.org's own fees.
 - **Coverage:** NEAR the buybacks wallets keep ÷ new NEAR issued, over the same 30 days.
-- **(a)** the growth test for Buy: what the buybacks keep grows <!--n:lr.required_growth.buybacks.A.2031-->+75%<!--/n--> a year, in dollars and in NEAR. **(b)** the rule test: a published lock that no one can spend from.
+- **(a)** the growth test for Buy: what the buybacks keep grows <!--n:lr.required_growth.buybacks.A.2031-->+75%<!--/n--> a year, in dollars and in NEAR, from the window's level; from each month's level, April to October, it would be <!--n:lr.required_growth.buybacks.A.2031.base.2026-09-->+61%<!--/n--> (September) to <!--n:lr.required_growth.buybacks.A.2031.base.2026-04-->+108%<!--/n--> (April). **(b)** the rule test: a published lock that no one can spend from.
 - **FAR:** NEAR Intents' private instance; swaps settled there are not visible to public indexers.
 - **HSP-027 / HSP-029:** House of Stake proposals: remove the developer gas rebate (in force) and cut issuance (passed, not yet in force).
 - **pip:** a millionth of the amount (1 pip = 0.0001%).

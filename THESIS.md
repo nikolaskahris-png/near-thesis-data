@@ -1,6 +1,6 @@
 # Thesis: NEAR's value capture is real, small and discretionary
 
-*Investment Thesis track, NEAR HACKATHON. Dated 9 November 2026; horizon 1 January 2031, checked every 12 months. Window 2 October → 1 November 2026 (00:00 UTC), blocks 218,126,921 → 222,491,356. Every figure is copied from [`data/numbers.json`](data/numbers.json) with a hidden marker, and `python scripts/build_numbers.py --check THESIS.md` fails if one differs. Thresholds are the author's choice. The longer version of this file, as of 8 November, is in [DETAILS](docs/DETAILS.md#thesis-in-full-version-3-8-november).*
+*Investment Thesis track, NEAR HACKATHON. Dated 9 November 2026; horizon 1 January 2031, checked every 12 months. Window 2 October → 1 November 2026 (00:00 UTC), blocks 218,126,921 → 222,491,356. Every figure measured here is copied from [`data/numbers.json`](data/numbers.json) with a hidden marker, and `python scripts/build_numbers.py --check THESIS.md` fails if one differs. Thresholds are the author's choice. The longer version of this file, as of 8 November, is in [DETAILS](docs/DETAILS.md#thesis-in-full-version-3-8-november).*
 
 ## Claim
 
@@ -23,8 +23,8 @@ The rating turns to **Buy** only when keeping the buybacks becomes a published r
 - The bought NEAR sits in a <!--n:c.buybacks_confirmations-->2 of 4<!--/n--> multisig and none is burned: <!--n:n1.wallets_held_near-->4,109,089<!--/n--> NEAR at the end block that signers can move.
 - The fee in the contract is <!--n:c.intents_fee_pips-->1 pip<!--/n-->; what users pay is set off-chain, and the terms of 1Click, NEAR Intents' swap service, let its operator change fees "at any time on a prospective basis".
 - `treasury.near` paid out <!--n:ts.year_out_near-->30,171,200<!--/n--> NEAR in April and May 2026, each payment a <!--n:c.treasury_confirmations-->2 of 4<!--/n--> multisig confirmation.
-- One account changed the NEAR AI credits rate <!--n:f6.change1.ratio-->×2.0<!--/n--> on <!--n:f6.change1.utc-->2026-09-29 14:21 UTC<!--/n-->, with no proposal of the owner's DAO.
-- As few as <!--n:f8.fewest_voters_reaching_quorum-->6<!--/n--> voters held enough veNEAR to reach HSP-029's quorum; the vote executes nothing on chain and becomes a rule only when validators run a release that includes it.
+- Not a buybacks link, but the same way of setting things: one account changed the NEAR AI credits rate <!--n:f6.change1.ratio-->×2.0<!--/n--> on <!--n:f6.change1.utc-->2026-09-29 14:21 UTC<!--/n-->, with no proposal of the owner's DAO.
+- HSP-029 passed with <!--n:f8.approval_share-->100.0%<!--/n--> of the veNEAR cast for or against, on a turnout of <!--n:f8.turnout_of_snapshot-->62.3%<!--/n-->; <!--n:f8.fewest_voters_reaching_quorum-->6<!--/n--> of its <!--n:f8.voters-->36<!--/n--> voters held enough veNEAR to reach the quorum alone. The vote executes nothing on chain; it takes effect when validators run a release that includes it, the same step that protects issuance.
 
 Issuance, by contrast, is code: at most <!--n:c.issuance_max_inflation_rate-->1/40<!--/n--> a year, changed only by a release that at least <!--n:c.issuance_validators_to_pass_upgrade-->44<!--/n--> of <!--n:c.issuance_validators-->381<!--/n--> validators would have to run.
 
@@ -46,7 +46,7 @@ Issuance, by contrast, is code: at most <!--n:c.issuance_max_inflation_rate-->1/
 | Did not stop when private | PREREG-3's P6 fails: from 9 November to 9 December the buybacks keep less than half the dollars a day of the 2 October window | the three wallets kept <!--n:ps.after.kept_near_per_day-->13,800<!--/n--> NEAR a day, 27 October to 8 November | `scripts/private_shift.py`; P6 judged 9 December |
 | Issuance is the only rule | HSP-029 is still not in force on 1 November 2027 | in timelock until <!--n:f8.timelock_end_utc-->2026-11-16 16:48 UTC<!--/n--> | `scripts/upgrade_watch.py` |
 
-A row can prove the claim wrong while the rating stays Hold: Buy also needs a published rule. The thresholds are the author's; with other floors and growth rates, and even with a published rule assumed, all <!--n:sens.month_ratings-->378<!--/n--> monthly ratings from April to October are Hold (`scripts/sensitivity.py`). Until 1 December 2026 the rating cannot be anything but Hold, because Avoid needs a window 30 days earlier and the daily history starts on 1 November. Eight predictions are anchored on NEAR mainnet before they are judged, and none has been amended ([`PREREG.md`](PREREG.md), [`PREREG-2.md`](PREREG-2.md), [`PREREG-3.md`](PREREG-3.md)).
+A row can prove the claim wrong while the rating stays Hold: Buy also needs a published rule. The thresholds are the author's; with other floors and growth rates, and even with a published rule assumed, all <!--n:sens.month_ratings-->378<!--/n--> monthly ratings from April to October are Hold (`scripts/sensitivity.py`), because a monthly rating reaches Buy only through coverage of 100%. The growth test is judged once a year, and with a published rule the April–October history would already pass it (<!--n:bt.a_pace.near_multiple-->×2.1<!--/n--> in NEAR and <!--n:bt.a_pace.usd_multiple-->×7.5<!--/n--> in dollars, against <!--n:bt.a_pace.required_multiple-->×1.32<!--/n-->). Until 1 December 2026 the rating cannot be anything but Hold, because Avoid needs a window 30 days earlier and the daily history starts on 1 November. Eight predictions are anchored on NEAR mainnet before they are judged, and none has been amended ([`PREREG.md`](PREREG.md), [`PREREG-2.md`](PREREG-2.md), [`PREREG-3.md`](PREREG-3.md)).
 
 ## Metrics we cannot compute
 
