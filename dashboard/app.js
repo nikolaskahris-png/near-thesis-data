@@ -457,9 +457,13 @@ function chartTreasury(ts) {
 function chartUpgrade(rows) {
   const host = $("#c6a");
   const thr = rows.length ? rows[rows.length - 1].threshold.split("/").map(Number) : [4, 5];
-  const target = rows.length ? rows[rows.length - 1].target_version : "";
+  // The watch moves to the next version once one is adopted; plot one version at a time, the newest with two days.
+  const lastT = rows.length ? rows[rows.length - 1].target_version : "";
+  const cur = rows.filter(r => r.target_version === lastT);
+  rows = cur.length >= 2 ? cur : rows.filter(r => r.target_version === (rows[0] || {}).target_version);
+  const target = rows.length ? rows[0].target_version : "";
   lineChart(host, {
-    title: `Stake signalling protocol version ${target} (HSP-027)`, xs: rows.map(r => dayLabel(r.date)),
+    title: `Stake signalling protocol version ${target}${target === "87" ? " (HSP-027)" : " (the next release)"}`, xs: rows.map(r => dayLabel(r.date)),
     ys: rows.map(r => Number(r.signaling_share)), top: 1, refs: [{ v: thr[0] / thr[1], name: "threshold " + thr.join("/") }],
     fmt: v => fmtPct(v, 0), last: v => fmtPct(v, 1), height: 260,
     tips: rows.map(r => `<b>${r.utc.slice(0, 16).replace("T", " ")} UTC</b><br>Signalling ${fmtPct(Number(r.signaling_share), 1)}<br>Version in effect ${r.protocol_version}<br>Producers seen ${fmtPct(Number(r.seen_share), 1)} of stake`),

@@ -13,7 +13,9 @@ recent value, and weights it by the producer's stake in the current epoch:
   signaling_share = stake of sampled producers at >= TARGET / stake of all block producers
   seen_share      = stake of sampled producers / stake of all block producers
 
-It also records the protocol version in force (EXPERIMENTAL_protocol_config).
+It also records the protocol version in force (EXPERIMENTAL_protocol_config). The version watched is,
+by default, the one after the version in force, so once a release is adopted the watch moves to the next
+(HSP-029's release, when there is one); each day's file keeps the version it watched.
 
 Saved per run: data/upgrade_watch/<UTC date>.json with every sampled block (height, hash,
 prev_hash, version) and every producer as sha256(account)[:16] with its stake and version,
@@ -39,7 +41,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import lock_window as lw  # noqa: E402
 
 REPO = lw.REPO
-TARGET = 87
+TARGET = 87       # HSP-027; the default is now the version after the one in force (see main)
 SAMPLE = 300
 COLUMNS = ["date", "utc", "final_height", "protocol_version", "target_version",
            "blocks_sampled", "producers_seen", "block_producers", "seen_share",
@@ -172,7 +174,9 @@ def verify(data_dir):
 def main():
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     parser.add_argument("--verify", action="store_true")
-    parser.add_argument("--target", type=int, default=TARGET)
+    parser.add_argument("--target", type=int, default=None,
+                        help="version to watch; default: the one after the version in force, so the watch moves on "
+                             "by itself once a release is adopted (HSP-027 was 87, in force from 4 Nov 2026)")
     parser.add_argument("--sample", type=int, default=SAMPLE)
     parser.add_argument("--data-dir", type=Path, default=REPO / "data")
     args = parser.parse_args()
@@ -185,6 +189,8 @@ def main():
         return
     chain = lw.Chain(pause=0.3)
     doc = collect(chain, args.sample)
+    if args.target is None:
+        args.target = int(doc["protocol_version"]) + 1
     doc["result"] = compute(doc, args.target)
     path = save(args.data_dir, doc)
     r = doc["result"]
