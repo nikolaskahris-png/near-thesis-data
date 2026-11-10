@@ -29,7 +29,7 @@
     "data/prereg2.json": "4cab2101e8c89e0412a78c50e0123286b103ecee2de8918dcaea69dc944980e7",
     "data/prereg2_anchor.json": "04d116768228d84f1c3a3e6c7c91cd43af6df1e62a177e95980f757a272c0c77",
     "data/prereg3_anchor.json": "d916894a3b6a0d4e899200cc4830a04dc8ee32a758ee083542f6b6cc35efd5c8",
-    "data/private_shift.json": "4d3b7eac8ea10579aea339049af27d06c22e4cfcfbdcee401e92ff7bd1780376",
+    "data/private_shift.json": "80d90266b9128306ac218102a7e344e10a147ecabb61f7af5c4db840b19828a9",
     "data/raw/redacted/control/1csfundsadmin.sputnik-dao.near_get_policy.json": "4170c345c39f028787bd46da4f3748bce4adc929e2412988e7dbab3a7811177d",
     "data/raw/redacted/control/fefundsadmin.sputnik-dao.near_get_policy.json": "7771c22b179e418ea8225c37977494d2ed0b8eccf774deb3d7301924357a97af",
     "data/raw/redacted/control/hos-root.sputnik-dao.near_get_policy.json": "8188cbd4d97cd7240f51058208e9b6b18a2eab0bb88d32657193b4d78354f815",
@@ -7492,6 +7492,16 @@
       "block": 223314737,
       "note": "first block with this protocol version in effect"
     },
+    "ps.after.buybacks_near_per_day": {
+      "value": "10071.275177",
+      "text": "10,071",
+      "source": "data/private_shift.json",
+      "unit": "NEAR/day",
+      "note": "the buybacks wallets",
+      "first": "2026-10-27",
+      "last": "2026-11-08",
+      "days": 13
+    },
     "ps.after.days": {
       "value": "13",
       "text": "13",
@@ -7500,20 +7510,51 @@
       "last": "2026-11-08",
       "days": 13
     },
-    "ps.after.kept_near_per_day": {
-      "value": "10071.275177",
-      "text": "10,071",
+    "ps.after.front_end_near_per_day": {
+      "value": "3729.148166",
+      "text": "3,729",
       "source": "data/private_shift.json",
       "unit": "NEAR/day",
+      "note": "the front-end fund",
+      "first": "2026-10-27",
+      "last": "2026-11-08",
+      "days": 13
+    },
+    "ps.after.kept_near_per_day": {
+      "value": "13800.423343",
+      "text": "13,800",
+      "source": "data/private_shift.json",
+      "unit": "NEAR/day",
+      "note": "the three revenue wallets",
+      "first": "2026-10-27",
+      "last": "2026-11-08",
+      "days": 13
+    },
+    "ps.after.kept_share_of_revenue": {
+      "value": "1.021205",
+      "text": "102.1%",
+      "source": "data/private_shift.json",
+      "unit": "share",
+      "note": "NEAR the three wallets kept / DefiLlama's revenue in NEAR",
       "first": "2026-10-27",
       "last": "2026-11-08",
       "days": 13
     },
     "ps.after.kept_usd_per_day": {
-      "value": "41781.204527",
-      "text": "$41,781",
+      "value": "57178.993262",
+      "text": "$57,179",
       "source": "data/private_shift.json",
       "unit": "USD/day",
+      "first": "2026-10-27",
+      "last": "2026-11-08",
+      "days": 13
+    },
+    "ps.after.revenue_near_per_day": {
+      "value": "13513.860690",
+      "text": "13,514",
+      "source": "data/private_shift.json",
+      "unit": "NEAR/day",
+      "note": "DefiLlama's revenue in NEAR",
       "first": "2026-10-27",
       "last": "2026-11-08",
       "days": 13
@@ -7523,10 +7564,19 @@
       "text": "$56,007",
       "source": "data/private_shift.json",
       "unit": "USD/day",
-      "note": "DefiLlama, context only; recent days may still be revised",
       "first": "2026-10-27",
       "last": "2026-11-08",
       "days": 13
+    },
+    "ps.before.buybacks_near_per_day": {
+      "value": "9153.509639",
+      "text": "9,154",
+      "source": "data/private_shift.json",
+      "unit": "NEAR/day",
+      "note": "the buybacks wallets",
+      "first": "2026-10-02",
+      "last": "2026-10-26",
+      "days": 25
     },
     "ps.before.days": {
       "value": "25",
@@ -7536,20 +7586,51 @@
       "last": "2026-10-26",
       "days": 25
     },
-    "ps.before.kept_near_per_day": {
-      "value": "9153.509639",
-      "text": "9,154",
+    "ps.before.front_end_near_per_day": {
+      "value": "5107.082066",
+      "text": "5,107",
       "source": "data/private_shift.json",
       "unit": "NEAR/day",
+      "note": "the front-end fund",
+      "first": "2026-10-02",
+      "last": "2026-10-26",
+      "days": 25
+    },
+    "ps.before.kept_near_per_day": {
+      "value": "14260.591705",
+      "text": "14,261",
+      "source": "data/private_shift.json",
+      "unit": "NEAR/day",
+      "note": "the three revenue wallets",
+      "first": "2026-10-02",
+      "last": "2026-10-26",
+      "days": 25
+    },
+    "ps.before.kept_share_of_revenue": {
+      "value": "0.995639",
+      "text": "99.6%",
+      "source": "data/private_shift.json",
+      "unit": "share",
+      "note": "NEAR the three wallets kept / DefiLlama's revenue in NEAR",
       "first": "2026-10-02",
       "last": "2026-10-26",
       "days": 25
     },
     "ps.before.kept_usd_per_day": {
-      "value": "45242.323008",
-      "text": "$45,242",
+      "value": "70487.325781",
+      "text": "$70,487",
       "source": "data/private_shift.json",
       "unit": "USD/day",
+      "first": "2026-10-02",
+      "last": "2026-10-26",
+      "days": 25
+    },
+    "ps.before.revenue_near_per_day": {
+      "value": "14323.059232",
+      "text": "14,323",
+      "source": "data/private_shift.json",
+      "unit": "NEAR/day",
+      "note": "DefiLlama's revenue in NEAR",
       "first": "2026-10-02",
       "last": "2026-10-26",
       "days": 25
@@ -7559,28 +7640,59 @@
       "text": "$70,677",
       "source": "data/private_shift.json",
       "unit": "USD/day",
-      "note": "DefiLlama, context only; recent days may still be revised",
       "first": "2026-10-02",
       "last": "2026-10-26",
       "days": 25
     },
     "ps.before_runs.highest_kept_near_per_day": {
-      "value": "10460.512162",
-      "text": "10,461",
+      "value": "17151.991635",
+      "text": "17,152",
+      "source": "data/private_shift.json",
+      "unit": "NEAR/day",
+      "note": "highest mean of 13 consecutive days inside the before period (13 runs)"
+    },
+    "ps.before_runs.highest_revenue_near_per_day": {
+      "value": "17270.059812",
+      "text": "17,270",
       "source": "data/private_shift.json",
       "unit": "NEAR/day",
       "note": "highest mean of 13 consecutive days inside the before period (13 runs)"
     },
     "ps.before_runs.lowest_kept_near_per_day": {
-      "value": "8596.045585",
-      "text": "8,596",
+      "value": "12780.928717",
+      "text": "12,781",
       "source": "data/private_shift.json",
       "unit": "NEAR/day",
       "note": "lowest mean of 13 consecutive days inside the before period (13 runs)"
     },
-    "ps.change.kept_near_per_day": {
+    "ps.before_runs.lowest_revenue_near_per_day": {
+      "value": "12959.125484",
+      "text": "12,959",
+      "source": "data/private_shift.json",
+      "unit": "NEAR/day",
+      "note": "lowest mean of 13 consecutive days inside the before period (13 runs)"
+    },
+    "ps.change.buybacks_near_per_day": {
       "value": "0.100264",
       "text": "+10%",
+      "source": "data/private_shift.json",
+      "derived_from": [
+        "ps.before.buybacks_near_per_day",
+        "ps.after.buybacks_near_per_day"
+      ]
+    },
+    "ps.change.front_end_near_per_day": {
+      "value": "-0.269808",
+      "text": "-27%",
+      "source": "data/private_shift.json",
+      "derived_from": [
+        "ps.before.front_end_near_per_day",
+        "ps.after.front_end_near_per_day"
+      ]
+    },
+    "ps.change.kept_near_per_day": {
+      "value": "-0.032269",
+      "text": "-3%",
       "source": "data/private_shift.json",
       "derived_from": [
         "ps.before.kept_near_per_day",
@@ -7588,22 +7700,161 @@
       ]
     },
     "ps.change.kept_usd_per_day": {
-      "value": "-0.076502",
-      "text": "-8%",
+      "value": "-0.188805",
+      "text": "-19%",
       "source": "data/private_shift.json",
       "derived_from": [
         "ps.before.kept_usd_per_day",
         "ps.after.kept_usd_per_day"
       ]
     },
+    "ps.change.revenue_near_per_day": {
+      "value": "-0.056496",
+      "text": "-6%",
+      "source": "data/private_shift.json",
+      "derived_from": [
+        "ps.before.revenue_near_per_day",
+        "ps.after.revenue_near_per_day"
+      ]
+    },
     "ps.change.revenue_usd_per_day": {
-      "value": "-0.2075670619952041029425663878586947847874",
+      "value": "-0.207567",
       "text": "-21%",
       "source": "data/private_shift.json",
       "derived_from": [
         "ps.before.revenue_usd_per_day",
         "ps.after.revenue_usd_per_day"
       ]
+    },
+    "ps.cut.2026-10-20.buybacks_near": {
+      "value": "0.070760",
+      "text": "+7%",
+      "source": "data/private_shift.json",
+      "note": "after over before with the change on 2026-10-20"
+    },
+    "ps.cut.2026-10-20.kept_near": {
+      "value": "-0.091071",
+      "text": "-9%",
+      "source": "data/private_shift.json",
+      "note": "after over before with the change on 2026-10-20"
+    },
+    "ps.cut.2026-10-20.revenue_near": {
+      "value": "-0.105674",
+      "text": "-11%",
+      "source": "data/private_shift.json",
+      "note": "after over before with the change on 2026-10-20"
+    },
+    "ps.cut.2026-10-20.revenue_usd": {
+      "value": "-0.223315",
+      "text": "-22%",
+      "source": "data/private_shift.json",
+      "note": "after over before with the change on 2026-10-20"
+    },
+    "ps.cut.2026-10-24.buybacks_near": {
+      "value": "0.116308",
+      "text": "+12%",
+      "source": "data/private_shift.json",
+      "note": "after over before with the change on 2026-10-24"
+    },
+    "ps.cut.2026-10-24.kept_near": {
+      "value": "-0.035241",
+      "text": "-4%",
+      "source": "data/private_shift.json",
+      "note": "after over before with the change on 2026-10-24"
+    },
+    "ps.cut.2026-10-24.revenue_near": {
+      "value": "-0.055954",
+      "text": "-6%",
+      "source": "data/private_shift.json",
+      "note": "after over before with the change on 2026-10-24"
+    },
+    "ps.cut.2026-10-24.revenue_usd": {
+      "value": "-0.201879",
+      "text": "-20%",
+      "source": "data/private_shift.json",
+      "note": "after over before with the change on 2026-10-24"
+    },
+    "ps.cut.2026-10-27.buybacks_near": {
+      "value": "0.100264",
+      "text": "+10%",
+      "source": "data/private_shift.json",
+      "note": "after over before with the change on 2026-10-27"
+    },
+    "ps.cut.2026-10-27.kept_near": {
+      "value": "-0.032269",
+      "text": "-3%",
+      "source": "data/private_shift.json",
+      "note": "after over before with the change on 2026-10-27"
+    },
+    "ps.cut.2026-10-27.revenue_near": {
+      "value": "-0.056496",
+      "text": "-6%",
+      "source": "data/private_shift.json",
+      "note": "after over before with the change on 2026-10-27"
+    },
+    "ps.cut.2026-10-27.revenue_usd": {
+      "value": "-0.207567",
+      "text": "-21%",
+      "source": "data/private_shift.json",
+      "note": "after over before with the change on 2026-10-27"
+    },
+    "ps.cut.2026-10-30.buybacks_near": {
+      "value": "-0.016109",
+      "text": "-2%",
+      "source": "data/private_shift.json",
+      "note": "after over before with the change on 2026-10-30"
+    },
+    "ps.cut.2026-10-30.kept_near": {
+      "value": "-0.126657",
+      "text": "-13%",
+      "source": "data/private_shift.json",
+      "note": "after over before with the change on 2026-10-30"
+    },
+    "ps.cut.2026-10-30.revenue_near": {
+      "value": "-0.146304",
+      "text": "-15%",
+      "source": "data/private_shift.json",
+      "note": "after over before with the change on 2026-10-30"
+    },
+    "ps.cut.2026-10-30.revenue_usd": {
+      "value": "-0.300023",
+      "text": "-30%",
+      "source": "data/private_shift.json",
+      "note": "after over before with the change on 2026-10-30"
+    },
+    "ps.cut.2026-11-02.buybacks_near": {
+      "value": "0.021888",
+      "text": "+2%",
+      "source": "data/private_shift.json",
+      "note": "after over before with the change on 2026-11-02"
+    },
+    "ps.cut.2026-11-02.kept_near": {
+      "value": "-0.075548",
+      "text": "-8%",
+      "source": "data/private_shift.json",
+      "note": "after over before with the change on 2026-11-02"
+    },
+    "ps.cut.2026-11-02.revenue_near": {
+      "value": "-0.103606",
+      "text": "-10%",
+      "source": "data/private_shift.json",
+      "note": "after over before with the change on 2026-11-02"
+    },
+    "ps.cut.2026-11-02.revenue_usd": {
+      "value": "-0.282155",
+      "text": "-28%",
+      "source": "data/private_shift.json",
+      "note": "after over before with the change on 2026-11-02"
+    },
+    "ps.cut.kept_near_highest": {
+      "value": "-0.032269",
+      "text": "-3%",
+      "source": "data/private_shift.json"
+    },
+    "ps.cut.kept_near_lowest": {
+      "value": "-0.126657",
+      "text": "-13%",
+      "source": "data/private_shift.json"
     },
     "ps.treasury_stablecoins_change_after": {
       "value": "0.241985389034173242988210649814024041008",

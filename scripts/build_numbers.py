@@ -1320,30 +1320,37 @@ def build(data_dir, window_file):
         ssrc = n.source(spath)
         for name, per in sd["periods"].items():
             pc = {"first": per["first"], "last": per["last"], "days": per["days"]}
-            n.add(f"ps.{name}.kept_near_per_day", dec(per["kept_near_per_day"]), f_int(dec(per["kept_near_per_day"])),
-                  ssrc, unit="NEAR/day", **pc)
-            n.add(f"ps.{name}.kept_usd_per_day", dec(per["kept_usd_per_day"]), f_usd(dec(per["kept_usd_per_day"])),
-                  ssrc, unit="USD/day", **pc)
-            if per["revenue_usd_per_day"] is not None:
-                n.add(f"ps.{name}.revenue_usd_per_day", dec(per["revenue_usd_per_day"]),
-                      f_usd(dec(per["revenue_usd_per_day"])), ssrc, unit="USD/day",
-                      note="DefiLlama, context only; recent days may still be revised", **pc)
+            for k, what in (("kept_near", "the three revenue wallets"), ("buybacks_near", "the buybacks wallets"),
+                            ("front_end_near", "the front-end fund"), ("revenue_near", "DefiLlama's revenue in NEAR")):
+                v = dec(per[f"{k}_per_day"])
+                n.add(f"ps.{name}.{k}_per_day", v, f_int(v), ssrc, unit="NEAR/day", note=what, **pc)
+            for k in ("kept_usd", "revenue_usd"):
+                v = dec(per[f"{k}_per_day"])
+                n.add(f"ps.{name}.{k}_per_day", v, f_usd(v), ssrc, unit="USD/day", **pc)
+            v = dec(per["kept_share_of_revenue"])
+            n.add(f"ps.{name}.kept_share_of_revenue", v, f_pct(v, 1), ssrc, unit="share",
+                  note="NEAR the three wallets kept / DefiLlama's revenue in NEAR", **pc)
             n.add(f"ps.{name}.days", per["days"], f_int(per["days"]), ssrc, **pc)
-        for k in ("kept_near_per_day", "kept_usd_per_day"):
-            r = dec(sd["after_over_before"][k]) - 1
-            n.add(f"ps.change.{k}", r, ("+" if r > 0 else "") + f_pct(r, 0), ssrc,
-                  derived_from=[f"ps.before.{k}", f"ps.after.{k}"])
-        if all(sd["periods"][x]["revenue_usd_per_day"] is not None for x in ("before", "after")):
-            r = dec(sd["periods"]["after"]["revenue_usd_per_day"]) / dec(sd["periods"]["before"]["revenue_usd_per_day"]) - 1
-            n.add("ps.change.revenue_usd_per_day", r, ("+" if r > 0 else "") + f_pct(r, 0), ssrc,
-                  derived_from=["ps.before.revenue_usd_per_day", "ps.after.revenue_usd_per_day"])
+        for k, r in sd["after_over_before"].items():
+            r = dec(r) - 1
+            n.add(f"ps.change.{k}_per_day", r, ("+" if r > 0 else "") + f_pct(r, 0), ssrc,
+                  derived_from=[f"ps.before.{k}_per_day", f"ps.after.{k}_per_day"])
         ru = sd["before_runs_of_after_length"]
-        for k in ("lowest", "highest"):
-            v = dec(ru[f"{k}_kept_near_per_day"])
-            n.add(f"ps.before_runs.{k}_kept_near_per_day", v, f_int(v), ssrc, unit="NEAR/day",
-                  note=f"{k} mean of {ru['days']} consecutive days inside the before period ({ru['count']} runs)")
+        for m in ("kept_near", "revenue_near"):
+            for k in ("lowest", "highest"):
+                v = dec(ru[f"{k}_{m}_per_day"])
+                n.add(f"ps.before_runs.{k}_{m}_per_day", v, f_int(v), ssrc, unit="NEAR/day",
+                      note=f"{k} mean of {ru['days']} consecutive days inside the before period ({ru['count']} runs)")
         if not ru["after_inside"]:
             n.add("ps.after_outside_before_runs", True, "yes", ssrc)
+        for c in sd["cut_dates"]:
+            for k in ("kept_near", "buybacks_near", "revenue_near", "revenue_usd"):
+                r = dec(c[f"{k}_after_over_before"]) - 1
+                n.add(f"ps.cut.{c['cut']}.{k}", r, ("+" if r > 0 else "") + f_pct(r, 0), ssrc,
+                      note=f"after over before with the change on {c['cut']}")
+        ks = [dec(c["kept_near_after_over_before"]) - 1 for c in sd["cut_dates"]]
+        n.add("ps.cut.kept_near_lowest", min(ks), ("+" if min(ks) > 0 else "") + f_pct(min(ks), 0), ssrc)
+        n.add("ps.cut.kept_near_highest", max(ks), ("+" if max(ks) > 0 else "") + f_pct(max(ks), 0), ssrc)
         ts = sd["treasury_stablecoins_usd"]
         if ts["after_start"] and ts["after_end"]:
             g = dec(ts["after_end"]) / dec(ts["after_start"]) - 1

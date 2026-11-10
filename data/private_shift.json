@@ -1,38 +1,89 @@
 {
- "measure": "what the buybacks wallets kept a day on mainnet, before and after the date from which another repository reports private settlement growing",
- "rules": "Did the buybacks keep coming once NEAR Intents moved to the private path? Offline, from saved files.\n\nAnother public repository on NEAR Intents, Tideline (github.com/ervhint/tideline-thesis), reads the\ntransfers of the Confidential Intents Treasury account from intents.near's logs and reports that \"since\n27 Oct 2026, a growing share of Intents swaps settles privately\", and that over 2 to 8 November the\nTreasury account carried 85% of the USD it counts on chain. We do not re-read those transactions. We\ntake its date as given, fixed before looking at our own series, and ask what the buybacks wallets kept\non mainnet before and after it:\n\n  before   2 October to 26 October 2026 (the window's start to the day before Tideline's date)\n  after    27 October to 8 November 2026 (Tideline's date to the last day of its 85% week)\n\nFor each day D:\n  kept NEAR   change in native NEAR of buybacks.multisignature.near and 1csfundsadmin.sputnik-dao.near,\n              plus the wNEAR buybacks.multisignature.near holds inside intents.near, between the first\n              blocks at or after 00:00 UTC of D and of D+1. Boundaries and balances: the files\n              base_rates.py saved (data/raw/base_rates/days/), and for days after its last boundary the\n              end block that daily.py locked for that day (data/daily/, data/raw/accounts/).\n  kept USD    kept NEAR x coingecko:near at 12:00 UTC of D (coins.llama.fi);\n  revenue     DefiLlama's revenue for NEAR Intents on D, in USD, as context only: days near the end of a\n              fetch can still be revised, and how DefiLlama counts private swaps is not known.\nDefiLlama and prices come from one fetch saved by rating.py, pinned below (FETCH), so the result\ndoes not move when new fetches are saved.\n\nJudged against noise, not by a test: daily inflows are lumpy, so the after-mean is set against every\nmean of the same number of consecutive days inside \"before\" (its lowest and highest). The Treasury\naccount's stablecoins at both ends come from confidential_treasury(.json, _daily.json).",
- "external_source": "Tideline, github.com/ervhint/tideline-thesis, README and THESIS.md as of 9 Nov 2026: private settlement grows from 27 Oct 2026; the Confidential Intents Treasury carried 85% of the USD counted on chain, 2-8 Nov 2026",
+ "measure": "what the three revenue wallets kept a day on mainnet, in NEAR, before and after the date from which another repository reports private settlement growing, beside DefiLlama's revenue in NEAR",
+ "rules": "Did capture stop once NEAR Intents moved to the private path? Offline, from saved files.\n\nAnother public repository on NEAR Intents, Tideline (github.com/ervhint/tideline-thesis, THESIS.md at commit\n90a78e6, saved in data/raw/sources/), reads the transfers of the Confidential Intents Treasury account from\nintents.near's logs and reports that \"Since 27 Oct 2026 swaps settle on intents.far, which public indexers\ncannot see\", and that over 2 to 8 November the Treasury account \"carried 85% of the USD counted on chain\".\nWe do not re-read those transactions. We take its date as given and compare:\n\n  before   2 October to 26 October 2026 (the window's start to the day before Tideline's date)\n  after    27 October to 8 November 2026 (Tideline's date to the last day of its 85% week)\n\nThe result depends on the date, so the same comparison is also made with the change on 20, 24 and\n30 October and 2 November (cut_dates).\n\nFor each day D, like for like with DefiLlama, whose revenue counts NEAR flowing into the same three wallets:\n  kept NEAR     change in NEAR held by the three revenue wallets between the first blocks at or after\n                00:00 UTC of D and of D+1: buybacks.multisignature.near and 1csfundsadmin.sputnik-dao.near\n                (the buybacks wallets) and fefundsadmin.sputnik-dao.near (the front-end fund), native NEAR\n                plus the wNEAR buybacks and fefundsadmin hold inside intents.near. Boundaries and balances:\n                base_rates.py's files (data/raw/base_rates/days/), the end blocks daily.py locked\n                (data/daily/, data/raw/accounts/), and the front-end fund at the boundaries neither had\n                read, saved by --fetch with daily.py's calls and file names (data/raw/accounts/).\n  revenue NEAR  DefiLlama's revenue for NEAR Intents on D in USD / coingecko:near at 12:00 UTC of D.\n  kept USD      kept NEAR x the same price.\nDays near the end of a DefiLlama fetch can still be revised. DefiLlama and prices come from one fetch saved\nby rating.py, pinned below (FETCH), so the result does not move when new fetches are saved.\n\nJudged against noise, not by a test: daily inflows are lumpy, so each after-mean is set against every mean\nof the same number of consecutive days inside \"before\" (its lowest and highest). The Treasury account's\nstablecoins at both ends come from confidential_treasury(.json, _daily.json).",
+ "external_source": "Tideline, github.com/ervhint/tideline-thesis, THESIS.md at commit 90a78e6a358315331dbb0c68548edcb736244a3e (saved: data/raw/sources/tideline_thesis.md): \"Since 27 Oct 2026 swaps settle on intents.far, which public indexers cannot see\"; the Confidential Intents Treasury \"carried 85% of the USD counted on chain\", 2-8 Nov 2026",
  "periods": {
   "before": {
    "first": "2026-10-02",
    "last": "2026-10-26",
    "days": 25,
-   "kept_near_per_day": "9153.509639",
-   "kept_usd_per_day": "45242.323008",
+   "kept_near_per_day": "14260.591705",
+   "buybacks_near_per_day": "9153.509639",
+   "front_end_near_per_day": "5107.082066",
+   "kept_usd_per_day": "70487.325781",
    "revenue_usd_per_day": "70677.080000",
+   "revenue_near_per_day": "14323.059232",
+   "kept_share_of_revenue": "0.995639",
    "days_with_no_inflow": 0
   },
   "after": {
    "first": "2026-10-27",
    "last": "2026-11-08",
    "days": 13,
-   "kept_near_per_day": "10071.275177",
-   "kept_usd_per_day": "41781.204527",
+   "kept_near_per_day": "13800.423343",
+   "buybacks_near_per_day": "10071.275177",
+   "front_end_near_per_day": "3729.148166",
+   "kept_usd_per_day": "57178.993262",
    "revenue_usd_per_day": "56006.846154",
+   "revenue_near_per_day": "13513.860690",
+   "kept_share_of_revenue": "1.021205",
    "days_with_no_inflow": 0
   }
  },
  "after_over_before": {
-  "kept_near_per_day": "1.100264",
-  "kept_usd_per_day": "0.923498"
+  "kept_near": "0.967731",
+  "buybacks_near": "1.100264",
+  "front_end_near": "0.730192",
+  "kept_usd": "0.811195",
+  "revenue_usd": "0.792433",
+  "revenue_near": "0.943504"
  },
  "before_runs_of_after_length": {
   "days": 13,
   "count": 13,
-  "lowest_kept_near_per_day": "8596.045585",
-  "highest_kept_near_per_day": "10460.512162",
+  "lowest_kept_near_per_day": "12780.928717",
+  "highest_kept_near_per_day": "17151.991635",
+  "lowest_revenue_near_per_day": "12959.125484",
+  "highest_revenue_near_per_day": "17270.059812",
   "after_inside": true
  },
+ "cut_dates": [
+  {
+   "cut": "2026-10-20",
+   "kept_near_after_over_before": "0.908929",
+   "buybacks_near_after_over_before": "1.070760",
+   "revenue_near_after_over_before": "0.894326",
+   "revenue_usd_after_over_before": "0.776685"
+  },
+  {
+   "cut": "2026-10-24",
+   "kept_near_after_over_before": "0.964759",
+   "buybacks_near_after_over_before": "1.116308",
+   "revenue_near_after_over_before": "0.944046",
+   "revenue_usd_after_over_before": "0.798121"
+  },
+  {
+   "cut": "2026-10-27",
+   "kept_near_after_over_before": "0.967731",
+   "buybacks_near_after_over_before": "1.100264",
+   "revenue_near_after_over_before": "0.943504",
+   "revenue_usd_after_over_before": "0.792433"
+  },
+  {
+   "cut": "2026-10-30",
+   "kept_near_after_over_before": "0.873343",
+   "buybacks_near_after_over_before": "0.983891",
+   "revenue_near_after_over_before": "0.853696",
+   "revenue_usd_after_over_before": "0.699977"
+  },
+  {
+   "cut": "2026-11-02",
+   "kept_near_after_over_before": "0.924452",
+   "buybacks_near_after_over_before": "1.021888",
+   "revenue_near_after_over_before": "0.896394",
+   "revenue_usd_after_over_before": "0.717845"
+  }
+ ],
  "treasury_stablecoins_usd": {
   "before_start": "22949419",
   "after_start": "31148112",
@@ -41,237 +92,429 @@
  "days": [
   {
    "date": "2026-10-02",
-   "kept_near": "7874.504906",
-   "kept_usd": "38154.432032",
-   "revenue_usd": "54327.000000"
+   "kept_near": "11581.493774",
+   "buybacks_near": "7874.504906",
+   "front_end_near": "3706.988867",
+   "kept_usd": "56115.949164",
+   "revenue_usd": "54327.000000",
+   "revenue_near": "11212.281385"
   },
   {
    "date": "2026-10-03",
-   "kept_near": "3742.589818",
-   "kept_usd": "17472.761320",
-   "revenue_usd": "25842.000000"
+   "kept_near": "5350.502791",
+   "buybacks_near": "3742.589818",
+   "front_end_near": "1607.912973",
+   "kept_usd": "24979.509579",
+   "revenue_usd": "25842.000000",
+   "revenue_near": "5535.244504"
   },
   {
    "date": "2026-10-04",
-   "kept_near": "4971.243501",
-   "kept_usd": "24226.936929",
-   "revenue_usd": "146154.000000"
+   "kept_near": "29746.481128",
+   "buybacks_near": "4971.243501",
+   "front_end_near": "24775.237628",
+   "kept_usd": "144966.972969",
+   "revenue_usd": "146154.000000",
+   "revenue_near": "29990.053002"
   },
   {
    "date": "2026-10-05",
-   "kept_near": "8263.189538",
-   "kept_usd": "41437.711881",
-   "revenue_usd": "53207.000000"
+   "kept_near": "10059.818608",
+   "buybacks_near": "8263.189538",
+   "front_end_near": "1796.629070",
+   "kept_usd": "50447.331884",
+   "revenue_usd": "53207.000000",
+   "revenue_near": "10610.130381"
   },
   {
    "date": "2026-10-06",
-   "kept_near": "7344.463269",
-   "kept_usd": "38577.779491",
-   "revenue_usd": "61629.000000"
+   "kept_near": "12163.324934",
+   "buybacks_near": "7344.463269",
+   "front_end_near": "4818.861665",
+   "kept_usd": "63889.497431",
+   "revenue_usd": "61629.000000",
+   "revenue_near": "11732.969933"
   },
   {
    "date": "2026-10-07",
-   "kept_near": "7651.225166",
-   "kept_usd": "38498.219811",
-   "revenue_usd": "63423.000000"
+   "kept_near": "11888.839066",
+   "buybacks_near": "7651.225166",
+   "front_end_near": "4237.613900",
+   "kept_usd": "59820.372523",
+   "revenue_usd": "63423.000000",
+   "revenue_near": "12604.833576"
   },
   {
    "date": "2026-10-08",
-   "kept_near": "16238.330714",
-   "kept_usd": "82499.074880",
-   "revenue_usd": "118720.000000"
+   "kept_near": "26610.203435",
+   "buybacks_near": "16238.330714",
+   "front_end_near": "10371.872721",
+   "kept_usd": "135193.524779",
+   "revenue_usd": "118720.000000",
+   "revenue_near": "23367.712004"
   },
   {
    "date": "2026-10-09",
-   "kept_near": "16897.283871",
-   "kept_usd": "82294.277390",
-   "revenue_usd": "113449.000000"
+   "kept_near": "23236.130551",
+   "buybacks_near": "16897.283871",
+   "front_end_near": "6338.846680",
+   "kept_usd": "113166.150702",
+   "revenue_usd": "113449.000000",
+   "revenue_near": "23294.207310"
   },
   {
    "date": "2026-10-10",
-   "kept_near": "10674.437778",
-   "kept_usd": "56646.812980",
-   "revenue_usd": "78515.000000"
+   "kept_near": "14837.499412",
+   "buybacks_near": "10674.437778",
+   "front_end_near": "4163.061635",
+   "kept_usd": "78739.234029",
+   "revenue_usd": "78515.000000",
+   "revenue_near": "14795.245099"
   },
   {
    "date": "2026-10-11",
-   "kept_near": "10364.797810",
-   "kept_usd": "54793.658093",
-   "revenue_usd": "81286.000000"
+   "kept_near": "13828.181430",
+   "buybacks_near": "10364.797810",
+   "front_end_near": "3463.383620",
+   "kept_usd": "73102.887213",
+   "revenue_usd": "81286.000000",
+   "revenue_near": "15376.103442"
   },
   {
    "date": "2026-10-12",
-   "kept_near": "8212.099086",
-   "kept_usd": "46435.360969",
-   "revenue_usd": "62759.000000"
+   "kept_near": "12339.092266",
+   "buybacks_near": "8212.099086",
+   "front_end_near": "4126.993180",
+   "kept_usd": "69771.467370",
+   "revenue_usd": "62759.000000",
+   "revenue_near": "11098.936581"
   },
   {
    "date": "2026-10-13",
-   "kept_near": "7055.229137",
-   "kept_usd": "35460.910801",
-   "revenue_usd": "56520.000000"
+   "kept_near": "11222.102690",
+   "buybacks_near": "7055.229137",
+   "front_end_near": "4166.873553",
+   "kept_usd": "56404.402291",
+   "revenue_usd": "56520.000000",
+   "revenue_near": "11245.101770"
   },
   {
    "date": "2026-10-14",
-   "kept_near": "10688.464715",
-   "kept_usd": "54374.292434",
-   "revenue_usd": "82736.000000"
+   "kept_near": "16950.364917",
+   "buybacks_near": "10688.464715",
+   "front_end_near": "6261.900202",
+   "kept_usd": "86229.792908",
+   "revenue_usd": "82736.000000",
+   "revenue_near": "16263.582974"
   },
   {
    "date": "2026-10-15",
-   "kept_near": "19930.326627",
-   "kept_usd": "91578.087152",
-   "revenue_usd": "162768.000000"
+   "kept_near": "30963.118448",
+   "buybacks_near": "19930.326627",
+   "front_end_near": "11032.791821",
+   "kept_usd": "142272.789240",
+   "revenue_usd": "162768.000000",
+   "revenue_near": "35423.533132"
   },
   {
    "date": "2026-10-16",
-   "kept_near": "5932.766986",
-   "kept_usd": "31480.894986",
-   "revenue_usd": "46209.000000"
+   "kept_near": "9130.734373",
+   "buybacks_near": "5932.766986",
+   "front_end_near": "3197.967387",
+   "kept_usd": "48450.190380",
+   "revenue_usd": "46209.000000",
+   "revenue_near": "8708.368354"
   },
   {
    "date": "2026-10-17",
-   "kept_near": "4728.322811",
-   "kept_usd": "24182.589184",
-   "revenue_usd": "32347.000000"
+   "kept_near": "6660.545118",
+   "buybacks_near": "4728.322811",
+   "front_end_near": "1932.222307",
+   "kept_usd": "34064.769424",
+   "revenue_usd": "32347.000000",
+   "revenue_near": "6324.676684"
   },
   {
    "date": "2026-10-18",
-   "kept_near": "6073.035708",
-   "kept_usd": "29883.355291",
-   "revenue_usd": "46284.000000"
+   "kept_near": "9235.668739",
+   "buybacks_near": "6073.035708",
+   "front_end_near": "3162.633031",
+   "kept_usd": "45445.603083",
+   "revenue_usd": "46284.000000",
+   "revenue_near": "9406.051696"
   },
   {
    "date": "2026-10-19",
-   "kept_near": "7653.620617",
-   "kept_usd": "37852.308089",
-   "revenue_usd": "53083.000000"
+   "kept_near": "10833.412761",
+   "buybacks_near": "7653.620617",
+   "front_end_near": "3179.792144",
+   "kept_usd": "53578.521594",
+   "revenue_usd": "53083.000000",
+   "revenue_near": "10733.219815"
   },
   {
    "date": "2026-10-20",
-   "kept_near": "11537.942244",
-   "kept_usd": "53872.772938",
-   "revenue_usd": "78180.000000"
+   "kept_near": "15877.586350",
+   "buybacks_near": "11537.942244",
+   "front_end_near": "4339.644106",
+   "kept_usd": "74135.368867",
+   "revenue_usd": "78180.000000",
+   "revenue_near": "16743.825785"
   },
   {
    "date": "2026-10-21",
-   "kept_near": "7997.519013",
-   "kept_usd": "41351.970760",
-   "revenue_usd": "63787.000000"
+   "kept_near": "12124.288855",
+   "buybacks_near": "7997.519013",
+   "front_end_near": "4126.769842",
+   "kept_usd": "62689.846361",
+   "revenue_usd": "63787.000000",
+   "revenue_near": "12336.479639"
   },
   {
    "date": "2026-10-22",
-   "kept_near": "8221.425978",
-   "kept_usd": "40870.223896",
-   "revenue_usd": "58819.000000"
+   "kept_near": "12057.380074",
+   "buybacks_near": "8221.425978",
+   "front_end_near": "3835.954096",
+   "kept_usd": "59939.458746",
+   "revenue_usd": "58819.000000",
+   "revenue_near": "11831.989368"
   },
   {
    "date": "2026-10-23",
-   "kept_near": "6507.878260",
-   "kept_usd": "32072.021012",
-   "revenue_usd": "38629.000000"
+   "kept_near": "8246.077101",
+   "buybacks_near": "6507.878260",
+   "front_end_near": "1738.198842",
+   "kept_usd": "40638.184598",
+   "revenue_usd": "38629.000000",
+   "revenue_near": "7838.384404"
   },
   {
    "date": "2026-10-24",
-   "kept_near": "7209.961419",
-   "kept_usd": "32408.370271",
-   "revenue_usd": "47262.000000"
+   "kept_near": "10511.701623",
+   "buybacks_near": "7209.961419",
+   "front_end_near": "3301.740204",
+   "kept_usd": "47249.506421",
+   "revenue_usd": "47262.000000",
+   "revenue_near": "10514.481097"
   },
   {
    "date": "2026-10-25",
-   "kept_near": "10001.794080",
-   "kept_usd": "44814.272160",
-   "revenue_usd": "61742.000000"
+   "kept_near": "13454.912568",
+   "buybacks_near": "10001.794080",
+   "front_end_near": "3453.118488",
+   "kept_usd": "60286.395509",
+   "revenue_usd": "61742.000000",
+   "revenue_near": "13779.779082"
   },
   {
    "date": "2026-10-26",
-   "kept_near": "13065.287920",
-   "kept_usd": "59818.980449",
-   "revenue_usd": "79250.000000"
+   "kept_near": "17605.331605",
+   "buybacks_near": "13065.287920",
+   "front_end_near": "4540.043685",
+   "kept_usd": "80605.417465",
+   "revenue_usd": "79250.000000",
+   "revenue_near": "17309.289792"
   },
   {
    "date": "2026-10-27",
-   "kept_near": "11701.384131",
-   "kept_usd": "52376.988121",
-   "revenue_usd": "76747.000000"
+   "kept_near": "16416.802822",
+   "buybacks_near": "11701.384131",
+   "front_end_near": "4715.418691",
+   "kept_usd": "73483.844030",
+   "revenue_usd": "76747.000000",
+   "revenue_near": "17145.814605"
   },
   {
    "date": "2026-10-28",
-   "kept_near": "9733.147229",
-   "kept_usd": "45358.052661",
-   "revenue_usd": "57359.000000"
+   "kept_near": "12126.902277",
+   "buybacks_near": "9733.147229",
+   "front_end_near": "2393.755048",
+   "kept_usd": "56513.341384",
+   "revenue_usd": "57359.000000",
+   "revenue_near": "12308.367735"
   },
   {
    "date": "2026-10-29",
-   "kept_near": "15945.782570",
-   "kept_usd": "70412.602527",
-   "revenue_usd": "94993.000000"
+   "kept_near": "23445.936660",
+   "buybacks_near": "15945.782570",
+   "front_end_near": "7500.154090",
+   "kept_usd": "103531.414131",
+   "revenue_usd": "94993.000000",
+   "revenue_near": "21512.309861"
   },
   {
    "date": "2026-10-30",
-   "kept_near": "12997.326396",
-   "kept_usd": "56001.287377",
-   "revenue_usd": "75590.000000"
+   "kept_near": "17630.618638",
+   "buybacks_near": "12997.326396",
+   "front_end_near": "4633.292242",
+   "kept_usd": "75964.649258",
+   "revenue_usd": "75590.000000",
+   "revenue_near": "17543.666375"
   },
   {
    "date": "2026-10-31",
-   "kept_near": "7877.112679",
-   "kept_usd": "34168.517421",
-   "revenue_usd": "46517.000000"
+   "kept_near": "10497.644134",
+   "buybacks_near": "7877.112679",
+   "front_end_near": "2620.531454",
+   "kept_usd": "45535.585317",
+   "revenue_usd": "46517.000000",
+   "revenue_near": "10723.896679"
   },
   {
    "date": "2026-11-01",
-   "kept_near": "5220.826339",
-   "kept_usd": "22853.330445",
-   "revenue_usd": "28867.000000"
+   "kept_near": "6735.645838",
+   "buybacks_near": "5220.826339",
+   "front_end_near": "1514.819500",
+   "kept_usd": "29484.209992",
+   "revenue_usd": "28867.000000",
+   "revenue_near": "6594.644675"
   },
   {
    "date": "2026-11-02",
-   "kept_near": "7148.267343",
-   "kept_usd": "29500.790396",
-   "revenue_usd": "33483.000000"
+   "kept_near": "8666.824301",
+   "buybacks_near": "7148.267343",
+   "front_end_near": "1518.556958",
+   "kept_usd": "35767.851819",
+   "revenue_usd": "33483.000000",
+   "revenue_near": "8113.187215"
   },
   {
    "date": "2026-11-03",
-   "kept_near": "7540.619859",
-   "kept_usd": "29151.929630",
-   "revenue_usd": "42975.000000"
+   "kept_near": "11212.966120",
+   "buybacks_near": "7540.619859",
+   "front_end_near": "3672.346261",
+   "kept_usd": "43349.168288",
+   "revenue_usd": "42975.000000",
+   "revenue_near": "11116.181418"
   },
   {
    "date": "2026-11-04",
-   "kept_near": "9232.341489",
-   "kept_usd": "37689.005808",
-   "revenue_usd": "49088.000000"
+   "kept_near": "12255.792900",
+   "buybacks_near": "9232.341489",
+   "front_end_near": "3023.451411",
+   "kept_usd": "50031.581948",
+   "revenue_usd": "49088.000000",
+   "revenue_near": "12024.651999"
   },
   {
    "date": "2026-11-05",
-   "kept_near": "12524.785861",
-   "kept_usd": "50263.685500",
-   "revenue_usd": "60331.000000"
+   "kept_near": "16491.859321",
+   "buybacks_near": "12524.785861",
+   "front_end_near": "3967.073460",
+   "kept_usd": "66184.096035",
+   "revenue_usd": "60331.000000",
+   "revenue_near": "15033.375453"
   },
   {
    "date": "2026-11-06",
-   "kept_near": "15624.318777",
-   "kept_usd": "58331.105325",
-   "revenue_usd": "87700.000000"
+   "kept_near": "23636.431562",
+   "buybacks_near": "15624.318777",
+   "front_end_near": "8012.112785",
+   "kept_usd": "88243.154703",
+   "revenue_usd": "87700.000000",
+   "revenue_near": "23490.944482"
   },
   {
    "date": "2026-11-07",
-   "kept_near": "8100.727975",
-   "kept_usd": "29994.123232",
-   "revenue_usd": "43013.000000"
+   "kept_near": "11596.638676",
+   "buybacks_near": "8100.727975",
+   "front_end_near": "3495.910700",
+   "kept_usd": "42938.240930",
+   "revenue_usd": "43013.000000",
+   "revenue_near": "11616.829394"
   },
   {
    "date": "2026-11-08",
-   "kept_near": "7279.936655",
-   "kept_usd": "27054.240412",
-   "revenue_usd": "31426.000000"
+   "kept_near": "8691.440207",
+   "buybacks_near": "7279.936655",
+   "front_end_near": "1411.503552",
+   "kept_usd": "32299.774577",
+   "revenue_usd": "31426.000000",
+   "revenue_near": "8456.319077"
   }
  ],
  "files_sha256": {
+  "data/raw/accounts/218126921_fefundsadmin.sputnik-dao.near.json": "16d948910535051073a65e4440275e61a1ee78776318d1dc9def534b3b2f5ab7",
+  "data/raw/accounts/218126921_fefundsadmin.sputnik-dao.near_intents_wnear.json": "2cf8fee94515deb0f5316f861ea0530b629ab2190c75c1bebbb7376ae00923f2",
+  "data/raw/accounts/218273403_fefundsadmin.sputnik-dao.near.json": "036edabdf95527e43bdec9bd280000541a270a58c4711c5de3eb9be75591abcd",
+  "data/raw/accounts/218273403_fefundsadmin.sputnik-dao.near_intents_wnear.json": "8eae4563fae709dd2b846a0db950f49b8bcad5cb892daaaf4f22d68c47376844",
+  "data/raw/accounts/218420665_fefundsadmin.sputnik-dao.near.json": "a9984648ef56fbb7d8f5c85414522b3f58eb0c4f6d4561557d8aa81c6eb0d359",
+  "data/raw/accounts/218420665_fefundsadmin.sputnik-dao.near_intents_wnear.json": "9e10403661febb05c0b414b8fdad87e8d4d74fd8ed026a2a86f72dbb7e062867",
+  "data/raw/accounts/218567717_fefundsadmin.sputnik-dao.near.json": "2015f62ca6629237cd2c17cd1d6ed610c44b6e6fe8eb22141961bccceb216bd0",
+  "data/raw/accounts/218567717_fefundsadmin.sputnik-dao.near_intents_wnear.json": "090b3867a5b0e39fb7eb1cc97fab7c3ec29a8185019af66cfc1e05f3722ca32d",
+  "data/raw/accounts/218714583_fefundsadmin.sputnik-dao.near.json": "6b4cd0dcde295122ea6fdc682f015aa47f40aacf18d46cc4c6d0dc8e06200052",
+  "data/raw/accounts/218714583_fefundsadmin.sputnik-dao.near_intents_wnear.json": "d01a75fd12c94569a3ec01c6a22ae667db2885b848b419fb4a156719fa5407eb",
+  "data/raw/accounts/218861416_fefundsadmin.sputnik-dao.near.json": "7e9b3a6dc61b0c4a64686ee3333f38627ebe82a61eb2fdaff4fe3caa5f1585a2",
+  "data/raw/accounts/218861416_fefundsadmin.sputnik-dao.near_intents_wnear.json": "8c5d8351380d979602c05071769d1c8a2fd1a32beb06162aacf83a0e48102f25",
+  "data/raw/accounts/219007407_fefundsadmin.sputnik-dao.near.json": "fd1b93d0ea1d7caeda9009355857da38f5a67936d8b44f4150b8336e6aa7a607",
+  "data/raw/accounts/219007407_fefundsadmin.sputnik-dao.near_intents_wnear.json": "b57bfc0465852c509c84a9efd5b1d0ad4ee312632e15450fc906889b2c24b617",
+  "data/raw/accounts/219154120_fefundsadmin.sputnik-dao.near.json": "aaec552d6a2ceb0490ebd02cf447d093fbd32227e1697514c5f19c9ff3329249",
+  "data/raw/accounts/219154120_fefundsadmin.sputnik-dao.near_intents_wnear.json": "af91b9e0cf3ebcf730a9b2fea3b105e87bdae03cd9c288b21bdccb2031efb889",
+  "data/raw/accounts/219300782_fefundsadmin.sputnik-dao.near.json": "03b314fff20be028906703a1f34b4404d3d62014d29ddce79a396f9ce48689f3",
+  "data/raw/accounts/219300782_fefundsadmin.sputnik-dao.near_intents_wnear.json": "05abc297cf18f41af7502feae32ab86367ab32368b12286980eccd2b3d44aced",
+  "data/raw/accounts/219447523_fefundsadmin.sputnik-dao.near.json": "c7e8846d6ff9c73ff035796d660ab0a96e1657098c29a593a657fc91276a0c87",
+  "data/raw/accounts/219447523_fefundsadmin.sputnik-dao.near_intents_wnear.json": "e51a403bce728818d7f3acc6c9437e988d3e096f4237d721ae8d085d3dd40612",
+  "data/raw/accounts/219594857_fefundsadmin.sputnik-dao.near.json": "d95e0cba7af147ccc6bf0eebf4c5ef6a45e4d582d6c2d7e026fc85d805192d35",
+  "data/raw/accounts/219594857_fefundsadmin.sputnik-dao.near_intents_wnear.json": "fa838400358e2bcc0ed51fd0debdb6a54260e8e8552ca6096440c9fc1b1f7e5a",
+  "data/raw/accounts/219740458_fefundsadmin.sputnik-dao.near.json": "3f0b696482e9fc19a66b04e80003b738844125358546d5c101995fc5a3d9a21c",
+  "data/raw/accounts/219740458_fefundsadmin.sputnik-dao.near_intents_wnear.json": "d086abec3b07edf0867b3c891269392c6e56b9bb5296dab5e50b6af59d6a95e2",
+  "data/raw/accounts/219879156_fefundsadmin.sputnik-dao.near.json": "e8cace68993ba46161e78e0cbfab8d6d4fc059e935b505e1cd2cf5430892039c",
+  "data/raw/accounts/219879156_fefundsadmin.sputnik-dao.near_intents_wnear.json": "40fbabd86e9d79403d926a49f3672d9cf0d070dea5f5f44bc05db1026e5be537",
+  "data/raw/accounts/220001294_fefundsadmin.sputnik-dao.near.json": "3077130badba4dba120cfeec94800bcb1b5d84526bfb33ee53517a7bd31725d7",
+  "data/raw/accounts/220001294_fefundsadmin.sputnik-dao.near_intents_wnear.json": "c99f68b515ea9e453f82a12a2fff678255ba63359a892334fe7c3ee7ce50d905",
+  "data/raw/accounts/220147922_fefundsadmin.sputnik-dao.near.json": "36e0611800ca027672cbf50c3ff76f148dd556c3b724b5fc5ff9708de54c0fda",
+  "data/raw/accounts/220147922_fefundsadmin.sputnik-dao.near_intents_wnear.json": "357bcc11520f1f1e9a567ee6fda6fcf5c253a1c412ccd32f0f0de3b78d8d434b",
+  "data/raw/accounts/220291982_fefundsadmin.sputnik-dao.near.json": "a9bc071547095e0340f0d0eccda880348c74732b850880d635d56b93772b6b3a",
+  "data/raw/accounts/220291982_fefundsadmin.sputnik-dao.near_intents_wnear.json": "9dc06765c6671ce94502c3f03b4eca243314cab6f227da901ebd762920225d66",
+  "data/raw/accounts/220436710_fefundsadmin.sputnik-dao.near.json": "bd31df849589b22a2b9edee65abb0d9fca8bc99a4f8808dba7d066a41be61561",
+  "data/raw/accounts/220436710_fefundsadmin.sputnik-dao.near_intents_wnear.json": "16a087b99f95c73ea2b92b60e1f5d747af17269ff4bca141623b2843c347780d",
+  "data/raw/accounts/220581913_fefundsadmin.sputnik-dao.near.json": "2878d3c1d2c360df759aeea8867fc23ec6e3956982ae63a206a73bdcc3da5858",
+  "data/raw/accounts/220581913_fefundsadmin.sputnik-dao.near_intents_wnear.json": "f6bcac04a47a38be4fd854ca2c62272f96ff93a80b978262909dffc443c2137f",
+  "data/raw/accounts/220726930_fefundsadmin.sputnik-dao.near.json": "177f9fb249477c6b296f0cf13d16b715e5970c80ee73a4ed1a925cc785748a9e",
+  "data/raw/accounts/220726930_fefundsadmin.sputnik-dao.near_intents_wnear.json": "92106ec46890f873493b6a5c8c2db39c00822a0f7eb5400e65361e5f1c737597",
+  "data/raw/accounts/220871336_fefundsadmin.sputnik-dao.near.json": "6848b893be1ed35366fc3181933f9c1e7814440c38876d3e3c844da4d774a1e5",
+  "data/raw/accounts/220871336_fefundsadmin.sputnik-dao.near_intents_wnear.json": "f9a7d01230d2bd710d13f6accc65e66a05f55cdffb87d33efe2bce684f4bec3b",
+  "data/raw/accounts/221015566_fefundsadmin.sputnik-dao.near.json": "f47f2e404ad83a9ef44dfd0d9407c09d353d711737a04e66e8288a4f90e1bd39",
+  "data/raw/accounts/221015566_fefundsadmin.sputnik-dao.near_intents_wnear.json": "ae855c156bcbfcaa4a3b2242926794e2087de5ffa8d43166968de0ec41001871",
+  "data/raw/accounts/221162121_fefundsadmin.sputnik-dao.near.json": "dd65607cb480afe9618025deeee7b94bf54006969ad3f98f8fd7da046433c7c9",
+  "data/raw/accounts/221162121_fefundsadmin.sputnik-dao.near_intents_wnear.json": "cde6627aaf5b8247fd69aa1fc2a88ee8e968eb92b91522146a34fc2c1fd8fe73",
+  "data/raw/accounts/221310107_fefundsadmin.sputnik-dao.near.json": "677be48c02a3f9bc53584b98c459f8b9a661997c5de212c400338e1f9be3829b",
+  "data/raw/accounts/221310107_fefundsadmin.sputnik-dao.near_intents_wnear.json": "5d436c154ca071186edd3003442cab25a93ebac70fc46bbb5f4a9c9441df3df3",
+  "data/raw/accounts/221460754_fefundsadmin.sputnik-dao.near.json": "592afd9f872a1dd1293daca6acec6068b2aaf7dc32ba80ba154f888085dff4a2",
+  "data/raw/accounts/221460754_fefundsadmin.sputnik-dao.near_intents_wnear.json": "1c04f3c3511c26c4dd833b19461295a8866728aff6dd7f8f702a4ec509698d54",
+  "data/raw/accounts/221609942_fefundsadmin.sputnik-dao.near.json": "0fcf9f1f3b102494fd4b7cc2dc1a4d9ccc234e880b441f0d8fb54da2fab57ac3",
+  "data/raw/accounts/221609942_fefundsadmin.sputnik-dao.near_intents_wnear.json": "e83ac1c76d9ed46e232037c008cdc5afb301046cd8a564e8cddae7172de43651",
+  "data/raw/accounts/221760244_fefundsadmin.sputnik-dao.near.json": "00a866420cfdad3c9d7575efe3a67b15948a9aeee8eccd863f03056afeb89b78",
+  "data/raw/accounts/221760244_fefundsadmin.sputnik-dao.near_intents_wnear.json": "537cb4959b385aa505699b31ec28a5233cfe6a73a231d9f6e9f94c1057e90f26",
+  "data/raw/accounts/221897841_fefundsadmin.sputnik-dao.near.json": "544bf34a8060651450acbabd085a87352a718747709f3d73f56806f4965f4a22",
+  "data/raw/accounts/221897841_fefundsadmin.sputnik-dao.near_intents_wnear.json": "f7f760ec9523b964ca35ade770b6b1266b3362f16d9ca54fda800ac469be061d",
+  "data/raw/accounts/222047184_fefundsadmin.sputnik-dao.near.json": "bb6fe619e86443001bbac8fa1c0aed177cbb166455a9320bf362ea6feb1211f5",
+  "data/raw/accounts/222047184_fefundsadmin.sputnik-dao.near_intents_wnear.json": "67f14384b6cbccb9ea8c80c070ca52a202e61f3720da24240d5de0b15ee4436a",
+  "data/raw/accounts/222194973_fefundsadmin.sputnik-dao.near.json": "a48aeccd00c5219b2db5d67d93ebfede5c927a8e036c3d8244c720eb4417fe1d",
+  "data/raw/accounts/222194973_fefundsadmin.sputnik-dao.near_intents_wnear.json": "c5c9f52b6514c705907f72c5ec286d1caf933e5fa3a85f6852898b828afe1b35",
+  "data/raw/accounts/222343159_fefundsadmin.sputnik-dao.near.json": "91186b6aadc7f41224f587849fb64dfc62b1d1793edc0589dce29c8a493f87d2",
+  "data/raw/accounts/222343159_fefundsadmin.sputnik-dao.near_intents_wnear.json": "860fb1d55cd716f71993c1bb169444497e5dd6ab485299f2828e26f2f5ea746d",
+  "data/raw/accounts/222491356_fefundsadmin.sputnik-dao.near.json": "29f7fc351ab70c78f39a024d069c5b202dbe0ef9c134b44fd47de632d144235b",
+  "data/raw/accounts/222491356_fefundsadmin.sputnik-dao.near_intents_wnear.json": "e040edfbcb3bd6ec5639e625f33093d4fe3a19b4f9aad83375545a22c3425a47",
+  "data/raw/accounts/222641210_fefundsadmin.sputnik-dao.near.json": "67b6ca87ff38d2af26b9a2c3e1e91c0bf8247a6dd4a5ce455be76182b0df76e3",
+  "data/raw/accounts/222641210_fefundsadmin.sputnik-dao.near_intents_wnear.json": "62137a8fadf01e31acfa8fbf67745a277dfc00a3020c7842d4ff3481e9813b36",
+  "data/raw/accounts/222791208_fefundsadmin.sputnik-dao.near.json": "be7d73af287e643d6de236e2fbab36ec9a76d3363f372f527acc2ad493684616",
+  "data/raw/accounts/222791208_fefundsadmin.sputnik-dao.near_intents_wnear.json": "a5921c3495605dfbe531c81804b6689c9e74e70eb6f0c0df814341d08e4207a0",
+  "data/raw/accounts/222942364_fefundsadmin.sputnik-dao.near.json": "fbcdd508d1b19ddd0e4b8fc4fdf2a8048ba6dbc54f7da09a7268585089255ed9",
+  "data/raw/accounts/222942364_fefundsadmin.sputnik-dao.near_intents_wnear.json": "5540813cd233089c4ff45e50eb7c86ba6c3dfd0a9ae376875be413851aa19230",
+  "data/raw/accounts/223088016_fefundsadmin.sputnik-dao.near.json": "b9596590849fcbe76b11c0514c8c95fb68b44419885b7fe01a655a0817f0fe4e",
+  "data/raw/accounts/223088016_fefundsadmin.sputnik-dao.near_intents_wnear.json": "25545c8c06a70d6a9ed6166f46d6d2da590fcc5ed389dc47c02e827a70794cbd",
+  "data/raw/accounts/223237989_fefundsadmin.sputnik-dao.near.json": "3489a9d379249c495c682c77559ab39ebb303e1f62dd9fae963bc3291ccae6c6",
+  "data/raw/accounts/223237989_fefundsadmin.sputnik-dao.near_intents_wnear.json": "bdd60b25fc462802b06cdd959e1c65ab6d7f640dc10683278618cc3cc468dff6",
+  "data/raw/accounts/223387847_fefundsadmin.sputnik-dao.near.json": "ef256e389ba7a2ea684ee3a24577ba1e4181924c479e460fae028f18fe3c40fd",
+  "data/raw/accounts/223387847_fefundsadmin.sputnik-dao.near_intents_wnear.json": "339d5a860ec24cb403c92ff248278f8c219624172a79a770e0ddeb194c58496c",
+  "data/raw/accounts/223537267_fefundsadmin.sputnik-dao.near.json": "bd63b07ea229f690695c804f0d0ee93d420bef73e4dcbb213389f6a493f0d24e",
+  "data/raw/accounts/223537267_fefundsadmin.sputnik-dao.near_intents_wnear.json": "00fb0c7427269d856a1f5915490751fff2d2d0e42b3cf8483c23ebde3baa5390",
   "data/raw/accounts/223688383_1csfundsadmin.sputnik-dao.near.json": "10a23c3e6461e1930a00a24421eec5be1c6f562a11d1a9054f5e2ddecf2966dd",
   "data/raw/accounts/223688383_buybacks.multisignature.near.json": "f370e3cfaa52abb9b1c26cae4778ed1fd2ca8e43f6ae9bf80abb789423f384e1",
   "data/raw/accounts/223688383_buybacks.multisignature.near_intents_wnear.json": "7f3b6ec1476651d4b9b8f1597057d203d745cae432026ffe2bc1bfddcaf3ab70",
+  "data/raw/accounts/223688383_fefundsadmin.sputnik-dao.near.json": "cf7aa207dee535b5a8ff5130c3dd644bbe8d15eedca812533617ed771d719993",
+  "data/raw/accounts/223688383_fefundsadmin.sputnik-dao.near_intents_wnear.json": "7f3b6ec1476651d4b9b8f1597057d203d745cae432026ffe2bc1bfddcaf3ab70",
   "data/raw/rating/20261109T063446Z/price.json": "9044f5e9e62a2f444e12cf8f475e3ebbb73763e6648815919429aaffa1753c6d",
   "data/raw/rating/20261109T063446Z/revenue.json": "60fe1ddbf2da5d62f45ad6f4927629c3e670f5287f5d2b1d7c7a0effa175e37b"
  }

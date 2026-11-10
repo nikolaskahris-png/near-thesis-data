@@ -29,6 +29,18 @@ class PrivateShift(unittest.TestCase):
             self.assertAlmostEqual(float(m), float(doc["periods"][name]["kept_near_per_day"]), places=4)
             self.assertEqual(len(rows), doc["periods"][name]["days"])
 
+    def test_three_wallets_are_the_sum(self):
+        doc = json.loads((REPO / "data" / ps.OUT).read_text(encoding="utf-8"))
+        for r in doc["days"]:
+            self.assertLessEqual(abs(Fraction(r["kept_near"]) - Fraction(r["buybacks_near"]) - Fraction(r["front_end_near"])),
+                                 Fraction(2, 10 ** 6))   # each is rounded to 6 places
+
+    def test_tideline_date_is_one_of_the_cuts_and_equals_the_main_result(self):
+        doc = json.loads((REPO / "data" / ps.OUT).read_text(encoding="utf-8"))
+        cut = {c["cut"]: c for c in doc["cut_dates"]}[ps.AFTER[0].isoformat()]
+        self.assertEqual(cut["kept_near_after_over_before"], doc["after_over_before"]["kept_near"])
+        self.assertEqual(cut["revenue_near_after_over_before"], doc["after_over_before"]["revenue_near"])
+
 
 if __name__ == "__main__":
     unittest.main()

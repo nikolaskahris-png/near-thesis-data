@@ -371,7 +371,7 @@ function chartPrivate(ps) {
   const top = niceMax(Math.max(...vals) * 1.08);
   const y = v => T + (H - T - B) * (1 - v / top);
   const band = (W - L - R) / days.length, bw = Math.max(2, band * 0.7);
-  const svg = el("svg", { viewBox: `0 0 ${W} ${H}`, role: "img", "aria-label": "NEAR kept a day by the buybacks wallets" }, host);
+  const svg = el("svg", { viewBox: `0 0 ${W} ${H}`, role: "img", "aria-label": "NEAR kept a day by the three revenue wallets" }, host);
   for (let k = 0; k <= 4; k++) {
     const v = top * k / 4, yy = y(v);
     el("line", { x1: L, x2: W - R, y1: yy, y2: yy, class: k ? "gridl" : "axis" }, svg);
@@ -383,7 +383,7 @@ function chartPrivate(ps) {
     el("rect", { x: x0, y: y(v), width: bw, height: Math.max(0, y(0) - y(v)), class: i < iAfter ? "s1" : "s3" }, svg);
     if (i % 7 === 0 || i === days.length - 1) svgText(svg, L + band * (i + 0.5), H - 10, dayLabel(r.date), { "text-anchor": "middle" });
     const hit = el("rect", { x: L + band * i, y: T, width: band, height: H - T - B, class: "hit" }, svg);
-    tip(hit, `<b>${r.date}</b><br>${fmtInt(vals[i])} NEAR kept<br>$${fmtInt(Number(r.kept_usd))} at that day's price`);
+    tip(hit, `<b>${r.date}</b><br>${fmtInt(vals[i])} NEAR kept (buybacks ${fmtInt(Number(r.buybacks_near))}, front-end fund ${fmtInt(Number(r.front_end_near))})<br>DefiLlama revenue ${fmtInt(Number(r.revenue_near))} NEAR<br>$${fmtInt(Number(r.kept_usd))} at that day's price`);
   });
   const xm = L + band * iAfter;
   el("line", { x1: xm, x2: xm, y1: T, y2: H - B, class: "ref" }, svg);

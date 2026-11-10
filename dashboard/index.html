@@ -18,7 +18,7 @@
     the fee a user pays to the NEAR a holder keeps can be changed by a few signers or by a company off-chain; none is
     fixed in code.</p>
   <div class="tiles">
-    <div class="tile"><span class="tile-k">Coverage today</span>
+    <div class="tile"><span class="tile-k">Coverage in the window</span>
       <span class="tile-v" data-n="n1.coverage_buybacks"></span>
       <span class="tile-s">of new NEAR kept by the buybacks wallets · <span data-n="n1.coverage_with_front_end"></span> with the front-end fund · Buy can also come from full coverage, with (b)</span></div>
     <div class="tile"><span class="tile-k">(a) Growth needed to 2031</span>
@@ -46,8 +46,8 @@
     <span data-n="iv.unstaked_share_change"></span> · to 2031, a staked holder's dollars
     <span data-n="sc.bear.staked_usd_change"></span> / +<span data-n="sc.base.staked_usd_change"></span> /
     +<span data-n="sc.bull.staked_usd_change"></span> on three stated paths (README) · since the flow went private
-    the buybacks kept <span data-n="ps.after.kept_near_per_day"></span> NEAR a day, against
-    <span data-n="ps.before.kept_near_per_day"></span> before, while DefiLlama's revenue fell <span data-n="ps.change.revenue_usd_per_day"></span> · the Confidential Intents Treasury account held <span data-n="ct.priced_usd.2026-11-08"></span> at the latest read.</p>
+    the three revenue wallets kept <span data-n="ps.after.kept_near_per_day"></span> NEAR a day, against
+    <span data-n="ps.before.kept_near_per_day"></span> before, while DefiLlama's revenue changed <span data-n="ps.change.revenue_near_per_day"></span> in NEAR · the Confidential Intents Treasury account held <span data-n="ct.priced_usd.2026-11-08"></span> at the end of that comparison.</p>
   <p class="status" id="status"></p>
   <nav class="links"><a href="../README.md">README</a><a href="../THESIS.md">THESIS</a><a href="../PREREG.md">PREREG</a><a href="https://github.com/nikolaskahris-png/near-thesis-data">Repository</a></nav>
 </header>
@@ -66,11 +66,12 @@
 </section>
 
 <section id="p0b">
-  <h2>The flow went private; the buybacks kept coming</h2>
-  <p class="what">NEAR the buybacks wallets kept each day on mainnet. The dashed line marks the day from which Tideline, another
-    public repository, reports private settlement growing on NEAR Intents; the flat lines are the mean before
-    (<span data-n="ps.before.kept_near_per_day"></span> NEAR a day) and after (<span data-n="ps.after.kept_near_per_day"></span>).
-    Over the same days DefiLlama's revenue changed <span data-n="ps.change.revenue_usd_per_day"></span>.
+  <h2>The flow went private; capture did not stop</h2>
+  <p class="what">NEAR the three revenue wallets (the buybacks wallets and the front-end fund) kept each day on mainnet. The dashed line
+    marks the day from which Tideline, another public repository, reports private settlement growing on NEAR Intents; the flat lines
+    are the mean before (<span data-n="ps.before.kept_near_per_day"></span> NEAR a day) and after (<span data-n="ps.after.kept_near_per_day"></span>).
+    DefiLlama's revenue, which counts the same wallets, changed <span data-n="ps.change.revenue_near_per_day"></span> in NEAR over the same days;
+    in dollars, both fell about a fifth, mostly the price.
     <span class="not">It does not show which fees paid for what the wallets received.</span></p>
   <div class="chart" id="c0b"></div>
   <p class="src"><code>python scripts/private_shift.py --verify</code> recomputes every bar from the saved balances.</p>

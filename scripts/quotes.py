@@ -48,6 +48,10 @@ SOURCES = {
         "https://docs.near-intents.org/integration/market-makers/confidential-intents.md",
         ["settles entirely on FAR via a `token_diff` intent, invisible to public indexers",
          "a permissioned instance of the NEAR protocol operated by a small validator set with no public networking"]),
+    "tideline_thesis": (
+        "https://raw.githubusercontent.com/ervhint/tideline-thesis/90a78e6a358315331dbb0c68548edcb736244a3e/THESIS.md",
+        ["Since 27 Oct 2026 swaps settle on `intents.far`, which public indexers cannot see",
+         "carried 85% of the USD counted on chain"]),
     "one_click_terms": (
         "https://docs.near-intents.org/near-intents/integration/distribution-channels/1click-terms-of-service",
         ["at any time on a prospective basis"]),
