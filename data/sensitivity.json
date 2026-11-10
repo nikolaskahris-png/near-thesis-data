@@ -17,6 +17,17 @@
  },
  "every_month_hold": true,
  "highest_coverage_counted": "0.152552",
+ "flips": {
+  "note": "with every other threshold at the rule's value; to 0.0001; null if no floor up to the bound flips it",
+  "avoid_kept_share_floor_from": "0.9874",
+  "avoid_kept_share_months": [
+   "2026-05"
+  ],
+  "avoid_usd_floor_x_april_from": "2.4876",
+  "avoid_usd_months": [
+   "2026-08"
+  ]
+ },
  "runs": [
   {
    "kept_share_floor": "0.50",

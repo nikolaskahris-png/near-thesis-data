@@ -35,7 +35,7 @@
     "data/raw/redacted/control/hos-root.sputnik-dao.near_get_policy.json": "8188cbd4d97cd7240f51058208e9b6b18a2eab0bb88d32657193b4d78354f815",
     "data/raw/redacted/control/intents.sputnik-dao.near_get_policy.json": "7bea607448f9a04600446a159aca73964de7dfe14f059e83df0089198d5eda7a",
     "data/raw/redacted/control/jasnah-treasury.sputnik-dao.near_get_policy.json": "eab0d0f5d83d23f747933b4eee1dab5a3a17e1c1f78e839122ace1c71645a943",
-    "data/sensitivity.json": "e2abcb1ddc8edf18a639ad342eae4f8c9800fbe39a43b8066b0f0724042318b6",
+    "data/sensitivity.json": "cd344f5413da36feaa613768da2aab8865348ab316aae842a84503a073cf0086",
     "data/stakers/2026-08-01.json": "6c0d7643ed4d8e74bd61bb2e7e4de0ef509039d63a63fff8f2a98293357289c9",
     "data/stakers/2026-08-15.json": "928f7b8ef99aeb9f492731d94a9c84673dff9fcb98197e914b894f3737039ec3",
     "data/stakers/2026-09-01.json": "1d922db1dc329e170dabb27aab6040a386d802d9cdc30242a364adcdcc2b4605",
@@ -3860,6 +3860,39 @@
       ],
       "note": "staked: (1 + iv.staked_share_growth) ^ (1522 / 365.25) - 1, 1 Nov 2026 to 1 Jan 2031 at today's rates; no forecast of price, fees or HSP-029"
     },
+    "iv.to2031.staked_share_change.commission_10": {
+      "value": "0.083911648023486968101266216345309023560",
+      "text": "8.4%",
+      "source": "data/control_map.json",
+      "derived_from": [
+        "iv.staking_yield_gross",
+        "iv.issuance_rate_per_year",
+        "lr.activation_utc"
+      ],
+      "note": "staked, after an assumed 10% commission, today's issuance rule: product over the 1522 days from 1 Nov 2026 of ((1 + yield x scale x (1 - commission)) / (1 + issuance x scale)) ^ (1 / 365.25), scale = HSP-029's cap / 2.5% (1 before activation, 16/25 from 24 months after); stake share held at the window's; commission assumed, not read from the chain"
+    },
+    "iv.to2031.staked_share_change.hsp029": {
+      "value": "0.078964884095757111009271607736129216637",
+      "text": "7.9%",
+      "source": "data/control_map.json",
+      "derived_from": [
+        "iv.staking_yield_gross",
+        "iv.issuance_rate_per_year",
+        "lr.activation_utc"
+      ],
+      "note": "staked, before commission, with HSP-029's ramp from lr.activation_utc: product over the 1522 days from 1 Nov 2026 of ((1 + yield x scale x (1 - commission)) / (1 + issuance x scale)) ^ (1 / 365.25), scale = HSP-029's cap / 2.5% (1 before activation, 16/25 from 24 months after); stake share held at the window's; commission assumed, not read from the chain"
+    },
+    "iv.to2031.staked_share_change.hsp029_commission_10": {
+      "value": "0.062915102514046141792743818043379380564",
+      "text": "6.3%",
+      "source": "data/control_map.json",
+      "derived_from": [
+        "iv.staking_yield_gross",
+        "iv.issuance_rate_per_year",
+        "lr.activation_utc"
+      ],
+      "note": "staked, after an assumed 10% commission, with HSP-029's ramp from lr.activation_utc: product over the 1522 days from 1 Nov 2026 of ((1 + yield x scale x (1 - commission)) / (1 + issuance x scale)) ^ (1 / 365.25), scale = HSP-029's cap / 2.5% (1 before activation, 16/25 from 24 months after); stake share held at the window's; commission assumed, not read from the chain"
+    },
     "iv.to2031.unstaked_share_change": {
       "value": "-0.0964424831314720195978711228822682836649",
       "text": "-9.6%",
@@ -3868,6 +3901,17 @@
         "iv.unstaked_share_change"
       ],
       "note": "unstaked: (1 + iv.unstaked_share_change) ^ (1522 / 365.25) - 1, 1 Nov 2026 to 1 Jan 2031 at today's rates; no forecast of price, fees or HSP-029"
+    },
+    "iv.to2031.unstaked_share_change.hsp029": {
+      "value": "-0.0735761557221508412257779293929347636878",
+      "text": "-7.4%",
+      "source": "data/control_map.json",
+      "derived_from": [
+        "iv.staking_yield_gross",
+        "iv.issuance_rate_per_year",
+        "lr.activation_utc"
+      ],
+      "note": "unstaked, with HSP-029's ramp from lr.activation_utc: product over the 1522 days from 1 Nov 2026 of ((1 + yield x scale x (1 - commission)) / (1 + issuance x scale)) ^ (1 / 365.25), scale = HSP-029's cap / 2.5% (1 before activation, 16/25 from 24 months after); stake share held at the window's; commission assumed, not read from the chain"
     },
     "iv.unstaked_share_change": {
       "value": "-0.0240439493230500265864744100353009757201",
@@ -7960,6 +8004,90 @@
       ],
       "note": "value of all NEAR on 1 Jan 2031, from peer.near_all.market_cap_at_fetch_usd, if the value of all NEAR stays where it is, in dollars; a stated path, not a forecast"
     },
+    "sc.bear.by_peer.aptos.staked_usd_change": {
+      "value": "-0.8847715493238010764759768303309952941596",
+      "text": "-88%",
+      "source": "data/peers.json",
+      "derived_from": [
+        "iv.to2031.staked_share_change",
+        "sc.bear.by_peer.aptos.value_change"
+      ],
+      "note": "(1 + iv.to2031.staked_share_change) x (1 + the value change) - 1"
+    },
+    "sc.bear.by_peer.aptos.value_change": {
+      "value": "-0.8957698938641969528550406788986825270775",
+      "text": "-90%",
+      "source": "data/peers.json",
+      "derived_from": [
+        "peer.aptos.mcap_to_revenue",
+        "peer.near_l1.revenue_usd_per_year",
+        "peer.near_all.market_cap_usd"
+      ],
+      "note": "the bear path with peer.aptos.mcap_to_revenue in place of sc.l1_peer_median_multiple"
+    },
+    "sc.bear.by_peer.ethereum.staked_usd_change": {
+      "value": "-0.0829364777739198737531985904545552558291",
+      "text": "-8%",
+      "source": "data/peers.json",
+      "derived_from": [
+        "iv.to2031.staked_share_change",
+        "sc.bear.by_peer.ethereum.value_change"
+      ],
+      "note": "(1 + iv.to2031.staked_share_change) x (1 + the value change) - 1"
+    },
+    "sc.bear.by_peer.ethereum.value_change": {
+      "value": "-0.1704685110841167399822883628361623796459",
+      "text": "-17%",
+      "source": "data/peers.json",
+      "derived_from": [
+        "peer.ethereum.mcap_to_revenue",
+        "peer.near_l1.revenue_usd_per_year",
+        "peer.near_all.market_cap_usd"
+      ],
+      "note": "the bear path with peer.ethereum.mcap_to_revenue in place of sc.l1_peer_median_multiple"
+    },
+    "sc.bear.by_peer.solana.staked_usd_change": {
+      "value": "-0.4608164322427331993741539527216426527313",
+      "text": "-46%",
+      "source": "data/peers.json",
+      "derived_from": [
+        "iv.to2031.staked_share_change",
+        "sc.bear.by_peer.solana.value_change"
+      ],
+      "note": "(1 + iv.to2031.staked_share_change) x (1 + the value change) - 1"
+    },
+    "sc.bear.by_peer.solana.value_change": {
+      "value": "-0.5122805161032237925725109797094141275502",
+      "text": "-51%",
+      "source": "data/peers.json",
+      "derived_from": [
+        "peer.solana.mcap_to_revenue",
+        "peer.near_l1.revenue_usd_per_year",
+        "peer.near_all.market_cap_usd"
+      ],
+      "note": "the bear path with peer.solana.mcap_to_revenue in place of sc.l1_peer_median_multiple"
+    },
+    "sc.bear.by_peer.sui.staked_usd_change": {
+      "value": "3.562147029284073096355101018283364093534",
+      "text": "356%",
+      "source": "data/peers.json",
+      "derived_from": [
+        "iv.to2031.staked_share_change",
+        "sc.bear.by_peer.sui.value_change"
+      ],
+      "note": "(1 + iv.to2031.staked_share_change) x (1 + the value change) - 1"
+    },
+    "sc.bear.by_peer.sui.value_change": {
+      "value": "3.126698452326213360274338167524296001741",
+      "text": "313%",
+      "source": "data/peers.json",
+      "derived_from": [
+        "peer.sui.mcap_to_revenue",
+        "peer.near_l1.revenue_usd_per_year",
+        "peer.near_all.market_cap_usd"
+      ],
+      "note": "the bear path with peer.sui.mcap_to_revenue in place of sc.l1_peer_median_multiple"
+    },
     "sc.bear.staked_usd_change": {
       "value": "-0.2718764550083265365636762715880989542802",
       "text": "-27%",
@@ -8184,6 +8312,20 @@
       "text": "54",
       "source": "data/sensitivity.json",
       "note": "Avoid floors 50/75/90% and 0.5/1/1.5x April's dollars, growth (a) +50%/rule/+100%, (b) as on chain or assumed met"
+    },
+    "sens.flip.kept_share_floor": {
+      "value": "0.9874",
+      "text": "98.7%",
+      "source": "data/sensitivity.json",
+      "unit": "share",
+      "note": "lowest Avoid test 1 floor at which a month of April-October becomes Avoid, other thresholds at the rule's: 2026-05"
+    },
+    "sens.flip.usd_floor_x_april": {
+      "value": "2.4876",
+      "text": "×2.49",
+      "source": "data/sensitivity.json",
+      "unit": "multiple of April's dollars a day",
+      "note": "lowest Avoid test 2 floor at which a month of April-October becomes Avoid, other thresholds at the rule's: 2026-08"
     },
     "sens.hold": {
       "value": "378",

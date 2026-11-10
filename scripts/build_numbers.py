@@ -24,6 +24,7 @@ import json
 import re
 import subprocess
 import sys
+from datetime import datetime, timedelta, timezone
 from decimal import ROUND_HALF_UP, Decimal
 from pathlib import Path
 
@@ -1202,6 +1203,45 @@ def build(data_dir, window_file):
         n.add("iv.avoid_test2_price_change", drop, f_pct(drop, 1), n.items["n1.buybacks_near_per_day"]["source"],
               derived_from=["iv.avoid_test2_price_usd", "n2.mean_price_usd"],
               note="iv.avoid_test2_price_usd / n2.mean_price_usd - 1")
+    # A staked holder's share to 2031, net of an assumed commission and with HSP-029's ramp: the figure a holder
+    # would actually see if validators run HSP-029. Issuance and the staking yield scale with HSP-029's cap,
+    # cap(t) = 2.5% - 0.9% x min(t, 24) / 24, t in months from lr.activation_utc (before it, today's rule); the share
+    # of NEAR staked is held at the window's. Day by day, 1 November 2026 to 1 January 2031.
+    if all(k in n.items for k in ("iv.staking_yield_gross", "iv.issuance_rate_per_year", "lr.activation_utc")):
+        r0 = dec(n.items["iv.staking_yield_gross"]["value"])
+        i0 = dec(n.items["iv.issuance_rate_per_year"]["value"])
+        act = datetime.fromisoformat(str(n.items["lr.activation_utc"]["value"]).replace("Z", "+00:00"))
+        start = datetime(2026, 11, 1, tzinfo=timezone.utc)
+        month = Decimal("365.25") / 12
+
+        def cap_scale(day):
+            t = Decimal((start + timedelta(days=day) - act).total_seconds()) / 86400 / month
+            if t <= 0:
+                return Decimal(1)
+            return (Decimal("0.025") - Decimal("0.009") * min(t, Decimal(24)) / 24) / Decimal("0.025")
+
+        src = n.items["iv.staking_yield_gross"]["source"]
+        daily = lambda g: (1 + g) ** (Decimal(1) / Decimal("365.25"))  # noqa: E731
+        for key, c, ramp, staked, what in (
+                ("iv.to2031.staked_share_change.commission_10", Decimal("0.10"), False, True,
+                 "staked, after an assumed 10% commission, today's issuance rule"),
+                ("iv.to2031.staked_share_change.hsp029", Decimal(0), True, True,
+                 "staked, before commission, with HSP-029's ramp from lr.activation_utc"),
+                ("iv.to2031.staked_share_change.hsp029_commission_10", Decimal("0.10"), True, True,
+                 "staked, after an assumed 10% commission, with HSP-029's ramp from lr.activation_utc"),
+                ("iv.to2031.unstaked_share_change.hsp029", Decimal(0), True, False,
+                 "unstaked, with HSP-029's ramp from lr.activation_utc")):
+            fct = Decimal(1)
+            for day in range(HORIZON_DAYS):
+                k = cap_scale(day) if ramp else Decimal(1)
+                r, i = r0 * k * (1 - c), i0 * k
+                fct *= daily(r) / daily(i) if staked else 1 / daily(i)
+            n.add(key, fct - 1, f_pct(fct - 1, 1), src,
+                  derived_from=["iv.staking_yield_gross", "iv.issuance_rate_per_year", "lr.activation_utc"],
+                  note=f"{what}: product over the {HORIZON_DAYS} days from 1 Nov 2026 of ((1 + yield x scale x (1 - "
+                       "commission)) / (1 + issuance x scale)) ^ (1 / 365.25), scale = HSP-029's cap / 2.5% (1 before "
+                       "activation, 16/25 from 24 months after); stake share held at the window's; commission assumed, "
+                       "not read from the chain")
     # Three stated paths for the value of all NEAR on 1 January 2031: not forecasts, no probability. A holder's
     # dollars change by (1 + share change to 2031) x (value 2031 / value now) - 1, staked or not.
     need = ("peer.near_l1.revenue_usd_per_year", "peer.near_all.revenue_usd_per_year", "peer.near_all.market_cap_usd",
@@ -1251,6 +1291,18 @@ def build(data_dir, window_file):
                           derived_from=[f"iv.to2031.{who}_share_change", f"sc.{name}.value_change{basis}"],
                           note=f"(1 + iv.to2031.{who}_share_change) x (1 + sc.{name}.value_change{basis}) - 1: a "
                                f"{who} holder's dollars, window to 1 Jan 2031, on this path")
+
+        # The bear path with each L1 peer's multiple alone instead of their median: the range the median hides
+        now = v("peer.near_all.market_cap_usd")
+        for peer in l1_peers:
+            ratio = v(f"peer.{peer}.mcap_to_revenue") * l1 / now
+            n.add(f"sc.bear.by_peer.{peer}.value_change", ratio - 1, f_pct(ratio - 1, 0), psrc,
+                  derived_from=[f"peer.{peer}.mcap_to_revenue", "peer.near_l1.revenue_usd_per_year", "peer.near_all.market_cap_usd"],
+                  note=f"the bear path with peer.{peer}.mcap_to_revenue in place of sc.l1_peer_median_multiple")
+            c = (1 + v("iv.to2031.staked_share_change")) * ratio - 1
+            n.add(f"sc.bear.by_peer.{peer}.staked_usd_change", c, f_pct(c, 0), psrc,
+                  derived_from=["iv.to2031.staked_share_change", f"sc.bear.by_peer.{peer}.value_change"],
+                  note="(1 + iv.to2031.staked_share_change) x (1 + the value change) - 1")
 
     # ---- where treasury.near's April-May payments went next (treasury_trace.py)
     tpath = data_dir / "treasury_trace.json"
@@ -1310,6 +1362,17 @@ def build(data_dir, window_file):
               note="Avoid floors 50/75/90% and 0.5/1/1.5x April's dollars, growth (a) +50%/rule/+100%, (b) as on chain or assumed met")
         n.add("sens.month_ratings", total, f_int(total), sesrc, note="combinations x months (April-October 2026)")
         n.add("sens.hold", se["month_ratings"]["Hold"], f_int(se["month_ratings"]["Hold"]), sesrc)
+        fl = se.get("flips") or {}
+        if fl.get("avoid_kept_share_floor_from"):
+            v = dec(fl["avoid_kept_share_floor_from"])
+            n.add("sens.flip.kept_share_floor", v, f_pct(v, 1), sesrc, unit="share",
+                  note="lowest Avoid test 1 floor at which a month of April-October becomes Avoid, other thresholds "
+                       "at the rule's: " + ", ".join(fl["avoid_kept_share_months"]))
+        if fl.get("avoid_usd_floor_x_april_from"):
+            v = dec(fl["avoid_usd_floor_x_april_from"])
+            n.add("sens.flip.usd_floor_x_april", v, f"×{rnd(v, 2)}", sesrc, unit="multiple of April's dollars a day",
+                  note="lowest Avoid test 2 floor at which a month of April-October becomes Avoid, other thresholds "
+                       "at the rule's: " + ", ".join(fl["avoid_usd_months"]))
         if not se["every_month_hold"]:
             problems.append("sensitivity: some combination rates a month other than Hold; the README says every one is Hold")
 

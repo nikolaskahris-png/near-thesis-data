@@ -31,6 +31,14 @@ class Sensitivity(unittest.TestCase):
         sensitivity.compute(REPO / "data")
         self.assertEqual(rating.KEPT_SHARE_MIN, rating.Fraction(3, 4))
 
+    def test_flips_are_where_avoid_starts(self):
+        doc = json.loads((REPO / "data" / sensitivity.OUT).read_text(encoding="utf-8"))
+        f = doc["flips"]
+        # the reported floors flip at least one month, and every month of the grid stays below them
+        self.assertTrue(f["avoid_kept_share_months"] and f["avoid_usd_months"])
+        self.assertGreater(float(f["avoid_kept_share_floor_from"]), max(float(k) for k in sensitivity.KEPT))
+        self.assertGreater(float(f["avoid_usd_floor_x_april_from"]), max(float(u) for u in sensitivity.USD))
+
 
 if __name__ == "__main__":
     unittest.main()

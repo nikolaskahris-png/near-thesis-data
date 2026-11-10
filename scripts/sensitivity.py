@@ -14,6 +14,9 @@ October 2026, from the same saved files), once for every combination of:
 The last line is a hypothesis, not a fact: it asks whether anything other than (b) stands between today
 and Buy. (a) is judged only at a yearly check from the 1 November 2026 base, so in these months Buy can
 only come from coverage of 100% or more.
+
+It also reports where the rating flips (flips): with every other threshold at the rule's value, the lowest
+Avoid floor, kept share or dollars, at which any month of the seven becomes Avoid, found by bisection.
 """
 import argparse
 import json
@@ -65,6 +68,33 @@ def compute(data_root):
                                                    if "fail" in (r["test_kept_share"], r["test_usd"])]})
     finally:
         rating.KEPT_SHARE_MIN = saved
+    # Where the rating flips: with every other threshold at the rule's value, the lowest Avoid floor at which any
+    # month becomes Avoid, found by bisection (a higher floor can only fail more windows), to 0.0001.
+    def avoid_months(kept, usd):
+        rating.KEPT_SHARE_MIN = kept
+        th = dict(th0)
+        th["avoid_usd_per_day"] = str(Fraction(th0["avoid_usd_per_day"]) * usd)
+        try:
+            rows = rating.evaluate(hist, s, th, fetched, {r["date"]: [] for r in hist}, {},
+                                   earlier_of=backtest.previous_month, stables=stables)
+        finally:
+            rating.KEPT_SHARE_MIN = saved
+        return [months[r["date"]] for r in rows if r["rating"] == "Avoid"]
+
+    def lowest(lo, hi, fires):
+        if not fires(hi):
+            return None, []
+        while hi - lo > Fraction(1, 10000):
+            mid = (lo + hi) / 2
+            lo, hi = (lo, mid) if fires(mid) else (mid, hi)
+        return hi, fires(hi)
+    k_flip, k_months = lowest(Fraction(saved), Fraction(1), lambda x: avoid_months(x, Fraction(1)) or None)
+    u_flip, u_months = lowest(Fraction(1), Fraction(10), lambda x: avoid_months(Fraction(saved), x) or None)
+    flips = {"note": "with every other threshold at the rule's value; to 0.0001; null if no floor up to the bound flips it",
+             "avoid_kept_share_floor_from": None if k_flip is None else f"{float(k_flip):.4f}",
+             "avoid_kept_share_months": k_months or [],
+             "avoid_usd_floor_x_april_from": None if u_flip is None else f"{float(u_flip):.4f}",
+             "avoid_usd_months": u_months or []}
     counts = {k: sum(v == k for run in runs for v in run["ratings"].values()) for k in ("Hold", "Buy", "Avoid")}
     best = max(Fraction(r["coverage_counted"]) for r in rating.evaluate(
         hist, s, th0, fetched, {r["date"]: ["hypothetical-lock"] for r in hist}, {r["date"]: "yes" for r in hist},
@@ -77,6 +107,7 @@ def compute(data_root):
         "month_ratings": counts,
         "every_month_hold": counts["Hold"] == sum(counts.values()),
         "highest_coverage_counted": f"{float(best):.6f}",
+        "flips": flips,
         "runs": runs,
     }, []
 
@@ -104,6 +135,9 @@ def main():
         path.write_text(dumps(res), encoding="utf-8", newline="\n")
     print(f"{res['combinations']} combinations x 7 months: {res['month_ratings']}; "
           f"highest coverage counted {float(res['highest_coverage_counted']):.1%}")
+    f = res["flips"]
+    print(f"Avoid from a kept-share floor of {f['avoid_kept_share_floor_from']} ({', '.join(f['avoid_kept_share_months'])}) "
+          f"or a dollar floor of {f['avoid_usd_floor_x_april_from']} x April ({', '.join(f['avoid_usd_months'])})")
     print("OK" if a.verify else f"OK: saved data/{OUT}")
     return 0
 
