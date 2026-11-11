@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="268" viewBox="0 0 800 268" role="img" aria-labelledby="t d">
+<title id="t">What holders get for the NEAR issued, a day</title>
+<desc id="d">Bars in NEAR a day, 2 October to 1 November 2026: new NEAR issued; what the buybacks wallets keep; with the front-end fund; and what all fees would buy.</desc>
+<style>
+svg{--bg:#ffffff;--ink:#1f2328;--mute:#59636e;--issued:#c4c9d0;--buy:#0b6bcb;--front:#7fb2e8;--fees:#0b6bcb}
+@media (prefers-color-scheme:dark){svg{--bg:#0d1117;--ink:#e6edf3;--mute:#9198a1;--issued:#3d444d;--buy:#4c9ef0;--front:#24578a;--fees:#4c9ef0}}
+.bg{fill:var(--bg)}
+text{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;fill:var(--ink)}
+.h{font-size:17px;font-weight:600}.when,.sub,.foot{font-size:12px;fill:var(--mute)}
+.lab{font-size:14px;font-weight:600}.val{font-size:14px}.big{font-weight:700;fill:var(--buy)}
+.issued{fill:var(--issued)}.buy{fill:var(--buy)}.front{fill:var(--front)}
+.fees{fill:none;stroke:var(--fees);stroke-width:1.5;stroke-dasharray:5 4}
+</style>
+<rect class="bg" width="800" height="268" rx="6"/>
+<text class="h" x="16" y="30">What holders get for the NEAR issued, a day</text>
+<text class="when" x="16" y="50">NEAR a day, 2 October to 1 November 2026</text>
+<text class="lab" x="16" y="82">New NEAR issued</text>
+<text class="sub" x="16" y="96">a protocol rule</text>
+<rect class="issued" x="262" y="70" width="360.0" height="26" rx="3"/>
+<text class="val" x="632.0" y="88">88,392 NEAR · 100%</text>
+<text class="lab" x="16" y="124">Kept by the buybacks wallets</text>
+<text class="sub" x="16" y="138">a choice; none of it burned</text>
+<rect class="buy" x="262" y="112" width="39.0" height="26" rx="3"/>
+<text class="val" x="311.0" y="130"><tspan class="big">10.8%</tspan> · 9,570 NEAR</text>
+<text class="lab" x="16" y="166">… plus the front-end fund</text>
+<text class="sub" x="16" y="180">the three revenue wallets</text>
+<rect class="buy" x="262" y="154" width="39.0" height="26" rx="3"/>
+<rect class="front" x="301.0" y="154" width="20.3" height="26" rx="3"/>
+<text class="val" x="331.3" y="172">16.5% · +4,985 NEAR</text>
+<text class="lab" x="16" y="208">If NEAR kept every fee</text>
+<text class="sub" x="16" y="222">the ceiling; fees from DefiLlama</text>
+<rect class="fees" x="262" y="196" width="172.4" height="26" rx="3"/>
+<text class="val" x="444.4" y="214">47.9% · 42,332 NEAR</text>
+<text class="foot" x="16" y="254">Drawn from data/numbers.json by scripts/chart.py; python scripts/chart.py --verify checks it.</text>
+</svg>

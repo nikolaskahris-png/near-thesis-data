@@ -5,7 +5,8 @@ Runs, in order, with no network and no keys:
   2. every script's offline --verify, then numbers.json rebuilt from them must be identical
   3. the rating of every window (data/rating.csv) from history.csv and saved DefiLlama responses
   4. the validators' vote samples (data/upgrade_watch/)
-  5. every marked number in README.md, docs/DETAILS.md and THESIS.md against numbers.json
+  5. every marked number in README.md, docs/DETAILS.md and THESIS.md against numbers.json,
+     and the README's chart (docs/coverage.svg) redrawn from numbers.json
   6. PREREG.md against its anchored SHA-256
 
 The dashboard (dashboard/) draws every chart from data/numbers.json and the data files
@@ -33,6 +34,7 @@ STEPS = [
     ("README.md numbers", [PY, "scripts/build_numbers.py", "--check", "README.md"]),
     ("docs/DETAILS.md numbers", [PY, "scripts/build_numbers.py", "--check", "docs/DETAILS.md"]),
     ("THESIS.md numbers", [PY, "scripts/build_numbers.py", "--check", "THESIS.md"]),
+    ("README chart", [PY, "scripts/chart.py", "--verify"]),
     ("PREREG.md anchored hash", [PY, "scripts/check_prereg.py", "--file"]),
     ("quoted pages", [PY, "scripts/quotes.py", "--verify"]),
 ]

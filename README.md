@@ -2,22 +2,24 @@
 
 [![verify](https://github.com/nikolaskahris-png/near-thesis-data/actions/workflows/verify.yml/badge.svg)](https://github.com/nikolaskahris-png/near-thesis-data/actions/workflows/verify.yml)
 
-**Who decides what NEAR holders get from NEAR Intents' fees? People, not code.** The fees users pay are set off-chain; <!--n:c.buybacks_confirmations-->2 of 4<!--/n--> signers can move the NEAR the buybacks bought, and none of it is burned; the protocol treasury is "currently managed by the NEAR Foundation". Only issuance is a protocol rule. What holders get today: buybacks equal to <!--n:n1.coverage_buybacks-->10.8%<!--/n--> of new issuance.
+**Who decides what NEAR holders get from NEAR Intents' fees? People, not code.** The NEAR the buybacks bought sits in wallets that <!--n:c.buybacks_confirmations-->2 of 4<!--/n--> signers can move; none of it is burned. New NEAR is issued by a protocol rule; what offsets it is a choice. Today the buybacks keep NEAR equal to <!--n:n1.coverage_buybacks-->10.8%<!--/n--> of the NEAR issued.
 
-**Rating: Hold**: keep the NEAR you own, staked, and do not add. **Buy** when the buybacks become a published rule; **Avoid** if they stop. Growth is not what is missing (<!--n:bt.a_pace.near_multiple-->×2.1<!--/n--> in NEAR from April to October); a rule is. Horizon 1 January 2031, checked every year.
+**Rating: Hold.** If you own NEAR, keep it staked and do not buy more. **Buy** when a published rule makes the buybacks permanent; **Avoid** if they stop. What is missing is a rule, not growth: what the buybacks kept grew <!--n:bt.a_pace.near_multiple-->×2.1<!--/n--> in NEAR from April to October. Horizon: 1 January 2031, checked every year.
 
-**The problem.** Investment cases for NEAR quote the demand on NEAR Intents, but not how much of it reaches a holder or who decides that. This repository measures both from the chain, and every marked number in it rebuilds offline in two minutes.
+![What holders get for the NEAR issued, a day: the buybacks keep about a tenth of it, and all fees together would cover less than half](docs/coverage.svg)
+
+**The problem.** Cases for NEAR cite the trading on NEAR Intents. They do not say how much of it reaches a holder, or who decides. This repository measures both on the chain, and every figure it measures rebuilds offline in two minutes.
 
 **[Live dashboard](https://nikolaskahris-png.github.io/near-thesis-data/dashboard/)** · [Check it in two minutes](#check-it-in-two-minutes) · [One-page thesis](THESIS.md) · [Every detail](docs/DETAILS.md) · [Terms](#terms) · Window: 2 October → 1 November 2026 · As of 9 November 2026; figures from other dates say so where they appear
 
 ## In sixty seconds
 
-- **People decide, not code.** No code requires the buybacks, and <!--n:c.buybacks_confirmations-->2 of 4<!--/n--> signers can move what the buybacks wallet holds. HSP-029, the issuance cut, passed on 2 November and becomes a rule only when validators with <!--n:c.issuance_upgrade_stake_threshold-->4/5<!--/n--> of stake run it ([claim C](#c-it-is-a-policy-not-a-rule)).
-- **The demand is real.** Users paid <!--n:n2.fees_usd_per_day-->$206,049<!--/n--> a day in fees on NEAR Intents in the window, by DefiLlama's data.
-- **Holders get a small part of it.** The buybacks wallets keep NEAR equal to <!--n:n1.coverage_buybacks-->10.8%<!--/n--> of the new NEAR issued (<!--n:n1.coverage_with_front_end-->16.5%<!--/n--> counting the front-end fund), and burn none of it.
-- **It did not stop when the flow went private.** After most NEAR Intents flow moved to its private path in late October, the NEAR the revenue wallets keep a day changed <!--n:ps.change.kept_near_per_day-->-3%<!--/n-->, in line with DefiLlama's revenue (<!--n:ps.change.revenue_near_per_day-->-6%<!--/n-->). Other cut dates give down to <!--n:ps.cut.kept_near_lowest-->-13%<!--/n--> ([claim D](#d-it-did-not-stop-when-the-flow-went-private)).
-- **What to do.** If you hold NEAR, keep it staked and do not add: staked, your share of all NEAR grows +<!--n:iv.staked_share_growth-->2.44%<!--/n--> a year before the validator's commission; unstaked, it changes <!--n:iv.unstaked_share_change-->-2.40%<!--/n-->. If you hold none, do not buy yet; the trigger is a published buyback rule. Avoid would mean not holding NEAR for this thesis.
-- **What would change the rating.** Buy if the buybacks become a published rule and grow fast enough to cover issuance by 2031 (<!--n:lr.required_growth.buybacks.A.2031-->+75%<!--/n--> a year); Avoid if they stop. We put 0.25 on a published rule by 2031, so Buy is less likely than that ([why](#what-would-change-our-mind)). The rules can first fire on 1 December 2026; until then Hold is the author's reading of the claims below.
+- **People decide, not code.** Nothing in code makes the buybacks happen, and <!--n:c.buybacks_confirmations-->2 of 4<!--/n--> signers can move the NEAR they bought. Even a passed vote is not yet a rule: HSP-029, which cuts issuance, passed on 2 November and takes effect only when validators with <!--n:c.issuance_upgrade_stake_threshold-->4/5<!--/n--> of the stake run it. The protocol treasury is "currently managed by the NEAR Foundation", says an SEC filing ([claim C](#c-it-is-a-policy-not-a-rule)).
+- **The demand is real.** Users paid <!--n:n2.fees_usd_per_day-->$206,049<!--/n--> a day in fees on NEAR Intents from 2 October to 1 November, by DefiLlama's data.
+- **Holders get a small part of it.** The buybacks keep NEAR equal to <!--n:n1.coverage_buybacks-->10.8%<!--/n--> of the new NEAR issued; with the front-end fund, the third revenue wallet, <!--n:n1.coverage_with_front_end-->16.5%<!--/n-->. None of it is burned.
+- **It did not stop when trading went private.** After most NEAR Intents trading moved to a private path on 27 October, the NEAR the three revenue wallets keep a day changed by <!--n:ps.change.kept_near_per_day-->-3%<!--/n-->, close to DefiLlama's revenue (<!--n:ps.change.revenue_near_per_day-->-6%<!--/n-->). Other dates for the switch give falls of up to <!--n:ps.cut.kept_near_lowest-->-13%<!--/n--> ([claim D](#d-it-did-not-stop-when-the-flow-went-private)).
+- **What to do.** If you own NEAR, keep it staked and do not add: staked, your share of all NEAR grows +<!--n:iv.staked_share_growth-->2.44%<!--/n--> a year before your validator's fee; unstaked, it changes by <!--n:iv.unstaked_share_change-->-2.40%<!--/n-->. If you own none, do not buy yet; wait for a published buyback rule. Avoid would mean: do not hold NEAR for this thesis.
+- **What would change the rating.** Buy if the buybacks become a published rule and grow fast enough to cover issuance by 2031 (<!--n:lr.required_growth.buybacks.A.2031-->+75%<!--/n--> a year); Avoid if they stop. We give a published rule by 2031 a 0.25 chance, so Buy is less likely than that ([why](#what-would-change-our-mind)). The rules can first fire on 1 December 2026; until then Hold is the author's reading of the claims below.
 
 ## The thesis in four claims
 
@@ -79,7 +81,7 @@ The Treasury account itself held <!--n:ct.priced_usd.2026-11-08-->$123.5M<!--/n-
 
 ## What a holder earns to 2031
 
-Your share of all NEAR. Two things lower the staked figure: your validator's commission, which this repository does not read (we assume 10%), and HSP-029, which cuts issuance and with it the staking yield, from <!--n:lr.activation_utc-->2027-02-14 16:48 UTC<!--/n--> if validators run it. With both, a staked holder's share grows <!--n:iv.to2031.staked_share_change.hsp029_commission_10-->6.3%<!--/n--> to 2031, not <!--n:iv.to2031.staked_share_change-->10.6%<!--/n-->. The buybacks hold what they buy, so they change no row.
+How your share of all NEAR changes. Two things lower it if you stake: your validator's commission, which this repository does not read (we assume 10%), and HSP-029, which cuts issuance and so the staking yield from <!--n:lr.activation_utc-->2027-02-14 16:48 UTC<!--/n-->, if validators run it. With both, a staked holder's share grows <!--n:iv.to2031.staked_share_change.hsp029_commission_10-->6.3%<!--/n--> to 2031, not <!--n:iv.to2031.staked_share_change-->10.6%<!--/n-->. The buybacks only hold what they buy, so they change no row.
 
 | | A year, today | To 1 Jan 2031, today's rule | To 1 Jan 2031, with HSP-029 |
 |---|---|---|---|
@@ -99,7 +101,7 @@ From the window's mean price, <!--n:n2.mean_price_usd-->$4.88<!--/n-->; from the
 
 ## The rating as rules
 
-`scripts/rating.py` applies these to every 30-day window and writes [`data/rating.csv`](data/rating.csv). Today it is Hold in every window, and until 1 December it cannot be anything else: Avoid needs a failing window 30 days earlier and the daily history starts on 1 November, and Buy needs (b), a lock that does not exist. Read the rules as a monitor that can fire from then on, not as evidence for Hold.
+`scripts/rating.py` applies these to every 30-day window and writes [`data/rating.csv`](data/rating.csv). Today every window is Hold, and until 1 December nothing else is possible: Avoid needs a failing window and another 30 days before it, and the daily history starts on 1 November; Buy needs (b), a lock that does not exist. Read the rules as an alarm that can go off from then on, not as evidence for Hold.
 
 | | Rule | Read from |
 |---|---|---|
@@ -161,6 +163,7 @@ python scripts/build_numbers.py --check README.md  # every marked number in this
 python scripts/check_prereg.py --anchor 3 --verify # PREREG-3.md = its SocialDB record = the transaction's args
 python scripts/rating.py --verify                  # the rating of every window recomputes
 python scripts/quotes.py --verify                  # every quoted line is in its saved page
+python scripts/chart.py --verify                   # the chart at the top is drawn from numbers.json
 ```
 
 For lists that name accounts, git holds redacted copies: offline, the check proves they are consistent and that their totals match the raw contract responses, not that each entry is right.

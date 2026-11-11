@@ -36,6 +36,7 @@ Its last line is `REBUILD: PASS`. The same checks, one by one:
 | `python scripts/rating.py --verify` | the rating (Hold / Buy / Avoid) of every window in `data/rating.csv` recomputes from `history.csv` and the saved DefiLlama responses | `OK: rating.csv recomputes from history.csv and the saved responses` |
 | `python scripts/backtest.py --verify` | the rating rules on each month April–October 2026 in `data/backtest.csv` recompute from `coverage_monthly.json` and the saved DefiLlama responses | `OK: backtest.csv recomputes from coverage_monthly.json and the saved DefiLlama responses` |
 | `python scripts/quotes.py --verify` | each page the text quotes is saved under `data/raw/sources/` with its SHA-256 and contains the quote | `OK: <count> quotes found in <count> saved pages, and each is still in the text` |
+| `python scripts/chart.py --verify` | the README's chart, `docs/coverage.svg`, is redrawn from `data/numbers.json` and must be identical | `OK: docs/coverage.svg is the chart drawn from data/numbers.json` |
 
 Each passing command exits with code 0. Any other last line, or another exit code, is a failure.
 
