@@ -14,23 +14,25 @@
   <h1>NEAR's value capture is real, small and discretionary.</h1>
   <p class="lede"><strong>Who decides what NEAR holders get from NEAR Intents' fees? People, not code.</strong> The fees users pay
     are set off-chain; <span data-n="c.buybacks_confirmations"></span> signers can move the NEAR the buybacks bought, and none of it is
-    burned; the protocol treasury is managed by the NEAR Foundation. Only issuance is a protocol rule. What holders get today:
+    burned; the protocol treasury is "currently managed by the NEAR Foundation", says an SEC filing. Only issuance is a protocol
+    rule, changed only by a release run by 4/5 of stake. What holders got in the window:
     buybacks equal to <span data-n="n1.coverage_buybacks"></span> of new issuance.</p>
   <p class="verdict"><strong>Rating: Hold.</strong> Keep NEAR you own, staked; do not add. <b>Buy</b> when the buybacks become a
-    published rule; <b>Avoid</b> if they stop. Horizon 2031, checked every year. The rules can first fire in December; until then
+    published rule and grow fast enough; <b>Avoid</b> if they fall back to April's level or are moved out. Horizon 2031, checked
+    every year. Avoid can first fire in December, and Buy needs a lock that does not exist; until then
     Hold is the author's reading of the evidence below.</p>
   <div class="tiles">
     <div class="tile"><span class="tile-k">Who can move the bought NEAR</span>
       <span class="tile-v" data-n="c.buybacks_confirmations"></span>
-      <span class="tile-s">signatures move the buybacks wallet; with the front-end fund the wallets hold
-        <span data-n="n1.wallets_held_near"></span> NEAR, and nothing is burned</span></div>
+      <span class="tile-s">signatures move the buybacks wallets' <span data-n="n1.buybacks_held_near"></span> NEAR; nothing is
+        burned</span></div>
     <div class="tile"><span class="tile-k">Coverage in the window</span>
       <span class="tile-v" data-n="n1.coverage_buybacks"></span>
       <span class="tile-s">of new NEAR kept by the buybacks wallets · <span data-n="n1.coverage_with_front_end"></span> with the front-end fund</span></div>
     <div class="tile"><span class="tile-k">Growth Buy needs, to 2031</span>
       <span class="tile-v" data-n="lr.required_growth.buybacks.A.2031"></span>
       <span class="tile-s">a year, in dollars and in NEAR, to cover issuance by 2031 · from April to October it grew
-        <span data-n="bt.a_pace.near_multiple"></span> in NEAR · with the front-end fund <span data-n="lr.required_growth.with_front_end.A.2031"></span> · once validators run HSP-029 <span data-n="lr.required_growth.buybacks.B.2031"></span></span></div>
+        <span data-n="bt.a_pace.near_multiple"></span> in NEAR · <span data-n="lr.required_growth.with_front_end.A.2031"></span> if the front-end fund counts · once validators run HSP-029 <span data-n="lr.required_growth.buybacks.B.2031"></span></span></div>
   </div>
   <p class="status" id="status"></p>
   <nav class="links"><a href="../README.md">README</a><a href="../THESIS.md">THESIS</a><a href="../PREREG.md">PREREG</a><a href="https://github.com/nikolaskahris-png/near-thesis-data">Repository</a></nav>
@@ -85,8 +87,8 @@
 <section id="p0">
   <h2>Rating, latest window: <span id="rating-now">—</span></h2>
   <p class="what">The README's rules applied to a rolling window of thirty days, every day (<code>data/rating.csv</code>). Avoid needs the
-    latest window and the one a month before it to fail one of the two tests; Buy needs rule (b) on chain first: a lock no one can spend from.
-    <span class="not">A window with missing DefiLlama days is not judged, and one in its first two days may still be revised.</span></p>
+    latest window and the one ending thirty days before it to fail one of the two tests; Buy needs rule (b) on chain first: a lock no one can spend from.
+    <span class="not">A window with missing DefiLlama days is not judged, and the two newest windows may still be revised.</span></p>
   <div class="ratingbox" id="rating-box"></div>
   <ul class="triggers">
     <li><b>Buy</b> only when <b>(b)</b> keeping the buybacks is a published rule (a lock no one can spend from) and
@@ -96,7 +98,7 @@
       less than three quarters of DefiLlama's revenue, or the buybacks wallets keep April's
       <span data-n="f2.buybacks_kept_usd_per_day.2026-04"></span> a day or less (at this window's NEAR kept, a price of
       <span data-n="iv.avoid_test2_price_usd"></span> or less), unless DefiLlama's fees fell too and the Confidential Intents
-      Treasury account grew. Avoid overrides Buy; Hold has no upper price.</li>
+      Treasury account's stablecoins grew. Avoid overrides Buy; Hold has no upper price.</li>
   </ul>
   <p class="also">Also measured: NEAR Intents moved <span data-n="d.ours_30d_usd"></span> in DefiLlama's thirty days to
     <span data-n="d.window_end"></span> (not the window) · a staked holder's share of all NEAR grows
@@ -152,7 +154,7 @@
   <h2>To cover issuance by 2031, what the buybacks wallets keep must grow <span data-n="lr.required_growth.buybacks.A.2031"></span> a year (<span data-n="lr.required_growth.buybacks.B.2031"></span> once validators run HSP-029)</h2>
   <p class="what">NEAR issued per day on the first day of each year, under today's rule (at most 1/40 of supply a year)
     and under HSP-029 (from <span data-n="lr.activation_utc"></span>), against what the buybacks wallets keep a day today. Keeping every
-    fee instead of today's share can add <span data-n="lr.take_rate_ceiling_multiple"></span>, once; from April to October what the wallets
+    fee instead of today's share can add <span data-n="lr.take_rate_ceiling_multiple"></span>, once; from April to October what the three wallets
     kept rose <span data-n="lr.history.2026-04_2026-10.kept_multiple"></span> while all fees counted in NEAR changed
     <span data-n="lr.history.2026-04_2026-10.fees_near_multiple"></span>.
     <span class="not">It forecasts no price, volume or fee; it holds the window's ratio of actual to maximum issuance and
@@ -211,7 +213,7 @@
 <section id="p8">
   <h2>What this does not show, and how to check it</h2>
   <ul class="limits">
-    <li>Confidential NEAR Intents volume, reported separately by NearStats.</li>
+    <li>Confidential NEAR Intents volume: not visible on chain (NearStats reports a figure, not checked here).</li>
     <li>Volume rebuilt from the chain: DefiLlama's volume comes from a NEAR dataset on Dune.</li>
     <li>Credits in dollars: an off-chain NEAR AI Cloud setting, read only with a signed-in session; whether credits are used.</li>
     <li>Who holds the largest farm position, and where its NEAR came from.</li>

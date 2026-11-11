@@ -97,7 +97,7 @@ choice; every figure in them is measured.*
 | Hurdle of (a) | from <!--n:iv.buybacks_kept_usd_per_day-->$46,692<!--/n--> a day: <!--n:lr.required_growth.buybacks.A.2031-->+75%<!--/n--> a year while validators do not run HSP-029, <!--n:lr.required_growth.buybacks.B.2031-->+56%<!--/n--> once they do (`HSP029_IN_FORCE`, set when `scripts/upgrade_watch.py` shows the release adopted). A pass at a yearly check holds until the next one. |
 | Cannot be judged | Hold. Until 1 December 2026 no window has one 30 days before it in `history.csv`, so Avoid cannot fire before then. |
 
-If NEAR kept every fee, fees counted in NEAR would need <!--n:lr.required_growth.all_fees.B.2031-->+9%<!--/n--> a year ([the model](#issuance-to-2031)).
+If NEAR kept every fee, fees counted in NEAR would need <!--n:lr.required_growth.all_fees.B.2031-->+9%<!--/n--> a year with HSP-029, <!--n:lr.required_growth.all_fees.A.2031-->+22%<!--/n--> at today's rule ([the model](#issuance-to-2031)).
 
 **Why coverage, for a staked holder.** Coverage is the buyback yield divided by the issuance rate: the wallets keep <!--n:iv.buyback_yield_buybacks-->0.27%<!--/n--> of NEAR's value a year (<!--n:iv.buyback_yield_with_front_end-->0.41%<!--/n--> with the front-end fund), against <!--n:iv.issuance_rate_per_year-->2.46%<!--/n--> issued.
 Staking moves issuance from unstaked holders to staked ones; buybacks are the only part of the return paid with
@@ -176,7 +176,7 @@ from April to October revenue grew <!--n:lr.history.2026-04_2026-10.revenue_usd_
 annualized here.
 
 **When to check:** 6, 8 and 16
-November 2026 (the predictions), every day in `data/rating.csv`, and each November to 2031 against the [2031 table](#issuance-to-2031).
+November and 9 and 11 December 2026 (the predictions), every day in `data/rating.csv`, and each November to 2031 against the [2031 table](#issuance-to-2031).
 
 **Valuation, same window.** All NEAR in `total_supply` at the window's mean price
 (<!--n:n2.mean_price_usd-->$4.88<!--/n-->) is worth <!--n:iv.supply_value_usd-->$6.39B<!--/n-->. CoinGecko's circulating supply equals total supply ([`data/raw/peers/`](../data/raw/peers/)), so NEAR's market cap
@@ -396,7 +396,7 @@ No prediction that tests the thesis has a result yet. #4 and #5 asked whether a 
 
 ## THESIS in full (version 3, 8 November)
 
-THESIS.md was shortened on 9 November to the four sections the track asks for. Its earlier text is kept here, as it was, with every figure still marked and checked.
+THESIS.md was shortened on 9 November to the four sections the track asks for. Its earlier text is kept here, as it was, with every figure still marked and checked; [How likely a rule is](#how-likely-a-rule-is) is still current.
 
 ### Claim
 
@@ -534,7 +534,7 @@ We put **0.25** on (b) by 1 January 2031: the buybacks kept by a published rule,
 
 - **Other protocols whose bought tokens sat in wallets people control.** Pump.fun bought PUMP for about nine months, then on 28 April 2026 burned all of it and sent half of future revenue to an irreversible contract that buys and burns PUMP for a year ([CoinDesk](https://www.coindesk.com/markets/2026/04/29/pump-fun-burns-36-of-pump-supply-in-usd370-million-wipe-locks-50-revenue-into-ongoing-buybacks)): a rule, for a year. Jupiter's DAO voted in October 2025 on burning the about 130M JUP in its Litterbox Trust ([vote](https://discuss.jup.ag/t/new-dao-vote-proposal-to-burn-the-litterbox/39627)); 130M JUP were burned in November, and in January 2026 its founder proposed ending the buybacks ([KuCoin](https://www.kucoin.com/news/flash/jupiter-halts-token-buybacks-vitalik-outlines-2026-ethereum-vision)): a one-off burn, not a standing rule. Aave's buybacks run automatically, but the AAVE bought sits in the Ecosystem Reserve and can be spent ([KuCoin](https://www.kucoin.com/news/flash/aave-considers-token-burn-pump-continues-buybacks-where-do-repurchased-tokens-go)): not a rule. One of three in about a year; with stopping as the competing outcome, about 0.45 to 2031.
 - **Not counted.** Hyperliquid's Assistance Fund was built with no private key from the start ([The Block](https://www.theblock.co/news/defi/2025-12-17-hyper-foundation-proposes-removing-1-billion-hype-tokens-from-circulating-supply-by-zeroing-out-hyperliquids-assistance-fund-383091)), so it never had the choice NEAR's buybacks have. Uniswap had no buybacks before its fee burn.
-- **NEAR, against.** The only proposal about the buybacks so far, a House of Stake draft of 8 November 2026 with no number yet, would put a share of NEAR Intents' fees into US Treasury bills, fund ventures from the yield and let holders choose later between buybacks or a reserve and payouts; it sets itself against immediate burns ([gov.near.org](https://gov.near.org/t/hsp-xxx-sovereign-yield-engine-treasury-backed-venture-protocol-buyback-model-for-near-intents/42760)). In seven months the wallets kept <!--n:f2.wallets_kept_share_of_revenue.2026-04_2026-10-->96.9%<!--/n--> of what came in, and no lock was declared. `treasury.near` paid out <!--n:ts.year_out_near-->30,171,200<!--/n--> NEAR in April and May, each payout confirmed by its multisig's signers.
+- **NEAR, against.** The latest proposal about the buybacks, a House of Stake draft of 8 November 2026 with no number yet, would put a share of NEAR Intents' fees into US Treasury bills, fund ventures from the yield and let holders choose later between buybacks or a reserve and payouts; it sets itself against immediate burns ([gov.near.org](https://gov.near.org/t/hsp-xxx-sovereign-yield-engine-treasury-backed-venture-protocol-buyback-model-for-near-intents/42760)). In seven months the wallets kept <!--n:f2.wallets_kept_share_of_revenue.2026-04_2026-10-->96.9%<!--/n--> of what came in, and no lock was declared. `treasury.near` paid out <!--n:ts.year_out_near-->30,171,200<!--/n--> NEAR in April and May, each payout confirmed by its multisig's signers.
 - **NEAR, for.** Governance does pass supply rules: HSP-027 (gas) is in force and HSP-029 (issuance) passed with no votes against. A lock needs no new code: an account with no access keys and no contract.
 
 Three cases are few, and those that changed are the ones the press reports. We take the 0.45 down for NEAR's own draft, which points away from a lock, and for the strict test, which a contract like Pump.fun's would not meet as written. Range we would defend: 0.10 to 0.35.
@@ -566,7 +566,7 @@ and `scripts/upgrade_watch.py` measures that every day. HSP-027's effect is smal
 | Link | What would make it a rule | Trade-off |
 |---|---|---|
 | Fees users pay | Part of the fee charged as the protocol fee on `intents.near` (up to 100% is allowed; today <!--n:c.intents_fee_pips-->1 pip<!--/n-->), with `fee_collector` set to the buybacks wallet or a locked account | The fee can still change by DAO vote (<!--n:c.intents_fee_change-->3 of 5<!--/n-->), but visibly and with a history |
-| Buybacks wallet | Move bought NEAR on a published schedule to an account with no keys and no code (what the rating's rule (b) reads from the chain; a contract with no withdraw method would need its code read, which the rating does not do) | Native NEAR cannot be burned by a call: locking lowers circulating supply, not `total_supply` |
+| Buybacks wallet | Move bought NEAR on a published schedule to an account with no keys and no code (what the rating's rule (b) reads from the chain; a contract with no withdraw method would need its code read, which the rating does not do) | Locking lowers circulating supply, not `total_supply` |
 | Issuance | Already a protocol rule; HSP-029 would lower it if validators adopt it | <!--n:c.issuance_validators_to_block_upgrade-->5<!--/n--> validators are enough to block |
 | Protocol treasury | A public spending rule voted as an HSP, or a lower share through the protocol | Today <!--n:c.treasury_confirmations-->2 of 4<!--/n--> keys approve each payment; <!--n:ts.year_out_near-->30,171,200<!--/n--> NEAR left in 2026 (finding 4) |
 | Front-end and 1Click funds, pool rewards | Their DAOs' spending and fee choices written as public rules (for example, an HSP), not decided proposal by proposal | Less room to adjust |
