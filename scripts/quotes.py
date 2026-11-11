@@ -55,6 +55,9 @@ SOURCES = {
     "soldano_readme": (
         "https://raw.githubusercontent.com/soldanoandrea/near-thesis/13b580f37e97d04fa0403f5c1a785f962886bddd/README.md",
         ["20.95M NEAR of it reached the p2p-org and figment staking pools within five hops"]),
+    "oriova_thesis": (
+        "https://raw.githubusercontent.com/youvandra/Oriova/8c8e052576abc259d0d11cae3102774530b4a214/THESIS.md",
+        ["The account inside `intents.near` that accrues fees has one registered key; custody behind it is outside chain state"]),
     "one_click_terms": (
         "https://docs.near-intents.org/near-intents/integration/distribution-channels/1click-terms-of-service",
         ["at any time on a prospective basis"]),

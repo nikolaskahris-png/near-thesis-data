@@ -12,13 +12,18 @@
 <header class="wrap top">
   <p class="eyebrow">Investment Thesis · NEAR HACKATHON</p>
   <h1>NEAR's value capture is real, small and discretionary.</h1>
-  <p class="verdict"><strong>Rating: Hold.</strong> Keep NEAR you own, staked; do not add. Horizon 2031, checked every year.
-    The rules can first fire in December; until then Hold is the author's reading of the evidence below.</p>
-  <p class="lede">Users pay real fees on NEAR Intents, but the buybacks keep NEAR equal to only <span data-n="n1.coverage_buybacks"></span> of
-    new issuance, burn none of it, and <span data-n="c.buybacks_confirmations"></span> signers, not code, can move it. Growth is not
-    what is missing (<span data-n="bt.a_pace.near_multiple"></span> in NEAR from April to October, against the
-    <span data-n="bt.a_pace.required_multiple"></span> Buy's growth test asks); a published rule is.</p>
+  <p class="lede"><strong>Who decides what NEAR holders get from NEAR Intents' fees? People, not code.</strong> The fees users pay
+    are set off-chain; <span data-n="c.buybacks_confirmations"></span> signers can move the NEAR the buybacks bought, and none of it is
+    burned; the protocol treasury is managed by the NEAR Foundation. Only issuance is a protocol rule. What holders get today:
+    buybacks equal to <span data-n="n1.coverage_buybacks"></span> of new issuance.</p>
+  <p class="verdict"><strong>Rating: Hold.</strong> Keep NEAR you own, staked; do not add. <b>Buy</b> when the buybacks become a
+    published rule; <b>Avoid</b> if they stop. Horizon 2031, checked every year. The rules can first fire in December; until then
+    Hold is the author's reading of the evidence below.</p>
   <div class="tiles">
+    <div class="tile"><span class="tile-k">Who can move the bought NEAR</span>
+      <span class="tile-v" data-n="c.buybacks_confirmations"></span>
+      <span class="tile-s">signatures move the buybacks wallet; with the front-end fund the wallets hold
+        <span data-n="n1.wallets_held_near"></span> NEAR, and nothing is burned</span></div>
     <div class="tile"><span class="tile-k">Coverage in the window</span>
       <span class="tile-v" data-n="n1.coverage_buybacks"></span>
       <span class="tile-s">of new NEAR kept by the buybacks wallets · <span data-n="n1.coverage_with_front_end"></span> with the front-end fund</span></div>
@@ -26,16 +31,48 @@
       <span class="tile-v" data-n="lr.required_growth.buybacks.A.2031"></span>
       <span class="tile-s">a year, in dollars and in NEAR, to cover issuance by 2031 · from April to October it grew
         <span data-n="bt.a_pace.near_multiple"></span> in NEAR · with the front-end fund <span data-n="lr.required_growth.with_front_end.A.2031"></span> · once validators run HSP-029 <span data-n="lr.required_growth.buybacks.B.2031"></span></span></div>
-    <div class="tile"><span class="tile-k">Kept by a published rule? Not yet</span>
-      <span class="tile-v" data-n="c.buybacks_confirmations"></span>
-      <span class="tile-s">signatures move the buybacks wallet; with the front-end fund the wallets hold
-        <span data-n="n1.wallets_held_near"></span> NEAR, and nothing is burned</span></div>
   </div>
   <p class="status" id="status"></p>
   <nav class="links"><a href="../README.md">README</a><a href="../THESIS.md">THESIS</a><a href="../PREREG.md">PREREG</a><a href="https://github.com/nikolaskahris-png/near-thesis-data">Repository</a></nav>
 </header>
 
 <main class="wrap">
+<section id="p1">
+  <h2>Who can change each link from the fee a user pays to the NEAR a holder keeps</h2>
+  <p class="what">Each card is one link: its value at the locked end block, who signs to change it, and how often they have.
+    <span class="not">It does not show why a link is set the way it is.</span></p>
+  <div class="map">
+    <div class="lane"><h3>Fees → holders</h3>
+      <div class="card"><b>Fees users pay</b><span><span data-n="n2.fees_bps"></span> bps of volume</span><span class="who">set off-chain by the distribution channels</span></div>
+      <div class="arrow" aria-hidden="true">↓</div>
+      <div class="card" data-live="fee"><b>Protocol fee on <code>intents.near</code></b><span data-n="c.intents_fee_pips"></span><span class="who">DAO <span data-n="c.intents_fee_change"></span> · used <span data-n="h.fee.approved_actions"></span> times</span></div>
+      <div class="arrow" aria-hidden="true">↓</div>
+      <div class="card" data-live="buybacks"><b>Buybacks wallets</b><span>hold <span data-n="n1.buybacks_held_near"></span> NEAR, with the 1Click fund · nothing burned</span><span class="who">multisig <span data-n="c.buybacks_confirmations"></span> · keys unchanged since <span data-n="h.keys.buybacks.last_change"></span></span></div>
+      <div class="card"><b>Front-end fund</b><span>holds <span data-n="n1.front_end_held_near"></span> NEAR · <span data-n="f9.front_end_share_of_wallets"></span> of what the three wallets kept</span><span class="who">transfers <span data-n="c.front_end_transfer"></span> · rules <span data-n="c.front_end_rules"></span></span></div>
+      <div class="arrow" aria-hidden="true">↓</div>
+      <div class="card end"><b>NEAR holders</b><span>coverage <span data-n="n1.coverage_buybacks"></span> of issuance</span></div>
+    </div>
+    <div class="lane"><h3>Issuance → stakers</h3>
+      <div class="card rule"><b>Issuance</b><span>at most <span data-n="c.issuance_max_inflation_rate"></span> a year · a protocol rule</span><span class="who">changed by <span data-n="c.issuance_upgrade_stake_threshold"></span> of stake: at least <span data-n="c.issuance_validators_to_pass_upgrade"></span> of <span data-n="c.issuance_validators"></span> validators</span></div>
+      <div class="arrow" aria-hidden="true">↓</div>
+      <div class="card"><b><code>treasury.near</code></b><span>paid out <span data-n="ts.year_out_near"></span> NEAR in this year</span><span class="who">multisig <span data-n="c.treasury_confirmations"></span></span></div>
+      <div class="card" data-live="pool"><b>NEAR AI pool rewards</b><span>the pool keeps <span data-n="c.nearai_pool_reward_fee"></span> of rewards</span><span class="who">owner DAO <span data-n="c.nearai_pool_owner_transfer"></span></span></div>
+      <div class="arrow" aria-hidden="true">↓</div>
+      <div class="card" data-live="farm"><b>NEAR AI credits rate</b><span><span data-n="f6.units_per_near_year"></span> reward units per NEAR a year</span><span class="who">set by one account · changed <span data-n="f6.rate_changes"></span> time, <span data-n="f6.change1.ratio"></span></span></div>
+    </div>
+    <div class="lane"><h3>Votes → rules</h3>
+      <div class="card"><b>House of Stake (<code>vote.dao</code>)</b><span><span data-n="c.hsp_reviewers"></span> reviewers choose what is put to a vote</span><span class="who">owner DAO <span data-n="c.hsp_owner_rules"></span> · used <span data-n="h.voting.approved_actions"></span> times</span></div>
+      <div class="arrow" aria-hidden="true">↓</div>
+      <div class="card"><b>HSP-029: issuance cut</b><span>passed; <span data-n="f8.fewest_voters_reaching_quorum"></span> voters held enough veNEAR to reach the quorum</span><span class="who">in timelock until <span data-n="f8.timelock_end_utc"></span> · executes nothing on chain</span></div>
+      <div class="arrow" aria-hidden="true">↓</div>
+      <div class="card"><b>A rule only when validators run it</b><span>a nearcore release with <span data-n="c.issuance_upgrade_stake_threshold"></span> of stake</span><span class="who">measured live below</span></div>
+    </div>
+  </div>
+  <p class="foot">The <span data-n="c.dao_count"></span> DAOs have <span data-n="c.dao_member_accounts"></span> member accounts; the number in more than one DAO is <span data-n="c.dao_members_in_two_or_more"></span>.
+    “Check live” calls a public NEAR RPC from your browser and compares its answer with the answer saved at the locked block.</p>
+  <div class="meta" data-meta="p1"></div>
+</section>
+
 <section id="p2">
   <h2>The buybacks wallets keep <span data-n="n1.coverage_buybacks"></span> of the NEAR issued</h2>
   <p class="what">NEAR per day kept by the wallets, against NEAR issued per day, month by month. Full coverage needs what
@@ -87,41 +124,6 @@
   <p class="src"><code>python scripts/private_shift.py --verify</code> recomputes every bar from the saved balances.</p>
 </section>
 
-<section id="p1">
-  <h2>Who can change each link from the fee a user pays to the NEAR a holder keeps</h2>
-  <p class="what">Each card is one link: its value at the locked end block, who signs to change it, and how often they have.
-    <span class="not">It does not show why a link is set the way it is.</span></p>
-  <div class="map">
-    <div class="lane"><h3>Fees → holders</h3>
-      <div class="card"><b>Fees users pay</b><span><span data-n="n2.fees_bps"></span> bps of volume</span><span class="who">set off-chain by the distribution channels</span></div>
-      <div class="arrow" aria-hidden="true">↓</div>
-      <div class="card" data-live="fee"><b>Protocol fee on <code>intents.near</code></b><span data-n="c.intents_fee_pips"></span><span class="who">DAO <span data-n="c.intents_fee_change"></span> · used <span data-n="h.fee.approved_actions"></span> times</span></div>
-      <div class="arrow" aria-hidden="true">↓</div>
-      <div class="card" data-live="buybacks"><b>Buybacks wallets</b><span>hold <span data-n="n1.buybacks_held_near"></span> NEAR, with the 1Click fund · nothing burned</span><span class="who">multisig <span data-n="c.buybacks_confirmations"></span> · keys unchanged since <span data-n="h.keys.buybacks.last_change"></span></span></div>
-      <div class="card"><b>Front-end fund</b><span>holds <span data-n="n1.front_end_held_near"></span> NEAR · <span data-n="f9.front_end_share_of_wallets"></span> of what the three wallets kept</span><span class="who">transfers <span data-n="c.front_end_transfer"></span> · rules <span data-n="c.front_end_rules"></span></span></div>
-      <div class="arrow" aria-hidden="true">↓</div>
-      <div class="card end"><b>NEAR holders</b><span>coverage <span data-n="n1.coverage_buybacks"></span> of issuance</span></div>
-    </div>
-    <div class="lane"><h3>Issuance → stakers</h3>
-      <div class="card rule"><b>Issuance</b><span>at most <span data-n="c.issuance_max_inflation_rate"></span> a year · a protocol rule</span><span class="who">changed by <span data-n="c.issuance_upgrade_stake_threshold"></span> of stake: at least <span data-n="c.issuance_validators_to_pass_upgrade"></span> of <span data-n="c.issuance_validators"></span> validators</span></div>
-      <div class="arrow" aria-hidden="true">↓</div>
-      <div class="card"><b><code>treasury.near</code></b><span>paid out <span data-n="ts.year_out_near"></span> NEAR in this year</span><span class="who">multisig <span data-n="c.treasury_confirmations"></span></span></div>
-      <div class="card" data-live="pool"><b>NEAR AI pool rewards</b><span>the pool keeps <span data-n="c.nearai_pool_reward_fee"></span> of rewards</span><span class="who">owner DAO <span data-n="c.nearai_pool_owner_transfer"></span></span></div>
-      <div class="arrow" aria-hidden="true">↓</div>
-      <div class="card" data-live="farm"><b>NEAR AI credits rate</b><span><span data-n="f6.units_per_near_year"></span> reward units per NEAR a year</span><span class="who">set by one account · changed <span data-n="f6.rate_changes"></span> time, <span data-n="f6.change1.ratio"></span></span></div>
-    </div>
-    <div class="lane"><h3>Votes → rules</h3>
-      <div class="card"><b>House of Stake (<code>vote.dao</code>)</b><span><span data-n="c.hsp_reviewers"></span> reviewers choose what is put to a vote</span><span class="who">owner DAO <span data-n="c.hsp_owner_rules"></span> · used <span data-n="h.voting.approved_actions"></span> times</span></div>
-      <div class="arrow" aria-hidden="true">↓</div>
-      <div class="card"><b>HSP-029: issuance cut</b><span>passed; <span data-n="f8.fewest_voters_reaching_quorum"></span> voters held enough veNEAR to reach the quorum</span><span class="who">in timelock until <span data-n="f8.timelock_end_utc"></span> · executes nothing on chain</span></div>
-      <div class="arrow" aria-hidden="true">↓</div>
-      <div class="card"><b>A rule only when validators run it</b><span>a nearcore release with <span data-n="c.issuance_upgrade_stake_threshold"></span> of stake</span><span class="who">measured live below</span></div>
-    </div>
-  </div>
-  <p class="foot">The <span data-n="c.dao_count"></span> DAOs have <span data-n="c.dao_member_accounts"></span> member accounts; the number in more than one DAO is <span data-n="c.dao_members_in_two_or_more"></span>.
-    “Check live” calls a public NEAR RPC from your browser and compares its answer with the answer saved at the locked block.</p>
-  <div class="meta" data-meta="p1"></div>
-</section>
 
 
 <section id="p3">

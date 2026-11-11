@@ -80,6 +80,17 @@
     "at any time on a prospective basis"
    ]
   },
+  "oriova_thesis": {
+   "url": "https://raw.githubusercontent.com/youvandra/Oriova/8c8e052576abc259d0d11cae3102774530b4a214/THESIS.md",
+   "path": "data/raw/sources/oriova_thesis.md",
+   "sha256": "da6fa4643d202f1f41410677a5fb32b14ee27d8803e6190e6edc0c9b86fe62a7",
+   "bytes": 36869,
+   "saved_utc": "2026-11-10T23:58:36Z",
+   "how": "fetched",
+   "quotes": [
+    "The account inside `intents.near` that accrues fees has one registered key; custody behind it is outside chain state"
+   ]
+  },
   "sec_bitwise_424b3": {
    "url": "https://www.sec.gov/Archives/edgar/data/0002067111/000121390026103106/ea0306486-424b3_bitwise.htm",
    "path": "data/raw/sources/sec_bitwise_424b3.html",
