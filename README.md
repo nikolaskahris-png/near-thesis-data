@@ -17,7 +17,7 @@
 - **Holders get a small part of it.** The buybacks wallets keep NEAR equal to <!--n:n1.coverage_buybacks-->10.8%<!--/n--> of the new NEAR issued (<!--n:n1.coverage_with_front_end-->16.5%<!--/n--> counting the front-end fund), and burn none of it.
 - **It did not stop when the flow went private.** After most NEAR Intents flow moved to its private path in late October, the NEAR the revenue wallets keep a day changed <!--n:ps.change.kept_near_per_day-->-3%<!--/n-->, in line with DefiLlama's revenue (<!--n:ps.change.revenue_near_per_day-->-6%<!--/n-->). Other cut dates give down to <!--n:ps.cut.kept_near_lowest-->-13%<!--/n--> ([claim D](#d-it-did-not-stop-when-the-flow-went-private)).
 - **What to do.** If you hold NEAR, keep it staked and do not add: staked, your share of all NEAR grows +<!--n:iv.staked_share_growth-->2.44%<!--/n--> a year before the validator's commission; unstaked, it changes <!--n:iv.unstaked_share_change-->-2.40%<!--/n-->. If you hold none, do not buy yet; the trigger is a published buyback rule. Avoid would mean not holding NEAR for this thesis.
-- **What would change the rating.** Buy if the buybacks become a published rule and grow fast enough to cover issuance by 2031 (<!--n:lr.required_growth.buybacks.A.2031-->+75%<!--/n--> a year); Avoid if they stop. The rules can first fire on 1 December 2026; until then Hold is the author's reading of the claims below.
+- **What would change the rating.** Buy if the buybacks become a published rule and grow fast enough to cover issuance by 2031 (<!--n:lr.required_growth.buybacks.A.2031-->+75%<!--/n--> a year); Avoid if they stop. We put 0.25 on a published rule by 2031, so Buy is less likely than that ([why](#what-would-change-our-mind)). The rules can first fire on 1 December 2026; until then Hold is the author's reading of the claims below.
 
 ## The thesis in four claims
 
@@ -131,13 +131,18 @@ No prediction that tests the thesis has a result yet: #4 and #5 only show that t
 
 ## What would change our mind
 
-| When | What we watch | If it happens |
+Each row is a threshold, the first date it can be met, and the rating it leads to. `scripts/rating.py` checks the first four every day.
+
+| From | If | Rating |
 |---|---|---|
-| 9 Nov – 9 Dec | what the buybacks wallets keep, now that the private path is the main one | PREREG-3 scores it; the rating's own tests run every day |
-| any day | a published buyback rule, or a keyless lock | (b) is met; Buy then depends on coverage |
-| when validators run HSP-029 | issuance falls | the Buy hurdle drops to <!--n:lr.required_growth.buybacks.B.2031-->+56%<!--/n--> |
-| any day | `treasury.near` sends anything | the Buy path is closed for that window |
-| 1 Nov 2027 | first yearly check | Buy only if +75% (or +56%) is met in dollars and in NEAR |
+| 1 Dec 2026, daily | two 30-day windows in a row each fail a test: the wallets keep less than 75% of DefiLlama's revenue, or the buybacks keep April's <!--n:f2.buybacks_kept_usd_per_day.2026-04-->$6,270<!--/n--> a day or less (at this window's NEAR kept a day, a price of <!--n:iv.avoid_test2_price_usd-->$0.655<!--/n-->) | **Avoid** |
+| any day | the buybacks go to a declared lock with no contract and no access keys, `treasury.near` sends nothing in the window, and the buybacks cover 100% of issuance (today <!--n:n1.coverage_buybacks-->10.8%<!--/n-->; best month <!--n:bt.highest_coverage_counted-->15.3%<!--/n-->) | **Buy** |
+| any day | the lock exists, coverage is under 100% | Hold until the yearly check |
+| any day | `treasury.near` sends anything | no Buy in that window |
+| 1 Nov 2027, then yearly | the lock exists and what the buybacks keep a day has grown <!--n:lr.required_growth.buybacks.A.2031-->+75%<!--/n--> a year from <!--n:iv.buybacks_kept_usd_per_day-->$46,692<!--/n-->, in dollars and in NEAR (<!--n:lr.required_growth.buybacks.B.2031-->+56%<!--/n--> once validators run HSP-029) | **Buy** |
+| 9 Dec 2026 | PREREG-3's P6: from 9 November to 9 December the buybacks keep less than half of <!--n:iv.buybacks_kept_usd_per_day-->$46,692<!--/n--> a day | Hold; P6's 0.90 is scored wrong, and claim D with it |
+
+**How likely a rule is.** We put **0.25** on the buybacks becoming a published rule by 1 January 2031. It is the author's judgment, not a measurement, and it is not anchored. Of three other protocols whose bought tokens sat in wallets people control, one made them a rule within about a year (Pump.fun, April 2026: all burned, half of revenue to an irreversible buy-and-burn contract for a year), one burned them once and then weighed ending its buybacks (Jupiter), and one automated the buying but keeps the tokens spendable (Aave). NEAR's only proposal about the buybacks so far, a House of Stake draft of 8 November 2026, would send fees to Treasury bills and ventures, not to a lock. Buy also needs coverage or growth, so it is less likely than 0.25. Sources: [how likely a rule is](docs/DETAILS.md#how-likely-a-rule-is).
 
 ## Check it in two minutes
 
