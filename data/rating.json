@@ -9,7 +9,7 @@
     "precedence": "Avoid overrides Buy",
     "hsp029_in_force": false
   },
-  "fetched_utc": "2026-11-11T06:26:12Z",
+  "fetched_utc": "2026-11-12T07:13:59Z",
   "locks": [],
   "thresholds": {
     "avoid_usd_per_day": "6270.3997866",
@@ -20,28 +20,28 @@
   },
   "private_path": {
     "data/confidential_treasury.json": "e1f49bf6f70a7a9e808c58bbcfef4dea187278480ba7603fd41459a55887a6e1",
-    "data/confidential_treasury_daily.json": "548f3186f54d2bbbc542147e34cf2e72276662524f8ef0dcf0b6bfaa17e8e308"
+    "data/confidential_treasury_daily.json": "bcb64fac33b7a7892bffc35adb865aa54b8f5fdc2c04900a55ba480efdd6516e"
   },
   "raw": {
     "fees": {
-      "path": "data/raw/rating/20261111T062612Z/fees.json",
-      "sha256": "a1b627ec60c30979335dc33e80caaf051896be5aacc9a31a672caed0f4472951",
+      "path": "data/raw/rating/20261112T071359Z/fees.json",
+      "sha256": "8d149804279f57aaba83cd313be87f0efb403a9882f1f90587e15608b1d6231e",
       "url": "https://api.llama.fi/summary/fees/near-intents?dataType=dailyFees&excludeTotalDataChartBreakdown=true"
     },
     "revenue": {
-      "path": "data/raw/rating/20261111T062612Z/revenue.json",
-      "sha256": "2af9caf5b92378cd2d0440239ee6fd0427a0d35bc9f98b2fa6cb636cd1153401",
+      "path": "data/raw/rating/20261112T071359Z/revenue.json",
+      "sha256": "16806354123988c4fda834bf3eec4fca5dc0875186bdd456b2b3c474d30f6af6",
       "url": "https://api.llama.fi/summary/fees/near-intents?dataType=dailyRevenue&excludeTotalDataChartBreakdown=true"
     },
     "volume": {
-      "path": "data/raw/rating/20261111T062612Z/volume.json",
-      "sha256": "2fb24c19761beb91d752d11bf22c8a8a6938c59a31b7251d139ac8cdcd48a362",
+      "path": "data/raw/rating/20261112T071359Z/volume.json",
+      "sha256": "b2ed3f43dd970941777dec2381ea911a809114443959b210a5af1b27d17173ee",
       "url": "https://api.llama.fi/summary/dexs/near-intents?excludeTotalDataChartBreakdown=true"
     },
     "price": {
-      "path": "data/raw/rating/20261111T062612Z/price.json",
-      "sha256": "143843fa5982affc9bcafa1cfa9830e3932fcd9965ea38548b9cc43c274a4e4c",
-      "url": "https://coins.llama.fi/chart/coingecko:near?start=1790942400&span=40&period=1d"
+      "path": "data/raw/rating/20261112T071359Z/price.json",
+      "sha256": "613fafa3805ea1200352f3b638fdc36dd9f896d5bea59c385ca1a30836219636",
+      "url": "https://coins.llama.fi/chart/coingecko:near?start=1790942400&span=41&period=1d"
     }
   }
 }
