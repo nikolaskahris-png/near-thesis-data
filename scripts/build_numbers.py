@@ -1185,6 +1185,12 @@ def build(data_dir, window_file):
         y = dec(n.items["iv.buybacks_kept_usd_per_day"]["value"]) * dec("365.25")
         n.add("iv.buybacks_kept_usd_per_year", y, f"${rnd(y / 10 ** 6, 1)}M", n.items["iv.buybacks_kept_usd_per_day"]["source"],
               derived_from=["iv.buybacks_kept_usd_per_day"], note="iv.buybacks_kept_usd_per_day x 365.25")
+        if "iv.issuance_usd_per_year" in n.items:
+            c = y / dec(n.items["iv.issuance_usd_per_year"]["value"]) * 100
+            n.add("iv.cents_per_new_dollar", c, f"{rnd(c, 0)} cents", n.items["iv.buybacks_kept_usd_per_day"]["source"],
+                  unit="US cents kept by the buybacks per dollar of new NEAR",
+                  derived_from=["iv.buybacks_kept_usd_per_year", "iv.issuance_usd_per_year"],
+                  note="iv.buybacks_kept_usd_per_year / iv.issuance_usd_per_year x 100")
     if "ts.year_out_near" in n.items:
         sup = dec(n.items["iv.supply_value_usd"]["value"]) / dec(n.items["n2.mean_price_usd"]["value"])
         sh = dec(n.items["ts.year_out_near"]["value"]) / sup

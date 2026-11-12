@@ -2,7 +2,14 @@
 
 [![verify](https://github.com/nikolaskahris-png/near-thesis-data/actions/workflows/verify.yml/badge.svg)](https://github.com/nikolaskahris-png/near-thesis-data/actions/workflows/verify.yml)
 
-**People, not code, decide what NEAR holders get from NEAR Intents' fees: <!--n:n1.buybacks_held_near-->2,145,248<!--/n--> NEAR bought back sits in two wallets that <!--n:c.buybacks_confirmations-->2 of 4<!--/n--> signers can move, none of it is burned, and what they keep equals <!--n:n1.coverage_buybacks-->10.8%<!--/n--> of new issuance.** **Rating to 2031: Hold.** If you own NEAR, keep it staked and do not add; **Buy** when the buybacks sit in a declared lock that the chain shows cannot send NEAR out and they grow <!--n:lr.required_growth.buybacks.A.2031-->+75%<!--/n--> a year, **Avoid** at once if the bought NEAR they hold falls more than 10% below its peak, or if two back-to-back 30-day windows each fail a test: the buybacks keep April's <!--n:f2.buybacks_kept_usd_per_day.2026-04-->$6,270<!--/n--> a day or less, or the wallets keep under 75% of what flows in.
+**For each $1 of new NEAR issued, the buybacks keep NEAR worth about <!--n:iv.cents_per_new_dollar-->11 cents<!--/n--> (<!--n:n1.coverage_buybacks-->10.8%<!--/n--> of issuance), and burn none of it:** the <!--n:n1.buybacks_held_near-->2,145,248<!--/n--> NEAR bought sits in two wallets that <!--n:c.buybacks_confirmations-->2 of 4<!--/n--> signers can move.
+
+**Rating to 2031: Hold.** If you own NEAR, keep it staked; do not add, for two reasons:
+
+- **Per dollar of market cap, holders' revenue is a tenth of Hyperliquid's:** <!--n:peer.near.holders_yield_on_mcap-->0.40%<!--/n--> a year against <!--n:peer.hyperliquid.holders_yield_on_mcap-->4.09%<!--/n-->, by DefiLlama's count, which for NEAR is more than the wallets keep ([peers on one basis](docs/DETAILS.md#peers-on-one-basis)).
+- **The latest proposal points away from a burn or a lock.** A House of Stake draft of 8 November, with no number yet, would route a share of NEAR Intents' fees into US Treasury bills and fund startups from the yield, instead of burning ([gov.near.org](https://gov.near.org/t/hsp-xxx-sovereign-yield-engine-treasury-backed-venture-protocol-buyback-model-for-near-intents/42760)).
+
+**What to watch from Monday, 16 November:** the bought NEAR, daily: more than 10% below its peak is Avoid at once (the two monthly tests can first fire on 10 December) · whether the 8 November draft gets a number and a vote · HSP-029 leaving timelock (<!--n:f8.timelock_end_utc-->2026-11-16 16:48 UTC<!--/n-->): it cuts issuance only once validators run a release. **Buy** needs the buybacks in a lock that the chain shows cannot send NEAR out, and <!--n:lr.required_growth.buybacks.A.2031-->+75%<!--/n--> a year.
 
 ![What holders get for the NEAR issued, a day: the buybacks keep about a tenth of it, and all fees together would cover less than half](docs/coverage.svg)
 
@@ -146,7 +153,7 @@ The fees (NEAR's datasets on Dune; only revenue is checked on chain), volume and
 - Research into data sources: 22–31 October 2026, in private notes that are not part of this repository.
 - Code and data: from the first commit, 2026-10-31 13:51:52 UTC; there is no earlier code. The [rules](https://nearhackathon.com/HACKATHON.md) (FAQ Q-001) count work from the hackathon's announcement on 19 October: "Earlier commits are baseline".
 - Sources: NEAR archival RPC, NearBlocks, DefiLlama, SEC filings and NEAR's docs, linked where used, and one off-chain read of a NEAR AI Cloud setting. Raw responses are saved byte for byte; those that list people's accounts are kept private, with their SHA-256.
-- AI: the code, scripts and text were written with Claude Code (Anthropic), directed by the author; those commits are marked `Co-Authored-By: Claude`.
+- AI: the code, scripts and text were written with Claude Code (Anthropic), directed by the author; those commits are marked `Co-Authored-By: Claude`. The video's voice is AI text-to-speech (ElevenLabs), reading a script the author approved; its captions carry the same words.
 - Libraries: none beyond the Python standard library. `docs/sign*.html` load NEAR Wallet Selector 10.1.4 from esm.sh.
 - This is the author's only submission to NEAR HACKATHON.
 

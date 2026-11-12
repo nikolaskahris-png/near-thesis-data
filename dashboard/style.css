@@ -45,6 +45,8 @@ h1 { margin: 0 0 10px; font-size: clamp(24px, 3.6vw, 34px); line-height: 1.15; l
 .lede { margin: 0 0 16px; max-width: 900px; color: var(--text-secondary); font-size: 16.5px; }
 .lede strong { color: var(--text-primary); }
 .verdict { margin: 0 0 8px; font-size: 18px; }
+.watch { margin: 0 0 16px; max-width: 900px; color: var(--text-secondary); font-size: 15px; }
+.watch strong, .watch b { color: var(--text-primary); }
 .triggers { margin: 14px 0 6px; padding-left: 20px; max-width: 860px; color: var(--text-secondary); font-size: 14.5px; }
 .triggers li { margin: 4px 0; }
 .triggers b { color: var(--text-primary); }

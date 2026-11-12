@@ -3590,6 +3590,17 @@
       "window": "2026-10-02 00:00 UTC to 2026-11-01 00:00 UTC",
       "blocks": "218126921-222491356"
     },
+    "iv.cents_per_new_dollar": {
+      "value": "10.82647816653542754341799849119978352813",
+      "text": "11 cents",
+      "source": "data/fees_2026-10-02_2026-11-01.json",
+      "unit": "US cents kept by the buybacks per dollar of new NEAR",
+      "derived_from": [
+        "iv.buybacks_kept_usd_per_year",
+        "iv.issuance_usd_per_year"
+      ],
+      "note": "iv.buybacks_kept_usd_per_year / iv.issuance_usd_per_year x 100"
+    },
     "iv.farm_breakeven_price_before_usd": {
       "value": "2.419233598384671344379046556398781826836",
       "text": "$2.42",
