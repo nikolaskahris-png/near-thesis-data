@@ -177,7 +177,7 @@ The fees (NEAR's datasets on Dune; only revenue is checked on chain), volume and
 - Research into data sources: 22–31 October 2026, in private notes that are not part of this repository.
 - Code and data: from the first commit, 2026-10-31 13:51:52 UTC; there is no earlier code. The [rules](https://nearhackathon.com/HACKATHON.md) (FAQ Q-001) count work from the hackathon's announcement on 19 October: "Earlier commits are baseline".
 - Sources: NEAR archival RPC, NearBlocks, DefiLlama, SEC filings and NEAR's docs, linked where used, and one off-chain read of a NEAR AI Cloud setting. Raw responses are saved byte for byte; those that list people's accounts are kept private, with their SHA-256.
-- AI: the code, scripts and text were written with Claude Code (Anthropic), directed by the author; those commits are marked `Co-Authored-By: Claude`. The video's voice is AI text-to-speech (ElevenLabs), reading a script the author approved; its captions carry the same words.
+- AI: the code, scripts and text were written with Claude Code (Anthropic), directed by the author; those commits are marked `Co-Authored-By: Claude`. The demo video has no voice: its captions carry the narration, and every figure in it comes from `data/numbers.json`.
 - Libraries: none beyond the Python standard library. `docs/sign*.html` load NEAR Wallet Selector 10.1.4 from esm.sh.
 - This is the author's only submission to NEAR HACKATHON.
 
