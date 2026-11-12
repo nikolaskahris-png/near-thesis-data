@@ -1,0 +1,83 @@
+{
+ "method": "moving-block bootstrap, blocks of 7 consecutive days for the window and 3 for the before/after change, 10000 resamples, seed 20261112, interval = 2.5% to 97.5% percentile (nearest rank), stdlib only, from the days in data/private_shift.json",
+ "windows": {
+  "window": [
+   "2026-10-02",
+   "2026-10-31"
+  ],
+  "before": [
+   "2026-10-02",
+   "2026-10-26"
+  ],
+  "after": [
+   "2026-10-27",
+   "2026-11-08"
+  ]
+ },
+ "window_mean_near_per_day": {
+  "buybacks": {
+   "mean": 9569.749799,
+   "low": 8418.744319,
+   "high": 10965.800522,
+   "days": 30
+  },
+  "buybacks_and_front_end": {
+   "mean": 14554.423238,
+   "low": 12472.965737,
+   "high": 16509.560406,
+   "days": 30
+  }
+ },
+ "shift": {
+  "kept_near": {
+   "change": -0.032269,
+   "low": -0.279886,
+   "high": 0.284902,
+   "share_below_zero": 0.5402,
+   "days_before": 25,
+   "days_after": 13
+  },
+  "revenue_near": {
+   "change": -0.056496,
+   "low": -0.300853,
+   "high": 0.246065,
+   "share_below_zero": 0.6305,
+   "days_before": 25,
+   "days_after": 13
+  }
+ },
+ "block_sensitivity": [
+  {
+   "block_days": 1,
+   "buybacks_low": 8285.234727,
+   "buybacks_high": 11002.445675,
+   "kept_near_change_low": -0.264891,
+   "kept_near_change_high": 0.272697,
+   "kept_near_share_below_zero": 0.5955
+  },
+  {
+   "block_days": 3,
+   "buybacks_low": 8063.231933,
+   "buybacks_high": 11268.015872,
+   "kept_near_change_low": -0.281112,
+   "kept_near_change_high": 0.292889,
+   "kept_near_share_below_zero": 0.5433
+  },
+  {
+   "block_days": 5,
+   "buybacks_low": 8271.28262,
+   "buybacks_high": 11197.065787,
+   "kept_near_change_low": -0.296023,
+   "kept_near_change_high": 0.182486,
+   "kept_near_share_below_zero": 0.7107
+  },
+  {
+   "block_days": 7,
+   "buybacks_low": 8417.549634,
+   "buybacks_high": 10957.92828,
+   "kept_near_change_low": -0.263319,
+   "kept_near_change_high": 0.071434,
+   "kept_near_share_below_zero": 0.8983
+  }
+ ]
+}

@@ -1441,6 +1441,42 @@ def build(data_dir, window_file):
             n.add("ps.treasury_stablecoins_change_after", g, ("+" if g > 0 else "") + f_pct(g, 0), ssrc,
                   note="Confidential Intents Treasury account, stablecoins, 27 Oct to 9 Nov (first blocks)")
 
+    # ---- how sure the two daily figures are (intervals.py: block bootstrap of the saved days)
+    ipath = data_dir / "intervals.json"
+    if ipath.exists():
+        idoc = json.loads(ipath.read_text(encoding="utf-8"))
+        isrc = n.source(ipath)
+        new_day = dec(n.items["n1.new_near_per_day"]["value"])
+        for key, name in (("buybacks", "coverage_buybacks"), ("buybacks_and_front_end", "coverage_with_front_end")):
+            m = idoc["window_mean_near_per_day"][key]
+            for part in ("low", "high"):
+                v = dec(m[part]) / new_day
+                n.add(f"ci.{name}.{part}", v, f_pct(v, 1), isrc, unit="share",
+                      derived_from=["n1.new_near_per_day"],
+                      note=f"{part} end of the 95% block-bootstrap interval of the {key.replace('_', ' ')} mean, "
+                           "2-31 Oct, divided by n1.new_near_per_day")
+        for key, name in (("kept_near", "kept_near"), ("revenue_near", "revenue_near")):
+            c = idoc["shift"][key]
+            for part in ("low", "high"):
+                v = dec(c[part])
+                n.add(f"ci.shift.{name}.{part}", v, ("+" if v > 0 else "") + f_pct(v, 0), isrc,
+                      note=f"{part} end of the 95% block-bootstrap interval of the change in {key.replace('_', ' ')} a day")
+            v = dec(c["share_below_zero"])
+            n.add(f"ci.shift.{name}.share_below_zero", v, f_pct(v, 0), isrc,
+                  note="share of the 10,000 resamples in which the change is below zero")
+        n.add("ci.resamples", 10000, "10,000", isrc)
+        bs = idoc["block_sensitivity"]
+        lo = min(dec(r["kept_near_change_low"]) for r in bs)
+        hi = max(dec(r["kept_near_change_high"]) for r in bs)
+        n.add("ci.shift.kept_near.lowest_any_block", lo, f_pct(lo, 0), isrc,
+              note="lowest low end of the kept-NEAR change interval with blocks of " + ", ".join(str(r["block_days"]) for r in bs) + " days")
+        n.add("ci.shift.kept_near.highest_any_block", hi, "+" + f_pct(hi, 0) if hi > 0 else f_pct(hi, 0), isrc,
+              note="highest high end, same blocks")
+        blo = min(dec(r["buybacks_low"]) for r in bs) / new_day
+        bhi = max(dec(r["buybacks_high"]) for r in bs) / new_day
+        n.add("ci.coverage_buybacks.lowest_any_block", blo, f_pct(blo, 1), isrc, derived_from=["n1.new_near_per_day"])
+        n.add("ci.coverage_buybacks.highest_any_block", bhi, f_pct(bhi, 1), isrc, derived_from=["n1.new_near_per_day"])
+
     # ---- the pre-registration anchors (check_prereg.py, --anchor 2 and 3)
     for num, name in (("1", "prereg.json"), ("2", "prereg2_anchor.json"), ("3", "prereg3_anchor.json")):
         apath = data_dir / name
@@ -1524,6 +1560,7 @@ SCRIPT_CHECKS = [
     ("treasury_trace.py", lambda doc: ["--verify"], "treasury_trace.json"),
     ("confidential_treasury.py", lambda doc: ["--verify"], "confidential_treasury.json"),
     ("private_shift.py", lambda doc: ["--verify"], "private_shift.json"),
+    ("intervals.py", lambda doc: ["--verify"], "intervals.json"),
     ("sensitivity.py", lambda doc: ["--verify"], "sensitivity.json"),
     ("check_prereg.py", lambda doc: ["--verify"]),
     ("check_prereg.py", lambda doc: ["--anchor", "2", "--verify"], "prereg2_anchor.json"),
