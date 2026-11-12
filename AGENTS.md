@@ -8,7 +8,7 @@ numbers come from [`data/numbers.json`](data/numbers.json), and each section bel
 Requirements: Python 3.10 or later (`python` below, `python3` on some systems), standard library only. No
 `pip install`, no API keys. No command here signs anything or writes to the chain.
 
-## 1. Offline check (no network, under two minutes)
+## 1. Offline check (no network, about three minutes)
 
 Run from the repository root. One command runs every check below in order:
 
