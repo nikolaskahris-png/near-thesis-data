@@ -160,3 +160,12 @@ h3.sub { margin: 22px 0 6px; }
 .calc button.reset { justify-self: start; font: inherit; font-size: 13px; padding: 4px 10px; border-radius: 6px;
   border: 1px solid var(--border); background: var(--surface-0); color: var(--text-primary); cursor: pointer; }
 @media (max-width: 760px) { .step { grid-template-columns: minmax(0, 1fr); } .step .who { grid-column: 1; } .calc { grid-template-columns: minmax(0, 1fr); } }
+.question { font-size: 15px; color: var(--text-secondary); margin: 4px 0 10px; max-width: 760px; }
+.jump { font-size: 14px; margin: 10px 0 0; }
+.calc .presets { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; font-size: 13.5px; color: var(--text-secondary); }
+.calc .presets button { font: inherit; font-size: 13px; padding: 5px 10px; border-radius: 6px; border: 1px solid var(--border, #ccc);
+  background: var(--surface-0); color: var(--text-primary); cursor: pointer; }
+.calc label.lock { grid-column: 1 / -1; flex-direction: row; }
+.calc .out .rate { font-size: 15px; margin-top: 6px; }
+.calc .out .rate .not { color: var(--text-muted); font-size: 12.5px; }
+#peers-rules-tbl th, #peers-rules-tbl td { text-align: left; vertical-align: top; }

@@ -16,7 +16,7 @@
 
 1. **Open the [dashboard](https://nikolaskahris-png.github.io/near-thesis-data/dashboard/).** You see the rating, Hold, and the drain test read live from NEAR mainnet: the NEAR the buybacks hold, against the line that turns the rating to Avoid.
 2. **On the "Buybacks wallets" card, press Check live.** Your browser reads mainnet and compares with the saved answer.
-3. **In "Re-run it", move the sliders.** It starts at today's coverage with the front-end fund, <!--n:n1.coverage_with_front_end-->16.5%<!--/n-->, <!--n:iv.wallets_multiple_with_front_end-->×6.1<!--/n--> from covering issuance. Change fee growth, price or the issuance rule and see how far Buy is.
+3. **In "Re-run it", move the sliders.** It starts at today's coverage with the front-end fund, <!--n:n1.coverage_with_front_end-->16.5%<!--/n-->, <!--n:iv.wallets_multiple_with_front_end-->×6.1<!--/n--> from covering issuance. Or press "Hypothetical: lock + full coverage → Buy" to see what Buy takes.
 4. **Run `python scripts/rebuild.py`.** It ends with `REBUILD: PASS`: every number on this page recomputed offline, no network, no keys, and PREREG.md checked against the hash anchored on mainnet.
 
 ## The short version
@@ -145,7 +145,7 @@ Each file's SHA-256 is anchored in SocialDB on mainnet before it is judged; none
 |---|---|---|---|
 | [PREREG-2](PREREG-2.md) #4 | process check: HSP-027 in effect by 6 Nov | 0.85 | <!--n:pr.4.result-->holds<!--/n-->, Brier <!--n:pr.4.brier-->0.0225<!--/n--> |
 | [PREREG-2](PREREG-2.md) #5 | process check: protocol version 88 by 8 Nov | 0.75 | <!--n:pr.5.result-->holds<!--/n-->, Brier <!--n:pr.5.brier-->0.0625<!--/n--> |
-| [PREREG](PREREG.md) #1–3 | NEAR AI farm; buybacks inflows 1–15 Nov | — | judged 16 Nov |
+| [PREREG](PREREG.md) #1–3 | NEAR AI farm; buybacks inflows 1–15 Nov | — | judged 16 Nov; #2 by the daily Action ([`data/prereg_judged.json`](data/prereg_judged.json)) |
 | [PREREG-3](PREREG-3.md) #6–8 | buybacks keep ≥ half / all of the window's dollars, 9 Nov – 9 Dec; DefiLlama complete | 0.90 / 0.75 / 0.90 | judged 9 and 11 Dec |
 
 #4 and #5 only test the pipeline. PREREG-3 was anchored at block <!--n:pr.anchor3.tx_block-->223,613,293<!--/n-->, before its window opened.

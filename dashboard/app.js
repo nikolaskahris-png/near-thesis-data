@@ -315,6 +315,23 @@ function peersPanel() {
   $("#peers-tbl").appendChild(n);
 }
 
+// The same rules on four other protocols (data/peers_rating.json through numbers.json's sr.* keys)
+function peersRulesPanel() {
+  const rows = [
+    ["Hyperliquid (HYPE)", "hyperliquid", "the assistance fund: a system address, its HYPE burned"],
+    ["Pump.fun (PUMP)", "pump", "a contract we have not reviewed"],
+    ["Aave (AAVE)", "aave", "a reserve that governance can spend"],
+    ["Jupiter (JUP)", "jupiter", "a trust whose burns go to a vote"],
+  ];
+  const cov = p => [1, 2, 3, 4].filter(i => N[`sr.${p}.basis${i}.rating`]).map(i =>
+    `${N[`sr.${p}.basis${i}.new_per_year`].note}: <b>${N[`sr.${p}.basis${i}.coverage`] ? txt(`sr.${p}.basis${i}.coverage`) : "no new tokens"}</b> → ${txt(`sr.${p}.basis${i}.rating`)}`).join("<br>") || "not needed: gate 1 fails";
+  plainTable($("#peers-rules-tbl"), ["Protocol", "Gate 1: lock", "Gate 3: coverage, by basis", "Rating"],
+    rows.map(([label, p, why]) => [label, (txt(`sr.${p}.lock`) === "yes" ? "yes: " : "no: ") + why, cov(p), txt(`sr.${p}.rating`)])
+      .concat([["NEAR (NEAR Intents)", "no: multisigs that " + txt("c.buybacks_confirmations") + " signers can move",
+        "protocol issuance: <b>" + txt("n1.coverage_buybacks") + "</b> → Hold", "Hold"]]),
+    i => i === 4 ? "us" : "");
+}
+
 function tableView(host, head, rows) {
   const d = document.createElement("details");
   d.innerHTML = `<summary>Table</summary><div class="tablewrap"><table><thead><tr>${head.map(h => `<th>${h}</th>`).join("")}</tr></thead>` +
@@ -570,14 +587,21 @@ function calculator() {
   const breakEven = (g, k, f) => feesUsd * g * k / (issued * f);
   const host = $("#calc");
   host.innerHTML = `
+    <div class="presets"><span>Presets:</span><button type="button" id="ps1">Today → Hold</button>
+      <button type="button" id="ps2">HSP-029 in force → Hold</button>
+      <button type="button" id="ps3">Hypothetical: lock + full coverage → Buy</button></div>
     <label>Share of all fees kept by NEAR's wallets <b id="kv"></b><input id="k" type="range" min="0" max="1" step="any"></label>
     <label>Growth of fees (in dollars) <b id="gv"></b><input id="g" type="range" min="0.5" max="10" step="0.1"></label>
     <label>NEAR price <b id="pv"></b><input id="p" type="range" min="0.5" max="15" step="any"></label>
     <label>Issuance <b id="fv"></b><select id="f"><option value="1">today's rate</option><option value="hsp">HSP-029 target (× 16/25)</option></select></label>
-    <div class="out"><div class="big" id="cv"></div><div class="row" id="cx"></div><div class="chk" id="ck"></div></div>
+    <label class="lock"><span><input id="lk" type="checkbox"> All three wallets in a lock the chain shows cannot send NEAR out
+      <b>(hypothetical: there is none today)</b></span></label>
+    <div class="out"><div class="big" id="cv"></div><div class="row" id="cx"></div><div class="rate" id="rv"></div><div class="chk" id="ck"></div></div>
     <button type="button" class="reset" id="reset">Back to today's values</button>`;
-  const k = $("#k"), g = $("#g"), p = $("#p"), f = $("#f");
-  const reset = () => { k.value = k0; g.value = 1; p.value = p0; f.value = "1"; draw(); };
+  const k = $("#k"), g = $("#g"), p = $("#p"), f = $("#f"), lk = $("#lk");
+  const reset = () => { k.value = k0; g.value = 1; p.value = p0; f.value = "1"; lk.checked = false; draw(); };
+  // the smallest fee growth on the slider's 0.1 steps that covers issuance at today's values
+  const gFull = Math.ceil(10 / coverage(1, k0, p0, 1)) / 10;
   const draw = () => {
     const kk = Number(k.value), gg = Number(g.value), pp = Number(p.value), ff = f.value === "hsp" ? HSP029_FACTOR : 1;
     $("#kv").textContent = fmtPct(kk, 1) + (Math.abs(kk - k0) < 0.005 ? ` (today, with the front-end fund: ${txt("iv.wallets_share_of_fees_with_front_end")})` : "");
@@ -588,9 +612,16 @@ function calculator() {
     $("#cv").textContent = "Coverage " + fmtPct(c, 1);
     $("#cx").innerHTML = `<span>${c >= 1 ? "✓ covers issuance" : "needs ×" + (1 / c).toFixed(1) + " more to cover issuance"}</span>` +
       `<span>covers issuance at a NEAR price of $${breakEven(gg, kk, ff).toFixed(2)} or less</span>`;
+    const buy = lk.checked && c >= 1;
+    $("#rv").innerHTML = `Rating under the rules: <b>${buy ? "Buy" : "Hold"}</b> · ` +
+      (buy ? "a lock and full coverage, both hypothetical" : !lk.checked ? "no lock, so Buy is closed whatever the coverage" :
+        "a lock, but coverage below 100%") + ` <span class="not">(the drain and the two 30-day revenue tests, which give Avoid, are not modelled here)</span>`;
   };
-  [k, g, p, f].forEach(x => x.addEventListener("input", draw));
+  [k, g, p, f, lk].forEach(x => x.addEventListener("input", draw));
   $("#reset").addEventListener("click", reset);
+  $("#ps1").addEventListener("click", reset);
+  $("#ps2").addEventListener("click", () => { reset(); f.value = "hsp"; draw(); });
+  $("#ps3").addEventListener("click", () => { reset(); lk.checked = true; g.value = gFull; draw(); });
   reset();
   // Self-check: the formula at today's values reproduces numbers.json.
   const checks = [
@@ -758,6 +789,7 @@ async function main() {
   chartCeiling(cov);
   ladder();
   calculator();
+  peersRulesPanel();
   chartTo2031();
   chartFarm();
   chartTreasury(ts);

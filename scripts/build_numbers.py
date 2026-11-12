@@ -1627,6 +1627,7 @@ SCRIPT_CHECKS = [
     ("demand.py", lambda doc: ["--verify"], "demand.json"),
     ("backtest.py", lambda doc: ["--verify"], "backtest.json"),
     ("judge_prereg2.py", lambda doc: ["--verify"]),
+    ("judge_prereg.py", lambda doc: ["--verify"], "prereg_judged.json"),
     ("hsp027.py", lambda doc: ["--verify"], "hsp027.json"),
     ("control_map.py", lambda doc: ["--verify"]),
     ("control_history.py", lambda doc: ["--verify"]),

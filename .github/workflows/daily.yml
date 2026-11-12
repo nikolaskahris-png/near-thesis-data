@@ -41,6 +41,13 @@ jobs:
           fi
       - name: Offline check of every saved day
         run: python scripts/daily.py --verify
+      - name: PREREG.md prediction 2, judged from the saved days (pending until 16 November)
+        run: |
+          python scripts/judge_prereg.py
+          python scripts/judge_prereg.py --verify
+          echo '```' >> "$GITHUB_STEP_SUMMARY"
+          cat data/prereg_judged.json >> "$GITHUB_STEP_SUMMARY"
+          echo '```' >> "$GITHUB_STEP_SUMMARY"
       - name: Show result on the run page
         run: |
           echo '```' >> "$GITHUB_STEP_SUMMARY"
@@ -77,7 +84,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/daily data/raw data/history.csv
+          git add data/daily data/raw data/history.csv data/prereg_judged.json
           git add data/upgrade_watch data/upgrade_watch.csv 2>/dev/null || true
           git add data/confidential_treasury_daily.json 2>/dev/null || true
           # a failed rating is not committed: the data day is, and the job then fails (step below)
