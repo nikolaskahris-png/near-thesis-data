@@ -961,6 +961,8 @@ each calendar month's level, and from the day-weighted April–October average (
 
 ## The control map: other links
 
+Moved from the README on 12 November, unchanged: **Other links work the same way** (not buybacks links, so the rating ignores them). `treasury.near`, funded by issuance, paid out <!--n:ts.year_out_near-->30,171,200<!--/n--> NEAR in April and May 2026; its first receivers held <!--n:tt.first_receivers_held_near-->302<!--/n--> on 1 November, and another repository traces 20.95M of it to staking pools ([where it went](docs/DETAILS.md#where-the-treasury-payout-went)). The NEAR AI pool keeps <!--n:c.nearai_pool_reward_fee-->100%<!--/n--> of staking rewards, paid as credits, and the account that sets the credit rate raised it <!--n:f6.change1.ratio-->×2.0<!--/n--> with no vote.
+
 The links of the [control map](#the-control-map-who-can-change-each-link) that do not decide value directly.
 
 | Link | Today | Who can change it | Signatures | Used |

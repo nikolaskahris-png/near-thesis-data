@@ -3705,6 +3705,18 @@
       ],
       "note": "HSP-029, issuance x 16/25: 1 / (1 + issuance rate) - 1, share of all NEAR a year; no buyback term, because bought NEAR is held, not burned"
     },
+    "iv.hsp029_cents_per_new_dollar": {
+      "value": "16.91641331447125272751949719678857417287",
+      "text": "17 cents",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "US cents kept by the buybacks per dollar of new NEAR, once validators run HSP-029",
+      "derived_from": [
+        "n1.coverage_buybacks",
+        "n2.max_coverage",
+        "n2.hsp029_max_coverage"
+      ],
+      "note": "n1.coverage_buybacks / issuance ratio of the HSP-029 scenario x 100; buybacks held at today's"
+    },
     "iv.hsp029_fees_multiple": {
       "value": "1.336353492225763558976620495653510266536",
       "text": "×1.3",
@@ -3717,6 +3729,20 @@
       "window": "2026-10-02 00:00 UTC to 2026-11-01 00:00 UTC",
       "blocks": "218126921-222491356",
       "status": "final"
+    },
+    "iv.hsp029_wallets_multiple_buybacks": {
+      "value": "5.911418581529594558234777672155367563829",
+      "text": "×5.9",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "multiple",
+      "derived_from": [
+        "n1.coverage_buybacks",
+        "n2.max_coverage",
+        "n2.hsp029_max_coverage"
+      ],
+      "note": "(1 / n1.coverage_buybacks) x issuance ratio of the HSP-029 scenario (n2.max_coverage / n2.hsp029_max_coverage)",
+      "window": "2026-10-02 00:00 UTC to 2026-11-01 00:00 UTC",
+      "blocks": "218126921-222491356"
     },
     "iv.hsp029_wallets_multiple_with_front_end": {
       "value": "3.886842623676356781008442982885136885532",

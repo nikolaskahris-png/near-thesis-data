@@ -963,6 +963,15 @@ def build(data_dir, window_file):
            ["n1.coverage_with_front_end", "n2.max_coverage", "n2.hsp029_max_coverage"],
            "(1 / n1.coverage_with_front_end) x issuance ratio of the HSP-029 scenario "
            "(n2.max_coverage / n2.hsp029_max_coverage)")
+    derive("iv.hsp029_wallets_multiple_buybacks", (1 / cov_b) * (max_cov / hsp_cov),
+           ["n1.coverage_buybacks", "n2.max_coverage", "n2.hsp029_max_coverage"],
+           "(1 / n1.coverage_buybacks) x issuance ratio of the HSP-029 scenario "
+           "(n2.max_coverage / n2.hsp029_max_coverage)")
+    c = cov_b * (hsp_cov / max_cov) * 100
+    n.add("iv.hsp029_cents_per_new_dollar", c, f"{rnd(c, 0)} cents", n.items["n1.coverage_buybacks"]["source"],
+          unit="US cents kept by the buybacks per dollar of new NEAR, once validators run HSP-029",
+          derived_from=["n1.coverage_buybacks", "n2.max_coverage", "n2.hsp029_max_coverage"],
+          note="n1.coverage_buybacks / issuance ratio of the HSP-029 scenario x 100; buybacks held at today's")
 
     # ---- issuance to 2031 under today's rule and HSP-029 (longrun.py): rules, no forecast
     need = ["c.issuance_max_inflation_rate", "b.epochs", "f8.timelock_end_utc",
@@ -1585,14 +1594,11 @@ REQUIRED_IN_README = [
     "n2.max_coverage",
     "n2.equilibrium_price_usd",
     "c.buybacks_confirmations",
-    "c.nearai_pool_reward_fee",
-    "f6.change1.ratio",
     "iv.issuance_rate_per_year",
     "d.ours_30d_usd",
     "pr.4.brier",
     "pr.5.brier",
     "pr.anchor3.tx_block",
-    "tt.first_receivers_held_near",
     "ct.priced_usd.2026-11-08",
     "ct.stablecoins_usd.2026-11-08",
     "iv.staked_share_growth",
