@@ -1,10 +1,10 @@
 """Claim E, second source: NEAR's own use from NEAR's public BigQuery dataset, and the organizers' question again.
 
 The track's prompt example (nearai/near-hackathon-prompt-examples, tracks/02-thesis.md) asks for BigQuery. Two
-queries (sql/bq_q1_transactions.sql, sql/bq_q2_receipt_actions.sql) were run once in the BigQuery console on
+queries (sql/bq_q1_transactions.sql, sql/bq_q2_receipt_actions.sql, sql/bq_q3_intents_callers.sql) were run once in the BigQuery console on
 12 November 2026; their results are saved in data/bq/ with SHA-256 in data/bq/MANIFEST.json. Nothing here needs
 the network or a Google account: this script only reads the saved files. Anyone with a Google account can re-run
-the two queries (about 300 GB, inside BigQuery's free monthly terabyte) and compare.
+the four queries (about 355 GB, inside BigQuery's free monthly terabyte) and compare.
 
 What is computed (offline):
   agreement  every day of the year (1 November 2025 to 31 October 2026): BigQuery's transactions against
@@ -17,8 +17,14 @@ What is computed (offline):
   callers    who calls intents.near (sql/bq_q3_intents_callers.sql, the 20 biggest callers of 2-31 October and
              everyone else in one row): intents.near itself (its own internal calls), escrow.ai.near (the NEAR AI
              Agent Market's escrow: market.near.ai lists job payments as "secure deposit" to it), token contracts
-             (bridged *.omft.near tokens, wrap.near, nbtc.bridge.near, v2_1.omni.hot.tg, token.sweat), and
-             everyone else. Checked: the rows add up to query 2's calls for the same days.
+             (bridged *.omft.near tokens, native USDC, wrap.near, nbtc.bridge.near, v2_1.omni.hot.tg, token.sweat), and
+             everyone else; also each one's share of the calls from other accounts (the contract's own left
+             out). The shares by kind come from query 4, which classifies every caller; query 3 names
+             only its top 20. Checked: the rows add up to query 2's calls for the same days. Query 2's "accounts calling it"
+             counts the account that sent each call (receipt_predecessor_account_id): often a solver or a token
+             contract, not a user.
+  outcomes   whether those calls succeeded (sql/bq_q4_intents_call_outcomes.sql: each call's receipt joined to
+             intents.near's execution outcome; FAILURE counted as failed). Checked: calls by kind equal query 3's.
   lead       the organizers' hypothesis with the volume measured on chain: weekly log-changes of calls to
              intents.near (and of transactions sent to it) against transactions and signers 0-4 weeks later,
              52 weeks from 3 November 2025, the same functions, shifts and seed as usage.py.
@@ -45,7 +51,8 @@ MANIFEST = "bq/MANIFEST.json"
 NOV = (date(2026, 11, 1), date(2026, 11, 11))
 OCT = (date(2026, 10, 2), date(2026, 10, 31))
 ESCROW = "escrow.ai.near"
-TOKENS = {"wrap.near", "nbtc.bridge.near", "v2_1.omni.hot.tg", "token.sweat"}
+TOKENS = {"wrap.near", "nbtc.bridge.near", "v2_1.omni.hot.tg", "token.sweat",
+          "17208628f84f5d6ad33f0da3bbbeb27ffcb398eac501a31bd6ad2011e36133a1"}   # last: native USDC on NEAR
 
 
 def median(xs):
@@ -76,8 +83,12 @@ def load(data_root):
         rows = list(csv.DictReader(io.StringIO(raw.decode("utf-8"))))
         if len(rows) != meta["rows"]:
             problems.append(f"{rel}: {len(rows)} rows, manifest says {meta['rows']}")
-        key = "block_date" if "block_date" in rows[0] else "rank"
-        out[rel] = {r[key]: r for r in rows}
+        if "block_date" in rows[0]:
+            out[rel] = {r["block_date"]: r for r in rows}
+        elif "rank" in rows[0]:
+            out[rel] = {r["rank"]: r for r in rows}
+        else:
+            out[rel] = {str(i): r for i, r in enumerate(rows)}
     return out, problems, man
 
 
@@ -143,9 +154,42 @@ def compute(data_root):
         by = {}
         for r in q3.values():
             by[kind(r["caller"])] = by.get(kind(r["caller"]), 0) + int(r[col])
+        outside = total - by["intents_itself"]      # calls from other accounts: the contract's own left out
+        nd = len(us.days(a, b))
         callers[per] = {"first": a.isoformat(), "last": b.isoformat(), "calls": total,
                         "share": {k: v / total for k, v in sorted(by.items())},
-                        "near_ai_escrow_calls_a_day": by["near_ai_escrow"] / len(us.days(a, b))}
+                        "outside_calls": outside, "outside_calls_a_day": outside / nd,
+                        "share_of_outside": {k: v / outside for k, v in sorted(by.items()) if k != "intents_itself"},
+                        "near_ai_escrow_calls_a_day": by["near_ai_escrow"] / nd}
+    # did the calls succeed? (sql/bq_q4_intents_call_outcomes.sql: each call's receipt joined to its outcome)
+    outcomes = {}
+    for per, (a, b), col in (("october", OCT, "calls_oct"), ("november", NOV, "calls_nov")):
+        nd = len(us.days(a, b))
+        rows = [r for r in bq["data/bq/q4_intents_call_outcomes.csv"].values() if r["period"] == per]
+        by, failed = {}, {}
+        for r in rows:
+            by[r["kind"]] = by.get(r["kind"], 0) + int(r["calls"])
+            if r["status"] != "SUCCESS_VALUE" and r["status"] != "SUCCESS_RECEIPT_ID":
+                failed[r["kind"]] = failed.get(r["kind"], 0) + int(r["calls"])
+        q3_by = {}
+        for r in q3.values():
+            q3_by[kind(r["caller"])] = q3_by.get(kind(r["caller"]), 0) + int(r[col])
+        # query 3 names only its top 20, so it can be checked only on totals and the two named accounts
+        for k in ("intents_itself", "near_ai_escrow"):
+            if by.get(k) != q3_by.get(k):
+                problems.append(f"q4 {per}: {k} {by.get(k)} calls, q3 says {q3_by.get(k)}")
+        if sum(by.values()) != sum(q3_by.values()):
+            problems.append(f"q4 {per}: {sum(by.values())} calls, q3 says {sum(q3_by.values())}")
+        # shares by kind come from query 4, which classifies every caller (query 3 only its top 20)
+        out = sum(v for k, v in by.items() if k != "intents_itself")
+        callers[per]["share"] = {k: v / sum(by.values()) for k, v in sorted(by.items())}
+        callers[per]["share_of_outside"] = {k: v / out for k, v in sorted(by.items()) if k != "intents_itself"}
+        ok = {k: by[k] - failed.get(k, 0) for k in by if k != "intents_itself"}
+        ok_out = sum(ok.values())
+        outcomes[per] = {"by_kind": {k: {"calls": by[k], "failed": failed.get(k, 0),
+                                         "failed_share": failed.get(k, 0) / by[k]} for k in sorted(by)},
+                         "ok_outside_calls": ok_out, "ok_outside_a_day": ok_out / nd,
+                         "ok_share_of_outside": {k: v / ok_out for k, v in sorted(ok.items())}}
     other = [r for r in q3.values() if r["caller"].startswith("(")][0]
     callers["accounts_outside_top_20"] = int(other["accounts"])
     callers["accounts_total"] = int(other["accounts"]) + len(q3) - 1
@@ -167,7 +211,8 @@ def compute(data_root):
             "year": [us.YEAR[0].isoformat(), us.YEAR[1].isoformat()], "november": [NOV[0].isoformat(), NOV[1].isoformat()],
             "weeks": [us.WEEK0.isoformat(), us.WEEKS],
             "method": f"weekly log-changes, lags {list(us.LAGS)} weeks, {us.SHIFTS} circular shifts (min {us.MIN_SHIFT}), seed {us.SEED}",
-            "agreement_with_nearblocks": agreement, "usage": usage, "intents_callers": callers, "lead": lead}, []
+            "agreement_with_nearblocks": agreement, "usage": usage, "intents_callers": callers,
+            "intents_call_outcomes": outcomes, "lead": lead}, []
 
 
 def main():

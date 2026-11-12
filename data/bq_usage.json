@@ -1,7 +1,7 @@
 {
  "measure": "Claim E, second source: NEAR's own use from NEAR's public BigQuery dataset, and the organizers' question again.",
  "dataset": "bigquery-public-data.crypto_near_mainnet_us (NEAR's public BigQuery dataset, NEAR Public Lakehouse silver tables)",
- "run_utc": "2026-11-12, between 22:00 and 22:15 UTC",
+ "run_utc": "2026-11-12, between 22:00 and 22:15 UTC (queries 1-3) and about 22:45 UTC (query 4)",
  "year": [
   "2025-11-01",
   "2026-10-31"
@@ -99,10 +99,17 @@
    "last": "2026-10-31",
    "calls": 3515141,
    "share": {
-    "everyone_else": 0.062984,
+    "everyone_else": 0.028671,
     "intents_itself": 0.632753,
     "near_ai_escrow": 0.141333,
-    "token_contracts": 0.16293
+    "token_contracts": 0.197243
+   },
+   "outside_calls": 1290926,
+   "outside_calls_a_day": 43030.866667,
+   "share_of_outside": {
+    "everyone_else": 0.07807,
+    "near_ai_escrow": 0.384845,
+    "token_contracts": 0.537085
    },
    "near_ai_escrow_calls_a_day": 16560.233333
   },
@@ -111,15 +118,86 @@
    "last": "2026-11-11",
    "calls": 1992103,
    "share": {
-    "everyone_else": 0.044951,
+    "everyone_else": 0.02143,
     "intents_itself": 0.744444,
     "near_ai_escrow": 0.09019,
-    "token_contracts": 0.120414
+    "token_contracts": 0.143936
+   },
+   "outside_calls": 509093,
+   "outside_calls_a_day": 46281.181818,
+   "share_of_outside": {
+    "everyone_else": 0.083855,
+    "near_ai_escrow": 0.352916,
+    "token_contracts": 0.563229
    },
    "near_ai_escrow_calls_a_day": 16333.363636
   },
   "accounts_outside_top_20": 17849,
   "accounts_total": 17869
+ },
+ "intents_call_outcomes": {
+  "october": {
+   "by_kind": {
+    "everyone_else": {
+     "calls": 100782,
+     "failed": 238,
+     "failed_share": 0.002362
+    },
+    "intents_itself": {
+     "calls": 2224215,
+     "failed": 28735,
+     "failed_share": 0.012919
+    },
+    "near_ai_escrow": {
+     "calls": 496807,
+     "failed": 496805,
+     "failed_share": 0.999996
+    },
+    "token_contracts": {
+     "calls": 693337,
+     "failed": 22,
+     "failed_share": 3.2e-05
+    }
+   },
+   "ok_outside_calls": 793861,
+   "ok_outside_a_day": 26462.033333,
+   "ok_share_of_outside": {
+    "everyone_else": 0.126652,
+    "near_ai_escrow": 3e-06,
+    "token_contracts": 0.873346
+   }
+  },
+  "november": {
+   "by_kind": {
+    "everyone_else": {
+     "calls": 42690,
+     "failed": 510,
+     "failed_share": 0.011947
+    },
+    "intents_itself": {
+     "calls": 1483010,
+     "failed": 11648,
+     "failed_share": 0.007854
+    },
+    "near_ai_escrow": {
+     "calls": 179667,
+     "failed": 179667,
+     "failed_share": 1.0
+    },
+    "token_contracts": {
+     "calls": 286736,
+     "failed": 1,
+     "failed_share": 3e-06
+    }
+   },
+   "ok_outside_calls": 328915,
+   "ok_outside_a_day": 29901.363636,
+   "ok_share_of_outside": {
+    "everyone_else": 0.12824,
+    "near_ai_escrow": 0.0,
+    "token_contracts": 0.87176
+   }
+  }
  },
  "lead": {
   "intents_calls_bq->txns": {

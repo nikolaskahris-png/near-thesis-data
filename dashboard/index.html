@@ -109,7 +109,7 @@
     <span class="not">A window with missing DefiLlama days is not judged, and the two newest windows may still be revised.</span></p>
   <div class="ratingbox" id="rating-box"></div>
   <ul class="triggers">
-    <li><b>Buy</b> only when <b>(b)</b> the buybacks sit in a declared lock the chain shows cannot send NEAR out (no keys and no code, or reviewed code and no full-access key) and
+    <li><b>Buy</b> only when <b>(b)</b> a published rule sends the buybacks to a declared lock the chain shows cannot send NEAR out (no keys and no code, or reviewed code and no full-access key) and
       <code>treasury.near</code> sent nothing in the window, and either the NEAR they keep, counted up to DefiLlama's revenue and fees,
       covers all new NEAR, or <b>(a)</b> it grows <span data-n="lr.required_growth.buybacks.A.2031">+75%</span> a year, in dollars and in NEAR.</li>
     <li><b>Avoid</b> when this thirty-day window and the one ending thirty days before it each fail a test: the wallets keep
@@ -146,19 +146,19 @@
     in the month before swaps began to settle privately, <span data-n="u.visible.after_private">28%</span> in the thirteen days after,
     <span data-n="u.visible.week_85">12%</span> in the first week of November, as swaps moved to the private path.</p>
   <h3>Who calls NEAR Intents' contract (BigQuery, October)</h3>
+  <p class="src">The contract's calls to itself, <span data-n="bq.callers.october.intents_itself">63%</span> of all, are left out.</p>
   <div class="tablewrap" id="callers-tbl"><table>
-    <thead><tr><th>Caller of <code>intents.near</code></th><th>Share of <span data-n="bq.callers.october.calls">3,515,141</span> calls</th></tr></thead>
+    <thead><tr><th>Caller of <code>intents.near</code></th><th>Share of <span data-n="bq.callers.october.outside_calls">1,290,926</span> calls from other accounts</th><th>Failed</th></tr></thead>
     <tbody>
-      <tr><td>The contract itself (internal calls)</td><td><span data-n="bq.callers.october.intents_itself">63%</span></td></tr>
-      <tr><td>Bridged-token contracts (<code>*.omft.near</code>, <code>wrap.near</code> and three others)</td><td><span data-n="bq.callers.october.token_contracts">16%</span></td></tr>
-      <tr class="us"><td><code>escrow.ai.near</code>, the NEAR AI Agent Market's escrow: one account, about <span data-n="bq.callers.october.escrow_a_day">16,560</span> calls a day</td><td><span data-n="bq.callers.october.near_ai_escrow">14%</span></td></tr>
-      <tr><td>Everyone else</td><td><span data-n="bq.callers.october.everyone_else">6%</span></td></tr>
+      <tr><td>Token contracts (bridged <code>*.omft.near</code> tokens, native USDC, <code>wrap.near</code> and others)</td><td><span data-n="bq.callers.october.of_outside.token_contracts">54%</span></td><td><span data-n="bq.outcomes.october.token_contracts.failed_share">0.003%</span></td></tr>
+      <tr class="us"><td><code>escrow.ai.near</code>, the NEAR AI Agent Market's escrow</td><td><span data-n="bq.callers.october.of_outside.near_ai_escrow">38%</span></td><td><span data-n="bq.outcomes.october.near_ai_escrow.failed">496,805</span> of <span data-n="bq.outcomes.october.near_ai_escrow.calls">496,807</span></td></tr>
+      <tr><td>Everyone else</td><td><span data-n="bq.callers.october.of_outside.everyone_else">8%</span></td><td><span data-n="bq.outcomes.october.everyone_else.failed_share">0.236%</span></td></tr>
     </tbody></table></div>
-  <p class="src">Accounts calling it on a median day: <span data-n="bq.intents_callers.first_30d_median">1,272</span> a year earlier,
-    <span data-n="bq.intents_callers.last_30d_median">608</span> in October, <span data-n="bq.intents_callers.nov_1_11_median">511</span>
-    in the first days of November, while its calls rose to <span data-n="bq.intents_calls.nov_1_11_median">177,004</span> a day. With this on-chain activity
-    in place of DefiLlama's volume, still no lead (smallest p <span data-n="bq.lead.min_p">0.17</span>). <span class="not">Calls, not dollars.</span>
-    Queries: <code>sql/</code>.</p>
+  <p class="src">The largest caller, the NEAR AI Agent Market's escrow, fails almost every call, about <span data-n="bq.callers.october.escrow_a_day">16,560</span>
+    a day: a call failing over and over, not AI agents using NEAR Intents. Successful calls from other accounts:
+    <span data-n="bq.outcomes.october.ok_outside_a_day">26,462</span> a day in October, <span data-n="bq.outcomes.october.ok_of_outside.token_contracts">87%</span>
+    of them from token contracts. With this on-chain activity in place of DefiLlama's volume, still no lead
+    (smallest p <span data-n="bq.lead.min_p">0.17</span>). <span class="not">Calls, not dollars.</span> Queries: <code>sql/</code>.</p>
 </section>
 
 <section id="p0p">

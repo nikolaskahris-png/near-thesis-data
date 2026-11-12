@@ -343,7 +343,7 @@ In dollars both fell about a fifth (<!--n:ps.change.kept_usd_per_day-->-19%<!--/
 | Rating | When | Read from |
 |---|---|---|
 | **Avoid** (overrides Buy) | **Either** the bought NEAR at a window's end (the two buybacks wallets, their wNEAR in Intents, any declared lock) is more than 10% below its highest since 1 November. Avoid starts at once and stays until it is back within 10%.<br>**Or** this window and the one ending 30 days earlier each fail one of two tests: (1) the three revenue wallets keep less than 75% of DefiLlama's revenue; (2) the buybacks keep April's <!--n:f2.buybacks_kept_usd_per_day.2026-04-->$6,270<!--/n--> a day or less. | the chain; DefiLlama for test 1 |
-| **Buy** | **All three:**<br>1. The buybacks sit in a declared lock that the chain shows cannot send NEAR out. That is an account with no contract and no access keys, or a contract whose code hash we reviewed and listed (`AUDITED_CODE`, none yet) with no full-access key.<br>2. `treasury.near` sent nothing in the window.<br>3. The buybacks cover issuance, or at the yearly check on 1 November they have grown <!--n:lr.required_growth.buybacks.A.2031-->+75%<!--/n--> a year, in dollars and in NEAR. | the chain; DefiLlama caps what counts |
+| **Buy** | **All three:**<br>1. The buybacks go to a lock, declared in `daily.LOCKS` once a published rule sends them there, that the chain shows cannot send NEAR out (the code checks the lock, not how much NEAR is in it). That is an account with no contract and no access keys, or a contract whose code hash we reviewed and listed (`AUDITED_CODE`, none yet) with no full-access key.<br>2. `treasury.near` sent nothing in the window.<br>3. The buybacks cover issuance, or at the yearly check on 1 November they have grown <!--n:lr.required_growth.buybacks.A.2031-->+75%<!--/n--> a year, in dollars and in NEAR. | the chain; DefiLlama caps what counts |
 | **Hold** | Everything else, including any window that cannot be judged. | |
 
 Notes on the rules:
@@ -866,8 +866,8 @@ Three cases are few, and those that changed are the ones the press reports. We t
   not in the fees.
 - **Network activity, from blocks.** Daily active accounts and transactions are taken from NearBlocks' daily
   statistics (claim E, `scripts/usage.py`). Daily transactions and relayed actions are cross-checked against NEAR's
-  public BigQuery dataset (`scripts/bq_usage.py`, three saved queries in `sql/`); they agree on every day, but both
-  read NEAR's own block data. Calls to `intents.near` are counted from BigQuery; their dollar value is not.
+  public BigQuery dataset (`scripts/bq_usage.py`, four saved queries in `sql/`): transactions agree on every day, relayed actions on 304 of 365 (never more than 0.004% apart); both
+  read NEAR's own block data. Calls to `intents.near` are counted from BigQuery, with whether each succeeded; their dollar value is not.
 - **Credits in dollars, and their use.** Units convert to credits by an off-chain NEAR AI Cloud setting, read
   only with a signed-in session; whether credits are used is not visible.
 - **Who holds the largest farm position**, and where its NEAR came from.

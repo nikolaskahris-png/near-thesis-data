@@ -1614,6 +1614,29 @@ def build(data_dir, window_file):
             n.add(f"bq.callers.{per}.escrow_a_day", v, f_int(v), bsrc, unit="calls a day",
                   note="calls to intents.near from escrow.ai.near (the NEAR AI Agent Market's escrow)")
             n.add(f"bq.callers.{per}.calls", bc[per]["calls"], f_int(bc[per]["calls"]), bsrc, unit="calls")
+            n.add(f"bq.callers.{per}.outside_calls", bc[per]["outside_calls"], f_int(bc[per]["outside_calls"]), bsrc,
+                  unit="calls", note="calls to intents.near from other accounts (its own internal calls left out)")
+            v = dec(bc[per]["outside_calls_a_day"])
+            n.add(f"bq.callers.{per}.outside_a_day", v, f_int(v), bsrc, unit="calls a day",
+                  note="calls to intents.near from other accounts, a day")
+            for k, v in bc[per]["share_of_outside"].items():
+                v = dec(v)
+                n.add(f"bq.callers.{per}.of_outside.{k}", v, f_pct(v, 0), bsrc, unit="share",
+                      note=f"share of the calls from other accounts, {bc[per]['first']} to {bc[per]['last']}")
+        bo = bd["intents_call_outcomes"]
+        for per in ("october", "november"):
+            for k, v in bo[per]["by_kind"].items():
+                n.add(f"bq.outcomes.{per}.{k}.calls", v["calls"], f_int(v["calls"]), bsrc, unit="calls")
+                n.add(f"bq.outcomes.{per}.{k}.failed", v["failed"], f_int(v["failed"]), bsrc, unit="calls",
+                      note="calls to intents.near whose execution outcome is FAILURE (query 4)")
+                fs = dec(v["failed_share"])
+                n.add(f"bq.outcomes.{per}.{k}.failed_share", fs, f_pct(fs, 3), bsrc, unit="share")
+            v = dec(bo[per]["ok_outside_a_day"])
+            n.add(f"bq.outcomes.{per}.ok_outside_a_day", v, f_int(v), bsrc, unit="calls a day",
+                  note="successful calls to intents.near from other accounts (its own calls and failures left out)")
+            for k, v in bo[per]["ok_share_of_outside"].items():
+                v = dec(v)
+                n.add(f"bq.outcomes.{per}.ok_of_outside.{k}", v, f_pct(v, 0), bsrc, unit="share")
         n.add("bq.callers.accounts_total", bc["accounts_total"], f_int(bc["accounts_total"]), bsrc, unit="accounts",
               note="accounts that called intents.near, 2 October to 11 November 2026")
         bl = bd["lead"]

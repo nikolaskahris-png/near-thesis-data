@@ -11,7 +11,7 @@
   "provisional_or_pending": [],
   "sources": {
     "data/backtest.json": "917fa7700606458e850bb7346700257564f9fc591e1555b907a11ee2848a6495",
-    "data/bq_usage.json": "d987cb5d255ca4a4739d5b5395bab89b3e7b12385b1ba27cbe6aa62444725ee8",
+    "data/bq_usage.json": "5b8ea775851155a14230001dbfd4dec834f1157c93c8a01b421e67a5e7708d67",
     "data/burn.json": "d301a278701801757b4c9582f61b4f9546327f0dd1dfaed0a3a143b0c407f0fd",
     "data/confidential_treasury.json": "e1f49bf6f70a7a9e808c58bbcfef4dea187278480ba7603fd41459a55887a6e1",
     "data/control_history.json": "7cab767c832b77a597a18d90dc1d0b5b2113e76b050624456522585a9fcc9190",
@@ -179,8 +179,8 @@
       "note": "calls to intents.near from escrow.ai.near (the NEAR AI Agent Market's escrow)"
     },
     "bq.callers.november.everyone_else": {
-      "value": "0.044951",
-      "text": "4%",
+      "value": "0.02143",
+      "text": "2%",
       "source": "data/bq_usage.json",
       "unit": "share",
       "note": "share of calls to intents.near, 2026-11-01 to 2026-11-11"
@@ -199,9 +199,44 @@
       "unit": "share",
       "note": "share of calls to intents.near, 2026-11-01 to 2026-11-11"
     },
+    "bq.callers.november.of_outside.everyone_else": {
+      "value": "0.083855",
+      "text": "8%",
+      "source": "data/bq_usage.json",
+      "unit": "share",
+      "note": "share of the calls from other accounts, 2026-11-01 to 2026-11-11"
+    },
+    "bq.callers.november.of_outside.near_ai_escrow": {
+      "value": "0.352916",
+      "text": "35%",
+      "source": "data/bq_usage.json",
+      "unit": "share",
+      "note": "share of the calls from other accounts, 2026-11-01 to 2026-11-11"
+    },
+    "bq.callers.november.of_outside.token_contracts": {
+      "value": "0.563229",
+      "text": "56%",
+      "source": "data/bq_usage.json",
+      "unit": "share",
+      "note": "share of the calls from other accounts, 2026-11-01 to 2026-11-11"
+    },
+    "bq.callers.november.outside_a_day": {
+      "value": "46281.181818",
+      "text": "46,281",
+      "source": "data/bq_usage.json",
+      "unit": "calls a day",
+      "note": "calls to intents.near from other accounts, a day"
+    },
+    "bq.callers.november.outside_calls": {
+      "value": "509093",
+      "text": "509,093",
+      "source": "data/bq_usage.json",
+      "unit": "calls",
+      "note": "calls to intents.near from other accounts (its own internal calls left out)"
+    },
     "bq.callers.november.token_contracts": {
-      "value": "0.120414",
-      "text": "12%",
+      "value": "0.143936",
+      "text": "14%",
       "source": "data/bq_usage.json",
       "unit": "share",
       "note": "share of calls to intents.near, 2026-11-01 to 2026-11-11"
@@ -220,8 +255,8 @@
       "note": "calls to intents.near from escrow.ai.near (the NEAR AI Agent Market's escrow)"
     },
     "bq.callers.october.everyone_else": {
-      "value": "0.062984",
-      "text": "6%",
+      "value": "0.028671",
+      "text": "3%",
       "source": "data/bq_usage.json",
       "unit": "share",
       "note": "share of calls to intents.near, 2026-10-02 to 2026-10-31"
@@ -240,9 +275,44 @@
       "unit": "share",
       "note": "share of calls to intents.near, 2026-10-02 to 2026-10-31"
     },
+    "bq.callers.october.of_outside.everyone_else": {
+      "value": "0.07807",
+      "text": "8%",
+      "source": "data/bq_usage.json",
+      "unit": "share",
+      "note": "share of the calls from other accounts, 2026-10-02 to 2026-10-31"
+    },
+    "bq.callers.october.of_outside.near_ai_escrow": {
+      "value": "0.384845",
+      "text": "38%",
+      "source": "data/bq_usage.json",
+      "unit": "share",
+      "note": "share of the calls from other accounts, 2026-10-02 to 2026-10-31"
+    },
+    "bq.callers.october.of_outside.token_contracts": {
+      "value": "0.537085",
+      "text": "54%",
+      "source": "data/bq_usage.json",
+      "unit": "share",
+      "note": "share of the calls from other accounts, 2026-10-02 to 2026-10-31"
+    },
+    "bq.callers.october.outside_a_day": {
+      "value": "43030.866667",
+      "text": "43,031",
+      "source": "data/bq_usage.json",
+      "unit": "calls a day",
+      "note": "calls to intents.near from other accounts, a day"
+    },
+    "bq.callers.october.outside_calls": {
+      "value": "1290926",
+      "text": "1,290,926",
+      "source": "data/bq_usage.json",
+      "unit": "calls",
+      "note": "calls to intents.near from other accounts (its own internal calls left out)"
+    },
     "bq.callers.october.token_contracts": {
-      "value": "0.16293",
-      "text": "16%",
+      "value": "0.197243",
+      "text": "20%",
       "source": "data/bq_usage.json",
       "unit": "share",
       "note": "share of calls to intents.near, 2026-10-02 to 2026-10-31"
@@ -300,6 +370,208 @@
       "text": "0.17",
       "source": "data/bq_usage.json",
       "note": "smallest circular-shift p of the four tests"
+    },
+    "bq.outcomes.november.everyone_else.calls": {
+      "value": "42690",
+      "text": "42,690",
+      "source": "data/bq_usage.json",
+      "unit": "calls"
+    },
+    "bq.outcomes.november.everyone_else.failed": {
+      "value": "510",
+      "text": "510",
+      "source": "data/bq_usage.json",
+      "unit": "calls",
+      "note": "calls to intents.near whose execution outcome is FAILURE (query 4)"
+    },
+    "bq.outcomes.november.everyone_else.failed_share": {
+      "value": "0.011947",
+      "text": "1.195%",
+      "source": "data/bq_usage.json",
+      "unit": "share"
+    },
+    "bq.outcomes.november.intents_itself.calls": {
+      "value": "1483010",
+      "text": "1,483,010",
+      "source": "data/bq_usage.json",
+      "unit": "calls"
+    },
+    "bq.outcomes.november.intents_itself.failed": {
+      "value": "11648",
+      "text": "11,648",
+      "source": "data/bq_usage.json",
+      "unit": "calls",
+      "note": "calls to intents.near whose execution outcome is FAILURE (query 4)"
+    },
+    "bq.outcomes.november.intents_itself.failed_share": {
+      "value": "0.007854",
+      "text": "0.785%",
+      "source": "data/bq_usage.json",
+      "unit": "share"
+    },
+    "bq.outcomes.november.near_ai_escrow.calls": {
+      "value": "179667",
+      "text": "179,667",
+      "source": "data/bq_usage.json",
+      "unit": "calls"
+    },
+    "bq.outcomes.november.near_ai_escrow.failed": {
+      "value": "179667",
+      "text": "179,667",
+      "source": "data/bq_usage.json",
+      "unit": "calls",
+      "note": "calls to intents.near whose execution outcome is FAILURE (query 4)"
+    },
+    "bq.outcomes.november.near_ai_escrow.failed_share": {
+      "value": "1.0",
+      "text": "100.000%",
+      "source": "data/bq_usage.json",
+      "unit": "share"
+    },
+    "bq.outcomes.november.ok_of_outside.everyone_else": {
+      "value": "0.12824",
+      "text": "13%",
+      "source": "data/bq_usage.json",
+      "unit": "share"
+    },
+    "bq.outcomes.november.ok_of_outside.near_ai_escrow": {
+      "value": "0.0",
+      "text": "0%",
+      "source": "data/bq_usage.json",
+      "unit": "share"
+    },
+    "bq.outcomes.november.ok_of_outside.token_contracts": {
+      "value": "0.87176",
+      "text": "87%",
+      "source": "data/bq_usage.json",
+      "unit": "share"
+    },
+    "bq.outcomes.november.ok_outside_a_day": {
+      "value": "29901.363636",
+      "text": "29,901",
+      "source": "data/bq_usage.json",
+      "unit": "calls a day",
+      "note": "successful calls to intents.near from other accounts (its own calls and failures left out)"
+    },
+    "bq.outcomes.november.token_contracts.calls": {
+      "value": "286736",
+      "text": "286,736",
+      "source": "data/bq_usage.json",
+      "unit": "calls"
+    },
+    "bq.outcomes.november.token_contracts.failed": {
+      "value": "1",
+      "text": "1",
+      "source": "data/bq_usage.json",
+      "unit": "calls",
+      "note": "calls to intents.near whose execution outcome is FAILURE (query 4)"
+    },
+    "bq.outcomes.november.token_contracts.failed_share": {
+      "value": "0.000003",
+      "text": "0.000%",
+      "source": "data/bq_usage.json",
+      "unit": "share"
+    },
+    "bq.outcomes.october.everyone_else.calls": {
+      "value": "100782",
+      "text": "100,782",
+      "source": "data/bq_usage.json",
+      "unit": "calls"
+    },
+    "bq.outcomes.october.everyone_else.failed": {
+      "value": "238",
+      "text": "238",
+      "source": "data/bq_usage.json",
+      "unit": "calls",
+      "note": "calls to intents.near whose execution outcome is FAILURE (query 4)"
+    },
+    "bq.outcomes.october.everyone_else.failed_share": {
+      "value": "0.002362",
+      "text": "0.236%",
+      "source": "data/bq_usage.json",
+      "unit": "share"
+    },
+    "bq.outcomes.october.intents_itself.calls": {
+      "value": "2224215",
+      "text": "2,224,215",
+      "source": "data/bq_usage.json",
+      "unit": "calls"
+    },
+    "bq.outcomes.october.intents_itself.failed": {
+      "value": "28735",
+      "text": "28,735",
+      "source": "data/bq_usage.json",
+      "unit": "calls",
+      "note": "calls to intents.near whose execution outcome is FAILURE (query 4)"
+    },
+    "bq.outcomes.october.intents_itself.failed_share": {
+      "value": "0.012919",
+      "text": "1.292%",
+      "source": "data/bq_usage.json",
+      "unit": "share"
+    },
+    "bq.outcomes.october.near_ai_escrow.calls": {
+      "value": "496807",
+      "text": "496,807",
+      "source": "data/bq_usage.json",
+      "unit": "calls"
+    },
+    "bq.outcomes.october.near_ai_escrow.failed": {
+      "value": "496805",
+      "text": "496,805",
+      "source": "data/bq_usage.json",
+      "unit": "calls",
+      "note": "calls to intents.near whose execution outcome is FAILURE (query 4)"
+    },
+    "bq.outcomes.october.near_ai_escrow.failed_share": {
+      "value": "0.999996",
+      "text": "100.000%",
+      "source": "data/bq_usage.json",
+      "unit": "share"
+    },
+    "bq.outcomes.october.ok_of_outside.everyone_else": {
+      "value": "0.126652",
+      "text": "13%",
+      "source": "data/bq_usage.json",
+      "unit": "share"
+    },
+    "bq.outcomes.october.ok_of_outside.near_ai_escrow": {
+      "value": "0.000003",
+      "text": "0%",
+      "source": "data/bq_usage.json",
+      "unit": "share"
+    },
+    "bq.outcomes.october.ok_of_outside.token_contracts": {
+      "value": "0.873346",
+      "text": "87%",
+      "source": "data/bq_usage.json",
+      "unit": "share"
+    },
+    "bq.outcomes.october.ok_outside_a_day": {
+      "value": "26462.033333",
+      "text": "26,462",
+      "source": "data/bq_usage.json",
+      "unit": "calls a day",
+      "note": "successful calls to intents.near from other accounts (its own calls and failures left out)"
+    },
+    "bq.outcomes.october.token_contracts.calls": {
+      "value": "693337",
+      "text": "693,337",
+      "source": "data/bq_usage.json",
+      "unit": "calls"
+    },
+    "bq.outcomes.october.token_contracts.failed": {
+      "value": "22",
+      "text": "22",
+      "source": "data/bq_usage.json",
+      "unit": "calls",
+      "note": "calls to intents.near whose execution outcome is FAILURE (query 4)"
+    },
+    "bq.outcomes.october.token_contracts.failed_share": {
+      "value": "0.000032",
+      "text": "0.003%",
+      "source": "data/bq_usage.json",
+      "unit": "share"
     },
     "bq.signers.change": {
       "value": "-0.701861",

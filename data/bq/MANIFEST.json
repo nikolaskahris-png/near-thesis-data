@@ -1,6 +1,6 @@
 {
  "dataset": "bigquery-public-data.crypto_near_mainnet_us (NEAR's public BigQuery dataset, NEAR Public Lakehouse silver tables)",
- "run_utc": "2026-11-12, between 22:00 and 22:15 UTC",
+ "run_utc": "2026-11-12, between 22:00 and 22:15 UTC (queries 1-3) and about 22:45 UTC (query 4)",
  "how": "each query was run once in the BigQuery console (sandbox, no billing); the result's JSON view was turned into CSV in the browser, its SHA-256 taken there, and the file written here and checked against that SHA-256",
  "files": {
   "data/bq/q1_transactions.csv": {
@@ -20,6 +20,13 @@
    "bytes_processed_estimate": "16.65 GB",
    "rows": 21,
    "sha256": "e1e48622abbd5f7518c638f79d3297290a74c60498666a7a90059da39b494659"
+  },
+  "data/bq/q4_intents_call_outcomes.csv": {
+   "query": "sql/bq_q4_intents_call_outcomes.sql",
+   "bytes_processed_estimate": "38.93 GB",
+   "rows": 19,
+   "sha256": "4c7333cf8839baaadaab00af591631ab5eb8e7449c1fc2a59920ed3386df8a66"
   }
- }
+ },
+ "check": "The SHA-256 is taken after the browser step, so it ties these files to this repository, not to BigQuery. To check them against BigQuery, run the four files in sql/ (any Google account; about 355 GB, inside the free monthly terabyte) and compare row by row; the job IDs are private to the project that ran them."
 }

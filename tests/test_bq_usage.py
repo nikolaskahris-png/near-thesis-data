@@ -18,7 +18,7 @@ class BqUsage(unittest.TestCase):
     def test_every_saved_file_matches_its_sha256(self):
         _, problems, man = bq.load(REPO / "data")
         self.assertEqual(problems, [])
-        self.assertEqual(len(man["files"]), 3)
+        self.assertEqual(len(man["files"]), 4)
         for meta in man["files"].values():
             self.assertTrue((REPO / meta["query"]).exists())
 
@@ -38,6 +38,7 @@ class BqUsage(unittest.TestCase):
         self.assertEqual(bq.kind("escrow.ai.near"), "near_ai_escrow")
         self.assertEqual(bq.kind("sol.omft.near"), "token_contracts")
         self.assertEqual(bq.kind("wrap.near"), "token_contracts")
+        self.assertEqual(bq.kind("17208628f84f5d6ad33f0da3bbbeb27ffcb398eac501a31bd6ad2011e36133a1"), "token_contracts")
         self.assertEqual(bq.kind("someone.near"), "everyone_else")
 
     def test_median(self):
