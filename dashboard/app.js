@@ -674,6 +674,46 @@ function liveButtons() {
   });
 }
 
+// ---------------------------------------------------------------- live drain alarm
+// The rating's drain test, read live from a public RPC: the bought NEAR now (as daily.py's buybacks_end: the buybacks
+// wallet, its wNEAR inside intents.near and the old 1Click fee fund; no lock is declared in daily.py's LOCKS) against
+// the highest window end since 1 November in rating.csv. The rule itself judges each day's end, at 00:00 UTC.
+const STOCK_WALLETS = ["buybacks.multisignature.near", "1csfundsadmin.sputnik-dao.near"];
+const YOCTO = 10n ** 24n;
+const nearOf = y => Number(y / (YOCTO / 10n ** 3n)) / 10 ** 3;
+async function rpcAccount(account) {
+  const body = { jsonrpc: "2.0", id: "dashboard", method: "query",
+    params: { request_type: "view_account", finality: "final", account_id: account } };
+  const r = await fetch(RPC, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
+  const j = await r.json();
+  if (!j.result || j.result.amount === undefined) throw new Error("no result");
+  return { yocto: BigInt(j.result.amount), height: j.result.block_height };
+}
+async function drainAlarm(rows, ratingDoc) {
+  const res = $("#drain .res");
+  if (!res) return;
+  const last = rows.filter(r => r.stock_peak_near).pop();
+  const maxDrop = Number(ratingDoc.rules.drain_max);
+  if (!last || !(maxDrop > 0)) { res.textContent = "no peak in rating.csv yet"; return; }
+  const peak = Number(last.stock_peak_near), floor = peak * (1 - maxDrop);
+  try {
+    const [a, b, w] = await Promise.all([rpcAccount(STOCK_WALLETS[0]), rpcAccount(STOCK_WALLETS[1]),
+      rpcView("intents.near", "mt_balance_of", { account_id: STOCK_WALLETS[0], token_id: "nep141:wrap.near" })]);
+    const now = nearOf(a.yocto + b.yocto + BigInt(JSON.parse(w.text)));
+    const change = now / peak - 1;
+    const verdict = now < floor
+      ? `<span class="badge changed">✗ more than a tenth below the peak: Avoid at the next day's end if it stays there</span>`
+      : now > peak ? `<span class="badge same">✓ above the peak</span>`
+      : `<span class="badge same">✓ within a tenth of the peak</span>`;
+    res.innerHTML = `live at block ${fmtInt(a.height)}: <b>${fmtInt(now)} NEAR</b> (${change >= 0 ? "+" : ""}${(change * 100).toFixed(1)}% ` +
+      `against the peak) · highest window end since 1 November: ${fmtInt(peak)} NEAR, rating.csv to ${last.date} · Avoid below ` +
+      `${fmtInt(floor)} NEAR · ${verdict}`;
+  } catch (e) {
+    res.textContent = `could not reach the RPC from this browser; the last window end (${last.date}) holds ${fmtInt(Number(last.stock_near))} NEAR, ` +
+      `peak ${fmtInt(peak)}, Avoid below ${fmtInt(floor)}`;
+  }
+}
+
 // ---------------------------------------------------------------- tooltip
 function tooltips() {
   const t = $("#tip");
@@ -708,7 +748,9 @@ async function main() {
   predictions();
   FARM_PRICE = JSON.parse(bytesToText(fp.result.result)).price_id;
   PREREG = pr;
-  ratingPanel(parseCSV(ratingTxt), ratingDoc);
+  const ratingRows = parseCSV(ratingTxt);
+  ratingPanel(ratingRows, ratingDoc);
+  drainAlarm(ratingRows, ratingDoc);
   peersPanel();
   chartPrivate(psDoc);
   chartCoverage(cov);

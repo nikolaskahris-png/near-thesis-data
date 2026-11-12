@@ -89,9 +89,15 @@ class TestDashboard(unittest.TestCase):
         self.assertEqual(set(re.findall(r"https://[a-z0-9.\-]*rpc[a-z0-9.\-]*", self.js)),
                          {"https://rpc.mainnet.fastnear.com"})
         self.assertEqual(set(re.findall(r'method: "([a-z_]+)"', self.js)) - {"POST"}, {"query"})
-        self.assertEqual(set(re.findall(r'request_type: "([a-z_]+)"', self.js)), {"call_function"})
+        self.assertEqual(set(re.findall(r'request_type: "([a-z_]+)"', self.js)), {"call_function", "view_account"})
         for word in ("broadcast_tx", "send_tx", "signAndSend", "privateKey"):
             self.assertNotIn(word, self.js)
+
+    def test_drain_alarm_reads_the_rule_and_the_stock_accounts(self):
+        # the live drain test uses rating.json's threshold and the accounts daily.py sums as buybacks_end
+        self.assertIn("ratingDoc.rules.drain_max", self.js)
+        self.assertIn('"buybacks.multisignature.near", "1csfundsadmin.sputnik-dao.near"', self.js)
+        self.assertIn('id="drain"', self.html)
 
     def test_files_it_reads_are_in_the_repository(self):
         for rel in re.findall(r'getJSON\("([^"$`]+)"\)', self.js):

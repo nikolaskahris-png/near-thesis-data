@@ -23,7 +23,7 @@
 - **Growth is not what blocks Buy first.** Since April the buybacks grew <!--n:bt.a_pace.near_multiple-->×2.1<!--/n--> in NEAR. A pace of +75% a year needs only <!--n:bt.a_pace.required_multiple-->×1.32<!--/n--> over six months. Most of it came from NEAR's share of fees rising <!--n:lr.history.2026-04_2026-10.take_rate_multiple-->×4.2<!--/n-->, which cannot rise forever. Measured from August or September instead, growth in NEAR falls short of +75% a year. Buy counts growth from 1 November, and it needs a lock first.
 - **What to do.** Staked, your share of all NEAR grows +<!--n:iv.staked_share_growth-->2.44%<!--/n--> a year, before your validator's fee. Unstaked, it changes <!--n:iv.unstaked_share_change-->-2.40%<!--/n-->.
 - **What to watch from Monday, 16 November.**
-  - The bought NEAR, every day. If it falls more than 10% below its peak since 1 November, the rating turns to Avoid at once.
+  - The bought NEAR, every day. If it falls more than 10% below its peak since 1 November, the rating turns to Avoid at once. The [dashboard](https://nikolaskahris-png.github.io/near-thesis-data/dashboard/) reads it live from the chain, in your browser.
   - The House of Stake draft of 8 November. Watch whether it gets a number and goes to a vote.
   - HSP-029, the issuance cut, leaves its timelock at <!--n:f8.timelock_end_utc-->2026-11-16 16:48 UTC<!--/n-->. It cuts issuance only once validators with 4/5 of stake run a release.
   - From 10 December, the two 30-day revenue tests in [the rules](#the-rating-as-rules) can also turn the rating to Avoid.
