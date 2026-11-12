@@ -589,22 +589,26 @@ function calculator() {
   host.innerHTML = `
     <div class="presets"><span>Presets:</span><button type="button" id="ps1">Today → Hold</button>
       <button type="button" id="ps2">HSP-029 in force → Hold</button>
-      <button type="button" id="ps3">Hypothetical: lock + full coverage → Buy</button></div>
+      <button type="button" id="ps3">Hypothetical: buybacks locked, fees ×<span id="gfull"></span> → Buy</button></div>
     <label>Share of all fees kept by NEAR's wallets <b id="kv"></b><input id="k" type="range" min="0" max="1" step="any"></label>
     <label>Growth of fees (in dollars) <b id="gv"></b><input id="g" type="range" min="0.5" max="10" step="0.1"></label>
     <label>NEAR price <b id="pv"></b><input id="p" type="range" min="0.5" max="15" step="any"></label>
     <label>Issuance <b id="fv"></b><select id="f"><option value="1">today's rate</option><option value="hsp">HSP-029 target (× 16/25)</option></select></label>
-    <label class="lock"><span><input id="lk" type="checkbox"> All three wallets in a lock the chain shows cannot send NEAR out
+    <label class="lock"><span><input id="lk" type="checkbox"> The buybacks in a lock the chain shows cannot send NEAR out
       <b>(hypothetical: there is none today)</b></span></label>
     <div class="out"><div class="big" id="cv"></div><div class="row" id="cx"></div><div class="rate" id="rv"></div><div class="chk" id="ck"></div></div>
     <button type="button" class="reset" id="reset">Back to today's values</button>`;
   const k = $("#k"), g = $("#g"), p = $("#p"), f = $("#f"), lk = $("#lk");
   const reset = () => { k.value = k0; g.value = 1; p.value = p0; f.value = "1"; lk.checked = false; draw(); };
-  // the smallest fee growth on the slider's 0.1 steps that covers issuance at today's values
-  const gFull = Math.ceil(10 / coverage(1, k0, p0, 1)) / 10;
+  // the Buy rule counts the buybacks wallets: the smallest fee growth on the slider's 0.1 steps that makes
+  // their share of fees cover issuance at today's values
+  const kB = val("iv.wallets_share_of_fees_buybacks");
+  const gFull = Math.ceil(10 / coverage(1, kB, p0, 1)) / 10;
+  $("#gfull").textContent = gFull.toFixed(1);
   const draw = () => {
     const kk = Number(k.value), gg = Number(g.value), pp = Number(p.value), ff = f.value === "hsp" ? HSP029_FACTOR : 1;
-    $("#kv").textContent = fmtPct(kk, 1) + (Math.abs(kk - k0) < 0.005 ? ` (today, with the front-end fund: ${txt("iv.wallets_share_of_fees_with_front_end")})` : "");
+    $("#kv").textContent = fmtPct(kk, 1) + (Math.abs(kk - k0) < 0.005 ? ` (today, with the front-end fund: ${txt("iv.wallets_share_of_fees_with_front_end")})` :
+      Math.abs(kk - kB) < 0.005 ? ` (today, the buybacks wallets alone: ${txt("iv.wallets_share_of_fees_buybacks")}, what the Buy rule counts)` : "");
     $("#gv").textContent = "×" + gg.toFixed(1);
     $("#pv").textContent = "$" + pp.toFixed(2) + (Math.abs(pp - p0) < 0.005 ? ` (fee-weighted: each day's fees at that day's price; the window's mean price is ${txt("n2.mean_price_usd")})` : "");
     $("#fv").textContent = ff === 1 ? txt("iv.issuance_rate_per_year") + " a year" : "× 16/25";
@@ -621,7 +625,7 @@ function calculator() {
   $("#reset").addEventListener("click", reset);
   $("#ps1").addEventListener("click", reset);
   $("#ps2").addEventListener("click", () => { reset(); f.value = "hsp"; draw(); });
-  $("#ps3").addEventListener("click", () => { reset(); lk.checked = true; g.value = gFull; draw(); });
+  $("#ps3").addEventListener("click", () => { reset(); k.value = kB; lk.checked = true; g.value = gFull; draw(); });
   reset();
   // Self-check: the formula at today's values reproduces numbers.json.
   const checks = [

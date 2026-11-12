@@ -6,7 +6,7 @@
 
 **Rating to 2031: Hold.** Keep your NEAR staked; do not add more.
 
-**What would change it.** Buy needs the buybacks in a lock the chain shows cannot send NEAR out, plus either buybacks that match all new NEAR (<!--n:iv.wallets_multiple_buybacks-->×9.2<!--/n--> today's pace), or growth of <!--n:lr.required_growth.buybacks.A.2031-->+75%<!--/n--> a year from 1 November. Avoid comes at once if the amount of NEAR the buybacks hold falls more than 10% below its highest ([all the rules](#the-rating-as-rules)).
+**What would change it.** Buy needs the buybacks in a lock the chain shows cannot send NEAR out, plus either buybacks that match all new NEAR (<!--n:iv.wallets_multiple_buybacks-->×9.2<!--/n--> today's pace) or buybacks growing <!--n:lr.required_growth.buybacks.A.2031-->+75%<!--/n--> a year, checked each 1 November. Avoid comes at once if the amount of NEAR the buybacks hold falls more than 10% below its highest ([all the rules](#the-rating-as-rules)).
 
 ![For the NEAR issued each day, the buybacks keep about a tenth; all fees would cover under half](docs/coverage.svg)
 
@@ -16,14 +16,14 @@
 
 1. **Open the [dashboard](https://nikolaskahris-png.github.io/near-thesis-data/dashboard/).** You see the rating, Hold, and the drain test read live from NEAR mainnet: the NEAR the buybacks hold, against the line that turns the rating to Avoid.
 2. **On the "Buybacks wallets" card, press Check live.** Your browser reads mainnet and compares with the saved answer.
-3. **In "Re-run it", move the sliders.** It starts at today's coverage with the front-end fund, <!--n:n1.coverage_with_front_end-->16.5%<!--/n-->, <!--n:iv.wallets_multiple_with_front_end-->×6.1<!--/n--> from covering issuance. Or press "Hypothetical: lock + full coverage → Buy" to see what Buy takes.
+3. **In "Re-run it", move the sliders.** It starts at <!--n:n1.coverage_with_front_end-->16.5%<!--/n--> (all three wallets); the Buy rule counts the buybacks' <!--n:n1.coverage_buybacks-->10.8%<!--/n-->. Press "Hypothetical: buybacks locked, fees ×9.3 → Buy" to see what Buy takes.
 4. **Run `python scripts/rebuild.py`.** It ends with `REBUILD: PASS`: every number on this page recomputed offline, no network, no keys, and PREREG.md checked against the hash anchored on mainnet.
 
 ## The short version
 
 **In plain words.** NEAR Intents swaps tokens across blockchains for a fee. Part of the fees buys NEAR and holds it: the buybacks. Meanwhile NEAR issues new tokens daily, diluting anyone who does not stake. Cases for NEAR cite NEAR Intents' trading; we measure on mainnet how much of the dilution the buybacks offset, and whether anything guarantees it.
 
-- **Real demand, a small part for holders.** Users paid <!--n:n2.fees_usd_per_day-->$206,049<!--/n--> a day in fees (DefiLlama). The buybacks keep <!--n:iv.buybacks_kept_usd_per_year-->$17.1M<!--/n--> a year, against <!--n:iv.issuance_usd_per_year-->$157.5M<!--/n--> of new NEAR: <!--n:n1.coverage_buybacks-->10.8%<!--/n--> (95% interval <!--n:ci.coverage_buybacks.low-->9.5%<!--/n-->–<!--n:ci.coverage_buybacks.high-->12.4%<!--/n-->). With the front-end fund, the third revenue wallet, <!--n:n1.coverage_with_front_end-->16.5%<!--/n-->.
+- **Real demand, a small part for holders.** Users paid <!--n:n2.fees_usd_per_day-->$206,049<!--/n--> a day in fees (DefiLlama). The buybacks keep <!--n:iv.buybacks_kept_usd_per_year-->$17.1M<!--/n--> a year, against <!--n:iv.issuance_usd_per_year-->$157.5M<!--/n--> of new NEAR: <!--n:n1.coverage_buybacks-->10.8%<!--/n--> (95% interval <!--n:ci.coverage_buybacks.low-->9.5%<!--/n-->–<!--n:ci.coverage_buybacks.high-->12.4%<!--/n-->). Counting the front-end fund too: <!--n:n1.coverage_with_front_end-->16.5%<!--/n-->.
 - **People decide.** Issuance changes only through a release run by validators with <!--n:c.issuance_upgrade_stake_threshold-->4/5<!--/n--> of stake. The buybacks are a choice that <!--n:c.buybacks_confirmations-->2 of 4<!--/n--> signers can undo.
 - **It did not stop when swaps went private.** After 27 October the NEAR the three revenue wallets kept a day changed <!--n:ps.change.kept_near_per_day-->-3%<!--/n-->. Thirteen days cannot tell that from no change (<!--n:ci.shift.kept_near.low-->-28%<!--/n--> to <!--n:ci.shift.kept_near.high-->+28%<!--/n-->), but a stop would show as about -100% ([claim D](#d-it-did-not-stop-when-the-flow-went-private)).
 - **Why not add.** Holders' revenue is <!--n:peer.near.holders_yield_on_mcap-->0.40%<!--/n--> of NEAR's value a year (DefiLlama). Hyperliquid's is <!--n:peer.hyperliquid.holders_yield_on_mcap-->4.09%<!--/n--> of its circulating value and <!--n:peer.hyperliquid.holders_yield_on_fdv-->1.03%<!--/n--> fully diluted ([peers](docs/DETAILS.md#peers-on-one-basis)), and what it buys goes to an address with no private key ([The Block](https://www.theblock.co/news/defi/2025-12-17-hyper-foundation-proposes-removing-1-billion-hype-tokens-from-circulating-supply-by-zeroing-out-hyperliquids-assistance-fund-383091)). A House of Stake draft of 8 November would put fees in US Treasury bills first, buybacks only after venture exits ([saved copy](data/raw/sources/hos_draft_2026_11_08.md), [gov.near.org](https://gov.near.org/t/hsp-xxx-sovereign-yield-engine-treasury-backed-venture-protocol-buyback-model-for-near-intents/42760)).
@@ -52,7 +52,7 @@ NEAR Intents moved <!--n:d.ours_30d_usd-->$4.02B<!--/n--> in the 30 days to <!--
 
 Each day the buybacks wallets keep <!--n:n1.buybacks_near_per_day-->9,570<!--/n--> NEAR, against <!--n:n1.new_near_per_day-->88,392<!--/n--> new NEAR issued: coverage <!--n:n1.coverage_buybacks-->10.8%<!--/n-->. Resampled by week, it lies between <!--n:ci.coverage_buybacks.low-->9.5%<!--/n--> and <!--n:ci.coverage_buybacks.high-->12.4%<!--/n--> (95%); by month since April, <!--n:f1.coverage_buybacks.2026-04-->5.3%<!--/n--> to <!--n:f1.coverage_buybacks.2026-09-->15.3%<!--/n-->. If NEAR kept every fee, coverage would be <!--n:n2.max_coverage-->47.9%<!--/n-->; fees alone would cover issuance only at a NEAR price of <!--n:n2.equilibrium_price_usd-->$2.33<!--/n--> or less. New NEAR adds <!--n:iv.issuance_rate_per_year-->2.46%<!--/n--> to supply a year.
 
-**Against.** Coverage is in NEAR and revenue in dollars, so coverage falls when the price rises; in dollars the buybacks kept <!--n:lr.history.2026-04_2026-10.buybacks_kept_usd_multiple-->×7.5<!--/n--> as much a day in October as in April.
+**Against.** Coverage is in NEAR and revenue in dollars, so coverage falls when the price rises; in dollars the buybacks kept <!--n:lr.history.2026-04_2026-10.buybacks_kept_usd_multiple-->×7.5<!--/n--> as much a day in October as in April. And most new NEAR goes to stakers, so a staked holder loses only the validator's commission and the treasury's share; coverage measures what the buybacks give back to all holders together.
 
 **Check.** `python scripts/daily.py --verify`; `python scripts/coverage.py --verify`; `python scripts/intervals.py --verify`. Each ends with `OK`.
 
@@ -91,7 +91,7 @@ How your share of all NEAR changes; only staking moves it. HSP-029 assumed in fo
 
 In dollars: that share times the value of all NEAR. No price target; three stated paths: [paths to 2031](docs/DETAILS.md#v4-what-a-holder-earns-to-2031).
 
-**What the price implies.** NEAR is valued at <!--n:peer.near.mcap_to_revenue-->248×<!--/n--> the revenue DefiLlama counts for NEAR Intents, all of which funds the buybacks; Hyperliquid, Jupiter and Aave at <!--n:peer.jupiter.mcap_to_revenue-->24×<!--/n-->–<!--n:peer.aave.mcap_to_revenue-->39×<!--/n--> theirs. At their multiples, that revenue carries <!--n:iv.fee_supported_share.low-->10%<!--/n-->–<!--n:iv.fee_supported_share.high-->16%<!--/n--> of NEAR's value; carrying all of it needs <!--n:iv.breakeven_multiple.low-->×6.3<!--/n-->–<!--n:iv.breakeven_multiple.high-->×10.4<!--/n--> the revenue (<!--n:iv.breakeven_multiple.fdv.low-->×2.6<!--/n-->–<!--n:iv.breakeven_multiple.fdv.high-->×6.1<!--/n--> on fully diluted values). The rest of the price is for NEAR as a chain, not for this revenue.
+**What the price implies.** NEAR is valued at <!--n:peer.near.mcap_to_revenue-->248×<!--/n--> the revenue DefiLlama counts for NEAR Intents, which flows to the three revenue wallets (<!--n:peer.near_all.mcap_to_revenue-->234×<!--/n--> adding L1 gas); Hyperliquid, Jupiter and Aave at <!--n:peer.jupiter.mcap_to_revenue-->24×<!--/n-->–<!--n:peer.aave.mcap_to_revenue-->39×<!--/n--> theirs. At their multiples, that revenue carries <!--n:iv.fee_supported_share.low-->10%<!--/n-->–<!--n:iv.fee_supported_share.high-->16%<!--/n--> of NEAR's value; carrying all of it needs <!--n:iv.breakeven_multiple.low-->×6.3<!--/n-->–<!--n:iv.breakeven_multiple.high-->×10.4<!--/n--> the revenue (<!--n:iv.breakeven_multiple.fdv.low-->×2.6<!--/n-->–<!--n:iv.breakeven_multiple.fdv.high-->×6.1<!--/n--> on fully diluted values). The rest of the price is for NEAR as a chain, not for this revenue.
 
 ## The rating as rules
 
@@ -99,20 +99,20 @@ In dollars: that share times the value of all NEAR. No price target; three state
 
 | Rating | When | Read from |
 |---|---|---|
-| **Avoid** (overrides Buy) | **Either** the bought NEAR is more than 10% below its highest since 1 November (at once, until back within 10%).<br>**Or** this window and the one 30 days earlier each fail a test: (1) the three wallets keep under 75% of DefiLlama's revenue; (2) the buybacks keep April's <!--n:f2.buybacks_kept_usd_per_day.2026-04-->$6,270<!--/n--> a day or less. | the chain; DefiLlama for test 1 |
-| **Buy** | **All three:**<br>1. The buybacks sit in a lock the chain shows cannot send NEAR out: no contract and no keys, or a reviewed code hash (`AUDITED_CODE`, none yet) with no full-access key.<br>2. `treasury.near` sent nothing in the window.<br>3. The buybacks cover issuance, or at the yearly check on 1 November have grown <!--n:lr.required_growth.buybacks.A.2031-->+75%<!--/n--> a year, in dollars and in NEAR. | the chain; DefiLlama caps what counts |
+| **Avoid** (overrides Buy) | **Either** the bought NEAR is more than 10% below its highest since 1 November (at once, until back within 10%).<br>**Or** this window and the one 30 days earlier each fail a test: (1) the three wallets keep under 75% of DefiLlama's revenue; (2) the buybacks keep April's <!--n:f2.buybacks_kept_usd_per_day.2026-04-->$6,270<!--/n--> a day or less, unless DefiLlama's fees fell while the private path's stablecoins grew. | the chain; DefiLlama for test 1 |
+| **Buy** | **All three:**<br>1. The buybacks sit in a lock the chain shows cannot send NEAR out: no contract and no keys, or a reviewed code hash (`AUDITED_CODE`, none yet) with no full-access key.<br>2. `treasury.near` sent nothing in the window.<br>3. The buybacks cover issuance, or at the yearly check on 1 November have grown <!--n:lr.required_growth.buybacks.A.2031-->+75%<!--/n--> a year, in dollars and in NEAR (a pass then holds until the next check). | the chain; DefiLlama caps what counts |
 | **Hold** | Everything else, unjudgeable windows included. | |
 
-- **Why Hold today.** Buy needs a lock that does not exist. Across <!--n:sens.combinations-->54<!--/n--> threshold settings, <!--n:sens.hold-->378<!--/n--> of <!--n:sens.month_ratings-->378<!--/n--> monthly ratings from April to October are Hold. So the rules are an alarm, not the reason for Hold: the reasons are in [Why not add](#the-short-version).
+- **Why Hold today.** Buy needs a lock that does not exist. Across <!--n:sens.combinations-->54<!--/n--> threshold settings, <!--n:sens.hold-->378<!--/n--> of <!--n:sens.month_ratings-->378<!--/n--> monthly ratings from April to October are Hold. So for now the rules can only move it to Avoid; why not to add is in [Why not add](#the-short-version).
 - **A crash alone can trigger Avoid.** At this window's NEAR kept a day, test 2 fails at a price of <!--n:iv.avoid_test2_price_usd-->$0.655<!--/n--> or less.
 
 Every note and the backtest: [the rating in full](docs/DETAILS.md#the-rating-in-full).
 
-**The same rules on four other protocols.** `scripts/peers_rating.py` runs the same gates on them, from their docs and DefiLlama, not their chains (no drain test, no growth leg):
+**The same rules on four other protocols.** `scripts/peers_rating.py` runs the same gates on them, from their docs and DefiLlama, not their chains (no drain test, no growth leg). Bought = DefiLlama's holders' revenue ÷ price; on that basis NEAR's coverage is <!--n:n2.defillama_revenue_coverage-->16.5%<!--/n-->:
 
 | | Lock | Coverage, new tokens the protocol issues | Rating |
 |---|---|---|---|
-| Hyperliquid | <!--n:sr.hyperliquid.lock-->yes<!--/n--> | <!--n:sr.hyperliquid.basis1.coverage-->103%<!--/n--> at the docs' stake, <!--n:sr.hyperliquid.basis2.coverage-->98%<!--/n--> at today's | Buy / Hold, on the line |
+| Hyperliquid | <!--n:sr.hyperliquid.lock-->yes<!--/n--> | <!--n:sr.hyperliquid.basis1.coverage-->103%<!--/n--> at the docs' stake, <!--n:sr.hyperliquid.basis2.coverage-->98%<!--/n--> at today's; <!--n:sr.hyperliquid.basis4.coverage-->8%<!--/n--> with team unlocks | Buy on one basis of four |
 | Pump.fun | <!--n:sr.pump.lock-->no<!--/n-->: a contract we have not reviewed | none issued; <!--n:sr.pump.basis2.coverage-->82%<!--/n--> of insider unlocks | <!--n:sr.pump.rating-->Hold<!--/n--> |
 | Aave | <!--n:sr.aave.lock-->no<!--/n-->: a reserve governance can spend | — | <!--n:sr.aave.rating-->Hold<!--/n--> |
 | Jupiter | <!--n:sr.jupiter.lock-->no<!--/n-->: burns go to a vote | none issued since February | <!--n:sr.jupiter.rating-->Hold<!--/n--> |
@@ -121,7 +121,7 @@ The rules can give Buy; NEAR fails the lock first ([inputs and quotes](docs/DETA
 
 ## What would change our mind
 
-- **Any day:** a drain gives Avoid (the stock rose every day from 1 to 12 November); **from 10 December**, so can the two window tests.
+- **Any day:** a drain gives Avoid (the stock rose every day from 1 to 12 November); **from mid-December**, so can the two window tests.
 - **9 December 2026:** if from 9 November the buybacks keep less than half of <!--n:iv.buybacks_kept_usd_per_day-->$46,692<!--/n--> a day, PREREG-3's P6 (0.90) is scored wrong, and claim D with it.
 - **Any day:** a lock plus 100% coverage (best month so far <!--n:bt.highest_coverage_counted-->15.3%<!--/n-->) gives Buy.
 - **Any three months running:** coverage of 25% or more ends "small" ([the full list](THESIS.md#what-would-change-our-mind)).
@@ -131,7 +131,7 @@ The rules can give Buy; NEAR fails the lock first ([inputs and quotes](docs/DETA
 
 ## Objections we expect
 
-- **"Hold is built into the rules."** No: the same rules put Hyperliquid, which has a lock, on the Buy line ([the table](#the-rating-as-rules)). NEAR gets Hold because it has no lock; that is the finding.
+- **"Hold is built into the rules."** No: the same rules give Hyperliquid, which has a lock, Buy on one basis ([the table](#the-rating-as-rules)). NEAR fails twice: no lock, and <!--n:n1.coverage_buybacks-->10.8%<!--/n--> coverage. Even with a lock assumed, every monthly rating since April is Hold.
 - **"HSP-029 changes the arithmetic."** It does, once validators run it: about <!--n:iv.hsp029_cents_per_new_dollar-->17 cents<!--/n--> per $1 of new NEAR, and full coverage at <!--n:iv.hsp029_wallets_multiple_buybacks-->×5.9<!--/n--> instead of <!--n:iv.wallets_multiple_buybacks-->×9.2<!--/n-->. The lock is still missing.
 - **"Other repositories say 12–19%, not 10.8%."** They add burned gas, or count revenue, not balances. With all three wallets, ours is <!--n:n1.coverage_with_front_end-->16.5%<!--/n--> (<!--n:ci.coverage_with_front_end.low-->14.1%<!--/n-->–<!--n:ci.coverage_with_front_end.high-->18.7%<!--/n-->) ([definitions side by side](docs/DETAILS.md#why-public-coverage-figures-differ)).
 
@@ -175,7 +175,7 @@ The fees (NEAR's datasets on Dune; only revenue is checked on chain), volume and
 - **Buybacks wallets:** `buybacks.multisignature.near` and `1csfundsadmin.sputnik-dao.near`, where NEAR bought with NEAR Intents' fees is kept.
 - **Front-end fund:** `fefundsadmin.sputnik-dao.near`, a separate DAO that holds near-intents.org's own fees. With the two above, the **three revenue wallets**.
 - **Coverage:** NEAR the buybacks wallets keep (inflows less outflows) ÷ new NEAR issued (minted less gas burnt), over the same 30 days.
-- **FAR:** a private instance of the NEAR protocol, run by a few validators; NEAR Intents' contract there is `intents.far`.
+- **FAR:** a private instance of the NEAR protocol, run by a few validators ([NEAR Intents' docs](https://docs.near-intents.org/integration/market-makers/confidential-intents.md)); NEAR Intents' contract there is `intents.far`.
 - More, including HSP-027 and HSP-029: [Terms](docs/DETAILS.md#terms).
 
 ## Timeline and disclosure
