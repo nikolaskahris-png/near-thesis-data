@@ -1080,6 +1080,26 @@ def build(data_dir, window_file):
                 n.add(f"peer.{pid}.holders_yield_on_fdv", y, f_pct(y, 2), pesrc,
                       derived_from=[f"peer.{pid}.holders_revenue_usd_per_year", f"peer.{pid}.fdv_usd"], **pc2)
         n.add("peer.value_as_of", pe["fetched_utc"], pe["fetched_utc"][:16].replace("T", " ") + " UTC", pesrc)
+        # what NEAR's price implies at the peers' revenue multiples (a comparison, not a price target)
+        apps = ("hyperliquid", "jupiter", "aave")
+        mk = lambda pid, base: n.items.get(f"peer.{pid}.{base}_to_revenue", {}).get("value")
+        for base, tag in (("mcap", ""), ("fdv", ".fdv")):
+            own = mk("near", base)
+            others = [dec(mk(p, base)) for p in apps if mk(p, base) not in (None, "None")]
+            if own in (None, "None") or len(others) != len(apps):
+                continue
+            own = dec(own)
+            lo, hi = own / max(others), own / min(others)
+            src = [f"peer.near.{base}_to_revenue"] + [f"peer.{p}.{base}_to_revenue" for p in apps]
+            what = "circulating value" if base == "mcap" else "fully diluted value"
+            n.add(f"iv.breakeven_multiple{tag}.low", lo, f"×{rnd(lo, 1)}", pesrc, derived_from=src,
+                  note=f"NEAR's {what} / revenue, over the highest of Hyperliquid's, Jupiter's and Aave's")
+            n.add(f"iv.breakeven_multiple{tag}.high", hi, f"×{rnd(hi, 1)}", pesrc, derived_from=src,
+                  note=f"over the lowest of the three: how many times revenue must grow to carry NEAR's {what}")
+            n.add(f"iv.fee_supported_share{tag}.low", 1 / hi, f_pct(1 / hi, 0), pesrc, derived_from=src,
+                  note=f"share of NEAR's {what} today's revenue carries at the lowest peer multiple")
+            n.add(f"iv.fee_supported_share{tag}.high", 1 / lo, f_pct(1 / lo, 0), pesrc, derived_from=src,
+                  note=f"at the highest peer multiple")
 
     # ---- backtest (backtest.py): the rating rules on each calendar month April-October 2026
     btpath = data_dir / "backtest.json"
@@ -1465,6 +1485,13 @@ def build(data_dir, window_file):
             n.add(f"ci.shift.{name}.share_below_zero", v, f_pct(v, 0), isrc,
                   note="share of the 10,000 resamples in which the change is below zero")
         n.add("ci.resamples", 10000, "10,000", isrc)
+        for key in ("kept_near", "revenue_near"):
+            pp = idoc.get("permutation", {}).get(key)
+            if pp:
+                v = dec(pp["p_two_sided"])
+                n.add(f"ci.shift.{key}.permutation_p", v, f"{rnd(v, 2)}", isrc,
+                      note=f"two-sided permutation p, {pp['permutations']:,} shuffles of the 38 days; assumes "
+                           "exchangeable days")
         bs = idoc["block_sensitivity"]
         lo = min(dec(r["kept_near_change_low"]) for r in bs)
         hi = max(dec(r["kept_near_change_high"]) for r in bs)
@@ -1476,6 +1503,35 @@ def build(data_dir, window_file):
         bhi = max(dec(r["buybacks_high"]) for r in bs) / new_day
         n.add("ci.coverage_buybacks.lowest_any_block", blo, f_pct(blo, 1), isrc, derived_from=["n1.new_near_per_day"])
         n.add("ci.coverage_buybacks.highest_any_block", bhi, f_pct(bhi, 1), isrc, derived_from=["n1.new_near_per_day"])
+
+    # ---- the same rules on four other protocols (peers_rating.py; their docs and DefiLlama, not their chains)
+    rpath = data_dir / "peers_rating.json"
+    if rpath.exists():
+        rdoc = json.loads(rpath.read_text(encoding="utf-8"))
+        rsrc = n.source(rpath)
+
+        def f_tokens(x):
+            x = dec(x)
+            for size, unit in ((Decimal(10) ** 9, "B"), (Decimal(10) ** 6, "M")):
+                if abs(x) >= size:
+                    return f"{rnd(x / size, 2 if abs(x) < size * 10 else 1)}{unit}"
+            return f_int(x)
+
+        for pid, r in rdoc["rows"].items():
+            if pid == "near":
+                continue
+            n.add(f"sr.{pid}.rating", None, r["rating"], rsrc, note="peers_rating.py, from docs and DefiLlama")
+            n.add(f"sr.{pid}.lock", None, "yes" if r["gate1_lock"] else "no", rsrc, note=r["lock_note"])
+            if r["bought_per_year"] is not None:
+                n.add(f"sr.{pid}.bought_per_year", dec(r["bought_per_year"]), f_tokens(r["bought_per_year"]), rsrc,
+                      unit=f"{r['token']}/year", note="DefiLlama holders' revenue a year / mean price, the window")
+            for i, b in enumerate(r["bases"]):
+                n.add(f"sr.{pid}.basis{i + 1}.new_per_year", dec(b["new_per_year"]), f_tokens(b["new_per_year"]),
+                      rsrc, unit=f"{r['token']}/year", note=b["basis"])
+                if b["coverage"] is not None and b["coverage"] != "Infinity":
+                    n.add(f"sr.{pid}.basis{i + 1}.coverage", dec(b["coverage"]), f_pct(dec(b["coverage"]), 0),
+                          rsrc, unit="share", note=b["basis"])
+                n.add(f"sr.{pid}.basis{i + 1}.rating", None, b["rating"], rsrc, note=b["basis"])
 
     # ---- the pre-registration anchors (check_prereg.py, --anchor 2 and 3)
     for num, name in (("1", "prereg.json"), ("2", "prereg2_anchor.json"), ("3", "prereg3_anchor.json")):
@@ -1561,6 +1617,7 @@ SCRIPT_CHECKS = [
     ("confidential_treasury.py", lambda doc: ["--verify"], "confidential_treasury.json"),
     ("private_shift.py", lambda doc: ["--verify"], "private_shift.json"),
     ("intervals.py", lambda doc: ["--verify"], "intervals.json"),
+    ("peers_rating.py", lambda doc: ["--verify"], "peers_rating.json"),
     ("sensitivity.py", lambda doc: ["--verify"], "sensitivity.json"),
     ("check_prereg.py", lambda doc: ["--verify"]),
     ("check_prereg.py", lambda doc: ["--anchor", "2", "--verify"], "prereg2_anchor.json"),

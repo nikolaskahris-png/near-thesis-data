@@ -1,0 +1,149 @@
+{
+ "measure": "The rating's rules applied to four other protocols, from their docs and DefiLlama, not read on their chains.",
+ "window": "2026-10-02 to 2026-11-01 (peers.json)",
+ "not_applied": [
+  "growth leg (+75% a year): needs a year of their history",
+  "treasury.near and the two 30-day revenue floors: NEAR-specific",
+  "drain: their balances were not read on their chains"
+ ],
+ "rows": {
+  "hyperliquid": {
+   "label": "Hyperliquid (HYPE)",
+   "token": "HYPE",
+   "gate1_lock": true,
+   "lock_note": "the assistance fund is a system address; its HYPE is burned (docs)",
+   "gate2_no_drain": "not read on their chain",
+   "bought_per_year": "9793227.917648",
+   "holders_revenue_usd_per_year": "817565433.875000",
+   "mean_price_usd": "83.482733",
+   "bases": [
+    {
+     "basis": "protocol, docs' reference (400M staked)",
+     "new_per_year": "9480000.000000",
+     "coverage": "1.033041",
+     "gate3_coverage": true,
+     "rating": "Buy"
+    },
+    {
+     "basis": "protocol, 440M staked as reported",
+     "new_per_year": "9942707.880653",
+     "coverage": "0.984966",
+     "gate3_coverage": false,
+     "rating": "Hold"
+    },
+    {
+     "basis": "protocol + team claims as announced",
+     "new_per_year": "13440000.000000",
+     "coverage": "0.728663",
+     "gate3_coverage": false,
+     "rating": "Hold"
+    },
+    {
+     "basis": "protocol + team unlocks on schedule",
+     "new_per_year": "128479992.000000",
+     "coverage": "0.076224",
+     "gate3_coverage": false,
+     "rating": "Hold"
+    }
+   ],
+   "rating": "Buy on some bases",
+   "sources": [
+    "hl_docs_fees",
+    "hl_docs_staking",
+    "cryptobriefing_hype_staked",
+    "tokenomist_hype"
+   ]
+  },
+  "pump": {
+   "label": "Pump.fun (PUMP)",
+   "token": "PUMP",
+   "gate1_lock": false,
+   "lock_note": "a contract the press calls irreversible, for one year; we have not reviewed its code",
+   "gate2_no_drain": "not read on their chain",
+   "bought_per_year": "67910268544.875887",
+   "holders_revenue_usd_per_year": "338671914.125000",
+   "mean_price_usd": "0.004987",
+   "bases": [
+    {
+     "basis": "protocol (fixed supply, no issuance)",
+     "new_per_year": "0.000000",
+     "coverage": "Infinity",
+     "gate3_coverage": true,
+     "rating": "Hold"
+    },
+    {
+     "basis": "protocol + insider unlocks on schedule",
+     "new_per_year": "82500000000.000000",
+     "coverage": "0.823155",
+     "gate3_coverage": false,
+     "rating": "Hold"
+    }
+   ],
+   "rating": "Hold",
+   "sources": [
+    "indexvn_pump",
+    "kucoin_pump_unlock"
+   ]
+  },
+  "aave": {
+   "label": "Aave (AAVE)",
+   "token": "AAVE",
+   "gate1_lock": false,
+   "lock_note": "bought AAVE goes to the Ecosystem Reserve, which governance can spend",
+   "gate2_no_drain": "not read on their chain",
+   "bought_per_year": "0.000000",
+   "holders_revenue_usd_per_year": "0.000000",
+   "mean_price_usd": "156.253325",
+   "bases": [],
+   "rating": "Hold",
+   "sources": [
+    "blofin_aave"
+   ]
+  },
+  "jupiter": {
+   "label": "Jupiter (JUP)",
+   "token": "JUP",
+   "gate1_lock": false,
+   "lock_note": "bought JUP sits in the Litterbox Trust; the DAO votes on whether to burn it",
+   "gate2_no_drain": "not read on their chain",
+   "bought_per_year": "69730456.705365",
+   "holders_revenue_usd_per_year": "21862286.146000",
+   "mean_price_usd": "0.313526",
+   "bases": [
+    {
+     "basis": "protocol, no new team tokens or airdrop (schedule of 29 Oct 2026)",
+     "new_per_year": "0.000000",
+     "coverage": "Infinity",
+     "gate3_coverage": true,
+     "rating": "Hold"
+    }
+   ],
+   "rating": "Hold",
+   "sources": [
+    "jup_litterbox_burn",
+    "tokenomist_jup"
+   ]
+  },
+  "near": {
+   "label": "NEAR (NEAR Intents)",
+   "token": "NEAR",
+   "gate1_lock": false,
+   "lock_note": "the buybacks sit in multisigs that 2 of 4 signers can move",
+   "gate2_no_drain": "read on mainnet daily (rating.py)",
+   "bought_per_year": "3495351.187500",
+   "bases": [
+    {
+     "basis": "protocol",
+     "new_per_year": "32285209.776750",
+     "coverage": "0.108265",
+     "gate3_coverage": false,
+     "rating": "Hold"
+    }
+   ],
+   "rating": "Hold",
+   "sources": [
+    "data/numbers.json"
+   ]
+  }
+ }
+}

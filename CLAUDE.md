@@ -34,6 +34,7 @@ Its last line is `REBUILD: PASS`. The same checks, one by one:
 | `python scripts/sensitivity.py --verify` | the rating rules under 54 combinations of thresholds recompute; every month is Hold; and the lowest Avoid floors at which a month flips (`sens.flip.`) | `OK` |
 | `python scripts/private_shift.py --verify` | what the three revenue wallets kept a day before and after 27 October (the private path), beside DefiLlama's revenue in NEAR and with four other cut dates, recomputes from the saved balances and one pinned DefiLlama fetch | `OK` |
 | `python scripts/intervals.py --verify` | 95% intervals for the coverage (10.8%, 16.5%) and for the -3% private-path change: moving-block bootstrap of the saved days in `data/private_shift.json`, blocks of 7 and 3 days, 10,000 resamples, fixed seed, with blocks of 1 to 7 days as a check; recomputes `data/intervals.json` | `OK` |
+| `python scripts/peers_rating.py --verify` | the rating's gates (lock, drain, coverage) on Hyperliquid, Pump.fun, Aave and Jupiter recompute from `data/peers.json`, PUMP's saved DefiLlama files (`data/peers_rating_fetch.json`) and inputs quoted from saved pages; NEAR comes out Hold as in `rating.py` | `OK` |
 | `python scripts/rating.py --verify` | the rating (Hold / Buy / Avoid) of every window in `data/rating.csv` recomputes from `history.csv` and the saved DefiLlama responses | `OK: rating.csv recomputes from history.csv and the saved responses` |
 | `python scripts/backtest.py --verify` | the rating rules on each month April–October 2026 in `data/backtest.csv` recompute from `coverage_monthly.json` and the saved DefiLlama responses | `OK: backtest.csv recomputes from coverage_monthly.json and the saved DefiLlama responses` |
 | `python scripts/quotes.py --verify` | each page the text quotes is saved under `data/raw/sources/` with its SHA-256 and contains the quote | `OK: <count> quotes found in <count> saved pages, and each is still in the text` |
@@ -115,6 +116,7 @@ SHA-256. In the README, `THESIS.md` and `docs/DETAILS.md` each figure is wrapped
 | `bt.` | The rating rules on April to October 2026 | `backtest.py` | `data/backtest.json` |
 | `ps.` | What the three revenue wallets kept before and after 27 October (the private path), DefiLlama's revenue in NEAR, other cut dates (`ps.cut.`) | `private_shift.py` | `data/private_shift.json` |
 | `ci.` | 95% intervals: coverage (`ci.coverage_*`) and the private-path change (`ci.shift.*`), with the widest over block lengths (`*_any_block`) | `intervals.py` | `data/intervals.json` |
+| `sr.` | The same rules on four other protocols: lock, tokens bought and new a year, coverage and rating per basis (from their docs and DefiLlama, not their chains) | `peers_rating.py` | `data/peers_rating.json` |
 | `sc.` | Three stated paths for a holder's dollars to 2031 (derived, no probability) | `build_numbers.py` | `peer.`, `lr.`, `iv.` entries |
 | `sens.` | The rating under other thresholds, April-October 2026 | `sensitivity.py` | `data/sensitivity.json` |
 

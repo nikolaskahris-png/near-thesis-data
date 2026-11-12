@@ -1,6 +1,28 @@
 {
  "about": "Copies of the web pages the text quotes; scripts/quotes.py --verify checks each quote offline",
  "sources": {
+  "blofin_aave": {
+   "url": "https://blofin.com/academy/education/aave/aave-buyback-and-aavenomics",
+   "path": "data/raw/sources/blofin_aave.html",
+   "sha256": "c529178fa7e8d6d78a0b07df4fd32d62ff63957de5a6564ff5fe6e5fa1db7472",
+   "bytes": 450694,
+   "saved_utc": "2026-11-12T19:30:14Z",
+   "how": "fetched",
+   "quotes": [
+    "a DAO-held balance that can be paid out again later"
+   ]
+  },
+  "cryptobriefing_hype_staked": {
+   "url": "https://cryptobriefing.com/gemini-hype-staking-hyperliquid-apy/",
+   "path": "data/raw/sources/cryptobriefing_hype_staked.html",
+   "sha256": "cd41c95f5d6c65a782d8500fc20103f14023189c214534b699c39dcae72edc8d",
+   "bytes": 152922,
+   "saved_utc": "2026-11-12T19:30:14Z",
+   "how": "fetched",
+   "quotes": [
+    "approximately 440 million HYPE tokens are staked"
+   ]
+  },
   "hackathon_rules": {
    "url": "https://nearhackathon.com/HACKATHON.md",
    "path": "data/raw/sources/hackathon_rules.md",
@@ -10,6 +32,30 @@
    "how": "fetched",
    "quotes": [
     "Earlier commits are baseline"
+   ]
+  },
+  "hl_docs_fees": {
+   "url": "https://hyperliquid.gitbook.io/hyperliquid-docs/trading/fees",
+   "path": "data/raw/sources/hl_docs_fees.html",
+   "sha256": "fd858b54419ad3e544da9da84785112b035c1fe2b9d86ec26a4d7c332a82945a",
+   "bytes": 791360,
+   "saved_utc": "2026-11-12T19:30:14Z",
+   "how": "fetched",
+   "quotes": [
+    "The assistance fund uses the system address",
+    "HYPE in the assistance fund is burned"
+   ]
+  },
+  "hl_docs_staking": {
+   "url": "https://hyperliquid.gitbook.io/hyperliquid-docs/hypercore/staking",
+   "path": "data/raw/sources/hl_docs_staking.html",
+   "sha256": "4090b8963bafc7b18bd3efbfcb229be92146b70bbaa5fbe31fbca8d5039a11c2",
+   "bytes": 380947,
+   "saved_utc": "2026-11-12T19:30:14Z",
+   "how": "fetched",
+   "quotes": [
+    "the reward rate is approximately 2.37% per year",
+    "Staking rewards come from the future emissions reserve"
    ]
   },
   "hos_draft_2026_11_08": {
@@ -22,6 +68,40 @@
    "quotes": [
     "Instead of relying solely on immediate token burns",
     "Only the yield generated from these Treasuries is deployed"
+   ]
+  },
+  "indexvn_pump": {
+   "url": "https://index.vn/en/news/pumpfun-burns-dollar370-million-in-pump-tokens-and-locks-50percent-of-revenue-into-buybacks",
+   "path": "data/raw/sources/indexvn_pump.html",
+   "sha256": "c8212e26ff10e4701d2facb59e081f2c20c73f8b2f1e26487b610a318a82a929",
+   "bytes": 547158,
+   "saved_utc": "2026-11-12T19:55:02Z",
+   "how": "fetched",
+   "quotes": [
+    "to an irreversible smart contract"
+   ]
+  },
+  "jup_litterbox_burn": {
+   "url": "https://discuss.jup.ag/t/discussion-burning-the-jup-tokens-in-the-litterbox-trust/39569",
+   "path": "data/raw/sources/jup_litterbox_burn.html",
+   "sha256": "64947161e1c594b04daca2fa49d7ca8d99153d894269eb4a5ee6c7e4a2fb8613",
+   "bytes": 77389,
+   "saved_utc": "2026-11-12T19:30:14Z",
+   "how": "fetched",
+   "quotes": [
+    "continue to burn the ongoing additions to the Litterbox Trust"
+   ]
+  },
+  "kucoin_pump_unlock": {
+   "url": "https://www.kucoin.com/news/flash/pump-fun-faces-pressure-as-6-875b-pump-unlock-approaches",
+   "path": "data/raw/sources/kucoin_pump_unlock.html",
+   "sha256": "d4fbde85c1b2ded96ed0ed497ed17fa1390df21348e87eaa034f3f84c4ef9c16",
+   "bytes": 207206,
+   "saved_utc": "2026-11-12T19:55:02Z",
+   "how": "fetched",
+   "quotes": [
+    "6.875 billion PUMP tokens are scheduled to hit the market",
+    "three-year linear release cycle"
    ]
   },
   "near_ai_staking": {
@@ -147,6 +227,29 @@
    "quotes": [
     "Since 27 Oct 2026 swaps settle on `intents.far`, which public indexers cannot see",
     "carried 85% of the USD counted on chain"
+   ]
+  },
+  "tokenomist_hype": {
+   "url": "https://tokenomist.ai/research/hype-tokenomics-330k-or-9-9m-hype-unlocks",
+   "path": "data/raw/sources/tokenomist_hype.html",
+   "sha256": "9adc0af7e29172df302e1744fef329cf1b6c8b7fdf490de783454fea220325d6",
+   "bytes": 251445,
+   "saved_utc": "2026-11-12T19:30:14Z",
+   "how": "fetched",
+   "quotes": [
+    "9,916,666 HYPE",
+    "330,000 HYPE"
+   ]
+  },
+  "tokenomist_jup": {
+   "url": "https://tokenomist.ai/research/jupiter-planned-its-2026-airdrop-three-ways-todays-chart-shows-only-the-last-one",
+   "path": "data/raw/sources/tokenomist_jup.html",
+   "sha256": "611d39456b2c3bcba64f8e67a07714d37683b0694a6ac94046346b3a599a1e1d",
+   "bytes": 259854,
+   "saved_utc": "2026-11-12T19:55:02Z",
+   "how": "fetched",
+   "quotes": [
+    "shows no airdrop and no new team tokens"
    ]
   }
  }

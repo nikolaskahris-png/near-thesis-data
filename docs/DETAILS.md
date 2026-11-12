@@ -260,6 +260,31 @@ it counts the front-end fund, and nothing is paid out (the NEAR stays in the wal
 DefiLlama counts no holders' revenue for Aave, whose buybacks are paid from its treasury. Fees and fully diluted
 values: [details](#peers).
 
+### The same rules on four other protocols
+
+Are the rules built so that everything comes out Hold? `scripts/peers_rating.py` applies the same tests to Hyperliquid, Pump.fun, Aave and Jupiter, and prints each before the rating. Their inputs come from their docs, the press and DefiLlama, over the same window; we did not read their chains. Tokens bought a year are DefiLlama's holders' revenue a year divided by the mean price.
+
+| | Gate 1: lock | Bought a year | New a year (basis) | Gate 3: coverage | Rating |
+|---|---|---|---|---|---|
+| Hyperliquid | <!--n:sr.hyperliquid.lock-->yes<!--/n--> | <!--n:sr.hyperliquid.bought_per_year-->9.79M<!--/n--> HYPE | <!--n:sr.hyperliquid.basis1.new_per_year-->9.48M<!--/n--> (staking, docs' 400M) | <!--n:sr.hyperliquid.basis1.coverage-->103%<!--/n--> | <!--n:sr.hyperliquid.basis1.rating-->Buy<!--/n--> |
+| | | | <!--n:sr.hyperliquid.basis2.new_per_year-->9.94M<!--/n--> (staking, 440M reported) | <!--n:sr.hyperliquid.basis2.coverage-->98%<!--/n--> | <!--n:sr.hyperliquid.basis2.rating-->Hold<!--/n--> |
+| | | | <!--n:sr.hyperliquid.basis3.new_per_year-->13.4M<!--/n--> (+ team claims as announced) | <!--n:sr.hyperliquid.basis3.coverage-->73%<!--/n--> | <!--n:sr.hyperliquid.basis3.rating-->Hold<!--/n--> |
+| | | | <!--n:sr.hyperliquid.basis4.new_per_year-->128.5M<!--/n--> (+ team unlocks on schedule) | <!--n:sr.hyperliquid.basis4.coverage-->8%<!--/n--> | <!--n:sr.hyperliquid.basis4.rating-->Hold<!--/n--> |
+| Pump.fun | <!--n:sr.pump.lock-->no<!--/n--> (contract not reviewed) | <!--n:sr.pump.bought_per_year-->67.9B<!--/n--> PUMP | <!--n:sr.pump.basis2.new_per_year-->82.5B<!--/n--> (insider unlocks on schedule) | <!--n:sr.pump.basis2.coverage-->82%<!--/n--> | <!--n:sr.pump.rating-->Hold<!--/n--> |
+| Aave | <!--n:sr.aave.lock-->no<!--/n--> | <!--n:sr.aave.bought_per_year-->0<!--/n--> (DefiLlama counts none) | not needed | — | <!--n:sr.aave.rating-->Hold<!--/n--> |
+| Jupiter | <!--n:sr.jupiter.lock-->no<!--/n--> | <!--n:sr.jupiter.bought_per_year-->69.7M<!--/n--> JUP | <!--n:sr.jupiter.basis1.new_per_year-->0<!--/n--> (no new team tokens or airdrop) | no new JUP | <!--n:sr.jupiter.rating-->Hold<!--/n--> |
+
+What each input rests on (saved pages, checked by `python scripts/quotes.py --verify`):
+
+- **Hyperliquid.** Its docs: "The assistance fund uses the system address" and "HYPE in the assistance fund is burned". Staking pays new HYPE: "Staking rewards come from the future emissions reserve", and "the reward rate is approximately 2.37% per year" at 400M staked, falling with the square root of stake. Reported stake: "approximately 440 million HYPE tokens are staked" (Crypto Briefing). Team tokens: "9,916,666 HYPE" a month on the whitepaper's schedule, against "330,000 HYPE" claimed in April (Tokenomist).
+- **Pump.fun.** Since April 2026 half its net revenue goes "to an irreversible smart contract" that buys and burns PUMP for a year (index.vn). The Buy rule counts a contract only once we have reviewed its code, and we have not. Insider unlocks: "6.875 billion PUMP tokens are scheduled to hit the market" on 12 August 2026, then monthly on a "three-year linear release cycle" (KuCoin).
+- **Aave.** Bought AAVE goes to the Ecosystem Reserve, "a DAO-held balance that can be paid out again later" (BloFin).
+- **Jupiter.** Bought JUP sits in the Litterbox Trust; the DAO decides whether to "continue to burn the ongoing additions to the Litterbox Trust" (Jupiter's forum). After the February 2026 vote, the schedule "shows no airdrop and no new team tokens" (Tokenomist, read 29 October 2026).
+
+Not applied: the growth leg (+75% a year), which needs a year of their history; `treasury.near` and the two 30-day revenue floors, which are NEAR's own; and the drain test, which needs their balances read on their chains, so none can be rated Avoid here.
+
+What it shows: the rules can give Buy. Hyperliquid, which has a lock, sits on the line between Buy and Hold on the definition NEAR is measured by, and falls well short once its team's unlocks count. NEAR fails the lock first, then coverage by <!--n:iv.wallets_multiple_buybacks-->×9.2<!--/n-->.
+
 ## The README in full (version 5, 12 November)
 
 The README was cut again on 12 November, to about 2,300 words. Its longer sections are kept here as they were before the cut, with every figure still marked and checked: each claim with its "Against", every note on the rules, all the objections and terms. "This page" below means the README.

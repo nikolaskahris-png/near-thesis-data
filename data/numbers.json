@@ -22,10 +22,11 @@
     "data/fees_2026-10-02_2026-11-01.json": "ded7a3b53dad62eb1d326912e57404da225f13fb5cf92cc7d66eb168dc5d083e",
     "data/hsp029.json": "04eff7d95bac22ebbcc8204c8d3c57530f15f374767b2ad732df7180226c28ff",
     "data/hsp029_voters.json": "b437ffd9818cc2ef0eac9e2072b4a02036efe79bb217bbf9eaad925e894dfc1d",
-    "data/intervals.json": "7e24ed06d57d435d241a6a3b422accdcf9e6786b846fa2370b07b280ea12f9ea",
+    "data/intervals.json": "6eabea6fd77dcdfaf61df5589a256df3ca7f6c58bf1cf3e2eea168941ff4922b",
     "data/offchain/nearai_cloud_farm_config.json": "4fab756a3e94d72a2db918e8f3f47526a5da3a2d41990ba2f479406ac22b4214",
     "data/offchain/nearai_cloud_farm_config_20261101T205837Z.json": "95bb1adc1b3eb738cdc19c7622e5a3641edce4ea9653ced4ba6e32439c5f253d",
     "data/peers.json": "48138f8cb3615ecbb1619ab22467c7a46bbee2521481b226b741a911a7b70b1e",
+    "data/peers_rating.json": "b3aed035bb3a2ee29a4977066f7d6c00a604d77800ed9c834012d1d079a38c6a",
     "data/prereg.json": "2efdcde55626bf946110ccaccb6672581cfe0d96b8231945629a920b653cc250",
     "data/prereg2.json": "c9de7ac85957768b7c4682fb3682512a91996d0e463fccc791909741c663f03c",
     "data/prereg2_anchor.json": "04d116768228d84f1c3a3e6c7c91cd43af6df1e62a177e95980f757a272c0c77",
@@ -607,6 +608,12 @@
       "source": "data/intervals.json",
       "note": "lowest low end of the kept-NEAR change interval with blocks of 1, 3, 5, 7 days"
     },
+    "ci.shift.kept_near.permutation_p": {
+      "value": "0.83086",
+      "text": "0.83",
+      "source": "data/intervals.json",
+      "note": "two-sided permutation p, 100,000 shuffles of the 38 days; assumes exchangeable days"
+    },
     "ci.shift.kept_near.share_below_zero": {
       "value": "0.5402",
       "text": "54%",
@@ -624,6 +631,12 @@
       "text": "-30%",
       "source": "data/intervals.json",
       "note": "low end of the 95% block-bootstrap interval of the change in revenue near a day"
+    },
+    "ci.shift.revenue_near.permutation_p": {
+      "value": "0.7211",
+      "text": "0.72",
+      "source": "data/intervals.json",
+      "note": "two-sided permutation p, 100,000 shuffles of the 38 days; assumes exchangeable days"
     },
     "ci.shift.revenue_near.share_below_zero": {
       "value": "0.6305",
@@ -3614,6 +3627,54 @@
       ],
       "note": "the NEAR price at which this window's NEAR kept a day is worth April's dollars: Avoid's test 2 fails at or below it, whatever the take rate"
     },
+    "iv.breakeven_multiple.fdv.high": {
+      "value": "6.073562552782508645649117172849266819861",
+      "text": "×6.1",
+      "source": "data/peers.json",
+      "derived_from": [
+        "peer.near.fdv_to_revenue",
+        "peer.hyperliquid.fdv_to_revenue",
+        "peer.jupiter.fdv_to_revenue",
+        "peer.aave.fdv_to_revenue"
+      ],
+      "note": "over the lowest of the three: how many times revenue must grow to carry NEAR's fully diluted value"
+    },
+    "iv.breakeven_multiple.fdv.low": {
+      "value": "2.550611157944821824736280431759838952769",
+      "text": "×2.6",
+      "source": "data/peers.json",
+      "derived_from": [
+        "peer.near.fdv_to_revenue",
+        "peer.hyperliquid.fdv_to_revenue",
+        "peer.jupiter.fdv_to_revenue",
+        "peer.aave.fdv_to_revenue"
+      ],
+      "note": "NEAR's fully diluted value / revenue, over the highest of Hyperliquid's, Jupiter's and Aave's"
+    },
+    "iv.breakeven_multiple.high": {
+      "value": "10.44009296304694343382913853095666635932",
+      "text": "×10.4",
+      "source": "data/peers.json",
+      "derived_from": [
+        "peer.near.mcap_to_revenue",
+        "peer.hyperliquid.mcap_to_revenue",
+        "peer.jupiter.mcap_to_revenue",
+        "peer.aave.mcap_to_revenue"
+      ],
+      "note": "over the lowest of the three: how many times revenue must grow to carry NEAR's circulating value"
+    },
+    "iv.breakeven_multiple.low": {
+      "value": "6.293733442123144863826781011056418960966",
+      "text": "×6.3",
+      "source": "data/peers.json",
+      "derived_from": [
+        "peer.near.mcap_to_revenue",
+        "peer.hyperliquid.mcap_to_revenue",
+        "peer.jupiter.mcap_to_revenue",
+        "peer.aave.mcap_to_revenue"
+      ],
+      "note": "NEAR's circulating value / revenue, over the highest of Hyperliquid's, Jupiter's and Aave's"
+    },
     "iv.buyback_yield_buybacks": {
       "value": "0.002667244003484852728354382081619161702956",
       "text": "0.27%",
@@ -3745,6 +3806,54 @@
       "source": "data/stakers/2026-11-01.json",
       "unit": "share of stake",
       "note": "n3.farm_total_near / c.issuance_total_stake_near (same end block)"
+    },
+    "iv.fee_supported_share.fdv.high": {
+      "value": "0.3920628971159050011697090911057288496804",
+      "text": "39%",
+      "source": "data/peers.json",
+      "derived_from": [
+        "peer.near.fdv_to_revenue",
+        "peer.hyperliquid.fdv_to_revenue",
+        "peer.jupiter.fdv_to_revenue",
+        "peer.aave.fdv_to_revenue"
+      ],
+      "note": "at the highest peer multiple"
+    },
+    "iv.fee_supported_share.fdv.low": {
+      "value": "0.1646480119879337511975792279522332320283",
+      "text": "16%",
+      "source": "data/peers.json",
+      "derived_from": [
+        "peer.near.fdv_to_revenue",
+        "peer.hyperliquid.fdv_to_revenue",
+        "peer.jupiter.fdv_to_revenue",
+        "peer.aave.fdv_to_revenue"
+      ],
+      "note": "share of NEAR's fully diluted value today's revenue carries at the lowest peer multiple"
+    },
+    "iv.fee_supported_share.high": {
+      "value": "0.1588882035116278020811162796400884066937",
+      "text": "16%",
+      "source": "data/peers.json",
+      "derived_from": [
+        "peer.near.mcap_to_revenue",
+        "peer.hyperliquid.mcap_to_revenue",
+        "peer.jupiter.mcap_to_revenue",
+        "peer.aave.mcap_to_revenue"
+      ],
+      "note": "at the highest peer multiple"
+    },
+    "iv.fee_supported_share.low": {
+      "value": "0.09578458769855146763462030799249843741979",
+      "text": "10%",
+      "source": "data/peers.json",
+      "derived_from": [
+        "peer.near.mcap_to_revenue",
+        "peer.hyperliquid.mcap_to_revenue",
+        "peer.jupiter.mcap_to_revenue",
+        "peer.aave.mcap_to_revenue"
+      ],
+      "note": "share of NEAR's circulating value today's revenue carries at the lowest peer multiple"
     },
     "iv.fees_conversion_price_usd": {
       "value": "4.867425819055425762361128499987007556877",
@@ -8614,6 +8723,208 @@
       "text": "378",
       "source": "data/sensitivity.json",
       "note": "combinations x months (April-October 2026)"
+    },
+    "sr.aave.bought_per_year": {
+      "value": "0.000000",
+      "text": "0",
+      "source": "data/peers_rating.json",
+      "unit": "AAVE/year",
+      "note": "DefiLlama holders' revenue a year / mean price, the window"
+    },
+    "sr.aave.lock": {
+      "value": null,
+      "text": "no",
+      "source": "data/peers_rating.json",
+      "note": "bought AAVE goes to the Ecosystem Reserve, which governance can spend"
+    },
+    "sr.aave.rating": {
+      "value": null,
+      "text": "Hold",
+      "source": "data/peers_rating.json",
+      "note": "peers_rating.py, from docs and DefiLlama"
+    },
+    "sr.hyperliquid.basis1.coverage": {
+      "value": "1.033041",
+      "text": "103%",
+      "source": "data/peers_rating.json",
+      "unit": "share",
+      "note": "protocol, docs' reference (400M staked)"
+    },
+    "sr.hyperliquid.basis1.new_per_year": {
+      "value": "9480000.000000",
+      "text": "9.48M",
+      "source": "data/peers_rating.json",
+      "unit": "HYPE/year",
+      "note": "protocol, docs' reference (400M staked)"
+    },
+    "sr.hyperliquid.basis1.rating": {
+      "value": null,
+      "text": "Buy",
+      "source": "data/peers_rating.json",
+      "note": "protocol, docs' reference (400M staked)"
+    },
+    "sr.hyperliquid.basis2.coverage": {
+      "value": "0.984966",
+      "text": "98%",
+      "source": "data/peers_rating.json",
+      "unit": "share",
+      "note": "protocol, 440M staked as reported"
+    },
+    "sr.hyperliquid.basis2.new_per_year": {
+      "value": "9942707.880653",
+      "text": "9.94M",
+      "source": "data/peers_rating.json",
+      "unit": "HYPE/year",
+      "note": "protocol, 440M staked as reported"
+    },
+    "sr.hyperliquid.basis2.rating": {
+      "value": null,
+      "text": "Hold",
+      "source": "data/peers_rating.json",
+      "note": "protocol, 440M staked as reported"
+    },
+    "sr.hyperliquid.basis3.coverage": {
+      "value": "0.728663",
+      "text": "73%",
+      "source": "data/peers_rating.json",
+      "unit": "share",
+      "note": "protocol + team claims as announced"
+    },
+    "sr.hyperliquid.basis3.new_per_year": {
+      "value": "13440000.000000",
+      "text": "13.4M",
+      "source": "data/peers_rating.json",
+      "unit": "HYPE/year",
+      "note": "protocol + team claims as announced"
+    },
+    "sr.hyperliquid.basis3.rating": {
+      "value": null,
+      "text": "Hold",
+      "source": "data/peers_rating.json",
+      "note": "protocol + team claims as announced"
+    },
+    "sr.hyperliquid.basis4.coverage": {
+      "value": "0.076224",
+      "text": "8%",
+      "source": "data/peers_rating.json",
+      "unit": "share",
+      "note": "protocol + team unlocks on schedule"
+    },
+    "sr.hyperliquid.basis4.new_per_year": {
+      "value": "128479992.000000",
+      "text": "128.5M",
+      "source": "data/peers_rating.json",
+      "unit": "HYPE/year",
+      "note": "protocol + team unlocks on schedule"
+    },
+    "sr.hyperliquid.basis4.rating": {
+      "value": null,
+      "text": "Hold",
+      "source": "data/peers_rating.json",
+      "note": "protocol + team unlocks on schedule"
+    },
+    "sr.hyperliquid.bought_per_year": {
+      "value": "9793227.917648",
+      "text": "9.79M",
+      "source": "data/peers_rating.json",
+      "unit": "HYPE/year",
+      "note": "DefiLlama holders' revenue a year / mean price, the window"
+    },
+    "sr.hyperliquid.lock": {
+      "value": null,
+      "text": "yes",
+      "source": "data/peers_rating.json",
+      "note": "the assistance fund is a system address; its HYPE is burned (docs)"
+    },
+    "sr.hyperliquid.rating": {
+      "value": null,
+      "text": "Buy on some bases",
+      "source": "data/peers_rating.json",
+      "note": "peers_rating.py, from docs and DefiLlama"
+    },
+    "sr.jupiter.basis1.new_per_year": {
+      "value": "0.000000",
+      "text": "0",
+      "source": "data/peers_rating.json",
+      "unit": "JUP/year",
+      "note": "protocol, no new team tokens or airdrop (schedule of 29 Oct 2026)"
+    },
+    "sr.jupiter.basis1.rating": {
+      "value": null,
+      "text": "Hold",
+      "source": "data/peers_rating.json",
+      "note": "protocol, no new team tokens or airdrop (schedule of 29 Oct 2026)"
+    },
+    "sr.jupiter.bought_per_year": {
+      "value": "69730456.705365",
+      "text": "69.7M",
+      "source": "data/peers_rating.json",
+      "unit": "JUP/year",
+      "note": "DefiLlama holders' revenue a year / mean price, the window"
+    },
+    "sr.jupiter.lock": {
+      "value": null,
+      "text": "no",
+      "source": "data/peers_rating.json",
+      "note": "bought JUP sits in the Litterbox Trust; the DAO votes on whether to burn it"
+    },
+    "sr.jupiter.rating": {
+      "value": null,
+      "text": "Hold",
+      "source": "data/peers_rating.json",
+      "note": "peers_rating.py, from docs and DefiLlama"
+    },
+    "sr.pump.basis1.new_per_year": {
+      "value": "0.000000",
+      "text": "0",
+      "source": "data/peers_rating.json",
+      "unit": "PUMP/year",
+      "note": "protocol (fixed supply, no issuance)"
+    },
+    "sr.pump.basis1.rating": {
+      "value": null,
+      "text": "Hold",
+      "source": "data/peers_rating.json",
+      "note": "protocol (fixed supply, no issuance)"
+    },
+    "sr.pump.basis2.coverage": {
+      "value": "0.823155",
+      "text": "82%",
+      "source": "data/peers_rating.json",
+      "unit": "share",
+      "note": "protocol + insider unlocks on schedule"
+    },
+    "sr.pump.basis2.new_per_year": {
+      "value": "82500000000.000000",
+      "text": "82.5B",
+      "source": "data/peers_rating.json",
+      "unit": "PUMP/year",
+      "note": "protocol + insider unlocks on schedule"
+    },
+    "sr.pump.basis2.rating": {
+      "value": null,
+      "text": "Hold",
+      "source": "data/peers_rating.json",
+      "note": "protocol + insider unlocks on schedule"
+    },
+    "sr.pump.bought_per_year": {
+      "value": "67910268544.875887",
+      "text": "67.9B",
+      "source": "data/peers_rating.json",
+      "unit": "PUMP/year",
+      "note": "DefiLlama holders' revenue a year / mean price, the window"
+    },
+    "sr.pump.lock": {
+      "value": null,
+      "text": "no",
+      "source": "data/peers_rating.json",
+      "note": "a contract the press calls irreversible, for one year; we have not reviewed its code"
+    },
+    "sr.pump.rating": {
+      "value": null,
+      "text": "Hold",
+      "source": "data/peers_rating.json",
+      "note": "peers_rating.py, from docs and DefiLlama"
     },
     "te.steps": {
       "value": "73",

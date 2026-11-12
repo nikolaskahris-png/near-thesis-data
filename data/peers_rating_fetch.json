@@ -1,0 +1,35 @@
+{
+ "fetched_utc": "2026-11-12T19:30:25Z",
+ "defillama_slug": "pump",
+ "coingecko_id": "pump-fun",
+ "raw_files": {
+  "pump_fees": {
+   "path": "data/raw/peers_rating/20261112T193025Z/pump_fees.json",
+   "sha256": "d0fd041183a5db58b7b84580881de4ab87f1aa3cf17824e591b301a0d5b8c8c8",
+   "url": "https://api.llama.fi/summary/fees/pump?dataType=dailyFees&excludeTotalDataChartBreakdown=true"
+  },
+  "pump_revenue": {
+   "path": "data/raw/peers_rating/20261112T193025Z/pump_revenue.json",
+   "sha256": "11799343b3fef11d58c24124a0282458ff7c6cdc12201ca34bf6e48091536c3c",
+   "url": "https://api.llama.fi/summary/fees/pump?dataType=dailyRevenue&excludeTotalDataChartBreakdown=true"
+  },
+  "pump_holders_revenue": {
+   "path": "data/raw/peers_rating/20261112T193025Z/pump_holders_revenue.json",
+   "sha256": "8474bc56d4df544dc13202c38a4f2d0fe16521ebf1267787b8a17a1b21db8f97",
+   "url": "https://api.llama.fi/summary/fees/pump?dataType=dailyHoldersRevenue&excludeTotalDataChartBreakdown=true"
+  },
+  "price_pump": {
+   "path": "data/raw/peers_rating/20261112T193025Z/price_pump.json",
+   "sha256": "7f35818930c33aa2c0a8cd0e124295195184c442f652c514245d738039f570ed",
+   "url": "https://coins.llama.fi/chart/coingecko:pump-fun?start=1790942400&span=30&period=1d"
+  }
+ },
+ "fees_usd_per_year": "2043042800.198000000000000000",
+ "fees_days": 30,
+ "revenue_usd_per_year": "730116854.6979999999999999999",
+ "revenue_days": 30,
+ "holders_revenue_usd_per_year": "338671914.1250000000000000000",
+ "holders_revenue_days": 30,
+ "mean_price_usd": "0.0049870501380980654",
+ "price_days": 30
+}

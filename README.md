@@ -73,7 +73,7 @@ From 27 October swaps began to settle privately on FAR, unseen by public indexer
 | Kept by the three wallets | <!--n:ps.before.kept_near_per_day-->14,261<!--/n--> | <!--n:ps.after.kept_near_per_day-->13,800<!--/n--> | <!--n:ps.change.kept_near_per_day-->-3%<!--/n--> |
 | DefiLlama's revenue | <!--n:ps.before.revenue_near_per_day-->14,323<!--/n--> | <!--n:ps.after.revenue_near_per_day-->13,514<!--/n--> | <!--n:ps.change.revenue_near_per_day-->-6%<!--/n--> |
 
-The fall is inside the noise: resampling the days gives <!--n:ci.shift.kept_near.low-->-28%<!--/n--> to <!--n:ci.shift.kept_near.high-->+28%<!--/n--> for the wallets (95%); no block length tried goes below <!--n:ci.shift.kept_near.lowest_any_block-->-30%<!--/n-->. A stop would be near -100%. The private path's account on mainnet held <!--n:ct.priced_usd.2026-11-08-->$123.5M<!--/n--> on 8 November, <!--n:ct.stablecoins_usd.2026-11-08-->$37.4M<!--/n--> in stablecoins.
+The fall is inside the noise: resampling the days gives <!--n:ci.shift.kept_near.low-->-28%<!--/n--> to <!--n:ci.shift.kept_near.high-->+28%<!--/n--> for the wallets (95%); no block length tried goes below <!--n:ci.shift.kept_near.lowest_any_block-->-30%<!--/n-->, and shuffling the 38 days gives p = <!--n:ci.shift.kept_near.permutation_p-->0.83<!--/n-->. A stop would be near -100%. The private path's account on mainnet held <!--n:ct.priced_usd.2026-11-08-->$123.5M<!--/n--> on 8 November, <!--n:ct.stablecoins_usd.2026-11-08-->$37.4M<!--/n--> in stablecoins.
 
 **Against.** Thirteen days show capture did not stop, not that it held level; of five start dates tried, Tideline's gives the smallest fall, the worst <!--n:ps.cut.kept_near_lowest-->-13%<!--/n-->. [PREREG-3](PREREG-3.md) tests the next 30 days.
 
@@ -91,6 +91,8 @@ How your share of all NEAR changes; only staking moves it. HSP-029 assumed in fo
 
 In dollars: that share times the value of all NEAR. No price target; three stated paths: [paths to 2031](docs/DETAILS.md#v4-what-a-holder-earns-to-2031).
 
+**What the price implies.** NEAR is valued at <!--n:peer.near.mcap_to_revenue-->248×<!--/n--> the revenue DefiLlama counts for NEAR Intents, all of which funds the buybacks; Hyperliquid, Jupiter and Aave at <!--n:peer.jupiter.mcap_to_revenue-->24×<!--/n-->–<!--n:peer.aave.mcap_to_revenue-->39×<!--/n--> theirs. At their multiples, that revenue carries <!--n:iv.fee_supported_share.low-->10%<!--/n-->–<!--n:iv.fee_supported_share.high-->16%<!--/n--> of NEAR's value; carrying all of it needs <!--n:iv.breakeven_multiple.low-->×6.3<!--/n-->–<!--n:iv.breakeven_multiple.high-->×10.4<!--/n--> the revenue (<!--n:iv.breakeven_multiple.fdv.low-->×2.6<!--/n-->–<!--n:iv.breakeven_multiple.fdv.high-->×6.1<!--/n--> on fully diluted values). The rest of the price is for NEAR as a chain, not for this revenue.
+
 ## The rating as rules
 
 `scripts/rating.py` applies them daily to each 30-day window ([`data/rating.csv`](data/rating.csv)). One question: does a rule, rather than a choice, pay holders for the NEAR issued?
@@ -106,6 +108,17 @@ In dollars: that share times the value of all NEAR. No price target; three state
 
 Every note and the backtest: [the rating in full](docs/DETAILS.md#the-rating-in-full).
 
+**The same rules on four other protocols.** `scripts/peers_rating.py` runs the same gates on them, from their docs and DefiLlama, not their chains (no drain test, no growth leg):
+
+| | Lock | Coverage, new tokens the protocol issues | Rating |
+|---|---|---|---|
+| Hyperliquid | <!--n:sr.hyperliquid.lock-->yes<!--/n--> | <!--n:sr.hyperliquid.basis1.coverage-->103%<!--/n--> at the docs' stake, <!--n:sr.hyperliquid.basis2.coverage-->98%<!--/n--> at today's | Buy / Hold, on the line |
+| Pump.fun | <!--n:sr.pump.lock-->no<!--/n-->: a contract we have not reviewed | none issued; <!--n:sr.pump.basis2.coverage-->82%<!--/n--> of insider unlocks | <!--n:sr.pump.rating-->Hold<!--/n--> |
+| Aave | <!--n:sr.aave.lock-->no<!--/n-->: a reserve governance can spend | — | <!--n:sr.aave.rating-->Hold<!--/n--> |
+| Jupiter | <!--n:sr.jupiter.lock-->no<!--/n-->: burns go to a vote | none issued since February | <!--n:sr.jupiter.rating-->Hold<!--/n--> |
+
+The rules can give Buy; NEAR fails the lock first ([inputs and quotes](docs/DETAILS.md#the-same-rules-on-four-other-protocols)).
+
 ## What would change our mind
 
 - **Any day:** a drain gives Avoid (the stock rose every day from 1 to 12 November); **from 10 December**, so can the two window tests.
@@ -118,7 +131,7 @@ Every note and the backtest: [the rating in full](docs/DETAILS.md#the-rating-in-
 
 ## Objections we expect
 
-- **"Hold is built into the rules."** Until the buybacks are locked, yes. That is the finding: what holders lack is a rule. Avoid can still fire any day, and PREREG-3 is judged in December.
+- **"Hold is built into the rules."** No: the same rules put Hyperliquid, which has a lock, on the Buy line ([the table](#the-rating-as-rules)). NEAR gets Hold because it has no lock; that is the finding.
 - **"HSP-029 changes the arithmetic."** It does, once validators run it: about <!--n:iv.hsp029_cents_per_new_dollar-->17 cents<!--/n--> per $1 of new NEAR, and full coverage at <!--n:iv.hsp029_wallets_multiple_buybacks-->×5.9<!--/n--> instead of <!--n:iv.wallets_multiple_buybacks-->×9.2<!--/n-->. The lock is still missing.
 - **"Other repositories say 12–19%, not 10.8%."** They add burned gas, or count revenue, not balances. With all three wallets, ours is <!--n:n1.coverage_with_front_end-->16.5%<!--/n--> (<!--n:ci.coverage_with_front_end.low-->14.1%<!--/n-->–<!--n:ci.coverage_with_front_end.high-->18.7%<!--/n-->) ([definitions side by side](docs/DETAILS.md#why-public-coverage-figures-differ)).
 

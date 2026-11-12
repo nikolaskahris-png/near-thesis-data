@@ -76,6 +76,36 @@ SOURCES = {
         "https://gov.near.org/raw/42760",
         ["Instead of relying solely on immediate token burns",
          "Only the yield generated from these Treasuries is deployed"]),
+    # the same rules on four other protocols (peers_rating.py): from their docs and press, not their chains
+    "hl_docs_fees": (
+        "https://hyperliquid.gitbook.io/hyperliquid-docs/trading/fees",
+        ["The assistance fund uses the system address",
+         "HYPE in the assistance fund is burned"]),
+    "hl_docs_staking": (
+        "https://hyperliquid.gitbook.io/hyperliquid-docs/hypercore/staking",
+        ["the reward rate is approximately 2.37% per year",
+         "Staking rewards come from the future emissions reserve"]),
+    "cryptobriefing_hype_staked": (
+        "https://cryptobriefing.com/gemini-hype-staking-hyperliquid-apy/",
+        ["approximately 440 million HYPE tokens are staked"]),
+    "tokenomist_hype": (
+        "https://tokenomist.ai/research/hype-tokenomics-330k-or-9-9m-hype-unlocks",
+        ["9,916,666 HYPE", "330,000 HYPE"]),
+    "indexvn_pump": (
+        "https://index.vn/en/news/pumpfun-burns-dollar370-million-in-pump-tokens-and-locks-50percent-of-revenue-into-buybacks",
+        ["to an irreversible smart contract"]),
+    "kucoin_pump_unlock": (
+        "https://www.kucoin.com/news/flash/pump-fun-faces-pressure-as-6-875b-pump-unlock-approaches",
+        ["6.875 billion PUMP tokens are scheduled to hit the market", "three-year linear release cycle"]),
+    "blofin_aave": (
+        "https://blofin.com/academy/education/aave/aave-buyback-and-aavenomics",
+        ["a DAO-held balance that can be paid out again later"]),
+    "jup_litterbox_burn": (
+        "https://discuss.jup.ag/t/discussion-burning-the-jup-tokens-in-the-litterbox-trust/39569",
+        ["continue to burn the ongoing additions to the Litterbox Trust"]),
+    "tokenomist_jup": (
+        "https://tokenomist.ai/research/jupiter-planned-its-2026-airdrop-three-ways-todays-chart-shows-only-the-last-one",
+        ["shows no airdrop and no new team tokens"]),
 }
 
 _TRANSLATE = str.maketrans({"‘": "'", "’": "'", "“": '"', "”": '"', "–": "-",

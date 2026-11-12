@@ -3,8 +3,13 @@
 Daily inflows are lumpy and neighbouring days are not independent, so the days are resampled in blocks of
 consecutive days (moving blocks), 10,000 times, with a fixed seed: blocks of 7 days for the 30-day window (a week),
 blocks of 3 for the before/after comparison, because the after period has only 13 days and blocks of 7 would leave
-just 7 places to start one. The same intervals with blocks of 1, 3, 5 and 7 are saved too (block_sensitivity). Everything comes from the daily rows in
-data/private_shift.json; nothing is fetched and nothing else is read.
+just 7 places to start one. The same intervals with blocks of 1, 3, 5 and 7 are saved too (block_sensitivity).
+Everything comes from the daily rows in data/private_shift.json; nothing is fetched and nothing else is read.
+
+A permutation test is added for the before/after change: the 38 days are shuffled 100,000 times (own seed) and
+split 25/13; p is the share of splits whose change is at least as large, either way, as the one measured. It
+assumes the days are exchangeable, which lumpy, autocorrelated inflows are not, so the bootstrap stays the main
+result.
 
   window  2 to 31 October 2026 (the 30 days of the locked window): mean NEAR a day kept by the buybacks wallets,
           and by the buybacks wallets plus the front-end fund. build_numbers.py divides these by the new NEAR a
@@ -23,6 +28,7 @@ Usage:
 """
 import argparse
 import json
+import math
 import random
 import sys
 from pathlib import Path
@@ -35,6 +41,8 @@ BLOCK_SIZES = (1, 3, 5, 7)
 RESAMPLES = 10000
 SEED = 20261112
 LOW, HIGH = 0.025, 0.975
+PERMUTATIONS = 100000
+PERM_SEED = 20261113
 WINDOW = ("2026-10-02", "2026-10-31")
 BEFORE = ("2026-10-02", "2026-10-26")
 AFTER = ("2026-10-27", "2026-11-08")
@@ -86,6 +94,20 @@ def change_ci(before, after, rng, block=BLOCK_SHIFT):
             "days_before": len(before), "days_after": len(after)}
 
 
+def permutation_p(before, after, rng, n=PERMUTATIONS):
+    """Two-sided: the share of random 25/13 splits of the same days whose |log(after/before)| >= the measured one."""
+    allx = before + after
+    k = len(after)
+    total = sum(allx)
+    obs = abs(math.log((sum(after) / k) / (sum(before) / len(before))))
+    hits = 0
+    for _ in range(n):
+        a = sum(rng.sample(allx, k))
+        if abs(math.log((a / k) / ((total - a) / (len(allx) - k)))) >= obs - 1e-12:
+            hits += 1
+    return {"p_two_sided": hits / n, "permutations": n, "seed": PERM_SEED}
+
+
 def compute(data_root):
     path = Path(data_root) / "private_shift.json"
     if not path.exists():
@@ -115,6 +137,8 @@ def compute(data_root):
         },
         "block_sensitivity": [],
     }
+    prng = random.Random(PERM_SEED)
+    res["permutation"] = {k: permutation_p(column(bef, k), column(aft, k), prng) for k in ("kept_near", "revenue_near")}
     for blk in BLOCK_SIZES:
         cb = mean_ci(column(win, "buybacks_near"), rng, blk)
         ck = change_ci(column(bef, "kept_near"), column(aft, "kept_near"), rng, blk)

@@ -1,0 +1,1494 @@
+<!DOCTYPE html>
+<html lang="en-US" class="cb-reface">
+<script>/* Pre-paint theme (no flash). 'cb-theme' = system|light|dark, default system; legacy cb-dark-mode=true maps to dark. Mirrors cb_dark_mode_script(). */(function(){try{var h=document.documentElement,t=localStorage.getItem('cb-theme');if(t!=='light'&&t!=='dark'&&t!=='system'){t=localStorage.getItem('cb-dark-mode')==='true'?'dark':'system';}var d=t==='dark'||(t==='system'&&!!window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches);if(d)h.classList.add('dark');h.style.colorScheme=d?'dark':'light';}catch(e){}})();</script>
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-5B8VMXJ');</script>
+    <!-- End Google Tag Manager -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+        <!-- InMobi Choice. Consent Manager Tag v3.0 (for TCF 2.2) -->
+<script async=true>
+(function() {
+  var host = 'cryptobriefing.com';
+  var element = document.createElement('script');
+  var firstScript = document.getElementsByTagName('script')[0];
+  var url = 'https://cmp.inmobi.com'
+    .concat('/choice/', 'nwS18F5XLGdW_', '/', host, '/choice.js?tag_version=V3');
+  var uspTries = 0;
+  var uspTriesLimit = 3;
+  element.async = true;
+  element.type = 'text/javascript';
+  element.src = url;
+
+  firstScript.parentNode.insertBefore(element, firstScript);
+
+  function makeStub() {
+    var TCF_LOCATOR_NAME = '__tcfapiLocator';
+    var queue = [];
+    var win = window;
+    var cmpFrame;
+
+    function addFrame() {
+      var doc = win.document;
+      var otherCMP = !!(win.frames[TCF_LOCATOR_NAME]);
+
+      if (!otherCMP) {
+        if (doc.body) {
+          var iframe = doc.createElement('iframe');
+
+          iframe.style.cssText = 'display:none';
+          iframe.name = TCF_LOCATOR_NAME;
+          doc.body.appendChild(iframe);
+        } else {
+          setTimeout(addFrame, 5);
+        }
+      }
+      return !otherCMP;
+    }
+
+    function tcfAPIHandler() {
+      var gdprApplies;
+      var args = arguments;
+
+      if (!args.length) {
+        return queue;
+      } else if (args[0] === 'setGdprApplies') {
+        if (
+          args.length > 3 &&
+          args[2] === 2 &&
+          typeof args[3] === 'boolean'
+        ) {
+          gdprApplies = args[3];
+          if (typeof args[2] === 'function') {
+            args[2]('set', true);
+          }
+        }
+      } else if (args[0] === 'ping') {
+        var retr = {
+          gdprApplies: gdprApplies,
+          cmpLoaded: false,
+          cmpStatus: 'stub'
+        };
+
+        if (typeof args[2] === 'function') {
+          args[2](retr);
+        }
+      } else {
+        if(args[0] === 'init' && typeof args[3] === 'object') {
+          args[3] = Object.assign(args[3], { tag_version: 'V3' });
+        }
+        queue.push(args);
+      }
+    }
+
+    function postMessageEventHandler(event) {
+      var msgIsString = typeof event.data === 'string';
+      var json = {};
+
+      try {
+        if (msgIsString) {
+          json = JSON.parse(event.data);
+        } else {
+          json = event.data;
+        }
+      } catch (ignore) {}
+
+      var payload = json.__tcfapiCall;
+
+      if (payload) {
+        window.__tcfapi(
+          payload.command,
+          payload.version,
+          function(retValue, success) {
+            var returnMsg = {
+              __tcfapiReturn: {
+                returnValue: retValue,
+                success: success,
+                callId: payload.callId
+              }
+            };
+            if (msgIsString) {
+              returnMsg = JSON.stringify(returnMsg);
+            }
+            if (event && event.source && event.source.postMessage) {
+              event.source.postMessage(returnMsg, '*');
+            }
+          },
+          payload.parameter
+        );
+      }
+    }
+
+    while (win) {
+      try {
+        if (win.frames[TCF_LOCATOR_NAME]) {
+          cmpFrame = win;
+          break;
+        }
+      } catch (ignore) {}
+
+      if (win === window.top) {
+        break;
+      }
+      win = win.parent;
+    }
+    if (!cmpFrame) {
+      addFrame();
+      win.__tcfapi = tcfAPIHandler;
+      win.addEventListener('message', postMessageEventHandler, false);
+    }
+  };
+
+  makeStub();
+
+  var uspStubFunction = function() {
+    var arg = arguments;
+    if (typeof window.__uspapi !== uspStubFunction) {
+      setTimeout(function() {
+        if (typeof window.__uspapi !== 'undefined') {
+          window.__uspapi.apply(window.__uspapi, arg);
+        }
+      }, 500);
+    }
+  };
+
+  var checkIfUspIsReady = function() {
+    uspTries++;
+    if (window.__uspapi === uspStubFunction && uspTries < uspTriesLimit) {
+      console.warn('USP is not accessible');
+    } else {
+      clearInterval(uspInterval);
+    }
+  };
+
+  if (typeof window.__uspapi === 'undefined') {
+    window.__uspapi = uspStubFunction;
+    var uspInterval = setInterval(checkIfUspIsReady, 6000);
+  }
+})();
+</script>
+<!-- End InMobi Choice. Consent Manager Tag v3.0 (for TCF 2.2) --><script> 
+    // Call geo-location JSONP service 
+    var jsonp = document.createElement( 'script');
+    jsonp.setAttribute( 'src', 'https://geolocation.onetrust.com/cookieconsentpub/v1/geo/location/geofeed');
+    document.head.appendChild(jsonp);
+
+    let personaAdClient = undefined;
+
+    const insertAdScripts = async function () {
+        // await insertSingleAdScript('head', '//dsh7ky7308k4b.cloudfront.net/publishers/cryptobriefingcom.min.js');
+        // await insertSingleAdScript('head', '//btloader.com/tag?o=5184339635601408&upapi=true');
+        // await insertSingleAdScript('body', 'https://appsha-prm.ctengine.io/js/script.js?wkey=t0hKKoLxBN');
+        // await insertSingleAdScript('head', 'https://cdn.jsdelivr.net/npm/@personaxyz/ad-sdk-programmatic@0.0.3');
+
+        // if (typeof PersonaAdSDK !== 'undefined') {
+        //     const personaConfig = {
+        //         apiKey: "persona-pub-5rFs09S0iTjaI5mHT6MTOSobSfJJBkuGAGqZZGhuNWugqwINYIa9gXjF8sJnA59Er7yVc5ffuThDP4B76fCtGYx9LoZhK8FQ6cWjWmpdNIEOlCX2mUxY",
+        //         environment: "production",
+        //     }
+        //     const sdk = new PersonaAdSDK.PersonaAdSDK(personaConfig);
+        //     personaAdClient = sdk.getClient();
+        // }
+    };
+
+    const insertSingleAdScript = function (appendTo, url) {
+        return new Promise(function (resolve, reject) {
+            const element = document.createElement('script');
+            const script = document.getElementsByTagName('script')[0];
+            element.async = true;
+            element.type = 'text/javascript';
+            element.src = url;
+
+            // Resolve the promise when the script is loaded
+            element.onload = function() {
+                resolve(true);
+            };
+
+            // Reject the promise on an error
+            element.onerror = function() {
+                reject('Script load error');
+            };
+
+            const target = document.getElementsByTagName(appendTo)[0];
+            if (!target) {
+                reject(`Cannot find element to append to: ${appendTo}`);
+                return;
+            }
+            
+            target.appendChild(element);
+        });
+    };
+
+    window.geofeed = function (options) {
+        var continent = options.continent.toString();
+        var country = options.country.toString();
+
+        if (continent == 'EU') {
+            var state = options.state.toString();
+            // console.log('In EU Country')
+            var gdprInsertAds = (function () {
+                // Run this in an interval (every 0.1s) just in case we are still waiting for consent 
+                var cnt = 0;
+                var consentSetInterval = setInterval(function () {
+                    cnt += 1;
+                    // Bail if we have not gotten a consent response after 60 seconds. 
+                    if (cnt === 600) clearInterval(consentSetInterval);
+                    if (typeof window.__tcfapi !== 'undefined') {
+                        // Check if window.__tcfapi has been set
+                        clearInterval(consentSetInterval);
+                        window.__tcfapi('addEventListener', 2, function (tcData, listenerSuccess) {
+                            if (listenerSuccess) {
+                                if (tcData.eventStatus === 'tcloaded' || tcData.eventStatus === 'useractioncomplete') {
+                                    if (!tcData.gdprApplies) {
+                                        insertAdScripts();
+                                        // console.log("No GDPR");
+                                    } else {
+                                        // GDPR DOES APPLY // Purpose 1 refers to the storage and/or access of information on a device. 
+                                        var hasDeviceStorageAndAccessConsent = tcData.purpose.consents[1] || false;
+                                        // Google Requires Consent for Purpose 1 
+                                        if (hasDeviceStorageAndAccessConsent) {
+                                            // GLOBAL VENDOR LIST - https://iabeurope.eu/vendor-list-tcf-v2-0/ 
+                                            // CHECK FOR GOOGLE ADVERTISING PRODUCTS CONSENT. (IAB Vendor ID 755) 
+                                            var hasGoogleAdvertisingProductsConsent = tcData.vendor.consents[755] || false;
+                                            // Check if the user gave Google Advertising Products consent (iab vendor 755) 
+                                            if (hasGoogleAdvertisingProductsConsent) {
+                                                insertAdScripts();
+                                                // console.log("GDPR Consent")
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        });
+                    }
+                    cnt++;
+                }, 100);
+            })();
+        } else {
+            insertAdScripts();
+        }
+    };
+</script>    <meta name='robots' content='noindex, follow' />
+    <script>
+    (function(){
+        // Theme preference (2026-09-23): 'cb-theme' = system|light|dark, default
+        // system, which follows prefers-color-scheme live. Legacy 'cb-dark-mode'
+        // =true (an explicit dark choice) maps to dark; anything else to system.
+        // header.php carries the pre-paint copy of this resolution.
+        var KEY='cb-theme',LEGACY='cb-dark-mode',CLS='dark',TRANS='dark-transition';
+        var mq=window.matchMedia?window.matchMedia('(prefers-color-scheme: dark)'):null;
+        function pref(){
+            var t=null,l=null;
+            try{t=localStorage.getItem(KEY);l=localStorage.getItem(LEGACY);}catch(e){}
+            if(t==='system'||t==='light'||t==='dark')return t;
+            return l==='true'?'dark':'system';
+        }
+        function apply(t,animate){
+            var h=document.documentElement,d=t==='dark'||(t==='system'&&!!(mq&&mq.matches));
+            if(animate){h.classList.add(TRANS);setTimeout(function(){h.classList.remove(TRANS);},400);}
+            if(d)h.classList.add(CLS);else h.classList.remove(CLS);
+            h.style.colorScheme=d?'dark':'light';
+            var NAMES={system:'System',light:'Light',dark:'Dark'};
+            document.querySelectorAll('[data-cb-theme]').forEach(function(b){
+                b.setAttribute('aria-checked',b.getAttribute('data-cb-theme')===t?'true':'false');
+            });
+            document.querySelectorAll('.cb-theme-btn').forEach(function(b){b.setAttribute('aria-label','Appearance: '+NAMES[t]);});
+            document.querySelectorAll('.cb-theme-cur').forEach(function(c){c.textContent=NAMES[t];});
+        }
+        function set(t){
+            try{localStorage.setItem(KEY,t);localStorage.removeItem(LEGACY);}catch(e){}
+            apply(t,true);
+        }
+        function toggle(){set(document.documentElement.classList.contains(CLS)?'light':'dark');}
+        if(mq){
+            var onSys=function(){if(pref()==='system')apply('system',true);};
+            if(mq.addEventListener)mq.addEventListener('change',onSys);else if(mq.addListener)mq.addListener(onSys);
+        }
+        document.addEventListener('DOMContentLoaded',function(){
+            apply(pref());
+            // Theme menu: one icon opens a small System / Light / Dark menu.
+            // Fixed placement (see fixes.css): right-aligned to the icon, below
+            // it, or above it when the menu would run off-screen. Re-placed on
+            // scroll/resize instead of closing: phones fire small scrolls while
+            // the mobile menu opens, which used to shut the menu immediately.
+            function place(m){
+                var b=m.querySelector('.cb-theme-btn'),p=m.querySelector('.cb-theme-pop');
+                if(!p||p.hidden)return;
+                var r=b.getBoundingClientRect(),h=p.offsetHeight;
+                p.style.right=Math.max(8,window.innerWidth-r.right)+'px';
+                if(r.bottom+6+h>window.innerHeight&&r.top-6-h>0){p.style.top='auto';p.style.bottom=(window.innerHeight-r.top+6)+'px';}
+                else{p.style.bottom='auto';p.style.top=(r.bottom+6)+'px';}
+            }
+            function placeAll(){document.querySelectorAll('.cb-theme-menu').forEach(place);}
+            function closeAll(except){
+                document.querySelectorAll('.cb-theme-menu').forEach(function(m){
+                    if(m===except)return;
+                    var p=m.querySelector('.cb-theme-pop'),b=m.querySelector('.cb-theme-btn');
+                    if(p&&!p.hidden){p.hidden=true;b.setAttribute('aria-expanded','false');}
+                });
+            }
+            document.querySelectorAll('.cb-theme-menu').forEach(function(m){
+                var b=m.querySelector('.cb-theme-btn'),p=m.querySelector('.cb-theme-pop');
+                b.addEventListener('click',function(e){
+                    e.stopPropagation();closeAll(m);
+                    var open=p.hidden;p.hidden=!open;b.setAttribute('aria-expanded',open?'true':'false');
+                    if(open){place(m);var c=p.querySelector('[aria-checked="true"]');if(c)c.focus({preventScroll:true});}
+                });
+                p.querySelectorAll('[data-cb-theme]').forEach(function(o){
+                    o.addEventListener('click',function(e){
+                        e.stopPropagation();set(o.getAttribute('data-cb-theme'));
+                        p.hidden=true;b.setAttribute('aria-expanded','false');b.focus();
+                    });
+                });
+                p.addEventListener('keydown',function(e){
+                    var items=[].slice.call(p.querySelectorAll('[data-cb-theme]')),i=items.indexOf(document.activeElement);
+                    if(e.key==='ArrowDown'||e.key==='ArrowUp'){e.preventDefault();items[(i+(e.key==='ArrowDown'?1:items.length-1))%items.length].focus();}
+                    if(e.key==='Escape'){p.hidden=true;b.setAttribute('aria-expanded','false');b.focus();}
+                });
+            });
+            document.addEventListener('click',function(){closeAll(null);});
+            window.addEventListener('scroll',placeAll,{passive:true});
+            window.addEventListener('resize',placeAll,{passive:true});
+            document.addEventListener('keydown',function(e){if(e.key==='Escape')closeAll(null);});
+            // Fix inline onmouseover handlers in dark mode
+            if(document.documentElement.classList.contains(CLS)){
+                document.querySelectorAll('.crypto-dropdown-menu a[onmouseover]').forEach(function(a){
+                    a.removeAttribute('onmouseover');a.removeAttribute('onmouseout');
+                });
+            }
+        });
+        window.cbToggleDarkMode=toggle;
+    })();
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://static.cryptobriefing.com" crossorigin>
+<link rel="dns-prefetch" href="//cdn.adx.ws">
+<link rel="dns-prefetch" href="//securepubads.g.doubleclick.net">
+
+	<!-- This site is optimized with the Yoast SEO Premium plugin v23.2 (Yoast SEO v23.2) - https://yoast.com/wordpress/plugins/seo/ -->
+	<title>Gemini launches staking for Hyperliquid&#039;s HYPE token, offering 2.1% APY</title>
+	<meta name="description" content="Gemini launches HYPE staking with 2.1% APY and no fees, joining Kraken and Grayscale in a growing institutional push around Hyperliquid&#039;s native" />
+	<meta property="og:locale" content="en_US" />
+	<meta property="og:type" content="article" />
+	<meta property="og:title" content="Gemini launches staking for Hyperliquid&#039;s HYPE token, offering 2.1% APY" />
+	<meta property="og:description" content="Gemini launches HYPE staking with 2.1% APY and no fees, joining Kraken and Grayscale in a growing institutional push around Hyperliquid&#039;s native" />
+	<meta property="og:url" content="https://cryptobriefing.com/gemini-hype-staking-hyperliquid-apy/" />
+	<meta property="og:site_name" content="Crypto Briefing" />
+	<meta property="article:publisher" content="https://www.facebook.com/cryptobriefing" />
+	<meta property="article:published_time" content="2026-09-28T20:33:49+00:00" />
+	<meta property="og:image" content="https://static.cryptobriefing.com/wp-content/uploads/2026/09/28193414/library-gemini-launches-staking-for-hyperliquid-s-hype-token-off-3-800x450.png" />
+	<meta property="og:image:width" content="800" />
+	<meta property="og:image:height" content="450" />
+	<meta property="og:image:type" content="image/png" />
+	<meta name="author" content="Kaye Quema" />
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:title" content="Gemini launches staking for Hyperliquid&#039;s HYPE token, offering 2.1% APY" />
+	<meta name="twitter:description" content="Gemini launches HYPE staking with 2.1% APY and no fees, joining Kraken and Grayscale in a growing institutional push around Hyperliquid&#039;s native" />
+	<meta name="twitter:image" content="https://static.cryptobriefing.com/wp-content/uploads/2026/09/28193414/library-gemini-launches-staking-for-hyperliquid-s-hype-token-off-3-800x450.png" />
+	<meta name="twitter:creator" content="@https://x.com/Kquema" />
+	<meta name="twitter:site" content="@crypto_briefing" />
+	<meta name="twitter:label1" content="Written by" />
+	<meta name="twitter:data1" content="Kaye Quema" />
+	<meta name="twitter:label2" content="Est. reading time" />
+	<meta name="twitter:data2" content="1 minute" />
+	<script type="application/ld+json" class="yoast-schema-graph">{"@context":"https://schema.org","@graph":[{"@type":"NewsArticle","@id":"https://cryptobriefing.com/gemini-hype-staking-hyperliquid-apy/#article","isPartOf":{"@id":"https://cryptobriefing.com/gemini-hype-staking-hyperliquid-apy/"},"author":{"name":"Kaye Quema","@id":"https://cryptobriefing.com/#/schema/person/74730009d364aaea88cb577ea7d2b585"},"headline":"Gemini launches staking for Hyperliquid\u0026#8217;s HYPE token, offering 2.1% APY","datePublished":"2026-09-28T20:33:49+00:00","dateModified":"2026-09-28T20:33:49+00:00","mainEntityOfPage":{"@id":"https://cryptobriefing.com/gemini-hype-staking-hyperliquid-apy/"},"wordCount":220,"publisher":{"@id":"https://cryptobriefing.com/#organization"},"image":{"@id":"https://cryptobriefing.com/gemini-hype-staking-hyperliquid-apy/#primaryimage"},"thumbnailUrl":"https://static.cryptobriefing.com/wp-content/uploads/2026/09/28193414/library-gemini-launches-staking-for-hyperliquid-s-hype-token-off-3.png","articleSection":["Crypto"],"inLanguage":"en-US","isAccessibleForFree":true,"copyrightYear":"2026","copyrightHolder":{"@id":"https://cryptobriefing.com/#organization"},"speakable":{"@type":"SpeakableSpecification","cssSelector":[".entry-title",".article-excerpt",".post-content p:first-of-type"]}},{"@type":"WebPage","@id":"https://cryptobriefing.com/gemini-hype-staking-hyperliquid-apy/","url":"https://cryptobriefing.com/gemini-hype-staking-hyperliquid-apy/","name":"Gemini launches staking for Hyperliquid\u0027s HYPE token, offering 2.1% APY","isPartOf":{"@id":"https://cryptobriefing.com/#website"},"primaryImageOfPage":{"@id":"https://cryptobriefing.com/gemini-hype-staking-hyperliquid-apy/#primaryimage"},"image":{"@id":"https://cryptobriefing.com/gemini-hype-staking-hyperliquid-apy/#primaryimage"},"thumbnailUrl":"https://static.cryptobriefing.com/wp-content/uploads/2026/09/28193414/library-gemini-launches-staking-for-hyperliquid-s-hype-token-off-3.png","datePublished":"2026-09-28T20:33:49+00:00","dateModified":"2026-09-28T20:33:49+00:00","description":"Gemini launches HYPE staking with 2.1% APY and no fees, joining Kraken and Grayscale in a growing institutional push around Hyperliquid\u0027s native","breadcrumb":{"@id":"https://cryptobriefing.com/gemini-hype-staking-hyperliquid-apy/#breadcrumb"},"inLanguage":"en-US","potentialAction":[{"@type":"ReadAction","target":["https://cryptobriefing.com/gemini-hype-staking-hyperliquid-apy/"]}]},{"@type":"ImageObject","inLanguage":"en-US","@id":"https://cryptobriefing.com/gemini-hype-staking-hyperliquid-apy/#primaryimage","url":"https://static.cryptobriefing.com/wp-content/uploads/2026/09/28193414/library-gemini-launches-staking-for-hyperliquid-s-hype-token-off-3.png","contentUrl":"https://static.cryptobriefing.com/wp-content/uploads/2026/09/28193414/library-gemini-launches-staking-for-hyperliquid-s-hype-token-off-3.png","width":1280,"height":720},{"@type":"BreadcrumbList","@id":"https://cryptobriefing.com/gemini-hype-staking-hyperliquid-apy/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://cryptobriefing.com/"},{"@type":"ListItem","position":2,"name":"Crypto","item":"https://cryptobriefing.com/crypto/"},{"@type":"ListItem","position":3,"name":"Gemini launches staking for Hyperliquid\u0026#8217;s HYPE token, offering 2.1% APY"}]},{"@type":"WebSite","@id":"https://cryptobriefing.com/#website","url":"https://cryptobriefing.com/","name":"Crypto Briefing","description":"Bitcoin, Ethereum and the future of finance","publisher":{"@id":"https://cryptobriefing.com/#organization"},"alternateName":"CB","potentialAction":[{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://cryptobriefing.com/?s={search_term_string}"},"query-input":"required name=search_term_string"}],"inLanguage":"en-US"},{"@type":"Organization","@id":"https://cryptobriefing.com/#organization","name":"Crypto Briefing","alternateName":"CB","url":"https://cryptobriefing.com/","logo":{"@type":"ImageObject","inLanguage":"en-US","@id":"https://cryptobriefing.com/#/schema/logo/image/","url":"https://static.cryptobriefing.com/wp-content/uploads/2020/02/02093517/ios-144.png","contentUrl":"https://static.cryptobriefing.com/wp-content/uploads/2020/02/02093517/ios-144.png","width":144,"height":144,"caption":"Crypto Briefing"},"image":{"@id":"https://cryptobriefing.com/#/schema/logo/image/"},"sameAs":["https://www.facebook.com/cryptobriefing","https://x.com/crypto_briefing","https://www.linkedin.com/company/crypto-briefing","https://t.me/CryptoBriefingChannel"],"foundingDate":"2017-01-01","description":"Crypto Briefing is a leading independent crypto media organization delivering relevant news and in-depth research since 2017.","publishingPrinciples":"https://cryptobriefing.com/about/"},{"@type":"Person","@id":"https://cryptobriefing.com/#/schema/person/74730009d364aaea88cb577ea7d2b585","name":"Kaye Quema","image":{"@type":"ImageObject","inLanguage":"en-US","@id":"https://cryptobriefing.com/#/schema/person/image/","url":"https://static.cryptobriefing.com/wp-content/uploads/2026/06/11193318/kaye-headshot.png","contentUrl":"https://static.cryptobriefing.com/wp-content/uploads/2026/06/11193318/kaye-headshot.png","caption":"Kaye Quema"},"description":"Kaye Quema is Head of Digital Media Partnerships at Crypto Briefing, where she works with exchanges, wallets, infrastructure providers, fintech companies, and Web3 brands on media strategy, audience development, and integrated marketing campaigns.","sameAs":["https://www.linkedin.com/in/kayequema/","https://x.com/https://x.com/Kquema"],"url":"https://cryptobriefing.com/team/kayequema/"}]}</script>
+	<!-- / Yoast SEO Premium plugin. -->
+
+
+<link rel='dns-prefetch' href='//cdn.jsdelivr.net' />
+<link rel='dns-prefetch' href='//fonts.googleapis.com' />
+<link rel='dns-prefetch' href='//www.googletagmanager.com' />
+<link href='https://fonts.gstatic.com' crossorigin='anonymous' rel='preconnect' />
+<link rel="alternate" type="application/rss+xml" title="Crypto Briefing &raquo; Feed" href="https://cryptobriefing.com/feed/" />
+<script async src="https://cdn.adx.ws/scripts/loader.js" data-no-minify="1" data-cfasync="false"></script>
+<link rel="preload" as="image" href="https://static.cryptobriefing.com/wp-content/uploads/2026/09/28193414/library-gemini-launches-staking-for-hyperliquid-s-hype-token-off-3-800x450.png" fetchpriority="high">
+<script data-cfasync="false" data-no-optimize="1" data-no-defer="1" data-no-minify="1">
+(function () {
+  var SANDBOX = 'allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox allow-forms allow-top-navigation-by-user-activation';
+  function guard(f) {
+    if (!f || f.tagName !== 'IFRAME' || !f.closest) return;
+    if (!f.closest('.sevioads')) return;
+    if (f.getAttribute('sandbox') === SANDBOX) return;
+    f.setAttribute('sandbox', SANDBOX);
+  }
+  function sweep() {
+    try {
+      var list = document.querySelectorAll('.sevioads iframe');
+      for (var i = 0; i < list.length; i++) guard(list[i]);
+    } catch (e) {}
+  }
+  try {
+    var mo = new MutationObserver(function (muts) {
+      for (var i = 0; i < muts.length; i++) {
+        var added = muts[i].addedNodes;
+        for (var j = 0; j < added.length; j++) {
+          var n = added[j];
+          if (n.nodeType !== 1) continue;
+          if (n.tagName === 'IFRAME') guard(n);
+          if (n.querySelectorAll) {
+            var inner = n.querySelectorAll('iframe');
+            for (var k = 0; k < inner.length; k++) guard(inner[k]);
+          }
+        }
+      }
+    });
+    mo.observe(document.documentElement, { childList: true, subtree: true });
+  } catch (e) {}
+  // Belt-and-suspenders early sweeps; the observer above stays active for the page
+  // lifetime and covers ads that lazy-load later on scroll.
+  sweep();
+  if (document.addEventListener) {
+    document.addEventListener('DOMContentLoaded', sweep);
+  }
+  var passes = 0, timer = setInterval(function () { sweep(); if (++passes > 40) clearInterval(timer); }, 250);
+})();
+</script>
+<link rel="alternate" title="oEmbed (JSON)" type="application/json+oembed" href="https://cryptobriefing.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fcryptobriefing.com%2Fgemini-hype-staking-hyperliquid-apy%2F" />
+<link rel="alternate" title="oEmbed (XML)" type="text/xml+oembed" href="https://cryptobriefing.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fcryptobriefing.com%2Fgemini-hype-staking-hyperliquid-apy%2F&#038;format=xml" />
+<style id='wp-img-auto-sizes-contain-inline-css'>
+img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
+/*# sourceURL=wp-img-auto-sizes-contain-inline-css */
+</style>
+<link rel="stylesheet" href="https://cryptobriefing.com/wp-content/plugins/post-views-counter/css/frontend.css?ver=1.8.2" media="print" onload="this.media='all'"><link rel='stylesheet' id='cb-asset-cover-css' href='https://cryptobriefing.com/wp-content/themes/cryptobriefing-lovable/assets/css/asset-cover.css?ver=1793941264' media='all' />
+<link rel='stylesheet' id='cb-asset-hover-css' href='https://cryptobriefing.com/wp-content/themes/cryptobriefing-lovable/assets/css/asset-hover.css?ver=1793941264' media='all' />
+<link rel='stylesheet' id='chain-wire-css' href='https://cryptobriefing.com/wp-content/plugins/chainwire-integration/public/css/chainwire-public.css?ver=1.0.23' media='all' />
+<link rel='stylesheet' id='gn-frontend-gnfollow-style-css' href='https://cryptobriefing.com/wp-content/plugins/gn-publisher/assets/css/gn-frontend-gnfollow.min.css?ver=1.5.31' media='all' />
+<link rel='stylesheet' id='softlite-integration-widget-style-css' href='https://cryptobriefing.com/wp-content/plugins/softlite-io-integration/assets/css/minify/widget.min.css?ver=1.0.69' media='all' />
+<link rel='stylesheet' id='cb-lovable-css-css' href='https://cryptobriefing.com/wp-content/themes/cryptobriefing-lovable/lovable.css?ver=1.0.5' media='all' />
+<link rel='stylesheet' id='cb-lovable-fixes-css' href='https://cryptobriefing.com/wp-content/themes/cryptobriefing-lovable/fixes.css?ver=1.0.9.1794511668' media='all' />
+<link rel='stylesheet' id='cb-sevio-placements-css' href='https://cryptobriefing.com/wp-content/themes/cryptobriefing/assets/css/sevio-placements.css?ver=1793941264' media='all' />
+<link rel='stylesheet' id='cb-pro-house-banner-css' href='https://cryptobriefing.com/wp-content/themes/cryptobriefing-lovable/assets/css/pro-house-banner.css?ver=1793941264' media='all' />
+<link rel='stylesheet' id='cb-reface-fonts-css' href='https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&#038;family=Geist+Mono:wght@400;500&#038;display=swap' media='all' />
+<link rel='stylesheet' id='cb-reface-css' href='https://cryptobriefing.com/wp-content/themes/cryptobriefing-lovable/assets/css/reface.css?ver=1794390815' media='all' />
+<link rel='stylesheet' id='cb-article-reface-css' href='https://cryptobriefing.com/wp-content/themes/cryptobriefing-lovable/assets/css/article-reface.css?ver=1793941264' media='all' />
+<script id="post-views-counter-frontend-js-before">
+/* <![CDATA[ */
+var pvcArgsFrontend = {"mode":"js","countEnabled":true,"postID":381071,"requestURL":"https:\/\/cryptobriefing.com\/wp-admin\/admin-ajax.php","displayURL":"https:\/\/cryptobriefing.com\/wp-json\/post-views-counter\/get-post-views","nonce":"7ddef2e5c0","dataStorage":"cookies","multisite":1,"path":"\/","domain":"cryptobriefing.com"};
+
+//# sourceURL=post-views-counter-frontend-js-before
+/* ]]> */
+</script>
+<script src="https://cryptobriefing.com/wp-content/plugins/post-views-counter/js/frontend.js?ver=1.8.2" id="post-views-counter-frontend-js"></script>
+<script id="jquery-core-js-extra">
+/* <![CDATA[ */
+var cb_lovable_ajax = {"ajax_url":"https://cryptobriefing.com/wp-admin/admin-ajax.php","nonce":"efcf46098e"};
+//# sourceURL=jquery-core-js-extra
+/* ]]> */
+</script>
+<script src="https://cryptobriefing.com/wp-includes/js/jquery/jquery.min.js?ver=3.7.1" id="jquery-core-js"></script>
+<script src="https://cryptobriefing.com/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.4.1" id="jquery-migrate-js"></script>
+    <style>
+    .onesignal-slidedown-container,
+    #onesignal-slidedown-container,
+    .onesignal-slidedown-dialog,
+    .slide-down {
+        display: none !important;
+    }
+    #cb-push-bell {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 99999;
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background: #1a1a2e;
+        border: none;
+        cursor: pointer;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        transition: transform 0.2s, background 0.2s;
+    }
+    #cb-push-bell:hover {
+        transform: scale(1.1);
+        background: #2a2a4e;
+    }
+    #cb-push-bell svg {
+        width: 22px;
+        height: 22px;
+        fill: #ffffff;
+    }
+    </style>
+    <meta name="generator" content="Site Kit by Google 1.191.0" />    <script async src="https://subscribe-forms.beehiiv.com/attribution.js"></script>
+    <script>
+    (function(){var s=document.createElement('script');s.src='https://subscribe-forms.beehiiv.com/recommendations.js?_bhpid=664d70e2-8d80-40e9-9dfa-04078a0e231a&v=1';s.setAttribute('data-beehiiv-recommendations-widget','');s.defer=true;document.head.appendChild(s);})();
+    </script>
+    <link rel="alternate" hreflang="en" href="https://cryptobriefing.com/gemini-hype-staking-hyperliquid-apy/" />
+<link rel="alternate" hreflang="x-default" href="https://cryptobriefing.com/gemini-hype-staking-hyperliquid-apy/" />
+      <meta name="onesignal" content="wordpress-plugin"/>
+            <script>
+
+      window.OneSignalDeferred = window.OneSignalDeferred || [];
+
+      OneSignalDeferred.push(function(OneSignal) {
+        var oneSignal_options = {};
+        window._oneSignalInitOptions = oneSignal_options;
+
+        oneSignal_options['serviceWorkerParam'] = { scope: '/' };
+oneSignal_options['serviceWorkerPath'] = 'OneSignalSDKWorker.js.php';
+
+        OneSignal.Notifications.setDefaultUrl("https://cryptobriefing.com");
+
+        oneSignal_options['wordpress'] = true;
+oneSignal_options['appId'] = '3c505736-7bad-4871-a25e-9140c5021bec';
+oneSignal_options['allowLocalhostAsSecureOrigin'] = true;
+oneSignal_options['welcomeNotification'] = { };
+oneSignal_options['welcomeNotification']['disable'] = true;
+oneSignal_options['path'] = "https://cryptobriefing.com/wp-content/plugins/onesignal-free-web-push-notifications/sdk_files/";
+oneSignal_options['safari_web_id'] = "web.onesignal.auto.2ccd5ae7-3528-4a1e-96f6-138881299499";
+oneSignal_options['persistNotification'] = false;
+oneSignal_options['promptOptions'] = { };
+oneSignal_options['promptOptions']['actionMessage'] = "We would like to show you notifications for the latest news and updates";
+oneSignal_options['promptOptions']['acceptButtonText'] = "Allow";
+oneSignal_options['promptOptions']['cancelButtonText'] = "Cancel";
+oneSignal_options['promptOptions']['siteName'] = "https:\/\/cryptobriefing.com";
+oneSignal_options['notifyButton'] = { };
+oneSignal_options['notifyButton']['enable'] = true;
+oneSignal_options['notifyButton']['position'] = 'bottom-right';
+oneSignal_options['notifyButton']['theme'] = 'default';
+oneSignal_options['notifyButton']['size'] = 'medium';
+oneSignal_options['notifyButton']['showCredit'] = false;
+oneSignal_options['notifyButton']['text'] = {};
+oneSignal_options['notifyButton']['text']['tip.state.subscribed'] = 'You will get breaking news alerts';
+oneSignal_options['notifyButton']['text']['message.action.subscribed'] = 'Thanks, you will be the first to know!';
+oneSignal_options['notifyButton']['colors'] = {};
+oneSignal_options['notifyButton']['colors']['circle.background'] = '#a60000';
+              OneSignal.init(window._oneSignalInitOptions);
+                    });
+
+      function documentInitOneSignal() {
+        var oneSignal_elements = document.getElementsByClassName("OneSignal-prompt");
+
+        var oneSignalLinkClickHandler = function(event) { OneSignal.Notifications.requestPermission(); event.preventDefault(); };        for(var i = 0; i < oneSignal_elements.length; i++)
+          oneSignal_elements[i].addEventListener('click', oneSignalLinkClickHandler, false);
+      }
+
+      if (document.readyState === 'complete') {
+           documentInitOneSignal();
+      }
+      else {
+           window.addEventListener("load", function(event){
+               documentInitOneSignal();
+          });
+      }
+    </script>
+<link rel="icon" href="https://cryptobriefing.com/wp-content/themes/cryptobriefing-lovable/assets/img/brand/cb-icon-48.png" sizes="48x48" type="image/png" />
+<link rel="icon" href="https://cryptobriefing.com/wp-content/themes/cryptobriefing-lovable/assets/img/brand/cb-icon-96.png" sizes="96x96" type="image/png" />
+<link rel="icon" href="https://cryptobriefing.com/wp-content/themes/cryptobriefing-lovable/assets/img/brand/cb-icon-192.png" sizes="192x192" type="image/png" />
+<link rel="apple-touch-icon" href="https://cryptobriefing.com/wp-content/themes/cryptobriefing-lovable/assets/img/brand/apple-touch-icon.png" />
+<meta name="msapplication-TileImage" content="https://cryptobriefing.com/wp-content/themes/cryptobriefing-lovable/assets/img/brand/cb-icon-512.png" />
+		<style id="wp-custom-css">
+			/* Hide page title on Newsletter Confirmed page */
+.page-id-192532 .entry-title,
+.page-id-192532 .page-title {
+	  display: none !important;
+}
+}		</style>
+		</head>
+<body class="wp-singular post-template-default single single-post postid-381071 single-format-standard wp-theme-cryptobriefing wp-child-theme-cryptobriefing-lovable min-h-screen bg-background cb-reface-body cb-art-reface">
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5B8VMXJ" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+    <!-- Store initial data for infinite scroll -->
+    <script>
+    window.initialArticle = {"id":381071,"title":"Gemini launches staking for Hyperliquid&#8217;s HYPE token, offering 2.1% APY","subheadline":"The exchange joins Kraken and Grayscale in a growing institutional push around Hyperliquid's native token","author":"Kaye Quema","editor":"Kaye Quema","editorUrl":"https:\/\/cryptobriefing.com\/team\/kayequema\/","isPressRelease":false,"timeAgo":"44 days","isoDate":"2026-09-28T16:33:49-04:00","publishDate":"2026-09-28","image":"https:\/\/static.cryptobriefing.com\/wp-content\/uploads\/2026\/09\/28193414\/library-gemini-launches-staking-for-hyperliquid-s-hype-token-off-3-800x450.png","imageCaption":"","categories":["CRYPTO"],"content":"<p>Gemini has added HYPE staking to its platform, giving customers in most US states a way to earn roughly 2.1% annually on <a href=\"https:\/\/cryptobriefing.com\/markets\/hyperliquid\/\" class=\"cb-markets-autolink\" data-cb-asset=\"hyperliquid\">Hyperliquid<\/a>&#8217;s native token. No minimum stake is required, and the exchange charges no transfer or redemption fees.<\/p>\n<p>New York residents are excluded, as they are from many staking products on US platforms.<\/p>\n<aside class=\"cb-gloria-insert cb-deferred-ad\" data-article=\"gemini-hype-staking-hyperliquid-apy\" data-variant=\"gemini-hype-staking-hyperliquid-apy\/control\"><template><\/template><\/aside>\n\n<div class=\"ad-banner leaderboard-in-article cb-deferred-ad cb-block14-wrap\" data-cb-lazy=\"1\" style=\"margin: 32px 0; padding: 16px 0; text-align: center; border-top: 1px solid #E0E0E0; border-bottom: 1px solid #E0E0E0;\"><div style=\"font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: #999; margin-bottom: 8px;\">Advertisement<\/div><div style=\"min-height: 124px;\"><template><div style=\"display: flex; align-items: center; justify-content: center;\"><div class=\"code-block code-block-14 cb-sevio-placement\" data-cb-sevio-placement=\"article_leaderboard\" data-cb-min-width=\"0\"><div class=\"cb-sevio-size cb-sevio-leaderboard\"><template><div class=\"sevioads\" data-zone=\"de1434f5-fa9e-44a6-93c3-4c2439763717\"><\/div><\/template><template data-cb-sevio-fallback><a class=\"cb-sevio-fallback cbpa\" data-cb-pbt=\"{&quot;t&quot;:&quot;hx1&quot;,&quot;arms&quot;:[{&quot;id&quot;:&quot;h1&quot;,&quot;h&quot;:&quot;Follow the news about what you own.&quot;,&quot;w&quot;:20},{&quot;id&quot;:&quot;h3&quot;,&quot;h&quot;:&quot;What\\u2019s happening with the assets you hold?&quot;,&quot;w&quot;:20},{&quot;id&quot;:&quot;h4&quot;,&quot;h&quot;:&quot;The news on what you own.&quot;,&quot;w&quot;:20},{&quot;id&quot;:&quot;h5&quot;,&quot;h&quot;:&quot;Your holdings, in today\\u2019s news.&quot;,&quot;w&quot;:20},{&quot;id&quot;:&quot;h6&quot;,&quot;h&quot;:&quot;What\\u2019s moving the assets you hold?&quot;,&quot;w&quot;:20}]}\" data-cb-pbt-p=\"article_leaderboard\" href=\"https:\/\/pro.cryptobriefing.com\/signup?utm_source=cryptobriefing&#038;utm_medium=referral&#038;utm_campaign=cb_ad_fallback_article_leaderboard\"><span class=\"cbpa-brand\"><span class=\"cbpa-wm\" aria-hidden=\"true\"><\/span><span class=\"cbpa-vh\">Crypto Briefing <\/span><span class=\"cbpa-pro\">Pro<\/span><\/span> <span class=\"cbpa-h\">Follow the news about what you own.<\/span> <span class=\"cbpa-b\">Add your holdings to find related stories in Pro.<\/span> <span class=\"cbpa-cta\">Create a free account<\/span><span class=\"cbpa-art\" aria-hidden=\"true\"><\/span><\/a><\/template><\/div><\/div><\/div><\/template><\/div><\/div>\n\n<h2>What Hyperliquid actually is, and why the yield exists<\/h2>\n<p>Hyperliquid runs a Layer 1 blockchain built specifically around perpetual futures trading. The network uses a delegated proof-of-stake model secured through a consensus mechanism called HyperBFT. Token holders delegate their HYPE to validators, validators process transactions, and the network rewards everyone involved from a pre-allocated emissions reserve.<\/p>\n<p>Right now, approximately 440 million HYPE tokens are staked, representing about 44% of the total supply of 1 billion tokens. With current staking levels, the emissions reserve produces between 2.1% and 2.3% APY.<\/p>\n<div class=\"cb-nl-inline\" data-cb-nl-surface=\"inline\" data-cb-nl-category=\"crypto\" role=\"complementary\" aria-label=\"Newsletter signup\">\n    <div class=\"cb-nl-inline-rule\" aria-hidden=\"true\"><\/div>\n    <h3 class=\"cb-nl-inline-head\">The news moving money, markets, and the world&mdash;before your day starts.<\/h3>\n    <p class=\"cb-nl-inline-sub\">Daily. Free. Join 34,000+ readers across crypto, finance, and policy.<\/p>\n    <form class=\"cb-nl-inline-form cb-nl-form\" novalidate>\n        <label class=\"cb-nl-email-label\"><span class=\"cb-nl-visually-hidden\">Email address<\/span>\n        <input type=\"email\" name=\"subscriber_email\" class=\"cb-nl-email\" placeholder=\"you@example.com\" autocomplete=\"email\" required \/><\/label>\n        <input type=\"text\" name=\"email\" class=\"cb-nl-hp\" tabindex=\"-1\" autocomplete=\"off\" aria-hidden=\"true\" \/>\n        <button type=\"submit\" class=\"cb-nl-submit\">Subscribe free<\/button>\n    <\/form>\n    <p class=\"cb-nl-inline-privacy\"><a href=\"https:\/\/cryptobriefing.com\/privacy-policy\/\">We respect your privacy. Unsubscribe anytime.<\/a><\/p>\n    <p class=\"cb-nl-status\" aria-live=\"polite\"><\/p>\n<\/div>\n\n<p>For users staking directly on Hyperliquid&#8217;s own infrastructure, unstaking involves a seven-day queue after a one-day delegation lock. Validators must also maintain a self-delegation of 10,000 HYPE tokens.<\/p>\n<h2>Gemini is not alone in this trade<\/h2>\n<p>Kraken introduced HYPE staking in June 2026, offering a tiered reward structure that reaches up to 2.2% APY. Kraken excludes both New York and Maine.<\/p>\n<p>Grayscale launched the HYPG ETF on Nasdaq on June 3, 2026, structured to provide HYPE price exposure while incorporating staking rewards into its return profile. The fund carries a 0.29% sponsor fee.<\/p>\n","podcastEpisodeUrl":"","podcastName":"","isCommissioned":false};
+    window.googleNewsImg = "https:\/\/cryptobriefing.com\/wp-content\/themes\/cryptobriefing-lovable\/assets\/follow-google-news.png";
+    window.homeUrl = "https:\/\/cryptobriefing.com";
+    window.ajaxUrl = "https:\/\/cryptobriefing.com\/wp-admin\/admin-ajax.php";
+    window.primaryCatId = 89159;
+    window.currentPostId = 381071;
+    window.currentPublishDate = "2026-09-28 16:33:49";
+    </script>
+    
+<div class="bg-background">
+
+<a class="cbr-skip" href="#main">Skip to content</a>
+<header class="cbr-hd" id="cbr-hd">
+    <div class="cbr-hd-in">
+        <a class="cbr-logo" href="https://cryptobriefing.com/" aria-label="Crypto Briefing home"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 679.83 200" class="cbr-wordmark" focusable="false" aria-hidden="true"><g transform="translate(31.79 123.29) scale(0.6)"><path class="cbr-ink" d="M44.47 2.33Q36.79 2.33 29.95 -0.35Q23.11 -3.03 18.04 -8.17Q12.9 -13.39 9.97 -20.79Q7.05 -28.19 7.05 -37.49Q7.05 -50.81 11.56 -62.37Q16.07 -73.93 23.96 -83.02Q31.57 -91.75 42.25 -97.04Q52.92 -102.33 64.55 -102.33Q73.36 -102.33 80.02 -100.28Q86.68 -98.24 90.98 -95.21L94.93 -100H100.56L92.95 -64.34H87.17V-67.16Q87.17 -72.94 86.26 -78.19Q85.34 -83.44 82.73 -87.67Q80.2 -91.75 75.79 -94.19Q71.39 -96.62 64.55 -96.62Q55.88 -96.62 48.45 -92Q41.01 -87.39 35.59 -79.7Q30.23 -72.23 26.99 -61.31Q23.75 -50.39 23.75 -39.04Q23.75 -24.03 31.11 -14.69Q38.48 -5.36 50.88 -5.36Q61.24 -5.36 69.94 -11.49Q78.65 -17.62 84.14 -27.91L89.22 -25.23Q80.34 -10.08 69.42 -3.88Q58.49 2.33 44.47 2.33ZM155.57 -59.62Q155.57 -57.65 155.01 -55.29Q154.44 -52.92 153.39 -51.37Q152.12 -49.47 150.6 -48.45Q149.09 -47.43 146.27 -47.43Q142.46 -47.43 140.56 -49.33Q138.66 -51.23 138.66 -53.56Q138.66 -55.74 139.72 -58.46Q140.77 -61.17 141.9 -63.85Q141.05 -63.85 139.12 -63.39Q137.18 -62.93 134.43 -61.59Q131.68 -60.25 128.19 -57.58Q124.7 -54.9 120.76 -50.46L109.41 0H96.3L106.59 -45.67Q106.95 -47.36 107.62 -50.74Q108.28 -54.12 108.28 -55.74Q108.28 -59.69 106.95 -61.03Q105.61 -62.37 101.59 -62.37Q100.04 -62.37 97.64 -61.84Q95.25 -61.31 93.91 -60.96L94.97 -65.47Q100.46 -67.94 104.69 -69.13Q108.92 -70.33 111.95 -70.33Q117.59 -70.33 119.98 -67.27Q122.38 -64.2 122.38 -58.07H122.8Q131.19 -65.33 135.52 -68.22Q139.86 -71.11 144.58 -71.11Q146.83 -71.11 148.95 -70.54Q151.06 -69.98 152.54 -68.64Q154.09 -67.16 154.83 -65.22Q155.57 -63.28 155.57 -59.62ZM201.14 -10.22H200.71Q194.23 -4.79 188.38 -1.69Q182.53 1.41 175.06 1.41Q168.3 1.41 164.35 -2.5Q160.4 -6.41 160.4 -12.76Q160.4 -14.45 160.68 -16.77Q160.97 -19.1 162.02 -23.68L167.52 -45.67Q168.3 -48.84 168.72 -51.2Q169.14 -53.56 169.14 -55.74Q169.14 -59.69 167.84 -60.99Q166.53 -62.3 162.52 -62.3Q160.97 -62.3 158.57 -61.73Q156.17 -61.17 154.84 -60.82L155.89 -65.33Q161.39 -67.79 165.58 -69.06Q169.78 -70.33 172.31 -70.33Q177.95 -70.33 180.66 -67.79Q183.38 -65.26 183.38 -60.18Q183.38 -58.91 183.1 -56.73Q182.81 -54.55 182.25 -52.36L175.84 -26.64Q175.13 -23.68 174.64 -21.11Q174.15 -18.53 174.15 -17.2Q174.15 -12.47 176.44 -9.73Q178.73 -6.98 183.17 -6.98Q188.31 -6.98 193.21 -9.51Q198.11 -12.05 202.4 -16.49L214.1 -69.2L226.29 -70.05L227.14 -68.99L215.02 -13.81Q212.34 -1.69 208.18 6.91Q204.03 15.5 198.46 20.79Q192.61 26.36 185.84 28.82Q179.08 31.29 170.41 31.29Q164.42 31.29 160.9 30.44Q157.37 29.6 155.33 28.12Q153.29 26.71 152.58 24.95Q151.88 23.19 151.88 21.42Q151.88 18.39 153.71 16.07Q155.54 13.74 158.99 13.74Q161.6 13.74 163.43 15.22Q165.27 16.7 166.39 18.46Q167.66 20.37 168.72 22.76Q169.78 25.16 170.41 26.57H172.1Q176.12 26.57 180.59 24.59Q185.07 22.62 188.8 18.46Q192.82 13.95 196.03 6.84Q199.23 -0.28 201.14 -10.22ZM305.54 -44.19Q305.54 -34.74 302.23 -26.29Q298.92 -17.83 293.42 -11.63Q287.29 -4.79 280.14 -1.48Q272.99 1.83 265.45 1.83Q259.39 1.83 255.51 0.35Q251.63 -1.13 248.6 -3.31L244.52 15.15Q244.09 16.91 243.85 18.46Q243.6 20.01 243.6 20.93Q243.6 22.83 244.97 23.96Q246.35 25.09 248.11 25.58Q249.87 26.15 252.06 26.43Q254.24 26.71 256 26.85L255.02 31.29H216.19L217.17 26.85Q219.43 26.71 221.4 26.5Q223.37 26.29 225.14 25.79Q227.32 25.16 228.62 23.43Q229.93 21.71 230.49 19.17L245.22 -45.67Q245.78 -48.34 246.28 -51.06Q246.77 -53.77 246.77 -55.74Q246.77 -59.69 245.54 -61.03Q244.3 -62.37 240.22 -62.37Q238.67 -62.37 236.27 -61.77Q233.87 -61.17 232.54 -60.82L233.59 -65.33Q238.95 -67.72 243.25 -69.03Q247.55 -70.33 250.58 -70.33Q255.51 -70.33 258.05 -67.83Q260.58 -65.33 261.22 -60.89H261.78Q266.57 -65.33 272.04 -68.22Q277.5 -71.11 282.92 -71.11Q293.63 -71.11 299.59 -63.81Q305.54 -56.52 305.54 -44.19ZM283.56 -15.08Q287.15 -20.86 289.09 -28.22Q291.03 -35.59 291.03 -43.83Q291.03 -47.57 290.36 -51.34Q289.69 -55.11 288.21 -57.58Q286.66 -60.32 283.98 -61.84Q281.3 -63.35 276.93 -63.35Q273.69 -63.35 269.78 -61.38Q265.87 -59.41 260.23 -53.98L251.21 -14.02Q251.7 -10.01 255.54 -6.52Q259.39 -3.03 264.81 -3.03Q270.38 -3.03 275.24 -6.27Q280.1 -9.51 283.56 -15.08ZM327.5 1.48Q320.81 1.48 317.71 -1.23Q314.6 -3.95 314.6 -9.02Q314.6 -10.64 314.82 -12.09Q315.03 -13.53 315.38 -15.36L326.3 -62.44H313.76L315.24 -68.85H328.06L333 -89.5H345.68L340.89 -68.85H360.55L359.07 -62.44H339.55L330.53 -23.61Q329.9 -20.93 329.47 -18.43Q329.05 -15.93 329.05 -14.16Q329.05 -10.29 330.99 -8.49Q332.93 -6.69 338 -6.69Q339.83 -6.69 343.15 -7.15Q346.46 -7.61 348.29 -8.32L347.09 -3.17Q342.16 -1.27 337.79 0.11Q333.42 1.48 327.5 1.48ZM424.72 -43.41Q424.72 -35.1 421.9 -26.78Q419.08 -18.46 413.73 -12.19Q408.3 -5.71 400.66 -1.8Q393.01 2.11 382.93 2.11Q371.23 2.11 363.94 -5.43Q356.65 -12.97 356.65 -25.72Q356.65 -35.1 359.75 -43.2Q362.85 -51.3 368.06 -57.43Q373.35 -63.57 381.13 -67.34Q388.92 -71.11 398.01 -71.11Q410.56 -71.11 417.64 -63.46Q424.72 -55.81 424.72 -43.41ZM410.35 -46.09Q410.35 -56.1 406.79 -61.1Q403.23 -66.1 396.53 -66.1Q390.68 -66.1 385.5 -62.51Q380.32 -58.91 376.59 -50.81Q373.7 -44.68 372.36 -37.17Q371.02 -29.67 371.02 -23.33Q371.02 -13.25 374.51 -8.07Q378 -2.89 385.05 -2.89Q391.32 -2.89 396.18 -6.84Q401.04 -10.78 404.07 -16.84Q407.1 -22.76 408.72 -30.41Q410.35 -38.05 410.35 -46.09Z"/><path class="cbr-ink" d="M521.61 -45.88Q526.12 -42.78 528.94 -38.09Q531.76 -33.4 531.76 -27.06Q531.76 -19.45 528.55 -14.2Q525.34 -8.95 519.35 -5.92Q513.01 -2.68 504.73 -1.34Q496.45 0 485.24 0H433.31V-5.5Q435.49 -5.71 438.8 -6.13Q442.11 -6.55 443.45 -7.12Q446.06 -8.17 447.01 -9.9Q447.96 -11.63 447.96 -14.38V-84.85Q447.96 -87.39 447.19 -89.08Q446.41 -90.77 443.45 -92.04Q441.27 -92.95 438.38 -93.55Q435.49 -94.15 433.31 -94.5V-100H487.64Q508.15 -100 517.24 -94.36Q526.33 -88.72 526.33 -77.73Q526.33 -72.66 524.29 -68.82Q522.24 -64.98 518.44 -62.16Q514.98 -59.55 510.19 -57.65Q505.4 -55.74 499.9 -54.47V-53.14Q505.4 -52.57 511.32 -50.7Q517.24 -48.84 521.61 -45.88ZM498.92 -75.97Q498.92 -84.28 494.23 -88.94Q489.54 -93.59 480.17 -93.59Q478.83 -93.59 476.68 -93.48Q474.53 -93.38 472.98 -93.31V-56.24H476.65Q488.06 -56.24 493.49 -61.56Q498.92 -66.88 498.92 -75.97ZM503.85 -27.98Q503.85 -38.41 497.65 -43.97Q491.45 -49.54 479.82 -49.54Q478.48 -49.54 476.26 -49.44Q474.04 -49.33 472.98 -49.26V-12.68Q473.62 -10.08 476.93 -8.28Q480.24 -6.48 484.96 -6.48Q493.35 -6.48 498.6 -12.12Q503.85 -17.76 503.85 -27.98ZM603.7 -57.01Q603.7 -51.66 600.38 -47.6Q597.07 -43.55 591.65 -43.55Q586.5 -43.55 582.94 -46.16Q579.38 -48.77 579.38 -53.84Q579.38 -56.31 579.74 -57.68Q580.09 -59.06 580.37 -60.25Q577.13 -60.11 573.53 -58Q569.94 -55.88 567.19 -52.36V-13.67Q567.19 -11.21 567.97 -9.58Q568.74 -7.96 570.57 -7.05Q572.13 -6.27 575.61 -5.74Q579.1 -5.21 580.65 -5.14V0H533.51V-5.14Q535.27 -5.29 537.07 -5.53Q538.86 -5.78 540.13 -6.2Q542.39 -6.98 543.23 -8.6Q544.08 -10.22 544.08 -12.83V-53.84Q544.08 -56.38 542.88 -58.39Q541.68 -60.39 539.99 -61.59Q538.72 -62.44 536.78 -63Q534.85 -63.57 532.52 -63.78V-68.92L566.14 -70.75L567.19 -69.7V-59.48H567.47Q572.34 -65.12 577.8 -68.32Q583.26 -71.53 589.18 -71.53Q595.73 -71.53 599.72 -67.48Q603.7 -63.42 603.7 -57.01ZM644.77 0H600.23V-5.14Q602.06 -5.29 603.83 -5.5Q605.59 -5.71 606.86 -6.2Q609.11 -7.05 610.03 -8.63Q610.94 -10.22 610.94 -12.83V-53.84Q610.94 -56.31 609.82 -58.17Q608.69 -60.04 607 -61.17Q605.73 -62.02 603.16 -62.79Q600.59 -63.57 598.47 -63.78V-68.92L633 -70.75L634.06 -69.7V-13.74Q634.06 -11.28 635.12 -9.55Q636.17 -7.82 638.15 -6.98Q639.56 -6.34 641.25 -5.85Q642.94 -5.36 644.77 -5.14ZM634.48 -96.12Q634.48 -90.77 630.36 -87Q626.24 -83.23 620.6 -83.23Q614.89 -83.23 610.77 -87Q606.65 -90.77 606.65 -96.12Q606.65 -101.48 610.77 -105.29Q614.89 -109.09 620.6 -109.09Q626.31 -109.09 630.39 -105.29Q634.48 -101.48 634.48 -96.12ZM718.69 -16.84Q716.22 -12.83 712.73 -9.27Q709.24 -5.71 704.8 -3.17Q700.08 -0.49 695.25 0.88Q690.43 2.26 684.15 2.26Q673.72 2.26 666.15 -0.7Q658.57 -3.66 653.64 -8.67Q648.71 -13.67 646.28 -20.47Q643.84 -27.27 643.84 -35.24Q643.84 -42.42 646.49 -49.01Q649.13 -55.6 653.99 -60.75Q658.78 -65.75 666.08 -68.85Q673.37 -71.95 682.39 -71.95Q692.26 -71.95 698.6 -69.56Q704.94 -67.16 709.1 -62.93Q713.12 -58.91 714.95 -53.45Q716.78 -47.99 716.78 -42V-37.42H669.14Q669.14 -22.97 674.71 -15.43Q680.28 -7.89 692.4 -7.89Q699.02 -7.89 704.31 -11.52Q709.59 -15.15 713.33 -20.72ZM691.77 -43.62Q691.77 -47.85 691.34 -52.29Q690.92 -56.73 689.86 -59.55Q688.66 -62.86 686.59 -64.55Q684.51 -66.24 681.34 -66.24Q675.91 -66.24 672.67 -60.75Q669.43 -55.25 669.14 -43.34ZM783.79 -97.18Q783.79 -95.42 783.23 -93.31Q782.66 -91.19 781.39 -89.71Q779.92 -87.95 778.08 -87.03Q776.25 -86.12 772.59 -86.12Q767.02 -86.12 763.85 -89.99Q760.68 -93.87 757.08 -102.89Q754.26 -101.69 752.5 -96.69Q750.74 -91.68 750.74 -75.19V-69.63H770.19V-62.02H750.88V-13.46Q750.88 -10.71 752.15 -9.2Q753.42 -7.68 755.46 -6.98Q757.15 -6.41 759.9 -5.88Q762.65 -5.36 764.83 -5.14V0H717.27V-5.14Q719.1 -5.29 720.82 -5.5Q722.55 -5.71 723.89 -6.2Q726.14 -7.05 726.96 -8.63Q727.77 -10.22 727.77 -12.83V-62.02H713.46V-69.63H727.77Q727.77 -77.17 729.95 -84.25Q732.13 -91.33 736.72 -96.9Q741.16 -102.4 748.41 -105.78Q755.67 -109.16 765.47 -109.16Q774.21 -109.16 779 -105.85Q783.79 -102.54 783.79 -97.18ZM810.07 0H765.53V-5.14Q767.36 -5.29 769.12 -5.5Q770.88 -5.71 772.15 -6.2Q774.41 -7.05 775.32 -8.63Q776.24 -10.22 776.24 -12.83V-53.84Q776.24 -56.31 775.11 -58.17Q773.98 -60.04 772.29 -61.17Q771.02 -62.02 768.45 -62.79Q765.88 -63.57 763.77 -63.78V-68.92L798.3 -70.75L799.35 -69.7V-13.74Q799.35 -11.28 800.41 -9.55Q801.47 -7.82 803.44 -6.98Q804.85 -6.34 806.54 -5.85Q808.23 -5.36 810.07 -5.14ZM799.78 -96.12Q799.78 -90.77 795.65 -87Q791.53 -83.23 785.89 -83.23Q780.19 -83.23 776.06 -87Q771.94 -90.77 771.94 -96.12Q771.94 -101.48 776.06 -105.29Q780.19 -109.09 785.89 -109.09Q791.6 -109.09 795.69 -105.29Q799.78 -101.48 799.78 -96.12ZM901.25 0H858.82V-5.14Q860.16 -5.29 862.06 -5.5Q863.97 -5.71 864.95 -6.2Q866.43 -6.98 867.07 -8.46Q867.7 -9.94 867.7 -12.83V-45.81Q867.7 -53 865.06 -56.62Q862.42 -60.25 857.27 -60.25Q854.45 -60.25 852.02 -59.41Q849.59 -58.56 847.26 -56.94Q845.22 -55.53 843.99 -54.05Q842.75 -52.57 841.91 -51.44V-13.6Q841.91 -11.13 842.61 -9.48Q843.32 -7.82 844.94 -6.98Q846.07 -6.34 847.76 -5.85Q849.45 -5.36 851.07 -5.14V0H808.22V-5.14Q809.98 -5.29 811.78 -5.53Q813.58 -5.78 814.85 -6.2Q817.1 -6.98 817.95 -8.6Q818.79 -10.22 818.79 -12.83V-53.84Q818.79 -56.03 817.67 -58.14Q816.54 -60.25 814.71 -61.59Q813.44 -62.44 811.5 -63Q809.56 -63.57 807.24 -63.78V-68.92L840.85 -70.75L841.91 -69.7V-59.48H842.19Q844.16 -61.24 846.98 -63.71Q849.8 -66.17 852.2 -67.72Q854.81 -69.42 859.03 -70.61Q863.26 -71.81 868.05 -71.81Q879.54 -71.81 885.28 -65.29Q891.03 -58.77 891.03 -47.99V-13.46Q891.03 -10.85 891.8 -9.3Q892.58 -7.75 894.69 -6.84Q895.82 -6.34 897.48 -5.85Q899.13 -5.36 901.25 -5.14ZM978.4 -62.02H962.9Q965.65 -58.91 967.02 -55.46Q968.4 -52.01 968.4 -48.27Q968.4 -43.41 965.79 -39.15Q963.18 -34.88 958.95 -32.21Q954.65 -29.46 948.87 -27.91Q943.1 -26.36 936.33 -26.36H924.84Q924 -25.72 922.98 -24.35Q921.95 -22.97 921.95 -21.71Q921.95 -18.6 924.42 -17.41Q926.89 -16.21 933.37 -16.07Q939.78 -15.93 946.34 -15.54Q952.89 -15.15 955.71 -15.08Q959.8 -14.87 963.81 -13.42Q967.83 -11.98 970.79 -9.65Q974.03 -7.19 976.15 -3.35Q978.26 0.49 978.26 5.5Q978.26 10.85 975.69 15.57Q973.12 20.3 967.83 23.75Q962.26 27.34 954.48 29.32Q946.69 31.29 935.2 31.29Q916.67 31.29 907.01 26.78Q897.36 22.27 897.36 13.25Q897.36 7.68 902.57 4.09Q907.79 0.49 918.78 0.14V-0.7Q912.3 -2.89 908.67 -6.52Q905.04 -10.15 905.04 -14.94Q905.04 -17.9 906.49 -19.94Q907.93 -21.99 910.19 -23.54Q912.16 -24.88 914.98 -25.83Q917.8 -26.78 919.7 -27.34V-28.12Q910.19 -31.64 905.71 -36.72Q901.24 -41.79 901.24 -49.12Q901.24 -59.48 910.78 -65.68Q920.33 -71.88 934.99 -71.88Q939.78 -71.88 944.26 -71.07Q948.73 -70.26 951.06 -69.63H978.4ZM945.35 -48.56Q945.35 -56.8 942.74 -61.59Q940.14 -66.38 934.71 -66.38Q931.96 -66.38 929.92 -65.08Q927.87 -63.78 926.61 -61.31Q925.41 -58.91 924.98 -55.71Q924.56 -52.5 924.56 -49.12Q924.56 -41.44 927.24 -36.5Q929.92 -31.57 934.85 -31.57Q939.92 -31.57 942.64 -36.01Q945.35 -40.45 945.35 -48.56ZM957.19 10.64Q957.19 8.25 955.85 5.88Q954.51 3.52 949.86 2.04Q947.32 1.62 941.51 1.48Q935.7 1.34 925.55 1.34Q923.08 3.45 921.43 6.34Q919.77 9.23 919.77 13.32Q919.77 15.08 920.76 17.2Q921.74 19.31 923.86 21.14Q926.32 23.19 929.35 24.35Q932.38 25.51 938.52 25.51Q947.61 25.51 952.4 21.99Q957.19 18.46 957.19 10.64Z"/><circle cx="1004.48" cy="-18.88" r="18.88" class="cbr-dot"/></g></svg>
+</a>
+        <nav class="cbr-nav" aria-label="Site menu">
+                                            <div class="cbr-nav-dd">
+                    <a class="cbr-header-control" href="https://cryptobriefing.com/category/crypto/">Crypto<svg class="cbr-nav-car" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4"/></svg></a>
+                    <div class="cbr-nav-sub" aria-label="Crypto sections">
+                                                <a href="https://cryptobriefing.com/bitcoin/">Bitcoin</a>
+                                                <a href="https://cryptobriefing.com/ethereum/">Ethereum</a>
+                                                <a href="https://cryptobriefing.com/altcoins/">Altcoins</a>
+                                                <a href="https://cryptobriefing.com/defi/">DeFi</a>
+                                                <a href="https://cryptobriefing.com/stablecoins/">Stablecoins</a>
+                                                <a href="https://cryptobriefing.com/regulation/">Regulation</a>
+                                                <a href="https://cryptobriefing.com/security/">Security</a>
+                                            </div>
+                </div>
+                                                            <a class="cbr-header-control" href="https://cryptobriefing.com/stocks/">Stocks</a>
+                                                            <a class="cbr-header-control" href="https://cryptobriefing.com/category/prediction-markets/">Prediction markets</a>
+                                                            <a class="cbr-header-control" href="https://cryptobriefing.com/artificial-intelligence/">AI</a>
+                                                            <a class="cbr-header-control" href="https://cryptobriefing.com/category/tech/">Tech</a>
+                                                            <a class="cbr-header-control" href="https://cryptobriefing.com/data/">Data</a>
+                                                            <a class="cbr-header-control" href="https://cryptobriefing.com/newsletter/">Newsletter</a>
+                                    </nav>
+        <span class="cbr-sp"></span>
+        <button type="button" class="cbr-ib cbr-srch-btn cbr-header-control" data-cbr-open="search" aria-label="Search" aria-haspopup="dialog" aria-controls="cbr-menu" aria-expanded="false"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg></button>
+        <span class="cbr-theme"><div class="cb-theme-menu cb-theme-menu--header"><button type="button" class="cb-theme-btn" aria-haspopup="menu" aria-expanded="false" aria-label="Appearance: System" title="Appearance"><svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg><svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg></button><div class="cb-theme-pop" role="menu" aria-label="Appearance" hidden><button type="button" role="menuitemradio" data-cb-theme="system" aria-checked="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg><span>System</span><svg class="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg></button><button type="button" role="menuitemradio" data-cb-theme="light" aria-checked="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg><span>Light</span><svg class="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg></button><button type="button" role="menuitemradio" data-cb-theme="dark" aria-checked="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg><span>Dark</span><svg class="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg></button></div></div></span>
+                    <a class="cbr-lnk cbr-login cbr-header-control" href="https://pro.cryptobriefing.com/signup?intent=signin&#038;utm_source=cryptobriefing&#038;utm_medium=referral&#038;utm_campaign=cb_header">Log in</a>
+            <a class="cbr-btn cbr-btn-p cbr-btn-sm cbr-signup cbr-header-control" href="https://pro.cryptobriefing.com/signup?utm_source=cryptobriefing&#038;utm_medium=referral&#038;utm_campaign=cb_header">Create account</a>
+                <button type="button" class="cbr-ib cbr-menu-btn cbr-header-control" data-cbr-open="menu" aria-label="Menu" aria-haspopup="dialog" aria-controls="cbr-menu" aria-expanded="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+    </div>
+</header>
+<div class="cbr-ticker" aria-label="Crypto markets, last 24 hours">
+    <div class="cbr-tk-track">
+        <div class="cbr-tk-set"><div class="cbr-tk-fg" title="Crypto Fear &amp; Greed Index (alternative.me), 0 to 100"><span class="lb">Fear &amp; Greed</span><span class="vl"><span class="v">28</span> <span class="t down">Fear</span></span><span class="bar" aria-hidden="true"><i style="left:28%"></i></span></div><a class="cbr-tk" href="https://cryptobriefing.com/markets/"><span class="cbr-tk-n">Crypto market</span><span class="cbr-tk-p">$2.44T</span><span class="cbr-tk-c dn">−3%</span></a><a class="cbr-tk" href="https://cryptobriefing.com/markets/"><span class="cbr-tk-n">24h breadth</span><span class="cbr-tk-c up">36 up</span><span class="cbr-tk-c dn">215 down</span></a><a class="cbr-tk" href="https://cryptobriefing.com/markets/bitcoin/" title="Bitcoin"><span class="cbr-tk-n">Bitcoin</span><span class="cbr-tk-p">$71,622</span><span class="cbr-tk-c dn">−3.6%</span></a><a class="cbr-tk" href="https://cryptobriefing.com/markets/ethereum/" title="Ethereum"><span class="cbr-tk-n">Ethereum</span><span class="cbr-tk-p">$2,014</span><span class="cbr-tk-c dn">−3.1%</span></a><a class="cbr-tk" href="https://cryptobriefing.com/markets/solana/" title="Solana"><span class="cbr-tk-n">Solana</span><span class="cbr-tk-p">$82</span><span class="cbr-tk-c dn">−3.6%</span></a><a class="cbr-tk" href="https://cryptobriefing.com/markets/ripple/" title="XRP"><span class="cbr-tk-n">XRP</span><span class="cbr-tk-p">$1.03</span><span class="cbr-tk-c dn">−3.1%</span></a><a class="cbr-tk" href="https://cryptobriefing.com/markets/binancecoin/" title="BNB"><span class="cbr-tk-n">BNB</span><span class="cbr-tk-p">$655</span><span class="cbr-tk-c dn">−4.5%</span></a><span class="cbr-tk-g up">Top gainers</span><a class="cbr-tk" href="https://cryptobriefing.com/markets/securitize-corp/" title="Securitize"><span class="cbr-tk-n">SECZ</span><span class="cbr-tk-p">$9.06</span><span class="cbr-tk-c up">+6.2%</span></a><a class="cbr-tk" href="https://cryptobriefing.com/markets/lighter/" title="Lighter"><span class="cbr-tk-n">LIT</span><span class="cbr-tk-p">$0.743</span><span class="cbr-tk-c up">+5.2%</span></a><a class="cbr-tk" href="https://cryptobriefing.com/markets/monero/" title="Monero"><span class="cbr-tk-n">XMR</span><span class="cbr-tk-p">$119</span><span class="cbr-tk-c up">+4.8%</span></a><span class="cbr-tk-g dn">Top losers</span><a class="cbr-tk" href="https://cryptobriefing.com/markets/nesa/" title="Nesa"><span class="cbr-tk-n">NES</span><span class="cbr-tk-p">$0.145</span><span class="cbr-tk-c dn">−23.4%</span></a><a class="cbr-tk" href="https://cryptobriefing.com/markets/blockstack/" title="Stacks"><span class="cbr-tk-n">STX</span><span class="cbr-tk-p">$0.287</span><span class="cbr-tk-c dn">−10%</span></a><a class="cbr-tk" href="https://cryptobriefing.com/markets/quant-network/" title="Quant"><span class="cbr-tk-n">QNT</span><span class="cbr-tk-p">$162</span><span class="cbr-tk-c dn">−9.2%</span></a><span class="cbr-tk-g">Stocks</span><a class="cbr-tk" href="https://cryptobriefing.com/markets/nvidia/" title="NVIDIA Corporation"><span class="cbr-tk-n">NVDA</span><span class="cbr-tk-p">$165</span><span class="cbr-tk-c dn">−5.2%</span></a><a class="cbr-tk" href="https://cryptobriefing.com/markets/tesla/" title="Tesla Inc."><span class="cbr-tk-n">TSLA</span><span class="cbr-tk-p">$390</span><span class="cbr-tk-c dn">−0.1%</span></a><a class="cbr-tk" href="https://cryptobriefing.com/markets/apple/" title="Apple Inc."><span class="cbr-tk-n">AAPL</span><span class="cbr-tk-p">$356</span><span class="cbr-tk-c up">+0.1%</span></a><a class="cbr-tk" href="https://cryptobriefing.com/markets/microsoft/" title="Microsoft Corporation"><span class="cbr-tk-n">MSFT</span><span class="cbr-tk-p">$525</span><span class="cbr-tk-c up">+0.7%</span></a><a class="cbr-tk" href="https://cryptobriefing.com/markets/coinbase/" title="Coinbase Global, Inc."><span class="cbr-tk-n">COIN</span><span class="cbr-tk-p">$132</span><span class="cbr-tk-c dn">−2.8%</span></a></div>
+        <div class="cbr-tk-set" aria-hidden="true" inert><div class="cbr-tk-fg" title="Crypto Fear &amp; Greed Index (alternative.me), 0 to 100"><span class="lb">Fear &amp; Greed</span><span class="vl"><span class="v">28</span> <span class="t down">Fear</span></span><span class="bar" aria-hidden="true"><i style="left:28%"></i></span></div><a class="cbr-tk" href="https://cryptobriefing.com/markets/"><span class="cbr-tk-n">Crypto market</span><span class="cbr-tk-p">$2.44T</span><span class="cbr-tk-c dn">−3%</span></a><a class="cbr-tk" href="https://cryptobriefing.com/markets/"><span class="cbr-tk-n">24h breadth</span><span class="cbr-tk-c up">36 up</span><span class="cbr-tk-c dn">215 down</span></a><a class="cbr-tk" href="https://cryptobriefing.com/markets/bitcoin/" title="Bitcoin"><span class="cbr-tk-n">Bitcoin</span><span class="cbr-tk-p">$71,622</span><span class="cbr-tk-c dn">−3.6%</span></a><a class="cbr-tk" href="https://cryptobriefing.com/markets/ethereum/" title="Ethereum"><span class="cbr-tk-n">Ethereum</span><span class="cbr-tk-p">$2,014</span><span class="cbr-tk-c dn">−3.1%</span></a><a class="cbr-tk" href="https://cryptobriefing.com/markets/solana/" title="Solana"><span class="cbr-tk-n">Solana</span><span class="cbr-tk-p">$82</span><span class="cbr-tk-c dn">−3.6%</span></a><a class="cbr-tk" href="https://cryptobriefing.com/markets/ripple/" title="XRP"><span class="cbr-tk-n">XRP</span><span class="cbr-tk-p">$1.03</span><span class="cbr-tk-c dn">−3.1%</span></a><a class="cbr-tk" href="https://cryptobriefing.com/markets/binancecoin/" title="BNB"><span class="cbr-tk-n">BNB</span><span class="cbr-tk-p">$655</span><span class="cbr-tk-c dn">−4.5%</span></a><span class="cbr-tk-g up">Top gainers</span><a class="cbr-tk" href="https://cryptobriefing.com/markets/securitize-corp/" title="Securitize"><span class="cbr-tk-n">SECZ</span><span class="cbr-tk-p">$9.06</span><span class="cbr-tk-c up">+6.2%</span></a><a class="cbr-tk" href="https://cryptobriefing.com/markets/lighter/" title="Lighter"><span class="cbr-tk-n">LIT</span><span class="cbr-tk-p">$0.743</span><span class="cbr-tk-c up">+5.2%</span></a><a class="cbr-tk" href="https://cryptobriefing.com/markets/monero/" title="Monero"><span class="cbr-tk-n">XMR</span><span class="cbr-tk-p">$119</span><span class="cbr-tk-c up">+4.8%</span></a><span class="cbr-tk-g dn">Top losers</span><a class="cbr-tk" href="https://cryptobriefing.com/markets/nesa/" title="Nesa"><span class="cbr-tk-n">NES</span><span class="cbr-tk-p">$0.145</span><span class="cbr-tk-c dn">−23.4%</span></a><a class="cbr-tk" href="https://cryptobriefing.com/markets/blockstack/" title="Stacks"><span class="cbr-tk-n">STX</span><span class="cbr-tk-p">$0.287</span><span class="cbr-tk-c dn">−10%</span></a><a class="cbr-tk" href="https://cryptobriefing.com/markets/quant-network/" title="Quant"><span class="cbr-tk-n">QNT</span><span class="cbr-tk-p">$162</span><span class="cbr-tk-c dn">−9.2%</span></a><span class="cbr-tk-g">Stocks</span><a class="cbr-tk" href="https://cryptobriefing.com/markets/nvidia/" title="NVIDIA Corporation"><span class="cbr-tk-n">NVDA</span><span class="cbr-tk-p">$165</span><span class="cbr-tk-c dn">−5.2%</span></a><a class="cbr-tk" href="https://cryptobriefing.com/markets/tesla/" title="Tesla Inc."><span class="cbr-tk-n">TSLA</span><span class="cbr-tk-p">$390</span><span class="cbr-tk-c dn">−0.1%</span></a><a class="cbr-tk" href="https://cryptobriefing.com/markets/apple/" title="Apple Inc."><span class="cbr-tk-n">AAPL</span><span class="cbr-tk-p">$356</span><span class="cbr-tk-c up">+0.1%</span></a><a class="cbr-tk" href="https://cryptobriefing.com/markets/microsoft/" title="Microsoft Corporation"><span class="cbr-tk-n">MSFT</span><span class="cbr-tk-p">$525</span><span class="cbr-tk-c up">+0.7%</span></a><a class="cbr-tk" href="https://cryptobriefing.com/markets/coinbase/" title="Coinbase Global, Inc."><span class="cbr-tk-n">COIN</span><span class="cbr-tk-p">$132</span><span class="cbr-tk-c dn">−2.8%</span></a></div>
+    </div>
+</div>
+<!-- TopAdBanner, Ad Inserter Block 11, below the top navigation (AD_PLACEMENT_POLICY.md). -->
+<div class="cbr-adband">
+    <div class="cbr-ad cbr-ad-lb">
+        <span class="cbr-adl">Advertisement</span>
+        <div class="cbr-ad-slot"><div class="code-block code-block-11 cb-sevio-placement" data-cb-sevio-placement="header" data-cb-min-width="0"><div class="cb-sevio-size cb-sevio-leaderboard"><template><div class="sevioads" data-zone="4cc8a58a-539c-4acc-a1e7-f51d3f99d10e"></div></template><template data-cb-sevio-fallback><a class="cb-sevio-fallback cbpa" data-cb-pbt="{&quot;t&quot;:&quot;hx1&quot;,&quot;arms&quot;:[{&quot;id&quot;:&quot;h1&quot;,&quot;h&quot;:&quot;Follow the news about what you own.&quot;,&quot;w&quot;:20},{&quot;id&quot;:&quot;h3&quot;,&quot;h&quot;:&quot;What\u2019s happening with the assets you hold?&quot;,&quot;w&quot;:20},{&quot;id&quot;:&quot;h4&quot;,&quot;h&quot;:&quot;The news on what you own.&quot;,&quot;w&quot;:20},{&quot;id&quot;:&quot;h5&quot;,&quot;h&quot;:&quot;Your holdings, in today\u2019s news.&quot;,&quot;w&quot;:20},{&quot;id&quot;:&quot;h6&quot;,&quot;h&quot;:&quot;What\u2019s moving the assets you hold?&quot;,&quot;w&quot;:20}]}" data-cb-pbt-p="header" href="https://pro.cryptobriefing.com/signup?utm_source=cryptobriefing&#038;utm_medium=referral&#038;utm_campaign=cb_ad_fallback_header"><span class="cbpa-brand"><span class="cbpa-wm" aria-hidden="true"></span><span class="cbpa-vh">Crypto Briefing </span><span class="cbpa-pro">Pro</span></span> <span class="cbpa-h">Follow the news about what you own.</span> <span class="cbpa-b">Add your holdings to find related stories in Pro.</span> <span class="cbpa-cta">Create a free account</span><span class="cbpa-art" aria-hidden="true"></span></a></template></div></div></div>
+    </div>
+</div>
+
+<div class="cbr-ov" id="cbr-menu" role="dialog" aria-modal="true" aria-label="Menu" hidden>
+    <div class="cbr-scrim" data-cbr-close></div>
+    <div class="cbr-panel cbr-panel-menu">
+        <div class="cbr-phd">
+            <h2 class="cbr-ptitle">Menu</h2>
+            <button type="button" class="cbr-xb" data-cbr-close aria-label="Close"><svg viewBox="0 0 18 18" aria-hidden="true"><path d="M3 3l12 12M15 3 3 15"/></svg></button>
+        </div>
+        <div class="cbr-pbody">
+            <form class="cbr-search" role="search" action="https://cryptobriefing.com/" method="get">
+                <label class="cbr-vh" for="cbr-search-q">Search Crypto Briefing</label>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg>                <input type="search" id="cbr-search-q" name="s" placeholder="Search articles" autocomplete="off">
+            </form>
+            <nav class="cbr-mlist" aria-label="Sections">
+                                    <a href="https://cryptobriefing.com/category/crypto/">Crypto</a>
+                                    <a href="https://cryptobriefing.com/stocks/">Stocks</a>
+                                    <a href="https://cryptobriefing.com/category/prediction-markets/">Prediction markets</a>
+                                    <a href="https://cryptobriefing.com/artificial-intelligence/">AI</a>
+                                    <a href="https://cryptobriefing.com/category/tech/">Tech</a>
+                                    <a href="https://cryptobriefing.com/data/">Data</a>
+                                    <a href="https://cryptobriefing.com/newsletter/">Newsletter</a>
+                            </nav>
+            <div class="cbr-msub">
+                <h3 class="cbr-msub-h">Crypto sections</h3>
+                <div class="cbr-msub-grid">
+                                            <a href="https://cryptobriefing.com/bitcoin/">Bitcoin</a>
+                                            <a href="https://cryptobriefing.com/ethereum/">Ethereum</a>
+                                            <a href="https://cryptobriefing.com/altcoins/">Altcoins</a>
+                                            <a href="https://cryptobriefing.com/defi/">DeFi</a>
+                                            <a href="https://cryptobriefing.com/stablecoins/">Stablecoins</a>
+                                            <a href="https://cryptobriefing.com/regulation/">Regulation</a>
+                                            <a href="https://cryptobriefing.com/security/">Security</a>
+                                    </div>
+            </div>
+                            <a class="cbr-btn cbr-btn-p" href="https://pro.cryptobriefing.com/signup?utm_source=cryptobriefing&#038;utm_medium=referral&#038;utm_campaign=cb_menu">Create account</a>
+                <a class="cbr-btn cbr-btn-g" href="https://pro.cryptobriefing.com/signup?intent=signin&#038;utm_source=cryptobriefing&#038;utm_medium=referral&#038;utm_campaign=cb_menu">Log in</a>
+                        <div class="cbr-mfoot">
+                <div class="cb-theme-menu cb-theme-menu--mobile"><button type="button" class="cb-theme-btn" aria-haspopup="menu" aria-expanded="false" aria-label="Appearance: System" title="Appearance"><span class="lbl">Appearance</span><span class="cur"><svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg><svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg><span class="cb-theme-cur">System</span><svg class="caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M19 9l-7 7-7-7"/></svg></span></button><div class="cb-theme-pop" role="menu" aria-label="Appearance" hidden><button type="button" role="menuitemradio" data-cb-theme="system" aria-checked="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg><span>System</span><svg class="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg></button><button type="button" role="menuitemradio" data-cb-theme="light" aria-checked="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg><span>Light</span><svg class="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg></button><button type="button" role="menuitemradio" data-cb-theme="dark" aria-checked="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg><span>Dark</span><svg class="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg></button></div></div>                <a class="cbr-lang" href="https://es.cryptobriefing.com/" hreflang="es">Español</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="reading-progress"></div>
+
+<main class="cbar" id="cbar-article">
+    <article class="cbar-article" data-article-id="381071">
+
+        <header class="cbar-hero">
+            <img width="1280" height="720" src="https://static.cryptobriefing.com/wp-content/uploads/2026/09/28193414/library-gemini-launches-staking-for-hyperliquid-s-hype-token-off-3.png" class="cbar-hero-img" alt="Gemini launches staking for Hyperliquid&#8217;s HYPE token, offering 2.1% APY" sizes="(min-width: 1168px) 1120px, 100vw" loading="eager" fetchpriority="high" decoding="async" srcset="https://static.cryptobriefing.com/wp-content/uploads/2026/09/28193414/library-gemini-launches-staking-for-hyperliquid-s-hype-token-off-3.png 1280w, https://static.cryptobriefing.com/wp-content/uploads/2026/09/28193414/library-gemini-launches-staking-for-hyperliquid-s-hype-token-off-3-400x225.png 400w, https://static.cryptobriefing.com/wp-content/uploads/2026/09/28193414/library-gemini-launches-staking-for-hyperliquid-s-hype-token-off-3-800x450.png 800w, https://static.cryptobriefing.com/wp-content/uploads/2026/09/28193414/library-gemini-launches-staking-for-hyperliquid-s-hype-token-off-3-200x114.png 200w, https://static.cryptobriefing.com/wp-content/uploads/2026/09/28193414/library-gemini-launches-staking-for-hyperliquid-s-hype-token-off-3-768x432.png 768w, https://static.cryptobriefing.com/wp-content/uploads/2026/09/28193414/library-gemini-launches-staking-for-hyperliquid-s-hype-token-off-3-1024x576.png 1024w" />            <div class="cbar-hero-shade" aria-hidden="true"></div>
+            <div class="cbar-hero-text">
+                <h1 class="cbar-title">Gemini launches staking for Hyperliquid’s HYPE token, offering 2.1% APY</h1>
+            </div>
+                    </header>
+
+        <div class="cbar-grid">
+            <div class="cbar-main">
+
+                
+                                    <p class="cbar-dek">The exchange joins Kraken and Grayscale in a growing institutional push around Hyperliquid&#039;s native token</p>
+                
+                <div class="cbar-meta">
+                    <div class="cbar-byline">
+                            <div class="mb-2">
+        <span class="text-muted-foreground text-xs">by </span>
+        <a href="https://cryptobriefing.com/team/kayequema/" class="text-gold text-xs font-bold hover:underline">Kaye Quema</a>
+    </div>
+                            <p class="cbar-when">
+                            <time datetime="2026-09-28T16:33:49-04:00">Mon 28 Sep 2026 · 16:33 EDT</time>
+                            <span aria-hidden="true">&middot;</span>
+                            2 min read                        </p>
+                                                    <p class="cbar-cats">In                                 <a href="https://cryptobriefing.com/crypto/">Crypto</a>                            </p>
+                                            </div>
+                    <div class="cbar-share"><p class="text-xs font-semibold text-foreground/70 uppercase tracking-wider mb-2">Share</p>
+<div class="flex items-center gap-3">
+    <!-- X (Twitter) -->
+    <a
+        href="https://x.com/intent/tweet?url=https%3A%2F%2Fcryptobriefing.com%2Fgemini-hype-staking-hyperliquid-apy%2F&text=Gemini+launches+staking+for+Hyperliquid%26%238217%3Bs+HYPE+token%2C+offering+2.1%25+APY"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="w-7 h-7 border border-foreground/30 text-foreground rounded-full flex items-center justify-center hover:bg-muted transition-colors"
+        aria-label="Share on X"
+    >
+        <svg viewBox="0 0 24 24" class="w-3.5 h-3.5 fill-current">
+            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+        </svg>
+    </a>
+
+    <!-- LinkedIn -->
+    <a
+        href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fcryptobriefing.com%2Fgemini-hype-staking-hyperliquid-apy%2F"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="w-7 h-7 border border-foreground/30 text-foreground rounded-full flex items-center justify-center hover:bg-muted transition-colors"
+        aria-label="Share on LinkedIn"
+    >
+        <svg viewBox="0 0 24 24" class="w-3.5 h-3.5 fill-current">
+            <circle cx="3.5" cy="3.5" r="2.5" />
+            <rect x="1" y="8" width="5" height="14" />
+            <path d="M9 8h4.5v2c.7-1.3 2.3-2.5 4.5-2.5 4.5 0 5.5 3 5.5 7v7.5h-5v-6.5c0-2-.5-3.5-2.5-3.5s-3 1.5-3 3.5v6.5H9V8z" />
+        </svg>
+    </a>
+
+    <!-- Facebook -->
+    <a
+        href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fcryptobriefing.com%2Fgemini-hype-staking-hyperliquid-apy%2F"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="w-7 h-7 border border-foreground/30 text-foreground rounded-full flex items-center justify-center hover:bg-muted transition-colors"
+        aria-label="Share on Facebook"
+    >
+        <svg viewBox="0 0 24 24" class="w-3.5 h-3.5 fill-current">
+            <path d="M9.198 21.5h4v-8.01h3.604l.396-3.98h-4V7.5a1 1 0 0 1 1-1h3v-4h-3a5 5 0 0 0-5 5v2.01h-2l-.396 3.98h2.396v8.01Z" />
+        </svg>
+    </a>
+
+    <!-- Copy Link -->
+    <button
+        onclick="navigator.clipboard.writeText(window.location.href); this.setAttribute('data-copied', 'true'); setTimeout(() => this.removeAttribute('data-copied'), 2000);"
+        class="w-7 h-7 border border-foreground/30 text-foreground rounded-full flex items-center justify-center hover:bg-muted transition-colors"
+        aria-label="Copy link"
+    >
+        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
+        </svg>
+    </button>
+</div>
+<!-- Google News - Add as preferred source -->
+<a
+    href="https://www.google.com/preferences/source?q=cryptobriefing.com"
+    target="_blank"
+    rel="noopener noreferrer"
+    class="cb-google-source inline-flex items-center gap-1.5 h-7 px-3 mt-3 border border-foreground/30 text-foreground rounded-full text-[11px] font-medium hover:bg-muted transition-colors whitespace-nowrap"
+    aria-label="Follow Crypto Briefing on Google"
+    title="Add Crypto Briefing as your preferred source to see more of our stories on Google."
+>
+    <svg viewBox="0 0 24 24" style="width: 14px; height: 14px; flex-shrink: 0;">
+        <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z"/>
+        <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+        <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+        <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+    </svg>
+    Follow on Google
+</a>
+</div>
+                </div>
+
+                
+                <!-- SevioAds in-article native: same slot as today, between the top of the article and the body -->
+                <div class="cbar-ad-native">    <div class="cb-sevioads-inarticle cb-deferred-ad">
+        <template>
+            <div class="sevioads" data-zone="01f21ccf-2092-46b1-9ac7-8c44cc782e0f"></div>
+            <script>
+                window.sevioads = window.sevioads || [];
+                var sevioads_preferences = [];
+                sevioads_preferences[0] = {};
+                sevioads_preferences[0].zone = "01f21ccf-2092-46b1-9ac7-8c44cc782e0f";
+                sevioads_preferences[0].adType = "native";
+                sevioads_preferences[0].inventoryId = "c5700508-581b-472c-8fdd-a931cdbfc8e1";
+                sevioads_preferences[0].accountId = "1e47efc1-ec2d-4fca-a8b9-354e249e5095";
+                sevioads.push(sevioads_preferences);
+            </script>
+        </template>
+    </div>
+    </div>
+
+                
+                <div class="cbar-body">
+                    <p>Gemini has added HYPE staking to its platform, giving customers in most US states a way to earn roughly 2.1% annually on <a href="https://cryptobriefing.com/markets/hyperliquid/" class="cb-markets-autolink" data-cb-asset="hyperliquid">Hyperliquid</a>&#8217;s native token. No minimum stake is required, and the exchange charges no transfer or redemption fees.</p>
+<p>New York residents are excluded, as they are from many staking products on US platforms.</p>
+<aside class="cb-gloria-insert cb-deferred-ad" data-article="gemini-hype-staking-hyperliquid-apy" data-variant="gemini-hype-staking-hyperliquid-apy/control"><template></template></aside>
+
+<div class="ad-banner leaderboard-in-article cb-deferred-ad cb-block14-wrap" data-cb-lazy="1" style="margin: 32px 0; padding: 16px 0; text-align: center; border-top: 1px solid #E0E0E0; border-bottom: 1px solid #E0E0E0;"><div style="font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: #999; margin-bottom: 8px;">Advertisement</div><div style="min-height: 124px;"><template><div style="display: flex; align-items: center; justify-content: center;"><div class="code-block code-block-14 cb-sevio-placement" data-cb-sevio-placement="article_leaderboard" data-cb-min-width="0"><div class="cb-sevio-size cb-sevio-leaderboard"><template><div class="sevioads" data-zone="de1434f5-fa9e-44a6-93c3-4c2439763717"></div></template><template data-cb-sevio-fallback><a class="cb-sevio-fallback cbpa" data-cb-pbt="{&quot;t&quot;:&quot;hx1&quot;,&quot;arms&quot;:[{&quot;id&quot;:&quot;h1&quot;,&quot;h&quot;:&quot;Follow the news about what you own.&quot;,&quot;w&quot;:20},{&quot;id&quot;:&quot;h3&quot;,&quot;h&quot;:&quot;What\u2019s happening with the assets you hold?&quot;,&quot;w&quot;:20},{&quot;id&quot;:&quot;h4&quot;,&quot;h&quot;:&quot;The news on what you own.&quot;,&quot;w&quot;:20},{&quot;id&quot;:&quot;h5&quot;,&quot;h&quot;:&quot;Your holdings, in today\u2019s news.&quot;,&quot;w&quot;:20},{&quot;id&quot;:&quot;h6&quot;,&quot;h&quot;:&quot;What\u2019s moving the assets you hold?&quot;,&quot;w&quot;:20}]}" data-cb-pbt-p="article_leaderboard" href="https://pro.cryptobriefing.com/signup?utm_source=cryptobriefing&#038;utm_medium=referral&#038;utm_campaign=cb_ad_fallback_article_leaderboard"><span class="cbpa-brand"><span class="cbpa-wm" aria-hidden="true"></span><span class="cbpa-vh">Crypto Briefing </span><span class="cbpa-pro">Pro</span></span> <span class="cbpa-h">Follow the news about what you own.</span> <span class="cbpa-b">Add your holdings to find related stories in Pro.</span> <span class="cbpa-cta">Create a free account</span><span class="cbpa-art" aria-hidden="true"></span></a></template></div></div></div></template></div></div>
+
+<h2>What Hyperliquid actually is, and why the yield exists</h2>
+<p>Hyperliquid runs a Layer 1 blockchain built specifically around perpetual futures trading. The network uses a delegated proof-of-stake model secured through a consensus mechanism called HyperBFT. Token holders delegate their HYPE to validators, validators process transactions, and the network rewards everyone involved from a pre-allocated emissions reserve.</p>
+<p>Right now, approximately 440 million HYPE tokens are staked, representing about 44% of the total supply of 1 billion tokens. With current staking levels, the emissions reserve produces between 2.1% and 2.3% APY.</p>
+<div class="cb-nl-inline" data-cb-nl-surface="inline" data-cb-nl-category="crypto" role="complementary" aria-label="Newsletter signup">
+    <div class="cb-nl-inline-rule" aria-hidden="true"></div>
+    <h3 class="cb-nl-inline-head">The news moving money, markets, and the world&mdash;before your day starts.</h3>
+    <p class="cb-nl-inline-sub">Daily. Free. Join 34,000+ readers across crypto, finance, and policy.</p>
+    <form class="cb-nl-inline-form cb-nl-form" novalidate>
+        <label class="cb-nl-email-label"><span class="cb-nl-visually-hidden">Email address</span>
+        <input type="email" name="subscriber_email" class="cb-nl-email" placeholder="you@example.com" autocomplete="email" required /></label>
+        <input type="text" name="email" class="cb-nl-hp" tabindex="-1" autocomplete="off" aria-hidden="true" />
+        <button type="submit" class="cb-nl-submit">Subscribe free</button>
+    </form>
+    <p class="cb-nl-inline-privacy"><a href="https://cryptobriefing.com/privacy-policy/">We respect your privacy. Unsubscribe anytime.</a></p>
+    <p class="cb-nl-status" aria-live="polite"></p>
+</div>
+
+<p>For users staking directly on Hyperliquid&#8217;s own infrastructure, unstaking involves a seven-day queue after a one-day delegation lock. Validators must also maintain a self-delegation of 10,000 HYPE tokens.</p>
+<h2>Gemini is not alone in this trade</h2>
+<p>Kraken introduced HYPE staking in June 2026, offering a tiered reward structure that reaches up to 2.2% APY. Kraken excludes both New York and Maine.</p>
+<p>Grayscale launched the HYPG ETF on Nasdaq on June 3, 2026, structured to provide HYPE price exposure while incorporating staking rewards into its return profile. The fund carries a 0.29% sponsor fee.</p>
+                </div>
+
+                                <aside class="cbar-mobile-mrec" aria-label="Advertisement">
+                    <span>Advertisement</span>
+                    <div class="code-block code-block-4 cb-sevio-placement" data-cb-sevio-placement="article_mrec" data-cb-min-width="0"><div class="cb-sevio-size cb-sevio-mrec"><template><div class="sevioads" data-zone="e895191b-6d01-4021-992d-173ebfdf2d63"></div></template><template data-cb-sevio-fallback><a class="cb-sevio-fallback cbpa" data-cb-pbt="{&quot;t&quot;:&quot;hx1&quot;,&quot;arms&quot;:[{&quot;id&quot;:&quot;h1&quot;,&quot;h&quot;:&quot;Follow the news about what you own.&quot;,&quot;w&quot;:20},{&quot;id&quot;:&quot;h3&quot;,&quot;h&quot;:&quot;What\u2019s happening with the assets you hold?&quot;,&quot;w&quot;:20},{&quot;id&quot;:&quot;h4&quot;,&quot;h&quot;:&quot;The news on what you own.&quot;,&quot;w&quot;:20},{&quot;id&quot;:&quot;h5&quot;,&quot;h&quot;:&quot;Your holdings, in today\u2019s news.&quot;,&quot;w&quot;:20},{&quot;id&quot;:&quot;h6&quot;,&quot;h&quot;:&quot;What\u2019s moving the assets you hold?&quot;,&quot;w&quot;:20}]}" data-cb-pbt-p="article_mrec" href="https://pro.cryptobriefing.com/signup?utm_source=cryptobriefing&#038;utm_medium=referral&#038;utm_campaign=cb_ad_fallback_article_mrec"><span class="cbpa-brand"><span class="cbpa-wm" aria-hidden="true"></span><span class="cbpa-vh">Crypto Briefing </span><span class="cbpa-pro">Pro</span></span> <span class="cbpa-h">Follow the news about what you own.</span> <span class="cbpa-b">Add your holdings to find related stories in Pro.</span> <span class="cbpa-cta">Create a free account</span><span class="cbpa-art" aria-hidden="true"></span></a></template></div></div>                </aside>
+                
+                                
+                
+                
+                
+                                    <p class="cbar-disclosure"><strong>Disclosure:</strong> This article was edited by Kaye Quema. For more information on how we create and review content, see our <a href="https://cryptobriefing.com/editorial-policy/">Editorial Policy</a>.</p>
+                
+                                        <div class="cbar-upnext" data-cbar-next data-endpoint="https://cryptobriefing.com/wp-admin/admin-ajax.php" data-next="381055" data-cat="89159">
+        <a class="cbar-upnext-link" href="https://cryptobriefing.com/goldman-sachs-treasury-fund-avalanche-lynq/">
+            <span>Next in Crypto</span>
+            <b>Goldman Sachs brings $100B Treasury fund to Avalanche via Lynq</b>
+        </a>
+    </div>
+                                </div>
+
+            <!-- Sticky sidebar ad, Ad Inserter Block 2. Wide screens only, as before. -->
+            <aside class="cbar-side" aria-label="Advertisement and latest stories">
+                <div class="cbar-side-sticky">
+                    <div class="code-block code-block-2 cb-sevio-placement" data-cb-sevio-placement="sidebar" data-cb-min-width="768"><div class="cb-sevio-size cb-sevio-mrec"><template><div class="sevioads" data-zone="e895191b-6d01-4021-992d-173ebfdf2d63"></div></template><template data-cb-sevio-fallback><a class="cb-sevio-fallback cbpa" data-cb-pbt="{&quot;t&quot;:&quot;hx1&quot;,&quot;arms&quot;:[{&quot;id&quot;:&quot;h1&quot;,&quot;h&quot;:&quot;Follow the news about what you own.&quot;,&quot;w&quot;:20},{&quot;id&quot;:&quot;h3&quot;,&quot;h&quot;:&quot;What\u2019s happening with the assets you hold?&quot;,&quot;w&quot;:20},{&quot;id&quot;:&quot;h4&quot;,&quot;h&quot;:&quot;The news on what you own.&quot;,&quot;w&quot;:20},{&quot;id&quot;:&quot;h5&quot;,&quot;h&quot;:&quot;Your holdings, in today\u2019s news.&quot;,&quot;w&quot;:20},{&quot;id&quot;:&quot;h6&quot;,&quot;h&quot;:&quot;What\u2019s moving the assets you hold?&quot;,&quot;w&quot;:20}]}" data-cb-pbt-p="sidebar" href="https://pro.cryptobriefing.com/signup?utm_source=cryptobriefing&#038;utm_medium=referral&#038;utm_campaign=cb_ad_fallback_sidebar"><span class="cbpa-brand"><span class="cbpa-wm" aria-hidden="true"></span><span class="cbpa-vh">Crypto Briefing </span><span class="cbpa-pro">Pro</span></span> <span class="cbpa-h">Follow the news about what you own.</span> <span class="cbpa-b">Add your holdings to find related stories in Pro.</span> <span class="cbpa-cta">Create a free account</span><span class="cbpa-art" aria-hidden="true"></span></a></template></div></div>                                    </div>
+            </aside>
+        </div>
+    </article>
+</main>
+
+
+</div><!-- Close .min-h-screen from header.php -->
+
+<footer class="cbr-ft">
+    <div class="cbr-ft-in">
+        <div class="cbr-ft-top">
+            <div class="cbr-ft-brand">
+                <a class="cbr-logo" href="https://cryptobriefing.com/" aria-label="Crypto Briefing home"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 679.83 200" class="cbr-wordmark" focusable="false" aria-hidden="true"><g transform="translate(31.79 123.29) scale(0.6)"><path class="cbr-ink" d="M44.47 2.33Q36.79 2.33 29.95 -0.35Q23.11 -3.03 18.04 -8.17Q12.9 -13.39 9.97 -20.79Q7.05 -28.19 7.05 -37.49Q7.05 -50.81 11.56 -62.37Q16.07 -73.93 23.96 -83.02Q31.57 -91.75 42.25 -97.04Q52.92 -102.33 64.55 -102.33Q73.36 -102.33 80.02 -100.28Q86.68 -98.24 90.98 -95.21L94.93 -100H100.56L92.95 -64.34H87.17V-67.16Q87.17 -72.94 86.26 -78.19Q85.34 -83.44 82.73 -87.67Q80.2 -91.75 75.79 -94.19Q71.39 -96.62 64.55 -96.62Q55.88 -96.62 48.45 -92Q41.01 -87.39 35.59 -79.7Q30.23 -72.23 26.99 -61.31Q23.75 -50.39 23.75 -39.04Q23.75 -24.03 31.11 -14.69Q38.48 -5.36 50.88 -5.36Q61.24 -5.36 69.94 -11.49Q78.65 -17.62 84.14 -27.91L89.22 -25.23Q80.34 -10.08 69.42 -3.88Q58.49 2.33 44.47 2.33ZM155.57 -59.62Q155.57 -57.65 155.01 -55.29Q154.44 -52.92 153.39 -51.37Q152.12 -49.47 150.6 -48.45Q149.09 -47.43 146.27 -47.43Q142.46 -47.43 140.56 -49.33Q138.66 -51.23 138.66 -53.56Q138.66 -55.74 139.72 -58.46Q140.77 -61.17 141.9 -63.85Q141.05 -63.85 139.12 -63.39Q137.18 -62.93 134.43 -61.59Q131.68 -60.25 128.19 -57.58Q124.7 -54.9 120.76 -50.46L109.41 0H96.3L106.59 -45.67Q106.95 -47.36 107.62 -50.74Q108.28 -54.12 108.28 -55.74Q108.28 -59.69 106.95 -61.03Q105.61 -62.37 101.59 -62.37Q100.04 -62.37 97.64 -61.84Q95.25 -61.31 93.91 -60.96L94.97 -65.47Q100.46 -67.94 104.69 -69.13Q108.92 -70.33 111.95 -70.33Q117.59 -70.33 119.98 -67.27Q122.38 -64.2 122.38 -58.07H122.8Q131.19 -65.33 135.52 -68.22Q139.86 -71.11 144.58 -71.11Q146.83 -71.11 148.95 -70.54Q151.06 -69.98 152.54 -68.64Q154.09 -67.16 154.83 -65.22Q155.57 -63.28 155.57 -59.62ZM201.14 -10.22H200.71Q194.23 -4.79 188.38 -1.69Q182.53 1.41 175.06 1.41Q168.3 1.41 164.35 -2.5Q160.4 -6.41 160.4 -12.76Q160.4 -14.45 160.68 -16.77Q160.97 -19.1 162.02 -23.68L167.52 -45.67Q168.3 -48.84 168.72 -51.2Q169.14 -53.56 169.14 -55.74Q169.14 -59.69 167.84 -60.99Q166.53 -62.3 162.52 -62.3Q160.97 -62.3 158.57 -61.73Q156.17 -61.17 154.84 -60.82L155.89 -65.33Q161.39 -67.79 165.58 -69.06Q169.78 -70.33 172.31 -70.33Q177.95 -70.33 180.66 -67.79Q183.38 -65.26 183.38 -60.18Q183.38 -58.91 183.1 -56.73Q182.81 -54.55 182.25 -52.36L175.84 -26.64Q175.13 -23.68 174.64 -21.11Q174.15 -18.53 174.15 -17.2Q174.15 -12.47 176.44 -9.73Q178.73 -6.98 183.17 -6.98Q188.31 -6.98 193.21 -9.51Q198.11 -12.05 202.4 -16.49L214.1 -69.2L226.29 -70.05L227.14 -68.99L215.02 -13.81Q212.34 -1.69 208.18 6.91Q204.03 15.5 198.46 20.79Q192.61 26.36 185.84 28.82Q179.08 31.29 170.41 31.29Q164.42 31.29 160.9 30.44Q157.37 29.6 155.33 28.12Q153.29 26.71 152.58 24.95Q151.88 23.19 151.88 21.42Q151.88 18.39 153.71 16.07Q155.54 13.74 158.99 13.74Q161.6 13.74 163.43 15.22Q165.27 16.7 166.39 18.46Q167.66 20.37 168.72 22.76Q169.78 25.16 170.41 26.57H172.1Q176.12 26.57 180.59 24.59Q185.07 22.62 188.8 18.46Q192.82 13.95 196.03 6.84Q199.23 -0.28 201.14 -10.22ZM305.54 -44.19Q305.54 -34.74 302.23 -26.29Q298.92 -17.83 293.42 -11.63Q287.29 -4.79 280.14 -1.48Q272.99 1.83 265.45 1.83Q259.39 1.83 255.51 0.35Q251.63 -1.13 248.6 -3.31L244.52 15.15Q244.09 16.91 243.85 18.46Q243.6 20.01 243.6 20.93Q243.6 22.83 244.97 23.96Q246.35 25.09 248.11 25.58Q249.87 26.15 252.06 26.43Q254.24 26.71 256 26.85L255.02 31.29H216.19L217.17 26.85Q219.43 26.71 221.4 26.5Q223.37 26.29 225.14 25.79Q227.32 25.16 228.62 23.43Q229.93 21.71 230.49 19.17L245.22 -45.67Q245.78 -48.34 246.28 -51.06Q246.77 -53.77 246.77 -55.74Q246.77 -59.69 245.54 -61.03Q244.3 -62.37 240.22 -62.37Q238.67 -62.37 236.27 -61.77Q233.87 -61.17 232.54 -60.82L233.59 -65.33Q238.95 -67.72 243.25 -69.03Q247.55 -70.33 250.58 -70.33Q255.51 -70.33 258.05 -67.83Q260.58 -65.33 261.22 -60.89H261.78Q266.57 -65.33 272.04 -68.22Q277.5 -71.11 282.92 -71.11Q293.63 -71.11 299.59 -63.81Q305.54 -56.52 305.54 -44.19ZM283.56 -15.08Q287.15 -20.86 289.09 -28.22Q291.03 -35.59 291.03 -43.83Q291.03 -47.57 290.36 -51.34Q289.69 -55.11 288.21 -57.58Q286.66 -60.32 283.98 -61.84Q281.3 -63.35 276.93 -63.35Q273.69 -63.35 269.78 -61.38Q265.87 -59.41 260.23 -53.98L251.21 -14.02Q251.7 -10.01 255.54 -6.52Q259.39 -3.03 264.81 -3.03Q270.38 -3.03 275.24 -6.27Q280.1 -9.51 283.56 -15.08ZM327.5 1.48Q320.81 1.48 317.71 -1.23Q314.6 -3.95 314.6 -9.02Q314.6 -10.64 314.82 -12.09Q315.03 -13.53 315.38 -15.36L326.3 -62.44H313.76L315.24 -68.85H328.06L333 -89.5H345.68L340.89 -68.85H360.55L359.07 -62.44H339.55L330.53 -23.61Q329.9 -20.93 329.47 -18.43Q329.05 -15.93 329.05 -14.16Q329.05 -10.29 330.99 -8.49Q332.93 -6.69 338 -6.69Q339.83 -6.69 343.15 -7.15Q346.46 -7.61 348.29 -8.32L347.09 -3.17Q342.16 -1.27 337.79 0.11Q333.42 1.48 327.5 1.48ZM424.72 -43.41Q424.72 -35.1 421.9 -26.78Q419.08 -18.46 413.73 -12.19Q408.3 -5.71 400.66 -1.8Q393.01 2.11 382.93 2.11Q371.23 2.11 363.94 -5.43Q356.65 -12.97 356.65 -25.72Q356.65 -35.1 359.75 -43.2Q362.85 -51.3 368.06 -57.43Q373.35 -63.57 381.13 -67.34Q388.92 -71.11 398.01 -71.11Q410.56 -71.11 417.64 -63.46Q424.72 -55.81 424.72 -43.41ZM410.35 -46.09Q410.35 -56.1 406.79 -61.1Q403.23 -66.1 396.53 -66.1Q390.68 -66.1 385.5 -62.51Q380.32 -58.91 376.59 -50.81Q373.7 -44.68 372.36 -37.17Q371.02 -29.67 371.02 -23.33Q371.02 -13.25 374.51 -8.07Q378 -2.89 385.05 -2.89Q391.32 -2.89 396.18 -6.84Q401.04 -10.78 404.07 -16.84Q407.1 -22.76 408.72 -30.41Q410.35 -38.05 410.35 -46.09Z"/><path class="cbr-ink" d="M521.61 -45.88Q526.12 -42.78 528.94 -38.09Q531.76 -33.4 531.76 -27.06Q531.76 -19.45 528.55 -14.2Q525.34 -8.95 519.35 -5.92Q513.01 -2.68 504.73 -1.34Q496.45 0 485.24 0H433.31V-5.5Q435.49 -5.71 438.8 -6.13Q442.11 -6.55 443.45 -7.12Q446.06 -8.17 447.01 -9.9Q447.96 -11.63 447.96 -14.38V-84.85Q447.96 -87.39 447.19 -89.08Q446.41 -90.77 443.45 -92.04Q441.27 -92.95 438.38 -93.55Q435.49 -94.15 433.31 -94.5V-100H487.64Q508.15 -100 517.24 -94.36Q526.33 -88.72 526.33 -77.73Q526.33 -72.66 524.29 -68.82Q522.24 -64.98 518.44 -62.16Q514.98 -59.55 510.19 -57.65Q505.4 -55.74 499.9 -54.47V-53.14Q505.4 -52.57 511.32 -50.7Q517.24 -48.84 521.61 -45.88ZM498.92 -75.97Q498.92 -84.28 494.23 -88.94Q489.54 -93.59 480.17 -93.59Q478.83 -93.59 476.68 -93.48Q474.53 -93.38 472.98 -93.31V-56.24H476.65Q488.06 -56.24 493.49 -61.56Q498.92 -66.88 498.92 -75.97ZM503.85 -27.98Q503.85 -38.41 497.65 -43.97Q491.45 -49.54 479.82 -49.54Q478.48 -49.54 476.26 -49.44Q474.04 -49.33 472.98 -49.26V-12.68Q473.62 -10.08 476.93 -8.28Q480.24 -6.48 484.96 -6.48Q493.35 -6.48 498.6 -12.12Q503.85 -17.76 503.85 -27.98ZM603.7 -57.01Q603.7 -51.66 600.38 -47.6Q597.07 -43.55 591.65 -43.55Q586.5 -43.55 582.94 -46.16Q579.38 -48.77 579.38 -53.84Q579.38 -56.31 579.74 -57.68Q580.09 -59.06 580.37 -60.25Q577.13 -60.11 573.53 -58Q569.94 -55.88 567.19 -52.36V-13.67Q567.19 -11.21 567.97 -9.58Q568.74 -7.96 570.57 -7.05Q572.13 -6.27 575.61 -5.74Q579.1 -5.21 580.65 -5.14V0H533.51V-5.14Q535.27 -5.29 537.07 -5.53Q538.86 -5.78 540.13 -6.2Q542.39 -6.98 543.23 -8.6Q544.08 -10.22 544.08 -12.83V-53.84Q544.08 -56.38 542.88 -58.39Q541.68 -60.39 539.99 -61.59Q538.72 -62.44 536.78 -63Q534.85 -63.57 532.52 -63.78V-68.92L566.14 -70.75L567.19 -69.7V-59.48H567.47Q572.34 -65.12 577.8 -68.32Q583.26 -71.53 589.18 -71.53Q595.73 -71.53 599.72 -67.48Q603.7 -63.42 603.7 -57.01ZM644.77 0H600.23V-5.14Q602.06 -5.29 603.83 -5.5Q605.59 -5.71 606.86 -6.2Q609.11 -7.05 610.03 -8.63Q610.94 -10.22 610.94 -12.83V-53.84Q610.94 -56.31 609.82 -58.17Q608.69 -60.04 607 -61.17Q605.73 -62.02 603.16 -62.79Q600.59 -63.57 598.47 -63.78V-68.92L633 -70.75L634.06 -69.7V-13.74Q634.06 -11.28 635.12 -9.55Q636.17 -7.82 638.15 -6.98Q639.56 -6.34 641.25 -5.85Q642.94 -5.36 644.77 -5.14ZM634.48 -96.12Q634.48 -90.77 630.36 -87Q626.24 -83.23 620.6 -83.23Q614.89 -83.23 610.77 -87Q606.65 -90.77 606.65 -96.12Q606.65 -101.48 610.77 -105.29Q614.89 -109.09 620.6 -109.09Q626.31 -109.09 630.39 -105.29Q634.48 -101.48 634.48 -96.12ZM718.69 -16.84Q716.22 -12.83 712.73 -9.27Q709.24 -5.71 704.8 -3.17Q700.08 -0.49 695.25 0.88Q690.43 2.26 684.15 2.26Q673.72 2.26 666.15 -0.7Q658.57 -3.66 653.64 -8.67Q648.71 -13.67 646.28 -20.47Q643.84 -27.27 643.84 -35.24Q643.84 -42.42 646.49 -49.01Q649.13 -55.6 653.99 -60.75Q658.78 -65.75 666.08 -68.85Q673.37 -71.95 682.39 -71.95Q692.26 -71.95 698.6 -69.56Q704.94 -67.16 709.1 -62.93Q713.12 -58.91 714.95 -53.45Q716.78 -47.99 716.78 -42V-37.42H669.14Q669.14 -22.97 674.71 -15.43Q680.28 -7.89 692.4 -7.89Q699.02 -7.89 704.31 -11.52Q709.59 -15.15 713.33 -20.72ZM691.77 -43.62Q691.77 -47.85 691.34 -52.29Q690.92 -56.73 689.86 -59.55Q688.66 -62.86 686.59 -64.55Q684.51 -66.24 681.34 -66.24Q675.91 -66.24 672.67 -60.75Q669.43 -55.25 669.14 -43.34ZM783.79 -97.18Q783.79 -95.42 783.23 -93.31Q782.66 -91.19 781.39 -89.71Q779.92 -87.95 778.08 -87.03Q776.25 -86.12 772.59 -86.12Q767.02 -86.12 763.85 -89.99Q760.68 -93.87 757.08 -102.89Q754.26 -101.69 752.5 -96.69Q750.74 -91.68 750.74 -75.19V-69.63H770.19V-62.02H750.88V-13.46Q750.88 -10.71 752.15 -9.2Q753.42 -7.68 755.46 -6.98Q757.15 -6.41 759.9 -5.88Q762.65 -5.36 764.83 -5.14V0H717.27V-5.14Q719.1 -5.29 720.82 -5.5Q722.55 -5.71 723.89 -6.2Q726.14 -7.05 726.96 -8.63Q727.77 -10.22 727.77 -12.83V-62.02H713.46V-69.63H727.77Q727.77 -77.17 729.95 -84.25Q732.13 -91.33 736.72 -96.9Q741.16 -102.4 748.41 -105.78Q755.67 -109.16 765.47 -109.16Q774.21 -109.16 779 -105.85Q783.79 -102.54 783.79 -97.18ZM810.07 0H765.53V-5.14Q767.36 -5.29 769.12 -5.5Q770.88 -5.71 772.15 -6.2Q774.41 -7.05 775.32 -8.63Q776.24 -10.22 776.24 -12.83V-53.84Q776.24 -56.31 775.11 -58.17Q773.98 -60.04 772.29 -61.17Q771.02 -62.02 768.45 -62.79Q765.88 -63.57 763.77 -63.78V-68.92L798.3 -70.75L799.35 -69.7V-13.74Q799.35 -11.28 800.41 -9.55Q801.47 -7.82 803.44 -6.98Q804.85 -6.34 806.54 -5.85Q808.23 -5.36 810.07 -5.14ZM799.78 -96.12Q799.78 -90.77 795.65 -87Q791.53 -83.23 785.89 -83.23Q780.19 -83.23 776.06 -87Q771.94 -90.77 771.94 -96.12Q771.94 -101.48 776.06 -105.29Q780.19 -109.09 785.89 -109.09Q791.6 -109.09 795.69 -105.29Q799.78 -101.48 799.78 -96.12ZM901.25 0H858.82V-5.14Q860.16 -5.29 862.06 -5.5Q863.97 -5.71 864.95 -6.2Q866.43 -6.98 867.07 -8.46Q867.7 -9.94 867.7 -12.83V-45.81Q867.7 -53 865.06 -56.62Q862.42 -60.25 857.27 -60.25Q854.45 -60.25 852.02 -59.41Q849.59 -58.56 847.26 -56.94Q845.22 -55.53 843.99 -54.05Q842.75 -52.57 841.91 -51.44V-13.6Q841.91 -11.13 842.61 -9.48Q843.32 -7.82 844.94 -6.98Q846.07 -6.34 847.76 -5.85Q849.45 -5.36 851.07 -5.14V0H808.22V-5.14Q809.98 -5.29 811.78 -5.53Q813.58 -5.78 814.85 -6.2Q817.1 -6.98 817.95 -8.6Q818.79 -10.22 818.79 -12.83V-53.84Q818.79 -56.03 817.67 -58.14Q816.54 -60.25 814.71 -61.59Q813.44 -62.44 811.5 -63Q809.56 -63.57 807.24 -63.78V-68.92L840.85 -70.75L841.91 -69.7V-59.48H842.19Q844.16 -61.24 846.98 -63.71Q849.8 -66.17 852.2 -67.72Q854.81 -69.42 859.03 -70.61Q863.26 -71.81 868.05 -71.81Q879.54 -71.81 885.28 -65.29Q891.03 -58.77 891.03 -47.99V-13.46Q891.03 -10.85 891.8 -9.3Q892.58 -7.75 894.69 -6.84Q895.82 -6.34 897.48 -5.85Q899.13 -5.36 901.25 -5.14ZM978.4 -62.02H962.9Q965.65 -58.91 967.02 -55.46Q968.4 -52.01 968.4 -48.27Q968.4 -43.41 965.79 -39.15Q963.18 -34.88 958.95 -32.21Q954.65 -29.46 948.87 -27.91Q943.1 -26.36 936.33 -26.36H924.84Q924 -25.72 922.98 -24.35Q921.95 -22.97 921.95 -21.71Q921.95 -18.6 924.42 -17.41Q926.89 -16.21 933.37 -16.07Q939.78 -15.93 946.34 -15.54Q952.89 -15.15 955.71 -15.08Q959.8 -14.87 963.81 -13.42Q967.83 -11.98 970.79 -9.65Q974.03 -7.19 976.15 -3.35Q978.26 0.49 978.26 5.5Q978.26 10.85 975.69 15.57Q973.12 20.3 967.83 23.75Q962.26 27.34 954.48 29.32Q946.69 31.29 935.2 31.29Q916.67 31.29 907.01 26.78Q897.36 22.27 897.36 13.25Q897.36 7.68 902.57 4.09Q907.79 0.49 918.78 0.14V-0.7Q912.3 -2.89 908.67 -6.52Q905.04 -10.15 905.04 -14.94Q905.04 -17.9 906.49 -19.94Q907.93 -21.99 910.19 -23.54Q912.16 -24.88 914.98 -25.83Q917.8 -26.78 919.7 -27.34V-28.12Q910.19 -31.64 905.71 -36.72Q901.24 -41.79 901.24 -49.12Q901.24 -59.48 910.78 -65.68Q920.33 -71.88 934.99 -71.88Q939.78 -71.88 944.26 -71.07Q948.73 -70.26 951.06 -69.63H978.4ZM945.35 -48.56Q945.35 -56.8 942.74 -61.59Q940.14 -66.38 934.71 -66.38Q931.96 -66.38 929.92 -65.08Q927.87 -63.78 926.61 -61.31Q925.41 -58.91 924.98 -55.71Q924.56 -52.5 924.56 -49.12Q924.56 -41.44 927.24 -36.5Q929.92 -31.57 934.85 -31.57Q939.92 -31.57 942.64 -36.01Q945.35 -40.45 945.35 -48.56ZM957.19 10.64Q957.19 8.25 955.85 5.88Q954.51 3.52 949.86 2.04Q947.32 1.62 941.51 1.48Q935.7 1.34 925.55 1.34Q923.08 3.45 921.43 6.34Q919.77 9.23 919.77 13.32Q919.77 15.08 920.76 17.2Q921.74 19.31 923.86 21.14Q926.32 23.19 929.35 24.35Q932.38 25.51 938.52 25.51Q947.61 25.51 952.4 21.99Q957.19 18.46 957.19 10.64Z"/><circle cx="1004.48" cy="-18.88" r="18.88" class="cbr-dot"/></g></svg>
+</a>
+                <p>Crypto and stocks news, every morning.</p>
+            </div>
+            <nav class="cbr-ft-col cbr-ft-sections" aria-label="Sections">
+                <h2 class="cbr-ft-h">Sections</h2>
+                <div class="cbr-ft-grid">
+                    <a href="https://cryptobriefing.com/category/crypto/">Crypto</a><a href="https://cryptobriefing.com/bitcoin/">Bitcoin</a><a href="https://cryptobriefing.com/ethereum/">Ethereum</a><a href="https://cryptobriefing.com/altcoins/">Altcoins</a><a href="https://cryptobriefing.com/defi/">DeFi</a><a href="https://cryptobriefing.com/stablecoins/">Stablecoins</a><a href="https://cryptobriefing.com/regulation/">Regulation</a><a href="https://cryptobriefing.com/security/">Security</a><a href="https://cryptobriefing.com/stocks/">Stocks</a><a href="https://cryptobriefing.com/category/prediction-markets/">Predictions</a><a href="https://cryptobriefing.com/artificial-intelligence/">AI</a><a href="https://cryptobriefing.com/category/tech/">Tech</a><a href="https://cryptobriefing.com/data/">Data</a><a href="https://cryptobriefing.com/newsletter/">Newsletter</a>                </div>
+            </nav>
+            <nav class="cbr-ft-col" aria-label="Company">
+                <h2 class="cbr-ft-h">Company</h2>
+                <a href="https://cryptobriefing.com/about/">About us</a><a href="https://cryptobriefing.com/team/">Team</a><a href="https://cryptobriefing.com/contact/">Contact</a><a href="https://cryptobriefing.com/advertising/">Advertising</a>            </nav>
+            <nav class="cbr-ft-col" aria-label="Follow Crypto Briefing">
+                <h2 class="cbr-ft-h">Follow</h2>
+                <a href="https://x.com/crypto_briefing" target="_blank" rel="noopener noreferrer">X</a><a href="https://www.facebook.com/cryptobriefing" target="_blank" rel="noopener noreferrer">Facebook</a><a href="https://t.me/cryptobriefing" target="_blank" rel="noopener noreferrer">Telegram</a><a href="https://www.linkedin.com/company/cryptobriefing" target="_blank" rel="noopener noreferrer">LinkedIn</a>            </nav>
+        </div>
+        <p class="cbr-ft-disc">All content is for informational purposes only and does not constitute investment advice. CryptoBriefing does not provide recommendations to buy, sell, or hold any asset or contract. See our <a href="https://cryptobriefing.com/disclaimer/">Disclaimer &amp; risk disclosure</a>.</p>
+        <div class="cbr-ft-bot">
+            <p>&copy; Decentral Media and Crypto Briefing&reg; 2026.</p>
+            <nav class="cbr-ft-legal" aria-label="Policies">
+                <a href="https://cryptobriefing.com/editorial-policy/">Editorial policy</a><a href="https://cryptobriefing.com/disclaimer/">Disclaimer</a><a href="https://cryptobriefing.com/press-release-disclaimer/">Press release disclaimer</a><a href="https://cryptobriefing.com/privacy-policy/">Privacy policy</a><a href="https://cryptobriefing.com/feeds/">RSS</a>                <a href="https://es.cryptobriefing.com/" hreflang="es">Español</a>
+                <a href="https://cryptobriefing.com/login/" rel="nofollow">Staff login</a>
+                <div class="cb-theme-menu cb-theme-menu--footer"><button type="button" class="cb-theme-btn" aria-haspopup="menu" aria-expanded="false" aria-label="Appearance: System" title="Appearance"><svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg><svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg></button><div class="cb-theme-pop" role="menu" aria-label="Appearance" hidden><button type="button" role="menuitemradio" data-cb-theme="system" aria-checked="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg><span>System</span><svg class="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg></button><button type="button" role="menuitemradio" data-cb-theme="light" aria-checked="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg><span>Light</span><svg class="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg></button><button type="button" role="menuitemradio" data-cb-theme="dark" aria-checked="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg><span>Dark</span><svg class="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg></button></div></div>            </nav>
+        </div>
+    </div>
+</footer>
+
+<!-- Footer Ad - Ad Inserter Block 12 (Sevio) -->
+<div class="footer-sponsored">
+    <div class="code-block code-block-12 cb-sevio-placement" data-cb-sevio-placement="footer" data-cb-min-width="0" data-cb-sevio-lazy="1"><button type="button" class="close-ad" aria-label="Close advertisement"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 3 10 9 16 3 17 4 11 10 17 16 16 17 10 11 4 17 3 16 9 10 3 4Z"/></svg></button><div class="cb-sevio-size cb-sevio-leaderboard"><template><div class="sevioads" data-zone="3fa83782-7347-48ac-b14d-79cb9ce1e957"></div></template></div></div></div>
+<script>
+(function () {
+    // Show the close button once Sevio has rendered a creative, and let the
+    // reader dismiss the pinned ad for this page view.
+    var box = document.querySelector('.footer-sponsored');
+    if (!box) { return; }
+    var mark = function () {
+        var ad = box.querySelector('.sevioads');
+        if (ad && ad.children.length) { box.classList.add('is-filled'); return true; }
+        return false;
+    };
+    if (!mark() && 'MutationObserver' in window) {
+        var mo = new MutationObserver(function () { if (mark()) { mo.disconnect(); } });
+        mo.observe(box, { childList: true, subtree: true });
+    }
+    box.addEventListener('click', function (e) {
+        if (e.target.closest('.close-ad')) {
+            e.preventDefault();
+            box.classList.add('is-closed');
+            document.body.classList.add('cb-footer-ad-closed');
+        }
+    });
+})();
+</script>
+
+<script type="speculationrules">
+{"prefetch":[{"source":"document","where":{"and":[{"href_matches":"/*"},{"not":{"href_matches":["/wp-*.php","/wp-admin/*","/wp-content/uploads/*","/wp-content/*","/wp-content/plugins/*","/wp-content/themes/cryptobriefing-lovable/*","/wp-content/themes/cryptobriefing/*","/*\\?(.+)"]}},{"not":{"selector_matches":"a[rel~=\"nofollow\"]"}},{"not":{"selector_matches":".no-prefetch, .no-prefetch a"}}]},"eagerness":"conservative"}]}
+</script>
+    <script>
+    (function(){
+        var bar = document.getElementById('reading-progress');
+        if (!bar) return;
+        function getActiveArticle() {
+            var articles = document.querySelectorAll('#desktop-articles article, #mobile-articles article');
+            var best = null, bestVisible = 0;
+            for (var i = 0; i < articles.length; i++) {
+                var rect = articles[i].getBoundingClientRect();
+                var top = Math.max(0, rect.top);
+                var bottom = Math.min(window.innerHeight, rect.bottom);
+                var visible = Math.max(0, bottom - top);
+                if (visible > bestVisible) { bestVisible = visible; best = articles[i]; }
+            }
+            return best;
+        }
+        function update() {
+            var article = getActiveArticle();
+            if (!article) return;
+            var rect = article.getBoundingClientRect();
+            var articleTop = rect.top + window.scrollY;
+            var articleHeight = article.offsetHeight;
+            var scrolled = window.scrollY - articleTop;
+            var progress = Math.max(0, Math.min(1, scrolled / (articleHeight - window.innerHeight)));
+            bar.style.width = (progress * 100) + '%';
+        }
+        window.addEventListener('scroll', update, { passive: true });
+        update();
+    })();
+    </script>
+        <style id="cb-nl-styles">
+    .cb-nl-visually-hidden { position:absolute!important; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; border:0; }
+    .cb-nl-form { display:flex; gap:0; }
+    .cb-nl-email-label { display:flex; flex:1; min-width:0; }
+    .cb-nl-email-label .cb-nl-email { width:100%; box-sizing:border-box; }
+    .cb-nl-email { flex:1; min-width:0; padding:8px 12px; font-size:14px; border:1px solid hsl(45 50% 75%); border-right:none; border-radius:6px 0 0 6px; outline:none; background:#fff; color:#333; }
+    .cb-nl-email::placeholder { color:#aaa; }
+    .cb-nl-email:focus { border-color:hsl(45 85% 55%); }
+    .cb-nl-hp { position:absolute!important; left:-9999px; width:1px; height:1px; opacity:0; }
+    .cb-nl-submit { padding:8px 18px; font-size:14px; font-weight:600; border:none; border-radius:0 6px 6px 0; background:hsl(45 85% 55%); color:#1D1D1F; cursor:pointer; white-space:nowrap; }
+    .cb-nl-submit:hover { opacity:.9; }
+    .cb-nl-submit:disabled { opacity:.5; cursor:not-allowed; }
+    .cb-nl-status { font-size:13px; margin:6px 0 0; color:hsl(140 55% 32%); font-weight:600; min-height:1em; }
+    html.dark .cb-nl-email { background:hsl(220 15% 18%); border-color:hsl(220 15% 25%); color:#fff; }
+
+    /* ---- Inline editorial card (server-rendered inside articles) ---- */
+    .cb-nl-inline { margin:32px 0; padding:20px 0 4px; max-width:640px; }
+    .cb-nl-inline-rule { height:1px; background:hsl(0 0% 85%); position:relative; margin-bottom:16px; }
+    .cb-nl-inline-rule::before { content:""; position:absolute; top:0; left:0; width:48px; height:3px; background:hsl(45 85% 55%); }
+    /* Descendant-scoped so these win over more-specific global article-body
+       theme rules that were overriding the single-class selectors (verified
+       live: head fell back to Inter 20/600 and the email border to dark grey).
+       Same declared values, higher specificity only. */
+    /* font-family/size/weight need !important: the global theme rules
+       (.prose h3 / article .prose h3 / .article-content h3 and the h1-h6 base)
+       set font-family:Inter, font-size:1.25rem, font-weight:600 all with
+       !important, so a scoped selector cannot win without !important too. */
+    .cb-nl-inline .cb-nl-inline-head { font-family:Georgia,'Times New Roman',serif!important; font-size:22px!important; font-weight:700!important; line-height:1.25; margin:0 0 6px; color:hsl(0 0% 10%); }
+    .cb-nl-inline-sub { font-size:14px; color:hsl(220 12% 40%); margin:0 0 14px; }
+    .cb-nl-inline-form { max-width:440px; }
+    .cb-nl-inline-privacy { font-size:12px; margin:8px 0 0; }
+    .cb-nl-inline-privacy a { color:hsl(220 12% 45%); text-decoration:underline; }
+    .cb-nl-inline .cb-nl-email { border:1px solid hsl(45 50% 75%); border-right:none; background:#fff; color:#333; }
+    .cb-nl-inline .cb-nl-email:focus { border-color:hsl(45 85% 55%); }
+    html.dark .cb-nl-inline .cb-nl-inline-head { color:#fff; }
+    html.dark .cb-nl-inline .cb-nl-email { background:hsl(220 15% 18%); border-color:hsl(220 15% 25%); color:#fff; }
+    html.dark .cb-nl-inline-rule { background:hsl(220 15% 22%); }
+
+    /* ---- Slide-in top bar ---- */
+    /* top tracks the header's live bottom edge: 145px expanded (4px spacer + 93px
+       logo row + 48px nav row), 48px once the header collapses to the sticky nav.
+       header.php toggles html.cb-header-collapsed in sync (300ms) so the bar never
+       overlaps the full menu at the top of the page. */
+    .cb-nl-bar { position:fixed; top:145px; left:0; right:0; z-index:48; background:hsl(45 85% 95%); border-bottom:1px solid hsl(45 85% 80%); box-shadow:0 2px 12px rgba(0,0,0,.08); transform:translateY(-100%); transition:transform .4s cubic-bezier(.4,0,.2,1), top .3s cubic-bezier(.4,0,.2,1); padding:8px 24px; display:flex; align-items:center; justify-content:center; gap:24px; }
+    html.cb-header-collapsed .cb-nl-bar { top:48px; }
+    .cb-nl-bar.cb-nl-visible { transform:translateY(0); }
+    /* The bar is position:fixed and reserves no space, so it would overlay the
+       top leaderboard ad. While a top bar is open, push the in-flow content down
+       by the bar's measured height (cb-newsletter.js sets --cb-nl-bar-offset and
+       html.cb-nl-bar-open). padding-bottom on <header> (not margin: margin would
+       collapse with the ad's own top margin and leave the bar overlapping) shifts
+       everything after it, so the fixed bar sits flush in that gap. */
+    header.bg-header { transition:padding-bottom .4s cubic-bezier(.4,0,.2,1); }
+    html.cb-nl-bar-open header.bg-header { padding-bottom:var(--cb-nl-bar-offset, 0px); }
+    .cb-nl-bar-text { flex:0 1 auto; }
+    .cb-nl-bar-text strong { display:block; font-size:14px; color:hsl(0 0% 7.5%); }
+    .cb-nl-bar-text span { display:block; font-size:12px; color:hsl(220 20% 35%); }
+    .cb-nl-bar .cb-nl-form { flex:0 0 auto; width:340px; }
+    .cb-nl-close { flex-shrink:0; width:28px; height:28px; border-radius:50%; border:none; background:transparent; color:hsl(0 0% 40%); font-size:20px; cursor:pointer; display:flex; align-items:center; justify-content:center; }
+    .cb-nl-close:hover { color:hsl(0 0% 15%); }
+    html.dark .cb-nl-bar { background:hsl(220 15% 13%); border-bottom-color:hsl(220 15% 20%); }
+    html.dark .cb-nl-bar-text strong { color:#fff; }
+    html.dark .cb-nl-bar-text span { color:hsl(220 10% 65%); }
+    /* The bar is the DESKTOP surface — mirror the JS isDesktop() rule
+       (min-width:1024px AND pointer:fine); hide it everywhere else so tablets
+       and large touchscreens fall through to the sheet. */
+    @media (max-width:1023px){ .cb-nl-bar{ display:none!important; } }
+    @media (pointer:coarse){ .cb-nl-bar{ display:none!important; } }
+
+    /* ---- Mobile bottom sheet ---- */
+    .cb-nl-sheet { position:fixed; left:0; right:0; bottom:100px; z-index:47; background:#fff; border-top:1px solid hsl(45 85% 80%); box-shadow:0 -2px 12px rgba(0,0,0,.12); transform:translateY(120%); transition:transform .35s cubic-bezier(.4,0,.2,1); padding:8px 12px; display:flex; align-items:center; gap:8px; }
+    .cb-nl-sheet.cb-nl-visible { transform:translateY(0); }
+    .cb-nl-sheet-label { flex:0 1 auto; min-width:0; max-width:82px; line-height:14px; font-size:12px; font-weight:700; color:hsl(0 0% 15%); }
+    .cb-nl-sheet .cb-nl-form { flex:1 1 0; min-width:0; }
+    .cb-nl-sheet .cb-nl-status { display:none; }
+    .cb-nl-sheet .cb-nl-email { padding:6px 10px; font-size:13px; }
+    .cb-nl-sheet .cb-nl-submit { padding:6px 12px; font-size:13px; }
+    html.dark .cb-nl-sheet { background:hsl(220 15% 13%); border-top-color:hsl(220 15% 22%); }
+    html.dark .cb-nl-sheet-label { color:#fff; }
+    /* The sheet is the NON-desktop surface — hide it only where the JS treats
+       the visitor as desktop (min-width:1024px AND pointer:fine), so tablets
+       (768–1023px) and coarse-pointer devices keep it. */
+    @media (min-width:1024px) and (pointer:fine){ .cb-nl-sheet{ display:none!important; } }
+
+    /* ---- Desktop modal (+ exit-intent) ---- */
+    .cb-nl-modal-backdrop { position:fixed; inset:0; z-index:9998; background:rgba(0,0,0,.45); display:flex; align-items:center; justify-content:center; opacity:0; transition:opacity .3s ease; padding:16px; }
+    .cb-nl-modal-backdrop.cb-nl-visible { opacity:1; }
+    .cb-nl-modal { position:relative; background:#fff; border-radius:12px; max-width:440px; width:100%; padding:32px 28px 24px; box-shadow:0 20px 60px rgba(0,0,0,.3); }
+    .cb-nl-modal-head { font-family:Georgia,'Times New Roman',serif; font-size:24px; font-weight:700; line-height:1.25; margin:0 0 8px; color:hsl(0 0% 10%); }
+    .cb-nl-modal-sub { font-size:14px; color:hsl(220 12% 40%); margin:0 0 18px; }
+    .cb-nl-modal-privacy { font-size:12px; margin:10px 0 0; }
+    .cb-nl-modal-privacy a { color:hsl(220 12% 45%); text-decoration:underline; }
+    .cb-nl-modal .cb-nl-close { position:absolute; top:10px; right:12px; }
+    html.dark .cb-nl-modal { background:hsl(220 15% 15%); }
+    html.dark .cb-nl-modal-head { color:#fff; }
+    @media (prefers-reduced-motion: reduce){ .cb-nl-bar,.cb-nl-sheet,.cb-nl-modal-backdrop,header.bg-header{ transition:none!important; } }
+    /* Header padding-bottom transition (bar-open offset) also off for reduced motion. */
+
+    /* ---- Beehiiv recommendations widget skin (fires after signup) ---- */
+    .bhr_root { background:rgba(0,0,0,.45)!important; }
+    .bhr_content_container { font-family:'Inter',-apple-system,sans-serif!important; border-radius:12px!important; }
+    .bhr_header_container { color:hsl(0 0% 7.5%)!important; }
+    .bhr_footer_container button[type="submit"], .bhr_footer_container input[type="submit"] { background:hsl(45 85% 55%)!important; border-color:hsl(45 85% 55%)!important; }
+    .bhr_footer_container button[type="submit"]:hover, .bhr_footer_container input[type="submit"]:hover { opacity:.9!important; }
+    .bhr_slider { background:#ccc!important; }
+    input:checked + .bhr_slider { background:hsl(45 85% 55%)!important; }
+    .bhr_close_button { color:hsl(0 0% 40%)!important; }
+    .bhr_close_button:hover { color:hsl(0 0% 15%)!important; }
+    html.dark .bhr_root { background:rgba(0,0,0,.5)!important; }
+    html.dark .bhr_content_container { background:hsl(220 15% 15%)!important; color:#fff!important; }
+    html.dark .bhr_header_container { color:#fff!important; }
+    html.dark .bhr_close_button { color:hsl(220 10% 65%)!important; }
+    </style>
+        <div class="cb-nl-bar" data-cb-nl-surface="bar" data-cb-nl-category="crypto" style="display:none;" role="complementary" aria-label="Newsletter signup">
+        <div class="cb-nl-bar-text">
+            <strong>The news moving money, markets, and the world&mdash;before your day starts.</strong>
+            <span>Daily. Free. Join 34,000+ readers across crypto, finance, and policy.</span>
+        </div>
+        <form class="cb-nl-form" novalidate><label class="cb-nl-visually-hidden" for="cb-nl-bar-email">Email address</label><input type="email" name="subscriber_email" id="cb-nl-bar-email" class="cb-nl-email" placeholder="you@example.com" autocomplete="email" required /><input type="text" name="email" class="cb-nl-hp" tabindex="-1" autocomplete="off" aria-hidden="true" /><button type="submit" class="cb-nl-submit">Subscribe free</button></form><p class="cb-nl-status" aria-live="polite"></p>        <button class="cb-nl-close" aria-label="Dismiss">&times;</button>
+    </div>
+
+    <!-- Mobile bottom sheet (compact, positioned above the sticky ad by JS) -->
+    <div class="cb-nl-sheet" data-cb-nl-surface="sheet" data-cb-nl-category="crypto" style="display:none;" role="complementary" aria-label="Newsletter signup">
+        <span class="cb-nl-sheet-label">Free daily briefing</span>
+        <form class="cb-nl-form" novalidate><label class="cb-nl-visually-hidden" for="cb-nl-sheet-email">Email address</label><input type="email" name="subscriber_email" id="cb-nl-sheet-email" class="cb-nl-email" placeholder="you@example.com" autocomplete="email" required /><input type="text" name="email" class="cb-nl-hp" tabindex="-1" autocomplete="off" aria-hidden="true" /><button type="submit" class="cb-nl-submit">Join</button></form><p class="cb-nl-status" aria-live="polite"></p>        <button class="cb-nl-close" aria-label="Dismiss">&times;</button>
+    </div>
+
+        <!-- Reface pop-up (inc/reface.php). Same element, classes and triggers as
+         the modal below, so cb-newsletter.js drives it unchanged; on phones it
+         opens as a bottom sheet. Pro links off: the newsletter email form.
+         Pro links on: one "Create account" button to Pro sign-up. -->
+    <div class="cb-nl-modal-backdrop cbr-pop-bd" data-cb-nl-surface="modal" data-cb-nl-category="crypto" style="display:none;">
+        <div class="cb-nl-modal cbr-pop" role="dialog" aria-modal="true" aria-labelledby="cb-nl-modal-head">
+            <div class="cbr-phd">
+                <span class="cbr-product-label">Crypto Briefing Pro</span>
+                <button type="button" class="cb-nl-close cbr-xb" aria-label="Close"><svg viewBox="0 0 18 18" aria-hidden="true"><path d="M3 3l12 12M15 3 3 15"/></svg></button>
+            </div>
+            <div class="cbr-pbody">
+                <span class="cbr-x3d cbr-pop3d" aria-hidden="true"><img class="cbr-x3d-l" src="https://cryptobriefing.com/wp-content/themes/cryptobriefing-lovable/assets/img/reface/hero-coins-light.webp" alt="" width="120" height="120" loading="lazy" decoding="async"><img class="cbr-x3d-d" src="https://cryptobriefing.com/wp-content/themes/cryptobriefing-lovable/assets/img/reface/hero-coins-dark.webp" alt="" width="120" height="120" loading="lazy" decoding="async"></span>                                <h2 class="cb-nl-modal-head" id="cb-nl-modal-head">The news about what you hold</h2>
+                <p class="cb-nl-modal-sub">Follow your stocks and crypto. Read the news about them from hundreds of publishers in Pro.</p>
+                <a class="cbr-btn cbr-btn-p" href="https://pro.cryptobriefing.com/signup?utm_source=cryptobriefing&#038;utm_medium=referral&#038;utm_campaign=cb_popup">Create account</a>
+                                <button type="button" class="cb-nl-dismiss cbr-btn cbr-btn-lnk">Not now</button>
+                <p class="cb-nl-modal-privacy"><a href="https://cryptobriefing.com/privacy-policy/">Privacy policy</a></p>
+            </div>
+        </div>
+    </div>
+            <button id="cb-push-bell" aria-label="Subscribe to push notifications" title="Get breaking crypto news alerts">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.63-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.64 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/></svg>
+    </button>
+    <script>
+    (function() {
+        var bell = document.getElementById('cb-push-bell');
+        if (!bell) return;
+
+        function showBell() { bell.style.display = 'flex'; bell.style.opacity = '1'; bell.style.pointerEvents = 'auto'; }
+        function hideBell() { bell.style.display = 'none'; }
+        function dimBell() { bell.style.opacity = '0.5'; bell.style.pointerEvents = 'none'; }
+
+        var sdkReady = false;
+        var shouldShow = false;
+        var isArticle = document.body.classList.contains('single-post');
+
+        function maybeShowBell() {
+            if (sdkReady && shouldShow) showBell();
+        }
+
+        // On articles: show after 50% scroll (reader is engaged)
+        // On other pages: show after 15s delay (browsing)
+        if (isArticle) {
+            var article = document.querySelector('.entry-content') || document.querySelector('article') || document.body;
+            var triggered = false;
+            window.addEventListener('scroll', function() {
+                if (triggered) return;
+                var rect = article.getBoundingClientRect();
+                var articleTop = rect.top + window.pageYOffset;
+                var articleHeight = rect.height;
+                var scrolled = window.pageYOffset + window.innerHeight;
+                if (scrolled >= articleTop + articleHeight * 0.5) {
+                    triggered = true;
+                    shouldShow = true;
+                    maybeShowBell();
+                }
+            });
+        } else {
+            setTimeout(function() { shouldShow = true; maybeShowBell(); }, 15000);
+        }
+
+        window.OneSignal = window.OneSignal || [];
+        window.OneSignal.push(function() {
+            sdkReady = true;
+            OneSignal.isPushNotificationsEnabled(function(isEnabled) {
+                if (isEnabled) { hideBell(); return; }
+                maybeShowBell();
+            });
+            OneSignal.on('subscriptionChange', function(isSubscribed) {
+                if (isSubscribed) hideBell(); else maybeShowBell();
+            });
+        });
+
+        // If SDK hasn't loaded after 5s (ad blocker), don't show the bell
+        setTimeout(function() { if (!sdkReady) hideBell(); }, 5000);
+
+        bell.addEventListener('click', function() {
+            if (!sdkReady) return;
+
+            var perm = typeof Notification !== 'undefined' ? Notification.permission : 'default';
+
+            if (perm === 'denied') {
+                alert('Notifications are blocked for this site.\n\nTo enable:\n1. Click the lock/tune icon in your browser address bar\n2. Find "Notifications" and set it to "Allow"\n3. Reload the page');
+                return;
+            }
+
+            dimBell();
+
+            if (perm === 'default') {
+                Notification.requestPermission().then(function(result) {
+                    if (result !== 'granted') { showBell(); return; }
+                    window.OneSignal.push(function() {
+                        OneSignal.registerForPushNotifications();
+                    });
+                });
+            } else {
+                window.OneSignal.push(function() {
+                    OneSignal.registerForPushNotifications();
+                });
+            }
+
+            // Restore bell after 8s if subscription never confirmed
+            setTimeout(function() { if (bell.style.opacity === '0.5') showBell(); }, 8000);
+        });
+    })();
+    </script>
+    <script id="cb-asset-cover-js-before">
+/* <![CDATA[ */
+window.cbArticleCover={"api":"https:\/\/cryptobriefing.com\/wp-json\/cb\/v1\/article-cover","embed":"https:\/\/cryptobriefing.com\/markets\/chart-embed\/","max":10,"timeout":30000,"grace":47000,"defaultView":"chart"};
+//# sourceURL=cb-asset-cover-js-before
+/* ]]> */
+</script>
+<script src="https://cryptobriefing.com/wp-content/themes/cryptobriefing-lovable/assets/js/asset-cover.js?ver=1793941264" id="cb-asset-cover-js"></script>
+<script id="cb-asset-hover-js-before">
+/* <![CDATA[ */
+window.cbAssetPreviewBase="https:\/\/cryptobriefing.com\/wp-json\/cb\/v1\/asset-preview\/";
+//# sourceURL=cb-asset-hover-js-before
+/* ]]> */
+</script>
+<script src="https://cryptobriefing.com/wp-content/themes/cryptobriefing-lovable/assets/js/asset-hover.js?ver=1793941264" id="cb-asset-hover-js"></script>
+<script src="https://cryptobriefing.com/wp-content/plugins/softlite-io-integration/assets/js/minify/swiper.min.js?ver=1.0.69" id="swiper-js"></script>
+<script src="https://cryptobriefing.com/wp-content/plugins/softlite-io-integration/assets/js/minify/main.min.js?ver=1.0.69" id="softlite-main-script-js"></script>
+<script id="cb-newsletter-js-before">
+/* <![CDATA[ */
+window.cbNewsletter = {"ajaxUrl":"https:\/\/cryptobriefing.com\/wp-admin\/admin-ajax.php","action":"cb_nf_submit","experiments":{"pm_capture":{"version":2,"weights":{"A":1,"B":1}},"prompt_format":{"version":3,"weights":{"A":0,"B":1}}},"context":{"pageType":"single","category":"crypto","isPm":false},"copy":{"headline":"The news moving money, markets, and the world&mdash;before your day starts.","subline":"Daily. Free. Join 34,000+ readers across crypto, finance, and policy.","button":"Subscribe free","success":"You're subscribed. Look out for the next weekday briefing.","privacy":"We respect your privacy. Unsubscribe anytime."},"privacyUrl":"https:\/\/cryptobriefing.com\/privacy-policy\/"};
+//# sourceURL=cb-newsletter-js-before
+/* ]]> */
+</script>
+<script src="https://cryptobriefing.com/wp-content/themes/cryptobriefing-lovable/assets/js/cb-newsletter.js?ver=1793983750" id="cb-newsletter-js"></script>
+<script src="https://cryptobriefing.com/wp-content/themes/cryptobriefing/assets/js/sevio-placements.js?ver=1793941264" id="cb-sevio-placements-js"></script>
+<script id="cb-pro-banner-test-js-extra">
+/* <![CDATA[ */
+var cbPbt = {"beacon":"https://cryptobriefing.com/wp-json/cb/v1/pro-banner","go":"https://cryptobriefing.com/go/pro/"};
+//# sourceURL=cb-pro-banner-test-js-extra
+/* ]]> */
+</script>
+<script src="https://cryptobriefing.com/wp-content/themes/cryptobriefing-lovable/assets/js/pro-banner-test.js?ver=1793941264" id="cb-pro-banner-test-js"></script>
+<script src="https://cryptobriefing.com/wp-content/themes/cryptobriefing-lovable/assets/js/reface.js?ver=1793941264" id="cb-reface-js"></script>
+<script src="https://cryptobriefing.com/wp-content/themes/cryptobriefing-lovable/assets/js/article-reface.js?ver=1793941264" id="cb-article-reface-js"></script>
+<script src="https://cryptobriefing.com/wp-content/themes/cryptobriefing-lovable/assets/js/article-next.js?ver=1793941264" id="cb-article-next-js"></script>
+<script defer src="//cdn.jsdelivr.net/npm/timeago@1.6.7/jquery.timeago.min.js?ver=6.9.11"></script>
+<script src="https://cryptobriefing.com/wp-content/themes/cryptobriefing/assets/js/StickySidebar.js?ver=6.9.11" id="cb_js_sticky_sidebar-js"></script>
+<script id="cb_js_main-js-extra">
+/* <![CDATA[ */
+var cb_lang = {"common":{"submit":"Submit","save":"Save","wait":"Please wait...","loading":"Loading..."},"date_formatting":{"suffix_from_now":"from now","seconds":"%d seconds ago","minute":"a minute ago","minutes":"%d minutes ago","hour":"an hour ago","hours":"%d hours ago","day":"Yesterday","days":"%d days ago","month":"a month ago","months":"%d months ago","year":"a year ago","years":"%d years ago"},"advertising":{"chart_1_title":"What percent of your investments or net worth is in crypto?","chart_2_title":"Do you invest in art or other collectibles?","chart_default_dataset_votes":"Votes","form_error_firstname":"Enter your first name.","form_error_lastname":"Enter your last name.","form_error_email":"Invalid email address.","form_error_company":"Enter your company name.","form_error_adv_type":"Please select at least one option.","form_error_comment":"Enter your comment or message."},"account":{"form_error_email_none":"Enter your email address.","form_error_email_invalid":"Enter a valid email address.","form_error_email_min_length":"Minimum 5 characters","form_error_email_max_length":"Maximum 100 characters","form_error_firstname_max_length":"Maximum 32 characters","form_error_lastname_max_length":"Maximum 32 characters"}};
+//# sourceURL=cb_js_main-js-extra
+/* ]]> */
+</script>
+<script src="https://cryptobriefing.com/wp-content/themes/cryptobriefing/assets/js/main.js?ver=c511590468d611b3eda2534c554c19390cd15de8" id="cb_js_main-js"></script>
+<script id="cb_js_core_features_newsbriefs-js-extra">
+/* <![CDATA[ */
+var cb_newsbriefs = {"ajax_url":"https://cryptobriefing.com/wp-admin/admin-ajax.php","nonce":"d0132f7473"};
+//# sourceURL=cb_js_core_features_newsbriefs-js-extra
+/* ]]> */
+</script>
+<script src="https://cryptobriefing.com/wp-content/themes/cryptobriefing/core/features/newsbriefs/assets/js/script.js?ver=48a5c8849ecd4442cc2b4293832b89b7f4fbfa16" id="cb_js_core_features_newsbriefs-js"></script>
+<script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js?ver=1.0.0" id="remote_sdk-js" defer="defer" data-wp-strategy="defer"></script>
+<script data-no-minify="1">
+(function(){
+    if (!document || !document.addEventListener) return;
+    var dl = window.dataLayer = window.dataLayer || [];
+    function handler(e) {
+        var t = e.target;
+        if (!t || typeof t.closest !== 'function') return;
+        var a = t.closest('a[href]');
+        if (!a) return;
+        var href = a.getAttribute('href');
+        if (!href || href.indexOf('polymarket.com') === -1) return;
+        var u;
+        try { u = new URL(href, window.location.href); } catch (err) { return; }
+        var host = u.hostname.toLowerCase();
+        if (host !== 'polymarket.com' && host !== 'www.polymarket.com') return;
+        var slugMatch = u.pathname.match(/^\/(event|market)\/([^\/]+)/);
+        var refMatch = (u.search || '').match(/[?&]r=([^&]+)/);
+        var payload = {
+            event: 'outbound_polymarket_click',
+            pm_destination: u.href,
+            pm_path_type: slugMatch ? slugMatch[1] : '',
+            pm_slug: slugMatch ? slugMatch[2] : '',
+            pm_referral_code: refMatch ? decodeURIComponent(refMatch[1]) : '',
+            pm_source_url: window.location.href,
+            pm_click_type: e.type
+        };
+        dl.push(payload);
+        if (window.console && console.debug) console.debug('[cb-pm-click]', payload);
+    }
+    document.addEventListener('click', handler, true);
+    document.addEventListener('auxclick', handler, true);
+})();
+</script>
+            <script id="cb-deferred-ad-activator">
+    (function () {
+        function activate(wrapper) {
+            var tmpl = wrapper.querySelector('template');
+            if (!tmpl) return;
+            var content = tmpl.content;
+            var scripts = content.querySelectorAll('script');
+            for (var i = 0; i < scripts.length; i++) {
+                var oldScript = scripts[i];
+                var newScript = document.createElement('script');
+                for (var j = 0; j < oldScript.attributes.length; j++) {
+                    var a = oldScript.attributes[j];
+                    newScript.setAttribute(a.name, a.value);
+                }
+                if (oldScript.textContent) newScript.textContent = oldScript.textContent;
+                oldScript.parentNode.replaceChild(newScript, oldScript);
+            }
+            while (content.firstChild) {
+                tmpl.parentNode.insertBefore(content.firstChild, tmpl);
+            }
+            tmpl.remove();
+        }
+        var LAZY_MARGIN = '400px 0px';
+        var lazyObserver = ('IntersectionObserver' in window)
+            ? new IntersectionObserver(function (entries) {
+                for (var k = 0; k < entries.length; k++) {
+                    if (!entries[k].isIntersecting) continue;
+                    lazyObserver.unobserve(entries[k].target);
+                    activate(entries[k].target);
+                }
+            }, { rootMargin: LAZY_MARGIN })
+            : null;
+        var wrappers = document.querySelectorAll('.cb-deferred-ad');
+        for (var i = 0; i < wrappers.length; i++) {
+            var w = wrappers[i];
+            var inMobile = w.closest ? w.closest('#mobile-articles') : null;
+            var inDesktop = w.closest ? w.closest('#desktop-articles') : null;
+            var match = true;
+            if (inMobile || inDesktop) {
+                var isDesktop = window.matchMedia('(min-width: 768px)').matches;
+                match = (inMobile && !isDesktop) || (inDesktop && isDesktop);
+            }
+            if (match && lazyObserver && w.hasAttribute('data-cb-lazy')) {
+                lazyObserver.observe(w);
+            } else if (match) {
+                activate(w);
+            } else {
+                w.parentNode.removeChild(w);
+            }
+        }
+    })();
+    </script>
+        <script id="cb-gloria-funnel-beacon">
+    (function () {
+        // Delegate because the deferred-ad loader stamps the anchor later.
+        function swapClickLink(e) {
+            var a = e.target && e.target.closest && e.target.closest('a[data-gloria-cta]');
+            if (!a) return;
+            var insert = a.closest('.cb-gloria-insert');
+            if (!insert) return;
+            var article = insert.getAttribute('data-article');
+            var variant = insert.getAttribute('data-variant');
+            if (!article || !variant) return;
+            var link = location.origin + '/' + ['go', 'gloria'].join('/')
+                + '?campaign=' + encodeURIComponent(article) + '&variant=' + encodeURIComponent(variant);
+            if (a.getAttribute('href') !== link) a.setAttribute('href', link);
+        }
+        document.addEventListener('pointerdown', swapClickLink);
+        document.addEventListener('click', swapClickLink);
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter') swapClickLink(e);
+        });
+
+        var el = document.querySelector('.cb-gloria-insert');
+        if (!el) return;
+        var article = el.getAttribute('data-article');
+        var variant = el.getAttribute('data-variant');
+        if (!article || !variant) return;
+        var endpoint = "https:\/\/cryptobriefing.com\/wp-json\/cb\/v1\/funnel-beacon";
+        var sent = { rendered: false, viewed: false };
+        function send(ev) {
+            if (sent[ev]) return;
+            sent[ev] = true;
+            // ONLY transport: fetch keepalive with credentials omitted.
+            // navigator.sendBeacon attaches first-party cookies per the
+            // Beacon spec and must not be used here.
+            if (!window.fetch) return;
+            try {
+                fetch(endpoint, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ article: article, variant: variant, ts: Date.now(), event: ev }),
+                    keepalive: true,
+                    credentials: 'omit'
+                }).catch(function () {});
+            } catch (e) {}
+        }
+        send('rendered');
+        if (!('IntersectionObserver' in window)) return;
+        var timer = null;
+        var visibleEnough = false;
+        function stopTimer() {
+            if (timer !== null) { clearTimeout(timer); timer = null; }
+        }
+        function startTimer() {
+            // 1s must elapse continuously with the insert >=50% in view AND
+            // the document visible; a hidden document never accrues time.
+            if (timer !== null || sent.viewed) return;
+            if (document.visibilityState === 'hidden') return;
+            timer = setTimeout(function () {
+                send('viewed');
+                io.disconnect();
+                document.removeEventListener('visibilitychange', onVisibility);
+            }, 1000);
+        }
+        function onVisibility() {
+            if (document.visibilityState === 'hidden') {
+                stopTimer();
+            } else if (visibleEnough) {
+                startTimer();
+            }
+        }
+        var io = new IntersectionObserver(function (entries) {
+            for (var i = 0; i < entries.length; i++) {
+                visibleEnough = entries[i].intersectionRatio >= 0.5;
+                if (visibleEnough) startTimer(); else stopTimer();
+            }
+        }, { threshold: [0, 0.5] });
+        document.addEventListener('visibilitychange', onVisibility);
+        io.observe(el);
+    })();
+    </script>
+        <script>
+    (function() {
+        // Check if reCAPTCHA script exists and delay its execution
+        var recaptchaLoaded = false;
+
+        function loadRecaptchaOnInteraction() {
+            if (recaptchaLoaded) return;
+            recaptchaLoaded = true;
+
+            // Remove listeners after first interaction
+            document.removeEventListener('scroll', loadRecaptchaOnInteraction);
+            document.removeEventListener('click', loadRecaptchaOnInteraction);
+            document.removeEventListener('touchstart', loadRecaptchaOnInteraction);
+            document.removeEventListener('mousemove', loadRecaptchaOnInteraction);
+
+            // Trigger any pending reCAPTCHA initialization
+            if (typeof grecaptcha !== 'undefined' && grecaptcha.ready) {
+                grecaptcha.ready(function() {});
+            }
+        }
+
+        // Load on user interaction (scroll, click, touch, mouse move)
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', function() {
+                document.addEventListener('scroll', loadRecaptchaOnInteraction, {once: true, passive: true});
+                document.addEventListener('click', loadRecaptchaOnInteraction, {once: true});
+                document.addEventListener('touchstart', loadRecaptchaOnInteraction, {once: true, passive: true});
+                document.addEventListener('mousemove', loadRecaptchaOnInteraction, {once: true, passive: true});
+            });
+        } else {
+            document.addEventListener('scroll', loadRecaptchaOnInteraction, {once: true, passive: true});
+            document.addEventListener('click', loadRecaptchaOnInteraction, {once: true});
+            document.addEventListener('touchstart', loadRecaptchaOnInteraction, {once: true, passive: true});
+            document.addEventListener('mousemove', loadRecaptchaOnInteraction, {once: true, passive: true});
+        }
+
+        // Fallback: load after 5 seconds if no interaction
+        setTimeout(loadRecaptchaOnInteraction, 5000);
+    })();
+    </script>
+        <script>
+    (function() {
+        var oneSignalLoaded = false;
+
+        function initOneSignalOnInteraction() {
+            if (oneSignalLoaded) return;
+            oneSignalLoaded = true;
+
+            document.removeEventListener('scroll', initOneSignalOnInteraction);
+            document.removeEventListener('click', initOneSignalOnInteraction);
+
+            // If OneSignal SDK is loaded, initialize it
+            if (typeof OneSignal !== 'undefined') {
+                // OneSignal will auto-initialize
+            }
+        }
+
+        // Delay OneSignal until user interaction or 3 seconds
+        document.addEventListener('scroll', initOneSignalOnInteraction, {once: true, passive: true});
+        document.addEventListener('click', initOneSignalOnInteraction, {once: true});
+        setTimeout(initOneSignalOnInteraction, 3000);
+    })();
+    </script>
+    <!-- cb-deploy-marker 2026-08-17 pipeline-test -->
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"7189fc5c215b4cfa80e874dc69e1a4c6","spa":2}' crossorigin="anonymous"></script>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a597f33c2db06f65',t:'MTc5NDUxMTgxNQ=='};var l=window.parent.location,o;try{o=new URL(l.origin).origin}catch(e){try{o=new URL(new URL(l.href).origin).origin}catch(e){o=''}}var u='/cdn-cgi/challenge-platform/scripts/jsd/main.js?ray=a597f33c2db06f65',a=document.createElement('script');a.src=o?new URL(u,o).href:u;document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
+<!--
+Performance optimized by Redis Object Cache. Learn more: https://wprediscache.com
+
+Retrieved 1997 objects (1 MB) from Redis using Predis (v2.4.1).
+-->

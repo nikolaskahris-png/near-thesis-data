@@ -79,5 +79,17 @@
    "kept_near_change_high": 0.071434,
    "kept_near_share_below_zero": 0.8983
   }
- ]
+ ],
+ "permutation": {
+  "kept_near": {
+   "p_two_sided": 0.83086,
+   "permutations": 100000,
+   "seed": 20261113
+  },
+  "revenue_near": {
+   "p_two_sided": 0.7211,
+   "permutations": 100000,
+   "seed": 20261113
+  }
+ }
 }
