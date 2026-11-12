@@ -2,7 +2,7 @@
 
 [![verify](https://github.com/nikolaskahris-png/near-thesis-data/actions/workflows/verify.yml/badge.svg)](https://github.com/nikolaskahris-png/near-thesis-data/actions/workflows/verify.yml)
 
-**People, not code, decide what NEAR holders get from NEAR Intents' fees: <!--n:n1.buybacks_held_near-->2,145,248<!--/n--> NEAR bought back sits in two wallets that <!--n:c.buybacks_confirmations-->2 of 4<!--/n--> signers can move, none of it is burned, and what they keep equals <!--n:n1.coverage_buybacks-->10.8%<!--/n--> of new issuance.** **Rating to 2031: Hold.** If you own NEAR, keep it staked and do not add; **Buy** when a published rule locks the buybacks where no one can spend them and they grow <!--n:lr.required_growth.buybacks.A.2031-->+75%<!--/n--> a year, **Avoid** if, two 30-day windows running, they drop to April's <!--n:f2.buybacks_kept_usd_per_day.2026-04-->$6,270<!--/n--> a day or move out.
+**People, not code, decide what NEAR holders get from NEAR Intents' fees: <!--n:n1.buybacks_held_near-->2,145,248<!--/n--> NEAR bought back sits in two wallets that <!--n:c.buybacks_confirmations-->2 of 4<!--/n--> signers can move, none of it is burned, and what they keep equals <!--n:n1.coverage_buybacks-->10.8%<!--/n--> of new issuance.** **Rating to 2031: Hold.** If you own NEAR, keep it staked and do not add; **Buy** when a published rule locks the buybacks where no one can spend them and they grow <!--n:lr.required_growth.buybacks.A.2031-->+75%<!--/n--> a year, **Avoid** if two back-to-back 30-day windows each fail a test: the buybacks keep April's <!--n:f2.buybacks_kept_usd_per_day.2026-04-->$6,270<!--/n--> a day or less, or the wallets keep under 75% of what flows in.
 
 ![What holders get for the NEAR issued, a day: the buybacks keep about a tenth of it, and all fees together would cover less than half](docs/coverage.svg)
 
@@ -14,9 +14,9 @@
 - **The demand is real.** Users paid <!--n:n2.fees_usd_per_day-->$206,049<!--/n--> a day in fees on NEAR Intents in the window, by DefiLlama's data.
 - **Holders get a small part.** The buybacks keep <!--n:iv.buybacks_kept_usd_per_year-->$17.1M<!--/n--> a year against <!--n:iv.issuance_usd_per_year-->$157.5M<!--/n--> issued: <!--n:n1.coverage_buybacks-->10.8%<!--/n--> (<!--n:n1.coverage_with_front_end-->16.5%<!--/n--> with the front-end fund). They are held, not burned, so your share of all NEAR is unchanged.
 - **People decide.** Issuance is code: only a release run by <!--n:c.issuance_upgrade_stake_threshold-->4/5<!--/n--> of stake changes it. What offsets it is a choice that <!--n:c.buybacks_confirmations-->2 of 4<!--/n--> signers can undo.
-- **It did not stop when the flow went private.** From 27 October, NEAR kept a day by the revenue wallets: <!--n:ps.change.kept_near_per_day-->-3%<!--/n-->; DefiLlama's revenue: <!--n:ps.change.revenue_near_per_day-->-6%<!--/n-->; from other start dates, down to <!--n:ps.cut.kept_near_lowest-->-13%<!--/n-->.
-- **Growth is not what blocks Buy.** Since April the buybacks grew <!--n:bt.a_pace.near_multiple-->×2.1<!--/n--> in NEAR, past the <!--n:bt.a_pace.required_multiple-->×1.32<!--/n--> that +75% a year needs over six months, mostly as NEAR's fee share rose <!--n:lr.history.2026-04_2026-10.take_rate_multiple-->×4.2<!--/n-->, which has a ceiling. What Buy lacks is a rule.
-- **What to do.** Staked, your share of all NEAR grows +<!--n:iv.staked_share_growth-->2.44%<!--/n--> a year before your validator's fee; unstaked, it changes <!--n:iv.unstaked_share_change-->-2.40%<!--/n-->. Avoid cannot fire before 1 December and no lock exists for Buy; until then Hold is our judgment, not the rules' output.
+- **It did not stop when the flow went private.** From 27 October, NEAR kept a day by the revenue wallets: <!--n:ps.change.kept_near_per_day-->-3%<!--/n-->; DefiLlama's revenue: <!--n:ps.change.revenue_near_per_day-->-6%<!--/n-->; from other start dates, down to <!--n:ps.cut.kept_near_lowest-->-13%<!--/n-->. In dollars, kept <!--n:ps.change.kept_usd_per_day-->-19%<!--/n-->, revenue <!--n:ps.change.revenue_usd_per_day-->-21%<!--/n--> (<!--n:ps.cut.2026-10-30.revenue_usd-->-30%<!--/n--> from 30 October).
+- **Growth is not what blocks Buy.** Since April the buybacks grew <!--n:bt.a_pace.near_multiple-->×2.1<!--/n--> in NEAR, past the <!--n:bt.a_pace.required_multiple-->×1.32<!--/n--> that +75% a year needs over six months, mostly as NEAR's fee share rose <!--n:lr.history.2026-04_2026-10.take_rate_multiple-->×4.2<!--/n-->, which has a ceiling. From August or September as a base, the NEAR leg falls short. What Buy lacks is a rule.
+- **What to do.** Staked, your share of all NEAR grows +<!--n:iv.staked_share_growth-->2.44%<!--/n--> a year before your validator's fee; unstaked, it changes <!--n:iv.unstaked_share_change-->-2.40%<!--/n-->. Avoid cannot fire before 10 December and no lock exists for Buy; until then Hold is our judgment, not the rules' output.
 
 ## The thesis in four claims
 
@@ -52,7 +52,7 @@ Nothing in code burns, locks or requires the buybacks:
 
 ### D. It did not stop when the flow went private
 
-From 27 October most swaps settle privately on FAR (contract `intents.far`), unseen by public indexers ([Tideline at commit 90a78e6](https://github.com/ervhint/tideline-thesis/blob/90a78e6a358315331dbb0c68548edcb736244a3e/THESIS.md), another public repository). We read the three revenue wallets daily on mainnet; DefiLlama's revenue counts the same three, so the two compare like for like:
+From 27 October swaps began to settle privately on FAR (contract `intents.far`), unseen by public indexers; from 2 to 8 November that path carried 85% of the dollars counted on chain ([Tideline at commit 90a78e6](https://github.com/ervhint/tideline-thesis/blob/90a78e6a358315331dbb0c68548edcb736244a3e/THESIS.md), another public repository). We read the three revenue wallets daily on mainnet; DefiLlama's revenue counts the same three, so the two compare like for like:
 
 | A day, in NEAR | 2–26 October | 27 October – 8 November | Change |
 |---|---|---|---|
@@ -61,7 +61,7 @@ From 27 October most swaps settle privately on FAR (contract `intents.far`), uns
 
 In dollars both fell about a fifth (<!--n:ps.change.kept_usd_per_day-->-19%<!--/n--> and <!--n:ps.change.revenue_usd_per_day-->-21%<!--/n-->), mostly the price. The private path's account on mainnet held <!--n:ct.priced_usd.2026-11-08-->$123.5M<!--/n--> on 8 November, <!--n:ct.stablecoins_usd.2026-11-08-->$37.4M<!--/n--> of it in stablecoins.
 
-**Against.** Thirteen days are a short run. Tideline's date gives the smallest fall of the five dates tried; on 30 October it is <!--n:ps.cut.2026-10-30.kept_near-->-13%<!--/n-->. Agreement shows little flowed out, not which fees paid for what came in. [PREREG-3](PREREG-3.md) tests the next 30 days.
+**Against.** Thirteen days are a short run. Tideline's date gives the smallest fall of the five dates tried; from 30 October it is <!--n:ps.cut.2026-10-30.kept_near-->-13%<!--/n-->, from 2 November, the first day of the 85% week, <!--n:ps.cut.2026-11-02.kept_near-->-8%<!--/n-->. Agreement shows little flowed out, not which fees paid for what came in. [PREREG-3](PREREG-3.md) tests the next 30 days.
 
 **Check.** `python scripts/private_shift.py --verify` → `OK`.
 
@@ -87,7 +87,7 @@ In dollars, your holding is that share times the value of all NEAR. No price tar
 | **Avoid** | this window and the one ending 30 days before it each fail a test: (1) the three wallets keep less than 75% of DefiLlama's revenue, or (2) the buybacks keep April's <!--n:f2.buybacks_kept_usd_per_day.2026-04-->$6,270<!--/n--> a day or less. Test 2 does not count flow that moved to the private path as stopped | (1) DefiLlama; (2) the chain |
 | **Hold** | everything else, including any window that cannot be judged | |
 
-Avoid overrides Buy. A buy-and-burn or lock contract would not count as (b) as written, because the rating does not read contract code.
+Avoid overrides Buy. A buy-and-burn or lock contract would not count as (b) as written, because the rating does not read contract code. One transfer of the whole stock fails one window, not two, so on its own it leaves Hold; a full stop of the buybacks would show as Avoid about eight weeks later.
 
 - **Why Hold today.** Avoid needs two windows and the daily history starts on 1 November; Buy needs a lock that does not exist. <!--n:sens.hold-->378<!--/n--> of <!--n:sens.month_ratings-->378<!--/n--> monthly ratings, April to October, under <!--n:sens.combinations-->54<!--/n--> threshold settings, are Hold: the rules are an alarm from December, not evidence for Hold.
 - **A crash alone can trigger Avoid.** At this window's NEAR kept a day, test 2 fails at a price of <!--n:iv.avoid_test2_price_usd-->$0.655<!--/n--> or less.
@@ -96,7 +96,7 @@ Every rule, edge case and the backtest: [the rating in full](docs/DETAILS.md#the
 
 ## What would change our mind
 
-- **1 December 2026, then daily:** Avoid can fire (the two tests above).
+- **10 December 2026 at the earliest, then daily:** Avoid can fire (the two tests above); the windows ending 1–9 November passed and are final.
 - **9 December 2026:** if from 9 November the buybacks keep less than half of <!--n:iv.buybacks_kept_usd_per_day-->$46,692<!--/n--> a day, PREREG-3's P6 (0.90) is scored wrong, and claim D with it.
 - **Any day:** a published lock plus coverage of 100% (best month so far <!--n:bt.highest_coverage_counted-->15.3%<!--/n-->) gives Buy.
 - **1 November 2027, then yearly:** a lock plus the growth test (<!--n:lr.required_growth.buybacks.B.2031-->+56%<!--/n--> a year once validators run HSP-029) gives Buy.

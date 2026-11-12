@@ -95,7 +95,7 @@ choice; every figure in them is measured.*
 | `treasury.near` quiet | the protocol treasury sent nothing in the window: its multisig request nonce (`get_request_nonce`) is the same at both boundary blocks and it has no full-access key, read from the chain each day (`treasury_quiet` in `data/rating.csv`). With no full-access key, every transfer out of it needs a request, and the nonce counts every request ever made. A window not quiet, or not read, cannot reach Buy. |
 | Buy | (b), `treasury.near` quiet in the window, and either its coverage counted is 100% or more, or (a) and (a′) hold at the yearly check, the window ending on 1 November. |
 | Hurdle of (a) | from <!--n:iv.buybacks_kept_usd_per_day-->$46,692<!--/n--> a day: <!--n:lr.required_growth.buybacks.A.2031-->+75%<!--/n--> a year while validators do not run HSP-029, <!--n:lr.required_growth.buybacks.B.2031-->+56%<!--/n--> once they do (`HSP029_IN_FORCE`, set when `scripts/upgrade_watch.py` shows the release adopted). A pass at a yearly check holds until the next one. |
-| Cannot be judged | Hold. Until 1 December 2026 no window has one 30 days before it in `history.csv`, so Avoid cannot fire before then. |
+| Cannot be judged | Hold. Until 1 December 2026 no window has one 30 days before it in `history.csv`, so Avoid cannot fire before then; the windows ending 1–9 November passed and are final, so in fact not before 10 December. |
 
 If NEAR kept every fee, fees counted in NEAR would need <!--n:lr.required_growth.all_fees.B.2031-->+9%<!--/n--> a year with HSP-029, <!--n:lr.required_growth.all_fees.A.2031-->+22%<!--/n--> at today's rule ([the model](#issuance-to-2031)).
 
@@ -329,7 +329,7 @@ From the window's mean price, <!--n:n2.mean_price_usd-->$4.88<!--/n-->; from the
 
 ### v4: The rating as rules
 
-`scripts/rating.py` applies these to every 30-day window and writes [`data/rating.csv`](../data/rating.csv). Today every window is Hold, and until 1 December nothing else is possible: Avoid needs a failing window and another 30 days before it, and the daily history starts on 1 November; Buy needs (b), a published lock, which does not exist. Read the rules as an alarm that can go off from then on, not as evidence for Hold.
+`scripts/rating.py` applies these to every 30-day window and writes [`data/rating.csv`](../data/rating.csv). Today every window is Hold, and until 10 December nothing else is possible (the windows ending 1–9 November passed): Avoid needs a failing window and another 30 days before it, and the daily history starts on 1 November; Buy needs (b), a published lock, which does not exist. Read the rules as an alarm that can go off from then on, not as evidence for Hold.
 
 | | Rule | Read from |
 |---|---|---|
@@ -365,7 +365,7 @@ Each row is a threshold, the first date it can be met, and the rating it leads t
 
 | From | If | Rating |
 |---|---|---|
-| 1 Dec 2026, daily | two 30-day windows in a row each fail a test: the wallets keep less than 75% of DefiLlama's revenue, or the buybacks keep April's <!--n:f2.buybacks_kept_usd_per_day.2026-04-->$6,270<!--/n--> a day or less (at this window's NEAR kept a day, a price of <!--n:iv.avoid_test2_price_usd-->$0.655<!--/n-->) | **Avoid** |
+| 10 Dec 2026 at the earliest, daily | two back-to-back 30-day windows each fail a test: the wallets keep less than 75% of DefiLlama's revenue, or the buybacks keep April's <!--n:f2.buybacks_kept_usd_per_day.2026-04-->$6,270<!--/n--> a day or less (at this window's NEAR kept a day, a price of <!--n:iv.avoid_test2_price_usd-->$0.655<!--/n-->) | **Avoid** |
 | any day | the buybacks go to a declared lock with no contract and no access keys, `treasury.near` sends nothing in the window, and the buybacks cover 100% of issuance (today <!--n:n1.coverage_buybacks-->10.8%<!--/n-->; best month <!--n:bt.highest_coverage_counted-->15.3%<!--/n-->) | **Buy** |
 | any day | the lock exists, coverage is under 100% | Hold until the yearly check |
 | any day | `treasury.near` sends anything | no Buy in that window |
@@ -680,7 +680,7 @@ The rating changes from Hold to Buy only when (b) holds, together with (a) or wi
 keep less than 75% of DefiLlama's revenue, in NEAR, or what the buybacks wallets keep in dollars is April's level or less (not judged if
 DefiLlama's fees fell too and the Confidential Intents Treasury account grew). Avoid overrides Buy. The table above can show the claim
 wrong while the rating stays Hold: a "Small" that is wrong with no published rule changes the thesis, not the rating, because Buy also needs (b).
-Until 1 December 2026 the rating cannot be anything but Hold: Avoid needs an earlier window and the daily history starts on 1 November.
+Until 1 December 2026 the rating cannot be anything but Hold: Avoid needs an earlier window and the daily history starts on 1 November. The windows ending 1–9 November passed and are final, so in fact not before 10 December.
 Every case (which windows, which wallets, leaving Avoid, missing days) is in
 [the rules as code applies them](#the-rating-in-full). (b) is read from the
 chain every day: a declared lock with no contract and no access keys. NEAR moved to it after the declaration counts as
@@ -698,7 +698,7 @@ We put **0.25** on (b) by 1 January 2031: the buybacks kept by a published rule,
 - **Other protocols whose bought tokens sat in wallets people control.** Pump.fun bought PUMP for about nine months, then on 28 April 2026 burned all of it and sent half of future revenue to an irreversible contract that buys and burns PUMP for a year ([CoinDesk](https://www.coindesk.com/markets/2026/04/29/pump-fun-burns-36-of-pump-supply-in-usd370-million-wipe-locks-50-revenue-into-ongoing-buybacks)): a rule, for a year. Jupiter's DAO voted in October 2025 on burning the about 130M JUP in its Litterbox Trust ([vote](https://discuss.jup.ag/t/new-dao-vote-proposal-to-burn-the-litterbox/39627)); 130M JUP were burned in November, and in January 2026 its founder proposed ending the buybacks ([KuCoin](https://www.kucoin.com/news/flash/jupiter-halts-token-buybacks-vitalik-outlines-2026-ethereum-vision)): a one-off burn, not a standing rule. Aave's buybacks run automatically, but the AAVE bought sits in the Ecosystem Reserve and can be spent ([KuCoin](https://www.kucoin.com/news/flash/aave-considers-token-burn-pump-continues-buybacks-where-do-repurchased-tokens-go)): not a rule. One of three in about a year; with stopping as the competing outcome, about 0.45 to 2031.
 - **Not counted.** Hyperliquid's Assistance Fund was built with no private key from the start ([The Block](https://www.theblock.co/news/defi/2025-12-17-hyper-foundation-proposes-removing-1-billion-hype-tokens-from-circulating-supply-by-zeroing-out-hyperliquids-assistance-fund-383091)), so it never had the choice NEAR's buybacks have. Uniswap had no buybacks before its fee burn.
 - **NEAR, against.** The latest proposal about the buybacks, a House of Stake draft of 8 November 2026 with no number yet, would put a share of NEAR Intents' fees into US Treasury bills, fund ventures from the yield and let holders choose later between buybacks or a reserve and payouts; it sets itself against immediate burns ([gov.near.org](https://gov.near.org/t/hsp-xxx-sovereign-yield-engine-treasury-backed-venture-protocol-buyback-model-for-near-intents/42760)). In seven months the wallets kept <!--n:f2.wallets_kept_share_of_revenue.2026-04_2026-10-->96.9%<!--/n--> of what came in, and no lock was declared. `treasury.near` paid out <!--n:ts.year_out_near-->30,171,200<!--/n--> NEAR in April and May, each payout confirmed by its multisig's signers.
-- **NEAR, for.** Governance does pass supply rules: HSP-027 (gas) is in force and HSP-029 (issuance) passed with no votes against. A lock needs no new code: an account with no access keys and no contract.
+- **NEAR, for.** Governance does pass supply rules: HSP-027 (gas) is in force and HSP-029 (issuance) passed with <!--n:f8.against_votes-->1<!--/n--> vote against (<!--n:f8.against_venear-->0<!--/n--> veNEAR, rounded). A lock needs no new code: an account with no access keys and no contract.
 
 Three cases are few, and those that changed are the ones the press reports. We take the 0.45 down for NEAR's own draft, which points away from a lock, and for the strict test, which a contract like Pump.fun's would not meet as written. Range we would defend: 0.10 to 0.35.
 
