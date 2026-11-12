@@ -16,6 +16,7 @@
 | Does a rule guarantee it? | No: it is a choice | nothing locks or burns it, and <!--n:c.buybacks_confirmations-->2 of 4<!--/n--> signers can move it. A House of Stake (NEAR governance) draft of 8 November, not yet voted, would put fees in US Treasury bills before any buyback ([saved copy](data/raw/sources/hos_draft_2026_11_08.md)) |
 | Is the demand real? | Yes, but most fees stay with the apps that route swaps | users paid <!--n:n2.fees_usd_per_day-->$206,049<!--/n--> a day in fees (DefiLlama) |
 | Are holders paid more elsewhere? | Yes | what reaches NEAR holders is <!--n:peer.near.holders_yield_on_mcap-->0.40%<!--/n--> of NEAR's market value a year (almost all NEAR circulates, so one basis); Hyperliquid's is <!--n:peer.hyperliquid.holders_yield_on_mcap-->4.09%<!--/n--> of its circulating value (<!--n:peer.hyperliquid.holders_yield_on_fdv-->1.03%<!--/n--> fully diluted), and the tokens it buys sit at an address with no key ([The Block](https://www.theblock.co/news/defi/2025-12-17-hyper-foundation-proposes-removing-1-billion-hype-tokens-from-circulating-supply-by-zeroing-out-hyperliquids-assistance-fund-383091)) |
+| Is the chain's own use growing? | No | daily transactions <!--n:u.txns.change-->-83%<!--/n--> in a year, active accounts <!--n:u.active_accounts.change-->-95%<!--/n-->; all its gas paid <!--n:u.fee_usd_year-->$1.2M<!--/n--> a year |
 
 **Stay staked:** your share of all NEAR grows +<!--n:iv.staked_share_growth-->2.44%<!--/n--> a year staked and falls (<!--n:iv.unstaked_share_change-->-2.40%<!--/n-->) unstaked. **Do not add:** what reaches holders is small, and no rule fixes it.
 
@@ -49,7 +50,7 @@
 - The House of Stake draft of 8 November: does it get a number and a vote?
 - HSP-029, the issuance cut, leaves its timelock at <!--n:f8.timelock_end_utc-->2026-11-16 16:48 UTC<!--/n-->; it cuts issuance only once validators run a release.
 
-## The thesis in four claims
+## The thesis in five claims
 
 Every marked figure comes from [`data/numbers.json`](data/numbers.json); a check fails if one differs. Each claim with every source: [long version](docs/DETAILS.md#v5-the-thesis-in-four-claims).
 
@@ -57,7 +58,7 @@ Every marked figure comes from [`data/numbers.json`](data/numbers.json); a check
 
 NEAR Intents moved <!--n:d.ours_30d_usd-->$4.02B<!--/n--> in DefiLlama's latest 30 days, to <!--n:d.window_end-->7 November<!--/n-->, <!--n:d.parent_rank-->15th<!--/n--> of <!--n:d.parent_groups_with_volume-->885<!--/n--> protocols by DEX volume on DefiLlama. Users paid <!--n:n2.fees_usd_per_day-->$206,049<!--/n--> a day in fees in the window, most of it to the apps that route swaps.
 
-**Against.** Volume and fees are DefiLlama's, not rebuilt from the chain, and two other public repositories see only 24–46% of its volume on chain. Coverage and the rating use fees and wallet balances, not volume.
+**Against.** Volume and fees are DefiLlama's; NearBlocks, indexing the chain, sees <!--n:u.visible.before_private-->66%<!--/n--> of that volume before the private path ([claim E](#e-the-chain-is-used-less-and-its-use-pays-holders-almost-nothing)). Coverage and the rating use fees and wallet balances, not volume.
 
 **Check.** `python scripts/demand.py --verify` → `OK`.
 
@@ -92,6 +93,24 @@ The fall is inside the noise: resampling the days gives <!--n:ci.shift.kept_near
 
 **Check.** `python scripts/private_shift.py --verify`; `python scripts/intervals.py --verify`. Each ends with `OK`.
 
+### E. The chain is used less, and its use pays holders almost nothing
+
+The track's own prompt example asks for daily transactions and active accounts, and whether NEAR Intents' volume leads network usage better than the price does ([nearai/near-hackathon-prompt-examples](https://github.com/nearai/near-hackathon-prompt-examples/blob/main/tracks/02-thesis.md)). From NearBlocks' daily statistics, November 2025 against October 2026:
+
+| A day, 30-day means | November 2025 | October 2026 | Change |
+|---|---|---|---|
+| Transactions | <!--n:u.txns.first-->4.27M<!--/n--> | <!--n:u.txns.last-->716k<!--/n--> | <!--n:u.txns.change-->-83%<!--/n--> |
+| Active accounts | <!--n:u.active_accounts.first-->2.77M<!--/n--> | <!--n:u.active_accounts.last-->132k<!--/n--> | <!--n:u.active_accounts.change-->-95%<!--/n--> |
+| Transactions, not relayed (meta) | <!--n:u.txns_not_meta.first-->1.14M<!--/n--> | <!--n:u.txns_not_meta.last-->476k<!--/n--> | <!--n:u.txns_not_meta.change-->-58%<!--/n--> |
+
+Most of the fall was relayed transactions, and most came in one step: <!--n:u.txns.month.2026-03-->3.48M<!--/n--> a day in March, <!--n:u.txns.month.2026-04-->947k<!--/n--> in April. All gas paid on NEAR in those twelve months was <!--n:u.fee_usd_year-->$1.2M<!--/n-->, <!--n:u.fee_share_of_issuance-->0.8%<!--/n--> of a year of new NEAR. The organizers' question: over <!--n:u.lead.weeks-->52<!--/n--> weeks, neither Intents' volume nor the price leads transactions or active accounts by 0–4 weeks that we can detect (largest correlation <!--n:u.lead.max_abs_corr-->0.22<!--/n-->, smallest p <!--n:u.lead.min_p-->0.44<!--/n-->).
+
+NearBlocks also indexes NEAR Intents on mainnet, a check on DefiLlama: it sees <!--n:u.visible.before_private-->66%<!--/n--> of DefiLlama's volume in the 30 days before 27 October, <!--n:u.visible.after_private-->28%<!--/n--> from 27 October to 8 November and <!--n:u.visible.week_85-->12%<!--/n--> from 2 to 8 November: an independent sign of the move to the private path (claim D).
+
+**Against.** These are NearBlocks' own aggregates, not rebuilt from blocks, and what counts as an active or relayed account is its definition. Fifty-two weeks give little power: "not detected" is not "no effect".
+
+**Check.** `python scripts/usage.py --verify` → `OK`.
+
 ## What a holder earns to 2031
 
 How your share of all NEAR changes; only staking moves it. HSP-029 assumed in force from <!--n:lr.activation_utc-->2027-02-14 16:48 UTC<!--/n-->.
@@ -106,7 +125,7 @@ In dollars: that share times the value of all NEAR. No price target; three state
 
 **What the price implies.** NEAR is valued at <!--n:peer.near.mcap_to_revenue-->248×<!--/n--> the revenue DefiLlama counts for NEAR Intents, which flows to the three revenue wallets (<!--n:peer.near_all.mcap_to_revenue-->234×<!--/n--> adding L1 gas); Hyperliquid, Jupiter and Aave at <!--n:peer.jupiter.mcap_to_revenue-->24×<!--/n-->–<!--n:peer.aave.mcap_to_revenue-->39×<!--/n--> theirs. At their multiples, that revenue carries <!--n:iv.fee_supported_share.low-->10%<!--/n-->–<!--n:iv.fee_supported_share.high-->16%<!--/n--> of NEAR's value; carrying all of it needs <!--n:iv.breakeven_multiple.low-->×6.3<!--/n-->–<!--n:iv.breakeven_multiple.high-->×10.4<!--/n--> the revenue (<!--n:iv.breakeven_multiple.fdv.low-->×2.6<!--/n-->–<!--n:iv.breakeven_multiple.fdv.high-->×6.1<!--/n--> on fully diluted values).
 
-**The rest of the value.** Against other layer-one chains the picture flips: counting Intents, NEAR is valued at <!--n:peer.near_all.mcap_to_revenue-->234×<!--/n--> a year of revenue, Solana at <!--n:peer.solana.mcap_to_revenue-->1,995×<!--/n-->, Ethereum at <!--n:peer.ethereum.mcap_to_revenue-->3,394×<!--/n-->; on its own gas NEAR is <!--n:peer.near_l1.mcap_to_revenue-->4,091×<!--/n-->. Layer-one tokens are priced on more than fees: staking, money, block space. That is most of NEAR's value, and this thesis does not rate it. It rates the part a holder could be paid by rule, and finds none of it fixed.
+**The rest of the value.** Against other layer-one chains the picture flips: counting Intents, NEAR is valued at <!--n:peer.near_all.mcap_to_revenue-->234×<!--/n--> a year of revenue, Solana at <!--n:peer.solana.mcap_to_revenue-->1,995×<!--/n-->, Ethereum at <!--n:peer.ethereum.mcap_to_revenue-->3,394×<!--/n-->; on its own gas NEAR is <!--n:peer.near_l1.mcap_to_revenue-->4,091×<!--/n-->. Layer-one tokens are priced on more than fees: staking, money, block space. That is most of NEAR's value, and this thesis does not rate it, but the use behind it is falling: <!--n:u.txns.change-->-83%<!--/n--> daily transactions in a year ([claim E](#e-the-chain-is-used-less-and-its-use-pays-holders-almost-nothing)). It rates the part a holder could be paid by rule, and finds none of it fixed.
 
 ## The rating as rules
 

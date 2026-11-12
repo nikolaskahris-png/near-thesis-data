@@ -1,0 +1,175 @@
+{
+ "measure": "Claim E: the chain is used, and that use pays holders almost nothing. Also the organizers' question.",
+ "fetched_utc": "2026-11-12T21:09:57Z",
+ "year": [
+  "2025-11-01",
+  "2026-10-31"
+ ],
+ "weeks": [
+  "2025-11-03",
+  52
+ ],
+ "method": "weekly log-changes, lags [0, 1, 2, 3, 4] weeks, 10000 circular shifts (min 6), seed 20261113",
+ "usage": {
+  "txns": {
+   "first_30d_mean": 4267747.566667,
+   "last_30d_mean": 715881.433333,
+   "change": -0.832258
+  },
+  "meta_txns": {
+   "first_30d_mean": 3123234.833333,
+   "last_30d_mean": 239632.833333,
+   "change": -0.923274
+  },
+  "active_accounts": {
+   "first_30d_mean": 2765750.966667,
+   "last_30d_mean": 131754.1,
+   "change": -0.952362
+  },
+  "meta_accounts": {
+   "first_30d_mean": 2526344.933333,
+   "last_30d_mean": 59452.866667,
+   "change": -0.976467
+  },
+  "active_contracts": {
+   "first_30d_mean": 2506866.933333,
+   "last_30d_mean": 57650.066667,
+   "change": -0.977003
+  },
+  "fee_near": {
+   "first_30d_mean": 3250.331208,
+   "last_30d_mean": 1215.623557,
+   "change": -0.626
+  },
+  "txns_not_meta": {
+   "first_30d_mean": 1144512.733333,
+   "last_30d_mean": 476248.6,
+   "change": -0.583885
+  },
+  "accounts_not_meta": {
+   "first_30d_mean": 239406.033333,
+   "last_30d_mean": 72301.233333,
+   "change": -0.697997
+  },
+  "txns_by_month": {
+   "2025-11": 4267747.566667,
+   "2025-12": 3842674.322581,
+   "2026-01": 3505838.516129,
+   "2026-02": 3488610.607143,
+   "2026-03": 3479268.870968,
+   "2026-04": 946610.4,
+   "2026-05": 803001.483871,
+   "2026-06": 813834.866667,
+   "2026-07": 737900.806452,
+   "2026-08": 681657.387097,
+   "2026-09": 800151.1,
+   "2026-10": 729933.387097
+  },
+  "fee_usd_year": 1206486.994804,
+  "fee_usd_per_txn_last_30d": 0.007951
+ },
+ "visible_intents_volume": {
+  "window": {
+   "first": "2026-10-02",
+   "last": "2026-10-31",
+   "nearblocks_usd": 2381034771.965053,
+   "defillama_usd": 3860604916.0,
+   "nearblocks_share": 0.616752
+  },
+  "before_private": {
+   "first": "2026-09-27",
+   "last": "2026-10-26",
+   "nearblocks_usd": 2655412472.50352,
+   "defillama_usd": 4000245264.0,
+   "nearblocks_share": 0.663812
+  },
+  "after_private": {
+   "first": "2026-10-27",
+   "last": "2026-11-08",
+   "nearblocks_usd": 465657762.072581,
+   "defillama_usd": 1654822813.0,
+   "nearblocks_share": 0.281394
+  },
+  "week_85": {
+   "first": "2026-11-02",
+   "last": "2026-11-08",
+   "nearblocks_usd": 107432850.691495,
+   "defillama_usd": 912182473.0,
+   "nearblocks_share": 0.117776
+  }
+ },
+ "lead": {
+  "intents_volume_defillama->txns": {
+   "best_lag_weeks": 0,
+   "corr": 0.21056,
+   "p_shift": 0.436,
+   "corr_by_lag": {
+    "0": 0.21056,
+    "1": -0.018634,
+    "2": -0.001076,
+    "3": -0.093137,
+    "4": 0.159741
+   }
+  },
+  "intents_volume_defillama->active_accounts": {
+   "best_lag_weeks": 3,
+   "corr": -0.130012,
+   "p_shift": 0.8778,
+   "corr_by_lag": {
+    "0": -0.021775,
+    "1": -0.02379,
+    "2": -0.02106,
+    "3": -0.130012,
+    "4": 0.121888
+   }
+  },
+  "intents_volume_nearblocks->txns": {
+   "best_lag_weeks": 4,
+   "corr": 0.142782,
+   "p_shift": 0.9251,
+   "corr_by_lag": {
+    "0": 0.051102,
+    "1": -0.035985,
+    "2": -0.029894,
+    "3": -0.07739,
+    "4": 0.142782
+   }
+  },
+  "intents_volume_nearblocks->active_accounts": {
+   "best_lag_weeks": 0,
+   "corr": -0.150534,
+   "p_shift": 0.6498,
+   "corr_by_lag": {
+    "0": -0.150534,
+    "1": -0.060513,
+    "2": -0.027334,
+    "3": -0.105726,
+    "4": 0.064657
+   }
+  },
+  "near_price->txns": {
+   "best_lag_weeks": 1,
+   "corr": 0.222537,
+   "p_shift": 0.6688,
+   "corr_by_lag": {
+    "0": 0.017486,
+    "1": 0.222537,
+    "2": 0.058116,
+    "3": -0.09324,
+    "4": -0.210386
+   }
+  },
+  "near_price->active_accounts": {
+   "best_lag_weeks": 1,
+   "corr": 0.172412,
+   "p_shift": 0.8574,
+   "corr_by_lag": {
+    "0": -0.13711,
+    "1": 0.172412,
+    "2": 0.125381,
+    "3": -0.023077,
+    "4": -0.108539
+   }
+  }
+ }
+}

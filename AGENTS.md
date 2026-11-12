@@ -38,6 +38,7 @@ Its last line is `REBUILD: PASS`. The same checks, one by one:
 | `python scripts/intervals.py --verify` | 95% intervals for the coverage (10.8%, 16.5%) and for the -3% private-path change: moving-block bootstrap of the saved days in `data/private_shift.json`, blocks of 7 and 3 days, 10,000 resamples, fixed seed, with blocks of 1 to 7 days as a check; recomputes `data/intervals.json` | `OK` |
 | `python scripts/peers_rating.py --verify` | the rating's gates (lock, drain, coverage) on Hyperliquid, Pump.fun, Aave and Jupiter recompute from `data/peers.json`, PUMP's saved DefiLlama files (`data/peers_rating_fetch.json`) and inputs quoted from saved pages; NEAR comes out Hold as in `rating.py` | `OK` |
 | `python scripts/judge_prereg.py --verify` | PREREG.md's prediction 2 recomputes from the saved day files of 1 and 16 November (`pending` before 16 November); the daily Action writes it | `OK` |
+| `python scripts/usage.py --verify` | claim E: NearBlocks' daily transactions, active accounts, fees, price and NEAR Intents volume (saved responses, `data/usage_fetch.json`) give the 12-month change, the share of DefiLlama's volume NearBlocks sees, and the lead tests (weekly, lags 0-4, 10,000 circular shifts) | `OK` |
 | `python scripts/rating.py --verify` | the rating (Hold / Buy / Avoid) of every window in `data/rating.csv` recomputes from `history.csv` and the saved DefiLlama responses | `OK: rating.csv recomputes from history.csv and the saved responses` |
 | `python scripts/backtest.py --verify` | the rating rules on each month April–October 2026 in `data/backtest.csv` recompute from `coverage_monthly.json` and the saved DefiLlama responses | `OK: backtest.csv recomputes from coverage_monthly.json and the saved DefiLlama responses` |
 | `python scripts/quotes.py --verify` | each page the text quotes is saved under `data/raw/sources/` with its SHA-256 and contains the quote | `OK: <count> quotes found in <count> saved pages, and each is still in the text` |
@@ -120,6 +121,7 @@ SHA-256. In the README, `THESIS.md` and `docs/DETAILS.md` each figure is wrapped
 | `ps.` | What the three revenue wallets kept before and after 27 October (the private path), DefiLlama's revenue in NEAR, other cut dates (`ps.cut.`) | `private_shift.py` | `data/private_shift.json` |
 | `ci.` | 95% intervals: coverage (`ci.coverage_*`) and the private-path change (`ci.shift.*`), with the widest over block lengths (`*_any_block`) | `intervals.py` | `data/intervals.json` |
 | `sr.` | The same rules on four other protocols: lock, tokens bought and new a year, coverage and rating per basis (from their docs and DefiLlama, not their chains) | `peers_rating.py` | `data/peers_rating.json` |
+| `u.` | Claim E: the chain's use (NearBlocks), its fees, the Intents volume NearBlocks sees, the lead tests | `usage.py` | `data/usage.json` |
 | `sc.` | Three stated paths for a holder's dollars to 2031 (derived, no probability) | `build_numbers.py` | `peer.`, `lr.`, `iv.` entries |
 | `sens.` | The rating under other thresholds, April-October 2026 | `sensitivity.py` | `data/sensitivity.json` |
 

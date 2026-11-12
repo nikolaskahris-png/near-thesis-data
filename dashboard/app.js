@@ -332,6 +332,16 @@ function peersRulesPanel() {
     i => i === 4 ? "us" : "");
 }
 
+// Claim E: NearBlocks' transactions a day, by month (data/usage.json)
+function chartUsage(ud) {
+  const m = ud.usage.txns_by_month, xs = Object.keys(m).map(monthLabel), ys = Object.values(m);
+  lineChart($("#cE"), {
+    title: "Transactions a day on NEAR, monthly mean (NearBlocks)", xs, ys,
+    top: niceMax(Math.max(...ys) * 1.1), fmt: v => (v / 1e6).toFixed(1) + "M", height: 200,
+    tips: Object.entries(m).map(([k, v]) => `<b>${k}</b><br>${fmtInt(v)} transactions a day`),
+  });
+}
+
 function tableView(host, head, rows) {
   const d = document.createElement("details");
   d.innerHTML = `<summary>Table</summary><div class="tablewrap"><table><thead><tr>${head.map(h => `<th>${h}</th>`).join("")}</tr></thead>` +
@@ -775,11 +785,11 @@ async function main() {
   fillMeta();
   status(doc);
   tooltips();
-  const [cov, histTxt, upTxt, ts, vd, fp, pr, ratingTxt, ratingDoc, br, p2doc, psDoc] = await Promise.all([
+  const [cov, histTxt, upTxt, ts, vd, fp, pr, ratingTxt, ratingDoc, br, p2doc, psDoc, usageDoc] = await Promise.all([
     getJSON("coverage_monthly.json"), getText(DATA + "history.csv"), getText(DATA + "upgrade_watch.csv"),
     getJSON("treasury_spend.json"), getJSON("hsp029_voters.json"),
     getJSON(`raw/stakedao/${doc.window.end_block}/farm_pool.json`), getJSON("prereg.json"),
-    getText(DATA + "rating.csv"), getJSON("rating.json"), getJSON("base_rates.json"), getJSON("prereg2.json"), getJSON("private_shift.json")]);
+    getText(DATA + "rating.csv"), getJSON("rating.json"), getJSON("base_rates.json"), getJSON("prereg2.json"), getJSON("private_shift.json"), getJSON("usage.json")]);
   BR = br; P2 = p2doc;
   predictions();
   FARM_PRICE = JSON.parse(bytesToText(fp.result.result)).price_id;
@@ -795,6 +805,7 @@ async function main() {
   ladder();
   calculator();
   peersRulesPanel();
+  chartUsage(usageDoc);
   chartTo2031();
   chartFarm();
   chartTreasury(ts);

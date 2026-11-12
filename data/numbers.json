@@ -49,6 +49,7 @@
     "data/treasury_flows.json": "0d1a8c74b15fbc3c3e794f2ef3f3e8152faeeada13c7962e973fa97348099c50",
     "data/treasury_spend.json": "e196c8e8c703e0cd830aabedc32a1b271f46332b742dfb186473de37f6c7f1f2",
     "data/treasury_trace.json": "3f615034351ede0fcba8db75dc296c992c2e0fea70f71ed7cf33c587a7ae191f",
+    "data/usage.json": "2cec00d653aab1ce0805568c4d9404f08dca2b255c7b21256330ee1443fa637a",
     "data/window_2026-10-02_2026-11-01.json": "b77a705e870e9df42e3d11ec6f7c7f5266f7ba692600cda716b1874ca40baaf9"
   },
   "numbers": {
@@ -9208,6 +9209,163 @@
       "text": "7",
       "source": "data/treasury_trace.json",
       "unit": "balance steps of 1,000 NEAR or more"
+    },
+    "u.accounts_not_meta.change": {
+      "value": "-0.697997",
+      "text": "-70%",
+      "source": "data/usage.json",
+      "unit": "share"
+    },
+    "u.accounts_not_meta.first": {
+      "value": "239406.033333",
+      "text": "239k",
+      "source": "data/usage.json",
+      "unit": "a day",
+      "note": "mean of 1-30 November 2025 (NearBlocks)"
+    },
+    "u.accounts_not_meta.last": {
+      "value": "72301.233333",
+      "text": "72k",
+      "source": "data/usage.json",
+      "unit": "a day",
+      "note": "mean of 2-31 October 2026 (NearBlocks)"
+    },
+    "u.active_accounts.change": {
+      "value": "-0.952362",
+      "text": "-95%",
+      "source": "data/usage.json",
+      "unit": "share"
+    },
+    "u.active_accounts.first": {
+      "value": "2765750.966667",
+      "text": "2.77M",
+      "source": "data/usage.json",
+      "unit": "a day",
+      "note": "mean of 1-30 November 2025 (NearBlocks)"
+    },
+    "u.active_accounts.last": {
+      "value": "131754.1",
+      "text": "132k",
+      "source": "data/usage.json",
+      "unit": "a day",
+      "note": "mean of 2-31 October 2026 (NearBlocks)"
+    },
+    "u.fee_share_of_issuance": {
+      "value": "0.007659127741436153659032774551316082937636",
+      "text": "0.8%",
+      "source": "data/usage.json",
+      "unit": "share",
+      "derived_from": [
+        "u.fee_usd_year",
+        "iv.issuance_usd_per_year"
+      ],
+      "note": "a year of all gas paid on NEAR against a year of new NEAR at the window's price"
+    },
+    "u.fee_usd_year": {
+      "value": "1206486.994804",
+      "text": "$1.2M",
+      "source": "data/usage.json",
+      "unit": "USD a year",
+      "note": "NearBlocks' txn_fee (NEAR) a day x NearBlocks' price that day, 1 Nov 2025 - 31 Oct 2026"
+    },
+    "u.lead.max_abs_corr": {
+      "value": "0.222537",
+      "text": "0.22",
+      "source": "data/usage.json",
+      "note": "largest |correlation| at the best lag (0-4 weeks), any predictor and usage series"
+    },
+    "u.lead.min_p": {
+      "value": "0.436",
+      "text": "0.44",
+      "source": "data/usage.json",
+      "note": "smallest circular-shift p of the six tests"
+    },
+    "u.lead.weeks": {
+      "value": "52",
+      "text": "52",
+      "source": "data/usage.json"
+    },
+    "u.txns.change": {
+      "value": "-0.832258",
+      "text": "-83%",
+      "source": "data/usage.json",
+      "unit": "share"
+    },
+    "u.txns.first": {
+      "value": "4267747.566667",
+      "text": "4.27M",
+      "source": "data/usage.json",
+      "unit": "a day",
+      "note": "mean of 1-30 November 2025 (NearBlocks)"
+    },
+    "u.txns.last": {
+      "value": "715881.433333",
+      "text": "716k",
+      "source": "data/usage.json",
+      "unit": "a day",
+      "note": "mean of 2-31 October 2026 (NearBlocks)"
+    },
+    "u.txns.month.2026-03": {
+      "value": "3479268.870968",
+      "text": "3.48M",
+      "source": "data/usage.json",
+      "unit": "transactions a day",
+      "note": "mean of 2026-03"
+    },
+    "u.txns.month.2026-04": {
+      "value": "946610.4",
+      "text": "947k",
+      "source": "data/usage.json",
+      "unit": "transactions a day",
+      "note": "mean of 2026-04"
+    },
+    "u.txns_not_meta.change": {
+      "value": "-0.583885",
+      "text": "-58%",
+      "source": "data/usage.json",
+      "unit": "share"
+    },
+    "u.txns_not_meta.first": {
+      "value": "1144512.733333",
+      "text": "1.14M",
+      "source": "data/usage.json",
+      "unit": "a day",
+      "note": "mean of 1-30 November 2025 (NearBlocks)"
+    },
+    "u.txns_not_meta.last": {
+      "value": "476248.6",
+      "text": "476k",
+      "source": "data/usage.json",
+      "unit": "a day",
+      "note": "mean of 2-31 October 2026 (NearBlocks)"
+    },
+    "u.visible.after_private": {
+      "value": "0.281394",
+      "text": "28%",
+      "source": "data/usage.json",
+      "unit": "share",
+      "note": "NearBlocks' NEAR Intents volume / DefiLlama's, 2026-10-27 to 2026-11-08"
+    },
+    "u.visible.before_private": {
+      "value": "0.663812",
+      "text": "66%",
+      "source": "data/usage.json",
+      "unit": "share",
+      "note": "NearBlocks' NEAR Intents volume / DefiLlama's, 2026-09-27 to 2026-10-26"
+    },
+    "u.visible.week_85": {
+      "value": "0.117776",
+      "text": "12%",
+      "source": "data/usage.json",
+      "unit": "share",
+      "note": "NearBlocks' NEAR Intents volume / DefiLlama's, 2026-11-02 to 2026-11-08"
+    },
+    "u.visible.window": {
+      "value": "0.616752",
+      "text": "62%",
+      "source": "data/usage.json",
+      "unit": "share",
+      "note": "NearBlocks' NEAR Intents volume / DefiLlama's, 2026-10-02 to 2026-10-31"
     }
   }
 }

@@ -1540,6 +1540,48 @@ def build(data_dir, window_file):
                           rsrc, unit="share", note=b["basis"])
                 n.add(f"sr.{pid}.basis{i + 1}.rating", None, b["rating"], rsrc, note=b["basis"])
 
+    # ---- claim E: the chain's own use, and the organizers' question (usage.py, NearBlocks' daily statistics)
+    upath = data_dir / "usage.json"
+    if upath.exists():
+        ud = json.loads(upath.read_text(encoding="utf-8"))
+        usrc = n.source(upath)
+
+        def f_m(x):
+            x = dec(x)
+            return f"{rnd(x / Decimal(10) ** 6, 2)}M" if x >= Decimal(10) ** 6 else f"{rnd(x / 1000, 0):,.0f}k"
+
+        us = ud["usage"]
+        for key in ("txns", "active_accounts", "txns_not_meta", "accounts_not_meta"):
+            u = us[key]
+            n.add(f"u.{key}.first", dec(u["first_30d_mean"]), f_m(u["first_30d_mean"]), usrc, unit="a day",
+                  note="mean of 1-30 November 2025 (NearBlocks)")
+            n.add(f"u.{key}.last", dec(u["last_30d_mean"]), f_m(u["last_30d_mean"]), usrc, unit="a day",
+                  note="mean of 2-31 October 2026 (NearBlocks)")
+            c = dec(u["change"])
+            n.add(f"u.{key}.change", c, f_pct(c, 0), usrc, unit="share")
+        for m in ("2026-03", "2026-04"):
+            v = dec(us["txns_by_month"][m])
+            n.add(f"u.txns.month.{m}", v, f_m(v), usrc, unit="transactions a day", note=f"mean of {m}")
+        fy = dec(us["fee_usd_year"])
+        n.add("u.fee_usd_year", fy, f"${rnd(fy / Decimal(10) ** 6, 1)}M", usrc, unit="USD a year",
+              note="NearBlocks' txn_fee (NEAR) a day x NearBlocks' price that day, 1 Nov 2025 - 31 Oct 2026")
+        if "iv.issuance_usd_per_year" in n.items:
+            sh = fy / dec(n.items["iv.issuance_usd_per_year"]["value"])
+            n.add("u.fee_share_of_issuance", sh, f_pct(sh, 1), usrc, unit="share",
+                  derived_from=["u.fee_usd_year", "iv.issuance_usd_per_year"],
+                  note="a year of all gas paid on NEAR against a year of new NEAR at the window's price")
+        for key, v in ud["visible_intents_volume"].items():
+            sh = dec(v["nearblocks_share"])
+            n.add(f"u.visible.{key}", sh, f_pct(sh, 0), usrc, unit="share",
+                  note=f"NearBlocks' NEAR Intents volume / DefiLlama's, {v['first']} to {v['last']}")
+        lead = ud["lead"]
+        mx = max(abs(dec(v["corr"])) for v in lead.values())
+        mp = min(dec(v["p_shift"]) for v in lead.values())
+        n.add("u.lead.max_abs_corr", mx, f"{rnd(mx, 2)}", usrc,
+              note="largest |correlation| at the best lag (0-4 weeks), any predictor and usage series")
+        n.add("u.lead.min_p", mp, f"{rnd(mp, 2)}", usrc, note="smallest circular-shift p of the six tests")
+        n.add("u.lead.weeks", ud["weeks"][1], str(ud["weeks"][1]), usrc)
+
     # ---- the pre-registration anchors (check_prereg.py, --anchor 2 and 3)
     for num, name in (("1", "prereg.json"), ("2", "prereg2_anchor.json"), ("3", "prereg3_anchor.json")):
         apath = data_dir / name
@@ -1625,6 +1667,7 @@ SCRIPT_CHECKS = [
     ("private_shift.py", lambda doc: ["--verify"], "private_shift.json"),
     ("intervals.py", lambda doc: ["--verify"], "intervals.json"),
     ("peers_rating.py", lambda doc: ["--verify"], "peers_rating.json"),
+    ("usage.py", lambda doc: ["--verify"], "usage.json"),
     ("sensitivity.py", lambda doc: ["--verify"], "sensitivity.json"),
     ("check_prereg.py", lambda doc: ["--verify"]),
     ("check_prereg.py", lambda doc: ["--anchor", "2", "--verify"], "prereg2_anchor.json"),

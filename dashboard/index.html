@@ -133,6 +133,18 @@
   <div class="tablewrap" id="peers-tbl"></div>
 </section>
 
+<section id="pE">
+  <h2>The chain is used less: daily transactions <span data-n="u.txns.change">-83%</span> in a year</h2>
+  <p class="what">From NearBlocks' daily statistics (<code>scripts/usage.py</code>). All gas paid in those twelve months was
+    <span data-n="u.fee_usd_year">$1.2M</span>, <span data-n="u.fee_share_of_issuance">0.8%</span> of a year of new NEAR. Neither NEAR
+    Intents' volume nor the price leads this use by up to a month that we can detect (smallest p <span data-n="u.lead.min_p">0.44</span>):
+    the track's own example hypothesis, tested. <span class="not">NearBlocks' aggregates, not rebuilt from blocks.</span></p>
+  <div class="chart" id="cE"></div>
+  <p class="src">NEAR Intents volume that NearBlocks sees on mainnet, as a share of DefiLlama's: <span data-n="u.visible.before_private">66%</span>
+    in the month before swaps began to settle privately, <span data-n="u.visible.after_private">28%</span> in the thirteen days after,
+    <span data-n="u.visible.week_85">12%</span> in the first week of November, as swaps moved to the private path.</p>
+</section>
+
 <section id="p0p">
   <h2>The same rules on four other protocols</h2>
   <p class="what">Are the rules built so that everything comes out Hold? <code>scripts/peers_rating.py</code> runs the same gates on
