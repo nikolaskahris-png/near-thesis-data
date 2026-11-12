@@ -864,8 +864,8 @@ Three cases are few, and those that changed are the ones the press reports. We t
 - **Volume from the chain.** DefiLlama's volume comes from a NEAR dataset on Dune and is not rebuilt here. It is
   not cross-checked against the NEAR Intents Explorer API, which needs a partner JWT. Solver spreads and gas are
   not in the fees.
-- **Network activity.** Daily active accounts and transaction counts (the NEAR BigQuery dataset) are not
-  computed: the claim is about where fees go, not about how many accounts are active.
+- **Network activity, from blocks.** Daily active accounts and transactions are taken from NearBlocks' daily
+  statistics (claim E, `scripts/usage.py`), not rebuilt from blocks or from the NEAR BigQuery dataset.
 - **Credits in dollars, and their use.** Units convert to credits by an off-chain NEAR AI Cloud setting, read
   only with a signed-in session; whether credits are used is not visible.
 - **Who holds the largest farm position**, and where its NEAR came from.
