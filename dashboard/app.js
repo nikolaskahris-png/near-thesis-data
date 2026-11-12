@@ -591,7 +591,7 @@ function calculator() {
       <button type="button" id="ps2">HSP-029 in force → Hold</button>
       <button type="button" id="ps3">Hypothetical: buybacks locked, fees ×<span id="gfull"></span> → Buy</button></div>
     <label>Share of all fees kept by NEAR's wallets <b id="kv"></b><input id="k" type="range" min="0" max="1" step="any"></label>
-    <label>Growth of fees (in dollars) <b id="gv"></b><input id="g" type="range" min="0.5" max="10" step="0.1"></label>
+    <label>Growth of fees (in dollars) <b id="gv"></b><input id="g" type="range" min="0.5" max="10" step="any"></label>
     <label>NEAR price <b id="pv"></b><input id="p" type="range" min="0.5" max="15" step="any"></label>
     <label>Issuance <b id="fv"></b><select id="f"><option value="1">today's rate</option><option value="hsp">HSP-029 target (× 16/25)</option></select></label>
     <label class="lock"><span><input id="lk" type="checkbox"> The buybacks in a lock the chain shows cannot send NEAR out
@@ -599,11 +599,11 @@ function calculator() {
     <div class="out"><div class="big" id="cv"></div><div class="row" id="cx"></div><div class="rate" id="rv"></div><div class="chk" id="ck"></div></div>
     <button type="button" class="reset" id="reset">Back to today's values</button>`;
   const k = $("#k"), g = $("#g"), p = $("#p"), f = $("#f"), lk = $("#lk");
-  const reset = () => { k.value = k0; g.value = 1; p.value = p0; f.value = "1"; lk.checked = false; draw(); };
-  // the Buy rule counts the buybacks wallets: the smallest fee growth on the slider's 0.1 steps that makes
-  // their share of fees cover issuance at today's values
+  const reset = () => { k.value = kB; g.value = 1; p.value = p0; f.value = "1"; lk.checked = false; draw(); };
+  // the Buy rule counts the buybacks wallets: the sliders start at their share of fees, and the Buy preset
+  // sets the fee growth that makes it cover issuance at today's values (1 / today's coverage, rounded up)
   const kB = val("iv.wallets_share_of_fees_buybacks");
-  const gFull = Math.ceil(10 / coverage(1, kB, p0, 1)) / 10;
+  const gFull = Math.ceil(100 / coverage(1, kB, p0, 1)) / 100;
   $("#gfull").textContent = gFull.toFixed(1);
   const draw = () => {
     const kk = Number(k.value), gg = Number(g.value), pp = Number(p.value), ff = f.value === "hsp" ? HSP029_FACTOR : 1;
@@ -634,6 +634,7 @@ function calculator() {
     ["$" + breakEven(1, 1, 1).toFixed(2), txt("n2.equilibrium_price_usd")],
     ["$" + breakEven(1, 1, HSP029_FACTOR).toFixed(2), txt("n2.hsp029_equilibrium_price_usd")],
     [fmtPct(coverage(1, k0, p0, 1), 1), txt("n1.coverage_with_front_end")],
+    [fmtPct(coverage(1, kB, p0, 1), 1), txt("n1.coverage_buybacks")],
   ];
   const ok = checks.every(([a, b]) => a === b);
   $("#ck").textContent = (ok ? "✓ " : "✗ ") + "At today's values the formula gives " + checks.map(c => c[0]).join(", ") +

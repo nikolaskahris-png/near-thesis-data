@@ -352,7 +352,7 @@ Notes on the rules:
 - One transfer of the whole stock gives Avoid from the next daily window. A full stop of the buybacks would show as Avoid about eight weeks later.
 - The drain test also reads NEAR staked or wrapped outside Intents as moved out.
 - Test 2 is "not judged" when it fails while DefiLlama's fees fell and the stablecoins in the Confidential Intents Treasury rose. We read that pattern as flow moving to the private path. It is a proxy, not proof.
-- **Why Hold today.** Until 10 December the rules give Hold, or Avoid on a drain. Buy needs a lock that does not exist. Across <!--n:sens.combinations-->54<!--/n--> threshold settings, <!--n:sens.hold-->378<!--/n--> of <!--n:sens.month_ratings-->378<!--/n--> monthly ratings from April to October are Hold. So the rules are an alarm, not the reason for Hold: the reasons are in [Why not add](../README.md#the-short-version).
+- **Why Hold today.** Until 10 December the rules give Hold, or Avoid on a drain. Buy needs a lock that does not exist. Across <!--n:sens.combinations-->54<!--/n--> threshold settings, <!--n:sens.hold-->378<!--/n--> of <!--n:sens.month_ratings-->378<!--/n--> monthly ratings from April to October are Hold. So the rules are an alarm, not the reason for Hold: the reasons are in [Why not add](../README.md#why-hold).
 - **A crash alone can trigger Avoid.** At this window's NEAR kept a day, test 2 fails at a price of <!--n:iv.avoid_test2_price_usd-->$0.655<!--/n--> or less.
 
 Every rule, edge case and the backtest: [the rating in full](#the-rating-in-full).
