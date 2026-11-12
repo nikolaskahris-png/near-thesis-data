@@ -72,7 +72,10 @@ SOURCES = {
         ["No specific mechanism is guaranteed or committed to"]),
     "hackathon_rules": (
         "https://nearhackathon.com/HACKATHON.md",
-        ["Earlier commits are baseline"]),
+        ["Earlier commits are baseline"]),    "hos_draft_2026_11_08": (
+        "https://gov.near.org/raw/42760",
+        ["Instead of relying solely on immediate token burns",
+         "Only the yield generated from these Treasuries is deployed"]),
 }
 
 _TRANSLATE = str.maketrans({"‘": "'", "’": "'", "“": '"', "”": '"', "–": "-",

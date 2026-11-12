@@ -1064,6 +1064,12 @@ def build(data_dir, window_file):
                 txt = {"big": big, "price": lambda x: f_usd(x, 2), "x": lambda x: f"{rnd(x, 0):,.0f}×",
                        "pct": lambda x: f_pct(x, 2)}[kind](d)
                 n.add(f"peer.{pid}.{key}", d, txt, pesrc, **pc2)
+            # the same holders' revenue on fully diluted value: tokens not yet circulating count too
+            hr, fdv = r.get("holders_revenue_usd_per_year"), r.get("fdv_usd")
+            if hr is not None and fdv:
+                y = Decimal(hr) / Decimal(fdv)
+                n.add(f"peer.{pid}.holders_yield_on_fdv", y, f_pct(y, 2), pesrc,
+                      derived_from=[f"peer.{pid}.holders_revenue_usd_per_year", f"peer.{pid}.fdv_usd"], **pc2)
         n.add("peer.value_as_of", pe["fetched_utc"], pe["fetched_utc"][:16].replace("T", " ") + " UTC", pesrc)
 
     # ---- backtest (backtest.py): the rating rules on each calendar month April-October 2026

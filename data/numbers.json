@@ -6141,6 +6141,19 @@
       "window": "2026-10-02_2026-11-01",
       "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
     },
+    "peer.aave.holders_yield_on_fdv": {
+      "value": "0E+16",
+      "text": "0.00%",
+      "source": "data/peers.json",
+      "derived_from": [
+        "peer.aave.holders_revenue_usd_per_year",
+        "peer.aave.fdv_usd"
+      ],
+      "label": "Aave (AAVE)",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
+      "window": "2026-10-02_2026-11-01",
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
+    },
     "peer.aave.holders_yield_on_mcap": {
       "value": "0E+16",
       "text": "0.00%",
@@ -6262,6 +6275,19 @@
       "value": "1603995.375",
       "text": "$1.6M",
       "source": "data/peers.json",
+      "label": "Aptos (APT)",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
+      "window": "2026-10-02_2026-11-01",
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
+    },
+    "peer.aptos.holders_yield_on_fdv": {
+      "value": "0.001711595672733856464932525809833018133045",
+      "text": "0.17%",
+      "source": "data/peers.json",
+      "derived_from": [
+        "peer.aptos.holders_revenue_usd_per_year",
+        "peer.aptos.fdv_usd"
+      ],
       "label": "Aptos (APT)",
       "value_as_of": "2026-11-06T20:39:48.000Z",
       "window": "2026-10-02_2026-11-01",
@@ -6393,6 +6419,19 @@
       "window": "2026-10-02_2026-11-01",
       "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
     },
+    "peer.ethereum.holders_yield_on_fdv": {
+      "value": "0.0002946382773469480071300760620912342870805",
+      "text": "0.03%",
+      "source": "data/peers.json",
+      "derived_from": [
+        "peer.ethereum.holders_revenue_usd_per_year",
+        "peer.ethereum.fdv_usd"
+      ],
+      "label": "Ethereum (ETH)",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
+      "window": "2026-10-02_2026-11-01",
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
+    },
     "peer.ethereum.holders_yield_on_mcap": {
       "value": "0.0002946382773469480071300760621",
       "text": "0.03%",
@@ -6514,6 +6553,19 @@
       "value": "817565433.8750000000000000001",
       "text": "$817.6M",
       "source": "data/peers.json",
+      "label": "Hyperliquid (HYPE)",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
+      "window": "2026-10-02_2026-11-01",
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
+    },
+    "peer.hyperliquid.holders_yield_on_fdv": {
+      "value": "0.01029175596713945462457009944059545257435",
+      "text": "1.03%",
+      "source": "data/peers.json",
+      "derived_from": [
+        "peer.hyperliquid.holders_revenue_usd_per_year",
+        "peer.hyperliquid.fdv_usd"
+      ],
       "label": "Hyperliquid (HYPE)",
       "value_as_of": "2026-11-06T20:39:48.000Z",
       "window": "2026-10-02_2026-11-01",
@@ -6645,6 +6697,19 @@
       "window": "2026-10-02_2026-11-01",
       "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
     },
+    "peer.jupiter.holders_yield_on_fdv": {
+      "value": "0.01016257584484968059293751409753607811543",
+      "text": "1.02%",
+      "source": "data/peers.json",
+      "derived_from": [
+        "peer.jupiter.holders_revenue_usd_per_year",
+        "peer.jupiter.fdv_usd"
+      ],
+      "label": "Jupiter (JUP)",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
+      "window": "2026-10-02_2026-11-01",
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
+    },
     "peer.jupiter.holders_yield_on_mcap": {
       "value": "0.02100711474528027723284561612",
       "text": "2.10%",
@@ -6766,6 +6831,19 @@
       "value": "25788269.27500000000000000000",
       "text": "$25.8M",
       "source": "data/peers.json",
+      "label": "NEAR (NEAR Intents)",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
+      "window": "2026-10-02_2026-11-01",
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
+    },
+    "peer.near.holders_yield_on_fdv": {
+      "value": "0.004035015660886597370518659572440060236523",
+      "text": "0.40%",
+      "source": "data/peers.json",
+      "derived_from": [
+        "peer.near.holders_revenue_usd_per_year",
+        "peer.near.fdv_usd"
+      ],
       "label": "NEAR (NEAR Intents)",
       "value_as_of": "2026-11-06T20:39:48.000Z",
       "window": "2026-10-02_2026-11-01",
@@ -6897,6 +6975,19 @@
       "window": "2026-10-02_2026-11-01",
       "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
     },
+    "peer.near_all.holders_yield_on_fdv": {
+      "value": "0.004279427387774102229389615523649749226028",
+      "text": "0.43%",
+      "source": "data/peers.json",
+      "derived_from": [
+        "peer.near_all.holders_revenue_usd_per_year",
+        "peer.near_all.fdv_usd"
+      ],
+      "label": "NEAR (Intents + L1 gas)",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
+      "window": "2026-10-02_2026-11-01",
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
+    },
     "peer.near_all.holders_yield_on_mcap": {
       "value": "0.004279427422997490482713732002",
       "text": "0.43%",
@@ -7018,6 +7109,19 @@
       "value": "1562064.675",
       "text": "$1.6M",
       "source": "data/peers.json",
+      "label": "NEAR (L1 gas)",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
+      "window": "2026-10-02_2026-11-01",
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
+    },
+    "peer.near_l1.holders_yield_on_fdv": {
+      "value": "0.0002444117268875048588709559512096889895045",
+      "text": "0.02%",
+      "source": "data/peers.json",
+      "derived_from": [
+        "peer.near_l1.holders_revenue_usd_per_year",
+        "peer.near_l1.fdv_usd"
+      ],
       "label": "NEAR (L1 gas)",
       "value_as_of": "2026-11-06T20:39:48.000Z",
       "window": "2026-10-02_2026-11-01",
@@ -7149,6 +7253,19 @@
       "window": "2026-10-02_2026-11-01",
       "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
     },
+    "peer.solana.holders_yield_on_fdv": {
+      "value": "0.0004643328993225534955706551903163990546474",
+      "text": "0.05%",
+      "source": "data/peers.json",
+      "derived_from": [
+        "peer.solana.holders_revenue_usd_per_year",
+        "peer.solana.fdv_usd"
+      ],
+      "label": "Solana (SOL)",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
+      "window": "2026-10-02_2026-11-01",
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
+    },
     "peer.solana.holders_yield_on_mcap": {
       "value": "0.0005011317713748615805057025989",
       "text": "0.05%",
@@ -7270,6 +7387,19 @@
       "value": "253673.4300",
       "text": "$0.3M",
       "source": "data/peers.json",
+      "label": "Sui (SUI)",
+      "value_as_of": "2026-11-06T20:39:48.000Z",
+      "window": "2026-10-02_2026-11-01",
+      "basis": "DefiLlama flows over the window x 365.25; value = CoinGecko supply at the fetch x the window's mean price (coins.llama.fi); *_at_fetch = CoinGecko value at the fetch"
+    },
+    "peer.sui.holders_yield_on_fdv": {
+      "value": "0.00002451428909198680595200162180540776750399",
+      "text": "0.00%",
+      "source": "data/peers.json",
+      "derived_from": [
+        "peer.sui.holders_revenue_usd_per_year",
+        "peer.sui.fdv_usd"
+      ],
       "label": "Sui (SUI)",
       "value_as_of": "2026-11-06T20:39:48.000Z",
       "window": "2026-10-02_2026-11-01",
