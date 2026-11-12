@@ -49,7 +49,9 @@ class TestDashboard(unittest.TestCase):
         cls.js = (DASH / "app.js").read_text(encoding="utf-8")
         cls.numbers = json.loads((REPO / "data" / "numbers.json").read_text(encoding="utf-8"))["numbers"]
         cls.page = Visible()
-        cls.page.feed(cls.html)
+        # numbers written into data-n elements by build_numbers.py --render are checked against numbers.json
+        # below; they are not hand-written, so they are left out of the visible-text check
+        cls.page.feed(re.sub(r'(data-n="[^"]+"[^>]*>)[^<]*', r"\1", cls.html))
 
     def test_every_key_exists(self):
         js_keys = re.search(r"const KEYS = \[(.*?)\];", self.js, re.S).group(1)
@@ -73,6 +75,13 @@ class TestDashboard(unittest.TestCase):
         rules = json.loads((REPO / "data" / "rating.json").read_text(encoding="utf-8"))["rules"]
         self.assertIn("kept_share_min", rules)
         self.assertIn("drain_max", rules)
+
+    def test_rendered_numbers_match_numbers_json(self):
+        found = re.findall(r'data-n="([^"]+)"[^>]*>([^<]*)<', self.html)
+        self.assertTrue(found)
+        wrong = [(k, t) for k, t in found
+                 if t.replace("&amp;", "&").replace("&lt;", "<").replace("&gt;", ">") != self.numbers[k]["text"]]
+        self.assertEqual(wrong, [], "run: python scripts/build_numbers.py --render dashboard/index.html")
 
     def test_no_hand_written_numbers_in_the_page(self):
         text = " ".join(self.page.parts)

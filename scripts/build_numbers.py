@@ -1100,6 +1100,13 @@ def build(data_dir, window_file):
                   note=f"share of NEAR's {what} today's revenue carries at the lowest peer multiple")
             n.add(f"iv.fee_supported_share{tag}.high", 1 / lo, f_pct(1 / lo, 0), pesrc, derived_from=src,
                   note=f"at the highest peer multiple")
+    # the buybacks against the slice of issuance that goes to treasury.near (the rest pays stakers)
+    if all(k in n.items for k in ("n1.buybacks_near_per_day", "n1.new_near_per_day", "c.treasury_share_of_new_supply")):
+        tr = dec(n.items["n1.new_near_per_day"]["value"]) * dec(n.items["c.treasury_share_of_new_supply"]["value"])
+        v = dec(n.items["n1.buybacks_near_per_day"]["value"]) / tr
+        n.add("iv.buybacks_over_treasury_issuance", v, f_pct(v, 0), n.items["n1.buybacks_near_per_day"]["source"],
+              unit="share", derived_from=["n1.buybacks_near_per_day", "n1.new_near_per_day", "c.treasury_share_of_new_supply"],
+              note="NEAR the buybacks wallets keep a day / (new NEAR a day x treasury.near's share of it)")
 
     # ---- backtest (backtest.py): the rating rules on each calendar month April-October 2026
     btpath = data_dir / "backtest.json"
@@ -1744,6 +1751,24 @@ def render_text(text, numbers):
     return MARK.sub(sub, text)
 
 
+# The dashboard's <... data-n="KEY">TEXT</...> elements: app.js fills them on load; --render writes the same
+# text into the HTML, so a reader of the raw file (or a browser without scripts) sees the numbers too.
+DATA_N = re.compile(r'(<[a-z]+\b[^>]*\bdata-n="([A-Za-z0-9_.\-]+)"[^>]*>)([^<]*)(</[a-z]+>)')
+
+
+def render_data_n(html, numbers):
+    def sub(m):
+        item = numbers.get(m.group(2))
+        if item is None or item["text"] is None:
+            raise SystemExit(f"cannot render '{m.group(2)}': not in numbers.json or not measured")
+        return m.group(1) + html_escape(item["text"]) + m.group(4)
+    return DATA_N.sub(sub, html)
+
+
+def html_escape(t):
+    return t.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
+
+
 # ---------------------------------------------------------------- main
 
 def main():
@@ -1775,7 +1800,10 @@ def main():
         target = Path(args.check or args.render)
         text = target.read_text(encoding="utf-8")
         if args.render:
-            target.write_text(render_text(text, numbers), encoding="utf-8", newline="\n")
+            out_text = render_text(text, numbers)
+            if target.suffix == ".html":
+                out_text = render_data_n(out_text, numbers)
+            target.write_text(out_text, encoding="utf-8", newline="\n")
             text = target.read_text(encoding="utf-8")
         required = (REQUIRED_IN_README if target.name == "README.md" else
                     REQUIRED_IN_DETAILS if target.name == "DETAILS.md" else ())
