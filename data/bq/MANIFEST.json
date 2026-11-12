@@ -1,0 +1,25 @@
+{
+ "dataset": "bigquery-public-data.crypto_near_mainnet_us (NEAR's public BigQuery dataset, NEAR Public Lakehouse silver tables)",
+ "run_utc": "2026-11-12, between 22:00 and 22:15 UTC",
+ "how": "each query was run once in the BigQuery console (sandbox, no billing); the result's JSON view was turned into CSV in the browser, its SHA-256 taken there, and the file written here and checked against that SHA-256",
+ "files": {
+  "data/bq/q1_transactions.csv": {
+   "query": "sql/bq_q1_transactions.sql",
+   "bytes_processed_estimate": "42.4 GB",
+   "rows": 376,
+   "sha256": "9ccdd8e5dbfc0906fe570e448012a33bad3235d5c6f803f49ca252760062be6b"
+  },
+  "data/bq/q2_receipt_actions.csv": {
+   "query": "sql/bq_q2_receipt_actions.sql",
+   "bytes_processed_estimate": "256.44 GB",
+   "rows": 376,
+   "sha256": "3f71fcc1dd01524f54289577fdb1c6e38260e82812daa333b5712b65fd0850ea"
+  },
+  "data/bq/q3_intents_callers.csv": {
+   "query": "sql/bq_q3_intents_callers.sql",
+   "bytes_processed_estimate": "16.65 GB",
+   "rows": 21,
+   "sha256": "e1e48622abbd5f7518c638f79d3297290a74c60498666a7a90059da39b494659"
+  }
+ }
+}

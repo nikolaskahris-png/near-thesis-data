@@ -1582,6 +1582,47 @@ def build(data_dir, window_file):
         n.add("u.lead.min_p", mp, f"{rnd(mp, 2)}", usrc, note="smallest circular-shift p of the six tests")
         n.add("u.lead.weeks", ud["weeks"][1], str(ud["weeks"][1]), usrc)
 
+    # ---- claim E, second source: NEAR's public BigQuery dataset (bq_usage.py, three saved queries)
+    bpath = data_dir / "bq_usage.json"
+    if bpath.exists():
+        bd = json.loads(bpath.read_text(encoding="utf-8"))
+        bsrc = n.source(bpath)
+        ag = bd["agreement_with_nearblocks"]
+        for key in ("txns", "meta"):
+            n.add(f"bq.agree.{key}.days_equal", ag[key]["days_equal"], f_int(ag[key]["days_equal"]), bsrc, unit="days",
+                  note=f"days of {ag[key]['days']} on which BigQuery's count equals NearBlocks'")
+            mx = dec(ag[key]["max_rel_diff"])
+            n.add(f"bq.agree.{key}.max_rel_diff", mx, f_pct(mx, 3), bsrc, unit="share")
+        n.add("bq.agree.days", ag["txns"]["days"], f_int(ag["txns"]["days"]), bsrc, unit="days")
+        bu = bd["usage"]
+        for key in ("intents_callers", "intents_calls", "signers"):
+            for per, note in (("first_30d_median", "median day of 1-30 November 2025"),
+                              ("last_30d_median", "median day of 2-31 October 2026"),
+                              ("nov_1_11_median", "median day of 1-11 November 2026")):
+                v = dec(bu[key][per])
+                n.add(f"bq.{key}.{per}", v, f_int(v), bsrc, unit="a day", note=note + " (BigQuery)")
+        c = dec(bu["signers"]["change"])
+        n.add("bq.signers.change", c, f_pct(c, 0), bsrc, unit="share",
+              note="distinct signers a day, mean of 2-31 Oct 2026 against 1-30 Nov 2025 (BigQuery)")
+        bc = bd["intents_callers"]
+        for per in ("october", "november"):
+            for k, v in bc[per]["share"].items():
+                v = dec(v)
+                n.add(f"bq.callers.{per}.{k}", v, f_pct(v, 0), bsrc, unit="share",
+                      note=f"share of calls to intents.near, {bc[per]['first']} to {bc[per]['last']}")
+            v = dec(bc[per]["near_ai_escrow_calls_a_day"])
+            n.add(f"bq.callers.{per}.escrow_a_day", v, f_int(v), bsrc, unit="calls a day",
+                  note="calls to intents.near from escrow.ai.near (the NEAR AI Agent Market's escrow)")
+            n.add(f"bq.callers.{per}.calls", bc[per]["calls"], f_int(bc[per]["calls"]), bsrc, unit="calls")
+        n.add("bq.callers.accounts_total", bc["accounts_total"], f_int(bc["accounts_total"]), bsrc, unit="accounts",
+              note="accounts that called intents.near, 2 October to 11 November 2026")
+        bl = bd["lead"]
+        mx = max(abs(dec(v["corr"])) for v in bl.values())
+        mp = min(dec(v["p_shift"]) for v in bl.values())
+        n.add("bq.lead.max_abs_corr", mx, f"{rnd(mx, 2)}", bsrc,
+              note="largest |correlation| at the best lag, on-chain Intents activity against usage (BigQuery)")
+        n.add("bq.lead.min_p", mp, f"{rnd(mp, 2)}", bsrc, note="smallest circular-shift p of the four tests")
+
     # ---- the pre-registration anchors (check_prereg.py, --anchor 2 and 3)
     for num, name in (("1", "prereg.json"), ("2", "prereg2_anchor.json"), ("3", "prereg3_anchor.json")):
         apath = data_dir / name
@@ -1668,6 +1709,7 @@ SCRIPT_CHECKS = [
     ("intervals.py", lambda doc: ["--verify"], "intervals.json"),
     ("peers_rating.py", lambda doc: ["--verify"], "peers_rating.json"),
     ("usage.py", lambda doc: ["--verify"], "usage.json"),
+    ("bq_usage.py", lambda doc: ["--verify"], "bq_usage.json"),
     ("sensitivity.py", lambda doc: ["--verify"], "sensitivity.json"),
     ("check_prereg.py", lambda doc: ["--verify"]),
     ("check_prereg.py", lambda doc: ["--anchor", "2", "--verify"], "prereg2_anchor.json"),

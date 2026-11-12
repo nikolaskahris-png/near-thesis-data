@@ -865,7 +865,9 @@ Three cases are few, and those that changed are the ones the press reports. We t
   not cross-checked against the NEAR Intents Explorer API, which needs a partner JWT. Solver spreads and gas are
   not in the fees.
 - **Network activity, from blocks.** Daily active accounts and transactions are taken from NearBlocks' daily
-  statistics (claim E, `scripts/usage.py`), not rebuilt from blocks or from the NEAR BigQuery dataset.
+  statistics (claim E, `scripts/usage.py`). Daily transactions and relayed actions are cross-checked against NEAR's
+  public BigQuery dataset (`scripts/bq_usage.py`, three saved queries in `sql/`); they agree on every day, but both
+  read NEAR's own block data. Calls to `intents.near` are counted from BigQuery; their dollar value is not.
 - **Credits in dollars, and their use.** Units convert to credits by an off-chain NEAR AI Cloud setting, read
   only with a signed-in session; whether credits are used is not visible.
 - **Who holds the largest farm position**, and where its NEAR came from.

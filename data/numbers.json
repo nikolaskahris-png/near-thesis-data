@@ -11,6 +11,7 @@
   "provisional_or_pending": [],
   "sources": {
     "data/backtest.json": "917fa7700606458e850bb7346700257564f9fc591e1555b907a11ee2848a6495",
+    "data/bq_usage.json": "d987cb5d255ca4a4739d5b5395bab89b3e7b12385b1ba27cbe6aa62444725ee8",
     "data/burn.json": "d301a278701801757b4c9582f61b4f9546327f0dd1dfaed0a3a143b0c407f0fd",
     "data/confidential_treasury.json": "e1f49bf6f70a7a9e808c58bbcfef4dea187278480ba7603fd41459a55887a6e1",
     "data/control_history.json": "7cab767c832b77a597a18d90dc1d0b5b2113e76b050624456522585a9fcc9190",
@@ -124,6 +125,209 @@
       "unit": "share",
       "window": "2026-10-02 00:00 UTC to 2026-11-01 00:00 UTC",
       "blocks": "218126921-222491356"
+    },
+    "bq.agree.days": {
+      "value": "365",
+      "text": "365",
+      "source": "data/bq_usage.json",
+      "unit": "days"
+    },
+    "bq.agree.meta.days_equal": {
+      "value": "304",
+      "text": "304",
+      "source": "data/bq_usage.json",
+      "unit": "days",
+      "note": "days of 365 on which BigQuery's count equals NearBlocks'"
+    },
+    "bq.agree.meta.max_rel_diff": {
+      "value": "0.000039",
+      "text": "0.004%",
+      "source": "data/bq_usage.json",
+      "unit": "share"
+    },
+    "bq.agree.txns.days_equal": {
+      "value": "365",
+      "text": "365",
+      "source": "data/bq_usage.json",
+      "unit": "days",
+      "note": "days of 365 on which BigQuery's count equals NearBlocks'"
+    },
+    "bq.agree.txns.max_rel_diff": {
+      "value": "0.0",
+      "text": "0.000%",
+      "source": "data/bq_usage.json",
+      "unit": "share"
+    },
+    "bq.callers.accounts_total": {
+      "value": "17869",
+      "text": "17,869",
+      "source": "data/bq_usage.json",
+      "unit": "accounts",
+      "note": "accounts that called intents.near, 2 October to 11 November 2026"
+    },
+    "bq.callers.november.calls": {
+      "value": "1992103",
+      "text": "1,992,103",
+      "source": "data/bq_usage.json",
+      "unit": "calls"
+    },
+    "bq.callers.november.escrow_a_day": {
+      "value": "16333.363636",
+      "text": "16,333",
+      "source": "data/bq_usage.json",
+      "unit": "calls a day",
+      "note": "calls to intents.near from escrow.ai.near (the NEAR AI Agent Market's escrow)"
+    },
+    "bq.callers.november.everyone_else": {
+      "value": "0.044951",
+      "text": "4%",
+      "source": "data/bq_usage.json",
+      "unit": "share",
+      "note": "share of calls to intents.near, 2026-11-01 to 2026-11-11"
+    },
+    "bq.callers.november.intents_itself": {
+      "value": "0.744444",
+      "text": "74%",
+      "source": "data/bq_usage.json",
+      "unit": "share",
+      "note": "share of calls to intents.near, 2026-11-01 to 2026-11-11"
+    },
+    "bq.callers.november.near_ai_escrow": {
+      "value": "0.09019",
+      "text": "9%",
+      "source": "data/bq_usage.json",
+      "unit": "share",
+      "note": "share of calls to intents.near, 2026-11-01 to 2026-11-11"
+    },
+    "bq.callers.november.token_contracts": {
+      "value": "0.120414",
+      "text": "12%",
+      "source": "data/bq_usage.json",
+      "unit": "share",
+      "note": "share of calls to intents.near, 2026-11-01 to 2026-11-11"
+    },
+    "bq.callers.october.calls": {
+      "value": "3515141",
+      "text": "3,515,141",
+      "source": "data/bq_usage.json",
+      "unit": "calls"
+    },
+    "bq.callers.october.escrow_a_day": {
+      "value": "16560.233333",
+      "text": "16,560",
+      "source": "data/bq_usage.json",
+      "unit": "calls a day",
+      "note": "calls to intents.near from escrow.ai.near (the NEAR AI Agent Market's escrow)"
+    },
+    "bq.callers.october.everyone_else": {
+      "value": "0.062984",
+      "text": "6%",
+      "source": "data/bq_usage.json",
+      "unit": "share",
+      "note": "share of calls to intents.near, 2026-10-02 to 2026-10-31"
+    },
+    "bq.callers.october.intents_itself": {
+      "value": "0.632753",
+      "text": "63%",
+      "source": "data/bq_usage.json",
+      "unit": "share",
+      "note": "share of calls to intents.near, 2026-10-02 to 2026-10-31"
+    },
+    "bq.callers.october.near_ai_escrow": {
+      "value": "0.141333",
+      "text": "14%",
+      "source": "data/bq_usage.json",
+      "unit": "share",
+      "note": "share of calls to intents.near, 2026-10-02 to 2026-10-31"
+    },
+    "bq.callers.october.token_contracts": {
+      "value": "0.16293",
+      "text": "16%",
+      "source": "data/bq_usage.json",
+      "unit": "share",
+      "note": "share of calls to intents.near, 2026-10-02 to 2026-10-31"
+    },
+    "bq.intents_callers.first_30d_median": {
+      "value": "1272.0",
+      "text": "1,272",
+      "source": "data/bq_usage.json",
+      "unit": "a day",
+      "note": "median day of 1-30 November 2025 (BigQuery)"
+    },
+    "bq.intents_callers.last_30d_median": {
+      "value": "608.0",
+      "text": "608",
+      "source": "data/bq_usage.json",
+      "unit": "a day",
+      "note": "median day of 2-31 October 2026 (BigQuery)"
+    },
+    "bq.intents_callers.nov_1_11_median": {
+      "value": "511.0",
+      "text": "511",
+      "source": "data/bq_usage.json",
+      "unit": "a day",
+      "note": "median day of 1-11 November 2026 (BigQuery)"
+    },
+    "bq.intents_calls.first_30d_median": {
+      "value": "117431.5",
+      "text": "117,432",
+      "source": "data/bq_usage.json",
+      "unit": "a day",
+      "note": "median day of 1-30 November 2025 (BigQuery)"
+    },
+    "bq.intents_calls.last_30d_median": {
+      "value": "112421.0",
+      "text": "112,421",
+      "source": "data/bq_usage.json",
+      "unit": "a day",
+      "note": "median day of 2-31 October 2026 (BigQuery)"
+    },
+    "bq.intents_calls.nov_1_11_median": {
+      "value": "177004.0",
+      "text": "177,004",
+      "source": "data/bq_usage.json",
+      "unit": "a day",
+      "note": "median day of 1-11 November 2026 (BigQuery)"
+    },
+    "bq.lead.max_abs_corr": {
+      "value": "0.322594",
+      "text": "0.32",
+      "source": "data/bq_usage.json",
+      "note": "largest |correlation| at the best lag, on-chain Intents activity against usage (BigQuery)"
+    },
+    "bq.lead.min_p": {
+      "value": "0.171",
+      "text": "0.17",
+      "source": "data/bq_usage.json",
+      "note": "smallest circular-shift p of the four tests"
+    },
+    "bq.signers.change": {
+      "value": "-0.701861",
+      "text": "-70%",
+      "source": "data/bq_usage.json",
+      "unit": "share",
+      "note": "distinct signers a day, mean of 2-31 Oct 2026 against 1-30 Nov 2025 (BigQuery)"
+    },
+    "bq.signers.first_30d_median": {
+      "value": "246406.5",
+      "text": "246,407",
+      "source": "data/bq_usage.json",
+      "unit": "a day",
+      "note": "median day of 1-30 November 2025 (BigQuery)"
+    },
+    "bq.signers.last_30d_median": {
+      "value": "54593.5",
+      "text": "54,594",
+      "source": "data/bq_usage.json",
+      "unit": "a day",
+      "note": "median day of 2-31 October 2026 (BigQuery)"
+    },
+    "bq.signers.nov_1_11_median": {
+      "value": "77831.0",
+      "text": "77,831",
+      "source": "data/bq_usage.json",
+      "unit": "a day",
+      "note": "median day of 1-11 November 2026 (BigQuery)"
     },
     "bt.a_pace.near_multiple": {
       "value": "2.051320",

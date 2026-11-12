@@ -27,7 +27,7 @@
 
 ![For the NEAR issued each day, the buybacks keep about a tenth; all fees would cover under half](docs/coverage.svg)
 
-**What this repository adds:** a rating that is code and re-reads mainnet every day (today an alarm for Avoid; Buy needs a lock that does not exist) · predictions hashed on chain before they are judged, one of them judged automatically by a daily GitHub Action · the same rules run on four other protocols.
+**What this repository adds:** a rating that is code and re-reads mainnet every day (today an alarm for Avoid; Buy needs a lock that does not exist) · predictions hashed on chain before they are judged, one of them judged automatically by a daily GitHub Action · the same rules run on four other protocols · NEAR's own use counted from blocks through BigQuery, as the track asks ([claim E](#e-the-chain-is-used-less-and-its-use-pays-holders-almost-nothing)).
 
 **[Live dashboard](https://nikolaskahris-png.github.io/near-thesis-data/dashboard/)** · [Try it in two minutes](#try-it-in-two-minutes) · [One-page thesis](THESIS.md) · [Every detail](docs/DETAILS.md) · [Terms](#terms) · Window: 2 October → 1 November 2026; any other date is named where used
 
@@ -107,9 +107,22 @@ Most of the fall was relayed transactions, and most came in one step: <!--n:u.tx
 
 NearBlocks also indexes NEAR Intents on mainnet, a check on DefiLlama: it sees <!--n:u.visible.before_private-->66%<!--/n--> of DefiLlama's volume in the 30 days before 27 October, <!--n:u.visible.after_private-->28%<!--/n--> from 27 October to 8 November and <!--n:u.visible.week_85-->12%<!--/n--> from 2 to 8 November: an independent sign of the move to the private path (claim D).
 
-**Against.** These are NearBlocks' own aggregates, not rebuilt from blocks, and what counts as an active or relayed account is its definition. Fifty-two weeks give little power: "not detected" is not "no effect".
+**From blocks, through BigQuery.** The track's prompt example names NEAR's public BigQuery dataset, so we ran three queries on it ([`sql/`](sql/); results in `data/bq/` with their SHA-256; about 315 GB, inside BigQuery's free monthly terabyte). Its daily transactions equal NearBlocks' on <!--n:bq.agree.txns.days_equal-->365<!--/n--> of <!--n:bq.agree.days-->365<!--/n--> days, and its relayed actions on <!--n:bq.agree.meta.days_equal-->304<!--/n-->, never more than <!--n:bq.agree.meta.max_rel_diff-->0.004%<!--/n--> apart: the fall above is not one indexer's artefact. Both read NEAR's own block data, so this checks the counting, not the chain.
 
-**Check.** `python scripts/usage.py --verify` → `OK`.
+The same dataset shows who calls NEAR Intents' contract. Of the <!--n:bq.callers.october.calls-->3,515,141<!--/n--> calls to `intents.near` from 2 to 31 October 2026:
+
+| Caller | Share of calls |
+|---|---|
+| `intents.near` itself (its own internal calls) | <!--n:bq.callers.october.intents_itself-->63%<!--/n--> |
+| Bridged-token contracts (`*.omft.near`, `wrap.near` and three others) | <!--n:bq.callers.october.token_contracts-->16%<!--/n--> |
+| `escrow.ai.near`, the NEAR AI Agent Market's escrow (one account, about <!--n:bq.callers.october.escrow_a_day-->16,560<!--/n--> calls a day) | <!--n:bq.callers.october.near_ai_escrow-->14%<!--/n--> |
+| Everyone else | <!--n:bq.callers.october.everyone_else-->6%<!--/n--> |
+
+On a median day, the accounts calling it fell from <!--n:bq.intents_callers.first_30d_median-->1,272<!--/n--> in November 2025 to <!--n:bq.intents_callers.last_30d_median-->608<!--/n--> in October 2026 and <!--n:bq.intents_callers.nov_1_11_median-->511<!--/n--> on 1–11 November, while its calls rose to <!--n:bq.intents_calls.nov_1_11_median-->177,004<!--/n--> a day. NEAR AI's agents do reach NEAR Intents on chain, through one escrow account. The organizers' question again, with this on-chain activity in place of DefiLlama's volume: still no lead we can detect (largest correlation <!--n:bq.lead.max_abs_corr-->0.32<!--/n-->, smallest p <!--n:bq.lead.min_p-->0.17<!--/n-->).
+
+**Against.** NearBlocks' figures are its own aggregates, and what counts as an active or relayed account is its definition. BigQuery's dataset is NEAR's own (NEAR Public Lakehouse), not a third party's. A call is not a dollar: the caller table counts calls, not value, and `escrow.ai.near` is named from the Agent Market's job pages, which list payments to it as "secure deposit". Fifty-two weeks give little power: "not detected" is not "no effect".
+
+**Check.** `python scripts/usage.py --verify` and `python scripts/bq_usage.py --verify`, each → `OK`. To rerun the queries: any Google account, the three files in `sql/`.
 
 ## What a holder earns to 2031
 
@@ -215,7 +228,7 @@ The fees (NEAR's datasets on Dune; only revenue is checked on chain), volume and
 ## Timeline and disclosure
 
 - Research: 22–31 October 2026, in private notes outside this repository. Code and data: from the first commit, 2026-10-31 13:51:52 UTC. The [rules](https://nearhackathon.com/HACKATHON.md) (FAQ Q-001) count work from the hackathon's announcement on 19 October: "Earlier commits are baseline".
-- Sources: NEAR archival RPC, NearBlocks, DefiLlama, SEC filings and NEAR's docs, linked where used. Raw responses are saved byte for byte; those listing people's accounts are kept private, with their SHA-256.
+- Sources: NEAR archival RPC, NearBlocks, NEAR's public BigQuery dataset, DefiLlama, SEC filings and NEAR's docs, linked where used. Raw responses are saved byte for byte; those listing people's accounts are kept private, with their SHA-256.
 - AI: code and text were written with Claude Code (Anthropic), directed by the author; those commits are marked `Co-Authored-By: Claude`. The demo video has no voice; its captions carry the narration.
 - Libraries: none beyond the Python standard library. `docs/sign*.html` load NEAR Wallet Selector 10.1.4 from esm.sh.
 - This is the author's only submission to NEAR HACKATHON.
