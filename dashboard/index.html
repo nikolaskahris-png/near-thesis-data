@@ -138,11 +138,27 @@
   <p class="what">From NearBlocks' daily statistics (<code>scripts/usage.py</code>). All gas paid in those twelve months was
     <span data-n="u.fee_usd_year">$1.2M</span>, <span data-n="u.fee_share_of_issuance">0.8%</span> of a year of new NEAR. Neither NEAR
     Intents' volume nor the price leads this use by up to a month that we can detect (smallest p <span data-n="u.lead.min_p">0.44</span>):
-    the track's own example hypothesis, tested. <span class="not">NearBlocks' aggregates, not rebuilt from blocks.</span></p>
+    the track's own example hypothesis, tested. NEAR's public BigQuery dataset gives the same daily transactions on
+    <span data-n="bq.agree.txns.days_equal">365</span> of <span data-n="bq.agree.days">365</span> days (<code>scripts/bq_usage.py</code>).
+    <span class="not">Both read NEAR's own block data: this checks the counting, not the chain.</span></p>
   <div class="chart" id="cE"></div>
   <p class="src">NEAR Intents volume that NearBlocks sees on mainnet, as a share of DefiLlama's: <span data-n="u.visible.before_private">66%</span>
     in the month before swaps began to settle privately, <span data-n="u.visible.after_private">28%</span> in the thirteen days after,
     <span data-n="u.visible.week_85">12%</span> in the first week of November, as swaps moved to the private path.</p>
+  <h3>Who calls NEAR Intents' contract (BigQuery, October)</h3>
+  <div class="tablewrap" id="callers-tbl"><table>
+    <thead><tr><th>Caller of <code>intents.near</code></th><th>Share of <span data-n="bq.callers.october.calls">3,515,141</span> calls</th></tr></thead>
+    <tbody>
+      <tr><td>The contract itself (internal calls)</td><td><span data-n="bq.callers.october.intents_itself">63%</span></td></tr>
+      <tr><td>Bridged-token contracts (<code>*.omft.near</code>, <code>wrap.near</code> and three others)</td><td><span data-n="bq.callers.october.token_contracts">16%</span></td></tr>
+      <tr class="us"><td><code>escrow.ai.near</code>, the NEAR AI Agent Market's escrow: one account, about <span data-n="bq.callers.october.escrow_a_day">16,560</span> calls a day</td><td><span data-n="bq.callers.october.near_ai_escrow">14%</span></td></tr>
+      <tr><td>Everyone else</td><td><span data-n="bq.callers.october.everyone_else">6%</span></td></tr>
+    </tbody></table></div>
+  <p class="src">Accounts calling it on a median day: <span data-n="bq.intents_callers.first_30d_median">1,272</span> a year earlier,
+    <span data-n="bq.intents_callers.last_30d_median">608</span> in October, <span data-n="bq.intents_callers.nov_1_11_median">511</span>
+    in the first days of November, while its calls rose to <span data-n="bq.intents_calls.nov_1_11_median">177,004</span> a day. With this on-chain activity
+    in place of DefiLlama's volume, still no lead (smallest p <span data-n="bq.lead.min_p">0.17</span>). <span class="not">Calls, not dollars.</span>
+    Queries: <code>sql/</code>.</p>
 </section>
 
 <section id="p0p">
