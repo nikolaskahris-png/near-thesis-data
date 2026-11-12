@@ -39,7 +39,10 @@ OUT_NAME = "prereg2.json"
 RAW_DIR = "raw/prereg2"
 PREREG_FILE = "PREREG-2.md"
 ANCHORED_SHA256 = "545cf67530b37c902b2674cb4014818d3f79eb1718fe6bbab896a361e48ce0d3"
-HSP027_PASSED = "2026-07-03T00:00:00Z"
+# HSP-027's voting end, read from vote.dao by hsp027.py (data/hsp027.json): voting_start_time_ns +
+# voting_duration_ns = 2026-07-03 23:00:00 UTC. Until 12 Nov 2026 this was 00:00 of that day, entered by hand.
+HSP027_PASSED = "2026-07-03T23:00:00Z"
+HSP027_FILE = "hsp027.json"
 PREDICTIONS = {
     "4": {"version": 87, "probability": "0.85", "target_utc": "2026-11-06T00:00:00Z"},
     "5": {"version": 88, "probability": "0.75", "target_utc": "2026-11-08T00:00:00Z"},
@@ -281,6 +284,11 @@ def verify(path):
         problems += [f"first block with version {version}: {k}" for k, ok in again["checks"].items() if not ok]
     if mean_brier(doc) != doc["brier_mean"]:
         problems.append("brier_mean does not recompute")
+    hsp = root / "data" / HSP027_FILE
+    if not hsp.exists():
+        problems.append(f"missing data/{HSP027_FILE}: the date HSP-027 passed has no saved source")
+    elif int(json.loads(hsp.read_text(encoding="utf-8"))["proposal"]["voting_end_ns"]) != ns_of(HSP027_PASSED):
+        problems.append(f"HSP027_PASSED differs from the voting end in data/{HSP027_FILE}")
     return problems, doc
 
 

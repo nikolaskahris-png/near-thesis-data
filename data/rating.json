@@ -2,8 +2,10 @@
   "measure": "the rating (Hold / Buy / Avoid) for every window in history.csv, from README's rules",
   "rules": {
     "kept_share_min": "0.75",
-    "avoid": "this window and the one ending 30 days earlier fail",
-    "buy": "rule (b) read from the chain (a declared lock with no contract and no keys), treasury.near quiet in the window (same multisig request nonce at both ends, no full-access key), and coverage counted (kept, at most DefiLlama's revenue and fees) >= 100% or (a) at a yearly check",
+    "avoid": "this window and the one ending 30 days earlier fail, or the drain test fails",
+    "drain_max": "0.1",
+    "avoid_drain": "the buybacks stock (history.csv buybacks_end) at the window's end is more than drain_max below its highest window end since 2026-11-01: Avoid at once, until it is back within drain_max of that peak",
+    "buy": "rule (b) read from the chain (a declared lock that cannot send NEAR out: no contract and no keys, or code whose hash was reviewed and listed, and no full-access key), treasury.near quiet in the window (same multisig request nonce at both ends, no full-access key), and coverage counted (kept, at most DefiLlama's revenue and fees) >= 100% or (a) at a yearly check",
     "avoid_test_1": "not judged if DefiLlama's revenue is zero or a day is missing; test 2 (read from the chain, with the window's mean price) then decides alone",
     "avoid_test_2_private_path": "not judged if DefiLlama's fees fell too (or are missing) and the Confidential Intents Treasury account's stablecoins grew over the window; not read counts as not grown",
     "precedence": "Avoid overrides Buy",
@@ -11,6 +13,7 @@
   },
   "fetched_utc": "2026-11-12T07:13:59Z",
   "locks": [],
+  "audited_code": [],
   "thresholds": {
     "avoid_usd_per_day": "6270.3997866",
     "base_usd_per_day": "46691.7672250",

@@ -17,9 +17,9 @@
     burned; the protocol treasury is "currently managed by the NEAR Foundation", says an SEC filing. Only issuance is a protocol
     rule, changed only by a release run by 4/5 of stake. What holders got in the window:
     buybacks equal to <span data-n="n1.coverage_buybacks"></span> of new issuance.</p>
-  <p class="verdict"><strong>Rating: Hold.</strong> Keep NEAR you own, staked; do not add. <b>Buy</b> when the buybacks become a
-    published rule and grow fast enough; <b>Avoid</b> if, in two back-to-back monthly windows, they fall back to April's level or the wallets keep under three quarters of what flows in. Horizon 2031, checked
-    every year. Avoid can first fire in mid-December, and Buy needs a lock that does not exist; until then
+  <p class="verdict"><strong>Rating: Hold.</strong> Keep NEAR you own, staked; do not add. <b>Buy</b> when the buybacks sit in a
+    lock the chain shows cannot send NEAR out and grow fast enough; <b>Avoid</b> at once if the bought NEAR falls more than a tenth below its peak, or if, in two back-to-back monthly windows, they fall back to April's level or the wallets keep under three quarters of what flows in. Horizon 2031, checked
+    every year. The window tests can first fire in mid-December, a drain any day, and Buy needs a lock that does not exist; until then
     Hold is the author's reading of the evidence below.</p>
   <div class="tiles">
     <div class="tile"><span class="tile-k">Who can move the bought NEAR</span>
@@ -87,18 +87,19 @@
 <section id="p0">
   <h2>Rating, latest window: <span id="rating-now">—</span></h2>
   <p class="what">The README's rules applied to a rolling window of thirty days, every day (<code>data/rating.csv</code>). Avoid needs the
-    latest window and the one ending thirty days before it to fail one of the two tests; Buy needs rule (b) on chain first: a lock no one can spend from.
+    latest window and the one ending thirty days before it to fail one of the two tests, or the bought NEAR to fall more than a tenth below its peak; Buy needs rule (b) on chain first: a lock no one can spend from.
     <span class="not">A window with missing DefiLlama days is not judged, and the two newest windows may still be revised.</span></p>
   <div class="ratingbox" id="rating-box"></div>
   <ul class="triggers">
-    <li><b>Buy</b> only when <b>(b)</b> keeping the buybacks is a published rule (a lock no one can spend from) and
+    <li><b>Buy</b> only when <b>(b)</b> the buybacks sit in a declared lock the chain shows cannot send NEAR out (no keys and no code, or reviewed code and no full-access key) and
       <code>treasury.near</code> sent nothing in the window, and either the NEAR they keep, counted up to DefiLlama's revenue and fees,
       covers all new NEAR, or <b>(a)</b> it grows <span data-n="lr.required_growth.buybacks.A.2031"></span> a year, in dollars and in NEAR.</li>
     <li><b>Avoid</b> when this thirty-day window and the one ending thirty days before it each fail a test: the wallets keep
       less than three quarters of DefiLlama's revenue, or the buybacks wallets keep April's
       <span data-n="f2.buybacks_kept_usd_per_day.2026-04"></span> a day or less (at this window's NEAR kept, a price of
       <span data-n="iv.avoid_test2_price_usd"></span> or less), unless DefiLlama's fees fell too and the Confidential Intents
-      Treasury account's stablecoins grew. Avoid overrides Buy; Hold has no upper price.</li>
+      Treasury account's stablecoins grew. Also <b>Avoid</b>, at once, while the buybacks stock is more than a tenth below its highest
+      since the first of November. Avoid overrides Buy; Hold has no upper price.</li>
   </ul>
   <p class="also">Also measured: NEAR Intents moved <span data-n="d.ours_30d_usd"></span> in DefiLlama's thirty days to
     <span data-n="d.window_end"></span> (not the window) · a staked holder's share of all NEAR grows

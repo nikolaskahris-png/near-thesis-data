@@ -1,13 +1,13 @@
-date,window_start,status,counted_days,revenue_near_per_day,wallets_kept_near_per_day,kept_share,mean_price_usd,buybacks_kept_usd_per_day,max_coverage_defillama,coverage_buybacks,coverage_counted,test_kept_share,test_usd,earlier_window,rule_b,treasury_quiet,covers_issuance,yearly_a,rating,note
-2026-11-01,2026-10-02,final,30,14577.018,14554.423,0.998450,4.879062,46691.41,0.478915,0.108265,0.108265,pass,pass,not in history,no,yes,no,,Hold,
-2026-11-02,2026-10-03,final,30,14423.097,14392.895,0.997906,4.863463,46111.92,0.474438,0.107336,0.107336,pass,pass,not in history,no,yes,no,,Hold,
-2026-11-03,2026-10-04,final,30,14509.028,14503.439,0.999615,4.845408,46490.80,0.480079,0.108664,0.108664,pass,pass,not in history,no,yes,no,,Hold,
-2026-11-04,2026-10-05,final,30,13879.899,13885.655,1.000415,4.811827,46580.71,0.477996,0.109738,0.109738,pass,pass,not in history,no,yes,no,,Hold,
-2026-11-05,2026-10-06,final,30,13927.050,13958.854,1.002284,4.780745,46434.27,0.486015,0.110095,0.110095,pass,pass,not in history,no,yes,no,,Hold,
-2026-11-06,2026-10-07,final,30,14037.063,14103.139,1.004707,4.739429,46851.36,0.486879,0.111036,0.111036,pass,pass,not in history,no,yes,no,,Hold,
-2026-11-07,2026-10-08,final,30,14399.934,14494.726,1.006583,4.696153,47671.66,0.499771,0.115246,0.115246,pass,pass,not in history,no,yes,no,,Hold,
-2026-11-08,2026-10-09,final,30,14010.632,13994.273,0.998832,4.650224,45944.03,0.484469,0.111121,0.111121,pass,pass,not in history,no,yes,no,,Hold,
-2026-11-09,2026-10-10,final,30,13513.202,13509.450,0.999722,4.611757,44085.55,0.483148,0.108682,0.108682,pass,pass,not in history,no,yes,no,,Hold,
-2026-11-10,2026-10-11,final,30,13575.892,13553.049,0.998317,4.551824,43682.02,0.491215,0.108065,0.108065,pass,pass,not in history,no,yes,no,,Hold,
-2026-11-11,2026-10-12,provisional,30,13623.695,13629.973,1.000461,4.495855,43232.55,0.510522,0.108246,0.108246,pass,pass,not in history,no,yes,no,,Hold,DefiLlama may still revise these days
-2026-11-12,2026-10-13,provisional,29,13710.756,13663.245,0.996535,4.455901,43036.64,0.514448,0.108771,0.108771,pass,pass,not in history,no,yes,no,,Hold,1 day(s) excluded as in fees.py; DefiLlama may still revise these days
+date,window_start,status,counted_days,revenue_near_per_day,wallets_kept_near_per_day,kept_share,mean_price_usd,buybacks_kept_usd_per_day,max_coverage_defillama,coverage_buybacks,coverage_counted,test_kept_share,test_usd,earlier_window,rule_b,treasury_quiet,covers_issuance,yearly_a,rating,note,stock_near,stock_peak_near,test_stock
+2026-11-01,2026-10-02,final,30,14577.018,14554.423,0.998450,4.879062,46691.41,0.478915,0.108265,0.108265,pass,pass,not in history,no,yes,no,,Hold,,2145247.526,2145247.526,pass
+2026-11-02,2026-10-03,final,30,14423.097,14392.895,0.997906,4.863463,46111.92,0.474438,0.107336,0.107336,pass,pass,not in history,no,yes,no,,Hold,,2150468.352,2150468.352,pass
+2026-11-03,2026-10-04,final,30,14509.028,14503.439,0.999615,4.845408,46490.80,0.480079,0.108664,0.108664,pass,pass,not in history,no,yes,no,,Hold,,2157616.619,2157616.619,pass
+2026-11-04,2026-10-05,final,30,13879.899,13885.655,1.000415,4.811827,46580.71,0.477996,0.109738,0.109738,pass,pass,not in history,no,yes,no,,Hold,,2165157.239,2165157.239,pass
+2026-11-05,2026-10-06,final,30,13927.050,13958.854,1.002284,4.780745,46434.27,0.486015,0.110095,0.110095,pass,pass,not in history,no,yes,no,,Hold,,2174389.581,2174389.581,pass
+2026-11-06,2026-10-07,final,30,14037.063,14103.139,1.004707,4.739429,46851.36,0.486879,0.111036,0.111036,pass,pass,not in history,no,yes,no,,Hold,,2186914.367,2186914.367,pass
+2026-11-07,2026-10-08,final,30,14399.934,14494.726,1.006583,4.696153,47671.66,0.499771,0.115246,0.115246,pass,pass,not in history,no,yes,no,,Hold,,2202538.685,2202538.685,pass
+2026-11-08,2026-10-09,final,30,14010.632,13994.273,0.998832,4.650224,45944.03,0.484469,0.111121,0.111121,pass,pass,not in history,no,yes,no,,Hold,,2210639.413,2210639.413,pass
+2026-11-09,2026-10-10,final,30,13513.202,13509.450,0.999722,4.611757,44085.55,0.483148,0.108682,0.108682,pass,pass,not in history,no,yes,no,,Hold,,2217919.350,2217919.350,pass
+2026-11-10,2026-10-11,final,30,13575.892,13553.049,0.998317,4.551824,43682.02,0.491215,0.108065,0.108065,pass,pass,not in history,no,yes,no,,Hold,,2229710.220,2229710.220,pass
+2026-11-11,2026-10-12,provisional,30,13623.695,13629.973,1.000461,4.495855,43232.55,0.510522,0.108246,0.108246,pass,pass,not in history,no,yes,no,,Hold,DefiLlama may still revise these days,2240659.820,2240659.820,pass
+2026-11-12,2026-10-13,provisional,29,13710.756,13663.245,0.996535,4.455901,43036.64,0.514448,0.108771,0.108771,pass,pass,not in history,no,yes,no,,Hold,1 day(s) excluded as in fees.py; DefiLlama may still revise these days,2250139.591,2250139.591,pass

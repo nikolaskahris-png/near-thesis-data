@@ -1,0 +1,35 @@
+{
+  "measure": "the date HSP-027 passed: its voting end, read from vote.dao",
+  "contract": "vote.dao",
+  "source": {
+    "rpc": "https://rpc.mainnet.fastnear.com",
+    "methods": [
+      "get_proposal"
+    ]
+  },
+  "rule": "voting end = voting_start_time_ns + voting_duration_ns (as hsp029.py; proposal.rs)",
+  "fetched_utc": "20261112T125244Z",
+  "raw_files": {
+    "proposal_latest": {
+      "path": "data/private/hos/hsp027/get_proposal_27_final_20261112T125244Z.json",
+      "sha256": "d36e991e4739a15ee2b2477224a60d36a8796ce5b131ca5bc6131cd5d2085335",
+      "private": true,
+      "redacted": {
+        "path": "data/raw/redacted/hos/hsp027/get_proposal_27_final_20261112T125244Z.json",
+        "sha256": "c9cc0947cf19bd800edf485b80f157e325a7129dac0dfe6c8d297dd900e2f4d1"
+      }
+    }
+  },
+  "proposal": {
+    "proposal_id": 27,
+    "title": "Remove the NEAR Developer Gas Rebate",
+    "link": null,
+    "voting_start_utc": "2026-06-28T23:00:00.000000000Z",
+    "voting_end_utc": "2026-07-03T23:00:00.000000000Z",
+    "voting_end_ns": "1783119600000000000",
+    "timelock_end_utc": "2026-07-03T23:00:00.000000000Z"
+  },
+  "voting_end_date_utc": "2026-07-03",
+  "reported_status": "Succeeded",
+  "read_at_block": 224217122
+}

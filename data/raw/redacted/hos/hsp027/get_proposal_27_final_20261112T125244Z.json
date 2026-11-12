@@ -1,0 +1,62 @@
+{
+ "block_height": 224217122,
+ "value": {
+  "actions": null,
+  "approval_threshold_bps": 5000,
+  "approval_time_ns": "1781974431476329155",
+  "bond_amount": "0",
+  "creation_time_ns": "1781801899843556980",
+  "expiration_ns": "1781974699843556980",
+  "flow": "FastTrack",
+  "id": 27,
+  "link": null,
+  "proposer_id": "sha256:c508a20d5c940e8b",
+  "quorum_floor": "1000000000000000000000000000",
+  "quorum_threshold_bps": 3500,
+  "rejecter_id": null,
+  "reviewer_id": "sha256:a07631e84fd879ba",
+  "sandbox_duration_ns": "604800000000000",
+  "sandbox_start_time_ns": "1781974431476329155",
+  "sandbox_threshold_bps": 3000,
+  "snapshot_and_state": {
+   "snapshot": {
+    "block_height": 203545957,
+    "length": 469,
+    "root": "9Fgkrxv4gLf9937xdWYP4nwTCiYX9PbKTeGdnHELqdUd"
+   },
+   "timestamp_ns": "1781974432618302973",
+   "total_venear": "5097162483222986944397858247627",
+   "venear_growth_config": {
+    "FixedRate": {
+     "annual_growth_rate_ns": {
+      "denominator": "1000000000000000000000000000000",
+      "numerator": "15850000000000"
+     }
+    }
+   }
+  },
+  "status": "Succeeded",
+  "timelock_duration_ns": "0",
+  "title": "Remove the NEAR Developer Gas Rebate",
+  "total_votes": {
+   "total_venear": "4669021951537252273678119421020",
+   "total_votes": 46
+  },
+  "votes": [
+   {
+    "total_venear": "4667203303407807881929719421008",
+    "total_votes": 44
+   },
+   {
+    "total_venear": "1818648129444391748400000012",
+    "total_votes": 2
+   },
+   {
+    "total_venear": "0",
+    "total_votes": 0
+   }
+  ],
+  "voting_duration_ns": "432000000000000",
+  "voting_start_time_ns": "1782687600000000000"
+ }
+}

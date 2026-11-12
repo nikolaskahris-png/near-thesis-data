@@ -36,7 +36,8 @@ import rating  # noqa: E402
 REPO = Path(__file__).resolve().parent.parent
 FEES_FILE = "fees_2026-10-02_2026-11-01.json"
 OUT_JSON, OUT_CSV = "backtest.json", "backtest.csv"
-COLUMNS = ["month"] + rating.COLUMNS
+# Monthly rows carry no buybacks stock, so the drain test is not judged there and its columns are left out.
+COLUMNS = ["month"] + [c for c in rating.COLUMNS if c not in rating.STOCK_COLUMNS]
 
 
 def previous_month(d):

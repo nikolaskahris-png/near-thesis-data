@@ -67,9 +67,11 @@ class TestDashboard(unittest.TestCase):
     def test_rating_files_exist_and_have_the_columns_it_reads(self):
         head = (REPO / "data" / "rating.csv").read_text(encoding="utf-8").splitlines()[0].split(",")
         for col in ("date", "status", "kept_share", "buybacks_kept_usd_per_day", "coverage_buybacks", "coverage_counted", "test_kept_share",
-                    "test_usd", "earlier_window", "rule_b", "rating"):
+                    "test_usd", "earlier_window", "rule_b", "rating", "stock_near", "stock_peak_near", "test_stock"):
             self.assertIn(col, head)
-        self.assertIn("kept_share_min", json.loads((REPO / "data" / "rating.json").read_text(encoding="utf-8"))["rules"])
+        rules = json.loads((REPO / "data" / "rating.json").read_text(encoding="utf-8"))["rules"]
+        self.assertIn("kept_share_min", rules)
+        self.assertIn("drain_max", rules)
 
     def test_no_hand_written_numbers_in_the_page(self):
         text = " ".join(self.page.parts)

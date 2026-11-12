@@ -60,9 +60,17 @@ ACCOUNTS = (BUYBACKS, FEFUNDS, ONECLICK)
 # lock already holds on that date is its baseline and never counts as kept (judge #9, finding 1).
 # Declaring is not enough for (b): sealed() reads from the chain whether anyone can still spend from it.
 LOCKS = {}
-# A lock is sealed at a block when the account has no contract (code_hash of an empty account) and no
-# access keys: then no transaction can move its NEAR. That is (b), read from the chain (judge #9, finding 2).
+# A lock is sealed at a block when no transaction can move its NEAR out. That is (b), read from the chain
+# (judge #9, finding 2), in one of two ways (lock_sealed):
+#   1. no contract (code_hash of an empty account, no global contract) and no access keys at all;
+#   2. a contract whose code hash is listed in AUDITED_CODE, and no full-access key.
 EMPTY_CODE_HASH = "11111111111111111111111111111111"
+# Contract code checked to be unable to send NEAR out, by code hash (base58, as view_account returns it).
+# A hash is listed only with a public review at a path in this repository, which shows from the published
+# source, built reproducibly to this hash, that no call can create a Transfer, a FunctionCall with a
+# deposit, a DeleteAccount, an AddKey, a DeployContract or a UseGlobalContract action from the lock.
+# {code_hash: "path of the review"}. Empty: no lock contract has been reviewed, so today only way 1 counts.
+AUDITED_CODE = {}
 INTENTS = "intents.near"
 TREASURY = "treasury.near"     # protocol treasury: a multisig with no full-access key (control_map.py)
 WNEAR = "nep141:wrap.near"
@@ -223,13 +231,35 @@ def read_point(data_root, d, height, previous_height):
             if res["block_height"] != height or keys["block_height"] != height:
                 problems.append(f"{d}: lock {acct} not read at block {height}")
             point[acct] = int(res["amount"])
-            point[acct + "@sealed"] = res["code_hash"] == EMPTY_CODE_HASH and not keys["keys"]
+            point[acct + "@sealed"] = lock_sealed(res, keys["keys"])
     for acct in (BUYBACKS, FEFUNDS):
         res = json.loads((raw_root / "accounts" / f"{height}_{acct}_intents_wnear.json")
                          .read_bytes())["result"]
         wnear = int(json.loads(bytes(res["result"]).decode()))
         point[acct + "@intents"] = wnear
     return point, problems
+
+
+def lock_sealed(view, keys, audited=None):
+    """Condition (b) for one lock at one block, from view_account and view_access_key_list.
+
+    True when no transaction can move the lock's NEAR out:
+      - no contract and no access key at all; or
+      - code whose hash is in AUDITED_CODE, and no full-access key. Function-call keys may stay: they
+        cannot transfer NEAR or attach a deposit, and call only their receiver_id
+        (docs.near.org/protocol/access-keys), so through them only the reviewed code runs.
+    An account that runs a global contract shows the empty code_hash (nearcore AccountView:
+    code_hash = local_contract_hash().unwrap_or_default()), so the global fields are read too.
+    A global contract named by account is never sealed: that account can deploy new code to it."""
+    audited = AUDITED_CODE if audited is None else audited
+    if view.get("global_contract_account_id"):
+        return False
+    code = view.get("global_contract_hash") or view["code_hash"]
+    if code == EMPTY_CODE_HASH:
+        return not keys
+    if code not in audited:
+        return False
+    return not any(k["access_key"]["permission"] == "FullAccess" for k in keys)
 
 
 def near(yocto, places=3):

@@ -220,12 +220,64 @@ class LockTest(unittest.TestCase):
                     self.assertEqual(daily.sealed(data), {"2026-11-01": []})
             self.with_lock(date(2026, 10, 2), go)
 
+    def test_a_reviewed_contract_with_no_key_is_sealed(self):
+        d = date(2026, 11, 1)
+        code = "E8jZ1giWcVrps8PcV75ATauu6gFRkcwjNtKp7NKmipZG"
+        old = dict(daily.AUDITED_CODE)
+        daily.AUDITED_CODE[code] = "docs/review.md"
+        try:
+            for keys, want in (((), [self.LOCK]), (("ed25519:K",), [])):   # a full-access key unseals it
+                def go():
+                    with tempfile.TemporaryDirectory() as tmp:
+                        data = Path(tmp) / "data"
+                        daily.run(d, data, self.chain(d, keys=keys, code_hash=code))
+                        self.assertEqual(daily.sealed(data), {"2026-11-01": want})
+                self.with_lock(date(2026, 10, 2), go)
+        finally:
+            daily.AUDITED_CODE.clear()
+            daily.AUDITED_CODE.update(old)
+
     def test_no_lock_declared_means_no_rule_b(self):
         with tempfile.TemporaryDirectory() as tmp:
             data = Path(tmp) / "data"
             d = date(2026, 11, 1)
             daily.run(d, data, FakeChainWithState(final_height_at(lw.midnight_ns(d) + 3600 * lw.NS)))
             self.assertEqual(daily.sealed(data), {"2026-11-01": []})
+
+
+class LockSealed(unittest.TestCase):
+    """Block G: (b) with a contract counts only for reviewed code (AUDITED_CODE) and no full-access key."""
+
+    CODE = "E8jZ1giWcVrps8PcV75ATauu6gFRkcwjNtKp7NKmipZG"
+    AUDITED = {CODE: "docs/review.md"}
+    FULL = {"public_key": "ed25519:F", "access_key": {"nonce": 0, "permission": "FullAccess"}}
+    CALL = {"public_key": "ed25519:C", "access_key": {"nonce": 0, "permission": {"FunctionCall": {
+        "allowance": None, "receiver_id": "lock.test", "method_names": []}}}}
+
+    def sealed(self, keys, code=daily.EMPTY_CODE_HASH, **extra):
+        return daily.lock_sealed({"code_hash": code, **extra}, keys, self.AUDITED)
+
+    def test_empty_account(self):
+        self.assertTrue(self.sealed([]))
+        self.assertFalse(self.sealed([self.FULL]))
+        self.assertFalse(self.sealed([self.CALL]))       # an empty account keeps the strict rule: no keys
+
+    def test_reviewed_code(self):
+        self.assertTrue(self.sealed([], self.CODE))
+        self.assertTrue(self.sealed([self.CALL], self.CODE))  # a function-call key cannot move NEAR
+        self.assertFalse(self.sealed([self.FULL], self.CODE))
+        self.assertFalse(self.sealed([self.CALL, self.FULL], self.CODE))
+
+    def test_unreviewed_code(self):
+        self.assertFalse(self.sealed([], "4zSoHkLjJWZm34Psd4Eq2WUXHELt6LxtKmUXpsZWAECp"))
+        self.assertFalse(daily.lock_sealed({"code_hash": self.CODE}, []))   # AUDITED_CODE is empty today
+        self.assertEqual(daily.AUDITED_CODE, {})
+
+    def test_global_contracts(self):
+        # the view shows the empty code_hash for an account that runs a global contract
+        self.assertFalse(self.sealed([], global_contract_account_id="owner.near"))   # its owner can replace it
+        self.assertFalse(self.sealed([], global_contract_hash="4zSoHkLjJWZm34Psd4Eq2WUXHELt6LxtKmUXpsZWAECp"))
+        self.assertTrue(self.sealed([], global_contract_hash=self.CODE))             # fixed by hash, reviewed
 
 
 if __name__ == "__main__":

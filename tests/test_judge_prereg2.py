@@ -65,12 +65,20 @@ class JudgeTest(unittest.TestCase):
         self.tmp = Path(tempfile.mkdtemp())
         (self.tmp / "data").mkdir()
         shutil.copy(REPO / "PREREG-2.md", self.tmp / "PREREG-2.md")
+        shutil.copy(REPO / "data" / jp.HSP027_FILE, self.tmp / "data" / jp.HSP027_FILE)   # the date HSP-027 passed
         # daily records: one before the switch, two after (heights about a day apart at 0.6 s)
         (self.tmp / "data" / "upgrade_watch.csv").write_text(watch_csv([1, 144_000, 288_001]), encoding="utf-8")
         self.after = jp.ns_of("2026-11-06T00:00:00Z") + 3600 * lw.NS
 
     def tearDown(self):
         shutil.rmtree(self.tmp)
+
+    def test_hsp027_date_must_match_its_saved_source(self):
+        jp.judge(FakeChain(), "4", self.tmp / "data", now_ns=self.after)
+        (self.tmp / "data" / jp.HSP027_FILE).unlink()
+        self.assertTrue(any("no saved source" in x for x in jp.verify(self.tmp / "data" / jp.OUT_NAME)[0]))
+        self.assertEqual(json.loads((REPO / "data" / jp.HSP027_FILE).read_text(encoding="utf-8"))
+                         ["proposal"]["voting_end_utc"][:19] + "Z", jp.HSP027_PASSED)
 
     def test_prediction_4_holds_and_scores(self):
         doc = jp.judge(FakeChain(), "4", self.tmp / "data", now_ns=self.after)

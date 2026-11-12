@@ -26,7 +26,7 @@
     "data/offchain/nearai_cloud_farm_config_20261101T205837Z.json": "95bb1adc1b3eb738cdc19c7622e5a3641edce4ea9653ced4ba6e32439c5f253d",
     "data/peers.json": "48138f8cb3615ecbb1619ab22467c7a46bbee2521481b226b741a911a7b70b1e",
     "data/prereg.json": "2efdcde55626bf946110ccaccb6672581cfe0d96b8231945629a920b653cc250",
-    "data/prereg2.json": "4cab2101e8c89e0412a78c50e0123286b103ecee2de8918dcaea69dc944980e7",
+    "data/prereg2.json": "c9de7ac85957768b7c4682fb3682512a91996d0e463fccc791909741c663f03c",
     "data/prereg2_anchor.json": "04d116768228d84f1c3a3e6c7c91cd43af6df1e62a177e95980f757a272c0c77",
     "data/prereg3_anchor.json": "d916894a3b6a0d4e899200cc4830a04dc8ee32a758ee083542f6b6cc35efd5c8",
     "data/private_shift.json": "80d90266b9128306ac218102a7e344e10a147ecabb61f7af5c4db840b19828a9",
@@ -7491,7 +7491,7 @@
       "unit": "predictions"
     },
     "pr.v87.days_from_hsp027_passed": {
-      "value": "124.49",
+      "value": "123.53",
       "text": "124",
       "source": "data/prereg2.json",
       "unit": "days",
@@ -7514,8 +7514,8 @@
       "note": "first block with this protocol version in effect"
     },
     "pr.v88.days_from_hsp027_passed": {
-      "value": "126.51",
-      "text": "127",
+      "value": "125.55",
+      "text": "126",
       "source": "data/prereg2.json",
       "unit": "days",
       "block": 223314737,

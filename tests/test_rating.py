@@ -50,6 +50,51 @@ class Rules(unittest.TestCase):
             quiet = {r["date"]: "yes" for r in rows}
         return {r["date"]: r for r in rating.evaluate(rows, s, th, fetched, sealed, quiet)}
 
+    def stock_rows(self, first, last, start, per_day, moves):
+        """Daily rows from first to last; the stock grows per_day and moves {date: NEAR} change it."""
+        rows, stock, d = [], Fraction(start), first
+        while d <= last:
+            stock += per_day + moves.get(d, 0)
+            rows.append(dict(hist(d), buybacks_end=f"{int(stock)}.000"))
+            d += timedelta(days=1)
+        return rows
+
+    def test_drain_of_the_whole_stock_is_avoid_at_once_and_stays(self):
+        # judge #21, finding 1: 10,000 NEAR a day, all of it moved out in one transfer on 20 Nov
+        rows = self.stock_rows(D1, date(2027, 2, 1), 2_145_248, 10_000, {date(2026, 11, 20): -2_300_000})
+        out = self.run_rows(rows, th={**TH, "avoid_usd_per_day": "900"})
+        before = [r for d, r in out.items() if d < "2026-11-20"]
+        after = [r for d, r in out.items() if d >= "2026-11-20"]
+        self.assertEqual({r["rating"] for r in before}, {"Hold"})
+        self.assertEqual({r["rating"] for r in after}, {"Avoid"})        # 74 days, none Hold
+        self.assertEqual(after[0]["test_stock"], "fail")
+        self.assertIn("drain test", after[0]["note"])
+
+    def test_a_fall_of_ten_percent_or_less_is_not_a_drain(self):
+        rows = self.stock_rows(D1, date(2026, 11, 30), 1_000_000, 0, {date(2026, 11, 10): -100_000})
+        out = self.run_rows(rows, th={**TH, "avoid_usd_per_day": "900"})
+        self.assertEqual(out["2026-11-10"]["test_stock"], "pass")          # exactly 10% below: not more
+        self.assertEqual({r["rating"] for r in out.values()}, {"Hold"})
+
+    def test_avoid_ends_when_the_stock_is_back_within_ten_percent(self):
+        rows = self.stock_rows(D1, date(2026, 11, 30), 1_000_000, 0,
+                               {date(2026, 11, 10): -200_000, date(2026, 11, 15): 150_000})
+        out = self.run_rows(rows, th={**TH, "avoid_usd_per_day": "900"})
+        self.assertEqual([out[f"2026-11-{d:02d}"]["rating"] for d in (9, 10, 14, 15)], ["Hold", "Avoid", "Avoid", "Hold"])
+        self.assertEqual(out["2026-11-15"]["stock_peak_near"], "1000000.000")
+
+    def test_a_drain_overrides_buy(self):
+        rows = self.stock_rows(D1, date(2026, 11, 5), 1_000_000, 0, {date(2026, 11, 3): -500_000})
+        s = series(date(2026, 9, 1), date(2026, 12, 31), revenue=400000)
+        s["fees"] = dict.fromkeys(s["fees"], Fraction(400000))     # coverage counted: 90,000 of 88,000 issued
+        out = self.run_rows([dict(r, buybacks_per_day="90000") for r in rows], locks=("lock.near",),
+                            th={**TH, "avoid_usd_per_day": "900"}, s=s)
+        self.assertEqual((out["2026-11-02"]["rating"], out["2026-11-03"]["rating"]), ("Buy", "Avoid"))
+
+    def test_rows_without_a_stock_are_not_judged(self):
+        r = self.run_rows([hist(D1)])["2026-11-01"]
+        self.assertEqual((r["test_stock"], r["stock_near"]), ("not judged", ""))
+
     def test_healthy_window_is_hold(self):
         # kept 250 of 250 NEAR of revenue; 250 NEAR x $4 = $1,000 a day, above a $900 floor
         r = self.run_rows([hist(D1)], th={**TH, "avoid_usd_per_day": "900"})["2026-11-01"]

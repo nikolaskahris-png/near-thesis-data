@@ -15,9 +15,11 @@ The rules are the README's "The rating in full". For each history row (the 30 da
                         both boundary blocks and no full-access key (daily.treasury_quiet). The protocol
                         treasury could otherwise fund the wallets and pass as fees. "not read" counts
                         as not quiet.
-  (b)                 = on the window's end block, a lock declared in daily.LOCKS has no contract and
-                        no access keys, so no one can spend from it (daily.sealed); read per window, so
-                        it is never true before the block where it became true.
+  (b)                 = on the window's end block, a lock declared in daily.LOCKS cannot send NEAR out
+                        (daily.lock_sealed): either no contract and no access keys, or code whose hash
+                        is in daily.AUDITED_CODE (reviewed: it cannot send NEAR out) and no full-access
+                        key. Read per window (daily.sealed), so it is never true before the block where
+                        it became true, and it stops being true if the code or the keys change.
 
   A window fails if kept share < 75%, or buybacks kept in USD <= April's level (numbers.json
   f2.buybacks_kept_usd_per_day.2026-04). Test 1 needs DefiLlama: if its revenue is zero or a day is
@@ -30,7 +32,12 @@ The rules are the README's "The rating in full". For each history row (the 30 da
   same on mainnet; this keeps the first from being rated as the second. It needs evidence: if the
   account was not read on both days, test 2 stays a fail.
   If DefiLlama's fees did not fall, a fall in what the buybacks keep is a fail whatever FAR holds. Avoid if this window and the one ending 30 days
-  earlier both fail. Buy if (b) holds, treasury.near was quiet in the window, and either coverage
+  earlier both fail.
+  Drain test (judge #21, finding 1; decided 12 Nov 2026): the buybacks stock at the window's end
+  (history.csv buybacks_end: the buybacks wallet, its wNEAR in intents.near, the 1Click fund and any
+  declared lock) more than 10% below its highest window end since 2026-11-01 is Avoid at once, with no
+  earlier window, and stays Avoid until the stock is back within 10% of that peak. A row without a stock
+  (backtest.py's monthly rows) is not judged. Buy if (b) holds, treasury.near was quiet in the window, and either coverage
   counted >= 100% or (a) held at the latest yearly check (the 1 November window): buybacks kept had
   grown at the required pace from the 2026-11-01 window, in USD and in NEAR. A pass holds until the
   next yearly check. Avoid overrides Buy. Otherwise Hold, also when a rule cannot be judged.
@@ -66,6 +73,7 @@ import fees  # noqa: E402
 REPO = Path(__file__).resolve().parent.parent
 BASE_DATE = date(2026, 11, 1)          # the window the rating was set on
 KEPT_SHARE_MIN = Fraction(3, 4)        # Avoid test 1: the wallets keep at least 75% of revenue
+DRAIN_MAX = Fraction(1, 10)            # drain test: Avoid while the stock is more than 10% below its peak
 HSP029_IN_FORCE = False                # set True once validators run a release with HSP-029 (upgrade_watch.py)
 SERIES = ("fees", "revenue", "volume", "price")
 CT_FILE = "confidential_treasury.json"              # to 8 Nov 2026, fixed (numbers.json uses it)
@@ -85,7 +93,9 @@ COLUMNS = [
     "coverage_counted",
     "test_kept_share", "test_usd", "earlier_window", "rule_b", "treasury_quiet", "covers_issuance", "yearly_a",
     "rating", "note",
+    "stock_near", "stock_peak_near", "test_stock",
 ]
+STOCK_COLUMNS = ("stock_near", "stock_peak_near", "test_stock")   # daily rows only (backtest.py leaves them out)
 
 
 def thresholds(numbers_path):
@@ -156,6 +166,7 @@ def evaluate(history, s, th, fetched, sealed, quiet=None, earlier_of=None, stabl
     by_date = {r["date"]: r for r in history}
     out, fails, fees_usd = [], {}, {}
     a_since = None          # date of the yearly check whose (a) passed; holds until the next check
+    peak = None             # highest buybacks stock at a window end since BASE_DATE (drain test)
     for r in history:
         d = date.fromisoformat(r["date"])
         status, agg = window_values(r, s, fetched)
@@ -227,7 +238,17 @@ def evaluate(history, s, th, fetched, sealed, quiet=None, earlier_of=None, stabl
             a_since = d if ok else None
         elif a_since is not None:
             row["yearly_a"] = f"pass since {a_since.isoformat()}"
-        avoid = fail is True and row["earlier_window"] == "fail"
+        # drain test: the stock against its highest window end since BASE_DATE, this one included
+        row["test_stock"] = "not judged"
+        if r.get("buybacks_end") not in (None, "") and d >= BASE_DATE:
+            stock = Fraction(r["buybacks_end"])
+            peak = stock if peak is None else max(peak, stock)
+            row.update(stock_near=r["buybacks_end"], stock_peak_near=fees.fmt(peak, 3),
+                       test_stock="fail" if stock < peak * (1 - DRAIN_MAX) else "pass")
+            if row["test_stock"] == "fail":
+                notes.append(f"drain test: the buybacks stock is {float(1 - stock / peak):.1%} below its peak "
+                             f"since {BASE_DATE.isoformat()}; Avoid until it is back within {float(DRAIN_MAX):.0%}")
+        avoid = (fail is True and row["earlier_window"] == "fail") or row["test_stock"] == "fail"
         buy = rule_b and ((q == "yes" and cov is not None and cov >= 1) or row["yearly_a"].startswith("pass"))
         row["rating"] = "Avoid" if avoid else "Buy" if buy else "Hold"
         if fail and not avoid:
@@ -283,6 +304,8 @@ def compute(doc, data_root):
         problems.append("thresholds in rating.json differ from numbers.json")
     if doc["locks"] != sorted(daily.LOCKS):
         problems.append("locks in rating.json differ from LOCKS in daily.py")
+    if doc.get("audited_code") != sorted(daily.AUDITED_CODE):
+        problems.append("audited_code in rating.json differs from AUDITED_CODE in daily.py: run rating.py --offline")
     if "private_path" not in doc:
         problems.append("rating.json lacks private_path: run rating.py --offline")
     elif doc["private_path"] != private_path_files(data_root):
@@ -300,8 +323,14 @@ def build(data_root, raw_dir, fetched_utc, urls):
     base = data_root.parent
     doc = {
         "measure": "the rating (Hold / Buy / Avoid) for every window in history.csv, from README's rules",
-        "rules": {"kept_share_min": "0.75", "avoid": "this window and the one ending 30 days earlier fail",
-                  "buy": "rule (b) read from the chain (a declared lock with no contract and no keys), "
+        "rules": {"kept_share_min": "0.75", "avoid": "this window and the one ending 30 days earlier fail, or the drain test fails",
+                  "drain_max": str(float(DRAIN_MAX)),
+                  "avoid_drain": "the buybacks stock (history.csv buybacks_end) at the window's end is more than "
+                                 "drain_max below its highest window end since 2026-11-01: Avoid at once, until "
+                                 "it is back within drain_max of that peak",
+                  "buy": "rule (b) read from the chain (a declared lock that cannot send NEAR out: no "
+                         "contract and no keys, or code whose hash was reviewed and listed, and no "
+                         "full-access key), "
                          "treasury.near quiet in the window (same multisig request nonce at both ends, no "
                          "full-access key), and coverage counted (kept, at most DefiLlama's revenue and fees) "
                          ">= 100% or (a) at a yearly check",
@@ -313,6 +342,7 @@ def build(data_root, raw_dir, fetched_utc, urls):
                   "precedence": "Avoid overrides Buy", "hsp029_in_force": HSP029_IN_FORCE},
         "fetched_utc": fetched_utc,
         "locks": sorted(daily.LOCKS),
+        "audited_code": sorted(daily.AUDITED_CODE),
         "thresholds": thresholds(data_root / "numbers.json"),
         "private_path": private_path_files(data_root),
         "raw": {name: {"path": fees.rel(raw_dir / f"{name}.json", base),
