@@ -8,7 +8,7 @@ from pathlib import Path
 REPO = Path(__file__).resolve().parent.parent
 DASH = REPO / "dashboard"
 # Digits allowed in the page's visible text: names and fixed protocol terms, not measurements.
-ALLOWED = ["HSP-027", "HSP-029", "16 November", "8 November",  # dates of a vote's timelock end and of a draft
+ALLOWED = ["HSP-027", "HSP-029", "16 November", "9 December", "8 November",  # dates: a timelock end, a scored prediction, a draft
            "1/40", "4/5", "SHA-256", "2031", "1Click",  # the horizon; a product name
            # account names and the tag of an implicit account, as in the README
            "ecotreasury5.multisignature.near", "ecotreasury4.multisignature.near", "sha256:e630d735"]
@@ -129,6 +129,21 @@ class TestDashboard(unittest.TestCase):
     def test_no_external_scripts_or_styles(self):
         self.assertIsNone(re.search(r'<script[^>]+src="https?:', self.html))
         self.assertIsNone(re.search(r'<link[^>]+href="https?:', self.html))
+
+    def test_levers_svg_takes_its_numbers_from_numbers_json(self):
+        """Every figure drawn in docs/levers.svg is a value from numbers.json (video/make_levers.py writes it)."""
+        svg = (REPO / "docs" / "levers.svg").read_text(encoding="utf-8")
+        pool = " ".join(v["text"] for v in self.numbers.values() if v["text"]) + " 1Click"
+        drawn = []
+        for chunk in re.findall(r"<text[^>]*>(.*?)</text>", svg, re.S):
+            chunk = re.sub(r"&#?\w+;", " ", chunk)
+            drawn += [t.strip(".,;") for t in re.findall(r"\S*\d\S*", chunk)]
+        self.assertTrue(drawn)
+        self.assertEqual([t for t in drawn if t not in pool], [])
+
+    def test_the_page_shows_the_levers_picture(self):
+        self.assertIn('src="../docs/levers.svg"', self.html)
+        self.assertTrue((REPO / "docs" / "levers.svg").exists())
 
 
 if __name__ == "__main__":

@@ -85,6 +85,8 @@ footer.foot { margin: 8px auto 40px; }
 .badge { display: inline-flex; align-items: center; gap: 4px; font-weight: 600; }
 .badge.same { color: var(--good); }
 .badge.changed { color: var(--critical); }
+.figwrap { margin: 0; overflow-x: auto; }
+.fig { display: block; width: 100%; height: auto; border: 1px solid var(--border); border-radius: 10px; }
 .chart { width: 100%; min-width: 0; }
 .chart svg { display: block; width: 100%; height: auto; overflow: visible; }
 .chart .ttl { font-size: 13.5px; color: var(--text-secondary); margin: 0 0 4px; }
@@ -133,6 +135,7 @@ tr.us td { background: var(--accent-soft); font-weight: 600; }
   font-size: 12.5px; padding: 6px 8px; border-radius: 6px; max-width: 260px; line-height: 1.4; }
 @media (max-width: 760px) {
   .tiles, .map, .pair, .stats, .ratingbox { grid-template-columns: minmax(0, 1fr); }
+  .fig { width: auto; min-width: 880px; }
   section { padding: 18px 14px; }
 }
 @media (forced-colors: active) { svg .s1, svg .s2, svg .s3, svg .sn { fill: CanvasText; } }

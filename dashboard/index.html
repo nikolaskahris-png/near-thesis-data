@@ -11,55 +11,68 @@
 <body>
 <header class="wrap top">
   <p class="eyebrow">Investment Thesis · NEAR HACKATHON</p>
-  <p class="question"><b>The question:</b> when NEAR issues new tokens, how much of that dilution do NEAR Intents' buybacks give
-    back to holders, and does any rule guarantee it?</p>
-  <h1>NEAR's value capture is real, small and discretionary.</h1>
-  <p class="lede"><strong>For each dollar of new NEAR issued, NEAR Intents' buybacks keep about
-    <span data-n="iv.cents_per_new_dollar">11 cents</span>.</strong> None of it is burned. <span data-n="c.buybacks_confirmations">2 of 4</span> signers
-    can move it. Counting the front-end fund, the third revenue wallet, the share of issuance is
-    <span data-n="n1.coverage_with_front_end">16.5%</span> instead of <span data-n="n1.coverage_buybacks">10.8%</span>.</p>
-  <p class="verdict"><strong>Rating to 2031: Hold.</strong> Keep the NEAR you own staked. Do not add more.</p>
+  <h1>NEAR Intents' buybacks are a policy, not a rule, and this page checks them every day.</h1>
+  <p class="lede">NEAR Intents is a real business: users paid <span data-n="n2.fees_usd_per_day">$206,049</span> a day in fees in
+    October (DefiLlama), and part of that buys NEAR. <strong>On chain, the buyback wallets kept NEAR worth
+    <span data-n="iv.cents_per_new_dollar">11 cents</span> for every dollar of new NEAR issued that month.</strong></p>
+  <p class="lede">So far they have kept it: <span data-n="f2.wallets_kept_share_of_revenue.2026-04_2026-10">96.9%</span> of NEAR
+    Intents' revenue since April stayed in its wallets. But nothing makes them: one or two signers can move each wallet's NEAR
+    (the buybacks wallets, <span data-n="c.buybacks_confirmations">2 of 4</span>), and none of it is burned or locked. Every other
+    money lever we mapped on chain also moves with one to three signers; only issuance needs validators with
+    <span data-n="c.issuance_upgrade_stake_threshold">4/5</span> of the stake.</p>
+  <p class="verdict"><strong>Rating to 2031: Hold.</strong> Stay staked: stakers receive the new NEAR, minus the treasury's
+    <span data-n="c.treasury_share_of_new_supply">10.1%</span> and their validator's commission; unstaked NEAR receives none.
+    Don't add: what reaches holders is small, and no rule fixes it.</p>
   <ul class="triggers">
-    <li><b>Why not add, first.</b> Holders' revenue, by DefiLlama's count, is <span data-n="peer.near.holders_yield_on_mcap">0.40%</span> of
-      NEAR's value a year. Hyperliquid's is <span data-n="peer.hyperliquid.holders_yield_on_mcap">4.09%</span> of its circulating value and
-      <span data-n="peer.hyperliquid.holders_yield_on_fdv">1.03%</span> of its fully diluted value.</li>
-    <li><b>Why not add, second.</b> A House of Stake draft of 8 November would put a share of NEAR Intents' fees in US Treasury bills.
-      Holders would vote on buybacks or dividends only after venture exits.</li>
-    <li><b>Buy</b> needs the buybacks in a lock that the chain shows cannot send NEAR out, plus either
-      <span data-n="iv.wallets_multiple_buybacks">×9.2</span> today's pace, or growth of
-      <span data-n="lr.required_growth.buybacks.A.2031">+75%</span> a year.</li>
-    <li><b>Avoid</b> comes at once if the bought NEAR falls more than a tenth below its peak. From the eleventh of December at the earliest, two failing thirty-day
-      windows can also give Avoid.</li>
+    <li><b>Avoid</b>, at once, if the NEAR in the buyback wallets ends a day more than a tenth below its peak since the first of
+      November (moving it to staking counts as a fall). The test below runs live, from your browser.</li>
+    <li><b>Buy</b> needs a lock the chain shows sealed (we tested that check on testnet), a treasury with no new payment requests in
+      the window, and buybacks that cover all new NEAR — <span data-n="iv.wallets_multiple_buybacks">×9.2</span> what they keep
+      today — or grow by <span data-n="lr.required_growth.buybacks.A.2031">+75%</span> a year.</li>
   </ul>
-  <p class="watch"><strong>What to watch from Monday, 16 November:</strong> the bought NEAR, every day · whether the draft gets a
-    number and a vote · HSP-029 leaving its timelock (<span data-n="f8.timelock_end_utc">2026-11-16 16:48 UTC</span>). It cuts issuance only once
-    validators with 4/5 of stake run a release.</p>
+  <p class="watch"><strong>Next dated checks:</strong> 16 November, when HSP-029 leaves its timelock
+    (<span data-n="f8.timelock_end_utc">2026-11-16 16:48 UTC</span>); it cuts issuance only once validators with
+    <span data-n="c.issuance_upgrade_stake_threshold">4/5</span> of stake run a release. Then 9 December, when a prediction on what
+    the buybacks keep is scored.</p>
   <p class="watch" id="drain"><strong>The drain test, live from the chain:</strong> <span class="res">asking a public NEAR RPC from
     your browser…</span></p>
   <div class="tiles">
-    <div class="tile"><span class="tile-k">Who can move the bought NEAR</span>
-      <span class="tile-v" data-n="c.buybacks_confirmations">2 of 4</span>
-      <span class="tile-s">signatures move the buybacks wallets' <span data-n="n1.buybacks_held_near">2,145,248</span> NEAR; nothing is
-        burned</span></div>
     <div class="tile"><span class="tile-k">Kept per dollar of new NEAR</span>
       <span class="tile-v" data-n="iv.cents_per_new_dollar">11 cents</span>
-      <span class="tile-s"><span data-n="n1.coverage_buybacks">10.8%</span> of new NEAR kept by the buybacks wallets in the window ·
-        <span data-n="n1.coverage_with_front_end">16.5%</span> with the front-end fund</span></div>
-    <div class="tile"><span class="tile-k">Holders' revenue ÷ market cap, a year</span>
-      <span class="tile-v" data-n="peer.near.holders_yield_on_mcap">0.40%</span>
-      <span class="tile-s">NEAR Intents, by DefiLlama's count · Hyperliquid <span data-n="peer.hyperliquid.holders_yield_on_mcap">4.09%</span>
-        (<span data-n="peer.hyperliquid.holders_yield_on_fdv">1.03%</span> fully diluted) ·
-        Jupiter <span data-n="peer.jupiter.holders_yield_on_mcap">2.10%</span></span></div>
+      <span class="tile-s"><span data-n="n1.coverage_buybacks">10.8%</span> of the new NEAR, kept by the buybacks wallets in the
+        window</span></div>
+    <div class="tile"><span class="tile-k">Revenue that stayed in the wallets since April</span>
+      <span class="tile-v" data-n="f2.wallets_kept_share_of_revenue.2026-04_2026-10">96.9%</span>
+      <span class="tile-s">the policy has been kept; no code burns or locks any of it</span></div>
+    <div class="tile"><span class="tile-k">Signers who can move the bought NEAR</span>
+      <span class="tile-v" data-n="c.buybacks_confirmations">2 of 4</span>
+      <span class="tile-s">they hold <span data-n="n1.buybacks_held_near">2,145,248</span> NEAR; the front-end fund moves with
+        <span data-n="c.front_end_transfer">2 of 5</span></span></div>
   </div>
-  <p class="jump"><a href="#p3b">Re-run it with your own numbers ↓</a> · <a href="#p0p">The same rules on four other protocols ↓</a></p>
+  <p class="jump"><a href="#pL">Every lever, and who moves it ↓</a> · <a href="#p3b">Re-run it with your own numbers ↓</a> ·
+    <a href="#p0p">The same rules on four other protocols ↓</a></p>
   <p class="status" id="status"></p>
   <nav class="links"><a href="../README.md">README</a><a href="../THESIS.md">THESIS</a><a href="../PREREG.md">PREREG</a><a href="https://github.com/nikolaskahris-png/near-thesis-data">Repository</a></nav>
 </header>
 
 <main class="wrap">
+<section id="pL">
+  <h2>Every lever, and the signatures that move it</h2>
+  <p class="what">One picture of the whole path: users' fees reach NEAR Intents, then the three revenue wallets, and stop
+    there; below it, new NEAR reaches the treasury and the stakers. The colour says how many signatures move each link
+    (<code>data/control_map.json</code>). <span class="not">It does not show why a link is set the way it is.</span>
+    On a phone the picture scrolls sideways.</p>
+  <p class="figwrap"><img class="fig" src="../docs/levers.svg" alt="Flow from left to right. Fees users pay, set off chain, go
+    to NEAR Intents, whose protocol fee a DAO changes with three of five signers, then to the buybacks wallets, the 1Click fee
+    fund and the front-end fund, each moved by two signers, and there the flow stops: no lock and no burn. Below, new NEAR is
+    issued under a protocol rule that needs four fifths of the stake to change, the treasury takes a tenth with two signers,
+    and stakers receive the rest."></p>
+</section>
+
 <section id="p1">
   <h2>Who can change each link from the fee a user pays to the NEAR a holder keeps</h2>
-  <p class="what">Each card is one link: its value at the locked end block, who signs to change it, and how often they have.
+  <p class="what">The same links as the picture above, card by card: each one's value at the locked end block, who signs to
+    change it, and how often they have.
     <span class="not">It does not show why a link is set the way it is.</span></p>
   <div class="map">
     <div class="lane"><h3>Fees → holders</h3>
@@ -73,7 +86,7 @@
       <div class="card end"><b>NEAR holders</b><span>coverage <span data-n="n1.coverage_buybacks">10.8%</span> of issuance</span></div>
     </div>
     <div class="lane"><h3>Issuance → stakers</h3>
-      <div class="card rule"><b>Issuance</b><span>at most <span data-n="c.issuance_max_inflation_rate">1/40</span> a year · a protocol rule</span><span class="who">changed by <span data-n="c.issuance_upgrade_stake_threshold">4/5</span> of stake: at least <span data-n="c.issuance_validators_to_pass_upgrade">44</span> of <span data-n="c.issuance_validators">381</span> validators</span></div>
+      <div class="card rule"><b>Issuance</b><span>at most <span data-n="c.issuance_max_inflation_rate">1/40</span> a year · a protocol rule</span><span class="who">changed by block producers with <span data-n="c.issuance_upgrade_stake_threshold">4/5</span> of their stake</span></div>
       <div class="arrow" aria-hidden="true">↓</div>
       <div class="card"><b><code>treasury.near</code></b><span>paid out <span data-n="ts.year_out_near">30,171,200</span> NEAR in this year</span><span class="who">multisig <span data-n="c.treasury_confirmations">2 of 4</span></span></div>
       <div class="card" data-live="pool"><b>NEAR AI pool rewards</b><span>the pool keeps <span data-n="c.nearai_pool_reward_fee">100%</span> of rewards</span><span class="who">owner DAO <span data-n="c.nearai_pool_owner_transfer">2 of 3</span></span></div>
@@ -255,6 +268,9 @@
     largest first; the first <span data-n="f8.fewest_voters_reaching_quorum">6</span> reach the quorum.
     <span class="not">It does not show which release each validator runs before it signals.</span></p>
   <div class="pair"><div class="chart" id="c6a"></div><div class="chart" id="c6b"></div></div>
+  <p class="foot"><b>To watch.</b> A House of Stake draft of 8 November would put a share of NEAR Intents' fees in US Treasury
+    bills, and holders would vote on buybacks or dividends only after venture exits. It is a draft: no number, no vote, nothing
+    on chain. It is a reason not to add to a position, not a reason to sell one.</p>
   <div class="meta" data-meta="p6"></div>
 </section>
 

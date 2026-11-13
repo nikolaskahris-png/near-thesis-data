@@ -28,7 +28,7 @@ The rating turns to **Buy** only when a published rule sends the buybacks to a l
 - Not a buybacks link, but the same way of setting things: one account raised the NEAR AI credits rate <!--n:f6.change1.ratio-->×2.0<!--/n--> on <!--n:f6.change1.utc-->2026-09-29 14:21 UTC<!--/n-->, with no proposal of the owner's DAO.
 - HSP-029, the issuance cut, passed with <!--n:f8.approval_share-->100.0%<!--/n--> of the veNEAR (locked NEAR's voting weight) cast for or against (<!--n:f8.abstain_votes-->3<!--/n--> voters abstained), on a turnout of <!--n:f8.turnout_of_snapshot-->62.3%<!--/n-->; as stake-weighted votes allow, <!--n:f8.fewest_voters_reaching_quorum-->6<!--/n--> of its <!--n:f8.voters-->36<!--/n--> voters held enough veNEAR to reach the quorum alone. The vote executes nothing on chain; it takes effect when validators run a release that includes it, the same step that protects issuance.
 
-Issuance, by contrast, is code: at most <!--n:c.issuance_max_inflation_rate-->1/40<!--/n--> a year, changed only by a release run by <!--n:c.issuance_upgrade_stake_threshold-->4/5<!--/n--> of stake (at least <!--n:c.issuance_validators_to_pass_upgrade-->44<!--/n--> of <!--n:c.issuance_validators-->381<!--/n--> validators), as the halving upgrade was.
+Issuance, by contrast, is code: at most <!--n:c.issuance_max_inflation_rate-->1/40<!--/n--> a year, changed only by a release run by block producers with more than <!--n:c.issuance_upgrade_stake_threshold-->4/5<!--/n--> of their stake, as the halving upgrade was.
 
 ## Evidence against
 

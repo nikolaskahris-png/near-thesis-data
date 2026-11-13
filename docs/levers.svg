@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="712" viewBox="0 0 1400 712" role="img" aria-labelledby="ttl desc">
+<title id="ttl">Who holds each lever, from the fee a user pays to the NEAR a holder keeps</title>
+<desc id="desc">Two flows read on chain. Above: users’ fees reach NEAR Intents, then three revenue wallets, and stop there — no lock, no burn, and each of those wallets moves with two signers. Below: new NEAR is issued under a protocol rule that only validators with four fifths of the stake can change; the treasury takes its share with two signers, and stakers receive the rest.</desc>
+<style>
+svg{--bg:#ffffff;--ink:#1f2328;--mute:#59636e;--card:#f7f7f5;--line:#d8d8d2;--few:#c2410c;--rule:#15803d;--fewbg:#fdf0e8;--rulebg:#eaf6ee}
+@media (prefers-color-scheme:dark){svg{--bg:#0d1117;--ink:#e6edf3;--mute:#9198a1;--card:#161b22;--line:#30363d;--few:#f0834c;--rule:#4ac07c;--fewbg:#231611;--rulebg:#102018}}
+text{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;fill:var(--ink)}
+.bg{fill:var(--bg)}
+.h{font-size:27px;font-weight:700}.sub{font-size:18px;fill:var(--mute)}
+.rowh{font-size:16px;font-weight:700;fill:var(--mute);letter-spacing:.06em}
+.bx{fill:var(--card);stroke:var(--line);stroke-width:1.5}
+.bx.few{fill:var(--fewbg)}.bx.rule{fill:var(--rulebg)}
+.bar.few{fill:var(--few)}.bar.rule{fill:var(--rule)}.bar.off{fill:var(--mute)}
+.t{font-size:21px;font-weight:700}.v{font-size:19px;fill:var(--ink)}
+.w{font-size:17px;font-weight:600}.w.few{fill:var(--few)}.w.rule{fill:var(--rule)}.w.off{fill:var(--mute)}
+.ar{stroke:var(--mute);stroke-width:3;fill:none}.arh{fill:var(--mute)}
+.key{font-size:17px;fill:var(--mute)}.foot{font-size:16px;fill:var(--mute)}
+</style>
+<rect class="bg" width="1400" height="712" rx="8"/>
+<text class="h" x="24" y="40">Who holds each lever</text>
+<text class="sub" x="24" y="68">Read on chain at the window’s end block. The colour says how many signatures move it.</text>
+<text class="rowh" x="24" y="104">FEES &#8594; HOLDERS</text>
+<rect class="bx off" x="24" y="217" width="250" height="134" rx="10"/>
+<rect class="bar off" x="24" y="217" width="8" height="134"/>
+<text class="t" x="46" y="251">Fees users pay</text>
+<text class="v" x="46" y="278">16.0 bps of volume</text>
+<text class="v" x="46" y="305">$206,049 a day in October</text>
+<text class="w off" x="46" y="335">set off-chain, by the apps</text>
+<rect class="bx few" x="298" y="217" width="260" height="134" rx="10"/>
+<rect class="bar few" x="298" y="217" width="8" height="134"/>
+<text class="t" x="320" y="251">NEAR Intents</text>
+<text class="v" x="320" y="278">intents.near</text>
+<text class="v" x="320" y="305">protocol fee 1 pip</text>
+<text class="w few" x="320" y="335">DAO: 3 of 5 signers</text>
+<rect class="bx few" x="590" y="116" width="360" height="104" rx="10"/>
+<rect class="bar few" x="590" y="116" width="8" height="104"/>
+<text class="t" x="612" y="150">Buybacks wallets</text>
+<text class="v" x="612" y="177">2,145,248 NEAR</text>
+<text class="w few" x="612" y="204">multisig: 2 of 4 signers</text>
+<rect class="bx few" x="590" y="232" width="360" height="104" rx="10"/>
+<rect class="bar few" x="590" y="232" width="8" height="104"/>
+<text class="t" x="612" y="266">1Click fee fund</text>
+<text class="v" x="612" y="293">holds NEAR with the buybacks stock</text>
+<text class="w few" x="612" y="320">DAO: 2 of 4 signers</text>
+<rect class="bx few" x="590" y="348" width="360" height="104" rx="10"/>
+<rect class="bar few" x="590" y="348" width="8" height="104"/>
+<text class="t" x="612" y="382">Front-end fund</text>
+<text class="v" x="612" y="409">1,963,842 NEAR</text>
+<text class="w few" x="612" y="436">send 2 of 5 · rules 1 of 5</text>
+<rect class="bx few" x="982" y="204" width="394" height="160" rx="10"/>
+<rect class="bar few" x="982" y="204" width="8" height="160"/>
+<text class="t" x="1004" y="238">No lock. No burn.</text>
+<text class="v" x="1004" y="265">The wallets kept 11 cents for every</text>
+<text class="v" x="1004" y="292">dollar of new NEAR issued;</text>
+<text class="v" x="1004" y="319">96.9% of revenue stayed in</text>
+<text class="w few" x="1004" y="348">nothing on chain requires it</text>
+<path class="ar" d="M 274 284 H 286"/><path class="arh" d="M 285 277 L 298 284 L 285 291 Z"/>
+<path class="ar" d="M 558 284 H 578"/><path class="arh" d="M 577 277 L 590 284 L 577 291 Z"/>
+<path class="ar" d="M 950 284 H 970"/><path class="arh" d="M 969 277 L 982 284 L 969 291 Z"/>
+<text class="rowh" x="24" y="500">NEW NEAR &#8594; STAKERS</text>
+<rect class="bx rule" x="24" y="516" width="250" height="134" rx="10"/>
+<rect class="bar rule" x="24" y="516" width="8" height="134"/>
+<text class="t" x="46" y="550">New NEAR issued</text>
+<text class="v" x="46" y="577">at most 1/40 a year</text>
+<text class="v" x="46" y="604">a protocol rule</text>
+<text class="w rule" x="46" y="634">4/5 of the stake</text>
+<rect class="bx rule" x="298" y="516" width="260" height="134" rx="10"/>
+<rect class="bar rule" x="298" y="516" width="8" height="134"/>
+<text class="t" x="320" y="550">Validators run it</text>
+<text class="v" x="320" y="577">44 of 381 validators</text>
+<text class="v" x="320" y="604">reach that threshold</text>
+<text class="w rule" x="320" y="634">a release, not a vote</text>
+<rect class="bx few" x="590" y="516" width="360" height="134" rx="10"/>
+<rect class="bar few" x="590" y="516" width="8" height="134"/>
+<text class="t" x="612" y="550">treasury.near</text>
+<text class="v" x="612" y="577">10.1% of the new NEAR</text>
+<text class="v" x="612" y="604">paid 30,171,200 NEAR out this year</text>
+<text class="w few" x="612" y="634">multisig: 2 of 4 signers</text>
+<rect class="bx rule" x="982" y="516" width="394" height="134" rx="10"/>
+<rect class="bar rule" x="982" y="516" width="8" height="134"/>
+<text class="t" x="1004" y="550">Stakers</text>
+<text class="v" x="1004" y="577">receive the rest, minus their</text>
+<text class="v" x="1004" y="604">validator’s commission;</text>
+<text class="v" x="1004" y="631">unstaked NEAR receives none</text>
+<path class="ar" d="M 274 583 H 286"/><path class="arh" d="M 285 576 L 298 583 L 285 590 Z"/>
+<path class="ar" d="M 558 583 H 578"/><path class="arh" d="M 577 576 L 590 583 L 577 590 Z"/>
+<path class="ar" d="M 950 583 H 970"/><path class="arh" d="M 969 576 L 982 583 L 969 590 Z"/>
+<rect class="bar few" x="24" y="670" width="8" height="18"/>
+<text class="key" x="40" y="684">moves with one to three signatures</text>
+<rect class="bar rule" x="420" y="670" width="8" height="18"/>
+<text class="key" x="436" y="684">a protocol rule, or many validators</text>
+<rect class="bar off" x="790" y="670" width="8" height="18"/>
+<text class="key" x="806" y="684">set off the chain</text>
+<text class="foot" x="1036" y="684">data/control_map.json · data/numbers.json</text>
+</svg>
