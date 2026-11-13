@@ -18,7 +18,7 @@ class BqUsage(unittest.TestCase):
     def test_every_saved_file_matches_its_sha256(self):
         _, problems, man = bq.load(REPO / "data")
         self.assertEqual(problems, [])
-        self.assertEqual(len(man["files"]), 4)
+        self.assertEqual(len(man["files"]), 5)
         for meta in man["files"].values():
             self.assertTrue((REPO / meta["query"]).exists())
 
@@ -32,6 +32,20 @@ class BqUsage(unittest.TestCase):
         doc = json.loads((REPO / "data" / bq.OUT).read_text(encoding="utf-8"))
         for per in ("october", "november"):
             self.assertAlmostEqual(sum(doc["intents_callers"][per]["share"].values()), 1.0, places=5)
+
+    def test_paths_add_up_and_relay_is_signed_by_intents(self):
+        doc = json.loads((REPO / "data" / bq.OUT).read_text(encoding="utf-8"))
+        for per in ("october", "november"):
+            p = doc["intents_call_paths"][per]
+            self.assertEqual(sum(v["calls"] for v in p["by_path"].values()), doc["intents_callers"][per]["calls"])
+            self.assertEqual(p["by_path"]["relay"]["calls"] + p["by_path"]["callback"]["calls"],
+                             doc["intents_call_outcomes"][per]["by_kind"]["intents_itself"]["calls"])
+            self.assertEqual(p["by_path"]["relay"]["methods"], ["execute_intents"])
+            self.assertLess(abs(p["signed_calls"] / p["q1_txns_to_intents"] - 1), 0.001)
+        keys = json.loads((REPO / "data/raw/control/keys_intents.near.json").read_text(encoding="utf-8"))["result"]["keys"]
+        for k in keys:   # the relay path: intents.near can sign only execute_intents on itself
+            fc = k["access_key"]["permission"]["FunctionCall"]
+            self.assertEqual((fc["receiver_id"], fc["method_names"]), ("intents.near", ["execute_intents"]))
 
     def test_kinds(self):
         self.assertEqual(bq.kind("intents.near"), "intents_itself")

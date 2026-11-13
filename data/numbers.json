@@ -11,7 +11,7 @@
   "provisional_or_pending": [],
   "sources": {
     "data/backtest.json": "917fa7700606458e850bb7346700257564f9fc591e1555b907a11ee2848a6495",
-    "data/bq_usage.json": "5b8ea775851155a14230001dbfd4dec834f1157c93c8a01b421e67a5e7708d67",
+    "data/bq_usage.json": "7c3a58cad8b956fac7ec29c2d87cd71b778f1bc801187804b9c0e0cf3cbbe105",
     "data/burn.json": "d301a278701801757b4c9582f61b4f9546327f0dd1dfaed0a3a143b0c407f0fd",
     "data/confidential_treasury.json": "e1f49bf6f70a7a9e808c58bbcfef4dea187278480ba7603fd41459a55887a6e1",
     "data/control_history.json": "7cab767c832b77a597a18d90dc1d0b5b2113e76b050624456522585a9fcc9190",
@@ -572,6 +572,447 @@
       "text": "0.003%",
       "source": "data/bq_usage.json",
       "unit": "share"
+    },
+    "bq.paths.november.callback.calls": {
+      "value": "335422",
+      "text": "335,422",
+      "source": "data/bq_usage.json",
+      "unit": "calls",
+      "note": "calls to intents.near on path callback (query 5)"
+    },
+    "bq.paths.november.callback.failed": {
+      "value": "0",
+      "text": "0",
+      "source": "data/bq_usage.json",
+      "unit": "calls",
+      "note": "calls on path callback whose execution outcome is FAILURE (query 5)"
+    },
+    "bq.paths.november.callback.failed_share": {
+      "value": "0.0",
+      "text": "0.0%",
+      "source": "data/bq_usage.json",
+      "unit": "share",
+      "note": "share of path callback's calls that failed"
+    },
+    "bq.paths.november.callback.ok_a_day": {
+      "value": "30492.909091",
+      "text": "30,493",
+      "source": "data/bq_usage.json",
+      "unit": "calls a day",
+      "note": "successful calls a day on path callback"
+    },
+    "bq.paths.november.callback.share": {
+      "value": "0.168376",
+      "text": "17%",
+      "source": "data/bq_usage.json",
+      "unit": "share",
+      "note": "share of all calls to intents.near, path callback"
+    },
+    "bq.paths.november.calls": {
+      "value": "1992103",
+      "text": "1,992,103",
+      "source": "data/bq_usage.json",
+      "unit": "calls",
+      "note": "calls to intents.near (query 5)"
+    },
+    "bq.paths.november.near_ai_escrow.calls": {
+      "value": "179667",
+      "text": "179,667",
+      "source": "data/bq_usage.json",
+      "unit": "calls",
+      "note": "calls to intents.near on path near_ai_escrow (query 5)"
+    },
+    "bq.paths.november.near_ai_escrow.failed": {
+      "value": "179667",
+      "text": "179,667",
+      "source": "data/bq_usage.json",
+      "unit": "calls",
+      "note": "calls on path near_ai_escrow whose execution outcome is FAILURE (query 5)"
+    },
+    "bq.paths.november.near_ai_escrow.failed_share": {
+      "value": "1.0",
+      "text": "100.0%",
+      "source": "data/bq_usage.json",
+      "unit": "share",
+      "note": "share of path near_ai_escrow's calls that failed"
+    },
+    "bq.paths.november.near_ai_escrow.ok_a_day": {
+      "value": "0.0",
+      "text": "0",
+      "source": "data/bq_usage.json",
+      "unit": "calls a day",
+      "note": "successful calls a day on path near_ai_escrow"
+    },
+    "bq.paths.november.near_ai_escrow.share": {
+      "value": "0.09019",
+      "text": "9%",
+      "source": "data/bq_usage.json",
+      "unit": "share",
+      "note": "share of all calls to intents.near, path near_ai_escrow"
+    },
+    "bq.paths.november.of_not_callback.near_ai_escrow": {
+      "value": "0.10845",
+      "text": "11%",
+      "source": "data/bq_usage.json",
+      "unit": "share",
+      "note": "share of the calls that are not the contract's own callbacks"
+    },
+    "bq.paths.november.of_not_callback.other_contract": {
+      "value": "0.183618",
+      "text": "18%",
+      "source": "data/bq_usage.json",
+      "unit": "share",
+      "note": "share of the calls that are not the contract's own callbacks"
+    },
+    "bq.paths.november.of_not_callback.other_signed_tx": {
+      "value": "0.015229",
+      "text": "2%",
+      "source": "data/bq_usage.json",
+      "unit": "share",
+      "note": "share of the calls that are not the contract's own callbacks"
+    },
+    "bq.paths.november.of_not_callback.relay": {
+      "value": "0.692703",
+      "text": "69%",
+      "source": "data/bq_usage.json",
+      "unit": "share",
+      "note": "share of the calls that are not the contract's own callbacks"
+    },
+    "bq.paths.november.ok_not_callback_a_day": {
+      "value": "133168.636364",
+      "text": "133,169",
+      "source": "data/bq_usage.json",
+      "unit": "calls a day",
+      "note": "successful calls to intents.near a day, its own callbacks left out (query 5)"
+    },
+    "bq.paths.november.other_contract.calls": {
+      "value": "304196",
+      "text": "304,196",
+      "source": "data/bq_usage.json",
+      "unit": "calls",
+      "note": "calls to intents.near on path other_contract (query 5)"
+    },
+    "bq.paths.november.other_contract.failed": {
+      "value": "11",
+      "text": "11",
+      "source": "data/bq_usage.json",
+      "unit": "calls",
+      "note": "calls on path other_contract whose execution outcome is FAILURE (query 5)"
+    },
+    "bq.paths.november.other_contract.failed_share": {
+      "value": "0.000036",
+      "text": "0.0%",
+      "source": "data/bq_usage.json",
+      "unit": "share",
+      "note": "share of path other_contract's calls that failed"
+    },
+    "bq.paths.november.other_contract.ok_a_day": {
+      "value": "27653.181818",
+      "text": "27,653",
+      "source": "data/bq_usage.json",
+      "unit": "calls a day",
+      "note": "successful calls a day on path other_contract"
+    },
+    "bq.paths.november.other_contract.share": {
+      "value": "0.152701",
+      "text": "15%",
+      "source": "data/bq_usage.json",
+      "unit": "share",
+      "note": "share of all calls to intents.near, path other_contract"
+    },
+    "bq.paths.november.other_signed_tx.calls": {
+      "value": "25230",
+      "text": "25,230",
+      "source": "data/bq_usage.json",
+      "unit": "calls",
+      "note": "calls to intents.near on path other_signed_tx (query 5)"
+    },
+    "bq.paths.november.other_signed_tx.failed": {
+      "value": "500",
+      "text": "500",
+      "source": "data/bq_usage.json",
+      "unit": "calls",
+      "note": "calls on path other_signed_tx whose execution outcome is FAILURE (query 5)"
+    },
+    "bq.paths.november.other_signed_tx.failed_share": {
+      "value": "0.019818",
+      "text": "2.0%",
+      "source": "data/bq_usage.json",
+      "unit": "share",
+      "note": "share of path other_signed_tx's calls that failed"
+    },
+    "bq.paths.november.other_signed_tx.ok_a_day": {
+      "value": "2248.181818",
+      "text": "2,248",
+      "source": "data/bq_usage.json",
+      "unit": "calls a day",
+      "note": "successful calls a day on path other_signed_tx"
+    },
+    "bq.paths.november.other_signed_tx.share": {
+      "value": "0.012665",
+      "text": "1%",
+      "source": "data/bq_usage.json",
+      "unit": "share",
+      "note": "share of all calls to intents.near, path other_signed_tx"
+    },
+    "bq.paths.november.relay.calls": {
+      "value": "1147588",
+      "text": "1,147,588",
+      "source": "data/bq_usage.json",
+      "unit": "calls",
+      "note": "calls to intents.near on path relay (query 5)"
+    },
+    "bq.paths.november.relay.failed": {
+      "value": "11648",
+      "text": "11,648",
+      "source": "data/bq_usage.json",
+      "unit": "calls",
+      "note": "calls on path relay whose execution outcome is FAILURE (query 5)"
+    },
+    "bq.paths.november.relay.failed_share": {
+      "value": "0.01015",
+      "text": "1.0%",
+      "source": "data/bq_usage.json",
+      "unit": "share",
+      "note": "share of path relay's calls that failed"
+    },
+    "bq.paths.november.relay.ok_a_day": {
+      "value": "103267.272727",
+      "text": "103,267",
+      "source": "data/bq_usage.json",
+      "unit": "calls a day",
+      "note": "successful calls a day on path relay"
+    },
+    "bq.paths.november.relay.share": {
+      "value": "0.576069",
+      "text": "58%",
+      "source": "data/bq_usage.json",
+      "unit": "share",
+      "note": "share of all calls to intents.near, path relay"
+    },
+    "bq.paths.october.callback.calls": {
+      "value": "817947",
+      "text": "817,947",
+      "source": "data/bq_usage.json",
+      "unit": "calls",
+      "note": "calls to intents.near on path callback (query 5)"
+    },
+    "bq.paths.october.callback.failed": {
+      "value": "4",
+      "text": "4",
+      "source": "data/bq_usage.json",
+      "unit": "calls",
+      "note": "calls on path callback whose execution outcome is FAILURE (query 5)"
+    },
+    "bq.paths.october.callback.failed_share": {
+      "value": "0.000005",
+      "text": "0.0%",
+      "source": "data/bq_usage.json",
+      "unit": "share",
+      "note": "share of path callback's calls that failed"
+    },
+    "bq.paths.october.callback.ok_a_day": {
+      "value": "27264.766667",
+      "text": "27,265",
+      "source": "data/bq_usage.json",
+      "unit": "calls a day",
+      "note": "successful calls a day on path callback"
+    },
+    "bq.paths.october.callback.share": {
+      "value": "0.232693",
+      "text": "23%",
+      "source": "data/bq_usage.json",
+      "unit": "share",
+      "note": "share of all calls to intents.near, path callback"
+    },
+    "bq.paths.october.calls": {
+      "value": "3515141",
+      "text": "3,515,141",
+      "source": "data/bq_usage.json",
+      "unit": "calls",
+      "note": "calls to intents.near (query 5)"
+    },
+    "bq.paths.october.near_ai_escrow.calls": {
+      "value": "496807",
+      "text": "496,807",
+      "source": "data/bq_usage.json",
+      "unit": "calls",
+      "note": "calls to intents.near on path near_ai_escrow (query 5)"
+    },
+    "bq.paths.october.near_ai_escrow.failed": {
+      "value": "496805",
+      "text": "496,805",
+      "source": "data/bq_usage.json",
+      "unit": "calls",
+      "note": "calls on path near_ai_escrow whose execution outcome is FAILURE (query 5)"
+    },
+    "bq.paths.october.near_ai_escrow.failed_share": {
+      "value": "0.999996",
+      "text": "100.0%",
+      "source": "data/bq_usage.json",
+      "unit": "share",
+      "note": "share of path near_ai_escrow's calls that failed"
+    },
+    "bq.paths.october.near_ai_escrow.ok_a_day": {
+      "value": "0.066667",
+      "text": "0",
+      "source": "data/bq_usage.json",
+      "unit": "calls a day",
+      "note": "successful calls a day on path near_ai_escrow"
+    },
+    "bq.paths.october.near_ai_escrow.share": {
+      "value": "0.141333",
+      "text": "14%",
+      "source": "data/bq_usage.json",
+      "unit": "share",
+      "note": "share of all calls to intents.near, path near_ai_escrow"
+    },
+    "bq.paths.october.of_not_callback.near_ai_escrow": {
+      "value": "0.184194",
+      "text": "18%",
+      "source": "data/bq_usage.json",
+      "unit": "share",
+      "note": "share of the calls that are not the contract's own callbacks"
+    },
+    "bq.paths.october.of_not_callback.other_contract": {
+      "value": "0.273292",
+      "text": "27%",
+      "source": "data/bq_usage.json",
+      "unit": "share",
+      "note": "share of the calls that are not the contract's own callbacks"
+    },
+    "bq.paths.october.of_not_callback.other_signed_tx": {
+      "value": "0.021132",
+      "text": "2%",
+      "source": "data/bq_usage.json",
+      "unit": "share",
+      "note": "share of the calls that are not the contract's own callbacks"
+    },
+    "bq.paths.october.of_not_callback.relay": {
+      "value": "0.521382",
+      "text": "52%",
+      "source": "data/bq_usage.json",
+      "unit": "share",
+      "note": "share of the calls that are not the contract's own callbacks"
+    },
+    "bq.paths.october.ok_not_callback_a_day": {
+      "value": "72379.933333",
+      "text": "72,380",
+      "source": "data/bq_usage.json",
+      "unit": "calls a day",
+      "note": "successful calls to intents.near a day, its own callbacks left out (query 5)"
+    },
+    "bq.paths.october.other_contract.calls": {
+      "value": "737121",
+      "text": "737,121",
+      "source": "data/bq_usage.json",
+      "unit": "calls",
+      "note": "calls to intents.near on path other_contract (query 5)"
+    },
+    "bq.paths.october.other_contract.failed": {
+      "value": "48",
+      "text": "48",
+      "source": "data/bq_usage.json",
+      "unit": "calls",
+      "note": "calls on path other_contract whose execution outcome is FAILURE (query 5)"
+    },
+    "bq.paths.october.other_contract.failed_share": {
+      "value": "0.000065",
+      "text": "0.0%",
+      "source": "data/bq_usage.json",
+      "unit": "share",
+      "note": "share of path other_contract's calls that failed"
+    },
+    "bq.paths.october.other_contract.ok_a_day": {
+      "value": "24569.1",
+      "text": "24,569",
+      "source": "data/bq_usage.json",
+      "unit": "calls a day",
+      "note": "successful calls a day on path other_contract"
+    },
+    "bq.paths.october.other_contract.share": {
+      "value": "0.209699",
+      "text": "21%",
+      "source": "data/bq_usage.json",
+      "unit": "share",
+      "note": "share of all calls to intents.near, path other_contract"
+    },
+    "bq.paths.october.other_signed_tx.calls": {
+      "value": "56998",
+      "text": "56,998",
+      "source": "data/bq_usage.json",
+      "unit": "calls",
+      "note": "calls to intents.near on path other_signed_tx (query 5)"
+    },
+    "bq.paths.october.other_signed_tx.failed": {
+      "value": "212",
+      "text": "212",
+      "source": "data/bq_usage.json",
+      "unit": "calls",
+      "note": "calls on path other_signed_tx whose execution outcome is FAILURE (query 5)"
+    },
+    "bq.paths.october.other_signed_tx.failed_share": {
+      "value": "0.003719",
+      "text": "0.4%",
+      "source": "data/bq_usage.json",
+      "unit": "share",
+      "note": "share of path other_signed_tx's calls that failed"
+    },
+    "bq.paths.october.other_signed_tx.ok_a_day": {
+      "value": "1892.866667",
+      "text": "1,893",
+      "source": "data/bq_usage.json",
+      "unit": "calls a day",
+      "note": "successful calls a day on path other_signed_tx"
+    },
+    "bq.paths.october.other_signed_tx.share": {
+      "value": "0.016215",
+      "text": "2%",
+      "source": "data/bq_usage.json",
+      "unit": "share",
+      "note": "share of all calls to intents.near, path other_signed_tx"
+    },
+    "bq.paths.october.relay.calls": {
+      "value": "1406268",
+      "text": "1,406,268",
+      "source": "data/bq_usage.json",
+      "unit": "calls",
+      "note": "calls to intents.near on path relay (query 5)"
+    },
+    "bq.paths.october.relay.failed": {
+      "value": "28731",
+      "text": "28,731",
+      "source": "data/bq_usage.json",
+      "unit": "calls",
+      "note": "calls on path relay whose execution outcome is FAILURE (query 5)"
+    },
+    "bq.paths.october.relay.failed_share": {
+      "value": "0.020431",
+      "text": "2.0%",
+      "source": "data/bq_usage.json",
+      "unit": "share",
+      "note": "share of path relay's calls that failed"
+    },
+    "bq.paths.october.relay.ok_a_day": {
+      "value": "45917.9",
+      "text": "45,918",
+      "source": "data/bq_usage.json",
+      "unit": "calls a day",
+      "note": "successful calls a day on path relay"
+    },
+    "bq.paths.october.relay.share": {
+      "value": "0.40006",
+      "text": "40%",
+      "source": "data/bq_usage.json",
+      "unit": "share",
+      "note": "share of all calls to intents.near, path relay"
+    },
+    "bq.paths.relay_ok_a_day_change": {
+      "value": "1.248955",
+      "text": "125%",
+      "source": "data/bq_usage.json",
+      "unit": "share",
+      "note": "successful relayed intents a day, 1-11 November against 2-31 October 2026"
     },
     "bq.signers.change": {
       "value": "-0.701861",

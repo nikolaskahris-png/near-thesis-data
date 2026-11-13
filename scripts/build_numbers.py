@@ -1582,7 +1582,7 @@ def build(data_dir, window_file):
         n.add("u.lead.min_p", mp, f"{rnd(mp, 2)}", usrc, note="smallest circular-shift p of the six tests")
         n.add("u.lead.weeks", ud["weeks"][1], str(ud["weeks"][1]), usrc)
 
-    # ---- claim E, second source: NEAR's public BigQuery dataset (bq_usage.py, three saved queries)
+    # ---- claim E, second source: NEAR's public BigQuery dataset (bq_usage.py, five saved queries)
     bpath = data_dir / "bq_usage.json"
     if bpath.exists():
         bd = json.loads(bpath.read_text(encoding="utf-8"))
@@ -1637,6 +1637,34 @@ def build(data_dir, window_file):
             for k, v in bo[per]["ok_share_of_outside"].items():
                 v = dec(v)
                 n.add(f"bq.outcomes.{per}.ok_of_outside.{k}", v, f_pct(v, 0), bsrc, unit="share")
+        bp = bd["intents_call_paths"]
+        for per in ("october", "november"):
+            n.add(f"bq.paths.{per}.calls", bp[per]["calls"], f_int(bp[per]["calls"]), bsrc, unit="calls",
+                  note="calls to intents.near (query 5)")
+            for k, v in bp[per]["by_path"].items():
+                n.add(f"bq.paths.{per}.{k}.calls", v["calls"], f_int(v["calls"]), bsrc, unit="calls",
+                      note=f"calls to intents.near on path {k} (query 5)")
+                n.add(f"bq.paths.{per}.{k}.failed", v["failed"], f_int(v["failed"]), bsrc, unit="calls",
+                      note=f"calls on path {k} whose execution outcome is FAILURE (query 5)")
+                sh = dec(v["share"])
+                n.add(f"bq.paths.{per}.{k}.share", sh, f_pct(sh, 0), bsrc, unit="share",
+                      note=f"share of all calls to intents.near, path {k}")
+                fs = dec(v["failed_share"])
+                n.add(f"bq.paths.{per}.{k}.failed_share", fs, f_pct(fs, 1), bsrc, unit="share",
+                      note=f"share of path {k}'s calls that failed")
+                oa = dec(v["ok_a_day"])
+                n.add(f"bq.paths.{per}.{k}.ok_a_day", oa, f_int(oa), bsrc, unit="calls a day",
+                      note=f"successful calls a day on path {k}")
+            for k, v in bp[per]["share_of_not_callback"].items():
+                v = dec(v)
+                n.add(f"bq.paths.{per}.of_not_callback.{k}", v, f_pct(v, 0), bsrc, unit="share",
+                      note="share of the calls that are not the contract's own callbacks")
+            v = dec(bp[per]["ok_not_callback_a_day"])
+            n.add(f"bq.paths.{per}.ok_not_callback_a_day", v, f_int(v), bsrc, unit="calls a day",
+                  note="successful calls to intents.near a day, its own callbacks left out (query 5)")
+        v = dec(bp["relay_ok_a_day_change"])
+        n.add("bq.paths.relay_ok_a_day_change", v, f_pct(v, 0), bsrc, unit="share",
+              note="successful relayed intents a day, 1-11 November against 2-31 October 2026")
         n.add("bq.callers.accounts_total", bc["accounts_total"], f_int(bc["accounts_total"]), bsrc, unit="accounts",
               note="accounts that called intents.near, 2 October to 11 November 2026")
         bl = bd["lead"]

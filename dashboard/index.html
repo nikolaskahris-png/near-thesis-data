@@ -146,18 +146,19 @@
     in the month before swaps began to settle privately, <span data-n="u.visible.after_private">28%</span> in the thirteen days after,
     <span data-n="u.visible.week_85">12%</span> in the first week of November, as swaps moved to the private path.</p>
   <h3>Who calls NEAR Intents' contract (BigQuery, October)</h3>
-  <p class="src">The contract's calls to itself, <span data-n="bq.callers.october.intents_itself">63%</span> of all, are left out.</p>
+  <p class="src"><span data-n="bq.paths.october.calls">3,515,141</span> calls to <code>intents.near</code>, by path.</p>
   <div class="tablewrap" id="callers-tbl"><table>
-    <thead><tr><th>Caller of <code>intents.near</code></th><th>Share of <span data-n="bq.callers.october.outside_calls">1,290,926</span> calls from other accounts</th><th>Failed</th></tr></thead>
+    <thead><tr><th>Path</th><th>Share of calls</th><th>Failed</th></tr></thead>
     <tbody>
-      <tr><td>Token contracts (bridged <code>*.omft.near</code> tokens, native USDC, <code>wrap.near</code> and others)</td><td><span data-n="bq.callers.october.of_outside.token_contracts">54%</span></td><td><span data-n="bq.outcomes.october.token_contracts.failed_share">0.003%</span></td></tr>
-      <tr class="us"><td><code>escrow.ai.near</code>, the NEAR AI Agent Market's escrow</td><td><span data-n="bq.callers.october.of_outside.near_ai_escrow">38%</span></td><td><span data-n="bq.outcomes.october.near_ai_escrow.failed">496,805</span> of <span data-n="bq.outcomes.october.near_ai_escrow.calls">496,807</span></td></tr>
-      <tr><td>Everyone else</td><td><span data-n="bq.callers.october.of_outside.everyone_else">8%</span></td><td><span data-n="bq.outcomes.october.everyone_else.failed_share">0.236%</span></td></tr>
+      <tr class="us"><td>Relayed intents: <code>execute_intents</code> signed by <code>intents.near</code>'s own function-call keys, carrying users' and solvers' signed intents</td><td><span data-n="bq.paths.october.relay.share">40%</span></td><td><span data-n="bq.paths.october.relay.failed">28,731</span></td></tr>
+      <tr><td>The contract's own callbacks (withdrawals, storage deposits)</td><td><span data-n="bq.paths.october.callback.share">23%</span></td><td><span data-n="bq.paths.october.callback.failed">4</span></td></tr>
+      <tr><td>Other contracts, mostly token deposits (bridged <code>*.omft.near</code> tokens, native USDC, <code>wrap.near</code> and others)</td><td><span data-n="bq.paths.october.other_contract.share">21%</span></td><td><span data-n="bq.paths.october.other_contract.failed">48</span></td></tr>
+      <tr><td><code>escrow.ai.near</code>, the NEAR AI Agent Market's escrow, calling <code>execute_intents</code> itself</td><td><span data-n="bq.paths.october.near_ai_escrow.share">14%</span></td><td><span data-n="bq.paths.october.near_ai_escrow.failed">496,805</span> of <span data-n="bq.paths.october.near_ai_escrow.calls">496,807</span></td></tr>
+      <tr><td>Transactions other accounts sign to it</td><td><span data-n="bq.paths.october.other_signed_tx.share">2%</span></td><td><span data-n="bq.paths.october.other_signed_tx.failed">212</span></td></tr>
     </tbody></table></div>
-  <p class="src">The largest caller, the NEAR AI Agent Market's escrow, fails almost every call, about <span data-n="bq.callers.october.escrow_a_day">16,560</span>
-    a day: a call failing over and over, not AI agents using NEAR Intents. Successful calls from other accounts:
-    <span data-n="bq.outcomes.october.ok_outside_a_day">26,462</span> a day in October, <span data-n="bq.outcomes.october.ok_of_outside.token_contracts">87%</span>
-    of them from token contracts. With this on-chain activity in place of DefiLlama's volume, still no lead
+  <p class="src">Successful relayed intents, the path swaps settle on: <span data-n="bq.paths.october.relay.ok_a_day">45,918</span> a day in October,
+    <span data-n="bq.paths.november.relay.ok_a_day">103,267</span> in the first eleven days of November. The escrow's own calls fail almost every time; whether the Agent Market's
+    payments settle inside relayed intents is not separated here. With this on-chain activity in place of DefiLlama's volume, still no lead
     (smallest p <span data-n="bq.lead.min_p">0.17</span>). <span class="not">Calls, not dollars.</span> Queries: <code>sql/</code>.</p>
 </section>
 

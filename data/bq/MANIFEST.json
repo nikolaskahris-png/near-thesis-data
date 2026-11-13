@@ -1,7 +1,7 @@
 {
  "dataset": "bigquery-public-data.crypto_near_mainnet_us (NEAR's public BigQuery dataset, NEAR Public Lakehouse silver tables)",
- "run_utc": "2026-11-12, between 22:00 and 22:15 UTC (queries 1-3) and about 22:45 UTC (query 4)",
- "how": "each query was run once in the BigQuery console (sandbox, no billing); the result's JSON view was turned into CSV in the browser, its SHA-256 taken there, and the file written here and checked against that SHA-256",
+ "run_utc": "2026-11-12, between 22:00 and 22:15 UTC (queries 1-3), about 22:45 UTC (query 4) and 23:29 UTC (query 5)",
+ "how": "each query was run once in the BigQuery console (sandbox, no billing). Queries 1-4: the result's JSON view was turned into CSV in the browser, its SHA-256 taken there, and the file written here and checked against that SHA-256. Query 5: the console's own CSV export (Save results, through Google Drive), downloaded and copied here unchanged; its SHA-256 is of that file",
  "files": {
   "data/bq/q1_transactions.csv": {
    "query": "sql/bq_q1_transactions.sql",
@@ -26,7 +26,13 @@
    "bytes_processed_estimate": "38.93 GB",
    "rows": 19,
    "sha256": "4c7333cf8839baaadaab00af591631ab5eb8e7449c1fc2a59920ed3386df8a66"
+  },
+  "data/bq/q5_intents_calls_by_path.csv": {
+   "query": "sql/bq_q5_intents_calls_by_path.sql",
+   "bytes_processed_estimate": "137 GB",
+   "rows": 117,
+   "sha256": "7a0911a5c4a1ef764fed3bfc29491c1f429b98d9f5461849f189f057f9ee3200"
   }
  },
- "check": "The SHA-256 is taken after the browser step, so it ties these files to this repository, not to BigQuery. To check them against BigQuery, run the four files in sql/ (any Google account; about 355 GB, inside the free monthly terabyte) and compare row by row; the job IDs are private to the project that ran them."
+ "check": "The SHA-256 is taken after the browser step, so it ties these files to this repository, not to BigQuery. To check them against BigQuery, run the five files in sql/ (any Google account; about 492 GB, inside the free monthly terabyte) and compare row by row; the job IDs are private to the project that ran them."
 }

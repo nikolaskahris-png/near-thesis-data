@@ -866,7 +866,7 @@ Three cases are few, and those that changed are the ones the press reports. We t
   not in the fees.
 - **Network activity, from blocks.** Daily active accounts and transactions are taken from NearBlocks' daily
   statistics (claim E, `scripts/usage.py`). Daily transactions and relayed actions are cross-checked against NEAR's
-  public BigQuery dataset (`scripts/bq_usage.py`, four saved queries in `sql/`): transactions agree on every day, relayed actions on 304 of 365 (never more than 0.004% apart); both
+  public BigQuery dataset (`scripts/bq_usage.py`, five saved queries in `sql/`): transactions agree on every day, relayed actions on 304 of 365 (never more than 0.004% apart); both
   read NEAR's own block data. Calls to `intents.near` are counted from BigQuery, with whether each succeeded; their dollar value is not.
 - **Credits in dollars, and their use.** Units convert to credits by an off-chain NEAR AI Cloud setting, read
   only with a signed-in session; whether credits are used is not visible.

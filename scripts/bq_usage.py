@@ -1,10 +1,10 @@
 """Claim E, second source: NEAR's own use from NEAR's public BigQuery dataset, and the organizers' question again.
 
-The track's prompt example (nearai/near-hackathon-prompt-examples, tracks/02-thesis.md) asks for BigQuery. Two
-queries (sql/bq_q1_transactions.sql, sql/bq_q2_receipt_actions.sql, sql/bq_q3_intents_callers.sql) were run once in the BigQuery console on
-12 November 2026; their results are saved in data/bq/ with SHA-256 in data/bq/MANIFEST.json. Nothing here needs
+The track's prompt example (nearai/near-hackathon-prompt-examples, tracks/02-thesis.md) asks for BigQuery. Five
+queries (sql/bq_q1_transactions.sql to sql/bq_q5_intents_calls_by_path.sql) were run once each in the BigQuery console on
+12 November 2026 (UTC); their results are saved in data/bq/ with SHA-256 in data/bq/MANIFEST.json. Nothing here needs
 the network or a Google account: this script only reads the saved files. Anyone with a Google account can re-run
-the four queries (about 355 GB, inside BigQuery's free monthly terabyte) and compare.
+the five queries (about 492 GB, inside BigQuery's free monthly terabyte) and compare.
 
 What is computed (offline):
   agreement  every day of the year (1 November 2025 to 31 October 2026): BigQuery's transactions against
@@ -15,7 +15,8 @@ What is computed (offline):
              deployed, calls to intents.near, distinct accounts calling it, calls per calling account.
              Also 1-11 November 2026 for intents.near.
   callers    who calls intents.near (sql/bq_q3_intents_callers.sql, the 20 biggest callers of 2-31 October and
-             everyone else in one row): intents.near itself (its own internal calls), escrow.ai.near (the NEAR AI
+             everyone else in one row): intents.near itself (predecessor intents.near: relayed intents AND
+             callbacks, split by query 5), escrow.ai.near (the NEAR AI
              Agent Market's escrow: market.near.ai lists job payments as "secure deposit" to it), token contracts
              (bridged *.omft.near tokens, native USDC, wrap.near, nbtc.bridge.near, v2_1.omni.hot.tg, token.sweat), and
              everyone else; also each one's share of the calls from other accounts (the contract's own left
@@ -23,6 +24,14 @@ What is computed (offline):
              only its top 20. Checked: the rows add up to query 2's calls for the same days. Query 2's "accounts calling it"
              counts the account that sent each call (receipt_predecessor_account_id): often a solver or a token
              contract, not a user.
+  paths      query 5 (sql/bq_q5_intents_calls_by_path.sql): every call by path, method and outcome. relay =
+             top-level execute_intents transactions that intents.near signs with its own function-call keys
+             (users' and solvers' signed intents, submitted for them); callback = receipts the contract sends
+             itself that are not a transaction; other_contract = calls from other contracts (deposits such as
+             ft_on_transfer); near_ai_escrow; other_signed_tx = transactions other accounts sign to it.
+             Checked: totals equal query 2's, relay + callback equal query 4's intents_itself, the escrow equals
+             query 4's, and signed transactions match query 1's transactions to intents.near within 0.1%
+             (receipts of a transaction can land on the next day).
   outcomes   whether those calls succeeded (sql/bq_q4_intents_call_outcomes.sql: each call's receipt joined to
              intents.near's execution outcome; FAILURE counted as failed). Checked: calls by kind equal query 3's.
   lead       the organizers' hypothesis with the volume measured on chain: weekly log-changes of calls to
@@ -190,6 +199,47 @@ def compute(data_root):
                                          "failed_share": failed.get(k, 0) / by[k]} for k in sorted(by)},
                          "ok_outside_calls": ok_out, "ok_outside_a_day": ok_out / nd,
                          "ok_share_of_outside": {k: v / ok_out for k, v in sorted(ok.items())}}
+    # query 5: every call by path (relay / callback / other contracts / escrow / other signed transactions)
+    paths = {}
+    q5 = bq["data/bq/q5_intents_calls_by_path.csv"]
+    for per, (a, b) in (("october", OCT), ("november", NOV)):
+        days = us.days(a, b)
+        nd = len(days)
+        calls, failed, methods = {}, {}, {}
+        for r in q5.values():
+            if r["period"] != per:
+                continue
+            p, c = r["path"], int(r["calls"])
+            calls[p] = calls.get(p, 0) + c
+            if r["status"] not in ("SUCCESS_VALUE", "SUCCESS_RECEIPT_ID"):
+                failed[p] = failed.get(p, 0) + c
+            methods.setdefault(p, set()).add(r["method"])
+        total = sum(calls.values())
+        if total != callers[per]["calls"]:
+            problems.append(f"q5 {per}: {total} calls, q2 says {callers[per]['calls']}")
+        q4k = outcomes[per]["by_kind"]
+        if calls.get("relay", 0) + calls.get("callback", 0) != q4k["intents_itself"]["calls"]:
+            problems.append(f"q5 {per}: relay + callback differ from q4's intents_itself")
+        if calls.get("near_ai_escrow", 0) != q4k["near_ai_escrow"]["calls"]:
+            problems.append(f"q5 {per}: escrow differs from q4")
+        signed = calls.get("relay", 0) + calls.get("near_ai_escrow", 0) + calls.get("other_signed_tx", 0)
+        q1_signed = sum(int(q1[d]["txns_to_intents"]) for d in days)
+        if abs(signed / q1_signed - 1) > 0.001:
+            problems.append(f"q5 {per}: {signed} signed calls, q1 says {q1_signed} transactions")
+        ok = {p: calls[p] - failed.get(p, 0) for p in calls}
+        not_cb = total - calls.get("callback", 0)
+        ok_not_cb = sum(v for p, v in ok.items() if p != "callback")
+        paths[per] = {"calls": total, "a_day": total / nd,
+                      "by_path": {p: {"calls": calls[p], "failed": failed.get(p, 0),
+                                      "failed_share": failed.get(p, 0) / calls[p], "share": calls[p] / total,
+                                      "ok": ok[p], "ok_a_day": ok[p] / nd, "methods": sorted(methods[p])}
+                                  for p in sorted(calls)},
+                      "not_callback_calls": not_cb,
+                      "share_of_not_callback": {p: calls[p] / not_cb for p in sorted(calls) if p != "callback"},
+                      "ok_not_callback": ok_not_cb, "ok_not_callback_a_day": ok_not_cb / nd,
+                      "signed_calls": signed, "q1_txns_to_intents": q1_signed}
+    paths["relay_ok_a_day_change"] = (paths["november"]["by_path"]["relay"]["ok_a_day"]
+                                      / paths["october"]["by_path"]["relay"]["ok_a_day"] - 1)
     other = [r for r in q3.values() if r["caller"].startswith("(")][0]
     callers["accounts_outside_top_20"] = int(other["accounts"])
     callers["accounts_total"] = int(other["accounts"]) + len(q3) - 1
@@ -212,7 +262,7 @@ def compute(data_root):
             "weeks": [us.WEEK0.isoformat(), us.WEEKS],
             "method": f"weekly log-changes, lags {list(us.LAGS)} weeks, {us.SHIFTS} circular shifts (min {us.MIN_SHIFT}), seed {us.SEED}",
             "agreement_with_nearblocks": agreement, "usage": usage, "intents_callers": callers,
-            "intents_call_outcomes": outcomes, "lead": lead}, []
+            "intents_call_outcomes": outcomes, "intents_call_paths": paths, "lead": lead}, []
 
 
 def main():
