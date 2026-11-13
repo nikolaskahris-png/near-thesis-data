@@ -43,7 +43,7 @@
 ## Also measured
 
 - **It did not stop when swaps went private.** From 27 October to 8 November (13 days, running past the window's end), when swaps began to settle privately, the NEAR kept a day by the three revenue wallets (the two buybacks wallets and the front-end fund) changed by <!--n:ps.change.kept_near_per_day-->-3%<!--/n-->. That cannot be told from no change (<!--n:ci.shift.kept_near.low-->-28%<!--/n--> to <!--n:ci.shift.kept_near.high-->+28%<!--/n-->), but a stop would show as about -100% ([claim D](#d-it-did-not-stop-when-the-flow-went-private)).
-- **The front-end fund**, a third wallet that keeps near-intents.org's own fees, raises coverage to <!--n:n1.coverage_with_front_end-->16.5%<!--/n-->; the Buy rule counts the two buybacks wallets' <!--n:n1.coverage_buybacks-->10.8%<!--/n-->.
+- **The front-end fund**, a third wallet that keeps the fees of NEAR Intents' own front end, raises coverage to <!--n:n1.coverage_with_front_end-->16.5%<!--/n-->; the Buy rule counts the two buybacks wallets' <!--n:n1.coverage_buybacks-->10.8%<!--/n-->.
 - **People decide issuance too**, but only through a release that validators with <!--n:c.issuance_upgrade_stake_threshold-->4/5<!--/n--> of stake run.
 
 ## What to watch from Monday, 16 November
@@ -193,12 +193,10 @@ Each file's SHA-256 is anchored in SocialDB on mainnet before it is judged; none
 
 | File | Prediction | Probability | Result |
 |---|---|---|---|
-| [PREREG-2](PREREG-2.md) #4 | process check: HSP-027 in effect by 6 Nov | 0.85 | <!--n:pr.4.result-->holds<!--/n-->, Brier <!--n:pr.4.brier-->0.0225<!--/n--> |
-| [PREREG-2](PREREG-2.md) #5 | process check: protocol version 88 by 8 Nov | 0.75 | <!--n:pr.5.result-->holds<!--/n-->, Brier <!--n:pr.5.brier-->0.0625<!--/n--> |
 | [PREREG](PREREG.md) #1–3 | NEAR AI farm; buybacks inflows 1–15 Nov | — | judged 16 Nov; #2 by the daily Action ([`data/prereg_judged.json`](data/prereg_judged.json)) |
 | [PREREG-3](PREREG-3.md) #6–8 | buybacks keep ≥ half / all of the window's dollars, 9 Nov – 9 Dec; DefiLlama complete | 0.90 / 0.75 / 0.90 | judged 9 and 11 Dec |
 
-#4 and #5 only test the pipeline. PREREG-3 was anchored at block <!--n:pr.anchor3.tx_block-->223,613,293<!--/n-->, before its window opened.
+Two earlier process checks ([PREREG-2](PREREG-2.md) #4–5: HSP-027 in effect, protocol version 88) test the pipeline only: #4 <!--n:pr.4.result-->holds<!--/n--> (Brier <!--n:pr.4.brier-->0.0225<!--/n-->), #5 <!--n:pr.5.result-->holds<!--/n--> (Brier <!--n:pr.5.brier-->0.0625<!--/n-->). PREREG-3 was anchored at block <!--n:pr.anchor3.tx_block-->223,613,293<!--/n-->, before its window opened.
 
 ## Check it with one command
 
@@ -223,7 +221,7 @@ The fees (NEAR's datasets on Dune; only revenue is checked on chain), volume and
 ## Terms
 
 - **Buybacks wallets:** `buybacks.multisignature.near` and `1csfundsadmin.sputnik-dao.near`, where NEAR bought with NEAR Intents' fees is kept.
-- **Front-end fund:** `fefundsadmin.sputnik-dao.near`, a separate DAO that holds near-intents.org's own fees. With the two above, the **three revenue wallets**.
+- **Front-end fund:** `fefundsadmin.sputnik-dao.near`, a separate DAO that holds the fees of NEAR Intents' own front end. With the two above, the **three revenue wallets**.
 - **Coverage:** NEAR the buybacks wallets keep (inflows less outflows) ÷ new NEAR issued (minted less gas burnt), over the same 30 days.
 - **FAR:** a private instance of the NEAR protocol, run by a few validators ([NEAR Intents' docs](https://docs.near-intents.org/integration/market-makers/confidential-intents.md)); NEAR Intents' contract there is `intents.far`.
 - More, including HSP-027 and HSP-029: [Terms](docs/DETAILS.md#terms).

@@ -3,6 +3,22 @@
 Companion to the [README](../README.md). Every marked figure here is checked against `data/numbers.json` in the same
 way: `python scripts/build_numbers.py --check docs/DETAILS.md`.
 
+**Map of this file.** Where to look for each doubt:
+
+| If you doubt… | Read |
+|---|---|
+| a number in the README | [The numbers](#the-numbers-two-of-value-one-signal), then [Method](#method) and [Terms](#terms) |
+| the rating and its edge cases | [The rating in full](#the-rating-in-full) |
+| who can move the bought NEAR | [The control map](#the-control-map-who-can-change-each-link), [Contract-level admin scope](#contract-level-admin-scope) |
+| whether a vote becomes a rule | [Path to rules](#path-to-rules) |
+| issuance and HSP-029 | [Issuance to 2031](#issuance-to-2031) |
+| the comparison with other protocols | [Peers](#peers), [The same rules on four other protocols](#the-same-rules-on-four-other-protocols) |
+| the predictions | [Pre-registration](#pre-registration) |
+| the treasury's payout, the NEAR AI farm | [Where the treasury payout went](#where-the-treasury-payout-went), [The NEAR AI farm](#the-near-ai-farm) |
+| that the chain says what we say | [Verify live](#verify-live) |
+
+Earlier versions of the README and the thesis are kept in this file, unchanged, starting at [the README in full, version 5](#the-readme-in-full-version-5-12-november), so a reader can see what moved.
+
 ## The numbers: two of value, one signal
 
 | # | What it measures | Value | On chain? | Reproduce (no network) |
