@@ -2,6 +2,8 @@
 
 [![verify](https://github.com/nikolaskahris-png/near-thesis-data/actions/workflows/verify.yml/badge.svg)](https://github.com/nikolaskahris-png/near-thesis-data/actions/workflows/verify.yml)
 
+**[Demo video, 96 seconds](https://x.com/nikmaker4t/status/2121285434391044317)** · [The thread on X](https://x.com/nikmaker4t/status/2121259594257485850)
+
 **NEAR Intents' buybacks are a policy, not a rule, and this repository checks them every day.**
 
 NEAR Intents is a real business: users paid <!--n:n2.fees_usd_per_day-->$206,049<!--/n--> a day in fees in October (DefiLlama), and part of that buys NEAR. On chain, the buyback wallets kept NEAR worth <!--n:iv.cents_per_new_dollar-->11 cents<!--/n--> for every $1 of new NEAR issued that month.
@@ -161,7 +163,7 @@ The fees (NEAR's datasets on Dune; only revenue is checked on chain), whether De
 - Research: 22–31 October 2026, in private notes outside this repository. Code and data: from the first commit, 2026-10-31 13:51:52 UTC. The [rules](https://nearhackathon.com/HACKATHON.md) (FAQ Q-001) count work from the hackathon's announcement on 19 October: "Earlier commits are baseline".
 - Sources: NEAR archival RPC, NearBlocks, NEAR's public BigQuery dataset, DefiLlama, SEC filings and NEAR's docs, linked where used. Raw responses are saved byte for byte; those listing people's accounts are kept private, with their SHA-256.
 - Rules changed after anchoring: the drain test (Avoid on a fall of the bought NEAR) was added on 12 November, after the predictions in `PREREG*.md` were anchored, so it is not pre-registered. Every rule change is in the git history of `scripts/rating.py`.
-- AI: code and text were written with Claude Code (Anthropic), directed by the author; those commits are marked `Co-Authored-By: Claude`. The demo video has no voice; its captions carry the narration.
+- AI: code and text were written with Claude Code (Anthropic), directed by the author; those commits are marked `Co-Authored-By: Claude`. The demo video's voice is synthetic (ElevenLabs text to speech), read from the script, with the same words as subtitles.
 - Libraries: none beyond the Python standard library. `docs/sign*.html` load NEAR Wallet Selector 10.1.4 from esm.sh.
 - This is the author's only submission to NEAR HACKATHON.
 
