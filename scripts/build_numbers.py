@@ -1352,6 +1352,62 @@ def build(data_dir, window_file):
                   derived_from=["iv.to2031.staked_share_change", f"sc.bear.by_peer.{peer}.value_change"],
                   note="(1 + iv.to2031.staked_share_change) x (1 + the value change) - 1")
 
+        # The whole token, split: NEAR Intents' revenue valued at the apps' own multiples (Hyperliquid, Jupiter, Aave),
+        # against all NEAR. What is left is the layer-one premium, which the rating does not rate. No forecast.
+        apps = ("hyperliquid", "jupiter", "aave")
+        app_keys = [f"peer.{a}.mcap_to_revenue" for a in apps]
+        if all(k in n.items for k in app_keys + ["peer.near.revenue_usd_per_year", "peer.near.market_cap_usd"]):
+            rev, cap = v("peer.near.revenue_usd_per_year"), v("peer.near.market_cap_usd")
+            app_mult = sorted(v(k) for k in app_keys)
+            for end, m in (("low", app_mult[0]), ("high", app_mult[-1])):
+                worth, share = rev * m, rev * m / cap
+                src_keys = app_keys + ["peer.near.revenue_usd_per_year", "peer.near.market_cap_usd"]
+                n.add(f"sc.split.intents_value_usd.{end}", worth, f"${rnd(worth / 10 ** 9, 2)}B", psrc, unit="USD",
+                      derived_from=src_keys,
+                      note=f"peer.near.revenue_usd_per_year x the {end}est market cap / revenue of Hyperliquid, "
+                           "Jupiter and Aave: NEAR Intents valued as those apps are")
+                n.add(f"sc.split.intents_share_of_value.{end}", share, f_pct(share, 0), psrc, unit="share",
+                      derived_from=[f"sc.split.intents_value_usd.{end}", "peer.near.market_cap_usd"],
+                      note=f"sc.split.intents_value_usd.{end} / peer.near.market_cap_usd")
+                other = "high" if end == "low" else "low"
+                n.add(f"sc.split.premium_share.{other}", 1 - share, f_pct(1 - share, 0), psrc, unit="share",
+                      derived_from=[f"sc.split.intents_share_of_value.{end}"],
+                      note=f"1 - sc.split.intents_share_of_value.{end}: the part of all NEAR's value that NEAR "
+                           "Intents' revenue does not explain at the apps' multiples (the layer-one premium)")
+            # The same on the apps' fully diluted values: their market caps count circulating tokens only, while
+            # NEAR's market cap is close to its fully diluted value (almost all NEAR circulates).
+            fdv_keys = [f"peer.{a}.fdv_to_revenue" for a in apps]
+            if all(k in n.items for k in fdv_keys):
+                fdv_mult = sorted(v(k) for k in fdv_keys)
+                for end, m in (("low", fdv_mult[0]), ("high", fdv_mult[-1])):
+                    share = rev * m / cap
+                    n.add(f"sc.split.fdv.intents_share_of_value.{end}", share, f_pct(share, 0), psrc, unit="share",
+                          derived_from=fdv_keys + ["peer.near.revenue_usd_per_year", "peer.near.market_cap_usd"],
+                          note=f"peer.near.revenue_usd_per_year x the {end}est fully diluted value / revenue of "
+                               "Hyperliquid, Jupiter and Aave, / peer.near.market_cap_usd")
+
+    # ---- Buy's yearly checkpoints: the floors scripts/rating.py applies to each 1 November window to 2030, the
+    # path of (a) from the 2026-11-01 base: base x (1 + growth) ^ (days since 2026-11-01 / 365.25), as rating.py does
+    ck_need = ("n1.buybacks_near_per_day", "iv.buybacks_kept_usd_per_day",
+               "lr.required_growth.buybacks.A.2031", "lr.required_growth.buybacks.B.2031")
+    if all(k in n.items for k in ck_need):
+        base_day = datetime(2026, 11, 1).date()
+        b_near = dec(n.items["n1.buybacks_near_per_day"]["value"])
+        b_usd = dec(n.items["iv.buybacks_kept_usd_per_day"]["value"])
+        for rule in ("A", "B"):
+            g = float(n.items[f"lr.required_growth.buybacks.{rule}.2031"]["value"])
+            for year in range(2027, 2031):
+                factor = Decimal(repr((1 + g) ** ((datetime(year, 11, 1).date() - base_day).days / 365.25)))
+                when = "while validators do not run HSP-029" if rule == "A" else "once validators run HSP-029"
+                for what, base, fmt, key0 in (("near_per_day", b_near, f_int, "n1.buybacks_near_per_day"),
+                                              ("usd_per_day", b_usd, lambda x: f_usd(x), "iv.buybacks_kept_usd_per_day")):
+                    n.add(f"lr.checkpoint.{rule}.{year}.{what}", base * factor, fmt(base * factor),
+                          n.items[key0]["source"], unit="NEAR a day" if what == "near_per_day" else "USD a day",
+                          derived_from=[key0, f"lr.required_growth.buybacks.{rule}.2031"],
+                          note=f"Buy's growth test (a) on the 1 November {year} window, {when}: {key0} x (1 + "
+                               f"lr.required_growth.buybacks.{rule}.2031) ^ (days from 2026-11-01 / 365.25), "
+                               "the floor scripts/rating.py applies")
+
     # ---- where treasury.near's April-May payments went next (treasury_trace.py)
     tpath = data_dir / "treasury_trace.json"
     if tpath.exists():

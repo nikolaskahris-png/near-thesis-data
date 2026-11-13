@@ -5316,6 +5316,182 @@
       ],
       "status": "final"
     },
+    "lr.checkpoint.A.2027.near_per_day": {
+      "value": "16716.2123903827224448000",
+      "text": "16,716",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "NEAR a day",
+      "derived_from": [
+        "n1.buybacks_near_per_day",
+        "lr.required_growth.buybacks.A.2031"
+      ],
+      "note": "Buy's growth test (a) on the 1 November 2027 window, while validators do not run HSP-029: n1.buybacks_near_per_day x (1 + lr.required_growth.buybacks.A.2031) ^ (days from 2026-11-01 / 365.25), the floor scripts/rating.py applies"
+    },
+    "lr.checkpoint.A.2027.usd_per_day": {
+      "value": "81560.07187391634108042368000",
+      "text": "$81,560",
+      "source": "data/fees_2026-10-02_2026-11-01.json",
+      "unit": "USD a day",
+      "derived_from": [
+        "iv.buybacks_kept_usd_per_day",
+        "lr.required_growth.buybacks.A.2031"
+      ],
+      "note": "Buy's growth test (a) on the 1 November 2027 window, while validators do not run HSP-029: iv.buybacks_kept_usd_per_day x (1 + lr.required_growth.buybacks.A.2031) ^ (days from 2026-11-01 / 365.25), the floor scripts/rating.py applies"
+    },
+    "lr.checkpoint.A.2028.near_per_day": {
+      "value": "29244.1385222582119384500",
+      "text": "29,244",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "NEAR a day",
+      "derived_from": [
+        "n1.buybacks_near_per_day",
+        "lr.required_growth.buybacks.A.2031"
+      ],
+      "note": "Buy's growth test (a) on the 1 November 2028 window, while validators do not run HSP-029: n1.buybacks_near_per_day x (1 + lr.required_growth.buybacks.A.2031) ^ (days from 2026-11-01 / 365.25), the floor scripts/rating.py applies"
+    },
+    "lr.checkpoint.A.2028.usd_per_day": {
+      "value": "142685.07626395004186889139500",
+      "text": "$142,685",
+      "source": "data/fees_2026-10-02_2026-11-01.json",
+      "unit": "USD a day",
+      "derived_from": [
+        "iv.buybacks_kept_usd_per_day",
+        "lr.required_growth.buybacks.A.2031"
+      ],
+      "note": "Buy's growth test (a) on the 1 November 2028 window, while validators do not run HSP-029: iv.buybacks_kept_usd_per_day x (1 + lr.required_growth.buybacks.A.2031) ^ (days from 2026-11-01 / 365.25), the floor scripts/rating.py applies"
+    },
+    "lr.checkpoint.A.2029.near_per_day": {
+      "value": "51082.967759015800051250",
+      "text": "51,083",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "NEAR a day",
+      "derived_from": [
+        "n1.buybacks_near_per_day",
+        "lr.required_growth.buybacks.A.2031"
+      ],
+      "note": "Buy's growth test (a) on the 1 November 2029 window, while validators do not run HSP-029: n1.buybacks_near_per_day x (1 + lr.required_growth.buybacks.A.2031) ^ (days from 2026-11-01 / 365.25), the floor scripts/rating.py applies"
+    },
+    "lr.checkpoint.A.2029.usd_per_day": {
+      "value": "249238.9079930139900300538750",
+      "text": "$249,239",
+      "source": "data/fees_2026-10-02_2026-11-01.json",
+      "unit": "USD a day",
+      "derived_from": [
+        "iv.buybacks_kept_usd_per_day",
+        "lr.required_growth.buybacks.A.2031"
+      ],
+      "note": "Buy's growth test (a) on the 1 November 2029 window, while validators do not run HSP-029: iv.buybacks_kept_usd_per_day x (1 + lr.required_growth.buybacks.A.2031) ^ (days from 2026-11-01 / 365.25), the floor scripts/rating.py applies"
+    },
+    "lr.checkpoint.A.2030.near_per_day": {
+      "value": "89230.516846394211840750",
+      "text": "89,231",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "NEAR a day",
+      "derived_from": [
+        "n1.buybacks_near_per_day",
+        "lr.required_growth.buybacks.A.2031"
+      ],
+      "note": "Buy's growth test (a) on the 1 November 2030 window, while validators do not run HSP-029: n1.buybacks_near_per_day x (1 + lr.required_growth.buybacks.A.2031) ^ (days from 2026-11-01 / 365.25), the floor scripts/rating.py applies"
+    },
+    "lr.checkpoint.A.2030.usd_per_day": {
+      "value": "435364.6147452419989922033250",
+      "text": "$435,365",
+      "source": "data/fees_2026-10-02_2026-11-01.json",
+      "unit": "USD a day",
+      "derived_from": [
+        "iv.buybacks_kept_usd_per_day",
+        "lr.required_growth.buybacks.A.2031"
+      ],
+      "note": "Buy's growth test (a) on the 1 November 2030 window, while validators do not run HSP-029: iv.buybacks_kept_usd_per_day x (1 + lr.required_growth.buybacks.A.2031) ^ (days from 2026-11-01 / 365.25), the floor scripts/rating.py applies"
+    },
+    "lr.checkpoint.B.2027.near_per_day": {
+      "value": "14927.9127140435902666000",
+      "text": "14,928",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "NEAR a day",
+      "derived_from": [
+        "n1.buybacks_near_per_day",
+        "lr.required_growth.buybacks.B.2031"
+      ],
+      "note": "Buy's growth test (a) on the 1 November 2027 window, once validators run HSP-029: n1.buybacks_near_per_day x (1 + lr.required_growth.buybacks.B.2031) ^ (days from 2026-11-01 / 365.25), the floor scripts/rating.py applies"
+    },
+    "lr.checkpoint.B.2027.usd_per_day": {
+      "value": "72834.77892309008126976806000",
+      "text": "$72,835",
+      "source": "data/fees_2026-10-02_2026-11-01.json",
+      "unit": "USD a day",
+      "derived_from": [
+        "iv.buybacks_kept_usd_per_day",
+        "lr.required_growth.buybacks.B.2031"
+      ],
+      "note": "Buy's growth test (a) on the 1 November 2027 window, once validators run HSP-029: iv.buybacks_kept_usd_per_day x (1 + lr.required_growth.buybacks.B.2031) ^ (days from 2026-11-01 / 365.25), the floor scripts/rating.py applies"
+    },
+    "lr.checkpoint.B.2028.near_per_day": {
+      "value": "23314.5275141441394793500",
+      "text": "23,315",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "NEAR a day",
+      "derived_from": [
+        "n1.buybacks_near_per_day",
+        "lr.required_growth.buybacks.B.2031"
+      ],
+      "note": "Buy's growth test (a) on the 1 November 2028 window, once validators run HSP-029: n1.buybacks_near_per_day x (1 + lr.required_growth.buybacks.B.2031) ^ (days from 2026-11-01 / 365.25), the floor scripts/rating.py applies"
+    },
+    "lr.checkpoint.B.2028.usd_per_day": {
+      "value": "113753.91119426067093369658500",
+      "text": "$113,754",
+      "source": "data/fees_2026-10-02_2026-11-01.json",
+      "unit": "USD a day",
+      "derived_from": [
+        "iv.buybacks_kept_usd_per_day",
+        "lr.required_growth.buybacks.B.2031"
+      ],
+      "note": "Buy's growth test (a) on the 1 November 2028 window, once validators run HSP-029: iv.buybacks_kept_usd_per_day x (1 + lr.required_growth.buybacks.B.2031) ^ (days from 2026-11-01 / 365.25), the floor scripts/rating.py applies"
+    },
+    "lr.checkpoint.B.2029.near_per_day": {
+      "value": "36368.4768881435150671000",
+      "text": "36,368",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "NEAR a day",
+      "derived_from": [
+        "n1.buybacks_near_per_day",
+        "lr.required_growth.buybacks.B.2031"
+      ],
+      "note": "Buy's growth test (a) on the 1 November 2029 window, once validators run HSP-029: n1.buybacks_near_per_day x (1 + lr.required_growth.buybacks.B.2031) ^ (days from 2026-11-01 / 365.25), the floor scripts/rating.py applies"
+    },
+    "lr.checkpoint.B.2029.usd_per_day": {
+      "value": "177445.43558494102436388761000",
+      "text": "$177,445",
+      "source": "data/fees_2026-10-02_2026-11-01.json",
+      "unit": "USD a day",
+      "derived_from": [
+        "iv.buybacks_kept_usd_per_day",
+        "lr.required_growth.buybacks.B.2031"
+      ],
+      "note": "Buy's growth test (a) on the 1 November 2029 window, once validators run HSP-029: iv.buybacks_kept_usd_per_day x (1 + lr.required_growth.buybacks.B.2031) ^ (days from 2026-11-01 / 365.25), the floor scripts/rating.py applies"
+    },
+    "lr.checkpoint.B.2030.near_per_day": {
+      "value": "56731.41393755511575250",
+      "text": "56,731",
+      "source": "data/daily/2026-11-01.json",
+      "unit": "NEAR a day",
+      "derived_from": [
+        "n1.buybacks_near_per_day",
+        "lr.required_growth.buybacks.B.2031"
+      ],
+      "note": "Buy's growth test (a) on the 1 November 2030 window, once validators run HSP-029: n1.buybacks_near_per_day x (1 + lr.required_growth.buybacks.B.2031) ^ (days from 2026-11-01 / 365.25), the floor scripts/rating.py applies"
+    },
+    "lr.checkpoint.B.2030.usd_per_day": {
+      "value": "276798.241742725165268022750",
+      "text": "$276,798",
+      "source": "data/fees_2026-10-02_2026-11-01.json",
+      "unit": "USD a day",
+      "derived_from": [
+        "iv.buybacks_kept_usd_per_day",
+        "lr.required_growth.buybacks.B.2031"
+      ],
+      "note": "Buy's growth test (a) on the 1 November 2030 window, once validators run HSP-029: iv.buybacks_kept_usd_per_day x (1 + lr.required_growth.buybacks.B.2031) ^ (days from 2026-11-01 / 365.25), the floor scripts/rating.py applies"
+    },
     "lr.epoch_days": {
       "value": "0.2970297029702970297029702970297029702970",
       "text": "0.2970",
@@ -9700,6 +9876,104 @@
         "peer.sui.mcap_to_revenue"
       ],
       "note": "median of the market cap / holders' revenue of the four L1s in the peers table (Aptos, Solana, Ethereum, Sui), at their window mean prices"
+    },
+    "sc.split.fdv.intents_share_of_value.high": {
+      "value": "0.3920629003429217007145514959525194937613",
+      "text": "39%",
+      "source": "data/peers.json",
+      "unit": "share",
+      "derived_from": [
+        "peer.hyperliquid.fdv_to_revenue",
+        "peer.jupiter.fdv_to_revenue",
+        "peer.aave.fdv_to_revenue",
+        "peer.near.revenue_usd_per_year",
+        "peer.near.market_cap_usd"
+      ],
+      "note": "peer.near.revenue_usd_per_year x the highest fully diluted value / revenue of Hyperliquid, Jupiter and Aave, / peer.near.market_cap_usd"
+    },
+    "sc.split.fdv.intents_share_of_value.low": {
+      "value": "0.1646480133431292775797854007402038397097",
+      "text": "16%",
+      "source": "data/peers.json",
+      "unit": "share",
+      "derived_from": [
+        "peer.hyperliquid.fdv_to_revenue",
+        "peer.jupiter.fdv_to_revenue",
+        "peer.aave.fdv_to_revenue",
+        "peer.near.revenue_usd_per_year",
+        "peer.near.market_cap_usd"
+      ],
+      "note": "peer.near.revenue_usd_per_year x the lowest fully diluted value / revenue of Hyperliquid, Jupiter and Aave, / peer.near.market_cap_usd"
+    },
+    "sc.split.intents_share_of_value.high": {
+      "value": "0.1588882035116278020811162796686085610353",
+      "text": "16%",
+      "source": "data/peers.json",
+      "unit": "share",
+      "derived_from": [
+        "sc.split.intents_value_usd.high",
+        "peer.near.market_cap_usd"
+      ],
+      "note": "sc.split.intents_value_usd.high / peer.near.market_cap_usd"
+    },
+    "sc.split.intents_share_of_value.low": {
+      "value": "0.09578458769855146763462030800969160320765",
+      "text": "10%",
+      "source": "data/peers.json",
+      "unit": "share",
+      "derived_from": [
+        "sc.split.intents_value_usd.low",
+        "peer.near.market_cap_usd"
+      ],
+      "note": "sc.split.intents_value_usd.low / peer.near.market_cap_usd"
+    },
+    "sc.split.intents_value_usd.high": {
+      "value": "1015473566.254503913219256651481789812750",
+      "text": "$1.02B",
+      "source": "data/peers.json",
+      "unit": "USD",
+      "derived_from": [
+        "peer.hyperliquid.mcap_to_revenue",
+        "peer.jupiter.mcap_to_revenue",
+        "peer.aave.mcap_to_revenue",
+        "peer.near.revenue_usd_per_year",
+        "peer.near.market_cap_usd"
+      ],
+      "note": "peer.near.revenue_usd_per_year x the highest market cap / revenue of Hyperliquid, Jupiter and Aave: NEAR Intents valued as those apps are"
+    },
+    "sc.split.intents_value_usd.low": {
+      "value": "612170788.7228213483937218392325996217500",
+      "text": "$0.61B",
+      "source": "data/peers.json",
+      "unit": "USD",
+      "derived_from": [
+        "peer.hyperliquid.mcap_to_revenue",
+        "peer.jupiter.mcap_to_revenue",
+        "peer.aave.mcap_to_revenue",
+        "peer.near.revenue_usd_per_year",
+        "peer.near.market_cap_usd"
+      ],
+      "note": "peer.near.revenue_usd_per_year x the lowest market cap / revenue of Hyperliquid, Jupiter and Aave: NEAR Intents valued as those apps are"
+    },
+    "sc.split.premium_share.high": {
+      "value": "0.9042154123014485323653796919903083967924",
+      "text": "90%",
+      "source": "data/peers.json",
+      "unit": "share",
+      "derived_from": [
+        "sc.split.intents_share_of_value.low"
+      ],
+      "note": "1 - sc.split.intents_share_of_value.low: the part of all NEAR's value that NEAR Intents' revenue does not explain at the apps' multiples (the layer-one premium)"
+    },
+    "sc.split.premium_share.low": {
+      "value": "0.8411117964883721979188837203313914389647",
+      "text": "84%",
+      "source": "data/peers.json",
+      "unit": "share",
+      "derived_from": [
+        "sc.split.intents_share_of_value.high"
+      ],
+      "note": "1 - sc.split.intents_share_of_value.high: the part of all NEAR's value that NEAR Intents' revenue does not explain at the apps' multiples (the layer-one premium)"
     },
     "sens.combinations": {
       "value": "54",

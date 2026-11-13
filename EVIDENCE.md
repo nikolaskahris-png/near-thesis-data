@@ -156,7 +156,7 @@ The rules can give Buy; NEAR fails the lock first ([inputs and quotes](docs/DETA
 
 ## Objections we expect
 
-- **"Hold is built into the rules."** No: the same rules give Hyperliquid, which has a lock, Buy on one basis ([the table](#the-rating-as-rules)). NEAR fails twice: no lock, and <!--n:n1.coverage_buybacks-->10.8%<!--/n--> coverage. Even with a lock assumed, every monthly rating since April is Hold, because only 100% coverage gives Buy month to month.
+- **"Hold is built into the rules."** Upward, yes, until a lock exists; downward, no: a drain gives Avoid any day. The same rules give Hyperliquid, which has a lock, Buy on one of four bases ([the table](#the-rating-as-rules)). NEAR fails twice: no lock, and <!--n:n1.coverage_buybacks-->10.8%<!--/n--> coverage. Even with a lock assumed, every monthly rating since April is Hold, because only 100% coverage gives Buy month to month.
 - **"HSP-029 changes the arithmetic."** It does, once validators run it: about <!--n:iv.hsp029_cents_per_new_dollar-->17 cents<!--/n--> per $1 of new NEAR, and full coverage at <!--n:iv.hsp029_wallets_multiple_buybacks-->×5.9<!--/n--> instead of <!--n:iv.wallets_multiple_buybacks-->×9.2<!--/n-->. The lock is still missing.
 - **"Other repositories say 12–19%, not 10.8%."** They add burned gas, or count revenue, not balances. With all three wallets, ours is <!--n:n1.coverage_with_front_end-->16.5%<!--/n--> (<!--n:ci.coverage_with_front_end.low-->14.1%<!--/n-->–<!--n:ci.coverage_with_front_end.high-->18.7%<!--/n-->) ([definitions side by side](docs/DETAILS.md#why-public-coverage-figures-differ)).
 
@@ -177,7 +177,11 @@ Two earlier process checks ([PREREG-2](PREREG-2.md) #4–5: HSP-027 in effect, p
 
 Python 3.10 or later (`python3` on some systems, `py` on Windows), standard library only, no network, no keys, under a minute on a laptop. From the repository root:
 
-It runs the tests, among them `tests/test_independent.py`, a second implementation that imports nothing from `scripts/` and recomputes 10.8%, -3% and 2 of 4 from the raw responses; it recomputes every number from the saved raw responses, checks each marked number here against [`data/numbers.json`](data/numbers.json), each quote against its saved page and the chart. Each step: [AGENTS.md](AGENTS.md). Against the chain itself: [Verify live](docs/DETAILS.md#verify-live).
+```
+python scripts/rebuild.py
+```
+
+It runs the tests, among them `tests/test_independent.py`, a second implementation that imports nothing from `scripts/` and recomputes <!--n:n1.coverage_buybacks-->10.8%<!--/n-->, <!--n:ps.change.kept_near_per_day-->-3%<!--/n--> and <!--n:c.buybacks_confirmations-->2 of 4<!--/n--> from the raw responses; it recomputes every number from the saved raw responses, checks each marked number here against [`data/numbers.json`](data/numbers.json), each quote against its saved page and the chart. Each step: [AGENTS.md](AGENTS.md). Against the chain itself: [Verify live](docs/DETAILS.md#verify-live).
 
 ## What we can't measure
 

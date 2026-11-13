@@ -21,16 +21,22 @@
     <span data-n="c.buybacks_confirmations">2 of 4</span> signers can move the buybacks' NEAR, and none of it is burned or locked. Every other
     money lever we mapped on chain also moves with one to three signers; only issuance needs a release run by block producers
     with more than <span data-n="c.issuance_upgrade_stake_threshold">4/5</span> of their stake.</p>
-  <p class="verdict"><strong>Rating to 2031: Hold.</strong> Stay staked: stakers receive the new NEAR, minus the treasury's
-    tenth (a protocol rule; <span data-n="c.treasury_share_of_new_supply">10.1%</span> of net new NEAR, measured) and their validator's commission;
-    unstaked NEAR receives none. Don't add: what reaches holders is small, and no rule fixes it. The rules can give Buy: they give it
-    to Hyperliquid, whose bought tokens sit at a keyless address, at its docs' stake; NEAR has no such lock, so no price gives Buy.
-    The rating covers fee capture only, not the layer-one premium that is most of NEAR's value.</p>
+  <p class="verdict"><strong>Rating to 2031: Hold.</strong> Stay staked: stakers receive most of the new NEAR;
+    unstaked NEAR receives none. Don't add: what reaches holders is small, and no rule fixes it. The same rules give Hyperliquid Buy on
+    one of four counts of its new tokens (its bought tokens sit at a keyless address); NEAR has no such lock, so no price gives Buy.
+    </p>
+  <p class="lede"><strong>The whole token.</strong> At Hyperliquid's, Jupiter's and Aave's
+    <span data-n="peer.jupiter.mcap_to_revenue">24×</span>–<span data-n="peer.aave.mcap_to_revenue">39×</span> revenue, NEAR Intents would be worth
+    <span data-n="sc.split.intents_share_of_value.low">10%</span>–<span data-n="sc.split.intents_share_of_value.high">16%</span> of NEAR's
+    <span data-n="peer.near.market_cap_usd">$6.39B</span> if the policy holds
+    (<span data-n="sc.split.fdv.intents_share_of_value.low">16%</span>–<span data-n="sc.split.fdv.intents_share_of_value.high">39%</span> at their fully diluted multiples;
+    October's prices). The rest, mostly a layer-one premium, is not rated, and the chain's own use under it is falling: daily
+    transactions <span data-n="u.txns.change">-83%</span> in a year, <span data-n="bq.signers.without_top10_change">-45%</span> without each day's ten busiest signers.</p>
   <ul class="triggers">
     <li><b>Avoid</b>, at once, if the NEAR in the buyback wallets ends a day more than a tenth below its peak since the first of
       November (any NEAR leaving the wallets counts, staking included). The test below runs live, from your browser.</li>
     <li><b>Buy</b> needs a lock the chain shows sealed (we tested that check on testnet), a treasury with no new multisig request in
-      the window (its NEAR could otherwise pose as fees), and buybacks that cover all new NEAR — <span data-n="iv.wallets_multiple_buybacks">×9.2</span> what they keep
+      the window, and buybacks that cover all new NEAR — <span data-n="iv.wallets_multiple_buybacks">×9.2</span> what they keep
       today — or grow by <span data-n="lr.required_growth.buybacks.A.2031">+75%</span> a year
       (<span data-n="lr.required_growth.buybacks.B.2031">+56%</span> once HSP-029 is in force, a switch we set by hand).</li>
   </ul>
@@ -127,7 +133,7 @@
   <div class="ratingbox" id="rating-box"></div>
   <ul class="triggers">
     <li><b>Buy</b> only when <b>(b)</b> a published rule sends the buybacks to a declared lock the chain shows cannot send NEAR out (no keys and no code, or reviewed code, no full-access key and only function-call keys limited to the lock) and
-      <code>treasury.near</code> sent nothing in the window, and either the NEAR they keep, counted up to DefiLlama's revenue and fees,
+      <code>treasury.near</code> opened no new multisig request in the window, and either the NEAR they keep, counted up to DefiLlama's revenue and fees,
       covers all new NEAR, or <b>(a)</b> it grows <span data-n="lr.required_growth.buybacks.A.2031">+75%</span> a year, in dollars and in NEAR.</li>
     <li><b>Avoid</b> when this thirty-day window and the one ending thirty days before it each fail a test: the wallets keep
       less than three quarters of DefiLlama's revenue, or the buybacks wallets keep April's

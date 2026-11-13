@@ -145,6 +145,20 @@ class TestDashboard(unittest.TestCase):
         self.assertIn('src="../docs/levers.svg"', self.html)
         self.assertTrue((REPO / "docs" / "levers.svg").exists())
 
+    def test_whole_token_split_adds_up(self):
+        """NEAR Intents at the apps' multiples plus the layer-one premium is all of NEAR's value (sc.split.)."""
+        v = lambda k: float(self.numbers[k]["value"])  # noqa: E731
+        cap, rev = v("peer.near.market_cap_usd"), v("peer.near.revenue_usd_per_year")
+        mults = sorted(v(f"peer.{a}.mcap_to_revenue") for a in ("hyperliquid", "jupiter", "aave"))
+        self.assertAlmostEqual(v("sc.split.intents_value_usd.low"), rev * mults[0], places=0)
+        self.assertAlmostEqual(v("sc.split.intents_value_usd.high"), rev * mults[-1], places=0)
+        for a, b in (("low", "high"), ("high", "low")):
+            self.assertAlmostEqual(v(f"sc.split.intents_share_of_value.{a}") + v(f"sc.split.premium_share.{b}"), 1, places=9)
+            self.assertAlmostEqual(v(f"sc.split.intents_share_of_value.{a}"), v(f"sc.split.intents_value_usd.{a}") / cap, places=9)
+        fdv = sorted(v(f"peer.{a}.fdv_to_revenue") for a in ("hyperliquid", "jupiter", "aave"))
+        self.assertAlmostEqual(v("sc.split.fdv.intents_share_of_value.low"), rev * fdv[0] / cap, places=9)
+        self.assertAlmostEqual(v("sc.split.fdv.intents_share_of_value.high"), rev * fdv[-1] / cap, places=9)
+
     def test_old_wordings_do_not_return(self):
         """Wordings the K5b reviews found wrong or loose (13 Nov) stay out of every text a reader sees."""
         files = ["README.md", "THESIS.md", "EVIDENCE.md", "docs/DETAILS.md", "dashboard/index.html",
