@@ -1,12 +1,12 @@
 # Captions for the pictures of the dashboard
 
 One caption per picture, for the grid at the top of the README. Pictures are 1200 px wide, taken from the live
-dashboard with `video/shots.py` (outside the repository); the drain test in the first one is read from mainnet.
+dashboard with a headless browser (the author's `video/shots.py`, outside the repository); the drain test in the first one is read from mainnet.
 
 | File | Caption |
 |---|---|
 | `01-first-screen.png` | The rating, and the drain test reading NEAR mainnet live every day. |
-| `02-levers.png` | Every lever from fees to holders: two signers move each revenue wallet. |
+| `02-levers.png` | Every lever from fees to holders, and the signatures that move it. |
 | `03-rules.png` | Hold today; code states what would make it Buy or Avoid. |
 | `04-peers.png` | The same rules run on Hyperliquid, Pump.fun, Aave and Jupiter. |
 

@@ -131,7 +131,7 @@ class TestDashboard(unittest.TestCase):
         self.assertIsNone(re.search(r'<link[^>]+href="https?:', self.html))
 
     def test_levers_svg_takes_its_numbers_from_numbers_json(self):
-        """Every figure drawn in docs/levers.svg is a value from numbers.json (video/make_levers.py writes it)."""
+        """Every figure drawn in docs/levers.svg is a value from numbers.json (scripts/levers_chart.py writes it)."""
         svg = (REPO / "docs" / "levers.svg").read_text(encoding="utf-8")
         pool = " ".join(v["text"] for v in self.numbers.values() if v["text"]) + " 1Click"
         drawn = []

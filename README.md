@@ -12,6 +12,8 @@ So far they have kept it: <!--n:f2.wallets_kept_share_of_revenue.2026-04_2026-10
 
 **What would change it.** Code applies the rules every day. **Avoid** at once if the NEAR in the buyback wallets ends a day more than 10% below its peak since 1 November (the test reads the wallets' balance, so staking it counts as a fall). **Buy** needs a lock the chain shows sealed (we tested that check on testnet), a treasury with no new multisig requests in the window, and buybacks that cover all new NEAR or grow by <!--n:lr.required_growth.buybacks.A.2031-->+75%<!--/n--> a year ([every condition](#the-rating-as-rules)). Next dated checks: 16 November and 9 December.
 
+![Who holds each lever, from the fee a user pays to the NEAR a holder keeps: the revenue wallets move with a few signatures and nothing locks or burns; only issuance is a protocol rule](docs/levers.svg)
+
 ## Why Hold
 
 | Question | Answer | The number |
@@ -30,6 +32,17 @@ So far they have kept it: <!--n:f2.wallets_kept_share_of_revenue.2026-04_2026-10
 **What this repository adds:** a rating that is code and re-reads mainnet every day (Avoid can fire any day; Buy needs a lock that does not exist) · predictions hashed on chain before they are judged, one of them judged automatically by a daily GitHub Action · the same rules run on four other protocols · NEAR's own use counted from blocks through BigQuery, as the track asks ([claim E](#e-the-chain-is-used-less-and-its-use-pays-holders-almost-nothing)).
 
 **[Live dashboard](https://nikolaskahris-png.github.io/near-thesis-data/dashboard/)** · [Try it in two minutes](#try-it-in-two-minutes) · [One-page thesis](THESIS.md) · [Every detail](docs/DETAILS.md) · [Terms](#terms) · Window: 2 October → 1 November 2026; any other date is named where used
+
+<table>
+  <tr>
+    <td width="50%" valign="top"><a href="https://nikolaskahris-png.github.io/near-thesis-data/dashboard/"><img src="docs/media/01-first-screen.png" alt="The dashboard's first screen: the rating, Hold, and the drain test read from NEAR mainnet" width="100%"></a><br><sub>The rating, and the drain test reading NEAR mainnet live every day.</sub></td>
+    <td width="50%" valign="top"><a href="https://nikolaskahris-png.github.io/near-thesis-data/dashboard/#pL"><img src="docs/media/02-levers.png" alt="The levers picture on the dashboard" width="100%"></a><br><sub>Every lever from fees to holders, and the signatures that move it.</sub></td>
+  </tr>
+  <tr>
+    <td width="50%" valign="top"><a href="#the-rating-as-rules"><img src="docs/media/03-rules.png" alt="The rating panel: this window's tests and the Buy and Avoid rules" width="100%"></a><br><sub>Hold today; code states what would make it Buy or Avoid.</sub></td>
+    <td width="50%" valign="top"><a href="EVIDENCE.md#the-same-rules-on-four-other-protocols"><img src="docs/media/04-peers.png" alt="The same rules applied to four other protocols" width="100%"></a><br><sub>The same rules run on Hyperliquid, Pump.fun, Aave and Jupiter.</sub></td>
+  </tr>
+</table>
 
 ## Try it in two minutes
 
