@@ -23,7 +23,7 @@ The table with every figure:
 
 - **It did not stop when swaps went private.** From 27 October to 8 November (13 days, running past the window's end), when swaps began to settle privately, the NEAR kept a day by the three revenue wallets (the two buybacks wallets and the front-end fund) changed by <!--n:ps.change.kept_near_per_day-->-3%<!--/n-->. That cannot be told from no change (<!--n:ci.shift.kept_near.low-->-28%<!--/n--> to <!--n:ci.shift.kept_near.high-->+28%<!--/n-->), but a stop would show as about -100% ([claim D](#d-it-did-not-stop-when-the-flow-went-private)).
 - **The front-end fund**, a third wallet that keeps the fees of NEAR Intents' own front end, raises coverage to <!--n:n1.coverage_with_front_end-->16.5%<!--/n-->; the Buy rule counts the two buybacks wallets' <!--n:n1.coverage_buybacks-->10.8%<!--/n-->.
-- **People decide issuance too**, but only through a release that validators with <!--n:c.issuance_upgrade_stake_threshold-->4/5<!--/n--> of stake run.
+- **People decide issuance too**, but only through a release that block producers with more than <!--n:c.issuance_upgrade_stake_threshold-->4/5<!--/n--> of their stake run.
 
 ## What to watch from Monday, 16 November
 
@@ -55,7 +55,7 @@ Each day the buybacks wallets keep <!--n:n1.buybacks_near_per_day-->9,570<!--/n-
 
 Nothing in code burns, locks or requires the buybacks. The three revenue wallets' <!--n:n1.wallets_held_near-->4,109,089<!--/n--> NEAR moves with <!--n:c.buybacks_confirmations-->2 of 4<!--/n--> signers for each buybacks wallet and <!--n:c.front_end_transfer-->2 of 5<!--/n--> for the front-end fund, where <!--n:c.front_end_rules-->1 of 5<!--/n--> can rewrite its rules. A passed vote is not yet a rule: HSP-027 passed on 3 July 2026 and reached the chain <!--n:pr.v87.days_from_hsp027_passed-->124<!--/n--> days later, and HSP-029, the issuance cut, waits for the same step. The protocol treasury and NEAR AI's links work the same way ([control map](docs/DETAILS.md#the-control-map-other-links)).
 
-**Against.** The policy has been kept: April to October the wallets held <!--n:f2.wallets_kept_share_of_revenue.2026-04_2026-10-->96.9%<!--/n--> of what flowed in. A policy kept for years is worth almost a rule, so the gap costs Buy, not Hold.
+**Against.** The policy has been kept: April to October the wallets held <!--n:f2.wallets_kept_share_of_revenue.2026-04_2026-10-->96.9%<!--/n--> of DefiLlama's revenue for NEAR Intents. A policy kept for years is worth almost a rule, so the missing rule blocks Buy, not Hold.
 
 **Check.** `python scripts/control_map.py --verify`; `python scripts/control_history.py --verify`. Each ends with `OK`.
 

@@ -14,25 +14,29 @@
   <h1>NEAR Intents' buybacks are a policy, not a rule, and this page checks them every day.</h1>
   <p class="lede">NEAR Intents is a real business: users paid <span data-n="n2.fees_usd_per_day">$206,049</span> a day in fees in
     October (DefiLlama), and part of that buys NEAR. <strong>On chain, the buyback wallets kept NEAR worth
-    <span data-n="iv.cents_per_new_dollar">11 cents</span> for every dollar of new NEAR issued that month.</strong></p>
-  <p class="lede">So far they have kept it: <span data-n="f2.wallets_kept_share_of_revenue.2026-04_2026-10">96.9%</span> of NEAR
-    Intents' revenue since April stayed in its wallets. But nothing makes them: <span data-n="c.buybacks_confirmations">2 of 4</span> signers can move the buybacks' NEAR
-    (the buybacks wallets, <span data-n="c.buybacks_confirmations">2 of 4</span>), and none of it is burned or locked. Every other
-    money lever we mapped on chain also moves with one to three signers; only issuance needs validators with
-    <span data-n="c.issuance_upgrade_stake_threshold">4/5</span> of the stake.</p>
+    <span data-n="iv.cents_per_new_dollar">11 cents</span> for every dollar of new NEAR issued that month</strong>
+    (<span data-n="n1.coverage_buybacks">10.8%</span> of the new NEAR, counted in NEAR).</p>
+  <p class="lede">So far the policy has held: since April the three revenue wallets kept
+    <span data-n="f2.wallets_kept_share_of_revenue.2026-04_2026-10">96.9%</span> of DefiLlama's revenue for NEAR Intents. But nothing makes them:
+    <span data-n="c.buybacks_confirmations">2 of 4</span> signers can move the buybacks' NEAR, and none of it is burned or locked. Every other
+    money lever we mapped on chain also moves with one to three signers; only issuance needs a release run by block producers
+    with more than <span data-n="c.issuance_upgrade_stake_threshold">4/5</span> of their stake.</p>
   <p class="verdict"><strong>Rating to 2031: Hold.</strong> Stay staked: stakers receive the new NEAR, minus the treasury's
-    <span data-n="c.treasury_share_of_new_supply">10.1%</span> and their validator's commission; unstaked NEAR receives none.
-    Don't add: what reaches holders is small, and no rule fixes it.</p>
+    tenth (a protocol rule; <span data-n="c.treasury_share_of_new_supply">10.1%</span> of net new NEAR, measured) and their validator's commission;
+    unstaked NEAR receives none. Don't add: what reaches holders is small, and no rule fixes it. The rules can give Buy: they give it
+    to Hyperliquid, whose bought tokens sit at a keyless address, at its docs' stake; NEAR has no such lock, so no price gives Buy.
+    The rating covers fee capture only, not the layer-one premium that is most of NEAR's value.</p>
   <ul class="triggers">
     <li><b>Avoid</b>, at once, if the NEAR in the buyback wallets ends a day more than a tenth below its peak since the first of
-      November (moving it to staking counts as a fall). The test below runs live, from your browser.</li>
-    <li><b>Buy</b> needs a lock the chain shows sealed (we tested that check on testnet), a treasury with no new payment requests in
-      the window, and buybacks that cover all new NEAR — <span data-n="iv.wallets_multiple_buybacks">×9.2</span> what they keep
-      today — or grow by <span data-n="lr.required_growth.buybacks.A.2031">+75%</span> a year.</li>
+      November (any NEAR leaving the wallets counts, staking included). The test below runs live, from your browser.</li>
+    <li><b>Buy</b> needs a lock the chain shows sealed (we tested that check on testnet), a treasury with no new multisig request in
+      the window (its NEAR could otherwise pose as fees), and buybacks that cover all new NEAR — <span data-n="iv.wallets_multiple_buybacks">×9.2</span> what they keep
+      today — or grow by <span data-n="lr.required_growth.buybacks.A.2031">+75%</span> a year
+      (<span data-n="lr.required_growth.buybacks.B.2031">+56%</span> once HSP-029 is in force, a switch we set by hand).</li>
   </ul>
   <p class="watch"><strong>Next dated checks:</strong> 16 November, when HSP-029 leaves its timelock
-    (<span data-n="f8.timelock_end_utc">2026-11-16 16:48 UTC</span>); it cuts issuance only once validators with
-    <span data-n="c.issuance_upgrade_stake_threshold">4/5</span> of stake run a release. Then 9 December, when a prediction on what
+    (<span data-n="f8.timelock_end_utc">2026-11-16 16:48 UTC</span>); it cuts issuance only once block producers with more than
+    <span data-n="c.issuance_upgrade_stake_threshold">4/5</span> of their stake run a release. Then 9 December, when a prediction on what
     the buybacks keep is scored.</p>
   <p class="watch" id="drain"><strong>The drain test, live from the chain:</strong> <span class="res">asking a public NEAR RPC from
     your browser…</span></p>
@@ -65,7 +69,7 @@
   <p class="figwrap"><img class="fig" src="../docs/levers.svg" alt="Flow from left to right. Fees users pay, set off chain, go
     to NEAR Intents, whose protocol fee a DAO changes with three of five signers, then to the buybacks wallets, the 1Click fee
     fund and the front-end fund, each moved by two signers, and there the flow stops: no lock and no burn. Below, new NEAR is
-    issued under a protocol rule that needs four fifths of the stake to change, the treasury takes a tenth with two signers,
+    issued under a protocol rule that changes only through a release run by block producers with more than four fifths of their stake, the treasury takes a tenth with two signers,
     and stakers receive the rest."></p>
 </section>
 
@@ -86,7 +90,7 @@
       <div class="card end"><b>NEAR holders</b><span>coverage <span data-n="n1.coverage_buybacks">10.8%</span> of issuance</span></div>
     </div>
     <div class="lane"><h3>Issuance → stakers</h3>
-      <div class="card rule"><b>Issuance</b><span>at most <span data-n="c.issuance_max_inflation_rate">1/40</span> a year · a protocol rule</span><span class="who">changed by block producers with <span data-n="c.issuance_upgrade_stake_threshold">4/5</span> of their stake</span></div>
+      <div class="card rule"><b>Issuance</b><span>at most <span data-n="c.issuance_max_inflation_rate">1/40</span> a year · a protocol rule</span><span class="who">changed by block producers with more than <span data-n="c.issuance_upgrade_stake_threshold">4/5</span> of their stake</span></div>
       <div class="arrow" aria-hidden="true">↓</div>
       <div class="card"><b><code>treasury.near</code></b><span>paid out <span data-n="ts.year_out_near">30,171,200</span> NEAR in this year</span><span class="who">multisig <span data-n="c.treasury_confirmations">2 of 4</span></span></div>
       <div class="card" data-live="pool"><b>NEAR AI pool rewards</b><span>the pool keeps <span data-n="c.nearai_pool_reward_fee">100%</span> of rewards</span><span class="who">owner DAO <span data-n="c.nearai_pool_owner_transfer">2 of 3</span></span></div>
@@ -98,7 +102,7 @@
       <div class="arrow" aria-hidden="true">↓</div>
       <div class="card"><b>HSP-029: issuance cut</b><span>passed; <span data-n="f8.fewest_voters_reaching_quorum">6</span> voters held enough veNEAR to reach the quorum</span><span class="who">in timelock until <span data-n="f8.timelock_end_utc">2026-11-16 16:48 UTC</span> · executes nothing on chain</span></div>
       <div class="arrow" aria-hidden="true">↓</div>
-      <div class="card"><b>A rule only when validators run it</b><span>a nearcore release with <span data-n="c.issuance_upgrade_stake_threshold">4/5</span> of stake</span><span class="who">measured live below</span></div>
+      <div class="card"><b>A rule only when validators run it</b><span>a nearcore release run by more than <span data-n="c.issuance_upgrade_stake_threshold">4/5</span> of producers' stake</span><span class="who">measured live below</span></div>
     </div>
   </div>
   <p class="foot">The <span data-n="c.dao_count">5</span> DAOs have <span data-n="c.dao_member_accounts">22</span> member accounts; the number in more than one DAO is <span data-n="c.dao_members_in_two_or_more">0</span>.
@@ -119,7 +123,7 @@
   <h2>Rating, latest window: <span id="rating-now">—</span></h2>
   <p class="what">The README's rules applied to a rolling window of thirty days, every day (<code>data/rating.csv</code>). Avoid needs the
     latest window and the one ending thirty days before it to fail one of the two tests, or the bought NEAR to fall more than a tenth below its peak; Buy needs rule (b) on chain first: a lock no one can spend from.
-    <span class="not">A window with missing DefiLlama days is not judged, and the two newest windows may still be revised.</span></p>
+    <span class="not">A window with missing DefiLlama days is judged on the second test alone if every day has a price, and the two newest windows may still be revised.</span></p>
   <div class="ratingbox" id="rating-box"></div>
   <ul class="triggers">
     <li><b>Buy</b> only when <b>(b)</b> a published rule sends the buybacks to a declared lock the chain shows cannot send NEAR out (no keys and no code, or reviewed code, no full-access key and only function-call keys limited to the lock) and

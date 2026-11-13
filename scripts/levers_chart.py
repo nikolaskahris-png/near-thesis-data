@@ -69,7 +69,7 @@ def main():
          '<title id="ttl">Who holds each lever, from the fee a user pays to the NEAR a holder keeps</title>',
          '<desc id="desc">Two flows read on chain. Above: users’ fees reach NEAR Intents, then three revenue '
          'wallets, and stop there — no lock, no burn, and each of those wallets moves with two signers. Below: '
-         'new NEAR is issued under a protocol rule that only validators with four fifths of the stake can change; '
+         'new NEAR is issued under a protocol rule that only a release run by block producers with more than four fifths of their stake can change; '
          'the treasury takes its share with two signers, and stakers receive the rest.</desc>',
          STYLE,
          '<rect class="bg" width="%d" height="%d" rx="8"/>' % (W, H),
@@ -111,13 +111,13 @@ def main():
     s.append('<text class="rowh" x="24" y="%d">NEW NEAR &#8594; STAKERS</text>' % (by - 16))
     s.append(box(x1, by, w1, 134, RULE, "New NEAR issued",
                  ["at most %s a year" % t("c.issuance_max_inflation_rate"), "a protocol rule"],
-                 "%s of the stake" % t("c.issuance_upgrade_stake_threshold")))
+                 "changed only by a release"))
     s.append(box(x2, by, w2, 134, RULE, "Validators run it",
                  ["block producers with more",
                   "than %s of their stake" % t("c.issuance_upgrade_stake_threshold")],
-                 "a release, not a vote"))
+                 "they vote by running it"))
     s.append(box(x3, by, w3, 134, FEW, "treasury.near",
-                 ["%s of the new NEAR" % t("c.treasury_share_of_new_supply"),
+                 ["%s of net new NEAR, measured" % t("c.treasury_share_of_new_supply"),
                   "paid %s NEAR out this year" % t("ts.year_out_near")],
                  "multisig: %s signers" % t("c.treasury_confirmations")))
     s.append(box(x4, by, w4, 134, RULE, "Stakers",

@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1400" height="712" viewBox="0 0 1400 712" role="img" aria-labelledby="ttl desc">
 <title id="ttl">Who holds each lever, from the fee a user pays to the NEAR a holder keeps</title>
-<desc id="desc">Two flows read on chain. Above: users’ fees reach NEAR Intents, then three revenue wallets, and stop there — no lock, no burn, and each of those wallets moves with two signers. Below: new NEAR is issued under a protocol rule that only validators with four fifths of the stake can change; the treasury takes its share with two signers, and stakers receive the rest.</desc>
+<desc id="desc">Two flows read on chain. Above: users’ fees reach NEAR Intents, then three revenue wallets, and stop there — no lock, no burn, and each of those wallets moves with two signers. Below: new NEAR is issued under a protocol rule that only a release run by block producers with more than four fifths of their stake can change; the treasury takes its share with two signers, and stakers receive the rest.</desc>
 <style>
 svg{--bg:#ffffff;--ink:#1f2328;--mute:#59636e;--card:#f7f7f5;--line:#d8d8d2;--few:#c2410c;--rule:#15803d;--fewbg:#fdf0e8;--rulebg:#eaf6ee}
 @media (prefers-color-scheme:dark){svg{--bg:#0d1117;--ink:#e6edf3;--mute:#9198a1;--card:#161b22;--line:#30363d;--few:#f0834c;--rule:#4ac07c;--fewbg:#231611;--rulebg:#102018}}
@@ -64,17 +64,17 @@ text{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,san
 <text class="t" x="46" y="550">New NEAR issued</text>
 <text class="v" x="46" y="577">at most 1/40 a year</text>
 <text class="v" x="46" y="604">a protocol rule</text>
-<text class="w rule" x="46" y="634">4/5 of the stake</text>
+<text class="w rule" x="46" y="634">changed only by a release</text>
 <rect class="bx rule" x="328" y="516" width="280" height="134" rx="10"/>
 <rect class="bar rule" x="328" y="516" width="8" height="134"/>
 <text class="t" x="350" y="550">Validators run it</text>
 <text class="v" x="350" y="577">block producers with more</text>
 <text class="v" x="350" y="604">than 4/5 of their stake</text>
-<text class="w rule" x="350" y="634">a release, not a vote</text>
+<text class="w rule" x="350" y="634">they vote by running it</text>
 <rect class="bx few" x="632" y="516" width="368" height="134" rx="10"/>
 <rect class="bar few" x="632" y="516" width="8" height="134"/>
 <text class="t" x="654" y="550">treasury.near</text>
-<text class="v" x="654" y="577">10.1% of the new NEAR</text>
+<text class="v" x="654" y="577">10.1% of net new NEAR, measured</text>
 <text class="v" x="654" y="604">paid 30,171,200 NEAR out this year</text>
 <text class="w few" x="654" y="634">multisig: 2 of 4 signers</text>
 <rect class="bx rule" x="1024" y="516" width="352" height="134" rx="10"/>

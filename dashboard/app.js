@@ -542,7 +542,7 @@ function ladder() {
     { name: "+ every fee kept by NEAR", key: "n2.max_coverage",
       who: `the distribution channels, off-chain; or the protocol fee, DAO ${txt("c.intents_fee_change")} · a choice` },
     { name: "+ HSP-029 at the end of its ramp", key: "n2.hsp029_max_coverage", rule: true,
-      who: `validators with ${txt("c.issuance_upgrade_stake_threshold")} of stake, at least ${txt("c.issuance_validators_to_pass_upgrade")} of them · a rule once they run it` },
+      who: `block producers with more than ${txt("c.issuance_upgrade_stake_threshold")} of their stake · a rule once they run it` },
   ];
   const host = $("#ladder");
   host.innerHTML = steps.map(s => {

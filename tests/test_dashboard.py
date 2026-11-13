@@ -145,6 +145,19 @@ class TestDashboard(unittest.TestCase):
         self.assertIn('src="../docs/levers.svg"', self.html)
         self.assertTrue((REPO / "docs" / "levers.svg").exists())
 
+    def test_old_wordings_do_not_return(self):
+        """Wordings the K5b reviews found wrong or loose (13 Nov) stay out of every text a reader sees."""
+        files = ["README.md", "THESIS.md", "EVIDENCE.md", "docs/DETAILS.md", "dashboard/index.html",
+                 "dashboard/app.js", "docs/levers.svg"]
+        bad = ["c.issuance_validators_to_pass_upgrade\")} of them", "payment requests", "of what flowed in",
+               "a release, not a vote", "the gap costs Buy"]
+        # issuance needs block producers with MORE than 4/5 of their stake; DETAILS keeps old README versions as they were
+        bad_current = ["4/5 of stake run", "four fifths of the stake", "validators with four fifths"]
+        for f in files:
+            text = (REPO / f).read_text(encoding="utf-8")
+            for b in bad + ([] if f == "docs/DETAILS.md" else bad_current):
+                self.assertNotIn(b, text, f"{f}: {b}")
+
 
 if __name__ == "__main__":
     unittest.main()
