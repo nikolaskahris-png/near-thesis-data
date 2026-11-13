@@ -10,7 +10,7 @@ Requirements: Python 3.10 or later (`python` below, `python3` on some systems), 
 
 ## 1. Offline check (no network, under a minute on a laptop)
 
-Run from the repository root. One command runs every check below in order:
+Run from the repository root. One command runs every check below (`rebuild.py` runs its own steps; the per-script checks in the table run inside its `build_numbers.py --verify` step):
 
 ```
 python scripts/rebuild.py
@@ -104,7 +104,7 @@ locked block for comparison. Live answers can differ from the locked block.
 ## Where each number comes from
 
 Each entry of `data/numbers.json` has `value`, `text` (the README form), `source` (a file) and that file's
-SHA-256. In the README, `THESIS.md` and `docs/DETAILS.md` each figure is wrapped as `<!--n:KEY-->text<!--/n-->`, where `KEY` is the entry.
+SHA-256. In the README, `THESIS.md`, `EVIDENCE.md` and `docs/DETAILS.md` each figure is wrapped as `<!--n:KEY-->text<!--/n-->`, where `KEY` is the entry.
 
 | Key prefix | What | Script | Source file |
 |---|---|---|---|

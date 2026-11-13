@@ -16,7 +16,7 @@ The table with every figure:
 
 **What would change the rating, in detail**
 
-- **Buy**, all of: (1) a lock declared in `daily.LOCKS` (the author adds it by hand once a published rule names one) that the chain shows cannot send NEAR out; the code checks the lock, not how much NEAR is in it; (2) `treasury.near` sends nothing in the window; (3) counted coverage of 100%, where the buybacks, DefiLlama's revenue and DefiLlama's fees must each reach issuance (the buybacks need <!--n:iv.wallets_multiple_buybacks-->×9.2<!--/n--> today's pace, all fees <!--n:iv.fees_multiple-->×2.1<!--/n-->), or at the yearly check each 1 November growth of <!--n:lr.required_growth.buybacks.A.2031-->+75%<!--/n--> a year (<!--n:lr.required_growth.buybacks.B.2031-->+56%<!--/n--> once HSP-029 is in force, a switch the author also sets by hand).
+- **Buy**, all of: (1) a lock declared in `daily.LOCKS` (the author adds it by hand once a published rule names one) that the chain shows cannot send NEAR out; the code checks the lock, not how much NEAR is in it; (2) `treasury.near` opens no new multisig request in the window (a request opened earlier and confirmed inside it would not be seen); (3) counted coverage of 100%, where the buybacks, DefiLlama's revenue and DefiLlama's fees must each reach issuance (the buybacks need <!--n:iv.wallets_multiple_buybacks-->×9.2<!--/n--> today's pace, all fees <!--n:iv.fees_multiple-->×2.1<!--/n-->), or at the yearly check each 1 November growth of <!--n:lr.required_growth.buybacks.A.2031-->+75%<!--/n--> a year (<!--n:lr.required_growth.buybacks.B.2031-->+56%<!--/n--> once HSP-029 is in force, a switch the author also sets by hand).
 - **Avoid, at once:** the amount of NEAR the buybacks hold (an amount, not a price; NEAR they delegate to a staking pool also counts as gone, although they would still own it) falls more than 10% below its peak since 1 November. This is the drain test; the dashboard runs it live from the chain. [All the rules](#the-rating-as-rules).
 
 ## Also measured
@@ -146,7 +146,7 @@ The rules can give Buy; NEAR fails the lock first ([inputs and quotes](docs/DETA
 
 ## What would change our mind
 
-- **Any day:** a drain gives Avoid (the stock rose every day from 1 to 12 November); **from mid-December** (the window ending 11–13 December at the earliest), so can the two window tests.
+- **Any day:** a drain gives Avoid (the stock rose every day from 1 to 12 November); **from 11 December at the earliest** (the windows ending 1–10 November passed and are final), so can the two window tests.
 - **9 December 2026:** if from 9 November the buybacks keep less than half of <!--n:iv.buybacks_kept_usd_per_day-->$46,692<!--/n--> a day, PREREG-3's P6 (0.90) is scored wrong, and claim D with it.
 - **Any day:** a sealed lock, a quiet treasury and 100% counted coverage (best month so far <!--n:bt.highest_coverage_counted-->15.3%<!--/n-->) gives Buy.
 - **Any three months running:** coverage of 25% or more ends "small" ([the full list](THESIS.md#what-would-change-our-mind)).
