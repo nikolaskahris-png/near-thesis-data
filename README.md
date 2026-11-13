@@ -23,7 +23,7 @@ So far they have kept it: <!--n:f2.wallets_kept_share_of_revenue.2026-04_2026-10
 | Did the buybacks grow, or the price? | Both | NEAR averaged <!--n:n2.mean_price_usd-->$4.88<!--/n--> in the window, <!--n:lr.history.2026-04_2026-10.mean_price_multiple-->×3.6<!--/n--> April's; a day, the buybacks kept <!--n:lr.history.2026-04_2026-10.buybacks_kept_near_multiple-->×2.1<!--/n--> as much NEAR in October as in April, <!--n:lr.history.2026-04_2026-10.buybacks_kept_usd_multiple-->×7.5<!--/n--> in dollars |
 | Is the chain's own use growing? | No, except NEAR Intents | leaving out each day's 10 busiest signers, daily transactions fell <!--n:bq.signers.without_top10_change-->-45%<!--/n--> in a year (<!--n:u.txns.change-->-83%<!--/n--> with them; BigQuery) |
 
-**Stay staked:** most new NEAR pays stakers; a staker forgoes only the treasury's <!--n:c.treasury_share_of_new_supply-->10.1%<!--/n--> slice and the validator's commission. Your share of all NEAR grows +<!--n:iv.staked_share_growth-->2.44%<!--/n--> a year staked (before the validator's commission) and falls (<!--n:iv.unstaked_share_change-->-2.40%<!--/n-->) unstaked. **Do not add:** what reaches holders is small, and no rule fixes it.
+**What staking does to your share:** your share of all NEAR grows +<!--n:iv.staked_share_growth-->2.44%<!--/n--> a year staked (before the validator's commission) and falls <!--n:iv.unstaked_share_change-->-2.40%<!--/n--> unstaked.
 
 ![For the NEAR issued each day, the buybacks keep about a tenth; all fees would cover under half](docs/coverage.svg)
 
@@ -68,7 +68,7 @@ Evidence, tables and checks: [EVIDENCE.md](EVIDENCE.md#c-it-is-a-policy-not-a-ru
 
 ### D. It did not stop when the flow went private
 
-From 27 October swaps began to settle privately on FAR. To 8 November, the NEAR kept a day by the three revenue wallets changed by <!--n:ps.change.kept_near_per_day-->-3%<!--/n-->. That is inside the noise (<!--n:ci.shift.kept_near.low-->-28%<!--/n--> to <!--n:ci.shift.kept_near.high-->+28%<!--/n-->); a stop would be near -100%.
+From 27 October swaps began to settle privately on FAR. To 8 November, the NEAR kept a day by the three revenue wallets changed by <!--n:ps.change.kept_near_per_day-->-3%<!--/n--> (<!--n:ps.change.kept_usd_per_day-->-19%<!--/n--> in dollars, mostly the price). The NEAR figure is inside the noise (<!--n:ci.shift.kept_near.low-->-28%<!--/n--> to <!--n:ci.shift.kept_near.high-->+28%<!--/n-->); a stop would be near -100%.
 
 **Against.** Thirteen days show capture did not stop, not that it held level; of five start dates tried, the worst gives <!--n:ps.cut.kept_near_lowest-->-13%<!--/n-->.
 
@@ -76,7 +76,7 @@ Evidence, tables and checks: [EVIDENCE.md](EVIDENCE.md#d-it-did-not-stop-when-th
 
 ### E. The chain is used less, and its use pays holders almost nothing
 
-Daily transactions not relayed fell <!--n:u.txns_not_meta.change-->-58%<!--/n--> in a year (NearBlocks and BigQuery agree), and all gas paid in that year was <!--n:u.fee_share_of_issuance-->0.8%<!--/n--> of a year of new NEAR. Successful relay calls into NEAR Intents rose +<!--n:bq.paths.relay_ok_a_day_change-->125%<!--/n--> a day from October to 1–11 November, but these are calls, not dollars, and the rating does not use them.
+Leaving out each day's 10 busiest signers, daily transactions fell <!--n:bq.signers.without_top10_change-->-45%<!--/n--> in a year (<!--n:u.txns.change-->-83%<!--/n--> with them; NearBlocks and BigQuery agree on every day), and all gas paid in that year was <!--n:u.fee_share_of_issuance-->0.8%<!--/n--> of a year of new NEAR. Successful relay calls into NEAR Intents rose +<!--n:bq.paths.relay_ok_a_day_change-->125%<!--/n--> a day from October to 1–11 November, but these are calls, not dollars, and the rating does not use them.
 
 **Against.** Fifty-two weeks give the organizers' lead test little power: "not detected" is not "no effect".
 
@@ -98,18 +98,19 @@ NEAR is valued at <!--n:peer.near.mcap_to_revenue-->248×<!--/n--> the revenue D
 | **Buy** | **All three:**<br>1. A published rule sends the buybacks to a lock, which we then declare in `daily.LOCKS` (none yet), and the chain shows it cannot send NEAR out: no contract and no keys, or a reviewed code hash (`AUDITED_CODE`, none yet) with no full-access key and every function-call key limited to the lock with a finite allowance. The code checks the declared lock, not how much NEAR is in it. Read on a real chain: `near-thesis-lock-1311.testnet`, a testnet account whose only key we deleted by hand, has <!--n:tl.access_keys-->0<!--/n--> keys and no contract and reads as <!--n:tl.sealed-->sealed<!--/n--> at block <!--n:tl.block_height-->277,435,278<!--/n--> (`scripts/testnet_lock.py`).<br>2. `treasury.near` opened no new multisig request in the window (its request nonce is the same at both ends; a request opened earlier and confirmed inside the window would not be seen).<br>3. The buybacks cover issuance, or at the yearly check on 1 November have grown <!--n:lr.required_growth.buybacks.A.2031-->+75%<!--/n--> a year, in dollars and in NEAR. A yearly pass then holds until the next check, without item 2 being checked again. | the chain; DefiLlama caps what counts |
 | **Hold** | Everything else, unjudgeable windows included. | |
 
-- **Why Hold today.** Buy needs a lock that does not exist; across <!--n:sens.combinations-->54<!--/n--> threshold settings, <!--n:sens.hold-->378<!--/n--> of <!--n:sens.month_ratings-->378<!--/n--> monthly ratings from April to October are Hold.
+- **Is Hold built in?** Until a lock exists, yes on the upside: across <!--n:sens.combinations-->54<!--/n--> threshold settings, <!--n:sens.hold-->378<!--/n--> of <!--n:sens.month_ratings-->378<!--/n--> monthly ratings from April to October are Hold. That is the finding: what holders lack is a rule. On the downside it is a live call: Avoid can fire any day, and the same rules give Hyperliquid, whose bought tokens sit at a keyless address, Buy at its docs' stake ([peers](EVIDENCE.md#the-same-rules-on-four-other-protocols)).
 - **Price.** Until a lock exists, no price gives Buy; a lower price can only push toward Avoid (test 2). With a lock, the yearly check counts dollars too.
 
 Backtest: [the rating in full](docs/DETAILS.md#the-rating-in-full). Four other protocols: [EVIDENCE.md](EVIDENCE.md#the-same-rules-on-four-other-protocols).
 
 ## What would change our mind
 
-- **Any day:** a drain gives Avoid; **from 11 December at the earliest**, so can the two window tests.
+- **16 November:** PREREG predictions 1–3 are judged; HSP-029, the issuance cut, leaves its timelock at <!--n:f8.timelock_end_utc-->2026-11-16 16:48 UTC<!--/n-->; until then House of Stake's Security Council can still veto it. It cuts issuance only once validators run a release.
 - **9 December 2026:** if from 9 November the buybacks keep less than half of <!--n:iv.buybacks_kept_usd_per_day-->$46,692<!--/n--> a day, PREREG-3's P6 (0.90) is scored wrong, and claim D with it.
-- **Any day:** a sealed lock, a quiet treasury and 100% counted coverage (best month so far <!--n:bt.highest_coverage_counted-->15.3%<!--/n-->) gives Buy.
+- **From 11 December at the earliest:** the two window tests can give Avoid (the windows ending 1–10 November passed and are final).
+- **Any day:** a drain gives Avoid.
+- **Any day:** a sealed lock, no new treasury request and 100% counted coverage (best month so far <!--n:bt.highest_coverage_counted-->15.3%<!--/n-->) gives Buy.
 - **Any three months running:** coverage of 25% or more ends "small" ([the full list](THESIS.md#what-would-change-our-mind)).
-- **16 November:** HSP-029, the issuance cut, leaves its timelock at <!--n:f8.timelock_end_utc-->2026-11-16 16:48 UTC<!--/n-->; until then House of Stake's Security Council can still veto it. It cuts issuance only once validators run a release.
 - **Predictions** are hashed on mainnet before they are judged ([all, with results](EVIDENCE.md#predictions-anchored-before-they-are-judged)).
 
 **0.25** that the buybacks go to such a lock by 2031: our judgment, from three peers and NEAR's proposals so far ([sources](docs/DETAILS.md#how-likely-a-rule-is)).
