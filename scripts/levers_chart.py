@@ -12,7 +12,7 @@ import sys
 from pathlib import Path
 
 W, H = 1400, 712
-COLS = [(24, 250), (298, 260), (590, 360), (982, 394)]
+COLS = [(24, 280), (328, 280), (632, 368), (1024, 352)]
 FEW, RULE, OFF = "few", "rule", "off"
 
 STYLE = """<style>
@@ -96,10 +96,11 @@ def main():
     s.append(box(x3, ay + 232, w3, bh, FEW, "Front-end fund",
                  ["%s NEAR" % t("n1.front_end_held_near")],
                  "send %s · rules %s" % (t("c.front_end_transfer"), t("c.front_end_rules"))))
-    s.append(box(x4, ay + 88, w4, 160, FEW, "No lock. No burn.",
+    s.append(box(x4, ay + 75, w4, 187, FEW, "No lock. No burn.",
                  ["The wallets kept %s for every" % t("iv.cents_per_new_dollar"),
                   "dollar of new NEAR issued;",
-                  "%s of revenue stayed in" % t("f2.wallets_kept_share_of_revenue.2026-04_2026-10")],
+                  "%s of revenue since April" % t("f2.wallets_kept_share_of_revenue.2026-04_2026-10"),
+                  "stayed in its wallets"],
                  "nothing on chain requires it"))
     s.append(arrow(x1 + w1, x2, ay + 168))
     s.append(arrow(x2 + w2, x3, ay + 168))
