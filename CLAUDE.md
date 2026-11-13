@@ -8,7 +8,7 @@ numbers come from [`data/numbers.json`](data/numbers.json), and each section bel
 Requirements: Python 3.10 or later (`python` below, `python3` on some systems), standard library only. No
 `pip install`, no API keys. No command here signs anything or writes to the chain.
 
-## 1. Offline check (no network, about three minutes)
+## 1. Offline check (no network, under a minute on a laptop)
 
 Run from the repository root. One command runs every check below in order:
 
@@ -39,7 +39,7 @@ Its last line is `REBUILD: PASS`. The same checks, one by one:
 | `python scripts/peers_rating.py --verify` | the rating's gates (lock, drain, coverage) on Hyperliquid, Pump.fun, Aave and Jupiter recompute from `data/peers.json`, PUMP's saved DefiLlama files (`data/peers_rating_fetch.json`) and inputs quoted from saved pages; NEAR comes out Hold as in `rating.py` | `OK` |
 | `python scripts/judge_prereg.py --verify` | PREREG.md's prediction 2 recomputes from the saved day files of 1 and 16 November (`pending` before 16 November); the daily Action writes it | `OK` |
 | `python scripts/usage.py --verify` | claim E: NearBlocks' daily transactions, active accounts, fees, price and NEAR Intents volume (saved responses, `data/usage_fetch.json`) give the 12-month change, the share of DefiLlama's volume NearBlocks sees, and the lead tests (weekly, lags 0-4, 10,000 circular shifts) | `OK` |
-| `python scripts/bq_usage.py --verify` | claim E, second source: five queries on NEAR's public BigQuery dataset (`sql/`, results in `data/bq/` checked against `data/bq/MANIFEST.json`) give the day-by-day agreement with NearBlocks, who calls `intents.near` and whether the calls succeed, and the lead tests with on-chain activity | `OK` |
+| `python scripts/bq_usage.py --verify` | claim E, second source: five queries on NEAR's public BigQuery dataset (`sql/`, results in `data/bq/` checked against `data/bq/MANIFEST.json`) give the day-by-day agreement with NearBlocks, who calls `intents.near` and whether the calls succeed, and the lead tests with on-chain activity | `bq_usage: OK` |
 | `python scripts/testnet_lock.py --verify` | rule (b) on a real chain: `near-thesis-lock-1311.testnet`, a NEAR testnet account with no contract and no key (its only key deleted by hand), read by `daily.lock_sealed` from saved RPC responses | `testnet_lock: OK` |
 | `python scripts/rating.py --verify` | the rating (Hold / Buy / Avoid) of every window in `data/rating.csv` recomputes from `history.csv` and the saved DefiLlama responses | `OK: rating.csv recomputes from history.csv and the saved responses` |
 | `python scripts/backtest.py --verify` | the rating rules on each month April–October 2026 in `data/backtest.csv` recompute from `coverage_monthly.json` and the saved DefiLlama responses | `OK: backtest.csv recomputes from coverage_monthly.json and the saved DefiLlama responses` |
@@ -47,6 +47,14 @@ Its last line is `REBUILD: PASS`. The same checks, one by one:
 | `python scripts/chart.py --verify` | the README's chart, `docs/coverage.svg`, is redrawn from `data/numbers.json` and must be identical | `OK: docs/coverage.svg is the chart drawn from data/numbers.json` |
 
 Each passing command exits with code 0. Any other last line, or another exit code, is a failure.
+
+Two limits a screener should know. (1) The BigQuery files in `data/bq/` were saved from the console (queries 1-4 through
+a JSON-to-CSV step in the browser), so their SHA-256 shows they have not changed since, not that BigQuery returned
+them; rerunning the five files in `sql/` (a Google account, about 492 GB) is the only check against BigQuery.
+(2) Three switches in the code are set by hand, not read from the chain: `daily.LOCKS` (a lock is declared only once a
+published rule names one), `daily.AUDITED_CODE` (a lock contract's reviewed code hash) and `rating.HSP029_IN_FORCE`
+(which growth threshold applies). All three are empty or False today; the chain then decides whether a declared lock
+is sealed.
 
 **If your sandbox has no network**, this section is the whole check and needs nothing else. The dashboard works
 offline too: `python -m http.server 8000` in the repository root, then `http://localhost:8000/dashboard/` (not
