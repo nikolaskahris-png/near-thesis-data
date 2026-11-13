@@ -2,9 +2,11 @@
 
 [![verify](https://github.com/nikolaskahris-png/near-thesis-data/actions/workflows/verify.yml/badge.svg)](https://github.com/nikolaskahris-png/near-thesis-data/actions/workflows/verify.yml)
 
-**For each $1 of new NEAR issued, NEAR Intents' buybacks buy NEAR worth about <!--n:iv.cents_per_new_dollar-->11 cents<!--/n--> and keep it in wallets that <!--n:c.buybacks_confirmations-->2 of 4<!--/n--> multisig signers can move.** None of it is burned or locked.
+**For each $1 of new NEAR issued, NEAR Intents' buybacks keep NEAR worth about <!--n:iv.cents_per_new_dollar-->11 cents<!--/n-->, in wallets that <!--n:c.buybacks_confirmations-->2 of 4<!--/n--> multisig signers can move.** None of it is burned or locked, and no rule requires it.
 
-**Rating to 2031: Hold.** Keep your NEAR staked; do not add more. The rating covers what holders are paid from fees by rule, not NEAR's value as a chain ([the rest of the value](#what-a-holder-earns-to-2031)).
+**Rating to 2031: Hold.** On Monday: keep your NEAR staked, and do not add more. The rating covers what holders are paid from fees by rule, not NEAR's value as a chain ([the rest of the value](#what-a-holder-earns-to-2031)).
+
+**What would change it.** **Buy** needs a lock the chain shows cannot send the bought NEAR out (none exists today) *and* buybacks at <!--n:iv.wallets_multiple_buybacks-->×9.2<!--/n--> today's pace. **Avoid**, at once, if the NEAR the buybacks hold falls more than 10% below its peak; the dashboard reads this from the chain every day. Until a lock exists, the rules can move the rating only to Avoid: Hold here is a call that the buybacks stay discretionary, and the drain test is how it would be proved wrong.
 
 **In plain words.** NEAR Intents swaps tokens across blockchains for a fee, and part of the fees buys NEAR: the buybacks. NEAR also issues new tokens every day, which dilutes anyone who does not stake. We measure on mainnet how much of that dilution the buybacks offset, and whether any rule guarantees it.
 
@@ -12,15 +14,15 @@
 
 | Question | Answer | The number |
 |---|---|---|
-| How much of the new NEAR do the buybacks offset? | A small part | <!--n:n1.coverage_buybacks-->10.8%<!--/n--> (95% interval <!--n:ci.coverage_buybacks.low-->9.5%<!--/n-->–<!--n:ci.coverage_buybacks.high-->12.4%<!--/n-->): <!--n:iv.buybacks_kept_usd_per_year-->$17.1M<!--/n--> a year bought, against <!--n:iv.issuance_usd_per_year-->$157.5M<!--/n--> of NEAR issued |
+| How much of the new NEAR do the buybacks offset? | A small part | <!--n:n1.coverage_buybacks-->10.8%<!--/n--> of it, counted in NEAR (95% interval <!--n:ci.coverage_buybacks.low-->9.5%<!--/n-->–<!--n:ci.coverage_buybacks.high-->12.4%<!--/n-->): <!--n:iv.buybacks_kept_usd_per_year-->$17.1M<!--/n--> a year kept, against <!--n:iv.issuance_usd_per_year-->$157.5M<!--/n--> of NEAR issued, both at the window's mean price of <!--n:n2.mean_price_usd-->$4.88<!--/n-->. At <!--n:peer.near.price_usd-->$3.71<!--/n--> (6 November) both dollar figures fall by the same share; the <!--n:n1.coverage_buybacks-->10.8%<!--/n--> does not change |
 | Does a rule guarantee it? | No: it is a choice | nothing locks or burns it, and <!--n:c.buybacks_confirmations-->2 of 4<!--/n--> signers can move it. A House of Stake (NEAR governance) draft of 8 November, not yet voted, would put a dedicated share of fees in US Treasury bills before any buyback ([saved copy](data/raw/sources/hos_draft_2026_11_08.md)) |
-| Is the demand real? | Yes, but most fees stay with the apps that route swaps | users paid <!--n:n2.fees_usd_per_day-->$206,049<!--/n--> a day in fees (DefiLlama) |
-| Are holders paid more elsewhere? | Yes | what reaches NEAR holders, on DefiLlama's count of holders' revenue (more than the buybacks keep), is <!--n:peer.near.holders_yield_on_mcap-->0.40%<!--/n--> of NEAR's market value a year; Hyperliquid's is <!--n:peer.hyperliquid.holders_yield_on_mcap-->4.09%<!--/n--> of its circulating value (<!--n:peer.hyperliquid.holders_yield_on_fdv-->1.03%<!--/n--> fully diluted), and the tokens it buys sit at an address with no key ([The Block](https://www.theblock.co/news/defi/2025-12-17-hyper-foundation-proposes-removing-1-billion-hype-tokens-from-circulating-supply-by-zeroing-out-hyperliquids-assistance-fund-383091)) |
+| Is the demand real? | Yes, but most fees stay with the apps that route swaps | users paid <!--n:n2.fees_usd_per_day-->$206,049<!--/n--> a day in fees (DefiLlama), and successful relayed intents on chain went from <!--n:bq.paths.october.relay.ok_a_day-->45,918<!--/n--> a day in October to <!--n:bq.paths.november.relay.ok_a_day-->103,267<!--/n--> on 1–11 November (BigQuery) |
+| Are holders paid more elsewhere? | Yes | on DefiLlama's count of holders' revenue for both (for NEAR all three revenue wallets, so more than the buybacks keep), NEAR holders get <!--n:peer.near.holders_yield_on_mcap-->0.40%<!--/n--> of NEAR's market value a year; Hyperliquid's is <!--n:peer.hyperliquid.holders_yield_on_mcap-->4.09%<!--/n--> of its circulating value (<!--n:peer.hyperliquid.holders_yield_on_fdv-->1.03%<!--/n--> fully diluted), and the tokens it buys sit at an address with no key ([The Block](https://www.theblock.co/news/defi/2025-12-17-hyper-foundation-proposes-removing-1-billion-hype-tokens-from-circulating-supply-by-zeroing-out-hyperliquids-assistance-fund-383091)) |
 | Is the chain's own use growing? | No | daily transactions <!--n:u.txns.change-->-83%<!--/n--> in a year (<!--n:u.txns_not_meta.change-->-58%<!--/n--> leaving out relayed ones, which fell in one step in April); all its gas paid <!--n:u.fee_usd_year-->$1.2M<!--/n--> a year |
 
 **Stay staked:** most new NEAR pays stakers; a staker forgoes only the treasury's <!--n:c.treasury_share_of_new_supply-->10.1%<!--/n--> slice and the validator's commission. Your share of all NEAR grows +<!--n:iv.staked_share_growth-->2.44%<!--/n--> a year staked and falls (<!--n:iv.unstaked_share_change-->-2.40%<!--/n-->) unstaked. **Do not add:** what reaches holders is small, and no rule fixes it.
 
-**What would change the rating**
+**What would change the rating, in detail**
 
 - **Buy:** the bought NEAR moves to a lock the chain shows cannot send it out, *and* the buybacks reach <!--n:iv.wallets_multiple_buybacks-->×9.2<!--/n--> today's pace, enough to offset all new NEAR (or grow <!--n:lr.required_growth.buybacks.A.2031-->+75%<!--/n--> a year, checked each 1 November).
 - **Avoid, at once:** the amount of NEAR the buybacks hold (an amount, not a price; NEAR they delegate to a staking pool also counts as gone, although they would still own it) falls more than 10% below its peak. This is the drain test; the dashboard runs it live from the chain. [All the rules](#the-rating-as-rules).
