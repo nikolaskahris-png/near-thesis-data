@@ -361,9 +361,12 @@ class MarkerTest(unittest.TestCase):
         self.assertEqual(bn.check_text(marked, self.numbers, ["n1.coverage_buybacks"]), [])
 
     def test_readme_marks_every_required_number(self):
-        readme = (Path(__file__).resolve().parent.parent / "README.md").read_text(encoding="utf-8")
-        marked = {m.group(1) for m in bn.MARK.finditer(readme)}
-        self.assertEqual([k for k in bn.REQUIRED_IN_README if k not in marked], [])
+        root = Path(__file__).resolve().parent.parent
+        for name, required in (("README.md", bn.REQUIRED_IN_README),
+                               ("EVIDENCE.md", bn.REQUIRED_IN_EVIDENCE)):
+            text = (root / name).read_text(encoding="utf-8")
+            marked = {m.group(1) for m in bn.MARK.finditer(text)}
+            self.assertEqual([k for k in required if k not in marked], [], name)
 
     def test_render_rewrites_marked_text_only(self):
         text = "a <!--n:n1.coverage_buybacks-->old<!--/n--> b 11%"

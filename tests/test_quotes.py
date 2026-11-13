@@ -50,6 +50,8 @@ class QuotesTest(unittest.TestCase):
         p.write_bytes(p.read_bytes() + b" ")
         (self.root / "README.md").write_text("nothing quoted", encoding="utf-8")
         (self.root / "THESIS.md").write_text("", encoding="utf-8")
+        if (self.root / "EVIDENCE.md").exists():
+            (self.root / "EVIDENCE.md").write_text("", encoding="utf-8")
         (self.root / "docs" / "DETAILS.md").write_text("", encoding="utf-8")
         problems, _p, _n = quotes.verify(self.root)
         self.assertTrue(any("sha256 differs" in x for x in problems))

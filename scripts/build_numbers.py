@@ -1839,22 +1839,25 @@ def verify(path, run_scripts=True, runner=subprocess.run):
 REQUIRED_IN_README = [
     "n2.fees_usd_per_day",
     "n1.coverage_buybacks",
-    "n1.coverage_with_front_end",
     "n1.new_near_per_day",
     "n1.buybacks_near_per_day",
+    "c.buybacks_confirmations",
+    "d.ours_30d_usd",
+    "iv.staked_share_growth",
+    "iv.unstaked_share_change",
+    "lr.required_growth.buybacks.A.2031",
+]
+# Headline numbers that moved to EVIDENCE.md when the README was shortened (13 Nov): still required, there.
+REQUIRED_IN_EVIDENCE = [
+    "n1.coverage_with_front_end",
     "n2.max_coverage",
     "n2.equilibrium_price_usd",
-    "c.buybacks_confirmations",
     "iv.issuance_rate_per_year",
-    "d.ours_30d_usd",
     "pr.4.brier",
     "pr.5.brier",
     "pr.anchor3.tx_block",
     "ct.priced_usd.2026-11-08",
     "ct.stablecoins_usd.2026-11-08",
-    "iv.staked_share_growth",
-    "iv.unstaked_share_change",
-    "lr.required_growth.buybacks.A.2031",
 ]
 # Headline numbers that moved to docs/DETAILS.md with README v3 (8 Nov): still required, there.
 REQUIRED_IN_DETAILS = [
@@ -1955,7 +1958,8 @@ def main():
             target.write_text(out_text, encoding="utf-8", newline="\n")
             text = target.read_text(encoding="utf-8")
         required = (REQUIRED_IN_README if target.name == "README.md" else
-                    REQUIRED_IN_DETAILS if target.name == "DETAILS.md" else ())
+                    REQUIRED_IN_DETAILS if target.name == "DETAILS.md" else
+                    REQUIRED_IN_EVIDENCE if target.name == "EVIDENCE.md" else ())
         problems = check_text(text, numbers, required)
         if problems:
             print("FAILED:\n  " + "\n  ".join(problems))

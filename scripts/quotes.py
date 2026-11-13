@@ -3,7 +3,7 @@
     python scripts/quotes.py                  # fetch each page, save it under data/raw/sources/, write data/sources.json
     python scripts/quotes.py --import ID FILE # a page the script could not fetch, saved from a browser (Ctrl+S)
     python scripts/quotes.py --verify         # offline: each saved page has its SHA-256 and contains its quotes,
-                                              # and each quote is still in README.md, THESIS.md or docs/DETAILS.md
+                                              # and each quote is still in README.md, EVIDENCE.md, THESIS.md or docs/DETAILS.md
 
 A quote matches after the same normalisation on both sides: HTML tags, scripts and styles removed, entities
 decoded, curly quotes, dashes and non-breaking spaces made plain, backticks and Markdown emphasis dropped,
@@ -29,7 +29,7 @@ import lock_window as lw  # noqa: E402
 REPO = lw.REPO
 OUT_NAME = "sources.json"
 RAW_DIR = Path("data") / "raw" / "sources"
-DOCS = ("README.md", "THESIS.md", "docs/DETAILS.md")
+DOCS = ("README.md", "EVIDENCE.md", "THESIS.md", "docs/DETAILS.md")
 
 # id -> (url, quotes as the text writes them)
 SOURCES = {

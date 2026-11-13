@@ -11,7 +11,7 @@ import rebuild  # noqa: E402
 class TestRebuild(unittest.TestCase):
     def test_steps_cover_every_text_and_check(self):
         cmds = [" ".join(c[1:]) for _, c in rebuild.STEPS]
-        for text in ("README.md", "docs/DETAILS.md", "THESIS.md"):
+        for text in ("README.md", "EVIDENCE.md", "docs/DETAILS.md", "THESIS.md"):
             self.assertIn(f"scripts/build_numbers.py --check {text}", cmds)
         for c in ("-m unittest discover -s tests", "scripts/build_numbers.py --verify",
                   "scripts/upgrade_watch.py --verify", "scripts/check_prereg.py --file"):

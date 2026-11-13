@@ -25,6 +25,7 @@ Its last line is `REBUILD: PASS`. The same checks, one by one:
 | `python -m unittest tests.test_dashboard` | the numbers written into `dashboard/index.html` match `data/numbers.json` (after a rebuild of the numbers: `python scripts/build_numbers.py --render dashboard/index.html`) | `OK` |
 | `python scripts/build_numbers.py --verify` | every script's own offline check, then `numbers.json` rebuilds byte for byte | starts with `VERIFY: PASS (PUBLIC_REDACTED)` |
 | `python scripts/build_numbers.py --check README.md` | every marked number in the README equals `numbers.json` | `OK: <count> marked numbers in README.md match numbers.json` |
+| `python scripts/build_numbers.py --check EVIDENCE.md` | every marked number in EVIDENCE.md (the evidence, tables and checks behind each README claim) equals `numbers.json` | `OK: <count> marked numbers in EVIDENCE.md match numbers.json` |
 | `python scripts/build_numbers.py --check docs/DETAILS.md` | the same for `docs/DETAILS.md` (method, live checks, terms) | `OK: <count> marked numbers in DETAILS.md match numbers.json` |
 | `python scripts/build_numbers.py --check THESIS.md` | the same for `THESIS.md` (claim, evidence for and against) | `OK: <count> marked numbers in THESIS.md match numbers.json` |
 | `python scripts/upgrade_watch.py --verify` | the validators' vote samples recompute | `OK: <count> day(s) recompute from the saved samples` |
