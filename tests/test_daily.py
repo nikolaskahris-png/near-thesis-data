@@ -252,10 +252,14 @@ class LockSealed(unittest.TestCase):
     AUDITED = {CODE: "docs/review.md"}
     FULL = {"public_key": "ed25519:F", "access_key": {"nonce": 0, "permission": "FullAccess"}}
     CALL = {"public_key": "ed25519:C", "access_key": {"nonce": 0, "permission": {"FunctionCall": {
+        "allowance": "250000000000000000000000", "receiver_id": "lock.test", "method_names": []}}}}
+    CALL_OTHER = {"public_key": "ed25519:O", "access_key": {"nonce": 0, "permission": {"FunctionCall": {
+        "allowance": "250000000000000000000000", "receiver_id": "other.test", "method_names": []}}}}
+    CALL_UNLIMITED = {"public_key": "ed25519:U", "access_key": {"nonce": 0, "permission": {"FunctionCall": {
         "allowance": None, "receiver_id": "lock.test", "method_names": []}}}}
 
     def sealed(self, keys, code=daily.EMPTY_CODE_HASH, **extra):
-        return daily.lock_sealed({"code_hash": code, **extra}, keys, self.AUDITED)
+        return daily.lock_sealed({"code_hash": code, **extra}, keys, self.AUDITED, account="lock.test")
 
     def test_empty_account(self):
         self.assertTrue(self.sealed([]))
@@ -267,6 +271,12 @@ class LockSealed(unittest.TestCase):
         self.assertTrue(self.sealed([self.CALL], self.CODE))  # a function-call key cannot move NEAR
         self.assertFalse(self.sealed([self.FULL], self.CODE))
         self.assertFalse(self.sealed([self.CALL, self.FULL], self.CODE))
+
+    def test_function_call_keys_are_limited(self):
+        # review K3-D, M5: a key aimed at another contract, or with no allowance, can spend from the lock
+        self.assertFalse(self.sealed([self.CALL_OTHER], self.CODE))
+        self.assertFalse(self.sealed([self.CALL_UNLIMITED], self.CODE))
+        self.assertFalse(daily.lock_sealed({"code_hash": self.CODE}, [self.CALL], self.AUDITED))  # no account named
 
     def test_unreviewed_code(self):
         self.assertFalse(self.sealed([], "4zSoHkLjJWZm34Psd4Eq2WUXHELt6LxtKmUXpsZWAECp"))

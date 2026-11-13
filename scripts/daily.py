@@ -63,7 +63,8 @@ LOCKS = {}
 # A lock is sealed at a block when no transaction can move its NEAR out. That is (b), read from the chain
 # (judge #9, finding 2), in one of two ways (lock_sealed):
 #   1. no contract (code_hash of an empty account, no global contract) and no access keys at all;
-#   2. a contract whose code hash is listed in AUDITED_CODE, and no full-access key.
+#   2. a contract whose code hash is listed in AUDITED_CODE, no full-access key, and every function-call key
+#      limited to the lock's own contract with a finite allowance (review K3-D, M5).
 EMPTY_CODE_HASH = "11111111111111111111111111111111"
 # Contract code checked to be unable to send NEAR out, by code hash (base58, as view_account returns it).
 # A hash is listed only with a public review at a path in this repository, which shows from the published
@@ -231,7 +232,7 @@ def read_point(data_root, d, height, previous_height):
             if res["block_height"] != height or keys["block_height"] != height:
                 problems.append(f"{d}: lock {acct} not read at block {height}")
             point[acct] = int(res["amount"])
-            point[acct + "@sealed"] = lock_sealed(res, keys["keys"])
+            point[acct + "@sealed"] = lock_sealed(res, keys["keys"], account=acct)
     for acct in (BUYBACKS, FEFUNDS):
         res = json.loads((raw_root / "accounts" / f"{height}_{acct}_intents_wnear.json")
                          .read_bytes())["result"]
@@ -240,14 +241,16 @@ def read_point(data_root, d, height, previous_height):
     return point, problems
 
 
-def lock_sealed(view, keys, audited=None):
+def lock_sealed(view, keys, audited=None, account=None):
     """Condition (b) for one lock at one block, from view_account and view_access_key_list.
 
     True when no transaction can move the lock's NEAR out:
       - no contract and no access key at all; or
-      - code whose hash is in AUDITED_CODE, and no full-access key. Function-call keys may stay: they
-        cannot transfer NEAR or attach a deposit, and call only their receiver_id
-        (docs.near.org/protocol/access-keys), so through them only the reviewed code runs.
+      - code whose hash is in AUDITED_CODE, no full-access key, and every function-call key with the lock
+        itself as receiver_id and a finite allowance. A function-call key cannot transfer NEAR or attach a
+        deposit, but it calls whatever receiver_id it names (docs.near.org/protocol/access-keys): a key aimed
+        at another contract would make the lock call that contract, and a key with no allowance spends the
+        lock's own NEAR on gas (review K3-D, M5). With these limits only the reviewed code runs.
     An account that runs a global contract shows the empty code_hash (nearcore AccountView:
     code_hash = local_contract_hash().unwrap_or_default()), so the global fields are read too.
     A global contract named by account is never sealed: that account can deploy new code to it."""
@@ -259,7 +262,14 @@ def lock_sealed(view, keys, audited=None):
         return not keys
     if code not in audited:
         return False
-    return not any(k["access_key"]["permission"] == "FullAccess" for k in keys)
+    for k in keys:
+        perm = k["access_key"]["permission"]
+        if perm == "FullAccess":
+            return False
+        fc = perm["FunctionCall"]
+        if account is None or fc["receiver_id"] != account or fc.get("allowance") is None:
+            return False
+    return True
 
 
 def near(yocto, places=3):
