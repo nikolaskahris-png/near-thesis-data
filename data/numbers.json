@@ -11,7 +11,7 @@
   "provisional_or_pending": [],
   "sources": {
     "data/backtest.json": "917fa7700606458e850bb7346700257564f9fc591e1555b907a11ee2848a6495",
-    "data/bq_usage.json": "7c3a58cad8b956fac7ec29c2d87cd71b778f1bc801187804b9c0e0cf3cbbe105",
+    "data/bq_usage.json": "6343a1cfe7e81ee17da4081715459de258f675ec57eb93cf767513330990af6a",
     "data/burn.json": "d301a278701801757b4c9582f61b4f9546327f0dd1dfaed0a3a143b0c407f0fd",
     "data/confidential_treasury.json": "e1f49bf6f70a7a9e808c58bbcfef4dea187278480ba7603fd41459a55887a6e1",
     "data/control_history.json": "7cab767c832b77a597a18d90dc1d0b5b2113e76b050624456522585a9fcc9190",
@@ -1022,12 +1022,54 @@
       "unit": "share",
       "note": "distinct signers a day, mean of 2-31 Oct 2026 against 1-30 Nov 2025 (BigQuery)"
     },
+    "bq.signers.first_30d.top100_share": {
+      "value": "0.911304",
+      "text": "91%",
+      "source": "data/bq_usage.json",
+      "unit": "share",
+      "note": "share of transactions sent by the 100 busiest signers of each day, 1-30 November 2025 (BigQuery)"
+    },
+    "bq.signers.first_30d.top10_share": {
+      "value": "0.869529",
+      "text": "87%",
+      "source": "data/bq_usage.json",
+      "unit": "share",
+      "note": "share of transactions sent by the 10 busiest signers of each day, 1-30 November 2025 (BigQuery)"
+    },
+    "bq.signers.first_30d.txns_without_top10": {
+      "value": "556819.3",
+      "text": "556,819",
+      "source": "data/bq_usage.json",
+      "unit": "a day",
+      "note": "transactions a day leaving out the 10 busiest signers of each day, 1-30 November 2025"
+    },
     "bq.signers.first_30d_median": {
       "value": "246406.5",
       "text": "246,407",
       "source": "data/bq_usage.json",
       "unit": "a day",
       "note": "median day of 1-30 November 2025 (BigQuery)"
+    },
+    "bq.signers.last_30d.top100_share": {
+      "value": "0.81464",
+      "text": "81%",
+      "source": "data/bq_usage.json",
+      "unit": "share",
+      "note": "share of transactions sent by the 100 busiest signers of each day, 2-31 October 2026 (BigQuery)"
+    },
+    "bq.signers.last_30d.top10_share": {
+      "value": "0.576074",
+      "text": "58%",
+      "source": "data/bq_usage.json",
+      "unit": "share",
+      "note": "share of transactions sent by the 10 busiest signers of each day, 2-31 October 2026 (BigQuery)"
+    },
+    "bq.signers.last_30d.txns_without_top10": {
+      "value": "303480.9",
+      "text": "303,481",
+      "source": "data/bq_usage.json",
+      "unit": "a day",
+      "note": "transactions a day leaving out the 10 busiest signers of each day, 2-31 October 2026"
     },
     "bq.signers.last_30d_median": {
       "value": "54593.5",
@@ -1036,12 +1078,47 @@
       "unit": "a day",
       "note": "median day of 2-31 October 2026 (BigQuery)"
     },
+    "bq.signers.nov_1_11.top100_share": {
+      "value": "0.827828",
+      "text": "83%",
+      "source": "data/bq_usage.json",
+      "unit": "share",
+      "note": "share of transactions sent by the 100 busiest signers of each day, 1-11 November 2026 (BigQuery)"
+    },
+    "bq.signers.nov_1_11.top10_share": {
+      "value": "0.666243",
+      "text": "67%",
+      "source": "data/bq_usage.json",
+      "unit": "share",
+      "note": "share of transactions sent by the 10 busiest signers of each day, 1-11 November 2026 (BigQuery)"
+    },
+    "bq.signers.nov_1_11.txns_without_top10": {
+      "value": "241242.272727",
+      "text": "241,242",
+      "source": "data/bq_usage.json",
+      "unit": "a day",
+      "note": "transactions a day leaving out the 10 busiest signers of each day, 1-11 November 2026"
+    },
     "bq.signers.nov_1_11_median": {
       "value": "77831.0",
       "text": "77,831",
       "source": "data/bq_usage.json",
       "unit": "a day",
       "note": "median day of 1-11 November 2026 (BigQuery)"
+    },
+    "bq.signers.top10_change": {
+      "value": "-0.888869",
+      "text": "-89%",
+      "source": "data/bq_usage.json",
+      "unit": "share",
+      "note": "October 2026 against November 2025, transactions a day"
+    },
+    "bq.signers.without_top10_change": {
+      "value": "-0.454974",
+      "text": "-45%",
+      "source": "data/bq_usage.json",
+      "unit": "share",
+      "note": "October 2026 against November 2025, transactions a day"
     },
     "bt.a_pace.near_multiple": {
       "value": "2.051320",

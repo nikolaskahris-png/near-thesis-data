@@ -1,7 +1,7 @@
 {
  "measure": "Claim E, second source: NEAR's own use from NEAR's public BigQuery dataset, and the organizers' question again.",
  "dataset": "bigquery-public-data.crypto_near_mainnet_us (NEAR's public BigQuery dataset, NEAR Public Lakehouse silver tables)",
- "run_utc": "2026-11-12, between 22:00 and 22:15 UTC (queries 1-3), about 22:45 UTC (query 4) and 23:29 UTC (query 5)",
+ "run_utc": "2026-11-12, between 22:00 and 22:15 UTC (queries 1-3), about 22:45 UTC (query 4) and 23:29 UTC (query 5); query 6 on 2026-11-13 about 02:35 UTC",
  "year": [
   "2025-11-01",
   "2026-10-31"
@@ -421,6 +421,31 @@
    "q1_txns_to_intents": 1352490
   },
   "relay_ok_a_day_change": 1.248955
+ },
+ "signer_concentration": {
+  "first_30d": {
+   "txns_a_day": 4267747.566667,
+   "top10_share": 0.869529,
+   "top100_share": 0.911304,
+   "txns_without_top10_a_day": 556819.3,
+   "light_signers_a_day": 241865.033333
+  },
+  "last_30d": {
+   "txns_a_day": 715881.433333,
+   "top10_share": 0.576074,
+   "top100_share": 0.81464,
+   "txns_without_top10_a_day": 303480.9,
+   "light_signers_a_day": 71549.0
+  },
+  "nov_1_11": {
+   "txns_a_day": 722809.090909,
+   "top10_share": 0.666243,
+   "top100_share": 0.827828,
+   "txns_without_top10_a_day": 241242.272727,
+   "light_signers_a_day": 80615.636364
+  },
+  "without_top10_change": -0.454974,
+  "top10_change": -0.888869
  },
  "lead": {
   "intents_calls_bq->txns": {

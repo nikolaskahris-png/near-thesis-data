@@ -18,7 +18,7 @@ class BqUsage(unittest.TestCase):
     def test_every_saved_file_matches_its_sha256(self):
         _, problems, man = bq.load(REPO / "data")
         self.assertEqual(problems, [])
-        self.assertEqual(len(man["files"]), 5)
+        self.assertEqual(len(man["files"]), 6)
         for meta in man["files"].values():
             self.assertTrue((REPO / meta["query"]).exists())
 

@@ -1,10 +1,10 @@
 """Claim E, second source: NEAR's own use from NEAR's public BigQuery dataset, and the organizers' question again.
 
 The track's prompt example (nearai/near-hackathon-prompt-examples, tracks/02-thesis.md) asks for BigQuery. Five
-queries (sql/bq_q1_transactions.sql to sql/bq_q5_intents_calls_by_path.sql) were run once each in the BigQuery console on
-12 November 2026 (UTC); their results are saved in data/bq/ with SHA-256 in data/bq/MANIFEST.json. Nothing here needs
+queries (sql/bq_q1_transactions.sql to sql/bq_q6_signer_activity.sql) were run once each in the BigQuery console on
+12-13 November 2026 (UTC); their results are saved in data/bq/ with SHA-256 in data/bq/MANIFEST.json. Nothing here needs
 the network or a Google account: this script only reads the saved files. Anyone with a Google account can re-run
-the five queries (about 492 GB, inside BigQuery's free monthly terabyte) and compare.
+the six queries (about 511 GB, inside BigQuery's free monthly terabyte) and compare.
 
 What is computed (offline):
   agreement  every day of the year (1 November 2025 to 31 October 2026): BigQuery's transactions against
@@ -34,6 +34,11 @@ What is computed (offline):
              (receipts of a transaction can land on the next day).
   outcomes   whether those calls succeeded (sql/bq_q4_intents_call_outcomes.sql: each call's receipt joined to
              intents.near's execution outcome; FAILURE counted as failed). Checked: calls by kind equal query 3's.
+  signers    query 6 (sql/bq_q6_signer_activity.sql): how transactions spread over the accounts that sign them,
+             the share the 10 and 100 busiest signers of each day send, and the change without those 10.
+             "Light" signers (at most 10 transactions that day) are counted, not called people: in November
+             2025 about 160,000 accounts were created a day (query 2). Checked: transactions and signers equal
+             query 1's on every day.
   lead       the organizers' hypothesis with the volume measured on chain: weekly log-changes of calls to
              intents.near (and of transactions sent to it) against transactions and signers 0-4 weeks later,
              52 weeks from 3 November 2025, the same functions, shifts and seed as usage.py.
@@ -240,6 +245,24 @@ def compute(data_root):
                       "signed_calls": signed, "q1_txns_to_intents": q1_signed}
     paths["relay_ok_a_day_change"] = (paths["november"]["by_path"]["relay"]["ok_a_day"]
                                       / paths["october"]["by_path"]["relay"]["ok_a_day"] - 1)
+    # who sends the transactions (sql/bq_q6_signer_activity.sql): the 10 and 100 busiest signers each day
+    q6 = bq["data/bq/q6_signer_activity.csv"]
+    for d in us.days(*us.YEAR):
+        if q6[d]["txns"] != q1[d]["txns"] or q6[d]["signers"] != q1[d]["signers"]:
+            problems.append(f"q6 {d}: transactions or signers differ from q1")
+            break
+    signers = {}
+    for per, ds in (("first_30d", first), ("last_30d", last), ("nov_1_11", nov)):
+        t = sum(int(q6[d]["txns"]) for d in ds)
+        t10 = sum(int(q6[d]["txns_top10"]) for d in ds)
+        signers[per] = {"txns_a_day": t / len(ds), "top10_share": t10 / t,
+                        "top100_share": sum(int(q6[d]["txns_top100"]) for d in ds) / t,
+                        "txns_without_top10_a_day": (t - t10) / len(ds),
+                        "light_signers_a_day": sum(int(q6[d]["signers_light"]) for d in ds) / len(ds)}
+    signers["without_top10_change"] = (signers["last_30d"]["txns_without_top10_a_day"]
+                                       / signers["first_30d"]["txns_without_top10_a_day"] - 1)
+    signers["top10_change"] = ((signers["last_30d"]["txns_a_day"] - signers["last_30d"]["txns_without_top10_a_day"])
+                               / (signers["first_30d"]["txns_a_day"] - signers["first_30d"]["txns_without_top10_a_day"]) - 1)
     other = [r for r in q3.values() if r["caller"].startswith("(")][0]
     callers["accounts_outside_top_20"] = int(other["accounts"])
     callers["accounts_total"] = int(other["accounts"]) + len(q3) - 1
@@ -262,7 +285,8 @@ def compute(data_root):
             "weeks": [us.WEEK0.isoformat(), us.WEEKS],
             "method": f"weekly log-changes, lags {list(us.LAGS)} weeks, {us.SHIFTS} circular shifts (min {us.MIN_SHIFT}), seed {us.SEED}",
             "agreement_with_nearblocks": agreement, "usage": usage, "intents_callers": callers,
-            "intents_call_outcomes": outcomes, "intents_call_paths": paths, "lead": lead}, []
+            "intents_call_outcomes": outcomes, "intents_call_paths": paths,
+            "signer_concentration": signers, "lead": lead}, []
 
 
 def main():

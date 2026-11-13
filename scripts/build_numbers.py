@@ -1665,6 +1665,19 @@ def build(data_dir, window_file):
         v = dec(bp["relay_ok_a_day_change"])
         n.add("bq.paths.relay_ok_a_day_change", v, f_pct(v, 0), bsrc, unit="share",
               note="successful relayed intents a day, 1-11 November against 2-31 October 2026")
+        sc = bd["signer_concentration"]
+        for per, note in (("first_30d", "1-30 November 2025"), ("last_30d", "2-31 October 2026"), ("nov_1_11", "1-11 November 2026")):
+            for k, top in (("top10_share", "10"), ("top100_share", "100")):
+                v = dec(sc[per][k])
+                n.add(f"bq.signers.{per}.{k}", v, f_pct(v, 0), bsrc, unit="share",
+                      note=f"share of transactions sent by the {top} busiest signers of each day, {note} (BigQuery)")
+            v = dec(sc[per]["txns_without_top10_a_day"])
+            n.add(f"bq.signers.{per}.txns_without_top10", v, f_int(v), bsrc, unit="a day",
+                  note=f"transactions a day leaving out the 10 busiest signers of each day, {note}")
+        for k in ("without_top10_change", "top10_change"):
+            v = dec(sc[k])
+            n.add(f"bq.signers.{k}", v, f_pct(v, 0), bsrc, unit="share",
+                  note="October 2026 against November 2025, transactions a day")
         n.add("bq.callers.accounts_total", bc["accounts_total"], f_int(bc["accounts_total"]), bsrc, unit="accounts",
               note="accounts that called intents.near, 2 October to 11 November 2026")
         bl = bd["lead"]
