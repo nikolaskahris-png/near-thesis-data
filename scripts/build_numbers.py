@@ -1674,6 +1674,18 @@ def build(data_dir, window_file):
               note="largest |correlation| at the best lag, on-chain Intents activity against usage (BigQuery)")
         n.add("bq.lead.min_p", mp, f"{rnd(mp, 2)}", bsrc, note="smallest circular-shift p of the four tests")
 
+    # ---- rule (b) read on a real chain: a NEAR testnet account with no contract and no key (testnet_lock.py)
+    tpath = data_dir / "testnet_lock.json"
+    if tpath.exists():
+        td = json.loads(tpath.read_text(encoding="utf-8"))
+        tsrc = n.source(tpath)
+        n.add("tl.block_height", td["block_height"], f_int(td["block_height"]), tsrc, unit="testnet block",
+              note=f"{td['account']} read on NEAR testnet")
+        n.add("tl.access_keys", td["access_keys"], f_int(td["access_keys"]), tsrc, unit="keys",
+              note="access keys of the testnet lock account at that block")
+        n.add("tl.sealed", 1 if td["sealed"] else 0, "sealed" if td["sealed"] else "not sealed", tsrc,
+              note="daily.lock_sealed on the saved testnet responses")
+
     # ---- the pre-registration anchors (check_prereg.py, --anchor 2 and 3)
     for num, name in (("1", "prereg.json"), ("2", "prereg2_anchor.json"), ("3", "prereg3_anchor.json")):
         apath = data_dir / name
@@ -1761,6 +1773,7 @@ SCRIPT_CHECKS = [
     ("peers_rating.py", lambda doc: ["--verify"], "peers_rating.json"),
     ("usage.py", lambda doc: ["--verify"], "usage.json"),
     ("bq_usage.py", lambda doc: ["--verify"], "bq_usage.json"),
+    ("testnet_lock.py", lambda doc: ["--verify"], "testnet_lock.json"),
     ("sensitivity.py", lambda doc: ["--verify"], "sensitivity.json"),
     ("check_prereg.py", lambda doc: ["--verify"]),
     ("check_prereg.py", lambda doc: ["--anchor", "2", "--verify"], "prereg2_anchor.json"),

@@ -40,6 +40,7 @@ Its last line is `REBUILD: PASS`. The same checks, one by one:
 | `python scripts/judge_prereg.py --verify` | PREREG.md's prediction 2 recomputes from the saved day files of 1 and 16 November (`pending` before 16 November); the daily Action writes it | `OK` |
 | `python scripts/usage.py --verify` | claim E: NearBlocks' daily transactions, active accounts, fees, price and NEAR Intents volume (saved responses, `data/usage_fetch.json`) give the 12-month change, the share of DefiLlama's volume NearBlocks sees, and the lead tests (weekly, lags 0-4, 10,000 circular shifts) | `OK` |
 | `python scripts/bq_usage.py --verify` | claim E, second source: five queries on NEAR's public BigQuery dataset (`sql/`, results in `data/bq/` checked against `data/bq/MANIFEST.json`) give the day-by-day agreement with NearBlocks, who calls `intents.near` and whether the calls succeed, and the lead tests with on-chain activity | `OK` |
+| `python scripts/testnet_lock.py --verify` | rule (b) on a real chain: `near-thesis-lock-1311.testnet`, a NEAR testnet account with no contract and no key (its only key deleted by hand), read by `daily.lock_sealed` from saved RPC responses | `testnet_lock: OK` |
 | `python scripts/rating.py --verify` | the rating (Hold / Buy / Avoid) of every window in `data/rating.csv` recomputes from `history.csv` and the saved DefiLlama responses | `OK: rating.csv recomputes from history.csv and the saved responses` |
 | `python scripts/backtest.py --verify` | the rating rules on each month April–October 2026 in `data/backtest.csv` recompute from `coverage_monthly.json` and the saved DefiLlama responses | `OK: backtest.csv recomputes from coverage_monthly.json and the saved DefiLlama responses` |
 | `python scripts/quotes.py --verify` | each page the text quotes is saved under `data/raw/sources/` with its SHA-256 and contains the quote | `OK: <count> quotes found in <count> saved pages, and each is still in the text` |
@@ -124,6 +125,7 @@ SHA-256. In the README, `THESIS.md` and `docs/DETAILS.md` each figure is wrapped
 | `sr.` | The same rules on four other protocols: lock, tokens bought and new a year, coverage and rating per basis (from their docs and DefiLlama, not their chains) | `peers_rating.py` | `data/peers_rating.json` |
 | `u.` | Claim E: the chain's use (NearBlocks), its fees, the Intents volume NearBlocks sees, the lead tests | `usage.py` | `data/usage.json` |
 | `bq.` | Claim E from NEAR's BigQuery dataset: agreement with NearBlocks, who calls `intents.near`, the lead tests | `bq_usage.py` | `data/bq_usage.json` |
+| `tl.` | Rule (b) on NEAR testnet: the lock account's block, keys, sealed | `testnet_lock.py` | `data/testnet_lock.json` |
 | `sc.` | Three stated paths for a holder's dollars to 2031 (derived, no probability) | `build_numbers.py` | `peer.`, `lr.`, `iv.` entries |
 | `sens.` | The rating under other thresholds, April-October 2026 | `sensitivity.py` | `data/sensitivity.json` |
 

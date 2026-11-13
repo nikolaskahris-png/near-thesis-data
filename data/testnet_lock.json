@@ -1,0 +1,18 @@
+{
+ "measure": "Rule (b) on a real chain: a NEAR testnet account with no contract and no access key, read by daily.lock_sealed.",
+ "network": "testnet",
+ "rpc": "https://rpc.testnet.near.org",
+ "account": "near-thesis-lock-1311.testnet",
+ "delete_key_tx": "9wRFixnLRDPixPTvc94HfCxn7Lqqqok3sxeLS5CBXkaZ",
+ "block_height": 277435278,
+ "block_hash": "5P9MuUp1QX2uD9zw69cPLwkaBtW96tLn8hFLeb3hTo98",
+ "code_hash": "11111111111111111111111111111111",
+ "global_contract": null,
+ "access_keys": 0,
+ "amount_yocto": "9999959398775000000000000",
+ "sealed": true,
+ "files": {
+  "data/raw/testnet_lock/277435278_account.json": "59e01041d40bbac21f1278e7422e6c8afeee3b389bcc47637a508fac51d6f0f2",
+  "data/raw/testnet_lock/277435278_keys.json": "cf4424d4b0ccdc1b68589e269f5395087ba2114dd1337042b32bf8f4ecf77dd1"
+ }
+}

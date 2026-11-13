@@ -46,6 +46,7 @@
     "data/stakers/2026-10-01.json": "8c87ef1bfa2b0de6194a52d0203ae190e5305ec3f8a208d32b582182991bba1d",
     "data/stakers/2026-10-15.json": "57b225440a4882e042b9b84544a93df4a96c9c2c26fe5eddf3682f6be94fd4c9",
     "data/stakers/2026-11-01.json": "a175a388a9a89dd86b753859bbf0f89a9f6a480256c696fcce3ba1daf9b72369",
+    "data/testnet_lock.json": "bff46485fb274e151addbe8043b20e1324a8288c2cf2beb7f2e61142f427b682",
     "data/treasury_exits.json": "d587bfba8747e2022435bfd93253180ccb50bf4bfe819710c7fbae5e4b00e1fe",
     "data/treasury_flows.json": "0d1a8c74b15fbc3c3e794f2ef3f3e8152faeeada13c7962e973fa97348099c50",
     "data/treasury_spend.json": "e196c8e8c703e0cd830aabedc32a1b271f46332b742dfb186473de37f6c7f1f2",
@@ -9947,6 +9948,26 @@
       "unit": "transactions of 1 NEAR or more",
       "window": "2026-01-01 00:00 UTC to 2026-11-01 00:00 UTC",
       "blocks": "179199136-222491356"
+    },
+    "tl.access_keys": {
+      "value": "0",
+      "text": "0",
+      "source": "data/testnet_lock.json",
+      "unit": "keys",
+      "note": "access keys of the testnet lock account at that block"
+    },
+    "tl.block_height": {
+      "value": "277435278",
+      "text": "277,435,278",
+      "source": "data/testnet_lock.json",
+      "unit": "testnet block",
+      "note": "near-thesis-lock-1311.testnet read on NEAR testnet"
+    },
+    "tl.sealed": {
+      "value": "1",
+      "text": "sealed",
+      "source": "data/testnet_lock.json",
+      "note": "daily.lock_sealed on the saved testnet responses"
     },
     "ts.balance_end_near": {
       "value": "1526304.187",
