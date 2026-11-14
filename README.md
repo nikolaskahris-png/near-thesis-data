@@ -10,7 +10,7 @@ NEAR Intents is a real business: users paid <!--n:n2.fees_usd_per_day-->$206,049
 
 So far the policy has held: since April the three revenue wallets kept <!--n:f2.wallets_kept_share_of_revenue.2026-04_2026-10-->96.9%<!--/n--> of DefiLlama's revenue for NEAR Intents. But nothing makes them: <!--n:c.buybacks_confirmations-->2 of 4<!--/n--> signers can move the buybacks' NEAR, and none of it is burned or locked. Every other money lever we mapped on chain also moves with 1 to 3 signers; only issuance is a protocol rule (the picture below).
 
-**Rating to 2031: Hold.** Stay staked: stakers receive most of the new NEAR; unstaked NEAR receives none. Don't add: what reaches holders is small, and no rule fixes it. The same rules give Hyperliquid Buy on one of four counts of its new tokens (its bought tokens sit at a keyless address); NEAR has no such lock, so no price gives Buy.
+**Rating to 2031: Hold.** If you hold NEAR, stay staked: stakers receive most of the new NEAR; unstaked NEAR receives none. If you don't, don't buy yet: what reaches holders is small, and no rule fixes it. The same rules give Hyperliquid Buy on one of four counts of its new tokens (its bought tokens sit at a keyless address); NEAR has no such lock, so no price gives Buy.
 
 **The whole token.** At Hyperliquid's, Jupiter's and Aave's <!--n:peer.jupiter.mcap_to_revenue-->24×<!--/n-->–<!--n:peer.aave.mcap_to_revenue-->39×<!--/n--> revenue, NEAR Intents would be worth <!--n:sc.split.intents_share_of_value.low-->10%<!--/n-->–<!--n:sc.split.intents_share_of_value.high-->16%<!--/n--> of NEAR's <!--n:peer.near.market_cap_usd-->$6.39B<!--/n--> if the policy holds (<!--n:sc.split.fdv.intents_share_of_value.low-->16%<!--/n-->–<!--n:sc.split.fdv.intents_share_of_value.high-->39%<!--/n--> at their fully diluted multiples; October's prices). The rest, mostly a layer-one premium, is not rated, and the chain's own use under it is falling ([claim E](#e-the-chain-is-used-less-and-its-use-pays-holders-almost-nothing)).
 
@@ -95,7 +95,7 @@ Evidence, tables and checks: [EVIDENCE.md](EVIDENCE.md#d-it-did-not-stop-when-th
 
 Leaving out each day's 10 busiest signers, daily transactions changed by <!--n:bq.signers.without_top10_change-->-45%<!--/n--> in a year (<!--n:u.txns.change-->-83%<!--/n--> with them; NearBlocks and BigQuery agree on every day), and all gas paid in that year was <!--n:u.fee_share_of_issuance-->0.8%<!--/n--> of a year of new NEAR. Successful relay calls into NEAR Intents rose +<!--n:bq.paths.relay_ok_a_day_change-->125%<!--/n--> a day from October to 1–11 November, but these are calls, not dollars, and the rating does not use them.
 
-**Against.** Fifty-two weeks give the organizers' lead test little power: "not detected" is not "no effect".
+**Against.** The track's suggested test, whether Intents' volume or the price leads the chain's use, finds nothing over <!--n:u.lead.weeks-->52<!--/n--> weeks, but that many weeks give it little power: "not detected" is not "no effect".
 
 Evidence, tables and checks: [EVIDENCE.md](EVIDENCE.md#e-the-chain-is-used-less-and-its-use-pays-holders-almost-nothing)
 
