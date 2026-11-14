@@ -8,6 +8,17 @@ numbers come from [`data/numbers.json`](data/numbers.json), and each section bel
 Requirements: Python 3.10 or later (`python` below, `python3` on some systems), standard library only. No
 `pip install`, no API keys. No command here signs anything or writes to the chain.
 
+## 0. The track brief, item by item
+
+| The Investment Thesis track asks for | Where it is | How to check it |
+|---|---|---|
+| A long-term investment thesis for NEAR | [THESIS.md](THESIS.md): claim, evidence for, evidence against, what would change our mind, metrics we cannot compute; rating to 2031 | read it; every marked figure is checked by `build_numbers.py --check THESIS.md` |
+| Onchain analytics | archival RPC reads at locked blocks (`scripts/daily.py`, `scripts/control_map.py`, `scripts/private_shift.py`); NEAR's public BigQuery dataset (`sql/`, `scripts/bq_usage.py`) | section 1 offline; [Verify live](docs/DETAILS.md#verify-live) against the chain |
+| Live dashboards | [the dashboard](https://nikolaskahris-png.github.io/near-thesis-data/dashboard/): each panel names the script or query behind it; the drain test reads mainnet from the browser | open it; `dashboard/app.js` takes every figure from `data/` and calls a public RPC only for the live checks |
+| Models anyone can re-run | `python scripts/rebuild.py`, standard library, no keys | section 1 |
+| Judged on the evidence, not the conviction | an "Against" for each claim; predictions hashed on mainnet before they are judged (`scripts/check_prereg.py`); the same rules run on four other protocols (`scripts/peers_rating.py`); what we cannot measure, stated | section 1; [the predictions](EVIDENCE.md#predictions-anchored-before-they-are-judged) |
+| The NEAR Intents Explorer API (suggested source) | not used: it needs a partner key; fees and volume come from DefiLlama, and the wallets are read on chain | disclosed in THESIS.md, "Metrics we cannot compute" |
+
 ## 1. Offline check (no network, under a minute on a laptop)
 
 Run from the repository root. One command runs every check below (`rebuild.py` runs its own steps; the per-script checks in the table run inside its `build_numbers.py --verify` step):
