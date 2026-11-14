@@ -1,0 +1,38 @@
+{
+  "date": "2026-11-14",
+  "window_days": 30,
+  "rule": "first block whose header timestamp is at or after 00:00:00 UTC of the date",
+  "source": {
+    "rpc": "https://archival-rpc.mainnet.fastnear.com"
+  },
+  "start": {
+    "date": "2026-10-15",
+    "height": 220001294,
+    "previous_height": 220001293
+  },
+  "end": {
+    "date": "2026-11-14",
+    "height": 224435951,
+    "previous_height": 224435950
+  },
+  "raw_files": {
+    "data/raw/accounts/220001294_1csfundsadmin.sputnik-dao.near.json": "5b0f7bc2eac52836813c02e31bda2ebe2183bcc12b50da58aac353e75408a05a",
+    "data/raw/accounts/220001294_buybacks.multisignature.near.json": "687f3cdc338ffc1dc031c56de2517d9d065c737110514d64b677bfc5b8ddeb04",
+    "data/raw/accounts/220001294_buybacks.multisignature.near_intents_wnear.json": "c99f68b515ea9e453f82a12a2fff678255ba63359a892334fe7c3ee7ce50d905",
+    "data/raw/accounts/220001294_fefundsadmin.sputnik-dao.near.json": "3077130badba4dba120cfeec94800bcb1b5d84526bfb33ee53517a7bd31725d7",
+    "data/raw/accounts/220001294_fefundsadmin.sputnik-dao.near_intents_wnear.json": "c99f68b515ea9e453f82a12a2fff678255ba63359a892334fe7c3ee7ce50d905",
+    "data/raw/accounts/220001294_treasury.near_keys.json": "b3d2029bbe84339d7e8e0e1c8060f0ed7e911fc7b7255a8d4a4de29b8dd2c3e8",
+    "data/raw/accounts/220001294_treasury.near_nonce.json": "5c8a5dd11238a6ebe30656179eb9d6e84b78cb3c33a8f81587b36c394ae0bf7b",
+    "data/raw/accounts/224435951_1csfundsadmin.sputnik-dao.near.json": "253b3a5fe8ce0c27cf8548787a831e73d9a1fe80c35e06a135732f6fc12a5423",
+    "data/raw/accounts/224435951_buybacks.multisignature.near.json": "6fac15554b227d53096d928a56134a5e880aaaf2d21064f8befc7324d6d08eaf",
+    "data/raw/accounts/224435951_buybacks.multisignature.near_intents_wnear.json": "0916f4cc88b6432a41c9b629f20fabc0a31d18ffa50865917df68bf185420f61",
+    "data/raw/accounts/224435951_fefundsadmin.sputnik-dao.near.json": "03fbfa433d145f3a32b62cb8e05c6697447d910000bd494353c537a94ef78ad2",
+    "data/raw/accounts/224435951_fefundsadmin.sputnik-dao.near_intents_wnear.json": "0916f4cc88b6432a41c9b629f20fabc0a31d18ffa50865917df68bf185420f61",
+    "data/raw/accounts/224435951_treasury.near_keys.json": "bf5ec8c03f4cf3b80c4655c525b71e708bae24826ddad17055ee4322886aaa2f",
+    "data/raw/accounts/224435951_treasury.near_nonce.json": "6f0b09a8b11893f01c6726a8d3e7badaee69aff564ebda5ea0543346ab98312c",
+    "data/raw/blocks/block_220001293.json": "5756f8f2653be95adedde716a14fef398ec010b18b6fbb0fe176dcf506caefdb",
+    "data/raw/blocks/block_220001294.json": "9b54bcd4b78c9149b1a20e09fc94b4212129d4c28ceb5d3be619e392845ab770",
+    "data/raw/blocks/block_224435950.json": "4b63b68736891cc733c7bb84c057605baa27826729a1f685fc2c487dcb22421c",
+    "data/raw/blocks/block_224435951.json": "753354c373c50a7908316f314854f2533b110b96eaee039040cf9da1002bd6e9"
+  }
+}
