@@ -1,8 +1,23 @@
 {
  "file": "PREREG.md",
  "prediction_2": {
-  "status": "pending",
-  "end_day": "2026-11-16"
+  "status": "holds",
+  "ratio": "0.120842",
+  "threshold": "0.25",
+  "start": {
+   "height": 222491356,
+   "utc": "2026-11-01T00:00:00.175Z",
+   "balance_yocto": "2144976649835487232936209450114",
+   "total_supply_yocto": "1310472976200600572520792952726082"
+  },
+  "end": {
+   "height": 224738407,
+   "utc": "2026-11-16T00:00:00.291Z",
+   "balance_yocto": "2305660589790114162786836416579",
+   "total_supply_yocto": "1311802684196635444748786635600063"
+  },
+  "net_inflow_near": "160683.940",
+  "new_supply_near": "1329707.996"
  },
  "predictions_1_and_3": "judged by hand: they need stake.dao and NearBlocks at 2026-11-16 12:00 UTC"
 }
