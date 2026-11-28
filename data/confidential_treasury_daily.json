@@ -306,10 +306,26 @@
    },
    "unpriced_tokens": 70,
    "nep245_tokens": 33
+  },
+  {
+   "date": "2026-11-28",
+   "block": 226526954,
+   "tokens_held": 210,
+   "priced_usd": "113807878",
+   "by_group_usd": {
+    "stablecoins": "41680582",
+    "NEAR": "38119024",
+    "BTC": "9620966",
+    "ETH": "4003820",
+    "ZEC": "14752233",
+    "other": "5631253"
+   },
+   "unpriced_tokens": 69,
+   "nep245_tokens": 33
   }
  ],
  "fetched": {
-  "fetched_utc": "2026-11-27T08:37:53Z",
+  "fetched_utc": "2026-11-28T07:52:19Z",
   "files": {
    "data/raw/confidential_treasury/223688383/balances_0.json": "dd9d151b83a4451b83e49948118833e44be4a59d2b1f04de654a75ea940603ab",
    "data/raw/confidential_treasury/223688383/balances_1.json": "3b238689c06f2ac1d45b03f529549c77b91d0c548710f2761f4ee8d52a0a3ddc",
@@ -459,6 +475,14 @@
    "data/raw/confidential_treasury/226376975/tokens_0.json": "e76ab70b8abe272424fbe71ee065ed9f1a74b4978a2bb9ecf4f2b1f5a6583f73",
    "data/raw/confidential_treasury/226376975/tokens_1.json": "c6f8c60401da97bfb5c8de87b9ca0000c57dc9bee960abeb82dddf181b84e180",
    "data/raw/confidential_treasury/226376975/tokens_2.json": "b3acba558e644f7dfda312b5356aa5dfdfb3f9d07498c95ef10d620923efbeb4",
+   "data/raw/confidential_treasury/226526954/balances_0.json": "d936cdd87eb0153e53e6ac5ecaa5b3449f9d4821642bcd4f8732761c21fe2870",
+   "data/raw/confidential_treasury/226526954/balances_1.json": "0e0e3a2670a35792208810b9d0c288334c416f5e7a0b9bee3f4e7ac86ef7c6a7",
+   "data/raw/confidential_treasury/226526954/balances_2.json": "4371e8bfd1d34d5de05d0ebd715fe7de789cd4a53cb7067dd12534a1e046d503",
+   "data/raw/confidential_treasury/226526954/balances_3.json": "f911c8bac5493585dded2d4866334a5e639999c26798c61475a955480d7f15e4",
+   "data/raw/confidential_treasury/226526954/balances_4.json": "84b2f81e15f2771d6d8a6f0a64fc7b19aa3a9070d8740605ba8a3a302b139709",
+   "data/raw/confidential_treasury/226526954/tokens_0.json": "fa4d0693e096b1aa14775086303db9483a5626a697c54f30ae385e1e8e04bfb2",
+   "data/raw/confidential_treasury/226526954/tokens_1.json": "ed3adb1402ae874676a19c8ea8c46c92faa2c6c41522fa74b695aa627566ee02",
+   "data/raw/confidential_treasury/226526954/tokens_2.json": "49234412a063b994a22f932d5da459bbbd4accc3815c2e979735c907f5a5e301",
    "data/raw/confidential_treasury/metadata/17208628f84f5d6ad33f0da3bbbeb27ffcb398eac501a31bd6ad2011e36133a1.json": "a99a6cab90526c59833164bf48a7bc7595fa3a8dee55bae57543e8f4169150ce",
    "data/raw/confidential_treasury/metadata/2260fac5e5542a773aa44fbcfedf7c193bc2c599.factory.bridge.near.json": "38537c3a6f53ed338969d6ba446fa8aaeb7c64c1357a80df24508337a853e00d",
    "data/raw/confidential_treasury/metadata/a35923162c49cf95e6bf26623385eb431ad920d3.factory.bridge.near.json": "d2053bac2153078dd0df6fa40a7de618b0e1e2e62b12517b4668ba5517f1d3bf",
@@ -711,7 +735,11 @@
    "data/raw/confidential_treasury/prices/2026-11-26_0.json": "dea8401cd6dff5be4d339600a104b9e6070c8ebf59629b49a3c84624b9f49166",
    "data/raw/confidential_treasury/prices/2026-11-26_1.json": "f83fb288b066c76151e114a88affbe18031a3ccfd75b460d14592460d6d9127c",
    "data/raw/confidential_treasury/prices/2026-11-26_2.json": "445dd7ff7fe9159e95479dc204c1cef67fb0ba5f6e0d139c6c993266b58e6a08",
-   "data/raw/confidential_treasury/prices/2026-11-26_3.json": "01342c6299167cd71595f4e4f69635de97a6670e0bb56c289feccd67dbeb2f30"
+   "data/raw/confidential_treasury/prices/2026-11-26_3.json": "01342c6299167cd71595f4e4f69635de97a6670e0bb56c289feccd67dbeb2f30",
+   "data/raw/confidential_treasury/prices/2026-11-27_0.json": "6db2f8adbc20a1719915f6ecaedcf85f072f6d24dccf55ed042ad6a5ee6a8866",
+   "data/raw/confidential_treasury/prices/2026-11-27_1.json": "1cbc2884d0921ccfac2b4e73b12eaca0acbd2d869fecd395e15ec94a575bfab0",
+   "data/raw/confidential_treasury/prices/2026-11-27_2.json": "373d63362009b04a65ea4780daed22d206b8c7c2d62139b2609939bae58bbb8e",
+   "data/raw/confidential_treasury/prices/2026-11-27_3.json": "0e85a20c8d57f9d1d543aae3c305196885557d8d53d69e42f87954ae371a5dcf"
   }
  }
 }
